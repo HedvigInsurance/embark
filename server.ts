@@ -33,6 +33,7 @@ app.use(mount('/format.js', async ctx => {
   ctx.body = outputString
 }))
 
-app.listen(3000)
+const port = process.env.PORT ? process.env.PORT : 3000
+app.listen(port)
 
-console.log("server started at port 3000")
+console.log(`server started at port ${port}`)
