@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "ts-node server.ts",
-    "build": "parcel watch src/index.tsx --out-dir dist/output"
+    "build": "parcel build src/index.tsx --out-dir dist/output",
+    "watch": "parcel watch src/index.tsx --out-dir dist/output"
   },
   "author": "",
   "license": "MIT",
