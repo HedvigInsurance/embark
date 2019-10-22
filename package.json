@@ -26,11 +26,10 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-emotion": "^10.0.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4",
     "uglify-js": "^3.6.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
-  },
-  "devDependencies": {
-    "typescript": "^3.6.4"
   }
 }
