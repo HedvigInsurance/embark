@@ -1,5 +1,5 @@
 {
-  "name": "Hedvig Onboarding - Swedish",
+  "name": "Web Onboarding - Swedish",
   "startNode": 1,
   "passages": [
     {
@@ -257,7 +257,7 @@
   ],
   "rawStory": {
     "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
-    "lastUpdate": "2019-10-23T12:49:15.652Z",
+    "lastUpdate": "2019-10-23T14:18:43.097Z",
     "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
     "tagColors": {},
     "passages": [
@@ -382,7 +382,7 @@
         "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
       }
     ],
-    "name": "Hedvig Onboarding - Swedish",
+    "name": "Web Onboarding - Swedish",
     "startPassage": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
     "zoom": 1,
     "snapToGrid": false,
