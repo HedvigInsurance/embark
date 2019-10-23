@@ -81,6 +81,8 @@ const passages = Array.from(storyDataNode.getElementsByTagName("tw-passagedata")
     }
 })
 
+const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHost"].value
+
 const Root = () => {
     const [currentPassageId, setCurrentPassageId] = React.useState(startNodeID)
     const passage = passages.filter(passage => passage.id == currentPassageId)[0]
@@ -98,7 +100,7 @@ const Root = () => {
                 }
 
                 html {
-                    background-image: url("http://localhost:3000/assets/background.png");
+                    background-image: url("${scriptHost}/assets/background.png");
                     background-position: center;
                 }
                 ${getCdnFontFaces()}

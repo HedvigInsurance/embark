@@ -16,7 +16,7 @@ app.use(mount('/client.js',async ctx => {
 const scriptHost = process.env.SCRIPT_HOST ? process.env.SCRIPT_HOST : "http://localhost:3000"
 
 app.use(mount('/format.js', async ctx => {
-  const html = fs.readFileSync("src/story-format.html", "utf-8").replace("{{SCRIPT_HOST}}", scriptHost)
+  const html = fs.readFileSync("src/story-format.html", "utf-8").replace(/{{SCRIPT_HOST}}/g, scriptHost)
   
   const outputJSON = {
     name: "Hedvig Twine",
