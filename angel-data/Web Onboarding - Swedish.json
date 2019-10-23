@@ -257,7 +257,7 @@
   ],
   "rawStory": {
     "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
-    "lastUpdate": "2019-10-23T14:28:25.252Z",
+    "lastUpdate": "2019-10-23T14:31:44.166Z",
     "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
     "tagColors": {},
     "passages": [
@@ -266,7 +266,7 @@
         "top": 328,
         "width": 100,
         "height": 100,
-        "selected": true,
+        "selected": false,
         "tags": [],
         "name": "Start",
         "text": "<Message>\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n</Message>\n\n<Message>\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja, det har jag->HasPreviousInsurance]]\n  </Option>\n  <Option>\n\t  [[Nej->TypeOfHome]]\n  </Option>\n</SelectAction>",
@@ -388,7 +388,7 @@
     "snapToGrid": false,
     "stylesheet": "",
     "script": "",
-    "storyFormat": "Hedvig - Development",
+    "storyFormat": "Hedvig",
     "storyFormatVersion": "1.0.0"
   }
 }
