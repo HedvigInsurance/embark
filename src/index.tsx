@@ -1,9 +1,10 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import { Passage } from "./Components/Passage";
+import { Passage } from "./Components/Passage"
+import { Proofing } from "./Components/Proofing"
 import { Global, css } from '@emotion/core'
 import { Colors } from "./colors";
-import { getCdnFontFaces } from '@hedviginsurance/brand'
+import { getCdnFontFaces } from "@hedviginsurance/brand"
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHost"].value
 const isProofing = JSON.parse(document.getElementsByTagName("body")[0].attributes["isProofing"].value)
@@ -14,7 +15,23 @@ const Root = () => {
     const passage = data.passages.filter(passage => passage.id == currentPassageId)[0]
 
     if (isProofing) {
-        return <h1>Hello World</h1>
+        return <>
+            <Global
+                styles={css`
+                    * {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    ul, li {
+                        list-style-type: none;
+                    }
+
+                    ${getCdnFontFaces()}
+                `}
+                />
+            <Proofing name={data.name} passages={data.passages} />
+        </>
     }
 
     return <>
@@ -25,7 +42,7 @@ const Root = () => {
                     padding: 0;
                 }
 
-                ul {
+                ul, li {
                     list-style-type: none;
                 }
 
