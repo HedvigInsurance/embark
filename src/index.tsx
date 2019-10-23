@@ -6,11 +6,16 @@ import { Colors } from "./colors";
 import { getCdnFontFaces } from '@hedviginsurance/brand'
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHost"].value
+const isProofing = JSON.parse(document.getElementsByTagName("body")[0].attributes["isProofing"].value)
 const data = JSON.parse(document.getElementById("storyData").attributes["data"].value)
 
 const Root = () => {
     const [currentPassageId, setCurrentPassageId] = React.useState(data.startNode)
     const passage = data.passages.filter(passage => passage.id == currentPassageId)[0]
+
+    if (isProofing) {
+        return <h1>Hello World</h1>
+    }
 
     return <>
         <Global

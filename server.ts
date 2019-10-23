@@ -16,14 +16,18 @@ app.use(mount('/client.js',async ctx => {
 const scriptHost = process.env.SCRIPT_HOST ? process.env.SCRIPT_HOST : "http://localhost:3000"
 
 app.use(mount('/format.js', async ctx => {
-  const html = fs.readFileSync("src/story-format.html", "utf-8").replace(/{{SCRIPT_HOST}}/g, scriptHost)
   
+  const proofing = ctx.request.query.proofing
+  const isProofing = proofing ? true : false
+
+  const html = fs.readFileSync("src/story-format.html", "utf-8").replace(/{{SCRIPT_HOST}}/g, scriptHost).replace(/{{IS_PROOFING}}/g, String(isProofing))
+
   const outputJSON = {
     name: "Hedvig Twine",
     version: "1.0.0",
     author: "Hedvig",
     description: "",
-    proofing: false,
+    proofing: isProofing,
     source: html
   };
   
