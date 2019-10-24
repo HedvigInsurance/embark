@@ -77,9 +77,25 @@ const messageListItemVariants = {
 
 const getTextContent = (store: any, props: MessageProps) => {
     if (props.message.expressions.length > 0) {
-        return props.message.expressions.filter(expression => {
+        const passableExpressions = props.message.expressions.filter(expression => {
             if (expression.type == "EQUALS") {
                 return store[expression.key] == expression.value
+            }
+
+            if (expression.type == "MORE_THAN") {
+                return store[expression.key] > expression.value
+            }
+
+            if (expression.type == "MORE_THAN_OR_EQUALS") {
+                return store[expression.key] >= expression.value
+            }
+
+            if (expression.type == "LESS_THAN") {
+                return store[expression.key] < expression.value
+            }
+
+            if (expression.type == "LESS_THAN_OR_EQUALS") {
+                return store[expression.key] <= expression.value
             }
 
             if (expression.type == "ALWAYS") {
@@ -87,7 +103,13 @@ const getTextContent = (store: any, props: MessageProps) => {
             }
 
             return false
-        })[0].text
+        })
+
+        if (passableExpressions.length == 0) {
+            return null
+        }
+
+        return passableExpressions[0].text
     }
 
     return props.message.text
@@ -97,22 +119,32 @@ export const Message = (props: MessageProps) => {
     return (
         <StoreContext.Consumer>
             {({ store }) => 
-                <MessageContainer>
-                    <motion.li
-                        key={props.message.text}
-                        variants={messageListItemVariants}
-                        transition={{
-                            type: "spring",
-                            stiffness: 260,
-                            damping: 100
-                        }}
-                        style={{
-                            transformOrigin: "0% 0%"
-                        }}
-                    >
-                        <MessageBody isResponse={props.isResponse}>{replacePlaceholders(store, getTextContent(store, props))}</MessageBody>
-                    </motion.li>
-                </MessageContainer>
+                {
+                    const text = getTextContent(store, props)
+
+                    if (!text) {
+                        return null
+                    }
+
+                    return (
+                        <MessageContainer>
+                            <motion.li
+                                key={props.message.text}
+                                variants={messageListItemVariants}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 260,
+                                    damping: 100
+                                }}
+                                style={{
+                                    transformOrigin: "0% 0%"
+                                }}
+                            >
+                                <MessageBody isResponse={props.isResponse}>{replacePlaceholders(store, text)}</MessageBody>
+                            </motion.li>
+                        </MessageContainer>
+                    )
+                }
             }
         </StoreContext.Consumer>
     )

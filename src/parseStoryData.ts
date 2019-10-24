@@ -112,6 +112,50 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
             }
         }
 
+        if (expression.includes(">")) {
+            const splitted = expression.split(">")
+
+            return {
+                type: "MORE_THAN",
+                key: splitted[0].trim(),
+                value: splitted[1].trim().replace(/'/g, ""),
+                text: when.textContent.trim()
+            }
+        }
+
+        if (expression.includes(">=")) {
+            const splitted = expression.split(">=")
+
+            return {
+                type: "MORE_THAN_OR_EQUALS",
+                key: splitted[0].trim(),
+                value: splitted[1].trim().replace(/'/g, ""),
+                text: when.textContent.trim()
+            }
+        }
+
+        if (expression.includes("<")) {
+            const splitted = expression.split("<")
+
+            return {
+                type: "LESS_THAN",
+                key: splitted[0].trim(),
+                value: splitted[1].trim().replace(/'/g, ""),
+                text: when.textContent.trim()
+            }
+        }
+
+        if (expression.includes("<=")) {
+            const splitted = expression.split("<=")
+
+            return {
+                type: "LESS_THAN_OR_EQUALS",
+                key: splitted[0].trim(),
+                value: splitted[1].trim().replace(/'/g, ""),
+                text: when.textContent.trim()
+            }
+        }
+
         if (expression == "true") {
             return {
                 type: "ALWAYS",
