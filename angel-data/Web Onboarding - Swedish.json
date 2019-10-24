@@ -1,8 +1,8 @@
 {
   "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+  "lastUpdate": "2019-10-24T13:01:35.382Z",
   "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
-  "lastUpdate": "2019-10-24T11:37:15.905Z",
-  "name": "Web Onboarding - Swedish",
+  "tagColors": {},
   "passages": [
     {
       "height": 100,
@@ -12,7 +12,7 @@
       "selected": false,
       "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
       "tags": [],
-      "text": "<Message>\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n</Message>\n\n<Message>\nVad för bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[En lägenhet->PrevInsuranceApartment]]\n  </Option>\n  <Option>\n\t  [[En villa->PrevInsuranceVilla]]\n  </Option>\n   <Option>\n\t  [[Ett studentrum->PrevInsuranceDorm]]\n  </Option>\n   <Option>\n\t  [[Jag bor inneboende->PrevInsuranceSubletter]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n</Message>\n\n<Message>\nVad för bostad vill du försäkra?\n</Message>\n\n<Response>\n\t{selectedType}\n</Response>\n\n<SelectAction>\n  <Option key=\"selectedType\">\n\t  [[En lägenhet->PrevInsuranceApartment]]\n  </Option>\n  <Option key=\"selectedType\">\n\t  [[En villa->PrevInsuranceVilla]]\n  </Option>\n   <Option key=\"selectedType\">\n\t  [[Ett studentrum->PrevInsuranceDorm]]\n  </Option>\n   <Option key=\"selectedType\">\n\t  [[Jag bor inneboende->PrevInsuranceSubletter]]\n  </Option>\n</SelectAction>",
       "top": 100,
       "width": 100
     },
@@ -72,7 +72,7 @@
       "selected": false,
       "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
       "tags": [],
-      "text": "<Message>\nHur många som bor där ska täckas av försäkringen?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "width": 100
     },
@@ -231,14 +231,98 @@
       "name": "TypeOfHomeDorm",
       "selected": false,
       "text": "Double-click this passage to edit it."
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1178774848",
+      "left": 800,
+      "name": "CoInsured",
+      "selected": true,
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+      "tags": [],
+      "text": "<Message>\nHur många som bor där ska täckas av försäkringen? {test}\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Bara jag->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 2->SSN]]\n  </Option>\n  <Option>\n  \t[[Vi är 3->SSN]]\n  </Option>\n    <Option>\n  \t[[Vi är 4->SSN]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "width": 100
     }
   ],
-  "script": "",
-  "snapToGrid": true,
+  "name": "Web Onboarding - Swedish",
   "startPassage": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
-  "storyFormat": "Hedvig",
-  "storyFormatVersion": "1.0.0",
+  "zoom": 1,
+  "snapToGrid": true,
   "stylesheet": "",
-  "tagColors": {},
-  "zoom": 1
+  "script": "",
+  "storyFormat": "Hedvig - Development",
+  "storyFormatVersion": "1.0.0"
 }
