@@ -12,8 +12,14 @@ const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHo
 const isProofing = JSON.parse(document.getElementsByTagName("body")[0].attributes["isProofing"].value)
 const data = parseStoryData(JSON.parse(document.getElementById("storyData").attributes["data"].value))
 
+const getStartPassage = () => {
+    const url = window.location.href
+    const splitted = url.split("/")
+    return url.includes("test") ? splitted[splitted.length - 1] : data.startPassage
+}
+
 const Root = () => {
-    const [currentPassageId, setCurrentPassageId] = React.useState(data.startPassage)
+    const [currentPassageId, setCurrentPassageId] = React.useState(getStartPassage())
     const passage = data.passages.filter(passage => passage.id == currentPassageId)[0]
 
     if (isProofing) {
