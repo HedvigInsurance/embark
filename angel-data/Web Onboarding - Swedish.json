@@ -1,6 +1,6 @@
 {
   "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
-  "lastUpdate": "2019-10-23T15:15:28.814Z",
+  "lastUpdate": "2019-10-24T08:09:19.642Z",
   "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
   "tagColors": {},
   "passages": [
@@ -12,7 +12,7 @@
       "selected": true,
       "tags": [],
       "name": "Start",
-      "text": "<Message>\nFisk\n</Message>\n\n<Message>\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja, det har jag->HasPreviousInsurance]]\n  </Option>\n  <Option>\n\t  [[Nej->TypeOfHome]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n</Message>\n\n<Message>\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja, det har jag->HasPreviousInsurance]]\n  </Option>\n  <Option>\n\t  [[Nej->TypeOfHome]]\n  </Option>\n</SelectAction>",
       "id": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
       "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
