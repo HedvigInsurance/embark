@@ -75,10 +75,28 @@ const messageListItemVariants = {
     })
   }
 
+const getTextContent = (store: any, props: MessageProps) => {
+    if (props.message.expressions.length > 0) {
+        return props.message.expressions.filter(expression => {
+            if (expression.type == "EQUALS") {
+                return store[expression.key] == expression.value
+            }
+
+            if (expression.type == "ALWAYS") {
+                return true
+            }
+
+            return false
+        })[0].text
+    }
+
+    return props.message.text
+}
+
 export const Message = (props: MessageProps) => {
     return (
         <StoreContext.Consumer>
-            {({ store }) => (
+            {({ store }) => 
                 <MessageContainer>
                     <motion.li
                         key={props.message.text}
@@ -92,10 +110,10 @@ export const Message = (props: MessageProps) => {
                             transformOrigin: "0% 0%"
                         }}
                     >
-                        <MessageBody isResponse={props.isResponse}>{replacePlaceholders(store, props.message.text)}</MessageBody>
+                        <MessageBody isResponse={props.isResponse}>{replacePlaceholders(store, getTextContent(store, props))}</MessageBody>
                     </motion.li>
                 </MessageContainer>
-            )}
+            }
         </StoreContext.Consumer>
     )
 }

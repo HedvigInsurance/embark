@@ -97,15 +97,49 @@ const getAction = (containerElement: Element) => {
     return null
 }
 
+const parsePossibleExpressionContent = (containerElement: Element) => {
+    const expressions = Array.from(containerElement.getElementsByTagName("When")).map(when => {
+        const expression = when.attributes["expression"].textContent
+
+        if (expression.includes("==")) {
+            const splitted = expression.split("==")
+
+            return {
+                type: "EQUALS",
+                key: splitted[0].trim(),
+                value: splitted[1].trim().replace(/'/g, ""),
+                text: when.textContent.trim()
+            }
+        }
+
+        if (expression == "true") {
+            return {
+                type: "ALWAYS",
+                text: when.textContent.trim()
+            }
+        }
+
+        if (expression == "false") {
+            return {
+                type: "NEVER",
+                text: when.textContent.trim()
+            }
+        }
+
+        return null
+    }).filter(expression => expression)
+    
+    return {
+        expressions,
+        text: containerElement.textContent
+    }
+}
+
 const getResponse = (containerElement: Element) => {
     const responseNode = containerElement.getElementsByTagName("response")[0]
 
     if (responseNode) {
-        const text = responseNode.textContent
-
-        return {
-            text
-        }
+        return parsePossibleExpressionContent(responseNode)
     }
 
     return null
@@ -121,9 +155,9 @@ export const parseStoryData = (storyData: any) => (
         
             const messages = Array.from(containerElement.getElementsByTagName("message")).map(message => {
                 const delay = message.attributes["delay"]
-        
+                
                 return {
-                    text: message.textContent,
+                    ...parsePossibleExpressionContent(message),
                     delay: delay ? delay : 0
                 }
             })

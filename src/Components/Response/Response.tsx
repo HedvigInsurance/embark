@@ -10,7 +10,8 @@ const ResponseAlignment = styled.div`
 
 type ResponseProps = {
     response: {
-        text: string
+        text: string,
+        expressions: any
     }
 }
 
@@ -18,7 +19,7 @@ export const Response = (props: ResponseProps) => (
     <ResponseAlignment>
         <Message isResponse={true} message={{
             delay: 0,
-            text: props.response.text
+            ...props.response
         }} />
     </ResponseAlignment>
 )
