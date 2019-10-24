@@ -12,6 +12,7 @@ export const SelectAction = (props: SelectActionProps) =>
         {({ setValue }) => 
             props.action.data.options.map(option =>
                 <SelectOption
+                    tooltip={option.tooltip}
                     label={option.link.label}
                     key={option.link.label}
                     onClick={() => {

@@ -85,7 +85,7 @@ export const Passage = (props: PassageProps) => {
                 </motion.ul>
             </motion.div>
             <motion.div
-                initial="visible"
+                initial="hidden"
                 animate={isResponding ? "hidden" : "visible"}
                 variants={{
                     visible: {
@@ -100,7 +100,8 @@ export const Passage = (props: PassageProps) => {
                 transition={{
                     type: "spring",
                     stiffness: 260,
-                    damping: 100
+                    damping: 100,
+                    delay: isResponding ? 0 : 0.75
                 }}>
                 <Actions>
                     <Action
@@ -116,7 +117,7 @@ export const Passage = (props: PassageProps) => {
                                 setAnimateOutMessages(false)
                                 setIsResponding(false)
                                 props.changePassage(name)
-                            }, 1250);
+                            }, 1000);
                         }} />
                 </Actions>
             </motion.div>

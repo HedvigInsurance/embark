@@ -21,6 +21,20 @@ const parseLinks = (text: string) => {
     return transformedLinks
 }
 
+const parseTooltips = (containerElement: Element) => {
+    const tooltips = Array.from(containerElement.getElementsByTagName("Tooltip"))
+
+    return tooltips.map(tooltip => {
+        const title = tooltip.getElementsByTagName("Title")[0].textContent.trim()
+        const description = tooltip.getElementsByTagName("Title")[0].textContent.trim()
+
+        return {
+            title,
+            description
+        }
+    })
+}
+
 const getSelectAction = (actionNode: Element | undefined) => {
     if (!actionNode) {
         return null
@@ -32,10 +46,13 @@ const getSelectAction = (actionNode: Element | undefined) => {
         const key = option.attributes["key"]
         const value = option.attributes["value"]
 
+        const tooltips = parseTooltips(option)
+
         return {
             key: key ? key.value : null,
             value: value ? value.value : null,
-            link: links[0]
+            link: links[0],
+            tooltip: tooltips[0] ? tooltips[0] : null
         }
     })
 
