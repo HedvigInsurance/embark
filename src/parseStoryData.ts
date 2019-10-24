@@ -26,7 +26,7 @@ const parseTooltips = (containerElement: Element) => {
 
     return tooltips.map(tooltip => {
         const title = tooltip.getElementsByTagName("Title")[0].textContent.trim()
-        const description = tooltip.getElementsByTagName("Title")[0].textContent.trim()
+        const description = tooltip.getElementsByTagName("Description")[0].textContent.trim()
 
         return {
             title,

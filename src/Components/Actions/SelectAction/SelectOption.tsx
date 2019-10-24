@@ -41,9 +41,14 @@ const TooltipIcon = styled(motion.div)`
     }
 `
 
-const Tooltip = styled(motion.div)`
+const TooltipContainer = styled(motion.div)`
+    position: absolute;
+    top: -40px;
+    right: 0px;
+`
+
+const Tooltip = styled.div`
     background-color: ${colors.PURPLE};
-    position: fixed;
     border-radius: 10px;
     color: ${colors.WHITE};
     display: flex;
@@ -51,7 +56,6 @@ const Tooltip = styled(motion.div)`
     text-align: center;
     padding: 10px;
     font-family: ${fonts.CIRCULAR};
-    transform: translateY(-225%) translateX(90%);
 `
 
 type SelectOptionProps = {
@@ -68,7 +72,7 @@ export const SelectOption = (props: SelectOptionProps) => {
 
     return <Container onClick={props.onClick}>
         {props.tooltip && <>
-            <motion.div
+            <TooltipContainer
                 initial="hidden"
                 animate={showTooltip ? "visible" : "hidden"}
                 transition={{
@@ -87,7 +91,7 @@ export const SelectOption = (props: SelectOptionProps) => {
                     }
                 }}>
                 <Tooltip>{props.tooltip.description}</Tooltip>
-            </motion.div>
+            </TooltipContainer>
             <TooltipIcon onHoverStart={() => {
             setShowTooltip(true)
         }} onHoverEnd={() => setShowTooltip(false)}>
