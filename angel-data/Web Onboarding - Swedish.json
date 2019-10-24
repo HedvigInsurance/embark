@@ -1,6 +1,6 @@
 {
   "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
-  "lastUpdate": "2019-10-24T08:09:19.642Z",
+  "lastUpdate": "2019-10-24T09:46:03.850Z",
   "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
   "tagColors": {},
   "passages": [
@@ -77,14 +77,14 @@
       "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "left": 494,
+      "left": 495.6666666666667,
       "top": 927,
       "width": 100,
       "height": 100,
-      "selected": false,
+      "selected": true,
       "tags": [],
       "name": "RentalApartment",
-      "text": "<Message>\nOkej, hur stor är den?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[80kvm->80KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->90KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->House]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\nOkej, hur stor är den?\n</Message>\n\n<NumberAction placeholder=\"kvadratmeter\" next=\"[[Fortsätt->80KVM]]\" />",
       "id": "bbaee620-ba42-4432-a5f1-c0cbaeafb45a",
       "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
@@ -105,10 +105,10 @@
       "top": 1078,
       "width": 100,
       "height": 100,
-      "selected": false,
+      "selected": true,
       "tags": [],
       "name": "80KVM",
-      "text": "Double-click this passage to edit it.",
+      "text": "<Message>\nCoolt att du bor på {sizeOfApartment}\n</Message>",
       "id": "a6877c20-ab06-4e6a-8984-9e11f6786783",
       "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
@@ -127,10 +127,10 @@
   ],
   "name": "Web Onboarding - Swedish",
   "startPassage": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
-  "zoom": 1,
+  "zoom": 0.6,
   "snapToGrid": false,
   "stylesheet": "",
   "script": "",
-  "storyFormat": "Hedvig - Development",
+  "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0"
 }
