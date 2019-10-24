@@ -6,12 +6,14 @@ import { Global, css } from '@emotion/core'
 import { Colors } from "./colors";
 import { getCdnFontFaces } from "@hedviginsurance/brand"
 
+import { parseStoryData } from "./parseStoryData"
+
 const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHost"].value
 const isProofing = JSON.parse(document.getElementsByTagName("body")[0].attributes["isProofing"].value)
-const data = JSON.parse(document.getElementById("storyData").attributes["data"].value)
+const data = parseStoryData(JSON.parse(document.getElementById("storyData").attributes["data"].value))
 
 const Root = () => {
-    const [currentPassageId, setCurrentPassageId] = React.useState(data.startNode)
+    const [currentPassageId, setCurrentPassageId] = React.useState(data.startPassage)
     const passage = data.passages.filter(passage => passage.id == currentPassageId)[0]
 
     if (isProofing) {
@@ -55,7 +57,7 @@ const Root = () => {
             />
         <Passage passage={passage} changePassage={name => {
             const newPassage = data.passages.filter(passage => passage.name == name)[0]
-            setCurrentPassageId(newPassage ? newPassage.id : data.startNode)
+            setCurrentPassageId(newPassage ? newPassage.id : data.startPassage)
         }} />
     </>
 }
