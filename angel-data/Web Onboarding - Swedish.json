@@ -1,394 +1,136 @@
 {
-  "name": "Web Onboarding - Swedish",
-  "startNode": 1,
+  "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
+  "lastUpdate": "2019-10-23T15:15:28.814Z",
+  "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
+  "tagColors": {},
   "passages": [
     {
-      "id": 1,
-      "text": "<Message>\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n</Message>\n\n<Message>\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja, det har jag->HasPreviousInsurance]]\n  </Option>\n  <Option>\n\t  [[Nej->TypeOfHome]]\n  </Option>\n</SelectAction>",
+      "left": 797,
+      "top": 328,
+      "width": 100,
+      "height": 100,
+      "selected": true,
+      "tags": [],
       "name": "Start",
-      "messages": [
-        {
-          "text": "\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n",
-          "delay": 0
-        },
-        {
-          "text": "\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n",
-          "delay": 0
-        }
-      ],
-      "action": {
-        "component": "SelectAction",
-        "options": [
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Ja, det har jag",
-              "name": "HasPreviousInsurance"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Nej",
-              "name": "TypeOfHome"
-            }
-          }
-        ]
-      }
+      "text": "<Message>\nFisk\n</Message>\n\n<Message>\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja, det har jag->HasPreviousInsurance]]\n  </Option>\n  <Option>\n\t  [[Nej->TypeOfHome]]\n  </Option>\n</SelectAction>",
+      "id": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 2,
-      "text": "<Message>\nOm du väljer att skaffa Hedvig sen kan jag säga upp din gamla försäkring åt dig, om du vill\n</Message>\n\n<SelectAction>\n  <Option key=\"CancelInsurance\" value=\"true\">\n  \t[[Ja, tack!->CancelPreviousInsurance]]\n  </Option>\n  <Option>\n  \t[[Nej, gör det själv->TypeOfHome]]\n  </Option>\n</SelectAction>",
+      "left": 720,
+      "top": 477,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "HasPreviousInsurance",
-      "messages": [
-        {
-          "text": "\nOm du väljer att skaffa Hedvig sen kan jag säga upp din gamla försäkring åt dig, om du vill\n",
-          "delay": 0
-        }
-      ],
-      "action": {
-        "component": "SelectAction",
-        "options": [
-          {
-            "key": "CancelInsurance",
-            "value": "true",
-            "link": {
-              "label": "Ja, tack!",
-              "name": "CancelPreviousInsurance"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Nej, gör det själv",
-              "name": "TypeOfHome"
-            }
-          }
-        ]
-      }
+      "text": "<Message>\nOm du väljer att skaffa Hedvig sen kan jag säga upp din gamla försäkring åt dig, om du vill\n</Message>\n\n<SelectAction>\n  <Option key=\"CancelInsurance\" value=\"true\">\n  \t[[Ja, tack!->CancelPreviousInsurance]]\n  </Option>\n  <Option>\n  \t[[Nej, gör det själv->TypeOfHome]]\n  </Option>\n</SelectAction>",
+      "id": "42df9e98-1d4e-4d97-bb81-52dce5ad728d",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 3,
-      "text": "<Message>\nInga problem ☺️\n</Message>\n\n<Message>\nOkej, vad för typ av bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[En lägenhet->Apartment]]\n  </Option>\n  <Option>\n  \t[[En Villa->House]]\n  </Option>\n</SelectAction>",
+      "left": 644,
+      "top": 627,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "CancelPreviousInsurance",
-      "messages": [
-        {
-          "text": "\nInga problem ☺️\n",
-          "delay": 0
-        },
-        {
-          "text": "\nOkej, vad för typ av bostad vill du försäkra?\n",
-          "delay": 0
-        }
-      ],
-      "action": {
-        "component": "SelectAction",
-        "options": [
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "En lägenhet",
-              "name": "Apartment"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "En Villa",
-              "name": "House"
-            }
-          }
-        ]
-      }
+      "text": "<Message>\nInga problem ☺️\n</Message>\n\n<Message>\nOkej, vad för typ av bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[En lägenhet->Apartment]]\n  </Option>\n  <Option>\n  \t[[En Villa->House]]\n  </Option>\n</SelectAction>",
+      "id": "2443dc4b-db36-4d2f-a2f2-8b6435c9f6e9",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 4,
-      "text": "<Message>\nOkej, vad för typ av bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[En lägenhet->Apartment]]\n  </Option>\n  <Option>\n  \t[[En Villa->House]]\n  </Option>\n</SelectAction>",
+      "left": 789,
+      "top": 624,
+      "width": 100,
+      "height": 100,
+      "selected": true,
+      "tags": [],
       "name": "TypeOfHome",
-      "messages": [
-        {
-          "text": "\nOkej, vad för typ av bostad vill du försäkra?\n",
-          "delay": 0
-        }
-      ],
-      "action": {
-        "component": "SelectAction",
-        "options": [
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "En lägenhet",
-              "name": "Apartment"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "En Villa",
-              "name": "House"
-            }
-          }
-        ]
-      }
+      "text": "<Message>\nOkej, vad för typ av bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[En lägenhet->Apartment]]\n  </Option>\n  <Option>\n  \t[[En Villa->House]]\n  </Option>\n</SelectAction>",
+      "id": "f791842d-5ae6-4892-81d4-9d57e3427175",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 5,
-      "text": "<Message>\nNice. Vilken typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Jag hyr->RentalApartment]]\n  </Option>\n  <Option>\n  \t[[Jag äger->OwnedApartment]]\n  </Option>\n  <Option>\n  \t[[Inneboende->RentalApartment]]\n  </Option>\n  <Option>\n  \t[[Jag hyr i andra hand->RentalApartment]]\n  </Option>\n</SelectAction>",
+      "left": 570,
+      "top": 778,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "Apartment",
-      "messages": [
-        {
-          "text": "\nNice. Vilken typ av boende är det?\n",
-          "delay": 0
-        }
-      ],
-      "action": {
-        "component": "SelectAction",
-        "options": [
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Jag hyr",
-              "name": "RentalApartment"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Jag äger",
-              "name": "OwnedApartment"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Inneboende",
-              "name": "RentalApartment"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "Jag hyr i andra hand",
-              "name": "RentalApartment"
-            }
-          }
-        ]
-      }
+      "text": "<Message>\nNice. Vilken typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Jag hyr->RentalApartment]]\n  </Option>\n  <Option>\n  \t[[Jag äger->OwnedApartment]]\n  </Option>\n  <Option>\n  \t[[Inneboende->RentalApartment]]\n  </Option>\n  <Option>\n  \t[[Jag hyr i andra hand->RentalApartment]]\n  </Option>\n</SelectAction>",
+      "id": "7d69d9b1-ee80-420b-974f-65ab39dd3607",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 6,
-      "text": "Double-click this passage to edit it.",
+      "left": 721,
+      "top": 778,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "House",
-      "messages": [],
-      "action": null
+      "text": "Double-click this passage to edit it.",
+      "id": "5d8d1409-b2f0-4950-9c2e-44f64fdee753",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 7,
-      "text": "<Message>\nOkej, hur stor är den?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[80kvm->80KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->90KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->House]]\n  </Option>\n</SelectAction>",
+      "left": 494,
+      "top": 927,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "RentalApartment",
-      "messages": [
-        {
-          "text": "\nOkej, hur stor är den?\n",
-          "delay": 0
-        }
-      ],
-      "action": {
-        "component": "SelectAction",
-        "options": [
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "80kvm",
-              "name": "80KVM"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "90kvm",
-              "name": "90KVM"
-            }
-          },
-          {
-            "key": null,
-            "value": null,
-            "link": {
-              "label": "90kvm",
-              "name": "House"
-            }
-          }
-        ]
-      }
+      "text": "<Message>\nOkej, hur stor är den?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[80kvm->80KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->90KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->House]]\n  </Option>\n</SelectAction>",
+      "id": "bbaee620-ba42-4432-a5f1-c0cbaeafb45a",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 8,
-      "text": "Double-click this passage to edit it.",
+      "left": 645,
+      "top": 928,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "OwnedApartment",
-      "messages": [],
-      "action": null
+      "text": "Double-click this passage to edit it.",
+      "id": "94151b87-65b6-41cc-b735-dd810e062d60",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 9,
-      "text": "Double-click this passage to edit it.",
+      "left": 419,
+      "top": 1078,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "80KVM",
-      "messages": [],
-      "action": null
+      "text": "Double-click this passage to edit it.",
+      "id": "a6877c20-ab06-4e6a-8984-9e11f6786783",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     },
     {
-      "id": 10,
-      "text": "Double-click this passage to edit it.",
+      "left": 569,
+      "top": 1078,
+      "width": 100,
+      "height": 100,
+      "selected": false,
+      "tags": [],
       "name": "90KVM",
-      "messages": [],
-      "action": null
+      "text": "Double-click this passage to edit it.",
+      "id": "77c933e4-cf80-46e1-8a13-31b085a3b4ae",
+      "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
     }
   ],
-  "rawStory": {
-    "id": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9",
-    "lastUpdate": "2019-10-23T14:31:44.166Z",
-    "ifid": "9B396E1C-8C63-4508-B1EA-29CC7E511B30",
-    "tagColors": {},
-    "passages": [
-      {
-        "left": 796,
-        "top": 328,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "Start",
-        "text": "<Message>\nHej! Du ska få ett prisförslag, det kommer bara ta 1 minut.\n</Message>\n\n<Message>\nHar du hemförsäkring idag? I så fall kan jag hjälpa dig avsluta din gamla 😊\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja, det har jag->HasPreviousInsurance]]\n  </Option>\n  <Option>\n\t  [[Nej->TypeOfHome]]\n  </Option>\n</SelectAction>",
-        "id": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 720,
-        "top": 477,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "HasPreviousInsurance",
-        "text": "<Message>\nOm du väljer att skaffa Hedvig sen kan jag säga upp din gamla försäkring åt dig, om du vill\n</Message>\n\n<SelectAction>\n  <Option key=\"CancelInsurance\" value=\"true\">\n  \t[[Ja, tack!->CancelPreviousInsurance]]\n  </Option>\n  <Option>\n  \t[[Nej, gör det själv->TypeOfHome]]\n  </Option>\n</SelectAction>",
-        "id": "42df9e98-1d4e-4d97-bb81-52dce5ad728d",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 644,
-        "top": 627,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "CancelPreviousInsurance",
-        "text": "<Message>\nInga problem ☺️\n</Message>\n\n<Message>\nOkej, vad för typ av bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[En lägenhet->Apartment]]\n  </Option>\n  <Option>\n  \t[[En Villa->House]]\n  </Option>\n</SelectAction>",
-        "id": "2443dc4b-db36-4d2f-a2f2-8b6435c9f6e9",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 794,
-        "top": 628,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "TypeOfHome",
-        "text": "<Message>\nOkej, vad för typ av bostad vill du försäkra?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[En lägenhet->Apartment]]\n  </Option>\n  <Option>\n  \t[[En Villa->House]]\n  </Option>\n</SelectAction>",
-        "id": "f791842d-5ae6-4892-81d4-9d57e3427175",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 570,
-        "top": 778,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "Apartment",
-        "text": "<Message>\nNice. Vilken typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[Jag hyr->RentalApartment]]\n  </Option>\n  <Option>\n  \t[[Jag äger->OwnedApartment]]\n  </Option>\n  <Option>\n  \t[[Inneboende->RentalApartment]]\n  </Option>\n  <Option>\n  \t[[Jag hyr i andra hand->RentalApartment]]\n  </Option>\n</SelectAction>",
-        "id": "7d69d9b1-ee80-420b-974f-65ab39dd3607",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 721,
-        "top": 778,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "House",
-        "text": "Double-click this passage to edit it.",
-        "id": "5d8d1409-b2f0-4950-9c2e-44f64fdee753",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 494,
-        "top": 927,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "RentalApartment",
-        "text": "<Message>\nOkej, hur stor är den?\n</Message>\n\n<SelectAction>\n  <Option>\n  \t[[80kvm->80KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->90KVM]]\n  </Option>\n  <Option>\n  \t[[90kvm->House]]\n  </Option>\n</SelectAction>",
-        "id": "bbaee620-ba42-4432-a5f1-c0cbaeafb45a",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 645,
-        "top": 928,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "OwnedApartment",
-        "text": "Double-click this passage to edit it.",
-        "id": "94151b87-65b6-41cc-b735-dd810e062d60",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 419,
-        "top": 1078,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "80KVM",
-        "text": "Double-click this passage to edit it.",
-        "id": "a6877c20-ab06-4e6a-8984-9e11f6786783",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      },
-      {
-        "left": 569,
-        "top": 1078,
-        "width": 100,
-        "height": 100,
-        "selected": false,
-        "tags": [],
-        "name": "90KVM",
-        "text": "Double-click this passage to edit it.",
-        "id": "77c933e4-cf80-46e1-8a13-31b085a3b4ae",
-        "story": "80828fef-c7ad-4e45-8bc9-6b5cc80127d9"
-      }
-    ],
-    "name": "Web Onboarding - Swedish",
-    "startPassage": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
-    "zoom": 1,
-    "snapToGrid": false,
-    "stylesheet": "",
-    "script": "",
-    "storyFormat": "Hedvig",
-    "storyFormatVersion": "1.0.0"
-  }
+  "name": "Web Onboarding - Swedish",
+  "startPassage": "a24aa22a-c669-4aa5-be3f-4d97294dee28",
+  "zoom": 1,
+  "snapToGrid": false,
+  "stylesheet": "",
+  "script": "",
+  "storyFormat": "Hedvig - Development",
+  "storyFormatVersion": "1.0.0"
 }
