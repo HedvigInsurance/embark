@@ -32,6 +32,48 @@ const PassageContainer = styled.div`
     padding-bottom: 20px;
 `
 
+const Option = styled.p`
+    display: inline-block;
+    font-family: ${fonts.CIRCULAR};
+    padding: 20px;
+    margin-right: 10px;
+    background-color: ${colors.WHITE};
+`
+
+const OptionContainer = styled.div`
+    display: flex;
+    margin-top: 20px;
+`
+
+type ActionProps = {
+    action: any
+}
+
+const Action = (props: ActionProps) => {
+    if (!props.action) {
+        return null
+    }
+
+    if (props.action.component == "SelectAction") {
+        return <OptionContainer>
+            {
+                props.action.data.options.map(option => 
+                    <Option>
+                        {option.link.label} -> {option.link.name}
+                        {option.tooltip && <>
+                            
+                            <p><br /> Tooltip title: <b>{option.tooltip.title}</b></p>
+                            <p><br /> Tooltip description: <b>{option.tooltip.description}</b></p>
+                        </>}
+                    </Option>
+                )
+            }
+        </OptionContainer>
+    }
+
+    return null
+}
+
 export const Proofing = (props: ProofingProps) => {
     return <Container>
             <Title>{props.name}</Title>
@@ -44,6 +86,7 @@ export const Proofing = (props: ProofingProps) => {
                             <Message isResponse={false} message={message} />
                         )}
                     </PassageBody>
+                    <Action action={passage.action} />
                 </PassageContainer>
             )}
         </Container>
