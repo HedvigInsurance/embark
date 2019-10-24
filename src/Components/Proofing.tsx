@@ -41,7 +41,7 @@ export const Proofing = (props: ProofingProps) => {
                     <PassageBody>
                         {passage.messages.length == 0 && <p>No messages</p>}
                         {passage.messages.map(message => 
-                            <Message message={message} />
+                            <Message isResponse={false} message={message} />
                         )}
                     </PassageBody>
                 </PassageContainer>

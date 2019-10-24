@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 
 import { Action } from "./Actions/Action"
 import { Message } from "./Message";
+import { Response } from "./Response/Response"
 
 type PassageProps = {
     passage: any,
@@ -47,28 +48,54 @@ const messageListMotionVariants = {
   }
 
 export const Passage = (props: PassageProps) => {
+    const [isResponding, setIsResponding] = React.useState(false)
+    const [animateOutMessages, setAnimateOutMessages] = React.useState(false)
+
     return <ChatContainer>
         <ChatPadding>
-            <div>
+            <motion.div
+                initial="visible"
+                animate={animateOutMessages ? "hidden" : "visible"}
+                variants={{
+                    visible: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    hidden: {
+                        opacity: 0,
+                        y: -200
+                    }
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 220,
+                    damping: 120
+                }}
+            >
+                {props.passage.messages.length == 0 && <p>This passage has no messages</p>}
                 <motion.ul
                     key={props.passage.name}
                     initial="hidden"
                     animate="visible"
                     variants={messageListMotionVariants}>
                     {props.passage.messages.map(message =>
-                        <Message message={message} />
+                        <Message isResponse={false} message={message} />
                     )}
+                    {(isResponding && props.passage.response) && <Response response={props.passage.response} />}
                 </motion.ul>
-            </div>
+            </motion.div>
             <motion.div
-                key={props.passage.name}
-                initial={{
-                    opacity: 0,
-                    y: 150
-                }}
-                animate={{
-                    opacity: 1,
-                    y: 0
+                initial="visible"
+                animate={isResponding ? "hidden" : "visible"}
+                variants={{
+                    visible: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    hidden: {
+                        opacity: 0,
+                        y: 150
+                    }
                 }}
                 transition={{
                     type: "spring",
@@ -76,7 +103,21 @@ export const Passage = (props: PassageProps) => {
                     damping: 100
                 }}>
                 <Actions>
-                    <Action action={props.passage.action} changePassage={(name) => props.changePassage(name)} />
+                    <Action
+                        action={props.passage.action}
+                        changePassage={(name) => {
+                            setIsResponding(true)
+
+                            setTimeout(() => {
+                                setAnimateOutMessages(true)
+                            }, 650)
+
+                            setTimeout(() => {
+                                setAnimateOutMessages(false)
+                                setIsResponding(false)
+                                props.changePassage(name)
+                            }, 1250);
+                        }} />
                 </Actions>
             </motion.div>
         </ChatPadding>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { SelectOption } from "./SelectOption"
+import { SelectAction } from "./SelectAction/SelectAction"
 import { NumberAction } from "./NumberAction";
 
 type ActionProps = {
@@ -13,12 +13,7 @@ export const Action = (props: ActionProps) => {
     }
 
     if (props.action.component == "SelectAction") {
-        return props.action && props.action.data.options.map(option =>
-            <SelectOption
-                label={option.link.label}
-                key={option.link.label}
-                onClick={() => props.changePassage(option.link.name)} />
-        )
+        return <SelectAction action={props.action} changePassage={props.changePassage} />
     }
 
     if (props.action.component == "NumberAction") {

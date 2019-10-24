@@ -1,21 +1,27 @@
 import * as React from "react"
 import styled from "@emotion/styled"
-import { fonts } from "@hedviginsurance/brand"
+import { fonts, colors } from "@hedviginsurance/brand"
 import { motion } from "framer-motion"
 
 import { StoreContext } from "./KeyValueStore"
 
 type MessageProps = {
-    message: any
+    message: any,
+    isResponse: boolean
 }
 
 const MessageContainer = styled.div`
     padding-bottom: 5px
 `
 
-const MessageBody = styled.p`
+type MessageBodyProps = {
+    isResponse: boolean
+}
+
+const MessageBody = styled.p<MessageBodyProps>`
     display: inline-block;
-    background-color: white;
+    background-color: ${(props: MessageBodyProps) => props.isResponse ? colors.PURPLE : colors.WHITE};
+    color: ${(props: MessageBodyProps) => props.isResponse ? colors.WHITE : colors.BLACK};
     max-width: 300px;
     padding: 15px;
     border-radius: 20px;
@@ -50,9 +56,6 @@ const messageListItemVariants = {
     text: string,
   ) => {
     const matches = text.split(placeholderRegex).filter((value) => value)
-
-    console.log(matches)
-    console.log(replacements)
   
     if (!matches) {
       return []
@@ -89,7 +92,7 @@ export const Message = (props: MessageProps) => {
                             transformOrigin: "0% 0%"
                         }}
                     >
-                        <MessageBody>{replacePlaceholders(store, props.message.text)}</MessageBody>
+                        <MessageBody isResponse={props.isResponse}>{replacePlaceholders(store, props.message.text)}</MessageBody>
                     </motion.li>
                 </MessageContainer>
             )}

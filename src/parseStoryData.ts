@@ -80,6 +80,19 @@ const getAction = (containerElement: Element) => {
     return null
 }
 
+const getResponse = (containerElement: Element) => {
+    const responseNode = containerElement.getElementsByTagName("response")[0]
+
+    if (responseNode) {
+        const text = responseNode.textContent
+
+        return {
+            text
+        }
+    }
+
+    return null
+}
 
 export const parseStoryData = (storyData: any) => (
     {
@@ -103,7 +116,8 @@ export const parseStoryData = (storyData: any) => (
                 text: passage.text,
                 name: passage.name,
                 messages: messages,
-                action: getAction(containerElement)
+                action: getAction(containerElement),
+                response: getResponse(containerElement)
             }
         }),
     }
