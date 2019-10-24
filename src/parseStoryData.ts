@@ -1,47 +1,84 @@
-const getAction = (actionNode: Element | undefined) => {
+const parseLinks = (text: string) => {
+    const trimmedText = text.replace(/(\r\n|\n|\r)/gm,"").trim()
+    const links = trimmedText.match(/\[\[.+?\]\]/g) || []
+    const transformedLinks = links.map(function(link) {
+        var differentName = link.match(/\[\[(.*?)\->(.*?)\]\]/)
+
+        if (differentName) {
+          return {
+            label: differentName[1],
+            name: differentName[2]
+          };
+        } else {
+          link = link.substring(2, link.length-2)
+          return {
+            name: link,
+            label: link
+          }
+        }
+      })
+
+    return transformedLinks
+}
+
+const getSelectAction = (actionNode: Element | undefined) => {
     if (!actionNode) {
         return null
     }
 
     const actionNodeOptions = Array.from(actionNode.getElementsByTagName("option")).map(option => {
-        const text = option.textContent.replace(/(\r\n|\n|\r)/gm,"").trim()
-        const links = text.match(/\[\[.+?\]\]/g) || []
-        const transformedLinks = links.map(function(link) {
-            var differentName = link.match(/\[\[(.*?)\->(.*?)\]\]/)
-
-            if (differentName) {
-              return {
-                label: differentName[1],
-                name: differentName[2]
-              };
-            } else {
-              link = link.substring(2, link.length-2)
-              return {
-                name: link,
-                label: link
-              }
-            }
-          })
-
-        if (transformedLinks.length > 1 || transformedLinks.length == 0) {
-            throw "has no links"
-        }
-
+        const links = parseLinks(option.textContent)
+        
         const key = option.attributes["key"]
         const value = option.attributes["value"]
 
         return {
             key: key ? key.value : null,
             value: value ? value.value : null,
-            link: transformedLinks[0]
+            link: links[0]
         }
     })
 
     return {
         component: "SelectAction",
-        options: actionNodeOptions
+        data: {
+            options: actionNodeOptions
+        }
     }
-},
+}
+
+const getNumberAction = (numberActionNode: Element) => {
+    const placeholder = numberActionNode.attributes["placeholder"].value
+    const next = numberActionNode.attributes["next"].value
+    const key = numberActionNode.attributes["key"].value
+
+    const links = parseLinks(next)
+
+    return {
+        component: "NumberAction",
+        data: {
+            placeholder,
+            key,
+            link: links[0]
+        }
+    }
+}
+
+const getAction = (containerElement: Element) => {
+    const selectActionNode = containerElement.getElementsByTagName("selectaction")[0]
+
+    if (selectActionNode) {
+        return getSelectAction(selectActionNode)
+    }
+
+    const numberActionNode = containerElement.getElementsByTagName("numberaction")[0]
+
+    if (numberActionNode) {
+        return getNumberAction(numberActionNode)
+    }
+
+    return null
+}
 
 
 export const parseStoryData = (storyData: any) => (
@@ -61,14 +98,12 @@ export const parseStoryData = (storyData: any) => (
                 }
             })
         
-            const actionNode = containerElement.getElementsByTagName("selectaction")[0]
-        
             return {
                 id: passage.id,
                 text: passage.text,
                 name: passage.name,
                 messages: messages,
-                action: getAction(actionNode)
+                action: getAction(containerElement)
             }
         }),
     }

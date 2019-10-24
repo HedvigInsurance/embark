@@ -7,6 +7,7 @@ import { Colors } from "./colors";
 import { getCdnFontFaces } from "@hedviginsurance/brand"
 
 import { parseStoryData } from "./parseStoryData"
+import { KeyValueStore } from "./Components/KeyValueStore";
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHost"].value
 const isProofing = JSON.parse(document.getElementsByTagName("body")[0].attributes["isProofing"].value)
@@ -42,6 +43,8 @@ const Root = () => {
         </>
     }
 
+    console.log(passage)
+
     return <>
         <Global
             styles={css`
@@ -61,10 +64,12 @@ const Root = () => {
                 ${getCdnFontFaces()}
             `}
             />
-        <Passage passage={passage} changePassage={name => {
-            const newPassage = data.passages.filter(passage => passage.name == name)[0]
-            setCurrentPassageId(newPassage ? newPassage.id : data.startPassage)
-        }} />
+            <KeyValueStore>
+                <Passage passage={passage} changePassage={name => {
+                    const newPassage = data.passages.filter(passage => passage.name == name)[0]
+                    setCurrentPassageId(newPassage ? newPassage.id : data.startPassage)
+                }} />
+            </KeyValueStore>
     </>
 }
 

@@ -3,6 +3,8 @@ import styled from "@emotion/styled"
 import { fonts } from "@hedviginsurance/brand"
 import { motion } from "framer-motion"
 
+import { StoreContext } from "./KeyValueStore"
+
 type MessageProps = {
     message: any
 }
@@ -34,23 +36,63 @@ const messageListItemVariants = {
     },
   }
 
+  interface Replacements {
+    [key: string]: React.ReactNode
+  }
+
+  export const TranslationNode: React.SFC = ({ children }) => <>{children}</>
+
+  export const placeholderRegex = new RegExp('({[a-zA-Z0-9_]+})', 'g')
+  export const placeholderKeyRegex = new RegExp('([a-zA-Z0-9_]+)', 'g')
+  
+  export const replacePlaceholders = (
+    replacements: Replacements,
+    text: string,
+  ) => {
+    const matches = text.split(placeholderRegex).filter((value) => value)
+
+    console.log(matches)
+    console.log(replacements)
+  
+    if (!matches) {
+      return []
+    }
+  
+    return matches.map((placeholder, index) => {
+      if (!placeholderKeyRegex.test(placeholder)) {
+        return placeholder
+      }
+      const key = placeholder.match(placeholderKeyRegex)![0]
+  
+      if (replacements[key]) {
+        return <TranslationNode key={index}>{replacements[key]}</TranslationNode>
+      }
+  
+      return placeholder
+    })
+  }
+
 export const Message = (props: MessageProps) => {
     return (
-        <MessageContainer>
-                            <motion.li
-                                key={props.message.text}
-                                variants={messageListItemVariants}
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 260,
-                                    damping: 100
-                                }}
-                                style={{
-                                    transformOrigin: "0% 0%"
-                                }}
-                            >
-                                <MessageBody>{props.message.text}</MessageBody>
-                            </motion.li>
-                        </MessageContainer>
+        <StoreContext.Consumer>
+            {({ store }) => (
+                <MessageContainer>
+                    <motion.li
+                        key={props.message.text}
+                        variants={messageListItemVariants}
+                        transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 100
+                        }}
+                        style={{
+                            transformOrigin: "0% 0%"
+                        }}
+                    >
+                        <MessageBody>{replacePlaceholders(store, props.message.text)}</MessageBody>
+                    </motion.li>
+                </MessageContainer>
+            )}
+        </StoreContext.Consumer>
     )
 }

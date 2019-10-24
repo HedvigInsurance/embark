@@ -2,7 +2,7 @@ import * as React from "react"
 import styled from "@emotion/styled"
 import { motion } from "framer-motion"
 
-import { SelectOption } from "./SelectOption"
+import { Action } from "./Actions/Action"
 import { Message } from "./Message";
 
 type PassageProps = {
@@ -76,12 +76,7 @@ export const Passage = (props: PassageProps) => {
                     damping: 100
                 }}>
                 <Actions>
-                {props.passage.action && props.passage.action.options.map(option =>
-                    <SelectOption
-                        label={option.link.label}
-                        key={option.link.label}
-                        onClick={() => props.changePassage(option.link.name)} />
-                )}
+                    <Action action={props.passage.action} changePassage={(name) => props.changePassage(name)} />
                 </Actions>
             </motion.div>
         </ChatPadding>
