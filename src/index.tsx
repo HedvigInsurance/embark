@@ -95,7 +95,6 @@ const Root = () => {
                     {({ store }) => (
                         <Passage
                         history={state.history}
-                        animationDirection="forwards"
                         passage={passage}
                         goBack={() =>
                         {
