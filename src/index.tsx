@@ -93,7 +93,9 @@ const Root = () => {
             <KeyValueStore>
                 <StoreContext.Consumer>
                     {({ store }) => (
-                        <Passage animationDirection="forwards" passage={passage}
+                        <Passage
+                        history={state.history}
+                        passage={passage}
                         goBack={() =>
                         {
                             dispatch({
