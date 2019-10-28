@@ -7,12 +7,13 @@ import { Message } from "./Message";
 import { Response } from "./Response/Response"
 
 import { history } from "../index"
+import { BackButton } from "./BackButton"
 
 type PassageProps = {
     passage: any,
+    history: [string],
     goBack: () => void,
-    changePassage: (name: String) => void,
-    animationDirection: "forwards" | "reverse"
+    changePassage: (name: String) => void
 }
 
 const ChatContainer = styled.div`
@@ -32,6 +33,13 @@ const ChatPadding = styled.div`
 
 const Actions = styled.div`
     display: flex;
+    margin-top: 17px;
+`
+
+const BottomContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const messageListMotionVariants = {
@@ -63,15 +71,17 @@ export const Passage = (props: PassageProps) => {
     const [isResponding, setIsResponding] = React.useState(false)
     const [messagesAnimationState, setMessagesAnimationState] = React.useState("visible")
 
+    const shouldShowActions = !(isResponding || messagesAnimationState == "reverse")
+
     React.useEffect(() => {
         return history.listen((_, action) => {
             if (action == "POP") {
                 setMessagesAnimationState("reverse")
 
                 setTimeout(() => {
-                    setMessagesAnimationState("visible")
                     props.goBack()
-                }, 1000);
+                    setMessagesAnimationState("visible")
+                }, 250);
             }
         })
     })
@@ -115,7 +125,7 @@ export const Passage = (props: PassageProps) => {
             </motion.div>
             <motion.div
                 initial="hidden"
-                animate={isResponding ? "hidden" : "visible"}
+                animate={shouldShowActions ? "visible" : "hidden"}
                 variants={{
                     visible: {
                         opacity: 1,
@@ -130,17 +140,18 @@ export const Passage = (props: PassageProps) => {
                     type: "spring",
                     stiffness: 260,
                     damping: 100,
-                    delay: isResponding ? 0 : 0.75
+                    delay: shouldShowActions ? 0.75 : 0
                 }}>
-                <Actions>
-                    <button onClick={() => {
+                <BottomContent>
+                {props.history.length > 1 && <BackButton onClick={() => {
                         setMessagesAnimationState("reverse")
 
                         setTimeout(() => {
                             setMessagesAnimationState("visible")
                             props.goBack()
                         }, 1000);
-                    }}>Go back</button>
+                    }} />}
+                <Actions>
                     <Action
                         passageName={props.passage.name}
                         action={props.passage.action}
@@ -158,6 +169,7 @@ export const Passage = (props: PassageProps) => {
                             }, 1000);
                         }} />
                 </Actions>
+                </BottomContent>
             </motion.div>
         </ChatPadding>
     </ChatContainer>
