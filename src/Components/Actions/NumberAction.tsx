@@ -4,11 +4,18 @@ import styled from "@emotion/styled"
 import { colors, fonts } from "@hedviginsurance/brand"
 import { Tooltip } from "../Tooltip"
 
-const Card = styled.form`
+interface Focusable {
+    isFocused: boolean
+}
+
+const Card = styled.form<Focusable>`
     min-width: 250px;
     min-height: 110px;
     border-radius: 8px;
-    background-color: ${colors.WHITE}
+    background-color: ${colors.WHITE};
+    transition: all 250ms;
+
+    box-shadow: ${props => props.isFocused ? '0 8px 13px 0 rgba(0, 0, 0, 0.18)' : 'none'};
 `
 
 const Input = styled.input`
@@ -51,6 +58,8 @@ type NumberActionProps = {
 
 export const NumberAction = (props: NumberActionProps) => {
     const [textValue, setTextValue] = React.useState("")
+    const [isHovered, setIsHovered] = React.useState(false)
+    const [isFocused, setIsFocused] = React.useState(false)
 
     return <StoreContext.Consumer>
         {({ setValue }) => 
@@ -59,10 +68,13 @@ export const NumberAction = (props: NumberActionProps) => {
                     setValue(props.storeKey, textValue)
                     setValue(`${props.passageName}Result`, textValue)
                     props.onContinue()
-                }} 
+                }}
+                isFocused={isFocused || isHovered}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
             >
                 <Tooltip tooltip={props.tooltip} />
-                <Input type="text" placeholder={props.placeholder} value={textValue} onChange={(e) => setTextValue(e.target.value)}/>
+                <Input type="text" placeholder={props.placeholder} value={textValue} onChange={(e) => setTextValue(e.target.value)} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} />
                 <Unit>{props.unit}</Unit>
                 <input type="submit" style={{display:'none'}} />
             </Card>
