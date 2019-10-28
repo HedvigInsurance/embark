@@ -19,6 +19,10 @@ export const passes = (store: any, expression: any) => {
         return store[expression.key] <= expression.value
     }
 
+    if (expression.type == "NOT_EQUALS") {
+        return store[expression.key] != expression.value
+    }
+
     if (expression.type == "ALWAYS") {
         return true
     }
