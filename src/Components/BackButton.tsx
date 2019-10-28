@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "@emotion/styled"
 import { fonts, colors } from "@hedviginsurance/brand"
+import hexToRgba from 'hex-to-rgba';
 
 import { ArrowUp } from "./Icons/ArrowUp"
 
@@ -11,7 +12,7 @@ const Button = styled.button`
     cursor: pointer;
     outline: 0;
     padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: ${hexToRgba(colors.WHITE, 0.2)};
     font-family: ${fonts.CIRCULAR};
     color: ${colors.WHITE};
     font-size: 14px;
