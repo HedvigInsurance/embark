@@ -19,9 +19,12 @@ export const Action = (props: ActionProps) => {
 
     if (props.action.component == "NumberAction") {
         return <NumberAction
+            passageName={props.passageName}
+            tooltip={props.action.data.tooltip}
             storeKey={props.action.data.key}
             link={props.action.data.link}
             placeholder={props.action.data.placeholder}
+            unit={props.action.data.unit}
             onContinue={() => props.changePassage(props.action.data.link.name)} />
     }
 
