@@ -2,16 +2,46 @@ import * as Koa from "koa"
 import * as fs from "fs"
 import * as serve from "koa-static"
 import * as mount from "koa-mount"
+import { JSDOM } from "jsdom"
+import { parseStoryData } from './src/parseStoryData';
+
+declare global {
+  namespace NodeJS {
+      interface Global {
+          document: JSDOM;
+      }
+  }
+}
+
+global.document = new JSDOM("<html></html").window.document;
 
 const app = new Koa()
 
 app.use(mount("/assets", serve(__dirname + '/src/Assets')));
 
-app.use(mount('/client.js',async ctx => {
+app.use(mount('/client.js', async ctx => {
   const javascript = fs.readFileSync("dist/output/index.js", "utf-8")  
   ctx.type = 'application/javascript'
   ctx.body = javascript
 }));
+
+app.use(mount('/angel-data', async ctx => {
+  const filename = ctx.request.query.name
+
+  if (!filename) {
+    throw new Error("No filename provided")
+  }
+
+  if (filename.includes("../")) {
+    throw new Error("Can't traverse downwards")
+  }
+
+  const json = JSON.parse(fs.readFileSync(`angel-data/${filename}.json`, "utf-8"))
+  const storyData = parseStoryData(json)
+
+  ctx.type = 'application/json'
+  ctx.body = JSON.stringify(storyData)
+}))
 
 const scriptHost = process.env.SCRIPT_HOST ? process.env.SCRIPT_HOST : "http://localhost:3000"
 

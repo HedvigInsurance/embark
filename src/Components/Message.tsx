@@ -4,6 +4,7 @@ import { fonts, colors } from "@hedviginsurance/brand"
 import { motion } from "framer-motion"
 
 import { StoreContext } from "./KeyValueStore"
+import { passes } from "../Utils/ExpressionsUtil";
 
 type MessageProps = {
     message: any,
@@ -78,31 +79,7 @@ const messageListItemVariants = {
 const getTextContent = (store: any, props: MessageProps) => {
     if (props.message.expressions.length > 0) {
         const passableExpressions = props.message.expressions.filter(expression => {
-            if (expression.type == "EQUALS") {
-                return store[expression.key] == expression.value
-            }
-
-            if (expression.type == "MORE_THAN") {
-                return store[expression.key] > expression.value
-            }
-
-            if (expression.type == "MORE_THAN_OR_EQUALS") {
-                return store[expression.key] >= expression.value
-            }
-
-            if (expression.type == "LESS_THAN") {
-                return store[expression.key] < expression.value
-            }
-
-            if (expression.type == "LESS_THAN_OR_EQUALS") {
-                return store[expression.key] <= expression.value
-            }
-
-            if (expression.type == "ALWAYS") {
-                return true
-            }
-
-            return false
+            return passes(store, expression)
         })
 
         if (passableExpressions.length == 0) {

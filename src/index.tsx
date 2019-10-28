@@ -3,11 +3,12 @@ import * as ReactDOM from "react-dom"
 import { Passage } from "./Components/Passage"
 import { Proofing } from "./Components/Proofing"
 import { Global, css } from '@emotion/core'
-import { Colors } from "./colors";
 import { getCdnFontFaces } from "@hedviginsurance/brand"
+import { createHashHistory } from 'history';
 
 import { parseStoryData } from "./parseStoryData"
-import { KeyValueStore } from "./Components/KeyValueStore";
+import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
+import { passes } from "./Utils/ExpressionsUtil"
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes["scriptHost"].value
 const isProofing = JSON.parse(document.getElementsByTagName("body")[0].attributes["isProofing"].value)
@@ -19,9 +20,36 @@ const getStartPassage = () => {
     return url.includes("test") ? splitted[splitted.length - 1] : data.startPassage
 }
 
+export const history = createHashHistory({
+    basename: '/play',
+    hashType: 'slash',
+    getUserConfirmation: null
+})
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "GO_TO":
+            history.push(`${action.passageId}`)
+            return {
+                ...state,
+                history: [...state.history, action.passageId],
+                passageId: action.passageId
+            }
+        case "GO_BACK":
+            const historyLength = state.history.length
+            return {
+                ...state,
+                history: state.history.slice(0, -1),
+                passageId: state.history[historyLength - 2]
+            }
+        default:
+            return state
+    }
+}
+
 const Root = () => {
-    const [currentPassageId, setCurrentPassageId] = React.useState(getStartPassage())
-    const passage = data.passages.filter(passage => passage.id == currentPassageId)[0]
+    const [state, dispatch] = React.useReducer(reducer, { history: [getStartPassage()], passageId: getStartPassage() })
+    const passage = data.passages.filter(passage => passage.id == state.passageId)[0]
 
     if (isProofing) {
         return <>
@@ -43,8 +71,6 @@ const Root = () => {
         </>
     }
 
-    console.log(passage)
-
     return <>
         <Global
             styles={css`
@@ -65,10 +91,44 @@ const Root = () => {
             `}
             />
             <KeyValueStore>
-                <Passage passage={passage} changePassage={name => {
-                    const newPassage = data.passages.filter(passage => passage.name == name)[0]
-                    setCurrentPassageId(newPassage ? newPassage.id : data.startPassage)
-                }} />
+                <StoreContext.Consumer>
+                    {({ store }) => (
+                        <Passage animationDirection="forwards" passage={passage}
+                        goBack={() =>
+                        {
+                            dispatch({
+                                type: "GO_BACK"
+                            })
+                        }
+                        }
+                        changePassage={name => {
+                            const newPassage = data.passages.filter(passage => passage.name == name)[0]
+                            const targetPassage = newPassage ? newPassage.id : data.startPassage
+        
+                            if (newPassage.redirects.length > 0) {
+                                const passableExpressions = newPassage.redirects.filter(expression => {
+                                    return passes(store, expression)
+                                })
+
+                                if (passableExpressions.length > 0) {
+                                    const { to } = passableExpressions[0]
+                                    const redirectTo = data.passages.filter(passage => passage.name == to)[0]
+
+                                    dispatch({
+                                        type: "GO_TO",
+                                        passageId: redirectTo ? redirectTo.id : targetPassage
+                                    })
+                                    return
+                                } 
+                            }
+
+                            dispatch({
+                                type: "GO_TO",
+                                passageId: targetPassage
+                            })
+                        }} />
+                    )}
+                </StoreContext.Consumer>
             </KeyValueStore>
     </>
 }

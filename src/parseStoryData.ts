@@ -97,75 +97,80 @@ const getAction = (containerElement: Element) => {
     return null
 }
 
+const parseExpression = (expression: string) => {
+    if (expression.includes("==")) {
+        const splitted = expression.split("==")
+
+        return {
+            type: "EQUALS",
+            key: splitted[0].trim(),
+            value: splitted[1].trim().replace(/'/g, ""),
+        }
+    }
+
+    if (expression.includes(">")) {
+        const splitted = expression.split(">")
+
+        return {
+            type: "MORE_THAN",
+            key: splitted[0].trim(),
+            value: splitted[1].trim().replace(/'/g, ""),
+        }
+    }
+
+    if (expression.includes(">=")) {
+        const splitted = expression.split(">=")
+
+        return {
+            type: "MORE_THAN_OR_EQUALS",
+            key: splitted[0].trim(),
+            value: splitted[1].trim().replace(/'/g, ""),
+        }
+    }
+
+    if (expression.includes("<")) {
+        const splitted = expression.split("<")
+
+        return {
+            type: "LESS_THAN",
+            key: splitted[0].trim(),
+            value: splitted[1].trim().replace(/'/g, ""),
+        }
+    }
+
+    if (expression.includes("<=")) {
+        const splitted = expression.split("<=")
+
+        return {
+            type: "LESS_THAN_OR_EQUALS",
+            key: splitted[0].trim(),
+            value: splitted[1].trim().replace(/'/g, ""),
+        }
+    }
+
+    if (expression == "true") {
+        return {
+            type: "ALWAYS",
+        }
+    }
+
+    if (expression == "false") {
+        return {
+            type: "NEVER",
+        }
+    }
+
+    return null
+}
+
 const parsePossibleExpressionContent = (containerElement: Element) => {
     const expressions = Array.from(containerElement.getElementsByTagName("When")).map(when => {
-        const expression = when.attributes["expression"].textContent
+        const expressionText = when.attributes["expression"].textContent
+        const expression = parseExpression(expressionText)
 
-        if (expression.includes("==")) {
-            const splitted = expression.split("==")
-
+        if (expression) {
             return {
-                type: "EQUALS",
-                key: splitted[0].trim(),
-                value: splitted[1].trim().replace(/'/g, ""),
-                text: when.textContent.trim()
-            }
-        }
-
-        if (expression.includes(">")) {
-            const splitted = expression.split(">")
-
-            return {
-                type: "MORE_THAN",
-                key: splitted[0].trim(),
-                value: splitted[1].trim().replace(/'/g, ""),
-                text: when.textContent.trim()
-            }
-        }
-
-        if (expression.includes(">=")) {
-            const splitted = expression.split(">=")
-
-            return {
-                type: "MORE_THAN_OR_EQUALS",
-                key: splitted[0].trim(),
-                value: splitted[1].trim().replace(/'/g, ""),
-                text: when.textContent.trim()
-            }
-        }
-
-        if (expression.includes("<")) {
-            const splitted = expression.split("<")
-
-            return {
-                type: "LESS_THAN",
-                key: splitted[0].trim(),
-                value: splitted[1].trim().replace(/'/g, ""),
-                text: when.textContent.trim()
-            }
-        }
-
-        if (expression.includes("<=")) {
-            const splitted = expression.split("<=")
-
-            return {
-                type: "LESS_THAN_OR_EQUALS",
-                key: splitted[0].trim(),
-                value: splitted[1].trim().replace(/'/g, ""),
-                text: when.textContent.trim()
-            }
-        }
-
-        if (expression == "true") {
-            return {
-                type: "ALWAYS",
-                text: when.textContent.trim()
-            }
-        }
-
-        if (expression == "false") {
-            return {
-                type: "NEVER",
+                ...expression,
                 text: when.textContent.trim()
             }
         }
@@ -179,14 +184,17 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
     }
 }
 
-const getResponse = (containerElement: Element) => {
+const getResponse = (passageName: string, containerElement: Element) => {
     const responseNode = containerElement.getElementsByTagName("response")[0]
 
     if (responseNode) {
         return parsePossibleExpressionContent(responseNode)
     }
 
-    return null
+    return {
+        expressions: [],
+        text: `{${passageName}Result}`
+    }
 }
 
 export const parseStoryData = (storyData: any) => (
@@ -205,14 +213,22 @@ export const parseStoryData = (storyData: any) => (
                     delay: delay ? delay : 0
                 }
             })
+
+            const redirects = Array.from(containerElement.getElementsByTagName("redirect")).map(redirect => {
+                return {
+                    ...parseExpression(redirect.attributes["when"].textContent),
+                    to: parseLinks(redirect.attributes["to"].textContent)[0].name
+                }
+            })
         
             return {
                 id: passage.id,
                 text: passage.text,
                 name: passage.name,
-                messages: messages,
+                messages,
+                redirects,
                 action: getAction(containerElement),
-                response: getResponse(containerElement)
+                response: getResponse(passage.name, containerElement)
             }
         }),
     }

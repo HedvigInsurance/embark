@@ -3,6 +3,7 @@ import { SelectOption } from "./SelectOption"
 import { StoreContext } from "../../KeyValueStore";
 
 type SelectActionProps = {
+    passageName: string,
     action: any,
     changePassage: (name: string) => void
 }
@@ -23,6 +24,7 @@ export const SelectAction = (props: SelectActionProps) =>
                                 setValue(option.key, option.link.label)
                             }
                         }
+                        setValue(`${props.passageName}Result`, option.link.label)
                         props.changePassage(option.link.name)
                     }} />
             )

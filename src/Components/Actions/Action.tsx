@@ -3,6 +3,7 @@ import { SelectAction } from "./SelectAction/SelectAction"
 import { NumberAction } from "./NumberAction";
 
 type ActionProps = {
+    passageName: string,
     action: any,
     changePassage: (name: string) => void
 }
@@ -13,7 +14,7 @@ export const Action = (props: ActionProps) => {
     }
 
     if (props.action.component == "SelectAction") {
-        return <SelectAction action={props.action} changePassage={props.changePassage} />
+        return <SelectAction passageName={props.passageName} action={props.action} changePassage={props.changePassage} />
     }
 
     if (props.action.component == "NumberAction") {
