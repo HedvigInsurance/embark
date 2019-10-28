@@ -9,13 +9,17 @@ interface Focusable {
 }
 
 const Card = styled.form<Focusable>`
+    position: relative;
     min-width: 250px;
     min-height: 110px;
     border-radius: 8px;
     background-color: ${colors.WHITE};
     transition: all 250ms;
 
-    box-shadow: ${props => props.isFocused ? '0 8px 13px 0 rgba(0, 0, 0, 0.18)' : 'none'};
+    ${props => props.isFocused && `
+        box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.18);
+        transform: translateY(-3px);
+    `}
 `
 
 const Input = styled.input`
@@ -74,7 +78,7 @@ export const NumberAction = (props: NumberActionProps) => {
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <Tooltip tooltip={props.tooltip} />
-                <Input type="text" placeholder={props.placeholder} value={textValue} onChange={(e) => setTextValue(e.target.value)} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} />
+                <Input autoFocus type="text" placeholder={props.placeholder} value={textValue} onChange={(e) => setTextValue(e.target.value)} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} />
                 <Unit>{props.unit}</Unit>
                 <input type="submit" style={{display:'none'}} />
             </Card>
