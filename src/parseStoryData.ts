@@ -24,15 +24,17 @@ const parseLinks = (text: string) => {
 const parseTooltips = (containerElement: Element) => {
     const tooltips = Array.from(containerElement.getElementsByTagName("Tooltip"))
 
-    return tooltips.map(tooltip => {
-        const title = tooltip.getElementsByTagName("Title")[0].textContent.trim()
-        const description = tooltip.getElementsByTagName("Description")[0].textContent.trim()
+    return tooltips.map(parseTooltip)
+}
 
-        return {
-            title,
-            description
-        }
-    })
+const parseTooltip = (element: Element) => {
+    const title = element.getElementsByTagName("Title")[0].textContent.trim()
+    const description = element.getElementsByTagName("Description")[0].textContent.trim()
+
+    return {
+        title,
+        description
+    }
 }
 
 const getSelectAction = (actionNode: Element | undefined) => {
@@ -68,15 +70,19 @@ const getNumberAction = (numberActionNode: Element) => {
     const placeholder = numberActionNode.attributes["placeholder"].value
     const next = numberActionNode.attributes["next"].value
     const key = numberActionNode.attributes["key"].value
+    const unit = numberActionNode.attributes["unit"].value
 
     const links = parseLinks(next)
+    const tooltip = parseTooltips(numberActionNode)[0]
 
     return {
         component: "NumberAction",
         data: {
             placeholder,
             key,
-            link: links[0]
+            unit,
+            link: links[0],
+            ...(tooltip && {tooltip})
         }
     }
 }
