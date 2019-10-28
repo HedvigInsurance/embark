@@ -23,9 +23,15 @@ const data = parseStoryData(
 const getStartPassage = () => {
   const url = window.location.href;
   const splitted = url.split("/");
-  return url.includes("test")
-    ? splitted[splitted.length - 1]
-    : data.startPassage;
+
+  if (url.includes("play") || url.includes("test")) {
+    const hasPassage = data.passages.filter(
+      passage => passage.id == splitted[splitted.length - 1]
+    )[0];
+    return hasPassage ? splitted[splitted.length - 1] : data.startPassage;
+  }
+
+  return data.startPassage;
 };
 
 export const history = createHashHistory({
@@ -66,6 +72,29 @@ const Root = () => {
   const [goTo, setGoTo] = React.useState<null | String>(null);
   const { store } = React.useContext(StoreContext);
 
+  if (isProofing) {
+    return (
+      <>
+        <Global
+          styles={css`
+            * {
+              margin: 0;
+              padding: 0;
+            }
+
+            ul,
+            li {
+              list-style-type: none;
+            }
+
+            ${getCdnFontFaces()};
+          `}
+        />
+        <Proofing name={data.name} passages={data.passages} />
+      </>
+    );
+  }
+
   React.useEffect(
     () => {
       if (goTo) {
@@ -86,10 +115,9 @@ const Root = () => {
             const redirectTo = data.passages.filter(
               passage => passage.name == to
             )[0];
-
             dispatch({
               type: "GO_TO",
-              passageId: redirectTo ? redirectTo.id : targetPassage
+              passageId: redirectTo.id
             });
             return;
           }
@@ -142,35 +170,10 @@ const Root = () => {
   );
 };
 
-const RootContainer = () => {
-  if (isProofing) {
-    return (
-      <>
-        <Global
-          styles={css`
-            * {
-              margin: 0;
-              padding: 0;
-            }
-
-            ul,
-            li {
-              list-style-type: none;
-            }
-
-            ${getCdnFontFaces()};
-          `}
-        />
-        <Proofing name={data.name} passages={data.passages} />
-      </>
-    );
-  }
-
-  return (
-    <KeyValueStore>
-      <Root />
-    </KeyValueStore>
-  );
-};
+const RootContainer = () => (
+  <KeyValueStore>
+    <Root />
+  </KeyValueStore>
+);
 
 ReactDOM.render(<RootContainer />, document.getElementById("root"));
