@@ -75,15 +75,19 @@ export const Passage = (props: PassageProps) => {
 
     const shouldShowActions = !(isResponding || messagesAnimationState == "reverse")
 
+    const goBack = () => {
+        setMessagesAnimationState("reverse")
+
+        setTimeout(() => {
+            props.goBack()
+            setMessagesAnimationState("visible")
+        }, 400);
+    }
+
     React.useEffect(() => {
         return history.listen((_, action) => {
             if (action == "POP") {
-                setMessagesAnimationState("reverse")
-
-                setTimeout(() => {
-                    props.goBack()
-                    setMessagesAnimationState("visible")
-                }, 350);
+                goBack()
             }
         })
     })
@@ -146,12 +150,7 @@ export const Passage = (props: PassageProps) => {
                 }}>
                 <BottomContent>
                 {props.history.length > 1 && <BackButton onClick={() => {
-                        setMessagesAnimationState("reverse")
-
-                        setTimeout(() => {
-                            setMessagesAnimationState("visible")
-                            props.goBack()
-                        }, 350);
+                        goBack()
                     }} />}
                 <Actions>
                     <Action
