@@ -33,7 +33,9 @@ const ChatPadding = styled.div`
 
 const Actions = styled.div`
     display: flex;
+    width: 100%;
     margin-top: 17px;
+    justify-content: center;
 `
 
 const BottomContent = styled.div`
@@ -81,7 +83,7 @@ export const Passage = (props: PassageProps) => {
                 setTimeout(() => {
                     props.goBack()
                     setMessagesAnimationState("visible")
-                }, 250);
+                }, 350);
             }
         })
     })
@@ -149,7 +151,7 @@ export const Passage = (props: PassageProps) => {
                         setTimeout(() => {
                             setMessagesAnimationState("visible")
                             props.goBack()
-                        }, 1000);
+                        }, 350);
                     }} />}
                 <Actions>
                     <Action

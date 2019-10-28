@@ -1,6 +1,6 @@
 export const passes = (store: any, expression: any) => {
     if (expression.type == "EQUALS") {
-        return store[expression.key] = expression.value
+        return store[expression.key] == expression.value
     }
 
     if (expression.type == "MORE_THAN") {
