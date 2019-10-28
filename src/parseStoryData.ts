@@ -148,6 +148,15 @@ const parseExpression = (expression: string) => {
         }
     }
 
+    if (expression.includes("!=")) {
+        const splitted = expression.split("!=")
+        return {
+            type: "NOT_EQUALS",
+            key: splitted[0].trim(),
+            value: splitted[1].trim().replace(/'/g, ""),
+        }
+    }
+
     if (expression == "true") {
         return {
             type: "ALWAYS",
