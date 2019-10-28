@@ -35,7 +35,7 @@ const getStartPassage = () => {
 };
 
 export const history = createHashHistory({
-  basename: `/stories/${data.id}/play`,
+  basename: `/stories/${data.id}/${window.location.href.includes("play") ? "play" : "test"}`,
   hashType: "hashbang",
   getUserConfirmation: null
 });
