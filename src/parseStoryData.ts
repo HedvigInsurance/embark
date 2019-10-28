@@ -199,6 +199,7 @@ const getResponse = (passageName: string, containerElement: Element) => {
 
 export const parseStoryData = (storyData: any) => (
     {
+        id: storyData.id,
         name: storyData.name,
         startPassage: storyData.startPassage,
         passages: storyData.passages.map(passage => {

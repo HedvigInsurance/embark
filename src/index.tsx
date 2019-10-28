@@ -21,8 +21,8 @@ const getStartPassage = () => {
 }
 
 export const history = createHashHistory({
-    basename: '/play',
-    hashType: 'slash',
+    basename: `/stories/${data.id}/play`,
+    hashType: 'hashbang',
     getUserConfirmation: null
 })
 
