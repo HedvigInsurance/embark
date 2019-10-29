@@ -40,7 +40,7 @@ export const Input = styled.input`
     outline: 0;
 
     ::placeholder {
-        opacity: 0.1;
+      color: ${colorsV2.lightgray};
     }
 
 `;
