@@ -1,32 +1,34 @@
-import * as React from "react"
-import { colorsV2, fonts } from "@hedviginsurance/brand"
-import styled from "@emotion/styled"
+import * as React from "react";
+import { colorsV2, fonts } from "@hedviginsurance/brand";
+import styled from "@emotion/styled";
 
 const Button = styled.button`
-    border-radius: 28px;
-    padding: 16px 20px;
-    background-color: ${colorsV2.violet500};
-    -webkit-appearance: none;
-    border: 0;
-    cursor: pointer;
-    font-family: ${fonts.CIRCULAR};
-    font-weight: 600;
-    color: ${colorsV2.white};
-    font-size: 15px;
-    outline: 0;
-    transition: all 250ms;
-    
-    :hover {
-        box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.18);
-        transform: translateY(-3px);
-    }
+  border-radius: 28px;
+  padding: 16px 20px;
+  background-color: ${colorsV2.violet500};
+  -webkit-appearance: none;
+  border: 0;
+  cursor: pointer;
+  font-family: ${fonts.CIRCULAR};
+  font-weight: 600;
+  color: ${colorsV2.white};
+  font-size: 15px;
+  outline: 0;
+  transition: all 250ms;
 
-    :active {
-        transform: translateY(-1.5px);
-        background-color: ${colorsV2.violet700};
-    }
+  :hover {
+    box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.18);
+    transform: translateY(-3px);
+  }
 
-    ${props => props.disabled && `
+  :active {
+    transform: translateY(-1.5px);
+    background-color: ${colorsV2.violet700};
+  }
+
+  ${props =>
+    props.disabled &&
+    `
         background-color: ${colorsV2.lightgray};
         color: ${colorsV2.gray};
 
@@ -40,14 +42,16 @@ const Button = styled.button`
             background-color: ${colorsV2.violet500};
         }
     `};
-`
+`;
 
 type ContinueButtonProps = {
-    text: String,
-    disabled: boolean
-}
+  text: String;
+  disabled: boolean;
+  onClick: () => void;
+};
 
-export const ContinueButton = (props: ContinueButtonProps) =>
-    <Button disabled={props.disabled}>
-        {props.text}
-    </Button>
+export const ContinueButton = (props: ContinueButtonProps) => (
+  <Button disabled={props.disabled} onClick={props.onClick}>
+    {props.text}
+  </Button>
+);
