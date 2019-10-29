@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors, colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV2, fonts } from "@hedviginsurance/brand";
 
 interface Focusable {
   isFocused: boolean;
@@ -12,7 +12,7 @@ export const Card = styled.form<Focusable>`
   align-items: center;
   min-width: 250px;
   border-radius: 8px;
-  background-color: ${colors.WHITE};
+  background-color: ${colorsV2.white};
   transition: all 250ms;
 
   ${props =>
