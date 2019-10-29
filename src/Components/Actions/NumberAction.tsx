@@ -3,7 +3,8 @@ import { StoreContext } from "../KeyValueStore";
 import styled from "@emotion/styled";
 import { colors, fonts } from "@hedviginsurance/brand";
 import { Tooltip } from "../Tooltip";
-import { Card, Input } from "./Common";
+import { Card, Input, Container, Spacer } from "./Common";
+import { ContinueButton } from "../ContinueButton";
 
 const Unit = styled.p`
   margin-top: 8px;
@@ -39,25 +40,33 @@ export const NumberAction = (props: NumberActionProps) => {
   };
 
   return (
-    <Card
-      onSubmit={onContinue}
-      isFocused={isFocused || isHovered}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <Tooltip tooltip={props.tooltip} />
-      <Input
-        size={Math.max(props.placeholder.length, textValue.length)}
-        autoFocus
-        type="text"
-        placeholder={props.placeholder}
-        value={textValue}
-        onChange={e => setTextValue(e.target.value)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+    <Container>
+      <Card
+        onSubmit={onContinue}
+        isFocused={isFocused || isHovered}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Tooltip tooltip={props.tooltip} />
+        <Input
+          size={Math.max(props.placeholder.length, textValue.length)}
+          autoFocus
+          type="text"
+          placeholder={props.placeholder}
+          value={textValue}
+          onChange={e => setTextValue(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        <Unit>{props.unit}</Unit>
+        <input type="submit" style={{ display: "none" }} />
+      </Card>
+      <Spacer />
+      <ContinueButton
+        onClick={onContinue}
+        disabled={textValue.length == 0}
+        text={props.link.label}
       />
-      <Unit>{props.unit}</Unit>
-      <input type="submit" style={{ display: "none" }} />
-    </Card>
+    </Container>
   );
 };
