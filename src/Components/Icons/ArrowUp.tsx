@@ -17,7 +17,7 @@ export const ArrowUp = () => (
           >
             <circle id="Oval" cx="12" cy="12" r="12" />
             <polygon
-              id="Path-2"
+              className="ArrowUpStroke"
               stroke="#F9FAFC"
               stroke-width="1.41176471"
               stroke-linejoin="round"
