@@ -91,6 +91,25 @@ const getNumberAction = (numberActionNode: Element) => {
   };
 };
 
+const getTextAction = (textActionNode: Element) => {
+  const placeholder = textActionNode.attributes["placeholder"].value;
+  const next = textActionNode.attributes["next"].value;
+  const key = textActionNode.attributes["key"].value;
+
+  const links = parseLinks(next);
+  const tooltip = parseTooltips(textActionNode)[0];
+
+  return {
+    component: "TextAction",
+    data: {
+      placeholder,
+      key,
+      link: links[0],
+      ...(tooltip && { tooltip })
+    }
+  };
+};
+
 const getAction = (containerElement: Element) => {
   const selectActionNode = containerElement.getElementsByTagName(
     "selectaction"
@@ -106,6 +125,12 @@ const getAction = (containerElement: Element) => {
 
   if (numberActionNode) {
     return getNumberAction(numberActionNode);
+  }
+
+  const textActionNode = containerElement.getElementsByTagName("textaction")[0];
+
+  if (textActionNode) {
+    return getTextAction(textActionNode);
   }
 
   return null;
