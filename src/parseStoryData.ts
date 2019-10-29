@@ -200,6 +200,11 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
 }
 
 const getResponse = (passageName: string, containerElement: Element) => {
+    const groupedResponse = containerElement.getElementsByTagName("groupedresponse")[0]
+    if (groupedResponse) {
+        return parseGroupedResponse(groupedResponse)
+    }
+
     const responseNode = containerElement.getElementsByTagName("response")[0]
 
     if (responseNode) {
@@ -209,6 +214,17 @@ const getResponse = (passageName: string, containerElement: Element) => {
     return {
         expressions: [],
         text: `{${passageName}Result}`
+    }
+}
+
+const parseGroupedResponse = (element: Element) => {
+    const title = element.getElementsByTagName("title")[0]
+    const items = Array.from(element.getElementsByTagName("item"))
+
+    return {
+        component: "GroupedResponse",
+        title: parsePossibleExpressionContent(title),
+        items: items.map(parsePossibleExpressionContent)
     }
 }
 

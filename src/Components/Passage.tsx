@@ -159,6 +159,7 @@ export const Passage = (props: PassageProps) => {
                         changePassage={(name) => {
                             setIsResponding(true)
 
+                            return
                             setTimeout(() => {
                                 setMessagesAnimationState("forwards")
                             }, 650)
