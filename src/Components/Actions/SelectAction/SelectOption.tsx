@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { fonts, colors } from "@hedviginsurance/brand";
+import { Tooltip } from "../../Tooltip"
 
 const Container = styled.button`
   display: inline-block;
@@ -84,6 +85,7 @@ export const SelectOption = (props: SelectOptionProps) => {
       onMouseLeave={() => setIsHovering(false)}
       onClick={props.onClick}
     >
+      <Tooltip tooltip={props.tooltip} />
       <Content>
         <Label>{props.label}</Label>
         <SelectLabel isHovering={isHovering}>Select</SelectLabel>
