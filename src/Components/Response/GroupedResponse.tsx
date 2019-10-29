@@ -23,7 +23,7 @@ const ItemContainer = styled.div`
 const Item = styled.span`
   background-color: ${colorsV2.violet700};
   border-radius: 18px;
-  padding: 8px;
+  padding: 8px 12px;
   margin: 4px;
 `;
 
