@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { fonts, colors } from "@hedviginsurance/brand";
-import { Tooltip } from "../../Tooltip"
+import { Tooltip } from "../../Tooltip";
 
 const Container = styled.button`
   display: inline-block;
@@ -35,7 +35,6 @@ const Label = styled.span`
   font-size: 18px;
   font-weight: 800;
 `;
-
 
 const Content = styled.div`
   display: flex;
