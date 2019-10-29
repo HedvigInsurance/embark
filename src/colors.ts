@@ -1,3 +1,3 @@
 export const Colors = {
-    pink: "#F88C76"
-}
+  pink: "#F88C76"
+};

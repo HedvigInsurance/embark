@@ -35,7 +35,9 @@ const getStartPassage = () => {
 };
 
 export const history = createHashHistory({
-  basename: `/stories/${data.id}/${window.location.href.includes("play") ? "play" : "test"}`,
+  basename: `/stories/${data.id}/${
+    window.location.href.includes("play") ? "play" : "test"
+  }`,
   hashType: "hashbang",
   getUserConfirmation: null
 });
@@ -95,44 +97,39 @@ const Root = () => {
     );
   }
 
-  React.useEffect(
-    () => {
-      if (goTo) {
-        const newPassage = data.passages.filter(
-          passage => passage.name == goTo
-        )[0];
-        const targetPassage = newPassage ? newPassage.id : data.startPassage;
+  React.useEffect(() => {
+    if (goTo) {
+      const newPassage = data.passages.filter(
+        passage => passage.name == goTo
+      )[0];
+      const targetPassage = newPassage ? newPassage.id : data.startPassage;
 
-        if (newPassage.redirects.length > 0) {
-          const passableExpressions = newPassage.redirects.filter(
-            expression => {
-              return passes(store, expression);
-            }
-          );
-
-          if (passableExpressions.length > 0) {
-            const { to } = passableExpressions[0];
-            const redirectTo = data.passages.filter(
-              passage => passage.name == to
-            )[0];
-            dispatch({
-              type: "GO_TO",
-              passageId: redirectTo.id
-            });
-            return;
-          }
-        }
-
-        dispatch({
-          type: "GO_TO",
-          passageId: targetPassage
+      if (newPassage.redirects.length > 0) {
+        const passableExpressions = newPassage.redirects.filter(expression => {
+          return passes(store, expression);
         });
+
+        if (passableExpressions.length > 0) {
+          const { to } = passableExpressions[0];
+          const redirectTo = data.passages.filter(
+            passage => passage.name == to
+          )[0];
+          dispatch({
+            type: "GO_TO",
+            passageId: redirectTo.id
+          });
+          return;
+        }
       }
 
-      setGoTo(null);
-    },
-    [goTo]
-  );
+      dispatch({
+        type: "GO_TO",
+        passageId: targetPassage
+      });
+    }
+
+    setGoTo(null);
+  }, [goTo]);
 
   return (
     <>
