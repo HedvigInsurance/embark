@@ -32,21 +32,19 @@ interface Props {
   items: ExpressionTextNode[];
 }
 
-export const GroupedResponse: React.FunctionComponent<Props> = props => (
-  <StoreContext>
-    {({ store }) => (
-      <MessageBody isResponse={true}>
-        <Title>
-          {replacePlaceholders(store, getTextContent(store, props.title))}
-        </Title>
-        <ItemContainer>
-          {props.items.map(item => (
-            <Item>
-              {replacePlaceholders(store, getTextContent(store, item))}
-            </Item>
-          ))}
-        </ItemContainer>
-      </MessageBody>
-    )}
-  </StoreContext>
-);
+export const GroupedResponse: React.FunctionComponent<Props> = props => {
+  const { store } = React.useContext(StoreContext);
+
+  return (
+    <MessageBody isResponse={true}>
+      <Title>
+        {replacePlaceholders(store, getTextContent(store, props.title))}
+      </Title>
+      <ItemContainer>
+        {props.items.map(item => (
+          <Item>{replacePlaceholders(store, getTextContent(store, item))}</Item>
+        ))}
+      </ItemContainer>
+    </MessageBody>
+  );
+};
