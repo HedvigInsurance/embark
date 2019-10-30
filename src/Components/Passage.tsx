@@ -9,7 +9,7 @@ import { Response } from "./Response/Response";
 import { history } from "../index";
 import { BackButton } from "./BackButton";
 import { Questionmark } from "./Icons/Questionmark";
-import { colors, colorsV2 } from "@hedviginsurance/brand";
+import { colors, colorsV2, fonts } from "@hedviginsurance/brand";
 import hexToRgba = require("hex-to-rgba");
 import { Modal } from "./Modal";
 
@@ -86,6 +86,19 @@ const HelpButton = styled.button`
   svg {
     margin: 0 auto;
   }
+`;
+
+const HelpModalText = styled.p`
+  font-family: ${fonts.CIRCULAR};
+  font-size: 16px;
+  line-height: 24px;
+  color: ${colorsV2.darkgray};
+  margin-bottom: 10px;
+`;
+
+const HelpModalSubtitle = styled(HelpModalText)`
+  color: ${colorsV2.black};
+  font-weight: 700;
 `;
 
 const messageListMotionVariants = {
@@ -236,18 +249,28 @@ export const Passage = (props: PassageProps) => {
                 }}
               />
             </Actions>
-            <HelpButtonWrapper>
-              <HelpButton
-                onClick={() => {
-                  setIsShowingHelp(true);
-                }}
-              >
-                <Questionmark />
-              </HelpButton>
-            </HelpButtonWrapper>
+            {props.passage.tooltips.length !== 0 && (
+              <HelpButtonWrapper>
+                <HelpButton
+                  onClick={() => {
+                    setIsShowingHelp(true);
+                  }}
+                >
+                  <Questionmark />
+                </HelpButton>
+              </HelpButtonWrapper>
+            )}
           </BottomContent>
         </motion.div>
       </ChatPadding>
+      <Modal isVisible={isShowingHelp} onClose={() => setIsShowingHelp(false)}>
+        {props.passage.tooltips.map((tooltip: any) => (
+          <>
+            <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>
+            <HelpModalText>{tooltip.description}</HelpModalText>
+          </>
+        ))}
+      </Modal>
     </ChatContainer>
   );
 };
