@@ -38,6 +38,7 @@ export const Input = styled.input`
     color: ${colorsV2.black};
     font-weight: 500;
     outline: 0;
+    ${props => `width: ${props.size / 1.5}em;`}
 
     ::placeholder {
       color: ${colorsV2.lightgray};

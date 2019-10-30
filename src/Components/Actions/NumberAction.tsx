@@ -42,7 +42,10 @@ export const NumberAction = (props: NumberActionProps) => {
   return (
     <Container>
       <Card
-        onSubmit={onContinue}
+        onSubmit={e => {
+          e.preventDefault();
+          onContinue();
+        }}
         isFocused={isFocused || isHovered}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

@@ -37,7 +37,10 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     <Container>
       <Card
         isFocused={isFocused || isHovered}
-        onSubmit={onContinue}
+        onSubmit={e => {
+          e.preventDefault();
+          onContinue();
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
