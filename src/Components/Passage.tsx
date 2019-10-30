@@ -8,6 +8,9 @@ import { Response } from "./Response/Response";
 
 import { history } from "../index";
 import { BackButton } from "./BackButton";
+import { Questionmark } from "./Icons/Questionmark";
+import { colors, colorsV2 } from "@hedviginsurance/brand";
+import hexToRgba = require("hex-to-rgba");
 
 type PassageProps = {
   passage: any;
@@ -42,6 +45,46 @@ const BottomContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+`;
+
+const HelpButtonWrapper = styled.div`
+  display: flex;
+  justifycontent: center;
+  margin-top: 20px;
+`;
+
+const HelpButton = styled.button`
+  background-color: ${hexToRgba(colorsV2.white, 0.2)};
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  transition: all 250ms;
+  cursor: pointer;
+  border: none;
+
+  :focus {
+    outline: none;
+  }
+
+  .fillColor {
+    fill: ${colorsV2.white};
+    transition: all 250ms;
+  }
+
+  :hover {
+    background-color: ${colorsV2.white};
+    .fillColor {
+      fill: ${colorsV2.gray};
+    }
+  }
+
+  svg {
+    margin: 0 auto;
+  }
 `;
 
 const messageListMotionVariants = {
@@ -186,8 +229,17 @@ export const Passage = (props: PassageProps) => {
                 }}
               />
             </Actions>
+            <HelpButtonWrapper>
+              <HelpButton onClick={() => {}}>
+                <Questionmark />
+              </HelpButton>
+            </HelpButtonWrapper>
           </BottomContent>
         </motion.div>
+
+        {/*props.passage.tooltips.map((tooltip: any) => (
+        <p>{tooltip.description}</p>
+        ))*/}
       </ChatPadding>
     </ChatContainer>
   );

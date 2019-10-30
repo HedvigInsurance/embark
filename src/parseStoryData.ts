@@ -235,33 +235,43 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
 };
 
 const getResponse = (passageName: string, containerElement: Element) => {
-  const groupedResponse = containerElement.getElementsByTagName("groupedresponse")[0]
+  const groupedResponse = containerElement.getElementsByTagName(
+    "groupedresponse"
+  )[0];
   if (groupedResponse) {
-      return parseGroupedResponse(groupedResponse)
+    return parseGroupedResponse(groupedResponse);
   }
 
-  const responseNode = containerElement.getElementsByTagName("response")[0]
+  const responseNode = containerElement.getElementsByTagName("response")[0];
 
   if (responseNode) {
-      return parsePossibleExpressionContent(responseNode)
+    return parsePossibleExpressionContent(responseNode);
   }
 
   return {
-      expressions: [],
-      text: `{${passageName}Result}`
-  }
-}
+    expressions: [],
+    text: `{${passageName}Result}`
+  };
+};
 
 const parseGroupedResponse = (element: Element) => {
-  const title = element.getElementsByTagName("title")[0]
-  const items = Array.from(element.getElementsByTagName("item"))
+  const title = element.getElementsByTagName("title")[0];
+  const items = Array.from(element.getElementsByTagName("item"));
 
   return {
-      component: "GroupedResponse",
-      title: parsePossibleExpressionContent(title),
-      items: items.map(parsePossibleExpressionContent)
-  }
-}
+    component: "GroupedResponse",
+    title: parsePossibleExpressionContent(title),
+    items: items.map(parsePossibleExpressionContent)
+  };
+};
+
+console.log(
+  Array.from(document.createElement("div").getElementsByTagName("Tooltip")).map(
+    parseTooltip
+  )
+);
+
+const getAllTooltips = () => {};
 
 export const parseStoryData = (storyData: any) => ({
   id: storyData.id,
@@ -298,7 +308,10 @@ export const parseStoryData = (storyData: any) => ({
       messages,
       redirects,
       action: getAction(containerElement),
-      response: getResponse(passage.name, containerElement)
+      response: getResponse(passage.name, containerElement),
+      tooltips: Array.from(
+        containerElement.getElementsByTagName("Tooltip")
+      ).map(parseTooltip)
     };
   })
 });
