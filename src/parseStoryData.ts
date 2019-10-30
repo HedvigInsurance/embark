@@ -75,6 +75,7 @@ const getNumberAction = (numberActionNode: Element) => {
   const next = numberActionNode.attributes["next"].value;
   const key = numberActionNode.attributes["key"].value;
   const unit = numberActionNode.attributes["unit"].value;
+  const mask = numberActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
@@ -85,6 +86,7 @@ const getNumberAction = (numberActionNode: Element) => {
       placeholder,
       key,
       unit,
+      mask,
       link: links[0],
       ...(tooltip && { tooltip })
     }
@@ -95,6 +97,7 @@ const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
   const next = textActionNode.attributes["next"].value;
   const key = textActionNode.attributes["key"].value;
+  const mask = textActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(textActionNode)[0];
@@ -105,6 +108,7 @@ const getTextAction = (textActionNode: Element) => {
       placeholder,
       key,
       link: links[0],
+      mask,
       ...(tooltip && { tooltip })
     }
   };
@@ -235,33 +239,35 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
 };
 
 const getResponse = (passageName: string, containerElement: Element) => {
-  const groupedResponse = containerElement.getElementsByTagName("groupedresponse")[0]
+  const groupedResponse = containerElement.getElementsByTagName(
+    "groupedresponse"
+  )[0];
   if (groupedResponse) {
-      return parseGroupedResponse(groupedResponse)
+    return parseGroupedResponse(groupedResponse);
   }
 
-  const responseNode = containerElement.getElementsByTagName("response")[0]
+  const responseNode = containerElement.getElementsByTagName("response")[0];
 
   if (responseNode) {
-      return parsePossibleExpressionContent(responseNode)
+    return parsePossibleExpressionContent(responseNode);
   }
 
   return {
-      expressions: [],
-      text: `{${passageName}Result}`
-  }
-}
+    expressions: [],
+    text: `{${passageName}Result}`
+  };
+};
 
 const parseGroupedResponse = (element: Element) => {
-  const title = element.getElementsByTagName("title")[0]
-  const items = Array.from(element.getElementsByTagName("item"))
+  const title = element.getElementsByTagName("title")[0];
+  const items = Array.from(element.getElementsByTagName("item"));
 
   return {
-      component: "GroupedResponse",
-      title: parsePossibleExpressionContent(title),
-      items: items.map(parsePossibleExpressionContent)
-  }
-}
+    component: "GroupedResponse",
+    title: parsePossibleExpressionContent(title),
+    items: items.map(parsePossibleExpressionContent)
+  };
+};
 
 export const parseStoryData = (storyData: any) => ({
   id: storyData.id,

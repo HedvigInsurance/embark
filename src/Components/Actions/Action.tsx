@@ -28,6 +28,7 @@ export const Action = (props: ActionProps) => {
     return (
       <NumberAction
         passageName={props.passageName}
+        mask={props.action.data.mask}
         tooltip={props.action.data.tooltip}
         storeKey={props.action.data.key}
         link={props.action.data.link}
@@ -42,6 +43,7 @@ export const Action = (props: ActionProps) => {
     return (
       <TextAction
         passageName={props.passageName}
+        mask={props.action.data.mask}
         tooltip={props.action.data.tooltip}
         storeKey={props.action.data.key}
         link={props.action.data.link}
