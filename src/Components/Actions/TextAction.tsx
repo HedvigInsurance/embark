@@ -4,6 +4,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
+import { MaskType, wrapWithMask } from "./masking";
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
@@ -14,6 +15,7 @@ interface Props {
   storeKey: string;
   link: any;
   placeholder: string;
+  mask?: MaskType;
   tooltip?: {
     title: string;
     description: string;
@@ -33,6 +35,8 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     props.onContinue();
   };
 
+  const InputWithMask = wrapWithMask(BottomSpacedInput, props.mask);
+
   return (
     <Container>
       <Card
@@ -45,11 +49,12 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <Tooltip tooltip={props.tooltip} />
-        <BottomSpacedInput
+        <InputWithMask
           autoFocus
           size={Math.max(props.placeholder.length, textValue.length)}
           placeholder={props.placeholder}
           type="text"
+          value={textValue}
           onChange={e => setTextValue(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
