@@ -276,15 +276,20 @@ export const Passage = (props: PassageProps) => {
           </BottomContent>
         </motion.div>
       </ChatPadding>
-      <Modal isVisible={isShowingHelp} onClose={() => setIsShowingHelp(false)}>
-        <HelpModalTitle>Information</HelpModalTitle>
-        {props.passage.tooltips.map((tooltip: any) => (
-          <>
-            <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>
-            <HelpModalText>{tooltip.description}</HelpModalText>
-          </>
-        ))}
-      </Modal>
+      {props.passage.tooltips.length !== 0 && (
+        <Modal
+          isVisible={isShowingHelp}
+          onClose={() => setIsShowingHelp(false)}
+        >
+          <HelpModalTitle>Information</HelpModalTitle>
+          {props.passage.tooltips.map((tooltip: any) => (
+            <>
+              <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>
+              <HelpModalText>{tooltip.description}</HelpModalText>
+            </>
+          ))}
+        </Modal>
+      )}
     </ChatContainer>
   );
 };
