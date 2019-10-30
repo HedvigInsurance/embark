@@ -11,6 +11,7 @@ import { BackButton } from "./BackButton";
 import { Questionmark } from "./Icons/Questionmark";
 import { colors, colorsV2 } from "@hedviginsurance/brand";
 import hexToRgba = require("hex-to-rgba");
+import { Modal } from "./Modal";
 
 type PassageProps = {
   passage: any;
@@ -117,6 +118,7 @@ export const Passage = (props: PassageProps) => {
   const [messagesAnimationState, setMessagesAnimationState] = React.useState(
     "visible"
   );
+  const [isShowingHelp, setIsShowingHelp] = React.useState(false);
 
   const shouldShowActions = !(
     isResponding || messagesAnimationState == "reverse"
@@ -230,16 +232,16 @@ export const Passage = (props: PassageProps) => {
               />
             </Actions>
             <HelpButtonWrapper>
-              <HelpButton onClick={() => {}}>
+              <HelpButton
+                onClick={() => {
+                  setIsShowingHelp(true);
+                }}
+              >
                 <Questionmark />
               </HelpButton>
             </HelpButtonWrapper>
           </BottomContent>
         </motion.div>
-
-        {/*props.passage.tooltips.map((tooltip: any) => (
-        <p>{tooltip.description}</p>
-        ))*/}
       </ChatPadding>
     </ChatContainer>
   );
