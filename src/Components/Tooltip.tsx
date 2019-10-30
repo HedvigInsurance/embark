@@ -31,6 +31,10 @@ const TooltipIcon = styled(motion.div)`
   svg {
     margin: 0 auto;
   }
+
+  @media (max-width: 550px) {
+    display: none;
+  }
 `;
 
 const TooltipContainer = styled(motion.div)`

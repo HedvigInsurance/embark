@@ -9,7 +9,7 @@ import { Response } from "./Response/Response";
 import { history } from "../index";
 import { BackButton } from "./BackButton";
 import { Questionmark } from "./Icons/Questionmark";
-import { colors, colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV2, fonts } from "@hedviginsurance/brand";
 import hexToRgba = require("hex-to-rgba");
 import { Modal } from "./Modal";
 
@@ -53,6 +53,10 @@ const HelpButtonWrapper = styled.div`
   display: flex;
   justifycontent: center;
   margin-top: 20px;
+  display: none;
+  @media (max-width: 550px) {
+    display: flex;
+  }
 `;
 
 const HelpButton = styled.button`
@@ -86,6 +90,15 @@ const HelpButton = styled.button`
   svg {
     margin: 0 auto;
   }
+`;
+
+const HelpModalTitle = styled.h1`
+  font-family: ${fonts.CIRCULAR};
+  font-size: 40px;
+  line-height: 56px;
+  color: ${colorsV2.black};
+  margin-top: 36px;
+  margin-bottom: 18px;
 `;
 
 const HelpModalText = styled.p`
@@ -264,6 +277,7 @@ export const Passage = (props: PassageProps) => {
         </motion.div>
       </ChatPadding>
       <Modal isVisible={isShowingHelp} onClose={() => setIsShowingHelp(false)}>
+        <HelpModalTitle>Information</HelpModalTitle>
         {props.passage.tooltips.map((tooltip: any) => (
           <>
             <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>

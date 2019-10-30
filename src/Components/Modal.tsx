@@ -23,12 +23,11 @@ const Wrapper = styled(motion.div)`
 
 const Container = styled(motion.div)`
   position: relative;
-
   width: 500px;
   padding: 24px;
   max-width: calc(100% - 32px);
   min-height: 400px;
-  max-height: calc(100vh - 32px);
+  height: calc(100vh - 32px);
   background: ${colorsV2.white};
   border-radius: 9px;
   position: absolute;
