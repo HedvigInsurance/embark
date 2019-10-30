@@ -91,7 +91,72 @@ const getNumberAction = (numberActionNode: Element) => {
   };
 };
 
+const getDropdownAction = (dropdownActionNode: Element) => {
+  const key = dropdownActionNode.attributes["key"]
+    ? dropdownActionNode.attributes["key"].value
+    : null;
+  const label = dropdownActionNode.attributes["label"]
+    ? dropdownActionNode.attributes["label"].value
+    : "";
+  const options = Array.from(
+    dropdownActionNode.getElementsByTagName("option")
+  ).map(option => {
+    return {
+      value: option.attributes["value"]
+        ? option.attributes["value"].value
+        : option.textContent,
+      text: option.textContent
+    };
+  });
+
+  return {
+    component: "DropdownAction",
+    data: {
+      label,
+      key,
+      options
+    }
+  };
+};
+
+const getMultiAction = (multiActionNode: Element) => {
+  const maxAmount = multiActionNode.attributes["maxamount"].value;
+  const key = multiActionNode.attributes["key"].value;
+  const components = [];
+  const next = multiActionNode.attributes["next"].value;
+
+  const links = parseLinks(next);
+
+  const addNode = multiActionNode.getElementsByTagName("add")[0];
+  const addLabel = addNode.attributes["label"].value;
+
+  Array.from(addNode.getElementsByTagName("dropdownaction")).forEach(
+    dropdownNode => {
+      components.push(getDropdownAction(dropdownNode));
+    }
+  );
+
+  return {
+    component: "MultiAction",
+    data: {
+      key,
+      addLabel,
+      components,
+      maxAmount,
+      link: links[0]
+    }
+  };
+};
+
 const getAction = (containerElement: Element) => {
+  const multiActionNode = containerElement.getElementsByTagName(
+    "multiaction"
+  )[0];
+
+  if (multiActionNode) {
+    return getMultiAction(multiActionNode);
+  }
+
   const selectActionNode = containerElement.getElementsByTagName(
     "selectaction"
   )[0];

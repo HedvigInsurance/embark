@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SelectAction } from "./SelectAction/SelectAction";
 import { NumberAction } from "./NumberAction";
+import { MultiAction } from "./MultiAction/MultiAction";
 
 type ActionProps = {
   passageName: string;
@@ -11,6 +12,16 @@ type ActionProps = {
 export const Action = (props: ActionProps) => {
   if (!props.action) {
     return null;
+  }
+
+  if (props.action.component == "MultiAction") {
+    return (
+      <MultiAction
+        passageName={props.passageName}
+        action={props.action}
+        changePassage={props.changePassage}
+      />
+    );
   }
 
   if (props.action.component == "SelectAction") {
