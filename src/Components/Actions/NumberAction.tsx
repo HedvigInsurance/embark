@@ -5,6 +5,7 @@ import { colors, fonts } from "@hedviginsurance/brand";
 import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import { ContinueButton } from "../ContinueButton";
+import { wrapWithMask, MaskType } from "./masking";
 
 const Unit = styled.p`
   margin-top: 8px;
@@ -20,6 +21,7 @@ type NumberActionProps = {
   storeKey: string;
   unit: string;
   link: any;
+  mask?: MaskType;
   tooltip?: {
     title: string;
     description: string;
@@ -39,16 +41,21 @@ export const NumberAction = (props: NumberActionProps) => {
     props.onContinue();
   };
 
+  const InputWithMask = wrapWithMask(Input, props.mask);
+
   return (
     <Container>
       <Card
-        onSubmit={onContinue}
+        onSubmit={e => {
+          e.preventDefault();
+          onContinue();
+        }}
         isFocused={isFocused || isHovered}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <Tooltip tooltip={props.tooltip} />
-        <Input
+        <InputWithMask
           size={Math.max(props.placeholder.length, textValue.length)}
           autoFocus
           type="text"

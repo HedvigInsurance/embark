@@ -75,6 +75,9 @@ const getNumberAction = (numberActionNode: Element) => {
   const next = numberActionNode.attributes["next"].value;
   const key = numberActionNode.attributes["key"].value;
   const unit = numberActionNode.attributes["unit"].value;
+  const mask =
+    numberActionNode.attributes["mask"] &&
+    numberActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
@@ -85,6 +88,7 @@ const getNumberAction = (numberActionNode: Element) => {
       placeholder,
       key,
       unit,
+      mask,
       link: links[0],
       ...(tooltip && { tooltip })
     }
@@ -95,6 +99,9 @@ const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
   const next = textActionNode.attributes["next"].value;
   const key = textActionNode.attributes["key"].value;
+  const mask =
+    textActionNode.attributes["mask"] &&
+    textActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(textActionNode)[0];
@@ -105,6 +112,7 @@ const getTextAction = (textActionNode: Element) => {
       placeholder,
       key,
       link: links[0],
+      mask,
       ...(tooltip && { tooltip })
     }
   };
@@ -264,14 +272,6 @@ const parseGroupedResponse = (element: Element) => {
     items: items.map(parsePossibleExpressionContent)
   };
 };
-
-console.log(
-  Array.from(document.createElement("div").getElementsByTagName("Tooltip")).map(
-    parseTooltip
-  )
-);
-
-const getAllTooltips = () => {};
 
 export const parseStoryData = (storyData: any) => ({
   id: storyData.id,

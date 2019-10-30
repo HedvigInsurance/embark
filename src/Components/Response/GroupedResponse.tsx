@@ -42,7 +42,9 @@ export const GroupedResponse: React.FunctionComponent<Props> = props => {
       </Title>
       <ItemContainer>
         {props.items.map(item => (
-          <Item>{replacePlaceholders(store, getTextContent(store, item))}</Item>
+          <Item key={item.text}>
+            {replacePlaceholders(store, getTextContent(store, item))}
+          </Item>
         ))}
       </ItemContainer>
     </MessageBody>

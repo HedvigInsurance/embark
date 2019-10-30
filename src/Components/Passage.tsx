@@ -177,7 +177,11 @@ export const Passage = (props: PassageProps) => {
             variants={messageListMotionVariants}
           >
             {props.passage.messages.map(message => (
-              <Message isResponse={false} message={message} />
+              <Message
+                key={message.text}
+                isResponse={false}
+                message={message}
+              />
             ))}
             {isResponding && props.passage.response && (
               <Response response={props.passage.response} />
@@ -214,6 +218,7 @@ export const Passage = (props: PassageProps) => {
             )}
             <Actions>
               <Action
+                key={props.passage.name}
                 passageName={props.passage.name}
                 action={props.passage.action}
                 changePassage={name => {
