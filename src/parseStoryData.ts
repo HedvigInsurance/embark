@@ -75,7 +75,9 @@ const getNumberAction = (numberActionNode: Element) => {
   const next = numberActionNode.attributes["next"].value;
   const key = numberActionNode.attributes["key"].value;
   const unit = numberActionNode.attributes["unit"].value;
-  const mask = numberActionNode.attributes["mask"].value;
+  const mask =
+    numberActionNode.attributes["mask"] &&
+    numberActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
@@ -97,7 +99,9 @@ const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
   const next = textActionNode.attributes["next"].value;
   const key = textActionNode.attributes["key"].value;
-  const mask = textActionNode.attributes["mask"].value;
+  const mask =
+    textActionNode.attributes["mask"] &&
+    textActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(textActionNode)[0];
