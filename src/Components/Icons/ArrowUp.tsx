@@ -7,7 +7,7 @@ export const ArrowUp = () => (
       stroke="none"
       stroke-width="1"
       fill="none"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     >
       <g id="Chat-11" transform="translate(-679.000000, -653.000000)">
         <g id="Group-2" transform="translate(671.000000, 643.000000)">
@@ -21,7 +21,7 @@ export const ArrowUp = () => (
               stroke="#F9FAFC"
               stroke-width="1.41176471"
               stroke-linejoin="round"
-              fill-rule="nonzero"
+              fillRule="nonzero"
               points="15.1176471 6.12732633 14.6215224 5.64705882 8.05882353 12 14.6215224 18.3529412 15.1176471 17.8726737 9.05107292 12"
             />
           </g>

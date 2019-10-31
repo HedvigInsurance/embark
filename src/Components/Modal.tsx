@@ -18,6 +18,16 @@ const Wrapper = styled(motion.div)`
   top: 0;
   bottom: 0;
   right: 0;
+`;
+
+const Background = styled(motion.div)`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
   background-color: ${hexToRgba(colorsV2.white, 0.75)};
 `;
 
@@ -83,46 +93,65 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
     <Wrapper
       initial={"hidden"}
       animate={props.isVisible ? "visible" : "hidden"}
-      transition={{
-        type: "spring"
-      }}
       variants={{
         visible: {
-          opacity: 1,
           visibility: "visible"
         },
         hidden: {
-          opacity: 0,
-          visibility: "hidden"
+          visibility: "hidden",
+          transition: {
+            delay: 0.5
+          }
         }
       }}
     >
-      <Container
-        ref={containerRef}
+      <Background
         initial={"hidden"}
         animate={props.isVisible ? "visible" : "hidden"}
         transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 25,
-          delay: 0.05
+          type: "spring"
         }}
         variants={{
           visible: {
-            opacity: 1,
-            transform: "translateX(-50%) translateY(-50%) scale(1)"
+            opacity: 1
           },
           hidden: {
-            opacity: 0,
-            transform: "translateX(-50%) translateY(-50%) scale(0.9)"
+            opacity: 0
           }
         }}
       >
-        {props.children}
-        <CloseButton onClick={() => props.onClose()}>
-          <Cross />
-        </CloseButton>
-      </Container>
+        <Container
+          ref={containerRef}
+          initial={"hidden"}
+          animate={props.isVisible ? "visible" : "hidden"}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 100
+          }}
+          variants={{
+            visible: {
+              opacity: 1,
+              transform: "translateX(-50%) translateY(-50%) scale(1)",
+              transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 100,
+                delay: 0.15
+              }
+            },
+            hidden: {
+              opacity: 0,
+              transform: "translateX(-50%) translateY(50%) scale(0.9)"
+            }
+          }}
+        >
+          {props.children}
+          <CloseButton onClick={() => props.onClose()}>
+            <Cross />
+          </CloseButton>
+        </Container>
+      </Background>
     </Wrapper>
   );
 };
