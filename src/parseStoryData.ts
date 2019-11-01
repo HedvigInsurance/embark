@@ -308,7 +308,10 @@ export const parseStoryData = (storyData: any) => ({
       messages,
       redirects,
       action: getAction(containerElement),
-      response: getResponse(passage.name, containerElement)
+      response: getResponse(passage.name, containerElement),
+      tooltips: Array.from(
+        containerElement.getElementsByTagName("Tooltip")
+      ).map(parseTooltip)
     };
   })
 });
