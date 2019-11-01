@@ -6,7 +6,21 @@ const ListItem = (props: React.Props<null>) => {
 
   console.log(width, height);
 
-  return <div ref={ref}>{props.children}</div>;
+  return (
+    <>
+      <div style={{ width: 0, height: 0 }}>{props.children}</div>
+      <div
+        style={{
+          visibility: "hidden",
+          position: "absolute",
+          width: "100%",
+          height: "100%"
+        }}
+      >
+        <div ref={ref}>{props.children}</div>
+      </div>
+    </>
+  );
 };
 
 export const FlowableList = (props: React.Props<null>) => {
