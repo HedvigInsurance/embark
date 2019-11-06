@@ -33,10 +33,12 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-emotion": "^10.0.0",
+    "react-flip-toolkit": "^7.0.6",
     "react-use-dimensions": "^1.2.1",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
     "uglify-js": "^3.6.3",
+    "uuid": "^3.3.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
   },

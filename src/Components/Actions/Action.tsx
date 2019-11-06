@@ -37,7 +37,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component == "NumberAction") {
     return (
       <NumberAction
-        passageName={props.passageName}
+        autoResultKey={props.passageName}
         tooltip={props.action.data.tooltip}
         storeKey={props.action.data.key}
         link={props.action.data.link}

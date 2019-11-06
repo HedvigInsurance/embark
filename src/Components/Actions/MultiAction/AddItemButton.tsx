@@ -4,18 +4,17 @@ import { colorsV2, fonts } from "@hedviginsurance/brand";
 import hexToRgba from "hex-to-rgba";
 
 const AddItemButtonBase = styled.button`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 150px;
-  min-height: 150px;
+  width: 100%;
+  height: 100%;
+  min-height: 223px;
   border: 0;
   -webkit-appearance: none;
   background-color: ${hexToRgba(colorsV2.white, 0.7)};
   outline: 0;
-  flex-grow: 1;
-  flex-basis: 0;
   border-radius: 8px;
   transition: transform 250ms, box-shadow 250ms, background-color 250ms;
   font-family: ${fonts.CIRCULAR};
