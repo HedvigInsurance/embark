@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 80px;
   position: fixed;
+  z-index: 1000;
   background-color: ${colorsV2.white};
   display: flex;
   align-items: center;
@@ -15,9 +16,10 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  max-width: 1084px;
   width: 100%;
   padding: 0 32px;
+  margin: 0 auto;
+  max-width: 1264px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
