@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icons/perils/familjskyddet/no BG/sjuk_pa_resa </title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0001 0 48 0 48 48 0.0001 48"></polygon>
+    </defs>
+    <g id="icons/perils/familjskyddet/no-BG/sjuk_pa_resa-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Page-1">
+            <g id="Group-3">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+            </g>
+            <polygon id="Fill-4" fill="#141033" points="28.1954 35.0254 19.8044 35.0254 19.8044 28.1954 12.9744 28.1954 12.9744 27.1954 20.8044 27.1954 20.8044 34.0254 27.1954 34.0254 27.1954 27.1954 34.0254 27.1954 34.0254 20.8044 27.1954 20.8044 27.1954 12.9744 28.1954 12.9744 28.1954 19.8044 35.0254 19.8044 35.0254 28.1954 28.1954 28.1954"></polygon>
+            <polygon id="Fill-6" fill="#141033" points="13.9747 28.1953 12.9747 28.1953 12.9747 19.8043 19.8047 19.8043 19.8047 12.9743 28.1957 12.9743 28.1957 13.9743 20.8047 13.9743 20.8047 20.8043 13.9747 20.8043"></polygon>
+        </g>
+    </g>
+</svg>

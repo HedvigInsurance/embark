@@ -1,4 +1,3 @@
-import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 
@@ -10,11 +9,11 @@ const Heading = styled.h1`
   letter-spacing: -0.91px;
 `;
 
-export const WhiteHeading = styled(Heading)`
+export const HeadingWhite = styled(Heading)`
   color: ${colorsV2.white};
 `;
 
-export const BlackHeading = styled(Heading)`
+export const HeadingBlack = styled(Heading)`
   color: ${colorsV2.black};
 `;
 
@@ -26,6 +25,11 @@ export const PreHeading = styled.div`
   color: ${colorsV2.gray};
   text-transform: uppercase;
   margin-bottom: 25px;
+`;
+
+export const HeadingWrapper = styled.div`
+  padding-right: 100px;
+  margin-bottom: 46px;
 `;
 
 export const Container = styled.div`
@@ -44,6 +48,5 @@ export const Column = styled.div`
   flex-flow: column;
   max-width: 760px;
   flex-grow: 0;
-  padding-right: 110px;
   box-sizing: border-box;
 `;

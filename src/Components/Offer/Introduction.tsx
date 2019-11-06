@@ -1,7 +1,13 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
-import { Container, Column, PreHeading, WhiteHeading } from "./components";
+import {
+  Container,
+  Column,
+  HeadingWrapper,
+  PreHeading,
+  HeadingWhite
+} from "./components";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -22,14 +28,16 @@ const SummaryBox = styled.div`
   flex-shrink: 0;
 `;
 
-export const OfferIntroduction = () => (
+export const Introduction = () => (
   <Wrapper>
     <Container>
       <Column>
-        <PreHeading>Försäkringsförslag</PreHeading>
-        <WhiteHeading>
-          Tyckte du det där var enkelt? Då skulle du uppleva vår försäkring
-        </WhiteHeading>
+        <HeadingWrapper>
+          <PreHeading>Försäkringsförslag</PreHeading>
+          <HeadingWhite>
+            Tyckte du det där var enkelt? Då skulle du uppleva vår försäkring
+          </HeadingWhite>
+        </HeadingWrapper>
       </Column>
       <SummaryBox />
     </Container>

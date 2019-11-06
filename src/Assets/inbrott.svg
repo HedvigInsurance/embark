@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icons/perils/lagenhetsskyddet/no BG/inbrott </title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0001 0.0002 48 0.0002 48 48 0.0001 48"></polygon>
+    </defs>
+    <g id="icons/perils/lagenhetsskyddet/no-BG/inbrott-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Page-1">
+            <g id="Group-3">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+            </g>
+            <path d="M30.6857,21.4245 L29.6857,21.4245 L29.6857,16.7105 C29.6857,13.5745 27.1347,11.0245 23.9997,11.0245 L23.4997,11.0245 L23.4997,10.0245 L23.9997,10.0245 C27.6867,10.0245 30.6857,13.0235 30.6857,16.7105 L30.6857,21.4245 Z" id="Fill-4" fill="#141033"></path>
+            <polygon id="Fill-6" fill="#141033" points="17.315 21.424 18.315 21.424 18.315 16.21 17.315 16.21"></polygon>
+            <polygon id="Fill-8" fill="#141033" points="33.34 36.4191 14.66 36.4191 14.66 35.4191 32.34 35.4191 32.34 20.4601 33.34 20.4601"></polygon>
+            <polygon id="Fill-9" fill="#141033" points="15.6603 36.4191 14.6603 36.4191 14.6603 20.4601 33.3403 20.4601 33.3403 21.4601 15.6603 21.4601"></polygon>
+            <polygon id="Fill-10" fill="#141033" points="32.34 36.419 33.34 36.419 33.34 20.46 32.34 20.46"></polygon>
+            <polygon id="Fill-11" fill="#141033" points="23.5 32.596 24.5 32.596 24.5 29.814 23.5 29.814"></polygon>
+            <path d="M24.0001,25.175 C22.9121,25.175 22.0271,26.06 22.0271,27.148 C22.0271,28.236 22.9121,29.121 24.0001,29.121 C25.0881,29.121 25.9731,28.236 25.9731,27.148 C25.9731,26.06 25.0881,25.175 24.0001,25.175 M24.0001,30.121 C22.3611,30.121 21.0271,28.787 21.0271,27.148 C21.0271,25.508 22.3611,24.175 24.0001,24.175 C25.6391,24.175 26.9731,25.508 26.9731,27.148 C26.9731,28.787 25.6391,30.121 24.0001,30.121" id="Fill-12" fill="#141033"></path>
+            <polygon id="Fill-13" fill="#141033" points="17.3595 11.2873 15.9575 10.1563 16.5855 9.3773 17.9875 10.5093"></polygon>
+        </g>
+    </g>
+</svg>

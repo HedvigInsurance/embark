@@ -1,12 +1,12 @@
 import * as React from "react";
 import { TopBar } from "../TopBar";
-import { OfferIntroduction } from "./OfferIntroduction";
-import { Perils } from "./Perils";
+import { Introduction } from "./Introduction";
+import { Perils } from "./Perils/index";
 
 export const Offer = () => (
   <>
     <TopBar />
-    <OfferIntroduction />
+    <Introduction />
     <Perils />
   </>
 );
