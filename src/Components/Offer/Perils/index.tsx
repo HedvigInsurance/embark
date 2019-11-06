@@ -9,6 +9,7 @@ import {
   HeadingBlack,
   PreHeading
 } from "../components";
+import { Fire, Theft } from "../../../Components/Icons/Perils";
 
 const Wrapper = styled.div`
   padding: 80px 0;
@@ -31,13 +32,17 @@ const PerilItemCollection = styled.div`
 
 interface Peril {
   title: string;
-  icon: string;
+  icon: JSX.Element;
 }
 
-const perils: [Peril] = [
+const perils: Peril[] = [
   {
     title: "Eldsvåda",
-    icon: "eldsvada.svg"
+    icon: <Fire />
+  },
+  {
+    title: "Inbrott",
+    icon: <Theft />
   }
 ];
 
@@ -54,20 +59,11 @@ export const Perils = () => (
             Omfattande skydd för dig och din familj, ditt hus och dina prylar.
           </Body>
         </HeadingWrapper>
-        <PerilItemCollection>
-          <PerilItem title={"Eldsvåda"} />
-          <PerilItem title={"Vattenläcka"} />
-          <PerilItem title={"Oväder"} />
-          <PerilItem title={"Inbrott"} />
-          <PerilItem title={"Stöld"} />
-          <PerilItem title={"Skadegörelse"} />
 
-          <PerilItem title={"Juridisk tvist"} />
-          <PerilItem title={"Vattenläcka"} />
-          <PerilItem title={"Oväder"} />
-          <PerilItem title={"Inbrott"} />
-          <PerilItem title={"Stöld"} />
-          <PerilItem title={"Skadegörelse"} />
+        <PerilItemCollection>
+          {perils.map(peril => (
+            <PerilItem title={peril.title} icon={peril.icon} />
+          ))}
         </PerilItemCollection>
       </Column>
     </Container>

@@ -1,29 +1,41 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { Fire } from "../../../Components/Icons/Perils";
 
 interface PerilItemProps {
   title: string;
+  icon: JSX.Element;
 }
 
 const Button = styled.button`
   width: 116px;
   height: 92px;
   margin: 4px;
+  padding: 8px;
   border-radius: 4px;
   background-color: ${colorsV2.white};
   border: 1px solid ${colorsV2.lightgray};
   cursor: pointer;
   transition: all 0.15s ease-in-out;
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  justify-content: space-between;
   align-items: center;
+
+  svg {
+    width: 48px;
+    height: 48px;
+  }
+
   :focus {
     outline: none;
   }
+
   :hover {
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
   }
+
   :active {
     background-color: ${colorsV2.lightgray};
     box-shadow: none;
@@ -39,6 +51,7 @@ const Title = styled.div`
 
 export const PerilItem = (props: PerilItemProps) => (
   <Button>
+    {props.icon}
     <Title>{props.title}</Title>
   </Button>
 );
