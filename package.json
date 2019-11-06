@@ -35,7 +35,6 @@
     "react-dom": "^16.10.2",
     "react-emotion": "^10.0.0",
     "react-flip-toolkit": "^7.0.6",
-    "react-use-dimensions": "^1.2.1",
     "react-input-mask": "^2.0.4",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
