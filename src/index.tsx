@@ -9,6 +9,8 @@ import { createHashHistory } from "history";
 import { parseStoryData } from "./parseStoryData";
 import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
 import { passes } from "./Utils/ExpressionsUtil";
+import { Offer } from "./Components/Offer";
+import { GlobalStyles } from "./Components/GlobalStyles";
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes[
   "scriptHost"
@@ -68,6 +70,7 @@ const Root = () => {
     history: [getStartPassage()],
     passageId: getStartPassage()
   });
+  console.log(state.passageId);
   const passage = data.passages.filter(
     passage => passage.id == state.passageId
   )[0];
@@ -135,23 +138,11 @@ const Root = () => {
     <>
       <Global
         styles={css`
-                * {
-                    margin: 0;
-                    padding: 0;
-                    -webkit-font-smoothing: antialiased;
-	                -moz-osx-font-smoothing: grayscale;
-                }
-
-                ul, li {
-                    list-style-type: none;
-                }
-
-                html {
-                    background-image: url("${scriptHost}/assets/background.png");
-                    background-position: center;
-                }
-                ${getCdnFontFaces()}
-            `}
+            html {
+              background-image: url("${scriptHost}/assets/background.png");
+              background-position: center;
+            }
+        `}
       />
       <Passage
         history={state.history}
@@ -171,7 +162,8 @@ const Root = () => {
 
 const RootContainer = () => (
   <KeyValueStore>
-    <Root />
+    <GlobalStyles />
+    <Offer />
   </KeyValueStore>
 );
 
