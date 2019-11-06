@@ -58,7 +58,7 @@ const Action = (props: ActionProps) => {
     return (
       <OptionContainer>
         {props.action.data.options.map(option => (
-          <Option>
+          <Option key={option.link.name}>
             {option.link.label} -> {option.link.name}
             {option.tooltip && (
               <>
@@ -85,12 +85,16 @@ export const Proofing = (props: ProofingProps) => {
     <Container>
       <Title>{props.name}</Title>
       {props.passages.map(passage => (
-        <PassageContainer>
+        <PassageContainer key={passage.name}>
           <PassageTitle>{passage.name}</PassageTitle>
           <PassageBody>
             {passage.messages.length == 0 && <p>No messages</p>}
             {passage.messages.map(message => (
-              <Message isResponse={false} message={message} />
+              <Message
+                key={message.text}
+                isResponse={false}
+                message={message}
+              />
             ))}
           </PassageBody>
           <Action action={passage.action} />

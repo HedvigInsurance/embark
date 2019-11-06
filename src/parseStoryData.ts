@@ -80,6 +80,9 @@ const getNumberAction = (numberActionNode: Element) => {
   const next = nextAttribute ? nextAttribute.value : null;
   const key = numberActionNode.attributes["key"].value;
   const unit = numberActionNode.attributes["unit"].value;
+  const mask =
+    numberActionNode.attributes["mask"] &&
+    numberActionNode.attributes["mask"].value;
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
@@ -91,6 +94,7 @@ const getNumberAction = (numberActionNode: Element) => {
       key,
       unit,
       ...(links && { link: links[0] }),
+      mask,
       ...(tooltip && { tooltip })
     }
   };
@@ -187,6 +191,29 @@ const getMultiAction = (multiActionNode: Element) => {
   };
 };
 
+const getTextAction = (textActionNode: Element) => {
+  const placeholder = textActionNode.attributes["placeholder"].value;
+  const next = textActionNode.attributes["next"].value;
+  const key = textActionNode.attributes["key"].value;
+  const mask =
+    textActionNode.attributes["mask"] &&
+    textActionNode.attributes["mask"].value;
+
+  const links = parseLinks(next);
+  const tooltip = parseTooltips(textActionNode)[0];
+
+  return {
+    component: "TextAction",
+    data: {
+      placeholder,
+      key,
+      link: links[0],
+      mask,
+      ...(tooltip && { tooltip })
+    }
+  };
+};
+
 const getAction = (containerElement: Element) => {
   const multiActionNode = containerElement.getElementsByTagName(
     "multiaction"
@@ -210,6 +237,12 @@ const getAction = (containerElement: Element) => {
 
   if (numberActionNode) {
     return getNumberAction(numberActionNode);
+  }
+
+  const textActionNode = containerElement.getElementsByTagName("textaction")[0];
+
+  if (textActionNode) {
+    return getTextAction(textActionNode);
   }
 
   return null;
@@ -314,6 +347,13 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
 };
 
 const getResponse = (passageName: string, containerElement: Element) => {
+  const groupedResponse = containerElement.getElementsByTagName(
+    "groupedresponse"
+  )[0];
+  if (groupedResponse) {
+    return parseGroupedResponse(groupedResponse);
+  }
+
   const responseNode = containerElement.getElementsByTagName("response")[0];
 
   if (responseNode) {
@@ -323,6 +363,17 @@ const getResponse = (passageName: string, containerElement: Element) => {
   return {
     expressions: [],
     text: `{${passageName}Result}`
+  };
+};
+
+const parseGroupedResponse = (element: Element) => {
+  const title = element.getElementsByTagName("title")[0];
+  const items = Array.from(element.getElementsByTagName("item"));
+
+  return {
+    component: "GroupedResponse",
+    title: parsePossibleExpressionContent(title),
+    items: items.map(parsePossibleExpressionContent)
   };
 };
 
@@ -361,7 +412,10 @@ export const parseStoryData = (storyData: any) => ({
       messages,
       redirects,
       action: getAction(containerElement),
-      response: getResponse(passage.name, containerElement)
+      response: getResponse(passage.name, containerElement),
+      tooltips: Array.from(
+        containerElement.getElementsByTagName("Tooltip")
+      ).map(parseTooltip)
     };
   })
 });
