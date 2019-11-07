@@ -11,6 +11,7 @@ export const GlobalStyles = () => (
         padding: 0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        font-family: ${fonts.CIRCULAR}, sans-serif;
       }
 
       body {

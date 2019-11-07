@@ -5,7 +5,7 @@ import hexToRgba = require("hex-to-rgba");
 import { motion } from "framer-motion";
 import { Cross } from "../Components/Icons/Cross";
 
-interface ModalProps {
+export interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
 }

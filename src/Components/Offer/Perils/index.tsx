@@ -23,7 +23,7 @@ import {
   WhiteGoods,
   WetPhone
 } from "../../../Components/Icons/Perils";
-import { Modal } from "../../../Components/Modal";
+import { PerilModal } from "./PerilModal";
 
 const Wrapper = styled.div`
   padding: 80px 0;
@@ -44,27 +44,7 @@ const PerilItemCollection = styled.div`
   margin: 0 -4px;
 `;
 
-const PerilModalHeader = styled.div`
-  width: 100%;
-  height: 178px;
-  background-color: ${colorsV2.lightgray};
-  display: flex;
-  justify-content: center;
-`;
-
-const PerilModalTitle = styled.div`
-  font-family: ${fonts.GEOMANIST};
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 2.67px;
-  color: ${colorsV2.black};
-  text-align: center;
-  text-transform: uppercase;
-  padding: 28px 0;
-  box-sizing: border-box;
-`;
-
-interface Peril {
+export interface Peril {
   title: string;
   icon: JSX.Element;
 }
@@ -122,6 +102,7 @@ const perils: Peril[] = [
 
 export const Perils = () => {
   const [isShowingPeril, setIsShowingPeril] = React.useState(false);
+  const [currentPeril, setCurrentPeril] = React.useState(0);
 
   return (
     <Wrapper>
@@ -138,23 +119,25 @@ export const Perils = () => {
           </HeadingWrapper>
 
           <PerilItemCollection>
-            {perils.map(peril => (
+            {perils.map((peril, perilIndex) => (
               <PerilItem
                 title={peril.title}
                 icon={peril.icon}
-                onClick={() => setIsShowingPeril(true)}
+                onClick={() => {
+                  setCurrentPeril(perilIndex);
+                  setIsShowingPeril(true);
+                }}
               />
             ))}
           </PerilItemCollection>
 
-          <Modal
+          <PerilModal
+            perils={perils}
+            currentPeril={currentPeril}
+            setCurrentPeril={setCurrentPeril}
             isVisible={isShowingPeril}
             onClose={() => setIsShowingPeril(false)}
-          >
-            <PerilModalHeader>
-              <PerilModalTitle>Skyddet</PerilModalTitle>
-            </PerilModalHeader>
-          </Modal>
+          />
         </Column>
       </Container>
     </Wrapper>
