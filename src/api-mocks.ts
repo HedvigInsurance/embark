@@ -1,11 +1,16 @@
 import { MockedResponse } from "@apollo/react-testing";
-import personalInformationQuery from "./Components/API/PersonalInformationApi";
+import personalInformationQuery from "./Components/API/personalInformation.graphql";
 
 const AN_UUID = "6955dd62-4994-4677-a174-7eab9a9a7b92";
 
 const personalInformationQueryMock: MockedResponse = {
   request: {
-    query: personalInformationQuery
+    query: personalInformationQuery,
+    variables: {
+      input: {
+        personalNumber: "1212121212"
+      }
+    }
   },
   result: {
     data: {

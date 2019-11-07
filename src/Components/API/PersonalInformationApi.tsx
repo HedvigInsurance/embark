@@ -33,16 +33,17 @@ interface Variables {
 }
 
 interface Link {
-  label: string;
+  name: string;
 }
 
 interface Props {
   match: Link;
   noMatch: Link;
   error: Link;
+  changePassage: (name: string) => void;
 }
 
-export const PersonalInformationApi: React.FunctionComponent<Props> = () => {
+export const PersonalInformationApi: React.FunctionComponent<Props> = props => {
   const { store } = React.useContext(StoreContext);
   const { personalNumber } = store;
   const { loading, data, error } = useQuery<Data, Variables>(query, {
@@ -54,16 +55,20 @@ export const PersonalInformationApi: React.FunctionComponent<Props> = () => {
   });
 
   if (loading) {
-    return <div>Loading</div>;
+    return <div>This is supposed to be a really cool transition state 🙄</div>;
   }
 
   if (error) {
-    <div>errored :(</div>;
+    props.changePassage(props.error.name);
   }
 
   if (data) {
-    return <pre>{JSON.stringify(data, null, 2)}</pre>;
+    if (data.personalInformation) {
+      props.changePassage(props.match.name);
+    } else {
+      props.changePassage(props.noMatch.name);
+    }
   }
 
-  return <pre>{JSON.stringify(store, null, 2)}</pre>;
+  return <div />;
 };

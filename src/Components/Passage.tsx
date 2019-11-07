@@ -12,6 +12,7 @@ import { Questionmark } from "./Icons/Questionmark";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 import hexToRgba = require("hex-to-rgba");
 import { Modal } from "./Modal";
+import { PersonalInformationApi } from "./API/PersonalInformationApi";
 
 type PassageProps = {
   passage: any;
@@ -243,43 +244,62 @@ export const Passage = (props: PassageProps) => {
           }}
         >
           <BottomContent>
-            {props.history.length > 1 && (
-              <BackButton
-                onClick={() => {
-                  goBack();
-                }}
-              />
-            )}
-            <Actions>
-              <Action
-                key={props.passage.name}
-                passageName={props.passage.name}
-                action={props.passage.action}
+            {props.passage.api ? (
+              <PersonalInformationApi
+                match={props.passage.api.data.match}
+                noMatch={props.passage.api.data.noMatch}
+                error={props.passage.api.data.error}
                 changePassage={name => {
-                  setIsResponding(true);
-
                   setTimeout(() => {
                     setMessagesAnimationState("forwards");
                   }, 650);
-
                   setTimeout(() => {
                     setMessagesAnimationState("visible");
-                    setIsResponding(false);
                     props.changePassage(name);
                   }, 1000);
                 }}
               />
-            </Actions>
-            {props.passage.tooltips.length !== 0 && (
-              <HelpButtonWrapper>
-                <HelpButton
-                  onClick={() => {
-                    setIsShowingHelp(true);
-                  }}
-                >
-                  <Questionmark />
-                </HelpButton>
-              </HelpButtonWrapper>
+            ) : (
+              <>
+                {props.history.length > 1 && (
+                  <BackButton
+                    onClick={() => {
+                      goBack();
+                    }}
+                  />
+                )}
+                <Actions>
+                  <Action
+                    key={props.passage.name}
+                    passageName={props.passage.name}
+                    action={props.passage.action}
+                    changePassage={name => {
+                      setIsResponding(true);
+
+                      setTimeout(() => {
+                        setMessagesAnimationState("forwards");
+                      }, 650);
+
+                      setTimeout(() => {
+                        setMessagesAnimationState("visible");
+                        setIsResponding(false);
+                        props.changePassage(name);
+                      }, 1000);
+                    }}
+                  />
+                </Actions>
+                {props.passage.tooltips.length !== 0 && (
+                  <HelpButtonWrapper>
+                    <HelpButton
+                      onClick={() => {
+                        setIsShowingHelp(true);
+                      }}
+                    >
+                      <Questionmark />
+                    </HelpButton>
+                  </HelpButtonWrapper>
+                )}
+              </>
             )}
           </BottomContent>
         </motion.div>

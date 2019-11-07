@@ -377,6 +377,21 @@ const parseGroupedResponse = (element: Element) => {
   };
 };
 
+const parseApi = (element: Element, name: string) => {
+  if (name === "PersonalInformationApiApartment") {
+    return {
+      component: "PersonalInformationApi",
+      data: {
+        match: { name: "CorrectAdressApartment" }, // parseLinks(match)[0]
+        noMatch: { name: "ManualAddressApartment" }, // parseLinks(noMatch)[0]
+        error: { name: "" }
+      }
+    };
+  }
+
+  return null;
+};
+
 export const parseStoryData = (storyData: any) => ({
   id: storyData.id,
   name: storyData.name,
@@ -384,6 +399,8 @@ export const parseStoryData = (storyData: any) => ({
   passages: storyData.passages.map(passage => {
     var containerElement = document.createElement("div");
     containerElement.innerHTML = passage.text;
+
+    const api = parseApi(containerElement, passage.name);
 
     const messages = Array.from(
       containerElement.getElementsByTagName("message")
@@ -411,6 +428,7 @@ export const parseStoryData = (storyData: any) => ({
       name: passage.name,
       messages,
       redirects,
+      api,
       action: getAction(containerElement),
       response: getResponse(passage.name, containerElement),
       tooltips: Array.from(

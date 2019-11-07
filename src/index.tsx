@@ -48,6 +48,7 @@ export const history = createHashHistory({
 const reducer = (state, action) => {
   switch (action.type) {
     case "GO_TO":
+      // TODO: Do not push API items to the history
       history.push(`${action.passageId}`);
       return {
         ...state,
@@ -173,7 +174,7 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <MockedProvider mocks={mocks}>
+  <MockedProvider mocks={mocks} addTypename={false}>
     <KeyValueStore>
       <Root />
     </KeyValueStore>
