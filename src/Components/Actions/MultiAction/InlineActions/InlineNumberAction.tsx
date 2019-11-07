@@ -40,14 +40,14 @@ const Unit = styled.p`
   font-family: ${fonts.CIRCULAR};
 `;
 
-type NumberActionProps = {
+type InlineNumberActionProps = {
   placeholder: string;
   unit: string;
   value: string;
   onValue: (value: string) => void;
 };
 
-export const InlineNumberAction = (props: NumberActionProps) => (
+export const InlineNumberAction = (props: InlineNumberActionProps) => (
   <Container>
     <Input
       type="text"
