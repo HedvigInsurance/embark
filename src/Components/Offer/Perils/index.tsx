@@ -9,7 +9,20 @@ import {
   HeadingBlack,
   PreHeading
 } from "../components";
-import { Fire, Theft } from "../../../Components/Icons/Perils";
+import {
+  Fire,
+  Theft,
+  Storm,
+  WaterLeak,
+  Lock,
+  BaseballBat,
+  LegalDispute,
+  Plane,
+  Alarm,
+  Plus,
+  WhiteGoods,
+  WetPhone
+} from "../../../Components/Icons/Perils";
 
 const Wrapper = styled.div`
   padding: 80px 0;
@@ -41,8 +54,48 @@ const perils: Peril[] = [
     icon: <Fire />
   },
   {
+    title: "Vattenläcka",
+    icon: <WaterLeak />
+  },
+  {
+    title: "Oväder",
+    icon: <Storm />
+  },
+  {
     title: "Inbrott",
+    icon: <Lock />
+  },
+  {
+    title: "Stöld",
     icon: <Theft />
+  },
+  {
+    title: "Skadegörelse",
+    icon: <BaseballBat />
+  },
+  {
+    title: "Juridisk tvist",
+    icon: <LegalDispute />
+  },
+  {
+    title: "Resetrubbel",
+    icon: <Plane />
+  },
+  {
+    title: "Överfall",
+    icon: <Alarm />
+  },
+  {
+    title: "Sjuk på resa",
+    icon: <Plus />
+  },
+  {
+    title: "Vitvaror",
+    icon: <WhiteGoods />
+  },
+  {
+    title: "Drulle",
+    icon: <WetPhone />
   }
 ];
 
