@@ -16,7 +16,7 @@ const Unit = styled.p`
 `;
 
 type NumberActionProps = {
-  passageName: string;
+  autoResultKey: string;
   placeholder: string;
   storeKey: string;
   unit: string;
@@ -37,7 +37,7 @@ export const NumberAction = (props: NumberActionProps) => {
 
   const onContinue = () => {
     setValue(props.storeKey, textValue);
-    setValue(`${props.passageName}Result`, textValue);
+    setValue(`${props.autoResultKey}Result`, textValue);
     props.onContinue();
   };
 

@@ -36,10 +36,10 @@ export const Message = (props: MessageProps) => {
   return (
     <StoreContext.Consumer>
       {({ store }) => {
-        const text = getTextContent(store, props.message)
+        const text = getTextContent(store, props.message);
 
         if (!text) {
-          return null
+          return null;
         }
 
         return (
@@ -56,12 +56,13 @@ export const Message = (props: MessageProps) => {
                 transformOrigin: "0% 0%"
               }}
             >
-              <MessageBody isResponse={props.isResponse}>{replacePlaceholders(store, text)}</MessageBody>
+              <MessageBody isResponse={props.isResponse}>
+                {replacePlaceholders(store, text)}
+              </MessageBody>
             </motion.li>
           </MessageContainer>
-        )
-      }
-      }
+        );
+      }}
     </StoreContext.Consumer>
-  )
-}
+  );
+};
