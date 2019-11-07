@@ -68,11 +68,11 @@ export const RemoveItemButton = (props: RemoveItemButtonProps) => (
           </feMerge>
         </filter>
       </defs>
-      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g
           transform="translate(-330.000000, -1627.000000)"
           fill="#FFFFFF"
-          fill-rule="nonzero"
+          fillRule="nonzero"
         >
           <g
             filter="url(#filter-1)"

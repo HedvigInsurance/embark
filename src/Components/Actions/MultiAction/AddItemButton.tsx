@@ -47,7 +47,7 @@ export const AddItemButton = (props: AddItemButtonProps) => (
     <svg width="24" height="24" viewBox="0 0 24 24">
       <path
         fill="#9B9BAA"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 7.5a.818.818 0 0 0-.818.818v2.864H8.318a.818.818 0 0 0 0 1.636h2.864v2.864a.818.818 0 0 0 1.636 0v-2.864h2.864a.818.818 0 0 0 0-1.636h-2.864V8.318A.818.818 0 0 0 12 7.5z"
       />
     </svg>
