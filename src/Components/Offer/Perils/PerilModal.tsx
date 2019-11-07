@@ -151,6 +151,10 @@ const ForwardButton = styled.button`
   }
 `;
 
+const Content = styled.div`
+  padding: 24px;
+`;
+
 export const PerilModal = (
   props: React.PropsWithChildren<PerilModalProps & ModalProps>
 ) => {
@@ -167,6 +171,7 @@ export const PerilModal = (
           ))}
           <Indicator currentPeril={props.currentPeril} />
         </Picker>
+
         <LeftGradient>
           <BackButton>
             <BackArrow />
@@ -178,6 +183,7 @@ export const PerilModal = (
           </ForwardButton>
         </RightGradient>
       </Header>
+      <Content>{props.perils[props.currentPeril].title}</Content>
     </Modal>
   );
 };
