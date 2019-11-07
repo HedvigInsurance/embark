@@ -6,6 +6,7 @@ import { Fire } from "../../../Components/Icons/Perils";
 interface PerilItemProps {
   title: string;
   icon: JSX.Element;
+  onClick: () => void;
 }
 
 const Button = styled.button`
@@ -50,7 +51,7 @@ const Title = styled.div`
 `;
 
 export const PerilItem = (props: PerilItemProps) => (
-  <Button>
+  <Button onClick={props.onClick}>
     {props.icon}
     <Title>{props.title}</Title>
   </Button>

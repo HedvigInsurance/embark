@@ -92,6 +92,10 @@ const HelpButton = styled.button`
   }
 `;
 
+const HelpModalContainer = styled.div`
+  padding: 24px;
+`;
+
 const HelpModalTitle = styled.h1`
   font-family: ${fonts.CIRCULAR};
   font-size: 40px;
@@ -281,13 +285,15 @@ export const Passage = (props: PassageProps) => {
           isVisible={isShowingHelp}
           onClose={() => setIsShowingHelp(false)}
         >
-          <HelpModalTitle>Information</HelpModalTitle>
-          {props.passage.tooltips.map((tooltip: any) => (
-            <>
-              <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>
-              <HelpModalText>{tooltip.description}</HelpModalText>
-            </>
-          ))}
+          <HelpModalContainer>
+            <HelpModalTitle>Information</HelpModalTitle>
+            {props.passage.tooltips.map((tooltip: any) => (
+              <>
+                <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>
+                <HelpModalText>{tooltip.description}</HelpModalText>
+              </>
+            ))}
+          </HelpModalContainer>
         </Modal>
       )}
     </ChatContainer>

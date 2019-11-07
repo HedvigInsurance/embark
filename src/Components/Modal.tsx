@@ -18,6 +18,7 @@ const Wrapper = styled(motion.div)`
   top: 0;
   bottom: 0;
   right: 0;
+  z-index: 2000;
 `;
 
 const Background = styled(motion.div)`
@@ -33,11 +34,11 @@ const Background = styled(motion.div)`
 
 const Container = styled(motion.div)`
   position: relative;
-  width: 500px;
-  padding: 24px;
-  max-width: calc(100% - 32px);
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
   min-height: 400px;
-  height: calc(100vh - 32px);
+  max-height: 900px;
   background: ${colorsV2.white};
   border-radius: 9px;
   position: absolute;
@@ -47,6 +48,14 @@ const Container = styled(motion.div)`
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
   overflow-x: scroll;
+
+  @media (max-height: 900px) {
+    max-height: calc(100vh - 32px);
+  }
+
+  @media (max-width: 900px) {
+    max-width: calc(100% - 32px);
+  }
 `;
 
 const CloseButton = styled.button`
@@ -108,9 +117,6 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
       <Background
         initial={"hidden"}
         animate={props.isVisible ? "visible" : "hidden"}
-        transition={{
-          type: "spring"
-        }}
         variants={{
           visible: {
             opacity: 1
