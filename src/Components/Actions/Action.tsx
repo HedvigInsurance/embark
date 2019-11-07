@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SelectAction } from "./SelectAction/SelectAction";
 import { NumberAction } from "./NumberAction";
+import { MultiAction } from "./MultiAction/MultiAction";
 import { TextAction } from "./TextAction";
 
 type ActionProps = {
@@ -12,6 +13,16 @@ type ActionProps = {
 export const Action = (props: ActionProps) => {
   if (!props.action) {
     return null;
+  }
+
+  if (props.action.component == "MultiAction") {
+    return (
+      <MultiAction
+        passageName={props.passageName}
+        action={props.action}
+        changePassage={props.changePassage}
+      />
+    );
   }
 
   if (props.action.component == "SelectAction") {
@@ -27,7 +38,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component == "NumberAction") {
     return (
       <NumberAction
-        passageName={props.passageName}
+        autoResultKey={props.passageName}
         mask={props.action.data.mask}
         tooltip={props.action.data.tooltip}
         storeKey={props.action.data.key}

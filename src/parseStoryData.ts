@@ -1,4 +1,8 @@
 const parseLinks = (text: string) => {
+  if (!text) {
+    return null;
+  }
+
   const trimmedText = text.replace(/(\r\n|\n|\r)/gm, "").trim();
   const links = trimmedText.match(/\[\[.+?\]\]/g) || [];
   const transformedLinks = links.map(function(link) {
@@ -72,7 +76,8 @@ const getSelectAction = (actionNode: Element | undefined) => {
 
 const getNumberAction = (numberActionNode: Element) => {
   const placeholder = numberActionNode.attributes["placeholder"].value;
-  const next = numberActionNode.attributes["next"].value;
+  const nextAttribute = numberActionNode.attributes["next"];
+  const next = nextAttribute ? nextAttribute.value : null;
   const key = numberActionNode.attributes["key"].value;
   const unit = numberActionNode.attributes["unit"].value;
   const mask =
@@ -88,9 +93,100 @@ const getNumberAction = (numberActionNode: Element) => {
       placeholder,
       key,
       unit,
+      ...(links && { link: links[0] }),
       mask,
-      link: links[0],
       ...(tooltip && { tooltip })
+    }
+  };
+};
+
+const getDropdownAction = (dropdownActionNode: Element) => {
+  const key = dropdownActionNode.attributes["key"]
+    ? dropdownActionNode.attributes["key"].value
+    : null;
+  const label = dropdownActionNode.attributes["label"]
+    ? dropdownActionNode.attributes["label"].value
+    : "";
+  const options = Array.from(
+    dropdownActionNode.getElementsByTagName("option")
+  ).map(option => {
+    return {
+      value: option.attributes["value"]
+        ? option.attributes["value"].value
+        : option.textContent,
+      text: option.textContent
+    };
+  });
+
+  return {
+    component: "DropdownAction",
+    data: {
+      label,
+      key,
+      options
+    }
+  };
+};
+
+const getSwitchAction = (switchActionNode: Element) => {
+  const key = switchActionNode.attributes["key"]
+    ? switchActionNode.attributes["key"].value
+    : null;
+  const label = switchActionNode.attributes["label"]
+    ? switchActionNode.attributes["label"].value
+    : "";
+
+  const defaultValue = switchActionNode.attributes["defaultvalue"]
+    ? switchActionNode.attributes["defaultvalue"].value == "true"
+    : false;
+
+  return {
+    component: "SwitchAction",
+    data: {
+      label,
+      key,
+      defaultValue
+    }
+  };
+};
+
+const getMultiAction = (multiActionNode: Element) => {
+  const maxAmount = multiActionNode.attributes["maxamount"].value;
+  const key = multiActionNode.attributes["key"].value;
+  const components = [];
+  const next = multiActionNode.attributes["next"].value;
+
+  const links = parseLinks(next);
+
+  const addNode = multiActionNode.getElementsByTagName("add")[0];
+  const addLabel = addNode.attributes["label"].value;
+
+  Array.from(addNode.getElementsByTagName("dropdownaction")).forEach(
+    dropdownNode => {
+      components.push(getDropdownAction(dropdownNode));
+    }
+  );
+
+  Array.from(addNode.getElementsByTagName("numberaction")).forEach(
+    numberActionNode => {
+      components.push(getNumberAction(numberActionNode));
+    }
+  );
+
+  Array.from(addNode.getElementsByTagName("switchaction")).forEach(
+    switchActionNode => {
+      components.push(getSwitchAction(switchActionNode));
+    }
+  );
+
+  return {
+    component: "MultiAction",
+    data: {
+      key,
+      addLabel,
+      components,
+      maxAmount,
+      link: links[0]
     }
   };
 };
@@ -119,6 +215,14 @@ const getTextAction = (textActionNode: Element) => {
 };
 
 const getAction = (containerElement: Element) => {
+  const multiActionNode = containerElement.getElementsByTagName(
+    "multiaction"
+  )[0];
+
+  if (multiActionNode) {
+    return getMultiAction(multiActionNode);
+  }
+
   const selectActionNode = containerElement.getElementsByTagName(
     "selectaction"
   )[0];

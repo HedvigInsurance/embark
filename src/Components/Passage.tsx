@@ -33,6 +33,10 @@ const ChatPadding = styled.div`
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
+
+  @media all and (max-width: 700px) {
+    padding: 20px;
+  }
 `;
 
 const Actions = styled.div`
@@ -158,6 +162,10 @@ export const Passage = (props: PassageProps) => {
       setMessagesAnimationState("visible");
     }, 400);
   };
+
+  React.useEffect(() => {
+    console.log(`Rendering passage ${props.passage.name}`, props.passage);
+  }, [props.passage]);
 
   React.useEffect(() => {
     return history.listen((_, action) => {
