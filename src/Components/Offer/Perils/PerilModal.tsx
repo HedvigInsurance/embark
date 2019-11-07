@@ -4,6 +4,8 @@ import { colorsV2, fonts } from "@hedviginsurance/brand";
 import { Modal, ModalProps } from "../../Modal";
 import { Peril } from "./index";
 import hexToRgba = require("hex-to-rgba");
+import { BackArrow } from "../../../Components/Icons/BackArrow";
+import { ForwardArrow } from "../../../Components/Icons/ForwardArrow";
 
 interface PerilModalProps {
   perils: Peril[];
@@ -36,38 +38,14 @@ const Title = styled.div`
 
 const Picker = styled.div`
   width: 100%;
-  height: 80px;
+  height: 88px;
   display: flex;
   flex-flow: row;
   margin: 0 -12px;
   overflow-x: scroll;
   padding-bottom: 8px;
   position: relative;
-
-  :before {
-    position: fixed;
-    left: 0;
-    content: "";
-    height: 80px;
-    width: 100px;
-    background: linear-gradient(
-      to right,
-      ${colorsV2.lightgray} 15%,
-      ${hexToRgba(colorsV2.lightgray, 0)} 100%
-    );
-  }
-  :after {
-    position: fixed;
-    right: 0;
-    content: "";
-    height: 80px;
-    width: 100px;
-    background: linear-gradient(
-      to left,
-      ${colorsV2.lightgray} 15%,
-      ${hexToRgba(colorsV2.lightgray, 0)} 100%
-    );
-  }
+  box-sizing: border-box;
 `;
 
 const PickerItem = styled.button`
@@ -122,6 +100,57 @@ const Indicator = styled.div<IndicatorProps>`
   `}
 `;
 
+const LeftGradient = styled.div`
+  height: 80px;
+  width: 100px;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    ${colorsV2.lightgray} 15%,
+    ${hexToRgba(colorsV2.lightgray, 0)} 100%
+  );
+  display: flex;
+  align-items: center;
+`;
+
+const BackButton = styled.button`
+  margin-left: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  :focus {
+    outline: none;
+  }
+`;
+
+const RightGradient = styled.div`
+  height: 80px;
+  width: 100px;
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  background: linear-gradient(
+    to left,
+    ${colorsV2.lightgray} 15%,
+    ${hexToRgba(colorsV2.lightgray, 0)} 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const ForwardButton = styled.button`
+  margin-right: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  :focus {
+    outline: none;
+  }
+`;
+
 export const PerilModal = (
   props: React.PropsWithChildren<PerilModalProps & ModalProps>
 ) => {
@@ -138,6 +167,16 @@ export const PerilModal = (
           ))}
           <Indicator currentPeril={props.currentPeril} />
         </Picker>
+        <LeftGradient>
+          <BackButton>
+            <BackArrow />
+          </BackButton>
+        </LeftGradient>
+        <RightGradient>
+          <ForwardButton>
+            <ForwardArrow />
+          </ForwardButton>
+        </RightGradient>
       </Header>
     </Modal>
   );
