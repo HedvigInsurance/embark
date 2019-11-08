@@ -202,7 +202,7 @@ export const Passage = (props: PassageProps) => {
             damping: 120
           }}
         >
-          {props.passage.messages.length == 0 && (
+          {props.passage.messages.length == 0 && !props.passage.api && (
             <p>This passage has no messages</p>
           )}
           <motion.ul

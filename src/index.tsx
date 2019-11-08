@@ -46,9 +46,16 @@ export const history = createHashHistory({
 });
 
 const reducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case "GO_TO":
-      // TODO: Do not push API items to the history
+      if (!action.omitFromHistory) {
+        return {
+          ...state,
+          history: [...state.history],
+          passageId: action.passageId
+        };
+      }
       history.push(`${action.passageId}`);
       return {
         ...state,
@@ -128,7 +135,8 @@ const Root = () => {
 
       dispatch({
         type: "GO_TO",
-        passageId: targetPassage
+        passageId: targetPassage,
+        omitFromHistory: newPassage && Boolean(newPassage.api)
       });
     }
 
