@@ -3,14 +3,6 @@ import { useQuery } from "@apollo/react-hooks";
 import { StoreContext } from "../KeyValueStore";
 import query from "./personalInformation.graphql";
 
-/*
-<PersonalInformationApi
-  match="[[VerifyAddress]]"
-  noMatch="[[ManuallyInputAddress]]"
-  error="[[???]]"">
-</PersonalInformationApi>
-*/
-
 interface MaskedPersonalInformationItem {
   id: string;
   display: string;

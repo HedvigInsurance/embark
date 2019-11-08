@@ -4,7 +4,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
-import { MaskType, wrapWithMask } from "./masking";
+import { MaskType, wrapWithMask, unmaskValue } from "./masking";
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
@@ -55,7 +55,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
           placeholder={props.placeholder}
           type="text"
           value={textValue}
-          onChange={e => setTextValue(e.target.value)}
+          onChange={e => setTextValue(unmaskValue(e.target.value, props.mask))}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />

@@ -378,13 +378,20 @@ const parseGroupedResponse = (element: Element) => {
 };
 
 const parseApi = (element: Element, name: string) => {
-  if (name === "PersonalInformationApiApartment") {
+  const personalInformationApi = element.getElementsByTagName(
+    "personalinformationapi"
+  )[0];
+
+  if (personalInformationApi) {
+    const match = personalInformationApi.attributes["match"].value;
+    const noMatch = personalInformationApi.attributes["noMatch"].value;
+    const error = personalInformationApi.attributes["error"].value;
     return {
       component: "PersonalInformationApi",
       data: {
-        match: { name: "CorrectAdressApartment" }, // parseLinks(match)[0]
-        noMatch: { name: "ManualAddressApartment" }, // parseLinks(noMatch)[0]
-        error: { name: "" }
+        match: parseLinks(match)[0],
+        noMatch: parseLinks(noMatch)[0],
+        error: parseLinks(error)[0]
       }
     };
   }
