@@ -1,15 +1,15 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand";
-import { InlineDropdownAction } from "./InlineActions/InlineDropdownAction";
+import { InlineDropdownAction } from "../InlineActions/InlineDropdownAction";
 import { motion } from "framer-motion";
 import { ContinueButton } from "../../ContinueButton";
 import { AddItemButton } from "./AddItemButton";
 import { RemoveItemButton } from "./RemoveItemButton";
 import { Flipper, Flipped, spring } from "react-flip-toolkit";
 import uuid from "uuid";
-import { InlineNumberAction } from "./InlineActions/InlineNumberAction";
-import { InlineSwitchAction } from "./InlineActions/InlineSwitchAction";
+import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
+import { InlineSwitchAction } from "../InlineActions/InlineSwitchAction";
 import { StoreContext } from "../../KeyValueStore";
 
 type MultiActionProps = {
