@@ -9,7 +9,7 @@ export const BackArrow = () => (
   >
     <path
       fill="#414150"
-      fill-rule="nonzero"
+      fillRule="nonzero"
       d="M17.03 3.347l-.706-.707-9.354 9.354 9.354 9.353.707-.707-8.647-8.646z"
     />
   </svg>

@@ -68,11 +68,28 @@ const PickerItemLabel = styled.div`
   color: ${colorsV2.darkgray};
 `;
 
-interface IndicatorProps {
+interface PerilItemsContainerProps {
   currentPeril: number;
+  transition: boolean;
 }
 
-const Indicator = styled.div<IndicatorProps>`
+const PerilItemsContainer = styled.div<PerilItemsContainerProps>`
+  position: relative;
+  height: 88px;
+  display: flex;
+  ${props => props.transition && `transition: all 0.25s ease-in-out;`}
+
+  ${props =>
+    `transform: translateX(${
+      props.currentPeril !== 0
+        ? `calc(-33.3333333333333% - ${(props.currentPeril - 12 - 1) *
+            (100 + 16) +
+            8}px)`
+        : `calc(-33.3333333333333% + 108px)`
+    });`}
+`;
+
+const Indicator = styled.div`
   position: absolute;
   width: 100px;
   height: 2px;
@@ -82,11 +99,7 @@ const Indicator = styled.div<IndicatorProps>`
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   transition: transform 0.15s ease-in-out;
-  ${props =>
-    props.currentPeril &&
-    `
-    transform: translateX(${props.currentPeril * (100 + 16) + 8}px);
-  `}
+  left: 116px;
 `;
 
 const LeftGradient = styled.div`
@@ -146,13 +159,14 @@ const Content = styled.div`
 
 const createPerilItems = (
   perils: Peril[],
-  setCurrentPeril: (index: number) => void
+  setCurrentPeril: (index: number) => void,
+  actionsAllowed: boolean
 ) => {
   let items = [];
-  for (let i = 0; i < perils.length * 2; i++) {
+  for (let i = 0; i < perils.length * 3; i++) {
     const index = i % perils.length;
     items.push(
-      <PickerItem onClick={() => setCurrentPeril(i)}>
+      <PickerItem onClick={() => actionsAllowed && setCurrentPeril(i)}>
         {perils[index].icon}
         <PickerItemLabel>{perils[index].title}</PickerItemLabel>
       </PickerItem>
@@ -164,42 +178,62 @@ const createPerilItems = (
 export const PerilModal = (
   props: React.PropsWithChildren<PerilModalProps & ModalProps>
 ) => {
-  const pickerElement = React.useRef(null);
+  const [transitionEnabled, setTransitionEnabled] = React.useState(true);
+  const [actionsAllowed, setActionsAllowed] = React.useState(true);
 
   React.useEffect(() => {
-    if (pickerElement.current) {
-      pickerElement.current.addEventListener("scroll", e => {
-        const element = e.srcElement;
-        //console.log(e.srcElement.scrollLeft);
-        //console.log(e.srcElement.clientWidth);
-        //console.log(e.srcElement.scrollWidth);
-        if (element.scrollLeft >= element.scrollWidth / 2) {
-          console.log("Do something");
-          // e.srcElement.scrollLeft = 0;
-        }
-      });
+    const isBelowBoundary = props.currentPeril < props.perils.length;
+    const isAboveBoundary = props.currentPeril > props.perils.length * 2;
+
+    if (isBelowBoundary || isAboveBoundary) {
+      setTimeout(() => {
+        setTransitionEnabled(false);
+        props.setCurrentPeril(
+          props.currentPeril + (isBelowBoundary ? 1 : -1) * props.perils.length
+        );
+
+        setTimeout(() => setTransitionEnabled(true), 250);
+      }, 250);
     }
-  }, []);
+
+    setActionsAllowed(false);
+
+    setTimeout(() => {
+      setActionsAllowed(true);
+    }, 500);
+  }, [props.currentPeril]);
 
   return (
     <Modal isVisible={props.isVisible} onClose={props.onClose}>
       <Header>
-        <Picker ref={pickerElement}>
-          {createPerilItems(props.perils, props.setCurrentPeril)}
-
-          <Indicator currentPeril={props.currentPeril} />
+        <Picker>
+          <PerilItemsContainer
+            currentPeril={props.currentPeril}
+            transition={transitionEnabled}
+          >
+            {createPerilItems(
+              props.perils,
+              props.setCurrentPeril,
+              actionsAllowed
+            )}
+          </PerilItemsContainer>
+          <Indicator />
         </Picker>
 
         <LeftGradient>
           <BackButton
-            onClick={() => props.setCurrentPeril(props.currentPeril - 1)}
+            onClick={() => {
+              actionsAllowed && props.setCurrentPeril(props.currentPeril - 1);
+            }}
           >
             <BackArrow />
           </BackButton>
         </LeftGradient>
         <RightGradient>
           <ForwardButton
-            onClick={() => props.setCurrentPeril(props.currentPeril + 1)}
+            onClick={() => {
+              actionsAllowed && props.setCurrentPeril(props.currentPeril + 1);
+            }}
           >
             <ForwardArrow />
           </ForwardButton>

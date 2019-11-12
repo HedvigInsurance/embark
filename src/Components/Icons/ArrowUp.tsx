@@ -5,7 +5,7 @@ export const ArrowUp = () => (
     <g
       id="B2B2C-Update"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
       fillRule="evenodd"
     >
@@ -19,7 +19,7 @@ export const ArrowUp = () => (
             <polygon
               className="ArrowUpStroke"
               stroke="#F9FAFC"
-              stroke-width="1.41176471"
+              strokeWidth="1.41176471"
               stroke-linejoin="round"
               fillRule="nonzero"
               points="15.1176471 6.12732633 14.6215224 5.64705882 8.05882353 12 14.6215224 18.3529412 15.1176471 17.8726737 9.05107292 12"
