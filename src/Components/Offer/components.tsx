@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 
-const Heading = styled.h1`
+export const Heading = styled.h1`
   font-family: ${fonts.GEOMANIST};
   font-size: 64px;
   line-height: 64px;
@@ -14,6 +14,36 @@ export const HeadingWhite = styled(Heading)`
 `;
 
 export const HeadingBlack = styled(Heading)`
+  color: ${colorsV2.black};
+`;
+
+export const SubHeading = styled.h2`
+  font-family: ${fonts.GEOMANIST};
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 500;
+`;
+
+export const SubHeadingWhite = styled(SubHeading)`
+  color: ${colorsV2.white};
+`;
+
+export const SubHeadingBlack = styled(SubHeading)`
+  color: ${colorsV2.black};
+`;
+
+export const SubSubHeading = styled.h2`
+  font-family: ${fonts.GEOMANIST};
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+`;
+
+export const SubSubHeadingWhite = styled(SubSubHeading)`
+  color: ${colorsV2.white};
+`;
+
+export const SubSubHeadingBlack = styled(SubSubHeading)`
   color: ${colorsV2.black};
 `;
 

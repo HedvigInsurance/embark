@@ -7,6 +7,8 @@ import hexToRgba = require("hex-to-rgba");
 import { BackArrow } from "../../../Components/Icons/BackArrow";
 import { ForwardArrow } from "../../../Components/Icons/ForwardArrow";
 
+const TRANSITION_MS = 250;
+
 interface PerilModalProps {
   perils: Peril[];
   currentPeril: number;
@@ -32,7 +34,7 @@ const Picker = styled.div`
   display: flex;
   flex-flow: row;
   margin: 0 -12px;
-  overflow-x: scroll;
+  overflow: hidden;
   position: relative;
   box-sizing: border-box;
 `;
@@ -77,7 +79,8 @@ const PerilItemsContainer = styled.div<PerilItemsContainerProps>`
   position: relative;
   height: 88px;
   display: flex;
-  ${props => props.transition && `transition: all 0.25s ease-in-out;`}
+  ${props =>
+    props.transition && `transition: all ${TRANSITION_MS}ms ease-in-out;`}
 
   ${props =>
     `transform: translateX(${
@@ -102,55 +105,67 @@ const Indicator = styled.div`
   left: 116px;
 `;
 
-const LeftGradient = styled.div`
+const Gradient = styled.div`
   height: 80px;
   width: 100px;
   position: absolute;
+  display: flex;
+  align-items: center;
   bottom: 8px;
+`;
+
+const LeftGradient = styled(Gradient)`
   left: 0;
   background: linear-gradient(
     to right,
-    ${colorsV2.white} 15%,
+    ${colorsV2.white} 30%,
     ${hexToRgba(colorsV2.white, 0)} 100%
   );
-  display: flex;
-  align-items: center;
 `;
 
-const BackButton = styled.button`
-  margin-left: 10px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  :focus {
-    outline: none;
-  }
-`;
-
-const RightGradient = styled.div`
-  height: 80px;
-  width: 100px;
-  position: absolute;
+const RightGradient = styled(Gradient)`
   right: 0;
-  bottom: 8px;
+  justify-content: flex-end;
   background: linear-gradient(
     to left,
-    ${colorsV2.white} 15%,
+    ${colorsV2.white} 30%,
     ${hexToRgba(colorsV2.white, 0)} 100%
   );
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 `;
 
-const ForwardButton = styled.button`
-  margin-right: 10px;
+const DirectionButton = styled.button`
+  width: 100%;
+  height: 100%;
+  display: flex;
   cursor: pointer;
   background: none;
   border: none;
+  svg {
+    * {
+      transition: all 0.15s ease-in-out;
+      fill: ${colorsV2.gray};
+    }
+  }
   :focus {
     outline: none;
   }
+  &:hover {
+    svg {
+      * {
+        fill: ${colorsV2.violet500};
+      }
+    }
+  }
+`;
+
+const BackButton = styled(DirectionButton)`
+  margin-left: 10px;
+  justify-content: flex-start;
+`;
+
+const ForwardButton = styled(DirectionButton)`
+  margin-right: 10px;
+  justify-content: flex-end;
 `;
 
 const Content = styled.div`
@@ -192,15 +207,15 @@ export const PerilModal = (
           props.currentPeril + (isBelowBoundary ? 1 : -1) * props.perils.length
         );
 
-        setTimeout(() => setTransitionEnabled(true), 250);
-      }, 250);
+        setTimeout(() => setTransitionEnabled(true), TRANSITION_MS);
+      }, TRANSITION_MS);
     }
 
     setActionsAllowed(false);
 
     setTimeout(() => {
       setActionsAllowed(true);
-    }, 500);
+    }, TRANSITION_MS * 2);
   }, [props.currentPeril]);
 
   return (

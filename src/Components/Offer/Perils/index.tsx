@@ -7,7 +7,8 @@ import {
   Column,
   HeadingWrapper,
   HeadingBlack,
-  PreHeading
+  PreHeading,
+  SubSubHeadingBlack
 } from "../components";
 import {
   Fire,
@@ -42,6 +43,10 @@ const PerilItemCollection = styled.div`
   display: flex;
   flex-flow: row wrap;
   margin: 0 -4px;
+`;
+
+const ImportantNumbers = styled.div`
+  margin-top: 32px;
 `;
 
 export interface Peril {
@@ -117,7 +122,6 @@ export const Perils = () => {
               Omfattande skydd för dig och din familj, ditt hus och dina prylar.
             </Body>
           </HeadingWrapper>
-
           <PerilItemCollection>
             {perils.map((peril, perilIndex) => (
               <PerilItem
@@ -131,15 +135,18 @@ export const Perils = () => {
             ))}
           </PerilItemCollection>
 
-          <PerilModal
-            perils={perils}
-            currentPeril={currentPeril}
-            setCurrentPeril={setCurrentPeril}
-            isVisible={isShowingPeril}
-            onClose={() => setIsShowingPeril(false)}
-          />
+          <ImportantNumbers>
+            <SubSubHeadingBlack>Viktiga siffror</SubSubHeadingBlack>
+          </ImportantNumbers>
         </Column>
       </Container>
+      <PerilModal
+        perils={perils}
+        currentPeril={currentPeril}
+        setCurrentPeril={setCurrentPeril}
+        isVisible={isShowingPeril}
+        onClose={() => setIsShowingPeril(false)}
+      />
     </Wrapper>
   );
 };
