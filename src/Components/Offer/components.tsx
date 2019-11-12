@@ -22,6 +22,7 @@ export const SubHeading = styled.h2`
   font-size: 24px;
   line-height: 24px;
   font-weight: 500;
+  letter-spacing -0.34px;
 `;
 
 export const SubHeadingWhite = styled(SubHeading)`
@@ -77,6 +78,7 @@ export const Column = styled.div`
   display: flex;
   flex-flow: column;
   max-width: 760px;
+  width: 100%;
   flex-grow: 0;
   box-sizing: border-box;
 `;

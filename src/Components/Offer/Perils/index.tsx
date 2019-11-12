@@ -29,6 +29,7 @@ import { PerilModal } from "./PerilModal";
 const Wrapper = styled.div`
   padding: 80px 0;
   background-color: ${colorsV2.offwhite};
+  display: flex;
 `;
 
 const Body = styled.div`
