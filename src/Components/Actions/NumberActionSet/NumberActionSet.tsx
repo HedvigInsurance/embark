@@ -6,7 +6,7 @@ import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
 import { Tooltip } from "../../Tooltip";
 import { StoreContext } from "../../KeyValueStore";
 
-type NumbersActionProps = {
+type NumberActionSetProps = {
   passageName: string;
   action: any;
   changePassage: (name: string) => void;
@@ -61,7 +61,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const NumbersAction = (props: NumbersActionProps) => {
+export const NumberActionSet = (props: NumberActionSetProps) => {
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
     return props.action.data.numberActions.reduce((acc, curr) => {
       return { ...acc, [curr.data.key]: null };

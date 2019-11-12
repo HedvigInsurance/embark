@@ -192,12 +192,12 @@ const getMultiAction = (multiActionNode: Element) => {
   };
 };
 
-const getNumbersAction = (numbersActionNode: Element) => {
-  const next = numbersActionNode.attributes["next"].value;
+const getNumberActionSet = (numberActionSetNode: Element) => {
+  const next = numberActionSetNode.attributes["next"].value;
   const links = parseLinks(next);
 
   const numberActions = Array.from(
-    numbersActionNode.getElementsByTagName("numberaction")
+    numberActionSetNode.getElementsByTagName("numberaction")
   ).map(numberActionNode => {
     const numberAction = getNumberAction(numberActionNode);
 
@@ -211,7 +211,7 @@ const getNumbersAction = (numbersActionNode: Element) => {
   });
 
   return {
-    component: "NumbersAction",
+    component: "NumberActionSet",
     data: {
       link: links[0],
       numberActions
@@ -243,12 +243,12 @@ const getTextAction = (textActionNode: Element) => {
 };
 
 const getAction = (containerElement: Element) => {
-  const numbersActionNode = containerElement.getElementsByTagName(
-    "numbersaction"
+  const numberActionSetNode = containerElement.getElementsByTagName(
+    "numberactionset"
   )[0];
 
-  if (numbersActionNode) {
-    return getNumbersAction(numbersActionNode);
+  if (numberActionSetNode) {
+    return getNumberActionSet(numberActionSetNode);
   }
 
   const multiActionNode = containerElement.getElementsByTagName(

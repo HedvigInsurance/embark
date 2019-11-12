@@ -3,7 +3,7 @@ import { SelectAction } from "./SelectAction/SelectAction";
 import { NumberAction } from "./NumberAction";
 import { MultiAction } from "./MultiAction/MultiAction";
 import { TextAction } from "./TextAction";
-import { NumbersAction } from "./NumbersAction/NumbersAction";
+import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 
 type ActionProps = {
   passageName: string;
@@ -16,9 +16,9 @@ export const Action = (props: ActionProps) => {
     return null;
   }
 
-  if (props.action.component == "NumbersAction") {
+  if (props.action.component == "NumberActionSet") {
     return (
-      <NumbersAction
+      <NumberActionSet
         passageName={props.passageName}
         action={props.action}
         changePassage={props.changePassage}
