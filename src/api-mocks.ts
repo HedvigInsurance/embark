@@ -39,7 +39,7 @@ const personalInformationQueryMocks: MockedResponse[] = [
         }
       }
     },
-    delay: 300
+    delay: 2000
   },
   {
     request: {
@@ -55,7 +55,7 @@ const personalInformationQueryMocks: MockedResponse[] = [
         personalInformation: null
       }
     },
-    delay: 300
+    delay: 2000
   }
 ];
 

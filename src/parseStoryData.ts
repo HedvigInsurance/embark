@@ -66,10 +66,13 @@ const getSelectAction = (actionNode: Element | undefined) => {
     };
   });
 
+  const api = parseApi(actionNode);
+
   return {
     component: "SelectAction",
     data: {
-      options: actionNodeOptions
+      options: actionNodeOptions,
+      api
     }
   };
 };
@@ -86,6 +89,7 @@ const getNumberAction = (numberActionNode: Element) => {
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
+  const api = parseApi(numberActionNode);
 
   return {
     component: "NumberAction",
@@ -93,6 +97,7 @@ const getNumberAction = (numberActionNode: Element) => {
       placeholder,
       key,
       unit,
+      api,
       ...(links && { link: links[0] }),
       mask,
       ...(tooltip && { tooltip })
@@ -179,6 +184,8 @@ const getMultiAction = (multiActionNode: Element) => {
     }
   );
 
+  const api = parseApi(multiActionNode);
+
   return {
     component: "MultiAction",
     data: {
@@ -186,6 +193,7 @@ const getMultiAction = (multiActionNode: Element) => {
       addLabel,
       components,
       maxAmount,
+      api,
       link: links[0]
     }
   };
@@ -193,20 +201,25 @@ const getMultiAction = (multiActionNode: Element) => {
 
 const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
-  const next = textActionNode.attributes["next"].value;
+  const next =
+    textActionNode.attributes["next"] &&
+    textActionNode.attributes["next"].value;
   const key = textActionNode.attributes["key"].value;
   const mask =
     textActionNode.attributes["mask"] &&
     textActionNode.attributes["mask"].value;
 
-  const links = parseLinks(next);
+  const links = next ? parseLinks(next) : [];
   const tooltip = parseTooltips(textActionNode)[0];
+
+  const api = parseApi(textActionNode);
 
   return {
     component: "TextAction",
     data: {
       placeholder,
       key,
+      api,
       link: links[0],
       mask,
       ...(tooltip && { tooltip })
@@ -377,7 +390,7 @@ const parseGroupedResponse = (element: Element) => {
   };
 };
 
-const parseApi = (element: Element, name: string) => {
+const parseApi = (element: Element) => {
   const personalInformationApi = element.getElementsByTagName(
     "personalinformationapi"
   )[0];
@@ -407,8 +420,6 @@ export const parseStoryData = (storyData: any) => ({
     var containerElement = document.createElement("div");
     containerElement.innerHTML = passage.text;
 
-    const api = parseApi(containerElement, passage.name);
-
     const messages = Array.from(
       containerElement.getElementsByTagName("message")
     ).map(message => {
@@ -435,7 +446,6 @@ export const parseStoryData = (storyData: any) => ({
       name: passage.name,
       messages,
       redirects,
-      api,
       action: getAction(containerElement),
       response: getResponse(passage.name, containerElement),
       tooltips: Array.from(

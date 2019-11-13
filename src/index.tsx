@@ -46,16 +46,8 @@ export const history = createHashHistory({
 });
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "GO_TO":
-      if (!action.omitFromHistory) {
-        return {
-          ...state,
-          history: [...state.history],
-          passageId: action.passageId
-        };
-      }
       history.push(`${action.passageId}`);
       return {
         ...state,
@@ -135,8 +127,7 @@ const Root = () => {
 
       dispatch({
         type: "GO_TO",
-        passageId: targetPassage,
-        omitFromHistory: newPassage && Boolean(newPassage.api)
+        passageId: targetPassage
       });
     }
 
@@ -167,6 +158,7 @@ const Root = () => {
       />
       <Passage
         history={state.history}
+        passages={data.passages}
         passage={passage}
         goBack={() => {
           dispatch({

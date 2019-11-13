@@ -37,7 +37,7 @@
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.0",
-    "react": "^16.10.2",
+    "react": "^16.11.0",
     "react-dom": "^16.10.2",
     "react-emotion": "^10.0.0",
     "react-flip-toolkit": "^7.0.6",
