@@ -70,7 +70,6 @@ const Root = () => {
     history: [getStartPassage()],
     passageId: getStartPassage()
   });
-  console.log(state.passageId);
   const passage = data.passages.filter(
     passage => passage.id == state.passageId
   )[0];
@@ -163,7 +162,7 @@ const Root = () => {
 const RootContainer = () => (
   <KeyValueStore>
     <GlobalStyles />
-    <Offer />
+    <Root />
   </KeyValueStore>
 );
 
