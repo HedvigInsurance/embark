@@ -13,6 +13,7 @@ interface Props {
   insuranceProperties: InsuranceProperties;
   primaryCompany: CompanyProperties;
   otherCompanies: CompanyProperties[];
+  currentCompany?: CompanyProperties;
 }
 
 const Container = styled.div`
@@ -143,6 +144,7 @@ interface OtherCompanyHeadProps {
 const OtherCompanyHead = styled.button<OtherCompanyHeadProps>`
   width: 100%;
   display: flex;
+  height: 25px;
   align-items: center;
   justify-content: space-between;
   border: none;
@@ -183,6 +185,7 @@ const Dropdown = styled.div<{ visible: boolean }>`
   top: 60px;
   transition: all 0.2s;
   opacity: ${props => (props.visible ? 1 : 0)};
+  visibility: ${props => (props.visible ? "visible" : "hidden")};
   padding: 16px;
   box-sizing: border-box;
   border-top: 1px solid ${colorsV2.lightgray};
@@ -232,7 +235,7 @@ export const CompareTable = (props: Props) => {
   const [
     currentCompany,
     setCurrentCompany
-  ] = React.useState<CompanyProperties | null>(null);
+  ] = React.useState<CompanyProperties | null>(props.currentCompany || null);
   const [dropdownIsVisible, setDropdownIsVisible] = React.useState(false);
 
   return (
@@ -281,18 +284,23 @@ export const CompareTable = (props: Props) => {
         </OtherCompanyHead>
         <Dropdown visible={dropdownIsVisible}>
           {props.otherCompanies.map(company => (
-            <DropdownRow>{company.name}</DropdownRow>
+            <DropdownRow
+              key={company.name}
+              onClick={() => {
+                setCurrentCompany(company);
+                setDropdownIsVisible(false);
+              }}
+            >
+              {company.name}
+            </DropdownRow>
           ))}
         </Dropdown>
-        {/*
-        <OtherCompanyHead>{props.otherCompanies[0].name}</OtherCompanyHead>
-
-        {Object.entries(props.otherCompanies[0])
-          .filter(([key]) => key !== "name")
-          .map(([key, property]) => (
-            <CompanyColumnRow>{getProperty(key, property)}</CompanyColumnRow>
-          ))}
-          */}
+        {currentCompany &&
+          Object.entries(currentCompany)
+            .filter(([key]) => key !== "name")
+            .map(([key, property]) => (
+              <CompanyColumnRow>{getProperty(key, property)}</CompanyColumnRow>
+            ))}
       </OtherCompaniesSection>
     </Container>
   );
