@@ -47,7 +47,51 @@ export const hedvigCompany: CompanyProperties = {
 
 export const otherCompanies: CompanyProperties[] = [
   {
+    name: "Folksam Bas",
+    propertyProtection: true,
+    travelProtection: true,
+    assaultProtection: true,
+    liabilityProtection: true,
+    legalProtection: true,
+    drulle: "Tillval",
+    deductible: 1500,
+    trustpilotScore: 1.7
+  },
+  {
+    name: "Trygg Hansa",
+    propertyProtection: true,
+    travelProtection: true,
+    assaultProtection: true,
+    liabilityProtection: true,
+    legalProtection: true,
+    drulle: "Tillval",
+    deductible: 1500,
+    trustpilotScore: 1.7
+  },
+  {
     name: "If Hem",
+    propertyProtection: true,
+    travelProtection: true,
+    assaultProtection: true,
+    liabilityProtection: true,
+    legalProtection: true,
+    drulle: "Tillval",
+    deductible: 1500,
+    trustpilotScore: 1.7
+  },
+  {
+    name: "Ica",
+    propertyProtection: true,
+    travelProtection: true,
+    assaultProtection: true,
+    liabilityProtection: true,
+    legalProtection: true,
+    drulle: "Tillval",
+    deductible: 1500,
+    trustpilotScore: 1.7
+  },
+  {
+    name: "Länsförsäkringar",
     propertyProtection: true,
     travelProtection: true,
     assaultProtection: true,

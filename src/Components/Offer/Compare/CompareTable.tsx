@@ -6,6 +6,8 @@ import { SubHeadingBlack } from "../components";
 import { Questionmark } from "../../../Components/Icons/Questionmark";
 import { HedvigSymbol } from "../../../Components/Icons/HedvigSymbol";
 import { Checkmark } from "../../../Components/Icons/Checkmark";
+import { DownArrow } from "../../../Components/Icons/DownArrow";
+import hexToRgba = require("hex-to-rgba");
 
 interface Props {
   insuranceProperties: InsuranceProperties;
@@ -47,6 +49,7 @@ const ColumnRow = styled.div`
 
 const ColumnRowPrimaryContent = styled.span`
   color: ${colorsV2.black};
+  margin-right: 4px;
 `;
 
 const InsuranceProperties = styled.div``;
@@ -127,12 +130,82 @@ const OtherCompaniesSection = styled.div`
   width: 100%;
   max-width: 178px;
   height: 100%;
-  padding: 25px;
+  padding: 25px 16px;
   box-sizing: border-box;
+  position: relative;
 `;
 
-const OtherCompanyHead = styled(ColumnHead)`
-  font-weight: 600;
+interface OtherCompanyHeadProps {
+  currentCompany: CompanyProperties | null;
+  dropdownIsVisible: boolean;
+}
+
+const OtherCompanyHead = styled.button<OtherCompanyHeadProps>`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  margin-bottom: 58px;
+  font-size: 16px;
+  font-weight: 500;
+  color: ${props =>
+    hexToRgba(colorsV2.black, props.currentCompany !== null ? 1 : 0.2)};
+  transition: all 0.1s ease;
+  cursor: pointer;
+
+  :focus {
+    outline: none;
+  }
+
+  > svg {
+    width: 14px;
+    transition: all 0.1s ease;
+    ${props => props.dropdownIsVisible && `transform: rotate(180deg);`}
+    ${props => props.dropdownIsVisible && `fill: ${colorsV2.violet500};`}
+  }
+
+  :hover {
+    color: ${colorsV2.black};
+
+    svg {
+      fill: ${colorsV2.violet500};
+    }
+  }
+`;
+
+const Dropdown = styled.div<{ visible: boolean }>`
+  background: ${colorsV2.white};
+  width: 100%;
+  position: absolute;
+  height: calc(100% - 61px);
+  left: 0;
+  top: 60px;
+  transition: all 0.2s;
+  opacity: ${props => (props.visible ? 1 : 0)};
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: 1px solid ${colorsV2.lightgray};
+`;
+
+const DropdownRow = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+  color: ${colorsV2.darkgray};
+  margin-bottom: 14px;
+  cursor: pointer;
+
+  :focus {
+    outline: none;
+  }
+
+  :hover {
+    color: ${colorsV2.violet500};
+  }
 `;
 
 const getProperty = (key: string, value: any): any => {
@@ -143,7 +216,7 @@ const getProperty = (key: string, value: any): any => {
   if (key === "trustpilotScore") {
     return (
       <>
-        <ColumnRowPrimaryContent>{value}</ColumnRowPrimaryContent>av 5
+        <ColumnRowPrimaryContent>{value}</ColumnRowPrimaryContent> av 5
       </>
     );
   }
@@ -156,6 +229,12 @@ const getProperty = (key: string, value: any): any => {
 };
 
 export const CompareTable = (props: Props) => {
+  const [
+    currentCompany,
+    setCurrentCompany
+  ] = React.useState<CompanyProperties | null>(null);
+  const [dropdownIsVisible, setDropdownIsVisible] = React.useState(false);
+
   return (
     <Container>
       <InsurancePropertiesSection>
@@ -190,6 +269,22 @@ export const CompareTable = (props: Props) => {
       </PrimaryCompanySection>
 
       <OtherCompaniesSection>
+        <OtherCompanyHead
+          currentCompany={currentCompany}
+          dropdownIsVisible={dropdownIsVisible}
+          onClick={() => {
+            setDropdownIsVisible(!dropdownIsVisible);
+          }}
+        >
+          {currentCompany !== null ? currentCompany.name : "Välj försäkring"}
+          <DownArrow />
+        </OtherCompanyHead>
+        <Dropdown visible={dropdownIsVisible}>
+          {props.otherCompanies.map(company => (
+            <DropdownRow>{company.name}</DropdownRow>
+          ))}
+        </Dropdown>
+        {/*
         <OtherCompanyHead>{props.otherCompanies[0].name}</OtherCompanyHead>
 
         {Object.entries(props.otherCompanies[0])
@@ -197,6 +292,7 @@ export const CompareTable = (props: Props) => {
           .map(([key, property]) => (
             <CompanyColumnRow>{getProperty(key, property)}</CompanyColumnRow>
           ))}
+          */}
       </OtherCompaniesSection>
     </Container>
   );

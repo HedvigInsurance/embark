@@ -15,8 +15,6 @@ export interface CompanyProperties {
   trustpilotScore: number;
 }
 
-type test = keyof CompanyProperties;
-
 export type InsuranceProperties = {
   [key in keyof CompanyProperties]: InsuranceProperty;
 };
