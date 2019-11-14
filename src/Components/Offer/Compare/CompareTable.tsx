@@ -152,7 +152,10 @@ const OtherCompanyHead = styled.button<OtherCompanyHeadProps>`
   font-size: 16px;
   font-weight: 500;
   color: ${props =>
-    hexToRgba(colorsV2.black, props.currentCompany !== null ? 1 : 0.2)};
+    hexToRgba(
+      colorsV2.black,
+      props.currentCompany !== null && !props.dropdownIsVisible ? 1 : 0.2
+    )};
   transition: all 0.1s ease;
   cursor: pointer;
 
@@ -168,7 +171,7 @@ const OtherCompanyHead = styled.button<OtherCompanyHeadProps>`
   }
 
   :hover {
-    color: ${colorsV2.black};
+    ${props => !props.dropdownIsVisible && `color: ${colorsV2.black};`}
 
     svg {
       fill: ${colorsV2.violet500};
@@ -184,7 +187,7 @@ const Dropdown = styled.div<{ visible: boolean }>`
   left: 0;
   top: 60px;
   transition: all 0.2s;
-  opacity: ${props => (props.visible ? 1 : 0)};
+  opacity: ${props => (props.visible ? 0.9 : 0)};
   visibility: ${props => (props.visible ? "visible" : "hidden")};
   padding: 16px;
   box-sizing: border-box;
@@ -279,7 +282,9 @@ export const CompareTable = (props: Props) => {
             setDropdownIsVisible(!dropdownIsVisible);
           }}
         >
-          {currentCompany !== null ? currentCompany.name : "Välj försäkring"}
+          {currentCompany !== null && !dropdownIsVisible
+            ? currentCompany.name
+            : "Välj försäkring"}
           <DownArrow />
         </OtherCompanyHead>
         <Dropdown visible={dropdownIsVisible}>
