@@ -82,7 +82,8 @@ const getNumberAction = (numberActionNode: Element) => {
   const nextAttribute = numberActionNode.attributes["next"];
   const next = nextAttribute ? nextAttribute.value : null;
   const key = numberActionNode.attributes["key"].value;
-  const unit = numberActionNode.attributes["unit"].value;
+  const unitAttribute = numberActionNode.attributes["unit"];
+  const unit = unitAttribute ? unitAttribute.value : "";
   const mask =
     numberActionNode.attributes["mask"] &&
     numberActionNode.attributes["mask"].value;
@@ -199,6 +200,33 @@ const getMultiAction = (multiActionNode: Element) => {
   };
 };
 
+const getNumberActionSet = (numberActionSetNode: Element) => {
+  const next = numberActionSetNode.attributes["next"].value;
+  const links = parseLinks(next);
+
+  const numberActions = Array.from(
+    numberActionSetNode.getElementsByTagName("numberaction")
+  ).map(numberActionNode => {
+    const numberAction = getNumberAction(numberActionNode);
+
+    return {
+      ...numberAction,
+      data: {
+        title: numberActionNode.attributes["title"].value,
+        ...numberAction.data
+      }
+    };
+  });
+
+  return {
+    component: "NumberActionSet",
+    data: {
+      link: links[0],
+      numberActions
+    }
+  };
+};
+
 const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
   const next =
@@ -228,6 +256,14 @@ const getTextAction = (textActionNode: Element) => {
 };
 
 const getAction = (containerElement: Element) => {
+  const numberActionSetNode = containerElement.getElementsByTagName(
+    "numberactionset"
+  )[0];
+
+  if (numberActionSetNode) {
+    return getNumberActionSet(numberActionSetNode);
+  }
+
   const multiActionNode = containerElement.getElementsByTagName(
     "multiaction"
   )[0];
