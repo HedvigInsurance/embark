@@ -9,6 +9,9 @@ import { createHashHistory } from "history";
 import { parseStoryData } from "./parseStoryData";
 import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
 import { passes } from "./Utils/ExpressionsUtil";
+import { MockedProvider } from "@apollo/react-testing";
+
+import { mocks } from "./api-mocks";
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes[
   "scriptHost"
@@ -155,6 +158,7 @@ const Root = () => {
       />
       <Passage
         history={state.history}
+        passages={data.passages}
         passage={passage}
         goBack={() => {
           dispatch({
@@ -170,9 +174,11 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <KeyValueStore>
-    <Root />
-  </KeyValueStore>
+  <MockedProvider mocks={mocks} addTypename={false}>
+    <KeyValueStore>
+      <Root />
+    </KeyValueStore>
+  </MockedProvider>
 );
 
 ReactDOM.render(<RootContainer />, document.getElementById("root"));

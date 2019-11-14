@@ -66,10 +66,13 @@ const getSelectAction = (actionNode: Element | undefined) => {
     };
   });
 
+  const api = parseApi(actionNode);
+
   return {
     component: "SelectAction",
     data: {
-      options: actionNodeOptions
+      options: actionNodeOptions,
+      api
     }
   };
 };
@@ -87,6 +90,7 @@ const getNumberAction = (numberActionNode: Element) => {
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
+  const api = parseApi(numberActionNode);
 
   return {
     component: "NumberAction",
@@ -94,6 +98,7 @@ const getNumberAction = (numberActionNode: Element) => {
       placeholder,
       key,
       unit,
+      api,
       ...(links && { link: links[0] }),
       mask,
       ...(tooltip && { tooltip })
@@ -180,6 +185,8 @@ const getMultiAction = (multiActionNode: Element) => {
     }
   );
 
+  const api = parseApi(multiActionNode);
+
   return {
     component: "MultiAction",
     data: {
@@ -187,6 +194,7 @@ const getMultiAction = (multiActionNode: Element) => {
       addLabel,
       components,
       maxAmount,
+      api,
       link: links[0]
     }
   };
@@ -221,20 +229,25 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
 
 const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
-  const next = textActionNode.attributes["next"].value;
+  const next =
+    textActionNode.attributes["next"] &&
+    textActionNode.attributes["next"].value;
   const key = textActionNode.attributes["key"].value;
   const mask =
     textActionNode.attributes["mask"] &&
     textActionNode.attributes["mask"].value;
 
-  const links = parseLinks(next);
+  const links = next ? parseLinks(next) : [];
   const tooltip = parseTooltips(textActionNode)[0];
+
+  const api = parseApi(textActionNode);
 
   return {
     component: "TextAction",
     data: {
       placeholder,
       key,
+      api,
       link: links[0],
       mask,
       ...(tooltip && { tooltip })
@@ -411,6 +424,28 @@ const parseGroupedResponse = (element: Element) => {
     title: parsePossibleExpressionContent(title),
     items: items.map(parsePossibleExpressionContent)
   };
+};
+
+const parseApi = (element: Element) => {
+  const personalInformationApi = element.getElementsByTagName(
+    "personalinformationapi"
+  )[0];
+
+  if (personalInformationApi) {
+    const match = personalInformationApi.attributes["match"].value;
+    const noMatch = personalInformationApi.attributes["noMatch"].value;
+    const error = personalInformationApi.attributes["error"].value;
+    return {
+      component: "PersonalInformationApi",
+      data: {
+        match: parseLinks(match)[0],
+        noMatch: parseLinks(noMatch)[0],
+        error: parseLinks(error)[0]
+      }
+    };
+  }
+
+  return null;
 };
 
 export const parseStoryData = (storyData: any) => ({

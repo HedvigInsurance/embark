@@ -5,7 +5,7 @@ import { colors, fonts } from "@hedviginsurance/brand";
 import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import { ContinueButton } from "../ContinueButton";
-import { wrapWithMask, MaskType } from "./masking";
+import { wrapWithMask, MaskType, unmaskValue } from "./masking";
 
 const Unit = styled.p`
   margin-top: 8px;
@@ -61,7 +61,7 @@ export const NumberAction = (props: NumberActionProps) => {
           type="text"
           placeholder={props.placeholder}
           value={textValue}
-          onChange={e => setTextValue(e.target.value)}
+          onChange={e => setTextValue(unmaskValue(e.target.value, props.mask))}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
