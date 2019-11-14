@@ -81,6 +81,9 @@ export const handleErrorOrData = (
 
     if (data) {
       if (data.personalInformation) {
+        Object.entries(data.personalInformation).forEach(([key, value]) =>
+          setValue(key, value)
+        );
         changePassage(component.data.match.name);
       } else {
         changePassage(component.data.noMatch.name);

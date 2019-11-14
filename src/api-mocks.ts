@@ -16,26 +16,11 @@ const personalInformationQueryMocks: MockedResponse[] = [
     result: {
       data: {
         personalInformation: {
-          firstName: {
-            id: AN_UUID,
-            display: "Te**"
-          },
-          lastName: {
-            id: AN_UUID,
-            display: "Teste****"
-          },
-          streetAddress: {
-            id: AN_UUID,
-            display: "Tes****** 1"
-          },
-          city: {
-            id: AN_UUID,
-            display: "Ten***"
-          },
-          postalNumber: {
-            id: AN_UUID,
-            display: "12* **"
-          }
+          firstName: "Test",
+          lastName: "Testerson",
+          streetAddress: "Testvägen 1",
+          city: "Tensta",
+          postalNumber: "12345"
         }
       }
     },
