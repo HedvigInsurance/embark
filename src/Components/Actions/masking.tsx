@@ -12,6 +12,20 @@ const resolveMask = (m: MaskType): string => {
   }
 };
 
+export const unmaskValue = (value: string, m?: MaskType): string => {
+  if (!m) {
+    return value;
+  }
+
+  if (m === "PersonalNumber") {
+    return value.replace(/-/, "");
+  }
+
+  if (m === "PostalCode") {
+    return value.replace(/\s+/, "");
+  }
+};
+
 export const wrapWithMask = (Component, mask) => props => {
   if (mask) {
     const { onChange, onFocus, onBlur, value, ...rest } = props;

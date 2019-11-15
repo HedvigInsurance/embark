@@ -10,6 +10,9 @@ import { parseStoryData } from "./parseStoryData";
 import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
 import { passes } from "./Utils/ExpressionsUtil";
+import { MockedProvider } from "@apollo/react-testing";
+
+import { mocks } from "./api-mocks";
 
 declare global {
   interface Window {
@@ -172,6 +175,7 @@ const Root = () => {
       <Header passage={passage} storyData={data} embarkHost={scriptHost} />
       <Passage
         history={state.history}
+        passages={data.passages}
         passage={passage}
         goBack={() => {
           dispatch({
@@ -187,9 +191,11 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <KeyValueStore>
-    <Root />
-  </KeyValueStore>
+  <MockedProvider mocks={mocks} addTypename={false}>
+    <KeyValueStore>
+      <Root />
+    </KeyValueStore>
+  </MockedProvider>
 );
 
 ReactDOM.render(<RootContainer />, document.getElementById("root"));

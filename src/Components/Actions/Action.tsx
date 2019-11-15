@@ -3,11 +3,13 @@ import { SelectAction } from "./SelectAction/SelectAction";
 import { NumberAction } from "./NumberAction";
 import { MultiAction } from "./MultiAction/MultiAction";
 import { TextAction } from "./TextAction";
+import { ApiComponent } from "../api";
 import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 
 type ActionProps = {
   passageName: string;
   action: any;
+  api?: ApiComponent;
   changePassage: (name: string) => void;
 };
 
@@ -70,7 +72,10 @@ export const Action = (props: ActionProps) => {
         storeKey={props.action.data.key}
         link={props.action.data.link}
         placeholder={props.action.data.placeholder}
-        onContinue={() => props.changePassage(props.action.data.link.name)}
+        api={props.action.data.api}
+        onContinue={(next?: string) =>
+          props.changePassage(next || props.action.data.link.name)
+        }
       />
     );
   }
