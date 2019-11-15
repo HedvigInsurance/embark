@@ -8,10 +8,26 @@ import { createHashHistory } from "history";
 
 import { parseStoryData } from "./parseStoryData";
 import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
+import { Header } from "./Components/Header";
 import { passes } from "./Utils/ExpressionsUtil";
 import { MockedProvider } from "@apollo/react-testing";
 
 import { mocks } from "./api-mocks";
+
+declare global {
+  interface Window {
+    requestIdleCallback: (
+      callback: () => any,
+      options: { timeout?: number }
+    ) => void;
+  }
+}
+
+if (!window.requestIdleCallback) {
+  import("requestidlecallback").then(util => {
+    window.requestIdleCallback = util;
+  });
+}
 
 const scriptHost = document.getElementsByTagName("body")[0].attributes[
   "scriptHost"
@@ -142,7 +158,7 @@ const Root = () => {
                     margin: 0;
                     padding: 0;
                     -webkit-font-smoothing: antialiased;
-	                -moz-osx-font-smoothing: grayscale;
+	                  -moz-osx-font-smoothing: grayscale;
                 }
 
                 ul, li {
@@ -156,6 +172,7 @@ const Root = () => {
                 ${getCdnFontFaces()}
             `}
       />
+      <Header passage={passage} storyData={data} embarkHost={scriptHost} />
       <Passage
         history={state.history}
         passages={data.passages}

@@ -480,6 +480,7 @@ export const parseStoryData = (storyData: any) => ({
       id: passage.id,
       text: passage.text,
       name: passage.name,
+      allLinks: parseLinks(passage.text) || [],
       messages,
       redirects,
       action: getAction(containerElement),
