@@ -3,7 +3,7 @@ import { SelectAction } from "./SelectAction/SelectAction";
 import { NumberAction } from "./NumberAction";
 import { MultiAction } from "./MultiAction/MultiAction";
 import { TextAction } from "./TextAction";
-import { ApiComponent } from "../api";
+import { ApiComponent } from "../API";
 import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 
 type ActionProps = {

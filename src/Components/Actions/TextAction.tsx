@@ -5,7 +5,7 @@ import { Card, Input, Container, Spacer } from "./Common";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
 import { MaskType, wrapWithMask, unmaskValue } from "./masking";
-import { ApiComponent, useApiComponent, handleErrorOrData } from "../api";
+import { ApiComponent, useApiComponent, handleErrorOrData } from "../API";
 import { Loading } from "../API/Loading";
 
 const BottomSpacedInput = styled(Input)`
@@ -32,10 +32,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
   const { store, setValue } = React.useContext(StoreContext);
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || "");
 
-  const [callQuery, { loading, error, data }] = useApiComponent(
-    props.api,
-    store
-  );
+  const [callApi, { loading, error, data }] = useApiComponent(props.api, store);
 
   React.useEffect(() => {
     handleErrorOrData(props.api, error, data, setValue, props.onContinue);
@@ -45,7 +42,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     setValue(props.storeKey, unmaskValue(textValue, props.mask));
     setValue(`${props.passageName}Result`, textValue);
     if (props.api) {
-      callQuery();
+      callApi();
     } else {
       props.onContinue();
     }
