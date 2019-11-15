@@ -22,7 +22,8 @@ type PassageProps = {
 
 const ChatContainer = styled.div`
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 80px);
+  overflow: hidden;
   flex-direction: column;
   justify-content: space-between;
 `;
