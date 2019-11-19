@@ -11,7 +11,7 @@ type SelectActionProps = {
 export const SelectAction = (props: SelectActionProps) => (
   <StoreContext.Consumer>
     {({ setValue }) =>
-      props.action.data.options.map(option => (
+      props.action.data.options.map((option: any) => (
         <SelectOption
           tooltip={option.tooltip}
           label={option.link.label}

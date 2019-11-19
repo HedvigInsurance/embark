@@ -75,7 +75,9 @@ export const TextAction: React.FunctionComponent<Props> = props => {
               placeholder={props.placeholder}
               type="text"
               value={textValue}
-              onChange={e => setTextValue(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setTextValue(e.target.value)
+              }
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />

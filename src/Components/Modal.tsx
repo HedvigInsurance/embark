@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand";
-import hexToRgba = require("hex-to-rgba");
+import hexToRgba from "hex-to-rgba";
 import { motion } from "framer-motion";
 import { Cross } from "../Components/Icons/Cross";
 
@@ -79,10 +79,14 @@ const CloseButton = styled.button`
 `;
 
 export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const handleClick = (e: MouseEvent) =>
-    !containerRef.current.contains(e.target) && props.onClose();
+  const handleClick = (e: MouseEvent) => {
+    if (containerRef && containerRef.current && e.target) {
+      !containerRef.current.contains(e.target as HTMLDivElement) &&
+        props.onClose();
+    }
+  };
 
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClick);

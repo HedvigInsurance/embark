@@ -32,10 +32,12 @@ const parseTooltips = (containerElement: Element) => {
 };
 
 const parseTooltip = (element: Element) => {
-  const title = element.getElementsByTagName("Title")[0].textContent.trim();
-  const description = element
-    .getElementsByTagName("Description")[0]
-    .textContent.trim();
+  const title = (
+    element.getElementsByTagName("Title")[0].textContent || ""
+  ).trim();
+  const description = (
+    element.getElementsByTagName("Description")[0].textContent || ""
+  ).trim();
 
   return {
     title,
@@ -51,17 +53,17 @@ const getSelectAction = (actionNode: Element | undefined) => {
   const actionNodeOptions = Array.from(
     actionNode.getElementsByTagName("option")
   ).map(option => {
-    const links = parseLinks(option.textContent);
+    const links = parseLinks(option.textContent || "");
 
-    const key = option.attributes["key"];
-    const value = option.attributes["value"];
+    const key = option.getAttribute("key");
+    const value = option.getAttribute("value");
 
     const tooltips = parseTooltips(option);
 
     return {
-      key: key ? key.value : null,
-      value: value ? value.value : null,
-      link: links[0],
+      key: key,
+      value: value,
+      link: links && links[0],
       tooltip: tooltips[0] ? tooltips[0] : null
     };
   });
@@ -78,15 +80,11 @@ const getSelectAction = (actionNode: Element | undefined) => {
 };
 
 const getNumberAction = (numberActionNode: Element) => {
-  const placeholder = numberActionNode.attributes["placeholder"].value;
-  const nextAttribute = numberActionNode.attributes["next"];
-  const next = nextAttribute ? nextAttribute.value : null;
-  const key = numberActionNode.attributes["key"].value;
-  const unitAttribute = numberActionNode.attributes["unit"];
-  const unit = unitAttribute ? unitAttribute.value : "";
-  const mask =
-    numberActionNode.attributes["mask"] &&
-    numberActionNode.attributes["mask"].value;
+  const placeholder = numberActionNode.getAttribute("placeholder");
+  const next = numberActionNode.getAttribute("next") || "";
+  const key = numberActionNode.getAttribute("key");
+  const unit = numberActionNode.getAttribute("unit") || "";
+  const mask = numberActionNode.getAttribute("mask");
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
@@ -107,19 +105,13 @@ const getNumberAction = (numberActionNode: Element) => {
 };
 
 const getDropdownAction = (dropdownActionNode: Element) => {
-  const key = dropdownActionNode.attributes["key"]
-    ? dropdownActionNode.attributes["key"].value
-    : null;
-  const label = dropdownActionNode.attributes["label"]
-    ? dropdownActionNode.attributes["label"].value
-    : "";
+  const key = dropdownActionNode.getAttribute("key");
+  const label = dropdownActionNode.getAttribute("label") || "";
   const options = Array.from(
     dropdownActionNode.getElementsByTagName("option")
   ).map(option => {
     return {
-      value: option.attributes["value"]
-        ? option.attributes["value"].value
-        : option.textContent,
+      value: option.getAttribute("value") || option.textContent,
       text: option.textContent
     };
   });
@@ -135,16 +127,10 @@ const getDropdownAction = (dropdownActionNode: Element) => {
 };
 
 const getSwitchAction = (switchActionNode: Element) => {
-  const key = switchActionNode.attributes["key"]
-    ? switchActionNode.attributes["key"].value
-    : null;
-  const label = switchActionNode.attributes["label"]
-    ? switchActionNode.attributes["label"].value
-    : "";
-
-  const defaultValue = switchActionNode.attributes["defaultvalue"]
-    ? switchActionNode.attributes["defaultvalue"].value == "true"
-    : false;
+  const key = switchActionNode.getAttribute("key");
+  const label = switchActionNode.getAttribute("label") || "";
+  const defaultValue =
+    switchActionNode.getAttribute("defaultvalue") == "true" ? true : false;
 
   return {
     component: "SwitchAction",
@@ -157,15 +143,15 @@ const getSwitchAction = (switchActionNode: Element) => {
 };
 
 const getMultiAction = (multiActionNode: Element) => {
-  const maxAmount = multiActionNode.attributes["maxamount"].value;
-  const key = multiActionNode.attributes["key"].value;
-  const components = [];
-  const next = multiActionNode.attributes["next"].value;
+  const maxAmount = multiActionNode.getAttribute("maxamount");
+  const key = multiActionNode.getAttribute("key");
+  const components: Array<any> = [];
+  const next = multiActionNode.getAttribute("next");
 
-  const links = parseLinks(next);
+  const links = parseLinks(next || "");
 
   const addNode = multiActionNode.getElementsByTagName("add")[0];
-  const addLabel = addNode.attributes["label"].value;
+  const addLabel = addNode.getAttribute("label");
 
   Array.from(addNode.getElementsByTagName("dropdownaction")).forEach(
     dropdownNode => {
@@ -195,14 +181,14 @@ const getMultiAction = (multiActionNode: Element) => {
       components,
       maxAmount,
       api,
-      link: links[0]
+      link: links && links[0]
     }
   };
 };
 
 const getNumberActionSet = (numberActionSetNode: Element) => {
-  const next = numberActionSetNode.attributes["next"].value;
-  const links = parseLinks(next);
+  const next = numberActionSetNode.getAttribute("next");
+  const links = parseLinks(next || "");
 
   const numberActions = Array.from(
     numberActionSetNode.getElementsByTagName("numberaction")
@@ -212,7 +198,7 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
     return {
       ...numberAction,
       data: {
-        title: numberActionNode.attributes["title"].value,
+        title: numberActionNode.getAttribute("title"),
         ...numberAction.data
       }
     };
@@ -221,21 +207,17 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
   return {
     component: "NumberActionSet",
     data: {
-      link: links[0],
+      link: links && links[0],
       numberActions
     }
   };
 };
 
 const getTextAction = (textActionNode: Element) => {
-  const placeholder = textActionNode.attributes["placeholder"].value;
-  const next =
-    textActionNode.attributes["next"] &&
-    textActionNode.attributes["next"].value;
-  const key = textActionNode.attributes["key"].value;
-  const mask =
-    textActionNode.attributes["mask"] &&
-    textActionNode.attributes["mask"].value;
+  const placeholder = textActionNode.getAttribute("placeholder");
+  const next = textActionNode.getAttribute("next");
+  const key = textActionNode.getAttribute("key");
+  const mask = textActionNode.getAttribute("mask");
 
   const links = next ? parseLinks(next) : [];
   const tooltip = parseTooltips(textActionNode)[0];
@@ -248,7 +230,7 @@ const getTextAction = (textActionNode: Element) => {
       placeholder,
       key,
       api,
-      link: links[0],
+      link: links && links[0],
       mask,
       ...(tooltip && { tooltip })
     }
@@ -375,13 +357,13 @@ const parseExpression = (expression: string) => {
 const parsePossibleExpressionContent = (containerElement: Element) => {
   const expressions = Array.from(containerElement.getElementsByTagName("When"))
     .map(when => {
-      const expressionText = when.attributes["expression"].textContent;
+      const expressionText = when.getAttribute("expression") || "";
       const expression = parseExpression(expressionText);
 
       if (expression) {
         return {
           ...expression,
-          text: when.textContent.trim()
+          text: (when.textContent || "").trim()
         };
       }
 
@@ -432,15 +414,20 @@ const parseApi = (element: Element) => {
   )[0];
 
   if (personalInformationApi) {
-    const match = personalInformationApi.attributes["match"].value;
-    const noMatch = personalInformationApi.attributes["noMatch"].value;
-    const error = personalInformationApi.attributes["error"].value;
+    const match = personalInformationApi.getAttribute("match");
+    const noMatch = personalInformationApi.getAttribute("noMatch");
+    const error = personalInformationApi.getAttribute("error");
+
+    const matchLinks = parseLinks(match || "");
+    const noMatchLinks = parseLinks(noMatch || "");
+    const errorLinks = parseLinks(error || "");
+
     return {
       component: "PersonalInformationApi",
       data: {
-        match: parseLinks(match)[0],
-        noMatch: parseLinks(noMatch)[0],
-        error: parseLinks(error)[0]
+        match: matchLinks && matchLinks[0],
+        noMatch: noMatchLinks && noMatchLinks[0],
+        error: errorLinks && errorLinks[0]
       }
     };
   }
@@ -452,27 +439,25 @@ export const parseStoryData = (storyData: any) => ({
   id: storyData.id,
   name: storyData.name,
   startPassage: storyData.startPassage,
-  passages: storyData.passages.map(passage => {
+  passages: storyData.passages.map((passage: any) => {
     var containerElement = document.createElement("div");
     containerElement.innerHTML = passage.text;
 
     const messages = Array.from(
       containerElement.getElementsByTagName("message")
-    ).map(message => {
-      const delay = message.attributes["delay"];
-
-      return {
-        ...parsePossibleExpressionContent(message),
-        delay: delay ? delay : 0
-      };
-    });
+    ).map(message => parsePossibleExpressionContent(message));
 
     const redirects = Array.from(
       containerElement.getElementsByTagName("redirect")
     ).map(redirect => {
+      redirect.getAttribute;
+      const whenAttribute = redirect.getAttribute("when");
+      const toAttribute = redirect.getAttribute("to");
+      const links = parseLinks(toAttribute || "");
+
       return {
-        ...parseExpression(redirect.attributes["when"].textContent),
-        to: parseLinks(redirect.attributes["to"].textContent)[0].name
+        ...parseExpression(whenAttribute || ""),
+        to: links && links[0].name
       };
     });
 

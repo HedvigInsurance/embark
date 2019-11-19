@@ -1,5 +1,5 @@
 import { passes } from "../Utils/ExpressionsUtil";
-import React = require("react");
+import * as React from "react";
 import styled from "@emotion/styled";
 import { colors, fonts } from "@hedviginsurance/brand";
 
@@ -43,7 +43,7 @@ export const replacePlaceholders = (
 
 export const getTextContent = (store: any, node: ExpressionTextNode) => {
   if (node.expressions.length > 0) {
-    const passableExpressions = node.expressions.filter(expression => {
+    const passableExpressions = node.expressions.filter((expression: any) => {
       return passes(store, expression);
     });
 

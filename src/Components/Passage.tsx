@@ -6,19 +6,19 @@ import { Action } from "./Actions/Action";
 import { Message } from "./Message";
 import { Response } from "./Response/Response";
 
-import { history } from "../index";
 import { BackButton } from "./BackButton";
 import { Questionmark } from "./Icons/Questionmark";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
-import hexToRgba = require("hex-to-rgba");
+import hexToRgba from "hex-to-rgba";
 import { Modal } from "./Modal";
 
-type PassageProps = {
+interface PassageProps {
   passage: any;
-  history: [string];
+  canGoBack: boolean;
+  historyGoBackListener: (listener: () => void) => () => void;
   goBack: () => void;
   changePassage: (name: String) => void;
-};
+}
 
 const ChatContainer = styled.div`
   display: flex;
@@ -169,10 +169,8 @@ export const Passage = (props: PassageProps) => {
   }, [props.passage]);
 
   React.useEffect(() => {
-    return history.listen((_, action) => {
-      if (action == "POP") {
-        goBack();
-      }
+    return props.historyGoBackListener(() => {
+      goBack();
     });
   });
 
@@ -211,7 +209,7 @@ export const Passage = (props: PassageProps) => {
             animate="visible"
             variants={messageListMotionVariants}
           >
-            {props.passage.messages.map(message => (
+            {props.passage.messages.map((message: any) => (
               <Message
                 key={message.text}
                 isResponse={false}
@@ -244,7 +242,7 @@ export const Passage = (props: PassageProps) => {
           }}
         >
           <BottomContent>
-            {props.history.length > 1 && (
+            {props.canGoBack && (
               <BackButton
                 onClick={() => {
                   goBack();

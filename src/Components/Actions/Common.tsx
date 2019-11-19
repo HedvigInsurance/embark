@@ -20,7 +20,7 @@ export const Card = styled.form<Focusable>`
     `
         box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.18);
         transform: translateY(-3px);
-    `}
+    `};
 `;
 
 export const Input = styled.input`
@@ -38,7 +38,7 @@ export const Input = styled.input`
     color: ${colorsV2.black};
     font-weight: 500;
     outline: 0;
-    ${props => `width: ${props.size / 1.5}em;`}
+    ${props => `width: ${(props.size || 0) / 1.5}em;`}
 
     ::placeholder {
       color: ${colorsV2.lightgray};
