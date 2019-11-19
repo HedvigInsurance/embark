@@ -26,21 +26,36 @@ export const unmaskValue = (value: string, m?: MaskType): string => {
   }
 };
 
-export const wrapWithMask = (Component, mask) => props => {
-  if (mask) {
-    const { onChange, onFocus, onBlur, value, ...rest } = props;
-    return (
-      <InputMask
-        maskChar={null}
-        mask={resolveMask(mask)}
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        value={value}
-      >
-        {inputProps => <Component {...inputProps} {...rest} />}
-      </InputMask>
-    );
-  }
-  return <Component {...props} />;
+interface Props {
+  mask?: MaskType;
+  onChange?: (e: Event) => void;
+  onFocus?: (e: Event) => void;
+  onBlur?: (e: Event) => void;
+  value?: string;
+}
+
+export const wrapWithMask = <T extends {}>(
+  Component: React.ComponentType<T>
+) => {
+  const PotentiallyMasked: React.FunctionComponent<Props & T> = props => {
+    const { mask, onChange, onFocus, onBlur, value, ...rest } = props;
+    if (mask) {
+      return (
+        <InputMask
+          maskChar={null}
+          mask={resolveMask(mask)}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          value={value}
+        >
+          {inputProps => <Component {...inputProps} {...rest} />}
+        </InputMask>
+      );
+    }
+
+    return <Component {...props} />;
+  };
+
+  return PotentiallyMasked;
 };
