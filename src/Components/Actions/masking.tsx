@@ -32,10 +32,10 @@ export const unmaskValue = (value: string, m?: MaskType): string => {
 };
 
 interface MaskComponentProps {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 function wrapWithMask<T>(

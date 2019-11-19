@@ -213,11 +213,40 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
   };
 };
 
+const getTextActionSet = (textActionSetNode: Element) => {
+  const next = textActionSetNode.getAttribute("next");
+  const links = parseLinks(next);
+
+  const textActions = Array.from(
+    textActionSetNode.getElementsByTagName("textaction")
+  ).map(textActionNode => {
+    const textAction = getTextAction(textActionNode);
+
+    return {
+      ...textAction,
+      data: {
+        title: textActionNode.getAttribute("title"),
+        ...textAction.data
+      }
+    };
+  });
+
+  return {
+    component: "TextActionSet",
+    data: {
+      link: links && links[0],
+      textActions
+    }
+  };
+};
+
 const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.getAttribute("placeholder");
   const next = textActionNode.getAttribute("next");
   const key = textActionNode.getAttribute("key");
   const mask = textActionNode.getAttribute("mask");
+
+  const large = textActionNode.getAttribute("large");
 
   const links = next ? parseLinks(next) : [];
   const tooltip = parseTooltips(textActionNode)[0];
@@ -231,6 +260,7 @@ const getTextAction = (textActionNode: Element) => {
       key,
       api,
       link: links && links[0],
+      large,
       mask,
       ...(tooltip && { tooltip })
     }
@@ -244,6 +274,14 @@ const getAction = (containerElement: Element) => {
 
   if (numberActionSetNode) {
     return getNumberActionSet(numberActionSetNode);
+  }
+
+  const textActionSetNode = containerElement.getElementsByTagName(
+    "textactionset"
+  )[0];
+
+  if (textActionSetNode) {
+    return getTextActionSet(textActionSetNode);
   }
 
   const multiActionNode = containerElement.getElementsByTagName(
