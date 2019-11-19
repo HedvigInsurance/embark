@@ -26,6 +26,7 @@ interface Props {
   onChange: (value: string) => void;
   mask?: MaskType;
   large: "true" | undefined;
+  autoFocus: boolean;
 }
 
 const Masked = wrapWithMask(Input);
@@ -44,6 +45,7 @@ export const InlineTextAction: React.FunctionComponent<Props> = props => {
   const size = getInputSize(props.placeholder, props.value, props.large);
   return (
     <Masked
+      autoFocus={props.autoFocus}
       mask={props.mask}
       type="text"
       size={size}

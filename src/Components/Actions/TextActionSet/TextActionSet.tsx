@@ -5,6 +5,7 @@ import { colorsV2, fonts } from "@hedviginsurance/brand";
 import { Tooltip } from "../../Tooltip";
 import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import { StoreContext } from "../../KeyValueStore";
+import { unmaskValue } from "../masking";
 
 const Container = styled.div`
   display: flex;
@@ -100,6 +101,15 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
+const findMask = (textActions, key) => {
+  const action = textActions.filter(action => action.data.key === key)[0];
+  if (action) {
+    return action.data.mask;
+  }
+
+  return undefined;
+};
+
 export const TextActionSet: React.FunctionComponent<Props> = props => {
   const { setValue } = React.useContext(StoreContext);
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
@@ -114,7 +124,15 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
   });
 
   const onContinue = () => {
-    Object.keys(state.values).forEach(key => setValue(key, state.values[key]));
+    Object.keys(state.values).forEach(key => {
+      setValue(
+        key,
+        unmaskValue(
+          state.values[key],
+          findMask(props.action.data.textActions, key)
+        )
+      );
+    });
     setValue(
       `${props.passageName}Result`,
       Object.keys(state.values).reduce(
@@ -133,11 +151,12 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           onContinue();
         }}
       >
-        {props.action.data.textActions.map(textAction => (
+        {props.action.data.textActions.map((textAction, index) => (
           <Card key={textAction.data.key}>
             <Tooltip tooltip={textAction.data.tooltip} />
             <CardTitle>{textAction.data.title}</CardTitle>
             <InlineTextAction
+              autoFocus={index === 0}
               large={textAction.data.large}
               placeholder={textAction.data.placeholder}
               onChange={value => {
