@@ -25,17 +25,13 @@ interface Props {
   value: string;
   onChange: (value: string) => void;
   mask?: MaskType;
-  large: "true" | undefined;
+  large?: "true";
   autoFocus: boolean;
 }
 
 const Masked = wrapWithMask(Input);
 
-const getInputSize = (
-  placeholder: string,
-  value: string,
-  large: "true" | undefined
-) =>
+const getInputSize = (placeholder: string, value: string, large?: "true") =>
   Math.max(
     large === "true" ? placeholder.length * 2 : placeholder.length,
     value.length

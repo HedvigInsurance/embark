@@ -57,23 +57,6 @@ interface Props {
   changePassage: (name: string) => void;
 }
 
-/* 
-<TextActionSet next="[[Label->Link]]">
-  <TextAction
-    title="Adress"
-    placeholder="Gatunamn"
-    large="true"
-    key="streetAddress">
-  </TextAction>
-  <TextAction
-    title="Postnummer"
-    placeholder="172 40"
-    mask="PostalCode"
-    key="postalNumber">
-  </TextAction>
-</TextActionSet>
-*/
-
 interface State {
   values: { [key: string]: string };
   continueDisabled: boolean;
