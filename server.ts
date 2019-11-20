@@ -2,6 +2,7 @@ import * as Koa from "koa";
 import * as fs from "fs";
 import * as serve from "koa-static";
 import * as mount from "koa-mount";
+import * as cors from "@koa/cors";
 import { JSDOM } from "jsdom";
 import { parseStoryData } from "./src/parseStoryData";
 
@@ -17,6 +18,7 @@ global.document = new JSDOM("<html></html").window.document;
 
 const app = new Koa();
 
+app.use(cors());
 app.use(mount("/assets", serve(__dirname + "/src/Assets")));
 
 app.use(

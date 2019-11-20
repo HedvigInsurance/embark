@@ -9,7 +9,7 @@ import { createHashHistory } from "history";
 import { parseStoryData } from "./parseStoryData";
 import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
-import { passes } from "./Utils/ExpressionsUtil";
+import { goToHook } from "./Utils/ExpressionsUtil";
 import { MockedProvider } from "@apollo/react-testing";
 
 import { mocks } from "./api-mocks";
@@ -90,8 +90,12 @@ const Root = () => {
   const passage = data.passages.filter(
     (passage: any) => passage.id == state.passageId
   )[0];
-  const [goTo, setGoTo] = React.useState<null | String>(null);
-  const { store } = React.useContext(StoreContext);
+  const goTo = goToHook(data.passages, targetPassageId => {
+    dispatch({
+      type: "GO_TO",
+      passageId: targetPassageId
+    });
+  });
 
   if (isProofing) {
     return (
@@ -115,42 +119,6 @@ const Root = () => {
       </>
     );
   }
-
-  React.useEffect(() => {
-    if (goTo) {
-      const newPassage = data.passages.filter(
-        (passage: any) => passage.name == goTo
-      )[0];
-      const targetPassage = newPassage ? newPassage.id : data.startPassage;
-
-      if (newPassage.redirects.length > 0) {
-        const passableExpressions = newPassage.redirects.filter(
-          (expression: any) => {
-            return passes(store, expression);
-          }
-        );
-
-        if (passableExpressions.length > 0) {
-          const { to } = passableExpressions[0];
-          const redirectTo = data.passages.filter(
-            (passage: any) => passage.name == to
-          )[0];
-          dispatch({
-            type: "GO_TO",
-            passageId: redirectTo.id
-          });
-          return;
-        }
-      }
-
-      dispatch({
-        type: "GO_TO",
-        passageId: targetPassage
-      });
-    }
-
-    setGoTo(null);
-  }, [goTo]);
 
   return (
     <>
@@ -191,7 +159,7 @@ const Root = () => {
           });
         }}
         changePassage={name => {
-          setGoTo(name);
+          goTo(name);
         }}
       />
     </>

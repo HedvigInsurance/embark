@@ -38,10 +38,7 @@ interface MaskComponentProps {
   value?: string;
 }
 
-function wrapWithMask<T>(
-  Component: React.ComponentType<T>,
-  mask: MaskType | undefined
-) {
+function wrapWithMask<T>(Component: React.ComponentType<T>, mask?: MaskType) {
   return (props: T & MaskComponentProps) => {
     if (mask) {
       const { onChange, onFocus, onBlur, value } = props;

@@ -8,16 +8,13 @@ export default {
     {
       file: pkg.main,
       format: "cjs"
-    },
-    {
-      file: pkg.module,
-      format: "es"
     }
   ],
   external: [...Object.keys(pkg.peerDependencies || {})],
   plugins: [
     typescript({
-      typescript: require("typescript")
+      typescript: require("typescript"),
+      declarationDir: "dist"
     }),
     graphql()
   ]

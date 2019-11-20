@@ -1,10 +1,9 @@
 {
   "name": "@hedviginsurance/embark",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "source": "src/package.ts",
   "main": "dist/package.js",
-  "module": "dist/package.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "ts-node --project tsconfig.server.json server.ts",
@@ -73,6 +72,7 @@
     "react-dom": "^16.10.x"
   },
   "devDependencies": {
+    "@koa/cors": "^2.2.3",
     "concurrently": "^5.0.0",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1"

@@ -17,7 +17,7 @@ interface PassageProps {
   canGoBack: boolean;
   historyGoBackListener: (listener: () => void) => () => void;
   goBack: () => void;
-  changePassage: (name: String) => void;
+  changePassage: (name: string) => void;
 }
 
 const ChatContainer = styled.div`

@@ -84,8 +84,10 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-const findMask = (textActions, key) => {
-  const action = textActions.filter(action => action.data.key === key)[0];
+const findMask = (textActions: any, key: string) => {
+  const action = textActions.filter(
+    (action: any) => action.data.key === key
+  )[0];
   if (action) {
     return action.data.mask;
   }
@@ -96,9 +98,12 @@ const findMask = (textActions, key) => {
 export const TextActionSet: React.FunctionComponent<Props> = props => {
   const { setValue } = React.useContext(StoreContext);
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
-    const values = props.action.data.textActions.reduce((acc, curr) => {
-      return { ...acc, [curr.data.key]: null };
-    }, {});
+    const values = props.action.data.textActions.reduce(
+      (acc: { [key: string]: any }, curr: any) => {
+        return { ...acc, [curr.data.key]: null };
+      },
+      {}
+    );
 
     return {
       values,
@@ -134,7 +139,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           onContinue();
         }}
       >
-        {props.action.data.textActions.map((textAction, index) => (
+        {props.action.data.textActions.map((textAction: any, index: number) => (
           <Card key={textAction.data.key}>
             <Tooltip tooltip={textAction.data.tooltip} />
             <CardTitle>{textAction.data.title}</CardTitle>
