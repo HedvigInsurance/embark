@@ -1,13 +1,21 @@
-import React, { useReducer } from "react";
+import React from "react";
 
 type KeyValueStoreProps = {};
 
-export const StoreContext = React.createContext({
+export const StoreContext = React.createContext<{
+  store: { [key: string]: any };
+  setValue: (key: string, value: string) => void;
+  removeValues: (key: string) => void;
+}>({
   store: {},
-  setValue: (key: string, value: string) => {}
+  setValue: (key, value) => {},
+  removeValues: key => {}
 });
 
-const reducer = (state, action) => {
+const reducer = (
+  state: any,
+  action: { type: string; key: string; value?: any }
+) => {
   switch (action.type) {
     case "setValue":
       return { ...state, [action.key]: action.value };
@@ -29,7 +37,7 @@ const reducer = (state, action) => {
 };
 
 export const KeyValueStore = (props: React.Props<KeyValueStoreProps>) => {
-  const [store, dispatch] = useReducer(reducer, {});
+  const [store, dispatch] = React.useReducer(reducer, {});
 
   return (
     <StoreContext.Provider

@@ -5,7 +5,6 @@ import { Wordmark } from "./Icons/Wordmark";
 
 interface HeaderProps {
   passage: any;
-  embarkHost: string;
   storyData: any;
 }
 
@@ -21,6 +20,7 @@ const Background = styled.div`
   backdrop-filter: blur(2px);
   position: relative;
   padding: 0 10vw;
+  box-sizing: border-box;
 `;
 
 const ProgressLineBackground = styled.div`
@@ -50,17 +50,17 @@ export const Header = (props: HeaderProps) => {
   React.useEffect(() => {
     const findMaxDepth = (passageName: string, previousDepth: number = 0) => {
       const passage = props.storyData.passages.filter(
-        passage => passageName == passage.name
+        (passage: any) => passageName == passage.name
       )[0];
-      const links = passage.allLinks.map(link => link.name);
+      const links = passage.allLinks.map((link: any) => link.name);
 
       if (links.length == 0 || !links) {
         return previousDepth;
       }
 
       return links
-        .map(link => findMaxDepth(link, previousDepth + 1))
-        .reduce((acc, curr) => {
+        .map((link: any) => findMaxDepth(link, previousDepth + 1))
+        .reduce((acc: number, curr: number) => {
           return Math.max(acc, curr);
         }, 0);
     };
@@ -68,8 +68,8 @@ export const Header = (props: HeaderProps) => {
     window.requestIdleCallback(
       () => {
         const passagesLeft = props.passage.allLinks
-          .map(link => findMaxDepth(link.name))
-          .reduce((acc, curr) => {
+          .map((link: any) => findMaxDepth(link.name))
+          .reduce((acc: number, curr: number) => {
             return Math.max(acc, curr);
           }, 0);
 

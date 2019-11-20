@@ -39,14 +39,16 @@ const getInputSize = (placeholder: string, value: string, large?: "true") =>
 
 export const InlineTextAction: React.FunctionComponent<Props> = props => {
   const size = getInputSize(props.placeholder, props.value, props.large);
+
   return (
     <Masked
       autoFocus={props.autoFocus}
-      mask={props.mask}
       type="text"
       size={size}
       placeholder={props.placeholder}
-      onChange={e => props.onChange(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        props.onChange(e.target.value)
+      }
       value={props.value}
     />
   );

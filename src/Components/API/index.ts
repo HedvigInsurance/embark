@@ -44,7 +44,7 @@ const NO_API = [NOOP, EMPTY_OBJECT];
 const isPersonalInformationApiComponent = (
   t?: ApiComponent
 ): t is PersonalInformationApiComponent =>
-  t && t.component === "PersonalInformationApi";
+  (t && t.component === "PersonalInformationApi") || false;
 
 export const useApiComponent = (component: ApiComponent, store: any) => {
   const [getPi, piResult] = useLazyQuery<PIData, PIVariables>(
@@ -68,10 +68,10 @@ export const useApiComponent = (component: ApiComponent, store: any) => {
 
 export const handleErrorOrData = (
   component: ApiComponent,
-  error,
-  data,
-  setValue,
-  changePassage
+  error: Error,
+  data: any,
+  setValue: any,
+  changePassage: any
 ) => {
   if (isPersonalInformationApiComponent(component)) {
     if (error) {

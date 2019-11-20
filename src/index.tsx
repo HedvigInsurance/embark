@@ -7,9 +7,9 @@ import { getCdnFontFaces } from "@hedviginsurance/brand";
 import { createHashHistory } from "history";
 
 import { parseStoryData } from "./parseStoryData";
-import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
+import { KeyValueStore } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
-import { passes } from "./Utils/ExpressionsUtil";
+import { useGoTo } from "./Utils/ExpressionsUtil";
 import { MockedProvider } from "@apollo/react-testing";
 
 import { mocks } from "./api-mocks";
@@ -24,19 +24,20 @@ declare global {
 }
 
 if (!window.requestIdleCallback) {
-  import("requestidlecallback").then(util => {
-    window.requestIdleCallback = util;
-  });
+  window.requestIdleCallback = require("requestidlecallback");
 }
 
-const scriptHost = document.getElementsByTagName("body")[0].attributes[
-  "scriptHost"
-].value;
+const scriptHost = document
+  .getElementsByTagName("body")[0]
+  .getAttribute("scriptHost");
 const isProofing = JSON.parse(
-  document.getElementsByTagName("body")[0].attributes["isProofing"].value
+  document.getElementsByTagName("body")[0].getAttribute("isProofing") || "false"
 );
+const storyDataElement = document.getElementById("storyData");
 const data = parseStoryData(
-  JSON.parse(document.getElementById("storyData").attributes["data"].value)
+  JSON.parse(
+    storyDataElement ? storyDataElement.getAttribute("data") || "null" : "null"
+  )
 );
 
 const getStartPassage = () => {
@@ -45,7 +46,7 @@ const getStartPassage = () => {
 
   if (url.includes("play") || url.includes("test")) {
     const hasPassage = data.passages.filter(
-      passage => passage.id == splitted[splitted.length - 1]
+      (passage: any) => passage.id == splitted[splitted.length - 1]
     )[0];
     return hasPassage ? splitted[splitted.length - 1] : data.startPassage;
   }
@@ -57,11 +58,10 @@ export const history = createHashHistory({
   basename: `/stories/${data.id}/${
     window.location.href.includes("play") ? "play" : "test"
   }`,
-  hashType: "hashbang",
-  getUserConfirmation: null
+  hashType: "hashbang"
 });
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "GO_TO":
       history.push(`${action.passageId}`);
@@ -88,10 +88,14 @@ const Root = () => {
     passageId: getStartPassage()
   });
   const passage = data.passages.filter(
-    passage => passage.id == state.passageId
+    (passage: any) => passage.id == state.passageId
   )[0];
-  const [goTo, setGoTo] = React.useState<null | String>(null);
-  const { store } = React.useContext(StoreContext);
+  const goTo = useGoTo(data.passages, targetPassageId => {
+    dispatch({
+      type: "GO_TO",
+      passageId: targetPassageId
+    });
+  });
 
   if (isProofing) {
     return (
@@ -116,40 +120,6 @@ const Root = () => {
     );
   }
 
-  React.useEffect(() => {
-    if (goTo) {
-      const newPassage = data.passages.filter(
-        passage => passage.name == goTo
-      )[0];
-      const targetPassage = newPassage ? newPassage.id : data.startPassage;
-
-      if (newPassage.redirects.length > 0) {
-        const passableExpressions = newPassage.redirects.filter(expression => {
-          return passes(store, expression);
-        });
-
-        if (passableExpressions.length > 0) {
-          const { to } = passableExpressions[0];
-          const redirectTo = data.passages.filter(
-            passage => passage.name == to
-          )[0];
-          dispatch({
-            type: "GO_TO",
-            passageId: redirectTo.id
-          });
-          return;
-        }
-      }
-
-      dispatch({
-        type: "GO_TO",
-        passageId: targetPassage
-      });
-    }
-
-    setGoTo(null);
-  }, [goTo]);
-
   return (
     <>
       <Global
@@ -172,10 +142,16 @@ const Root = () => {
                 ${getCdnFontFaces()}
             `}
       />
-      <Header passage={passage} storyData={data} embarkHost={scriptHost} />
+      <Header passage={passage} storyData={data} />
       <Passage
-        history={state.history}
-        passages={data.passages}
+        canGoBack={state.history.length > 1}
+        historyGoBackListener={onGoBack =>
+          history.listen((_, action) => {
+            if (action == "POP") {
+              onGoBack();
+            }
+          })
+        }
         passage={passage}
         goBack={() => {
           dispatch({
@@ -183,7 +159,7 @@ const Root = () => {
           });
         }}
         changePassage={name => {
-          setGoTo(name);
+          goTo(name);
         }}
       />
     </>
