@@ -62,7 +62,7 @@ const getSelectAction = (actionNode: Element | undefined) => {
 
     return {
       key,
-      value: value,
+      value,
       link: links && links[0],
       tooltip: tooltips[0] ? tooltips[0] : null
     };
