@@ -5,7 +5,7 @@ import { Card, Input, Container, Spacer } from "./Common";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
 import { MaskType, wrapWithMask, unmaskValue } from "./masking";
-import { useApiComponent, handleErrorOrData, callApi } from "../API";
+import { callApi } from "../API";
 import { Loading } from "../API/Loading";
 import { ApiContext } from "../API/ApiContext";
 import { ApiComponent } from "../API/apiComponent";
@@ -66,6 +66,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
           <>
             <Tooltip tooltip={props.tooltip} />
             <Masked
+              mask={props.mask}
               autoFocus
               size={Math.max(props.placeholder.length, textValue.length)}
               placeholder={props.placeholder}

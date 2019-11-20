@@ -89,7 +89,7 @@ const Root = () => {
   const passage = data.passages.filter(
     (passage: any) => passage.id == state.passageId
   )[0];
-  const goTo = useGoTo(data.passages, targetPassageId => {
+  const goTo = useGoTo(data, targetPassageId => {
     dispatch({
       type: "GO_TO",
       passageId: targetPassageId

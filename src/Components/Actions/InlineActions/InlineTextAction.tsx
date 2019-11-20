@@ -42,6 +42,7 @@ export const InlineTextAction: React.FunctionComponent<Props> = props => {
 
   return (
     <Masked
+      mask={props.mask}
       autoFocus={props.autoFocus}
       type="text"
       size={size}
