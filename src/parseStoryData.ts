@@ -58,21 +58,21 @@ const getSelectAction = (actionNode: Element | undefined) => {
 
     const tooltips = parseTooltips(option);
 
+    const api = parseApi(actionNode);
+
     return {
       key: key ? key.value : null,
       value: value ? value.value : null,
       link: links[0],
-      tooltip: tooltips[0] ? tooltips[0] : null
+      tooltip: tooltips[0] ? tooltips[0] : null,
+      api
     };
   });
-
-  const api = parseApi(actionNode);
 
   return {
     component: "SelectAction",
     data: {
-      options: actionNodeOptions,
-      api
+      options: actionNodeOptions
     }
   };
 };

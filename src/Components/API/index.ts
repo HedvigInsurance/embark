@@ -54,13 +54,11 @@ export const callApi = async (
     }
 
     if (isUnderwritingLimitsHit(result.createQuote)) {
-      // TODO: Maybe put the uwlimits information in the KV-store
       changePassage(component.data.uwlimits.name);
       return;
     }
 
     if (isQuote(result.createQuote)) {
-      // TODO: Maybe put some quote data in the KV-store
       changePassage(component.data.success.name);
       return;
     }

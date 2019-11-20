@@ -1,6 +1,9 @@
 import * as React from "react";
 import { SelectOption } from "./SelectOption";
 import { StoreContext } from "../../KeyValueStore";
+import { callApi } from "../../API";
+import { ApiContext } from "../../API/ApiContext";
+import { Loading } from "../../API/Loading";
 
 type SelectActionProps = {
   passageName: string;
@@ -9,7 +12,14 @@ type SelectActionProps = {
 };
 
 export const SelectAction = (props: SelectActionProps) => {
-  const { setValue } = React.useContext(StoreContext);
+  const { store, setValue } = React.useContext(StoreContext);
+  const [loading, setLoading] = React.useState(false);
+  const api = React.useContext(ApiContext);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return props.action.data.options.map(option => (
     <SelectOption
       tooltip={option.tooltip}
@@ -24,7 +34,12 @@ export const SelectAction = (props: SelectActionProps) => {
           }
         }
         setValue(`${props.passageName}Result`, option.link.label);
-        props.changePassage(option.link.name);
+        if (option.api) {
+          setLoading(true);
+          callApi(option.api, api, store, setValue, props.changePassage);
+        } else {
+          props.changePassage(option.link.name);
+        }
       }}
     />
   ));
