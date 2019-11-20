@@ -10,6 +10,7 @@ import {
   useCreateQuoteMutation
 } from "./createQuote";
 import { useApolloClient } from "@apollo/react-hooks";
+import { TApiContext } from "./ApiContext";
 
 const NOOP = () => {};
 const EMPTY_OBJECT: any = {}; // We can do better than this in types I think
@@ -29,6 +30,33 @@ export const useApiComponent = (component: ApiComponent, store: any) => {
   }
 
   return NO_API;
+};
+
+export const callApi = async (
+  component: ApiComponent | undefined,
+  apiContext: TApiContext,
+  store,
+  setValue,
+  changePassage
+) => {
+  if (isPersonalInformationApiComponent(component)) {
+    const result = await apiContext.personalInformationApi(
+      store.personalNumber
+    );
+    if (result instanceof Error) {
+      changePassage(component.data.error);
+      return;
+    }
+    if (!result.personalInformation) {
+      changePassage(component.data.noMatch);
+      return;
+    }
+
+    Object.entries(result.personalInformation).forEach(([key, value]) =>
+      setValue(key, value)
+    );
+    return;
+  }
 };
 
 export const handleErrorOrData = (

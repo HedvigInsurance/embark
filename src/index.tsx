@@ -13,6 +13,7 @@ import { passes } from "./Utils/ExpressionsUtil";
 import { MockedProvider } from "@apollo/react-testing";
 
 import { mocks } from "./api-mocks";
+import { ApiContext, MockApiContext } from "./Components/API/ApiContext";
 
 declare global {
   interface Window {
@@ -191,11 +192,11 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <MockedProvider mocks={mocks} addTypename={false}>
+  <MockApiContext>
     <KeyValueStore>
       <Root />
     </KeyValueStore>
-  </MockedProvider>
+  </MockApiContext>
 );
 
 ReactDOM.render(<RootContainer />, document.getElementById("root"));

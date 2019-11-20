@@ -1,10 +1,11 @@
 import { MockedResponse } from "@apollo/react-testing";
 import personalInformationQuery from "./Components/API/personalInformation.graphql";
 import createQuoteMutation from "./Components/API/createQuote.graphql";
+import { ApartmentType, Data as CQData } from "./Components/API/createQuote";
 
 const AN_UUID = "6955dd62-4994-4677-a174-7eab9a9a7b92";
 
-const personalInformationQueryMocks: MockedResponse[] = [
+export const personalInformationQueryMocks = [
   {
     request: {
       query: personalInformationQuery,
@@ -45,7 +46,7 @@ const personalInformationQueryMocks: MockedResponse[] = [
   }
 ];
 
-const createQuoteMocks: MockedResponse[] = [
+export const createQuoteMocks = [
   {
     request: {
       query: createQuoteMutation,
@@ -70,6 +71,7 @@ const createQuoteMocks: MockedResponse[] = [
           id: AN_UUID,
           firstName: "Test",
           lastName: "Testerson",
+          expiresAt: "2019-11-20T08:52:19.405Z",
           price: {
             amount: 100,
             currency: "SEK"
@@ -79,12 +81,12 @@ const createQuoteMocks: MockedResponse[] = [
             zipCode: "12345",
             householdSize: 1,
             livingSpace: 50,
-            type: "BRF",
+            type: ApartmentType.BRF,
             __typename: "ApartmentQuoteDetails"
           },
           __typename: "Quote"
         }
-      }
+      } as CQData
     }
   }
 ];

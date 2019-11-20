@@ -69,7 +69,7 @@ export interface Data {
   createQuote: QuoteResult;
 }
 
-enum ApartmentType {
+export enum ApartmentType {
   STUDENT_RENT = "STUDENT_RENT",
   RENT = "RENT",
   STUDENT_BRF = "STUDENT_BRF",
