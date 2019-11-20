@@ -48,7 +48,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     }
   };
 
-  const Masked = wrapWithMask(BottomSpacedInput, props.mask);
+  const Masked = wrapWithMask(BottomSpacedInput);
 
   return (
     <Container>

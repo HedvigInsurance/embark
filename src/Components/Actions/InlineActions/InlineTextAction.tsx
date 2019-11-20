@@ -29,6 +29,8 @@ interface Props {
   autoFocus: boolean;
 }
 
+const Masked = wrapWithMask(Input);
+
 const getInputSize = (placeholder: string, value: string, large?: "true") =>
   Math.max(
     large === "true" ? placeholder.length * 2 : placeholder.length,
@@ -37,7 +39,6 @@ const getInputSize = (placeholder: string, value: string, large?: "true") =>
 
 export const InlineTextAction: React.FunctionComponent<Props> = props => {
   const size = getInputSize(props.placeholder, props.value, props.large);
-  const Masked = wrapWithMask(Input, props.mask);
 
   return (
     <Masked

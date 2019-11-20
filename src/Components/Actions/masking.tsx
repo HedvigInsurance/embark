@@ -1,6 +1,5 @@
 import * as React from "react";
-import InputMask from "react-input-mask";
-import { ValuesOfCorrectType } from "../../../node_modules/graphql/validation/rules/ValuesOfCorrectType";
+import InputMask, { Props as InputMaskProps } from "react-input-mask";
 export type MaskType = "PersonalNumber" | "PostalCode";
 
 const resolveMask = (m: MaskType): string => {
@@ -36,12 +35,18 @@ interface MaskComponentProps {
   onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  mask?: MaskType;
 }
 
-function wrapWithMask<T>(Component: React.ComponentType<T>, mask?: MaskType) {
-  return (props: T & MaskComponentProps) => {
+export function wrapWithMask<T>(
+  Component: React.ComponentType<T>,
+  mask?: MaskType
+): React.ComponentType<T & MaskComponentProps> {
+  const PotentiallyMasked: React.FunctionComponent<
+    MaskComponentProps & T
+  > = props => {
+    const { mask, onChange, onFocus, onBlur, value, ...rest } = props;
     if (mask) {
-      const { onChange, onFocus, onBlur, value } = props;
       return (
         <InputMask
           maskChar={null}
@@ -51,12 +56,13 @@ function wrapWithMask<T>(Component: React.ComponentType<T>, mask?: MaskType) {
           onBlur={onBlur}
           value={value}
         >
-          {(inputProps: any) => <Component {...inputProps} {...(props as T)} />}
+          {(inputProps: any) => <Component {...inputProps} {...rest} />}
         </InputMask>
       );
     }
+
     return <Component {...props} />;
   };
-}
 
-export { wrapWithMask };
+  return PotentiallyMasked;
+}
