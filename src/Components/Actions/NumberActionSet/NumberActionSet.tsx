@@ -52,7 +52,7 @@ const Spacer = styled.div`
   height: 20px;
 `;
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "setValue":
       return { ...state, [action.key]: action.value };
@@ -63,7 +63,7 @@ const reducer = (state, action) => {
 
 export const NumberActionSet = (props: NumberActionSetProps) => {
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
-    return props.action.data.numberActions.reduce((acc, curr) => {
+    return props.action.data.numberActions.reduce((acc: any, curr: any) => {
       return { ...acc, [curr.data.key]: null };
     }, {});
   });
@@ -74,40 +74,42 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
     setContinueDisabled(
       Object.keys(state)
         .map(key => state[key] == null || state[key] == "" || state[key] == 0)
-        .includes(true)
+        .indexOf(true) != -1
     );
   }, [state]);
 
   return (
     <Container>
       <CardsContainer>
-        {props.action.data.numberActions.map((numberAction, index) => (
-          <Card
-            key={numberAction.data.key}
-            borderRadius={(() => {
-              if (index == props.action.data.numberActions.length - 1) {
-                return "0 8px 8px 0";
-              }
+        {props.action.data.numberActions.map(
+          (numberAction: any, index: number) => (
+            <Card
+              key={numberAction.data.key}
+              borderRadius={(() => {
+                if (index == props.action.data.numberActions.length - 1) {
+                  return "0 8px 8px 0";
+                }
 
-              return index == 0 ? "8px 0 0 8px" : "0";
-            })()}
-          >
-            <Tooltip tooltip={numberAction.data.tooltip} />
-            <CardTitle>{numberAction.data.title}</CardTitle>
-            <InlineNumberAction
-              placeholder={numberAction.data.placeholder}
-              unit={numberAction.data.unit}
-              value={state[numberAction.data.key] || ""}
-              onValue={value => {
-                dispatch({
-                  type: "setValue",
-                  key: numberAction.data.key,
-                  value
-                });
-              }}
-            />
-          </Card>
-        ))}
+                return index == 0 ? "8px 0 0 8px" : "0";
+              })()}
+            >
+              <Tooltip tooltip={numberAction.data.tooltip} />
+              <CardTitle>{numberAction.data.title}</CardTitle>
+              <InlineNumberAction
+                placeholder={numberAction.data.placeholder}
+                unit={numberAction.data.unit}
+                value={state[numberAction.data.key] || ""}
+                onValue={value => {
+                  dispatch({
+                    type: "setValue",
+                    key: numberAction.data.key,
+                    value
+                  });
+                }}
+              />
+            </Card>
+          )
+        )}
       </CardsContainer>
       <Spacer />
       <ContinueButton

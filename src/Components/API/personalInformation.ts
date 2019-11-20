@@ -3,7 +3,7 @@ import { ApiComponent, PersonalInformationApiComponent } from "./apiComponent";
 export const isPersonalInformationApiComponent = (
   t?: ApiComponent
 ): t is PersonalInformationApiComponent =>
-  t && t.component === "PersonalInformationApi";
+  (t && t.component === "PersonalInformationApi") || false;
 
 export interface Data {
   personalInformation: {

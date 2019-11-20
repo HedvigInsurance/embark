@@ -1,5 +1,4 @@
 import * as React from "react";
-import { StoreContext } from "../../../KeyValueStore";
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 

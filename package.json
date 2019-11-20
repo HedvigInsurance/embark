@@ -1,14 +1,17 @@
 {
-  "name": "hedvig-twine",
-  "version": "1.0.0",
+  "name": "@hedviginsurance/embark",
+  "version": "1.0.5",
   "description": "",
-  "main": "index.js",
+  "source": "src/package.ts",
+  "main": "dist/package.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "ts-node server.ts",
+    "server": "ts-node --project tsconfig.server.json server.ts",
+    "build-package": "rollup -c",
     "build": "parcel build src/index.tsx --out-dir dist/output",
     "watch": "parcel watch src/index.tsx --out-dir dist/output",
-    "dev": "concurrently -n \"server, watch\" \"npm run server\" \"npm run watch\""
+    "dev": "concurrently -n \"server, watch\" \"npm run server\" \"npm run watch\"",
+    "prepublishOnly": "rollup -c"
   },
   "author": "",
   "license": "MIT",
@@ -16,9 +19,12 @@
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
     "@hedviginsurance/brand": "^2.0.0",
+    "@types/history": "^4.7.3",
     "@types/koa": "^2.0.51",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
+    "@types/react-input-mask": "^2.0.4",
+    "@types/uuid": "^3.4.6",
     "emotion": "^10.0.17",
     "framer-motion": "^1.6.14",
     "hex-to-rgba": "^2.0.1",
@@ -37,8 +43,11 @@
     "react-flip-toolkit": "^7.0.6",
     "react-input-mask": "^2.0.4",
     "requestidlecallback": "^0.3.0",
+    "rollup": "^1.27.2",
+    "rollup-plugin-graphql": "^0.1.0",
+    "rollup-plugin-typescript2": "^0.25.2",
     "ts-node": "^8.4.1",
-    "typescript": "^3.6.4",
+    "typescript": "^3.7.2",
     "uglify-js": "^3.6.3",
     "uuid": "^3.3.3",
     "webpack": "^4.41.2",
@@ -49,7 +58,15 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
+  "peerDependencies": {
+    "framer-motion": "1.6.x",
+    "@emotion/core": "10.0.x",
+    "@emotion/styled": "^10.0.x",
+    "react": "16.11.x",
+    "react-dom": "^16.10.x"
+  },
   "devDependencies": {
+    "@koa/cors": "^2.2.3",
     "concurrently": "^5.0.0",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1"

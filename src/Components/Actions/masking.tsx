@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputMask from "react-input-mask";
+import InputMask, { Props as InputMaskProps } from "react-input-mask";
 export type MaskType = "PersonalNumber" | "PostalCode";
 
 const resolveMask = (m: MaskType): string => {
@@ -10,6 +10,8 @@ const resolveMask = (m: MaskType): string => {
   if (m === "PostalCode") {
     return "999 99";
   }
+
+  return "";
 };
 
 export const unmaskValue = (value: string, m?: MaskType): string => {
@@ -24,20 +26,25 @@ export const unmaskValue = (value: string, m?: MaskType): string => {
   if (m === "PostalCode") {
     return value.replace(/\s+/, "");
   }
+
+  return value;
 };
 
-interface Props {
-  mask?: MaskType;
-  onChange?: (e: Event) => void;
-  onFocus?: (e: Event) => void;
-  onBlur?: (e: Event) => void;
+interface MaskComponentProps {
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  mask?: MaskType;
 }
 
-export const wrapWithMask = <T extends {}>(
-  Component: React.ComponentType<T>
-) => {
-  const PotentiallyMasked: React.FunctionComponent<Props & T> = props => {
+export function wrapWithMask<T>(
+  Component: React.ComponentType<T>,
+  mask?: MaskType
+): React.ComponentType<T & MaskComponentProps> {
+  const PotentiallyMasked: React.FunctionComponent<
+    MaskComponentProps & T
+  > = props => {
     const { mask, onChange, onFocus, onBlur, value, ...rest } = props;
     if (mask) {
       return (
@@ -49,7 +56,7 @@ export const wrapWithMask = <T extends {}>(
           onBlur={onBlur}
           value={value}
         >
-          {inputProps => <Component {...inputProps} {...rest} />}
+          {(inputProps: any) => <Component {...inputProps} {...rest} />}
         </InputMask>
       );
     }
@@ -58,4 +65,4 @@ export const wrapWithMask = <T extends {}>(
   };
 
   return PotentiallyMasked;
-};
+}

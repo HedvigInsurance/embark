@@ -84,7 +84,7 @@ export const SelectOption = (props: SelectOptionProps) => {
       onMouseLeave={() => setIsHovering(false)}
       onClick={props.onClick}
     >
-      <Tooltip tooltip={props.tooltip} />
+      {props.tooltip && <Tooltip tooltip={props.tooltip} />}
       <Content>
         <Label>{props.label}</Label>
         <SelectLabel isHovering={isHovering}>Select</SelectLabel>

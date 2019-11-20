@@ -11,7 +11,9 @@ type SelectActionProps = {
   changePassage: (name: string) => void;
 };
 
-export const SelectAction = (props: SelectActionProps) => {
+export const SelectAction: React.FunctionComponent<
+  SelectActionProps
+> = props => {
   const { store, setValue } = React.useContext(StoreContext);
   const [loading, setLoading] = React.useState(false);
   const api = React.useContext(ApiContext);

@@ -1,18 +1,14 @@
 import { ApiComponent } from "./apiComponent";
-import {
-  isPersonalInformationApiComponent,
-  handlePersonalInformationApiResult
-} from "./personalInformation";
+import { isPersonalInformationApiComponent } from "./personalInformation";
 import {
   isCreateQuoteApiComponent,
-  handleCreateQuoteApiResult,
   isUnderwritingLimitsHit,
   isQuote
 } from "./createQuote";
 import { TApiContext } from "./ApiContext";
 
 export const callApi = async (
-  component: ApiComponent | undefined,
+  component: ApiComponent,
   apiContext: TApiContext,
   store,
   setValue,
@@ -62,27 +58,5 @@ export const callApi = async (
       changePassage(component.data.success.name);
       return;
     }
-  }
-};
-
-export const handleErrorOrData = (
-  component: ApiComponent,
-  error,
-  data,
-  setValue,
-  changePassage
-) => {
-  if (isPersonalInformationApiComponent(component)) {
-    handlePersonalInformationApiResult(
-      component,
-      error,
-      data,
-      setValue,
-      changePassage
-    );
-  }
-
-  if (isCreateQuoteApiComponent(component)) {
-    handleCreateQuoteApiResult(component, error, data, setValue, changePassage);
   }
 };

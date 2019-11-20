@@ -41,7 +41,7 @@ export const NumberAction = (props: NumberActionProps) => {
     props.onContinue();
   };
 
-  const InputWithMask = wrapWithMask(Input, props.mask);
+  const InputWithMask = wrapWithMask(Input);
 
   return (
     <Container>
