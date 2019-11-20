@@ -61,7 +61,7 @@ const getSelectAction = (actionNode: Element | undefined) => {
     const tooltips = parseTooltips(option);
 
     return {
-      key: key,
+      key,
       value: value,
       link: links && links[0],
       tooltip: tooltips[0] ? tooltips[0] : null
