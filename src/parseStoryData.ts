@@ -227,6 +227,33 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
   };
 };
 
+const getTextActionSet = (textActionSetNode: Element) => {
+  const next = textActionSetNode.attributes["next"].value;
+  const links = parseLinks(next);
+
+  const textActions = Array.from(
+    textActionSetNode.getElementsByTagName("textaction")
+  ).map(textActionNode => {
+    const textAction = getTextAction(textActionNode);
+
+    return {
+      ...textAction,
+      data: {
+        title: textActionNode.attributes["title"].value,
+        ...textAction.data
+      }
+    };
+  });
+
+  return {
+    component: "TextActionSet",
+    data: {
+      link: links[0],
+      textActions
+    }
+  };
+};
+
 const getTextAction = (textActionNode: Element) => {
   const placeholder = textActionNode.attributes["placeholder"].value;
   const next =
@@ -236,6 +263,10 @@ const getTextAction = (textActionNode: Element) => {
   const mask =
     textActionNode.attributes["mask"] &&
     textActionNode.attributes["mask"].value;
+
+  const large =
+    textActionNode.attributes["large"] &&
+    textActionNode.attributes["large"].value;
 
   const links = next ? parseLinks(next) : [];
   const tooltip = parseTooltips(textActionNode)[0];
@@ -248,6 +279,7 @@ const getTextAction = (textActionNode: Element) => {
       placeholder,
       key,
       api,
+      large,
       link: links[0],
       mask,
       ...(tooltip && { tooltip })
@@ -262,6 +294,14 @@ const getAction = (containerElement: Element) => {
 
   if (numberActionSetNode) {
     return getNumberActionSet(numberActionSetNode);
+  }
+
+  const textActionSetNode = containerElement.getElementsByTagName(
+    "textactionset"
+  )[0];
+
+  if (textActionSetNode) {
+    return getTextActionSet(textActionSetNode);
   }
 
   const multiActionNode = containerElement.getElementsByTagName(

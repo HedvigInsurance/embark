@@ -28,6 +28,8 @@ interface Props {
   onContinue: () => void;
 }
 
+const Masked = wrapWithMask(BottomSpacedInput);
+
 export const TextAction: React.FunctionComponent<Props> = props => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -45,8 +47,6 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     }
   };
 
-  const InputWithMask = wrapWithMask(BottomSpacedInput, props.mask);
-
   return (
     <Container>
       <Card
@@ -63,7 +63,8 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         ) : (
           <>
             <Tooltip tooltip={props.tooltip} />
-            <InputWithMask
+            <Masked
+              mask={props.mask}
               autoFocus
               size={Math.max(props.placeholder.length, textValue.length)}
               placeholder={props.placeholder}

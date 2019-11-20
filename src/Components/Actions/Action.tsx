@@ -5,6 +5,7 @@ import { MultiAction } from "./MultiAction/MultiAction";
 import { TextAction } from "./TextAction";
 import { ApiComponent } from "../API";
 import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
+import { TextActionSet } from "./TextActionSet/TextActionSet";
 
 type ActionProps = {
   passageName: string;
@@ -16,6 +17,16 @@ type ActionProps = {
 export const Action = (props: ActionProps) => {
   if (!props.action) {
     return null;
+  }
+
+  if (props.action.component === "TextActionSet") {
+    return (
+      <TextActionSet
+        passageName={props.passageName}
+        action={props.action}
+        changePassage={props.changePassage}
+      />
+    );
   }
 
   if (props.action.component == "NumberActionSet") {
