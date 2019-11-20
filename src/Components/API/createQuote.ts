@@ -1,7 +1,4 @@
 import { ApiComponent, CreateQuoteApiComponent } from "./apiComponent";
-import { useMutation } from "@apollo/react-hooks";
-import createQuote from "./createQuote.graphql";
-import createSession from "./createSession.graphql";
 
 export const isCreateQuoteApiComponent = (
   t?: ApiComponent
@@ -58,9 +55,9 @@ interface UnderwritingLimitsHit {
 
 type QuoteResult = Quote | UnderwritingLimitsHit;
 
-const isQuote = (result?: QuoteResult): result is Quote =>
+export const isQuote = (result?: QuoteResult): result is Quote =>
   result && result.__typename === "Quote";
-const isUnderwritingLimitsHit = (
+export const isUnderwritingLimitsHit = (
   result?: QuoteResult
 ): result is UnderwritingLimitsHit =>
   result && result.__typename === "UnderwritingLimitsHit";
@@ -122,46 +119,3 @@ export interface Variables {
     };
   };
 }
-
-export const useCreateQuoteMutation = (client, store) => {
-  const [triggerMutation, result] = useMutation<Data, Variables>(createQuote, {
-    variables: {
-      input: {
-        firstName: store.firstName,
-        lastName: store.lastName,
-        currentInsurer: store.currentInsurer,
-        ssn: store.personalNumber
-        // TODO: Figure out how to in a nice manner map house or apartment information
-      }
-    }
-  });
-
-  return [
-    () => {
-      return client.mutate({ mutation: createSession }).then(() => {
-        return;
-      });
-    },
-    result
-  ];
-};
-
-export const handleCreateQuoteApiResult = (
-  component: CreateQuoteApiComponent,
-  error,
-  data: Data,
-  setValue,
-  changePassage
-) => {
-  if (error) {
-    console.error("got error: ", error);
-  }
-
-  if (data && isUnderwritingLimitsHit(data.createQuote)) {
-    // TODO: Whatever we decide here
-  }
-
-  if (data && isQuote(data.createQuote)) {
-    // TODO: Whatever we decide here
-  }
-};

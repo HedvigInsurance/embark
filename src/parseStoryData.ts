@@ -485,6 +485,23 @@ const parseApi = (element: Element) => {
     };
   }
 
+  const createQuoteApi = element.getElementsByTagName("createquoteapi")[0];
+
+  if (createQuoteApi) {
+    const uwlimits = createQuoteApi.attributes["uwlimits"].value;
+    const success = createQuoteApi.attributes["success"].value;
+    const error = createQuoteApi.attributes["error"].value;
+
+    return {
+      component: "CreateQuoteApi",
+      data: {
+        uwlimits: parseLinks(uwlimits)[0],
+        success: parseLinks(success)[0],
+        error: parseLinks(error)[0]
+      }
+    };
+  }
+
   return null;
 };
 

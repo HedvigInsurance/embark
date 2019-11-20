@@ -1,36 +1,15 @@
 import { ApiComponent } from "./apiComponent";
 import {
   isPersonalInformationApiComponent,
-  handlePersonalInformationApiResult,
-  usePersonalInformationQuery
+  handlePersonalInformationApiResult
 } from "./personalInformation";
 import {
   isCreateQuoteApiComponent,
   handleCreateQuoteApiResult,
-  useCreateQuoteMutation
+  isUnderwritingLimitsHit,
+  isQuote
 } from "./createQuote";
-import { useApolloClient } from "@apollo/react-hooks";
 import { TApiContext } from "./ApiContext";
-
-const NOOP = () => {};
-const EMPTY_OBJECT: any = {}; // We can do better than this in types I think
-const NO_API = [NOOP, EMPTY_OBJECT];
-
-export const useApiComponent = (component: ApiComponent, store: any) => {
-  const client = useApolloClient();
-  const [getPi, piResult] = usePersonalInformationQuery(store);
-  const [cq, cqResult] = useCreateQuoteMutation(client, store);
-
-  if (isPersonalInformationApiComponent(component)) {
-    return [getPi, piResult];
-  }
-
-  if (isCreateQuoteApiComponent(component)) {
-    return [cq, cqResult];
-  }
-
-  return NO_API;
-};
 
 export const callApi = async (
   component: ApiComponent | undefined,
@@ -44,18 +23,47 @@ export const callApi = async (
       store.personalNumber
     );
     if (result instanceof Error) {
-      changePassage(component.data.error);
+      changePassage(component.data.error.name);
       return;
     }
     if (!result.personalInformation) {
-      changePassage(component.data.noMatch);
+      changePassage(component.data.noMatch.name);
       return;
     }
 
     Object.entries(result.personalInformation).forEach(([key, value]) =>
       setValue(key, value)
     );
+    changePassage(component.data.match.name);
     return;
+  }
+
+  if (isCreateQuoteApiComponent(component)) {
+    const result = await apiContext.createQuote({
+      input: {
+        firstName: store.firstName,
+        lastName: store.lastName,
+        currentInsurer: store.currentInsurer,
+        ssn: store.personalNumber
+      }
+    });
+
+    if (result instanceof Error) {
+      changePassage(component.data.error.name);
+      return;
+    }
+
+    if (isUnderwritingLimitsHit(result.createQuote)) {
+      // TODO: Maybe put the uwlimits information in the KV-store
+      changePassage(component.data.uwlimits.name);
+      return;
+    }
+
+    if (isQuote(result.createQuote)) {
+      // TODO: Maybe put some quote data in the KV-store
+      changePassage(component.data.success.name);
+      return;
+    }
   }
 };
 

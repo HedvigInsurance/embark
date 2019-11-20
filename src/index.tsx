@@ -10,10 +10,8 @@ import { parseStoryData } from "./parseStoryData";
 import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
 import { passes } from "./Utils/ExpressionsUtil";
-import { MockedProvider } from "@apollo/react-testing";
 
-import { mocks } from "./api-mocks";
-import { ApiContext, MockApiContext } from "./Components/API/ApiContext";
+import { MockApiContext } from "./Components/API/ApiContext";
 
 declare global {
   interface Window {

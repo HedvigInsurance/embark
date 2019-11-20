@@ -1,4 +1,3 @@
-import { MockedResponse } from "@apollo/react-testing";
 import personalInformationQuery from "./Components/API/personalInformation.graphql";
 import createQuoteMutation from "./Components/API/createQuote.graphql";
 import { ApartmentType, Data as CQData } from "./Components/API/createQuote";

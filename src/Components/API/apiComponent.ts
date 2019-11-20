@@ -13,6 +13,11 @@ export interface PersonalInformationApiComponent {
 
 export interface CreateQuoteApiComponent {
   component: "CreateQuoteApi";
+  data: {
+    uwlimits: Link;
+    success: Link;
+    error: Link;
+  };
 }
 
 export type ApiComponent =

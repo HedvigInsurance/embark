@@ -33,6 +33,7 @@ const Masked = wrapWithMask(BottomSpacedInput);
 export const TextAction: React.FunctionComponent<Props> = props => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const { store, setValue } = React.useContext(StoreContext);
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || "");
   const api = React.useContext(ApiContext);
@@ -41,6 +42,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     setValue(props.storeKey, unmaskValue(textValue, props.mask));
     setValue(`${props.passageName}Result`, textValue);
     if (props.api) {
+      setLoading(true);
       callApi(props.api, api, store, setValue, props.onContinue);
     } else {
       props.onContinue();
@@ -58,7 +60,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {loading || data ? (
+        {loading ? (
           <Loading />
         ) : (
           <>

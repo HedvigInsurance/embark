@@ -1,7 +1,10 @@
 import * as React from "react";
 import { Data as PData } from "./personalInformation";
 import { Variables as CQVariables, Data as CQData } from "./createQuote";
-import { personalInformationQueryMocks, createQuoteMocks } from "src/api-mocks";
+import {
+  personalInformationQueryMocks,
+  createQuoteMocks
+} from "../../api-mocks";
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
 
