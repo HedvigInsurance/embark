@@ -7,9 +7,9 @@ import { getCdnFontFaces } from "@hedviginsurance/brand";
 import { createHashHistory } from "history";
 
 import { parseStoryData } from "./parseStoryData";
-import { KeyValueStore, StoreContext } from "./Components/KeyValueStore";
+import { KeyValueStore } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
-import { goToHook } from "./Utils/ExpressionsUtil";
+import { useGoTo } from "./Utils/ExpressionsUtil";
 import { MockedProvider } from "@apollo/react-testing";
 
 import { mocks } from "./api-mocks";
@@ -90,7 +90,7 @@ const Root = () => {
   const passage = data.passages.filter(
     (passage: any) => passage.id == state.passageId
   )[0];
-  const goTo = goToHook(data.passages, targetPassageId => {
+  const goTo = useGoTo(data.passages, targetPassageId => {
     dispatch({
       type: "GO_TO",
       passageId: targetPassageId

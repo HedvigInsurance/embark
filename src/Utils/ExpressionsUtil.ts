@@ -33,7 +33,7 @@ export const passes = (store: any, expression: any) => {
   return false;
 };
 
-export const goToHook = (
+export const useGoTo = (
   data: any,
   onGoTo: (targetPassageId: string) => void
 ) => {
