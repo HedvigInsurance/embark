@@ -96,10 +96,12 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = props => {
           variants={{
             visible: {
               opacity: 1,
+              pointerEvents: "auto",
               y: "-105%"
             },
             hidden: {
               opacity: 0,
+              pointerEvents: "none",
               y: "-90%"
             }
           }}
