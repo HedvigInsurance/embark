@@ -1,6 +1,6 @@
 if (typeof window !== "undefined") {
   if (!window.requestIdleCallback) {
-    window.requestIdleCallback = require("requestidlecallback");
+    window.requestIdleCallback = require("requestidlecallback").request;
   }
 }
 

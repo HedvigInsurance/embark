@@ -24,7 +24,7 @@ declare global {
 }
 
 if (!window.requestIdleCallback) {
-  window.requestIdleCallback = require("requestidlecallback");
+  window.requestIdleCallback = require("requestidlecallback").request;
 }
 
 const scriptHost = document
