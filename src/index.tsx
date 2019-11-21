@@ -7,11 +7,10 @@ import { getCdnFontFaces } from "@hedviginsurance/brand";
 import { createHashHistory } from "history";
 
 import { parseStoryData } from "./parseStoryData";
-import { KeyValueStore } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
 import { useGoTo } from "./Utils/ExpressionsUtil";
-
-import { MockApiContext } from "./Components/API/ApiContext";
+import { EmbarkProvider } from "./Components/EmbarkProvider";
+import { mockApiResolvers } from "./Components/API/ApiContext";
 
 declare global {
   interface Window {
@@ -166,11 +165,9 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <MockApiContext>
-    <KeyValueStore>
-      <Root />
-    </KeyValueStore>
-  </MockApiContext>
+  <EmbarkProvider data={data} resolvers={mockApiResolvers}>
+    <Root />
+  </EmbarkProvider>
 );
 
 ReactDOM.render(<RootContainer />, document.getElementById("root"));
