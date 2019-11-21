@@ -1,5 +1,6 @@
 import personalInformationQuery from "./Components/API/personalInformation.graphql";
 import createQuoteMutation from "./Components/API/createQuote.graphql";
+import { Data as PData } from "./Components/API/personalInformation";
 import { ApartmentType, Data as CQData } from "./Components/API/createQuote";
 
 const AN_UUID = "6955dd62-4994-4677-a174-7eab9a9a7b92";
@@ -23,7 +24,7 @@ export const personalInformationQueryMocks = [
           city: "Tensta",
           postalNumber: "12345"
         }
-      }
+      } as PData
     },
     delay: 2000
   },
@@ -39,7 +40,7 @@ export const personalInformationQueryMocks = [
     result: {
       data: {
         personalInformation: null
-      }
+      } as PData
     },
     delay: 2000
   }

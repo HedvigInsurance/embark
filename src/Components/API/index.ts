@@ -10,9 +10,9 @@ import { TApiContext } from "./ApiContext";
 export const callApi = async (
   component: ApiComponent,
   apiContext: TApiContext,
-  store,
-  setValue,
-  changePassage
+  store: { [key: string]: any },
+  setValue: (key: string, value: any) => void,
+  changePassage: (name: string) => void
 ) => {
   if (isPersonalInformationApiComponent(component)) {
     const result = await apiContext.personalInformationApi(

@@ -2,7 +2,8 @@ import { ApiComponent, CreateQuoteApiComponent } from "./apiComponent";
 
 export const isCreateQuoteApiComponent = (
   t?: ApiComponent
-): t is CreateQuoteApiComponent => t && t.component === "CreateQuoteApi";
+): t is CreateQuoteApiComponent =>
+  (t && t.component === "CreateQuoteApi") || false;
 
 interface ExtraBuilding {
   type: ExtraBuildingType;
@@ -56,11 +57,12 @@ interface UnderwritingLimitsHit {
 type QuoteResult = Quote | UnderwritingLimitsHit;
 
 export const isQuote = (result?: QuoteResult): result is Quote =>
-  result && result.__typename === "Quote";
+  (result && result.__typename === "Quote") || false;
+
 export const isUnderwritingLimitsHit = (
   result?: QuoteResult
 ): result is UnderwritingLimitsHit =>
-  result && result.__typename === "UnderwritingLimitsHit";
+  (result && result.__typename === "UnderwritingLimitsHit") || false;
 
 export interface Data {
   createQuote: QuoteResult;

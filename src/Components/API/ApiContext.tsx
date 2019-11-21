@@ -6,7 +6,7 @@ import {
   createQuoteMocks
 } from "../../api-mocks";
 
-const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+const timeout = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export interface TApiContext {
   personalInformationApi: (personalNumber: string) => Promise<PData | Error>;
@@ -14,10 +14,10 @@ export interface TApiContext {
 }
 
 export const ApiContext = React.createContext<TApiContext>({
-  personalInformationApi: () => {
+  personalInformationApi: _ => {
     throw Error("Must provide an implementation for `personalInformationApi`");
   },
-  createQuote: () => {
+  createQuote: _ => {
     throw Error("Must provide an implementation for `createQuote`");
   }
 });
@@ -25,13 +25,13 @@ export const ApiContext = React.createContext<TApiContext>({
 export const MockApiContext: React.FunctionComponent = props => (
   <ApiContext.Provider
     value={{
-      personalInformationApi: async () => {
+      personalInformationApi: async _ => {
         await timeout(300);
-        return personalInformationQueryMocks[0].result.data;
+        return personalInformationQueryMocks[0].result.data as PData;
       },
-      createQuote: async () => {
+      createQuote: async _ => {
         await timeout(300);
-        return createQuoteMocks[0].result.data;
+        return createQuoteMocks[0].result.data as CQData;
       }
     }}
   >

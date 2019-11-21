@@ -22,7 +22,7 @@ export const SelectAction: React.FunctionComponent<
     return <Loading />;
   }
 
-  return props.action.data.options.map(option => (
+  return props.action.data.options.map((option: any) => (
     <SelectOption
       tooltip={option.tooltip}
       label={option.link.label}

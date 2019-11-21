@@ -12,7 +12,7 @@ export interface Data {
     streetAddress: string;
     city: string;
     postalNumber: string;
-  };
+  } | null;
 }
 
 export interface Variables {
