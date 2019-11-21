@@ -2,8 +2,10 @@ import React from "react";
 
 type KeyValueStoreProps = {};
 
+export type Store = { [key: string]: string };
+
 export const StoreContext = React.createContext<{
-  store: { [key: string]: any };
+  store: Store;
   setValue: (key: string, value: string) => void;
   removeValues: (key: string) => void;
 }>({
@@ -43,10 +45,10 @@ export const KeyValueStore = (props: React.Props<KeyValueStoreProps>) => {
     <StoreContext.Provider
       value={{
         store,
-        setValue: (key: string, value: string) => {
+        setValue: (key, value) => {
           dispatch({ type: "setValue", key, value });
         },
-        removeValues: (key: string) => {
+        removeValues: key => {
           dispatch({ type: "removeValues", key });
         }
       }}
