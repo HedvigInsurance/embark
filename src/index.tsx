@@ -7,9 +7,9 @@ import { getCdnFontFaces } from "@hedviginsurance/brand";
 import { createHashHistory } from "history";
 
 import { parseStoryData } from "./parseStoryData";
-import { KeyValueStore } from "./Components/KeyValueStore";
 import { Header } from "./Components/Header";
 import { useGoTo } from "./Utils/ExpressionsUtil";
+import { EmbarkProvider } from "./Components/EmbarkProvider";
 import { MockedProvider } from "@apollo/react-testing";
 
 import { mocks } from "./api-mocks";
@@ -168,9 +168,9 @@ const Root = () => {
 
 const RootContainer = () => (
   <MockedProvider mocks={mocks} addTypename={false}>
-    <KeyValueStore>
+    <EmbarkProvider data={data}>
       <Root />
-    </KeyValueStore>
+    </EmbarkProvider>
   </MockedProvider>
 );
 

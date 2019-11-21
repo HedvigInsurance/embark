@@ -477,6 +477,7 @@ export const parseStoryData = (storyData: any) => ({
   id: storyData.id,
   name: storyData.name,
   startPassage: storyData.startPassage,
+  keywords: storyData.keywords || {},
   passages: storyData.passages.map((passage: any) => {
     var containerElement = document.createElement("div");
     containerElement.innerHTML = passage.text;

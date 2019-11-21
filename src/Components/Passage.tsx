@@ -11,6 +11,7 @@ import { Questionmark } from "./Icons/Questionmark";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 import hexToRgba from "hex-to-rgba";
 import { Modal } from "./Modal";
+import { KeywordsContext } from "./KeywordsContext";
 
 interface PassageProps {
   passage: any;
@@ -150,6 +151,7 @@ export const Passage = (props: PassageProps) => {
     "visible"
   );
   const [isShowingHelp, setIsShowingHelp] = React.useState(false);
+  const { tooltipModalInformationLabel } = React.useContext(KeywordsContext);
 
   const shouldShowActions = !(
     isResponding || messagesAnimationState == "reverse"
@@ -288,7 +290,7 @@ export const Passage = (props: PassageProps) => {
           isVisible={isShowingHelp}
           onClose={() => setIsShowingHelp(false)}
         >
-          <HelpModalTitle>Information</HelpModalTitle>
+          <HelpModalTitle>{tooltipModalInformationLabel}</HelpModalTitle>
           {props.passage.tooltips.map((tooltip: any) => (
             <>
               <HelpModalSubtitle>{tooltip.title}</HelpModalSubtitle>

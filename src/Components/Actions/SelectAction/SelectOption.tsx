@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { fonts, colors } from "@hedviginsurance/brand";
 import { Tooltip } from "../../Tooltip";
+import { KeywordsContext } from "../../KeywordsContext";
 
 const Container = styled.button`
   display: inline-block;
@@ -77,6 +78,7 @@ type SelectOptionProps = {
 
 export const SelectOption = (props: SelectOptionProps) => {
   const [isHovering, setIsHovering] = React.useState(false);
+  const { selectActionSelectLabel } = React.useContext(KeywordsContext);
 
   return (
     <Container
@@ -87,7 +89,9 @@ export const SelectOption = (props: SelectOptionProps) => {
       {props.tooltip && <Tooltip tooltip={props.tooltip} />}
       <Content>
         <Label>{props.label}</Label>
-        <SelectLabel isHovering={isHovering}>Select</SelectLabel>
+        <SelectLabel isHovering={isHovering}>
+          {selectActionSelectLabel}
+        </SelectLabel>
       </Content>
     </Container>
   );
