@@ -10,9 +10,7 @@ import { parseStoryData } from "./parseStoryData";
 import { Header } from "./Components/Header";
 import { useGoTo } from "./Utils/ExpressionsUtil";
 import { EmbarkProvider } from "./Components/EmbarkProvider";
-import { MockedProvider } from "@apollo/react-testing";
-
-import { mocks } from "./api-mocks";
+import { mockApiResolvers } from "./Components/API/ApiContext";
 
 declare global {
   interface Window {
@@ -90,7 +88,7 @@ const Root = () => {
   const passage = data.passages.filter(
     (passage: any) => passage.id == state.passageId
   )[0];
-  const goTo = useGoTo(data.passages, targetPassageId => {
+  const goTo = useGoTo(data, targetPassageId => {
     dispatch({
       type: "GO_TO",
       passageId: targetPassageId
@@ -167,11 +165,9 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <MockedProvider mocks={mocks} addTypename={false}>
-    <EmbarkProvider data={data}>
-      <Root />
-    </EmbarkProvider>
-  </MockedProvider>
+  <EmbarkProvider data={data} resolvers={mockApiResolvers}>
+    <Root />
+  </EmbarkProvider>
 );
 
 ReactDOM.render(<RootContainer />, document.getElementById("root"));
