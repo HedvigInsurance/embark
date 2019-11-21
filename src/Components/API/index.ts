@@ -3,15 +3,19 @@ import { isPersonalInformationApiComponent } from "./personalInformation";
 import {
   isCreateQuoteApiComponent,
   isUnderwritingLimitsHit,
-  isQuote
+  isQuote,
+  Variables as CQVariables,
+  ApartmentType
 } from "./createQuote";
 import { TApiContext } from "./ApiContext";
+import { Store } from "../KeyValueStore";
+import { getMultiActionItems } from "../Actions/MultiAction/MultiAction";
 
 export const callApi = async (
   component: ApiComponent,
   apiContext: TApiContext,
-  store: { [key: string]: any },
-  setValue: (key: string, value: any) => void,
+  store: Store,
+  setValue: (key: string, value: string) => void,
   changePassage: (name: string) => void
 ) => {
   if (isPersonalInformationApiComponent(component)) {
@@ -35,14 +39,39 @@ export const callApi = async (
   }
 
   if (isCreateQuoteApiComponent(component)) {
-    const result = await apiContext.createQuote({
+    let variables: CQVariables = {
       input: {
         firstName: store.firstName,
         lastName: store.lastName,
-        currentInsurer: store.currentInsurer,
-        ssn: store.personalNumber
+        ssn: store.personalNumber,
+        currentInsurer: store.currentInsurer
       }
-    });
+    };
+
+    if (store.homeType === "apartment") {
+      variables.input.apartment = {
+        street: store.streetAddress,
+        zipCode: store.postalNumber,
+        householdSize: Number(store.householdSize),
+        livingSpace: Number(store.livingSpace),
+        type: store.apartmentType as ApartmentType
+      };
+    }
+
+    if (store.homeType === "house") {
+      variables.input.house = {
+        street: store.streetAddress,
+        zipCode: store.postalNumber,
+        householdSize: Number(store.householdSize),
+        livingSpace: Number(store.livingSpace),
+        ancillarySpace: Number(store.ancillarySpace),
+        extraBuildings: Object.values(
+          getMultiActionItems(store, "extraBuildings")
+        ) as any
+      };
+    }
+
+    const result = await apiContext.createQuote(variables);
 
     if (result instanceof Error) {
       changePassage(component.data.error.name);

@@ -4,7 +4,7 @@ import uuid from "uuid";
 import { Flipper } from "react-flip-toolkit";
 
 import { ContinueButton } from "../../ContinueButton";
-import { StoreContext } from "../../KeyValueStore";
+import { StoreContext, Store } from "../../KeyValueStore";
 import { MultiActionAddButton } from "./MultiActionAddButton";
 import { MultiActionCard } from "./MultiActionCard";
 
@@ -38,6 +38,27 @@ const MultiActionBase = styled.div`
 const ButtonSpacer = styled.div`
   height: 20px;
 `;
+
+export const getMultiActionItems = (store: Store, key: string) =>
+  Object.keys(store)
+    .filter(storeKey => storeKey.includes(key))
+    .reduce<{ [key: string]: any }>((acc, storeKey) => {
+      const matches = new RegExp(/\[([0-9]+)\]([a-zA-Z]+)/g).exec(
+        storeKey.replace(key, "")
+      );
+
+      if (!matches) {
+        return acc;
+      }
+
+      const index = matches[1];
+      const dataKey = matches[2];
+
+      return {
+        ...acc,
+        [index]: { ...(acc[index] ? acc[index] : {}), [dataKey]: store[key] }
+      };
+    }, {});
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -80,25 +101,7 @@ export const MultiAction = (props: MultiActionProps) => {
   const [state, dispatch] = React.useReducer(reducer, { items: [] });
 
   React.useEffect(() => {
-    const storedItems = Object.keys(store)
-      .filter(key => key.includes(props.action.data.key))
-      .reduce<{ [key: string]: any }>((acc, key) => {
-        const matches = new RegExp(/\[([0-9]+)\]([a-zA-Z]+)/g).exec(
-          key.replace(props.action.data.key, "")
-        );
-
-        if (!matches) {
-          return acc;
-        }
-
-        const index = matches[1];
-        const dataKey = matches[2];
-
-        return {
-          ...acc,
-          [index]: { ...(acc[index] ? acc[index] : {}), [dataKey]: store[key] }
-        };
-      }, {});
+    const storedItems = getMultiActionItems(store, props.action.data.key);
 
     const items = Object.keys(storedItems).map(key =>
       createItem(parseInt(key), storedItems[key])
