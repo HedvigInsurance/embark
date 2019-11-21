@@ -215,7 +215,7 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
 
 const getTextActionSet = (textActionSetNode: Element) => {
   const next = textActionSetNode.getAttribute("next");
-  const links = parseLinks(next);
+  const links = parseLinks(next || "");
 
   const textActions = Array.from(
     textActionSetNode.getElementsByTagName("textaction")
@@ -470,19 +470,46 @@ const parseApi = (element: Element) => {
     };
   }
 
+  const houseInformationApi = element.getElementsByTagName(
+    "houseinformationapi"
+  )[0];
+
+  if (houseInformationApi) {
+    const match = houseInformationApi.getAttribute("match");
+    const noMatch = houseInformationApi.getAttribute("noMatch");
+    const error = houseInformationApi.getAttribute("error");
+
+    const matchLinks = parseLinks(match || "");
+    const noMatchLinks = parseLinks(noMatch || "");
+    const errorLinks = parseLinks(error || "");
+
+    return {
+      component: "HouseInformationApi",
+      data: {
+        match: matchLinks && matchLinks[0],
+        noMatch: noMatchLinks && noMatchLinks[0],
+        error: errorLinks && errorLinks[0]
+      }
+    };
+  }
+
   const createQuoteApi = element.getElementsByTagName("createquoteapi")[0];
 
   if (createQuoteApi) {
-    const uwlimits = createQuoteApi.attributes["uwlimits"].value;
-    const success = createQuoteApi.attributes["success"].value;
-    const error = createQuoteApi.attributes["error"].value;
+    const uwlimits = createQuoteApi.getAttribute("uwlimits");
+    const success = createQuoteApi.getAttribute("success");
+    const error = createQuoteApi.getAttribute("error");
+
+    const uwlimitsLinks = parseLinks(uwlimits || "");
+    const successLinks = parseLinks(success || "");
+    const errorLinks = parseLinks(error || "");
 
     return {
       component: "CreateQuoteApi",
       data: {
-        uwlimits: parseLinks(uwlimits)[0],
-        success: parseLinks(success)[0],
-        error: parseLinks(error)[0]
+        uwlimits: uwlimitsLinks && uwlimitsLinks[0],
+        success: successLinks && successLinks[0],
+        error: errorLinks && errorLinks[0]
       }
     };
   }
