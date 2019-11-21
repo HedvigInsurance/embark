@@ -1,93 +1,62 @@
-import personalInformationQuery from "./personalInformation.graphql";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { ApiComponent } from "./apiComponent";
+import { isPersonalInformationApiComponent } from "./personalInformation";
+import {
+  isCreateQuoteApiComponent,
+  isUnderwritingLimitsHit,
+  isQuote
+} from "./createQuote";
+import { TApiContext } from "./ApiContext";
 
-interface Link {
-  name: string;
-}
-
-interface PersonalInformationApiComponent {
-  component: "PersonalInformationApi";
-  data: {
-    match: Link;
-    noMatch: Link;
-    error: Link;
-  };
-}
-
-export type ApiComponent = PersonalInformationApiComponent | undefined;
-
-interface MaskedPersonalInformationItem {
-  id: string;
-  display: string;
-}
-
-interface PIData {
-  personalInformation: {
-    firstName: MaskedPersonalInformationItem;
-    lastName: MaskedPersonalInformationItem;
-    streetAddress: MaskedPersonalInformationItem;
-    city: MaskedPersonalInformationItem;
-    postalNumber: MaskedPersonalInformationItem;
-  };
-}
-
-interface PIVariables {
-  input: {
-    personalNumber: string;
-  };
-}
-
-const NOOP = () => {};
-const EMPTY_OBJECT: any = {}; // We can do better than this in types I think
-const NO_API = [NOOP, EMPTY_OBJECT];
-
-const isPersonalInformationApiComponent = (
-  t?: ApiComponent
-): t is PersonalInformationApiComponent =>
-  (t && t.component === "PersonalInformationApi") || false;
-
-export const useApiComponent = (component: ApiComponent, store: any) => {
-  const [getPi, piResult] = useLazyQuery<PIData, PIVariables>(
-    personalInformationQuery,
-    {
-      variables: {
-        input: {
-          personalNumber: store.personalNumber
-        }
-      },
-      fetchPolicy: "no-cache"
-    }
-  );
-
-  if (isPersonalInformationApiComponent(component)) {
-    return [getPi, piResult];
-  }
-
-  return NO_API;
-};
-
-export const handleErrorOrData = (
+export const callApi = async (
   component: ApiComponent,
-  error: Error,
-  data: any,
-  setValue: any,
-  changePassage: any
+  apiContext: TApiContext,
+  store,
+  setValue,
+  changePassage
 ) => {
   if (isPersonalInformationApiComponent(component)) {
-    if (error) {
-      console.error("got error:", error);
+    const result = await apiContext.personalInformationApi(
+      store.personalNumber
+    );
+    if (result instanceof Error) {
       changePassage(component.data.error.name);
+      return;
+    }
+    if (!result.personalInformation) {
+      changePassage(component.data.noMatch.name);
+      return;
     }
 
-    if (data) {
-      if (data.personalInformation) {
-        Object.entries(data.personalInformation).forEach(([key, value]) =>
-          setValue(key, value)
-        );
-        changePassage(component.data.match.name);
-      } else {
-        changePassage(component.data.noMatch.name);
+    Object.entries(result.personalInformation).forEach(([key, value]) =>
+      setValue(key, value)
+    );
+    changePassage(component.data.match.name);
+    return;
+  }
+
+  if (isCreateQuoteApiComponent(component)) {
+    const result = await apiContext.createQuote({
+      input: {
+        firstName: store.firstName,
+        lastName: store.lastName,
+        currentInsurer: store.currentInsurer,
+        ssn: store.personalNumber
       }
+    });
+
+    if (result instanceof Error) {
+      changePassage(component.data.error.name);
+      return;
+    }
+
+    if (isUnderwritingLimitsHit(result.createQuote)) {
+      changePassage(component.data.uwlimits.name);
+      return;
+    }
+
+    if (isQuote(result.createQuote)) {
+      changePassage(component.data.success.name);
+      return;
     }
   }
 };

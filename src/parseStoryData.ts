@@ -60,21 +60,21 @@ const getSelectAction = (actionNode: Element | undefined) => {
 
     const tooltips = parseTooltips(option);
 
+    const api = parseApi(actionNode);
+
     return {
       key,
       value,
       link: links && links[0],
-      tooltip: tooltips[0] ? tooltips[0] : null
+      tooltip: tooltips[0] ? tooltips[0] : null,
+      api
     };
   });
-
-  const api = parseApi(actionNode);
 
   return {
     component: "SelectAction",
     data: {
-      options: actionNodeOptions,
-      api
+      options: actionNodeOptions
     }
   };
 };
@@ -466,6 +466,23 @@ const parseApi = (element: Element) => {
         match: matchLinks && matchLinks[0],
         noMatch: noMatchLinks && noMatchLinks[0],
         error: errorLinks && errorLinks[0]
+      }
+    };
+  }
+
+  const createQuoteApi = element.getElementsByTagName("createquoteapi")[0];
+
+  if (createQuoteApi) {
+    const uwlimits = createQuoteApi.attributes["uwlimits"].value;
+    const success = createQuoteApi.attributes["success"].value;
+    const error = createQuoteApi.attributes["error"].value;
+
+    return {
+      component: "CreateQuoteApi",
+      data: {
+        uwlimits: parseLinks(uwlimits)[0],
+        success: parseLinks(success)[0],
+        error: parseLinks(error)[0]
       }
     };
   }
