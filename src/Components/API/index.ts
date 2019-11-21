@@ -10,6 +10,7 @@ import {
 import { TApiContext } from "./ApiContext";
 import { Store } from "../KeyValueStore";
 import { getMultiActionItems } from "../Actions/MultiAction/MultiAction";
+import { isHouseInformationComponent } from "./houseInformation";
 
 export const callApi = async (
   component: ApiComponent,
@@ -33,6 +34,31 @@ export const callApi = async (
 
     Object.entries(result.personalInformation).forEach(([key, value]) =>
       setValue(key, value)
+    );
+    changePassage(component.data.match.name);
+    return;
+  }
+
+  if (isHouseInformationComponent(component)) {
+    const result = await apiContext.houseInformation({
+      input: {
+        streetAddress: store.streetAddress,
+        postalNumber: store.postalNumber
+      }
+    });
+
+    if (result instanceof Error) {
+      changePassage(component.data.error.name);
+      return;
+    }
+
+    if (!result.houseInformation) {
+      changePassage(component.data.noMatch.name);
+      return;
+    }
+
+    Object.entries(result.houseInformation).forEach(([key, value]) =>
+      setValue(key, String(value))
     );
     changePassage(component.data.match.name);
     return;

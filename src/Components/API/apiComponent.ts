@@ -20,7 +20,17 @@ export interface CreateQuoteApiComponent {
   };
 }
 
+export interface HouseInformationApiComponent {
+  component: "HouseInformationApi";
+  data: {
+    match: Link;
+    noMatch: Link;
+    error: Link;
+  };
+}
+
 export type ApiComponent =
   | PersonalInformationApiComponent
   | CreateQuoteApiComponent
+  | HouseInformationApiComponent
   | undefined;

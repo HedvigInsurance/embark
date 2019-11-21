@@ -2,6 +2,7 @@ import personalInformationQuery from "./Components/API/personalInformation.graph
 import createQuoteMutation from "./Components/API/createQuote.graphql";
 import { Data as PData } from "./Components/API/personalInformation";
 import { ApartmentType, Data as CQData } from "./Components/API/createQuote";
+import { Data as HData } from "./Components/API/houseInformation";
 
 const AN_UUID = "6955dd62-4994-4677-a174-7eab9a9a7b92";
 
@@ -43,6 +44,16 @@ export const personalInformationQueryMocks = [
       } as PData
     },
     delay: 2000
+  }
+];
+
+export const houseInformationMocks: [HData] = [
+  {
+    houseInformation: {
+      livingSpace: 100,
+      ancillaryArea: 20,
+      yearOfConstruction: 2012
+    }
   }
 ];
 
