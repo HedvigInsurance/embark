@@ -1,7 +1,7 @@
 {
   "id": "-138507342",
   "ifid": "83ED6670-FEA2-46CB-AAA9-7B10EF027D32",
-  "lastUpdate": "2019-11-20T12:55:06.434Z",
+  "lastUpdate": "2019-11-21T11:11:18.690Z",
   "name": "Web Onboarding - Swedish Switcher",
   "passages": [
     {
@@ -297,7 +297,7 @@
       "id": "-963600991",
       "left": 1050,
       "name": "MovingSwitcher",
-      "selected": true,
+      "selected": false,
       "story": "-138507342",
       "tags": [],
       "text": "<Message>\n  Hej! Låt oss jämföra Hedvig med försäkringen du har idag\n</Message>\n\n<Message>\n  Vill du ha ett förslag för din nuvarande bostad eller ska du flytta?\n</Message>\n\n<SelectAction>\n  <Option key=\"IsMover\"\n          value=\"false\"\n  >\n    [[Min nuvarande bostad->Recidency]]\n    <Tooltip>\n      <Title>\n        Nuvarande bostad\n      </Title>\n      <Description>\n        Det gäller en bostad du redan bor i och har en hemförsäkring för\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"IsMover\"\n          value=\"true\"\n  >\n    [[Jag ska flytta->AddressMover]]\n    <Tooltip>\n      <Title>\n        Ska flytta\n      </Title>\n      <Description>\n        Det gäller en bostad du redan har flyttat in i eller ska flytta in i och som du ännu inte har en hemförsäkring för\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
@@ -372,5 +372,9 @@
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {},
-  "zoom": 1
+  "zoom": 1,
+  "keywords": {
+    "selectActionSelectLabel": "Välj",
+    "tooltipModalInformationLabel": "Information"
+  }
 }
