@@ -1,7 +1,7 @@
 {
   "id": "1180341409",
   "ifid": "030C12E5-CA06-444F-B65C-0C29E1E0186E",
-  "lastUpdate": "2019-11-20T12:48:34.549Z",
+  "lastUpdate": "2019-11-21T11:10:29.627Z",
   "name": "Web Onboarding - Swedish Needer",
   "passages": [
     {
@@ -405,7 +405,7 @@
       "id": "1850888771",
       "left": 1225,
       "name": "ErrorCoInsuredVillaRent",
-      "selected": true,
+      "selected": false,
       "story": "1180341409",
       "tags": [
         "Error"
@@ -424,5 +424,9 @@
   "tagColors": {
     "Error": "red"
   },
-  "zoom": 1
+  "zoom": 1,
+  "keywords": {
+    "selectActionSelectLabel": "Välj",
+    "tooltipModalInformationLabel": "Information"
+  }
 }
