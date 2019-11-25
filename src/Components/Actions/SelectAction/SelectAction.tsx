@@ -16,10 +16,6 @@ const Container = styled.div`
   display: flex;
   flex-flow: wrap;
   width: 100%;
-
-  @media all and (max-width: 1100px) {
-    justify-content: center;
-  }
 `;
 
 export const SelectAction: React.FunctionComponent<

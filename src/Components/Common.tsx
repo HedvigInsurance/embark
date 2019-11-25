@@ -68,8 +68,11 @@ export const MessageBody = styled.p<MessageBodyProps>`
   color: ${(props: MessageBodyProps) =>
     props.isResponse ? colors.WHITE : colors.BLACK};
   max-width: 300px;
-  padding: 15px;
+  padding: 22px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   border-radius: 27px;
   font-family: ${fonts.CIRCULAR};
   line-height: 25px;
+  font-size: 16px;
 `;

@@ -32,8 +32,8 @@ const Container = styled.button`
 
   @media all and (max-width: 1100px) {
     flex: 0 0 48%;
-    height: 140px;
     margin: 1%;
+    padding: 15px;
   }
 `;
 
@@ -41,6 +41,10 @@ const Label = styled.span`
   font-family: ${fonts.CIRCULAR};
   font-size: 18px;
   font-weight: 800;
+
+  @media all and (max-width: 800px) {
+    font-size: 16px;
+  }
 `;
 
 const Content = styled.div`
@@ -65,6 +69,11 @@ const SelectLabel = styled.span<SelectLabelProps>`
   font-weight: 400;
   color: ${colors.OFF_BLACK};
   transition: all 350ms;
+
+  @media all and (max-width: 800px) {
+    font-size: 10px;
+  }
+
   ${(props: SelectLabelProps) =>
     props.isHovering &&
     `
