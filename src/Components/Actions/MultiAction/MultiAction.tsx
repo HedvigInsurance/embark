@@ -56,7 +56,10 @@ export const getMultiActionItems = (store: Store, key: string) =>
 
       return {
         ...acc,
-        [index]: { ...(acc[index] ? acc[index] : {}), [dataKey]: store[key] }
+        [index]: {
+          ...(acc[index] ? acc[index] : {}),
+          [dataKey]: store[storeKey]
+        }
       };
     }, {});
 
@@ -93,7 +96,7 @@ export const MultiAction = (props: MultiActionProps) => {
       index,
       id: uuid.v1(),
       components: props.action.data.components,
-      values: values
+      values: values || {}
     };
   };
 
@@ -141,6 +144,7 @@ export const MultiAction = (props: MultiActionProps) => {
           {state.items.map((item: any) => {
             return (
               <MultiActionCard
+                key={item.id}
                 action={props.action}
                 item={item}
                 removeItem={() => dispatch({ type: "removeItem", id: item.id })}
