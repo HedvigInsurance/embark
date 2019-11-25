@@ -1,6 +1,7 @@
 import { passes } from "../Utils/ExpressionsUtil";
 import * as React from "react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import { colors, fonts } from "@hedviginsurance/brand";
 
 export interface ExpressionTextNode {
@@ -76,3 +77,37 @@ export const MessageBody = styled.p<MessageBodyProps>`
   line-height: 25px;
   font-size: 16px;
 `;
+
+interface MessageAnimationProps {
+  key: string;
+}
+
+export const MessageAnimation: React.FunctionComponent<
+  MessageAnimationProps
+> = props => (
+  <motion.li
+    key={props.key}
+    variants={{
+      visible: {
+        opacity: 1,
+        y: 0,
+        rotate: 0
+      },
+      hidden: {
+        opacity: 0,
+        y: 40,
+        rotate: 1
+      }
+    }}
+    transition={{
+      type: "spring",
+      stiffness: 260,
+      damping: 100
+    }}
+    style={{
+      transformOrigin: "0% 0%"
+    }}
+  >
+    {props.children}
+  </motion.li>
+);
