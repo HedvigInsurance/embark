@@ -35,7 +35,7 @@ const componentForItem = (props: MultiActionCardProps) =>
     })
     .map((component: { component: string; data: any }, index: number) => {
       if (component.component == "Divider") {
-        return <Divider />;
+        return <Divider key={index} />;
       }
 
       if (component.component == "SwitchAction") {
@@ -92,7 +92,7 @@ export const MultiActionCard = (props: MultiActionCardProps) => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ ease: "easeOut", delay: 0.3 }}
         >
-          {componentForItem(props.item)}
+          {componentForItem(props)}
         </CardContents>
       </Card>
     </CardContainer>
