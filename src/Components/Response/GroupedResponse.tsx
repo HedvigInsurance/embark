@@ -1,9 +1,11 @@
 import * as React from "react";
+import { motion } from "framer-motion";
 import {
   ExpressionTextNode,
   getTextContent,
   replacePlaceholders,
-  MessageBody
+  MessageBody,
+  MessageAnimation
 } from "../Common";
 import { StoreContext } from "../KeyValueStore";
 import styled from "@emotion/styled";
@@ -36,17 +38,19 @@ export const GroupedResponse: React.FunctionComponent<Props> = props => {
   const { store } = React.useContext(StoreContext);
 
   return (
-    <MessageBody isResponse={true}>
-      <Title>
-        {replacePlaceholders(store, getTextContent(store, props.title))}
-      </Title>
-      <ItemContainer>
-        {props.items.map(item => (
-          <Item key={item.text}>
-            {replacePlaceholders(store, getTextContent(store, item))}
-          </Item>
-        ))}
-      </ItemContainer>
-    </MessageBody>
+    <MessageAnimation>
+      <MessageBody isResponse={true}>
+        <Title>
+          {replacePlaceholders(store, getTextContent(store, props.title))}
+        </Title>
+        <ItemContainer>
+          {props.items.map(item => (
+            <Item key={item.text}>
+              {replacePlaceholders(store, getTextContent(store, item))}
+            </Item>
+          ))}
+        </ItemContainer>
+      </MessageBody>
+    </MessageAnimation>
   );
 };
