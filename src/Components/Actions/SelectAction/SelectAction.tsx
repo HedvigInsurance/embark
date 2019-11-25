@@ -16,6 +16,7 @@ const Container = styled.div`
   display: flex;
   flex-flow: wrap;
   width: 100%;
+  justify-content: center;
 `;
 
 export const SelectAction: React.FunctionComponent<

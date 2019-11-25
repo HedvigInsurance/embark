@@ -36,6 +36,10 @@ const ChatPadding = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  @media all and (max-width: 1300px) {
+    padding: 10vh 5vw;
+  }
+
   @media all and (max-width: 700px) {
     padding: 20px;
   }

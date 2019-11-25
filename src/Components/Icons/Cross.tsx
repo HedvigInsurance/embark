@@ -1,33 +1,54 @@
 import * as React from "react";
 
 export const Cross = () => (
-  <g
-    id="Component-Sheet"
-    stroke="none"
-    stroke-width="1"
-    fill="none"
-    fill-rule="evenodd"
-  >
-    <g
-      id="Web-Onboarding-#Components-#Mobile"
-      transform="translate(-318.000000, -1624.000000)"
-      fill="#FFFFFF"
-      fill-rule="nonzero"
-    >
-      <g
-        id="Desktop/Add-Building"
-        filter="url(#filter-1)"
-        transform="translate(102.000000, 1620.000000)"
+  <svg viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter
+        x="-16.8%"
+        y="-17.8%"
+        width="133.6%"
+        height="135.7%"
+        filterUnits="objectBoundingBox"
+        id="filter-1"
       >
-        <g id="Desktop/Option">
-          <g id="Close" transform="translate(221.000000, 0.000000)">
-            <path
-              d="M15.4021971,13.5 L18.7310421,16.828845 C19.2563193,17.3541222 19.2563193,18.2057648 18.7310421,18.7310421 C18.2057648,19.2563193 17.3541222,19.2563193 16.828845,18.7310421 L13.5,15.4021971 L10.171155,18.7310421 C9.64587781,19.2563193 8.79423515,19.2563193 8.26895792,18.7310421 C7.74368069,18.2057648 7.74368069,17.3541222 8.26895792,16.828845 L11.5978029,13.5 L8.26895792,10.171155 C7.74368069,9.64587781 7.74368069,8.79423515 8.26895792,8.26895792 C8.79423515,7.74368069 9.64587781,7.74368069 10.171155,8.26895792 L13.5,11.5978029 L16.828845,8.26895792 C17.3541222,7.74368069 18.2057648,7.74368069 18.7310421,8.26895792 C19.2563193,8.79423515 19.2563193,9.64587781 18.7310421,10.171155 L15.4021971,13.5 Z"
-              id="Path"
-            />
+        <feOffset dx="0" dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
+        <feGaussianBlur
+          stdDeviation="6.5"
+          in="shadowOffsetOuter1"
+          result="shadowBlurOuter1"
+        />
+        <feColorMatrix
+          values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.174579327 0"
+          type="matrix"
+          in="shadowBlurOuter1"
+          result="shadowMatrixOuter1"
+        />
+        <feMerge>
+          <feMergeNode in="shadowMatrixOuter1" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <g
+        transform="translate(-330.000000, -1627.000000)"
+        fill="#FFFFFF"
+        fillRule="nonzero"
+      >
+        <g
+          filter="url(#filter-1)"
+          transform="translate(102.000000, 1627.000000)"
+        >
+          <g>
+            <g transform="translate(228.000000, 0.000000)">
+              <path
+                d="M8.52719712,6.625 L11.8560421,9.95384496 C12.3813193,10.4791222 12.3813193,11.3307648 11.8560421,11.8560421 C11.3307648,12.3813193 10.4791222,12.3813193 9.95384496,11.8560421 L6.625,8.52719712 L3.29615504,11.8560421 C2.77087781,12.3813193 1.91923515,12.3813193 1.39395792,11.8560421 C0.868680692,11.3307648 0.868680692,10.4791222 1.39395792,9.95384496 L4.72280288,6.625 L1.39395792,3.29615504 C0.868680692,2.77087781 0.868680692,1.91923515 1.39395792,1.39395792 C1.91923515,0.868680692 2.77087781,0.868680692 3.29615504,1.39395792 L6.625,4.72280288 L9.95384496,1.39395792 C10.4791222,0.868680692 11.3307648,0.868680692 11.8560421,1.39395792 C12.3813193,1.91923515 12.3813193,2.77087781 11.8560421,3.29615504 L8.52719712,6.625 Z"
+                id="Path"
+              />
+            </g>
           </g>
         </g>
       </g>
     </g>
-  </g>
+  </svg>
 );

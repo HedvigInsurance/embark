@@ -31,19 +31,19 @@ const Background = styled(motion.div)`
   background-color: ${hexToRgba(colorsV2.white, 0.75)};
 `;
 
-const Container = styled(motion.div)`
-  position: relative;
-  width: 500px;
-  padding: 24px;
-  max-width: calc(100% - 32px);
-  min-height: 400px;
-  height: calc(100vh - 32px);
-  background: ${colorsV2.white};
-  border-radius: 9px;
+const Position = styled(motion.div)`
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  width: 500px;
+  max-width: calc(100% - 32px);
+`;
+
+const Container = styled(motion.div)`
+  position: relative;
+  padding: 24px;
+  background: ${colorsV2.white};
+  border-radius: 9px;
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
   overflow-x: scroll;
@@ -62,6 +62,8 @@ const CloseButton = styled.button`
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  text-align: center;
+  transition: background-color 250ms;
 
   :focus {
     outline: none;
@@ -72,9 +74,10 @@ const CloseButton = styled.button`
   }
 
   svg {
-    width: 100%;
-    height: 100%;
+    width: 40%;
+    height: 40%;
     fill: ${colorsV2.white};
+    transform: translateX(75%);
   }
 `;
 
@@ -124,8 +127,7 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
           }
         }}
       >
-        <Container
-          ref={containerRef}
+        <Position
           initial={"hidden"}
           animate={props.isVisible ? "visible" : "hidden"}
           transition={{
@@ -150,11 +152,23 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
             }
           }}
         >
-          {props.children}
-          <CloseButton onClick={() => props.onClose()}>
-            <Cross />
-          </CloseButton>
-        </Container>
+          <Container
+            drag="y"
+            dragElastic={0.2}
+            dragTransition={{ min: 0, max: 0 }}
+            ref={containerRef}
+            onDragEnd={(event, info) => {
+              if (info.point.y > 20) {
+                props.onClose();
+              }
+            }}
+          >
+            {props.children}
+            <CloseButton onClick={() => props.onClose()}>
+              <Cross />
+            </CloseButton>
+          </Container>
+        </Position>
       </Background>
     </Wrapper>
   );
