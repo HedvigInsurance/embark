@@ -4,7 +4,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
-import { MaskType, wrapWithMask, unmaskValue } from "./masking";
+import { MaskType, wrapWithMask, unmaskValue, isValid } from "./masking";
 import { callApi } from "../API";
 import { Loading } from "../API/Loading";
 import { ApiContext } from "../API/ApiContext";
@@ -91,7 +91,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
       <Spacer />
       <ContinueButton
         onClick={onContinue}
-        disabled={textValue.length == 0}
+        disabled={textValue.length === 0 || !isValid(props.mask, textValue)}
         text={(props.link && props.link.label) || "Nästa"}
       />
     </Container>
