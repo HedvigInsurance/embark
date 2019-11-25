@@ -22,11 +22,34 @@ type NumberActionProps = {
   unit: string;
   link: any;
   mask?: MaskType;
+  maxValue?: number;
+  minValue?: number;
   tooltip?: {
     title: string;
     description: string;
   };
   onContinue: () => void;
+};
+
+const isWithinBounds = (
+  value: string,
+  minValue: number | undefined,
+  maxValue: number | undefined
+): boolean => {
+  const asNumber = Number(value);
+  if (asNumber === NaN) {
+    return false;
+  }
+
+  if (minValue && asNumber < minValue) {
+    return false;
+  }
+
+  if (maxValue && asNumber > maxValue) {
+    return false;
+  }
+
+  return true;
 };
 
 export const NumberAction = (props: NumberActionProps) => {
@@ -71,7 +94,10 @@ export const NumberAction = (props: NumberActionProps) => {
       <Spacer />
       <ContinueButton
         onClick={onContinue}
-        disabled={textValue.length == 0}
+        disabled={
+          textValue.length === 0 ||
+          !isWithinBounds(textValue, props.minValue, props.maxValue)
+        }
         text={props.link.label}
       />
     </Container>

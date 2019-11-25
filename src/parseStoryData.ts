@@ -85,6 +85,8 @@ const getNumberAction = (numberActionNode: Element) => {
   const key = numberActionNode.getAttribute("key");
   const unit = numberActionNode.getAttribute("unit") || "";
   const mask = numberActionNode.getAttribute("mask");
+  const minValue = numberActionNode.getAttribute("minvalue");
+  const maxValue = numberActionNode.getAttribute("maxvalue");
 
   const links = parseLinks(next);
   const tooltip = parseTooltips(numberActionNode)[0];
@@ -97,6 +99,8 @@ const getNumberAction = (numberActionNode: Element) => {
       key,
       unit,
       api,
+      minValue,
+      maxValue,
       ...(links && { link: links[0] }),
       mask,
       ...(tooltip && { tooltip })
