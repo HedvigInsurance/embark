@@ -23,8 +23,8 @@ interface PassageProps {
 
 const ChatContainer = styled.div`
   display: flex;
-  height: calc(100vh - 80px);
-  overflow: hidden;
+  height: calc(100% - 80px);
+  overflow: scroll;
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -60,7 +60,7 @@ const HelpButtonWrapper = styled.div`
   justifycontent: center;
   margin-top: 20px;
   display: none;
-  @media (max-width: 550px) {
+  @media (max-width: 768px) {
     display: flex;
   }
 `;
