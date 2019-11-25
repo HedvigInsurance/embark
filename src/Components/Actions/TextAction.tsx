@@ -41,7 +41,13 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     setValue(`${props.passageName}Result`, textValue);
     if (props.api) {
       setLoading(true);
-      callApi(props.api, api, store, setValue, props.onContinue);
+      callApi(
+        props.api,
+        api,
+        { ...store, [props.storeKey]: unmaskValue(textValue, props.mask) },
+        setValue,
+        props.onContinue
+      );
     } else {
       props.onContinue();
     }
