@@ -129,6 +129,10 @@ const Root = () => {
 	                  -moz-osx-font-smoothing: grayscale;
                 }
 
+                #root {
+                  height: 100%;
+                }
+
                 ul, li {
                     list-style-type: none;
                 }

@@ -69,6 +69,8 @@ export const Action = (props: ActionProps) => {
         link={props.action.data.link}
         placeholder={props.action.data.placeholder}
         unit={props.action.data.unit}
+        minValue={props.action.data.minValue}
+        maxValue={props.action.data.maxValue}
         onContinue={() => props.changePassage(props.action.data.link.name)}
       />
     );
