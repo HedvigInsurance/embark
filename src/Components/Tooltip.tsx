@@ -32,7 +32,7 @@ const TooltipIcon = styled(motion.div)`
     margin: 0 auto;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

@@ -60,7 +60,7 @@ const HelpButtonWrapper = styled.div`
   justifycontent: center;
   margin-top: 20px;
   display: none;
-  @media (max-width: 550px) {
+  @media (max-width: 768px) {
     display: flex;
   }
 `;

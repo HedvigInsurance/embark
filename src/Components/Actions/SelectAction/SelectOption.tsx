@@ -9,7 +9,7 @@ const Container = styled.button`
   position: relative;
   text-align: center;
   background: ${colors.WHITE};
-  padding: 20px;
+  padding: 22px;
   margin: 10px;
   -webkit-appearance: none;
   border: 0;
@@ -28,6 +28,12 @@ const Container = styled.button`
 
   :active {
     transform: translateY(-1.5px);
+  }
+
+  @media all and (max-width: 1100px) {
+    flex: 0 0 48%;
+    height: 140px;
+    margin: 1%;
   }
 `;
 
