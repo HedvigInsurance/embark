@@ -24,26 +24,27 @@ export const Card = styled.form<Focusable>`
 `;
 
 export const Input = styled.input`
-    margin-left: 16px;
-    margin-right: 16px;
-    margin-top: 24px;
-    font-size: 56px;
-    line-height: 1;
-    font-family: ${fonts.CIRCULAR}
-    background: none;
-    border: none;
-    box-sizing: border-box;
-    text-align: center;
-    margin-top: 16px;
-    color: ${colorsV2.black};
-    font-weight: 500;
-    outline: 0;
-    ${props => `width: ${(props.size || 0) / 1.5}em;`}
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 24px;
+  font-size: 56px;
+  line-height: 1;
+  font-family: ${fonts.CIRCULAR};
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 16px;
+  color: ${colorsV2.black};
+  font-weight: 500;
+  outline: 0;
+  ${props => `width: ${(props.size || 0) / 1.5}em;`}
 
-    ::placeholder {
-      color: ${colorsV2.lightgray};
-    }
-
+  ::placeholder {
+    color: ${colorsV2.lightgray};
+    font-family: ${fonts.CIRCULAR};
+    font-size: 50px;
+  }
 `;
 
 export const Container = styled.div`

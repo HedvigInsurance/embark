@@ -102,10 +102,10 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
       animate={props.isVisible ? "visible" : "hidden"}
       variants={{
         visible: {
-          visibility: "visible"
+          display: "block"
         },
         hidden: {
-          visibility: "hidden",
+          display: "none",
           transition: {
             delay: 0.5
           }
