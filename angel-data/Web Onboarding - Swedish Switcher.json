@@ -1,8 +1,8 @@
 {
   "id": "-138507342",
+  "lastUpdate": "2019-11-25T14:34:56.081Z",
   "ifid": "83ED6670-FEA2-46CB-AAA9-7B10EF027D32",
-  "lastUpdate": "2019-11-21T11:11:18.690Z",
-  "name": "Web Onboarding - Swedish Switcher",
+  "tagColors": {},
   "passages": [
     {
       "height": 100,
@@ -48,7 +48,7 @@
       "selected": false,
       "story": "-138507342",
       "tags": [],
-      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<Redirect when=\"IsMover == true\"\n          to=\"[[SSNApartmentMover]]\"\n>\n</Redirect>\n\n<NumberAction placeholder=\"ÅÅMMDD-XXXX\"\n              key=\"SSNResponse\"\n              next=\"[[Fortsätt->CorrectAdressApartment]]\"\n              unit=\" \"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder och adress\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<Redirect when=\"IsMover == true\"\n          to=\"[[SSNApartmentMover]]\"\n>\n</Redirect>\n\n<TextAction mask=\"PersonalNumber\"\n            placeholder=\"ÅÅMMDD-XXXX\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->CorrectAdressApartment]]\"\n            unit=\" \"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder och adress\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 1500,
       "width": 100
     },
@@ -120,7 +120,7 @@
       "selected": false,
       "story": "-138507342",
       "tags": [],
-      "text": "<Message>\nOkej! Då behöver jag bara ditt personnummer så kan jag hämta information om ditt boende automatiskt.\n</Message>\n\n<NumberAction placeholder=\"ÅÅMMDD-XXXX\" key=\"SSNResponse\" next=\"[[Fortsätt->CorrectAdressVillaOwn]]\" unit=\" \">\n<Tooltip>\n     <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n        Informationen som vi hämtar är ålder, adress samt bostadsinformation\n    </Description>\n</Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta information om ditt boende automatiskt.\n</Message>\n\n<TextAction mask=\"PersonalNumber\"\n            placeholder=\"ÅÅMMDD-XXXX\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->CorrectAdressVillaOwn]]\"\n            unit=\" \"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder, adress samt bostadsinformation\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 1200,
       "width": 100
     },
@@ -216,7 +216,7 @@
       "selected": false,
       "story": "-138507342",
       "tags": [],
-      "text": "<Message>\nHyr du ut någon del av ditt hus till någon?\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ja->ExtraBuildingsVillaOwn]]\n  </Option>\n  <Option>\n\t  [[Nej->ExtraBuildingsVillaOwn]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->ExtraBuildingsVillaOwn]]\n  </Option>\n  <Option>\n    [[Nej->ExtraBuildingsVillaOwn]]\n  </Option>\n</SelectAction>",
       "top": 2100,
       "width": 100
     },
@@ -228,7 +228,7 @@
       "selected": false,
       "story": "-138507342",
       "tags": [],
-      "text": "<Message>\nSuper! Vi behöver lite mer Information om dina extra byggnader\n</Message>\n\n<SelectAction>\n  <Option>\n\t  [[Ge all info->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Super! Vi behöver lite mer Information om dina extra byggnader\n</Message>\n\n<MultiAction maxamount=\"5\"\n             key=\"extraBuilding\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Building type\"\n    >\n      <Option value=\"garage\">\n        Garage\n      </Option>\n      <Option value=\"attefall\">\n        Attefall\n      </Option>\n      <Option value=\"friggebod\">\n        Friggebod\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"250\"\n                  key=\"livingSpace\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
       "top": 2250,
       "width": 100
     },
@@ -252,7 +252,7 @@
       "selected": false,
       "story": "-138507342",
       "tags": [],
-      "text": "<Message>\nOkej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<Message>\nInformationen som vi hämtar är ålder, adress och kredithistorik.</Message>\n\n<NumberAction placeholder=\"ÅÅMMDD-XXXX\" key=\"SSNResponse\" next=\"[[Fortsätt->CorrectAdressVillaRent]]\" unit=\" \">\n<Tooltip>\n     <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n        Informationen som vi hämtar är ålder och adress \n    </Description>\n</Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<Message>\n  Informationen som vi hämtar är ålder, adress och kredithistorik.\n</Message>\n\n<TextAction mask=\"PersonalNumber\"\n            placeholder=\"ÅÅMMDD-XXXX\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->CorrectAdressVillaRent]]\"\n            unit=\" \"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder och adress\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 1500,
       "width": 100
     },
@@ -336,7 +336,7 @@
       "selected": false,
       "story": "-138507342",
       "tags": [],
-      "text": "<Message>\nOkej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<NumberAction placeholder=\"ÅÅMMDD-XXXX\" key=\"SSNResponse\" next=\"[[Fortsätt->Offer]]\" unit=\" \">\n<Tooltip>\n     <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n        Informationen som vi hämtar är ålder och adress \n    </Description>\n</Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<TextAction mask=\"PersonalNumber\"\n            placeholder=\"ÅÅMMDD-XXXX\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->Offer]]\"\n            unit=\" \"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder och adress\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 1500,
       "width": 100
     },
@@ -365,14 +365,14 @@
       "width": 100
     }
   ],
-  "script": "",
-  "snapToGrid": true,
+  "name": "Web Onboarding - Swedish Switcher",
   "startPassage": "-963600991",
+  "zoom": 1,
+  "snapToGrid": true,
+  "stylesheet": "",
+  "script": "",
   "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0",
-  "stylesheet": "",
-  "tagColors": {},
-  "zoom": 1,
   "keywords": {
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
