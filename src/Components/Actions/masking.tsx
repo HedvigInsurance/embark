@@ -2,6 +2,21 @@ import * as React from "react";
 import InputMask, { Props as InputMaskProps } from "react-input-mask";
 export type MaskType = "PersonalNumber" | "PostalCode";
 
+const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[-]?[0-9]{4}$/;
+const POSTAL_CODE_REGEX = /^[0-9]{3} [0-9]{2}$/;
+
+export const isValid = (m: MaskType | undefined, value: string): boolean => {
+  if (m === "PersonalNumber") {
+    return PERSONAL_NUMBER_REGEX.test(value);
+  }
+
+  if (m === "PostalCode") {
+    return POSTAL_CODE_REGEX.test(value);
+  }
+
+  return true;
+};
+
 const resolveMask = (m: MaskType): string => {
   if (m === "PersonalNumber") {
     return "999999-9999";
