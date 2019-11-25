@@ -5,7 +5,7 @@ import { colorsV2, fonts } from "@hedviginsurance/brand";
 import { Tooltip } from "../../Tooltip";
 import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import { StoreContext } from "../../KeyValueStore";
-import { unmaskValue } from "../masking";
+import { unmaskValue, isValid } from "../masking";
 
 const Container = styled.div`
   display: flex;
@@ -66,6 +66,7 @@ interface Action {
   type: "setValue";
   key: string;
   value: string;
+  textActions: any;
 }
 
 const reducer = (state: State, action: Action) => {
@@ -76,7 +77,12 @@ const reducer = (state: State, action: Action) => {
         ...state,
         values: newValues,
         continueDisabled: Object.keys(newValues)
-          .map(key => newValues[key] === null || newValues[key] === "")
+          .map(
+            key =>
+              newValues[key] === null ||
+              newValues[key] === "" ||
+              !isValid(findMask(action.textActions, key), newValues[key])
+          )
           .includes(true)
       };
     default:
@@ -148,7 +154,12 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
               large={textAction.data.large}
               placeholder={textAction.data.placeholder}
               onChange={value => {
-                dispatch({ type: "setValue", key: textAction.data.key, value });
+                dispatch({
+                  type: "setValue",
+                  key: textAction.data.key,
+                  value,
+                  textActions: props.action.data.textActions
+                });
               }}
               value={state.values[textAction.data.key] || ""}
               mask={textAction.data.mask}
