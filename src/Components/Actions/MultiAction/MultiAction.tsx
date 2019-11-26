@@ -148,14 +148,14 @@ export const MultiAction = (props: MultiActionProps) => {
                 action={props.action}
                 item={item}
                 removeItem={() => dispatch({ type: "removeItem", id: item.id })}
-                updateItem={(key, value) => {
+                updateItems={(keyValues: { [key: string]: any }) => {
                   dispatch({
                     type: "updateItem",
                     item: {
                       ...item,
                       values: {
                         ...item.values,
-                        [key]: value
+                        ...keyValues
                       }
                     }
                   });
