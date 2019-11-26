@@ -1,7 +1,7 @@
 {
   "id": "1180341409",
   "ifid": "030C12E5-CA06-444F-B65C-0C29E1E0186E",
-  "lastUpdate": "2019-11-25T14:02:57.593Z",
+  "lastUpdate": "2019-11-25T17:21:06.432Z",
   "name": "Web Onboarding - Swedish Needer",
   "passages": [
     {
@@ -108,7 +108,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Okej, hur stor är den?\n</Message>\n\n<NumberAction placeholder=\"120\"\n              key=\"SizeVillaRentResponse\"\n              next=\"[[Fortsätt->CoInsuredVillaRent]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Villastorlek\n    </Title>\n    <Description>\n      Den totala ytan på villan. Är du osäker hittar du den i ditt hyreskontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Okej, hur stor är den?\n</Message>\n\n<Response>\n  {SizeVillaRentResponse} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"120\"\n              key=\"SizeVillaRentResponse\"\n              next=\"[[Fortsätt->CoInsuredVillaRent]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Villastorlek\n    </Title>\n    <Description>\n      Den totala ytan på villan. Är du osäker hittar du den i ditt hyreskontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
       "width": 100
     },
