@@ -21,6 +21,11 @@ const RemoveItemButtonBase = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 200;
+
+  :hover {
+    background-color: ${colorsV2.darkgray};
+  }
 `;
 
 type RemoveItemButtonProps = {

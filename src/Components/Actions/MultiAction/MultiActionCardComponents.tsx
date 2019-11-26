@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { colorsV2 } from "@hedviginsurance/brand";
 
 const cardHeight = 223;
-const cardWidth = 175;
+export const cardWidth = 175;
 
 interface Focusable {
   isFocused: boolean;
