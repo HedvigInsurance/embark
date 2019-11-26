@@ -1,8 +1,14 @@
 import * as React from "react";
-import { Flipped } from "react-flip-toolkit";
-import { onExit, onElementAppear } from "./flip-utils";
+import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import { AddItemButton } from "./AddItemButton";
-import { CardContainer } from "./MultiActionCardComponents";
+import { CardContainer, cardWidth } from "./MultiActionCardComponents";
+
+const ExitAnimation = styled(motion.div)`
+  display: inline-block;
+  z-index: 2000;
+  position: relative;
+`;
 
 interface MultiActionAddButtonProps {
   label: string;
@@ -10,18 +16,18 @@ interface MultiActionAddButtonProps {
 }
 
 export const MultiActionAddButton = (props: MultiActionAddButtonProps) => (
-  <Flipped
-    translate
-    onExit={onExit}
-    onAppear={onElementAppear}
-    flipId={"addButton"}
+  <ExitAnimation
+    initial={{ opacity: 0, width: 0 }}
+    animate={{ opacity: 1, width: cardWidth + 40 }}
+    exit={{ opacity: 0, width: 0 }}
+    transition={{
+      ease: "easeOut",
+      duration: 0.3,
+      delay: 0.3
+    }}
   >
     <CardContainer>
-      <AddItemButton
-        key="addButton"
-        text={props.label}
-        onClick={props.onClick}
-      />
+      <AddItemButton text={props.label} onClick={props.onClick} />
     </CardContainer>
-  </Flipped>
+  </ExitAnimation>
 );

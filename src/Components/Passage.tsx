@@ -30,7 +30,7 @@ const ChatContainer = styled.div`
 `;
 
 const ChatPadding = styled.div`
-  padding: 10vh 20vw;
+  padding: 10vh 18vw;
   display: flex;
   height: 100%;
   flex-direction: column;

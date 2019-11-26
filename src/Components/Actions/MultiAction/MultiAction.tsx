@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import uuid from "uuid";
-import { Flipper } from "react-flip-toolkit";
+import { AnimatePresence } from "framer-motion";
 
 import { ContinueButton } from "../../ContinueButton";
 import { StoreContext, Store } from "../../KeyValueStore";
@@ -15,17 +15,11 @@ type MultiActionProps = {
 };
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 100%;
+  display: block;
+  white-space: nowrap;
+  max-width: 100vw;
+  overflow-x: scroll;
   transition: all 250ms;
-
-  .flipper {
-    display: block;
-    width: 100%;
-  }
 `;
 
 const MultiActionBase = styled.div`
@@ -134,13 +128,7 @@ export const MultiAction = (props: MultiActionProps) => {
   return (
     <MultiActionBase>
       <Container>
-        <Flipper
-          element="div"
-          flipKey={`${state.items.map((item: any) => item.id).join("")}${
-            showAddButton ? "addButton" : ""
-          }`}
-          className="flipper"
-        >
+        <AnimatePresence>
           {state.items.map((item: any) => {
             return (
               <MultiActionCard
@@ -174,7 +162,7 @@ export const MultiAction = (props: MultiActionProps) => {
               }
             />
           )}
-        </Flipper>
+        </AnimatePresence>
       </Container>
       <ButtonSpacer />
       <ContinueButton

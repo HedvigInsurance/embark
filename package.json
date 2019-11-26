@@ -40,7 +40,6 @@
     "react": "^16.11.0",
     "react-dom": "^16.10.2",
     "react-emotion": "^10.0.0",
-    "react-flip-toolkit": "^7.0.6",
     "react-input-mask": "^2.0.4",
     "requestidlecallback": "^0.3.0",
     "rollup": "^1.27.2",

@@ -1,15 +1,23 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand";
-import { Flipped } from "react-flip-toolkit";
+import { motion } from "framer-motion";
 
-import { onExit, onElementAppear } from "./flip-utils";
 import { RemoveItemButton } from "./RemoveItemButton";
 
 import { InlineDropdownAction } from "../InlineActions/InlineDropdownAction";
 import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
 import { InlineSwitchAction } from "../InlineActions/InlineSwitchAction";
-import { Card, CardContainer, CardContents } from "./MultiActionCardComponents";
+import {
+  Card,
+  CardContainer,
+  CardContents,
+  cardWidth
+} from "./MultiActionCardComponents";
+
+const ExitAnimation = styled(motion.div)`
+  display: inline-block;
+`;
 
 const Divider = styled.div`
   height: 1px;
@@ -77,12 +85,14 @@ const componentForItem = (props: MultiActionCardProps) =>
     });
 
 export const MultiActionCard = (props: MultiActionCardProps) => (
-  <Flipped
-    translate
-    key={props.item.id}
-    onExit={onExit}
-    onAppear={onElementAppear}
-    flipId={props.item.id}
+  <ExitAnimation
+    initial={{ opacity: 0, width: 0 }}
+    animate={{ opacity: 1, width: cardWidth + 40 }}
+    exit={{ opacity: 0, width: 0 }}
+    transition={{
+      ease: "easeOut",
+      duration: 0.3
+    }}
   >
     <CardContainer>
       <Card isFocused={false} key={props.item.index}>
@@ -96,5 +106,5 @@ export const MultiActionCard = (props: MultiActionCardProps) => (
         </CardContents>
       </Card>
     </CardContainer>
-  </Flipped>
+  </ExitAnimation>
 );
