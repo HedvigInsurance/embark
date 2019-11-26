@@ -56,6 +56,7 @@ export const useGoTo = (
   const [goTo, setGoTo] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    debugger;
     if (goTo) {
       const newPassage = data.passages.filter(
         (passage: any) => passage.name == goTo
@@ -63,6 +64,7 @@ export const useGoTo = (
       const targetPassage = newPassage ? newPassage.id : data.startPassage;
 
       if (newPassage.redirects.length > 0) {
+        debugger;
         const passableExpressions = newPassage.redirects.filter(
           (expression: any) => {
             return passes(store, expression);
