@@ -20,9 +20,17 @@ const Divider = styled.div`
 interface MultiActionCardProps {
   action: any;
   item: any;
-  updateItem: (key: string, value: any) => void;
+  updateItems: (items: { [key: string]: any }) => void;
   removeItem: () => void;
 }
+
+const getOptionTextByValue = (
+  options: [{ value: string; text: string }],
+  value: string
+) => {
+  const option = options.find(option => option.value === value);
+  return option && option.text;
+};
 
 const componentForItem = (props: MultiActionCardProps) =>
   props.action.data.components
@@ -44,7 +52,9 @@ const componentForItem = (props: MultiActionCardProps) =>
             value={props.item.values[component.data.key]}
             key={index}
             label={component.data.label}
-            onValue={value => props.updateItem(component.data.key, value)}
+            onValue={value =>
+              props.updateItems({ [component.data.key]: value })
+            }
             defaultValue={component.data.defaultValue == "true"}
           />
         );
@@ -57,7 +67,15 @@ const componentForItem = (props: MultiActionCardProps) =>
             options={component.data.options}
             label={component.data.label}
             value={props.item.values[component.data.key]}
-            onValue={value => props.updateItem(component.data.key, value)}
+            onValue={value =>
+              props.updateItems({
+                [component.data.key]: value,
+                [`${component.data.key}.Label`]: getOptionTextByValue(
+                  component.data.options,
+                  value
+                )
+              })
+            }
           />
         );
       }
@@ -68,7 +86,9 @@ const componentForItem = (props: MultiActionCardProps) =>
             placeholder={component.data.placeholder}
             unit={component.data.unit}
             value={props.item.values[component.data.key]}
-            onValue={value => props.updateItem(component.data.key, value)}
+            onValue={value =>
+              props.updateItems({ [component.data.key]: value })
+            }
           />
         );
       }

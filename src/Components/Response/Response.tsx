@@ -16,6 +16,10 @@ interface GroupedResponse {
   component: string;
   title: ExpressionTextNode;
   items: ExpressionTextNode[];
+  each?: {
+    key: string;
+    content: ExpressionTextNode;
+  };
 }
 
 type ResponseProps = {
@@ -33,6 +37,7 @@ export const Response = (props: ResponseProps) => {
         <GroupedResponseComponent
           title={props.response.title}
           items={props.response.items}
+          each={props.response.each}
         />
       </ResponseAlignment>
     );

@@ -439,14 +439,27 @@ const getResponse = (passageName: string, containerElement: Element) => {
   };
 };
 
+const parseEach = (element: Element) => {
+  const key = element.getAttribute("key");
+
+  const content = parsePossibleExpressionContent(element);
+
+  return {
+    key,
+    content
+  };
+};
+
 const parseGroupedResponse = (element: Element) => {
   const title = element.getElementsByTagName("title")[0];
   const items = Array.from(element.getElementsByTagName("item"));
+  const each = element.getElementsByTagName("each")[0];
 
   return {
     component: "GroupedResponse",
     title: parsePossibleExpressionContent(title),
-    items: items.map(parsePossibleExpressionContent)
+    items: items.map(parsePossibleExpressionContent),
+    each: each && parseEach(each)
   };
 };
 

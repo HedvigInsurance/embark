@@ -1,5 +1,4 @@
 import * as React from "react";
-import { motion } from "framer-motion";
 import {
   ExpressionTextNode,
   getTextContent,
@@ -7,9 +6,10 @@ import {
   MessageBody,
   MessageAnimation
 } from "../Common";
-import { StoreContext } from "../KeyValueStore";
+import { StoreContext, Store } from "../KeyValueStore";
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { getMultiActionItems } from "../Actions/MultiAction/MultiAction";
 
 const Title = styled.p`
   color: ${colorsV2.white};
@@ -32,7 +32,32 @@ const Item = styled.span`
 interface Props {
   title: ExpressionTextNode;
   items: ExpressionTextNode[];
+  each?: {
+    key: string;
+    content: ExpressionTextNode;
+  };
 }
+
+interface EachProps {
+  store: Store;
+  eachKey: string;
+  content: ExpressionTextNode;
+}
+
+const Each: React.FunctionComponent<EachProps> = props => {
+  const items = Object.values(getMultiActionItems(props.store, props.eachKey));
+  debugger;
+
+  return (
+    <>
+      {items.map((item, index) => (
+        <Item key={props.eachKey + index}>
+          {replacePlaceholders(item, getTextContent(item, props.content))}
+        </Item>
+      ))}
+    </>
+  );
+};
 
 export const GroupedResponse: React.FunctionComponent<Props> = props => {
   const { store } = React.useContext(StoreContext);
@@ -49,6 +74,13 @@ export const GroupedResponse: React.FunctionComponent<Props> = props => {
               {replacePlaceholders(store, getTextContent(store, item))}
             </Item>
           ))}
+          {props.each ? (
+            <Each
+              store={store}
+              eachKey={props.each.key}
+              content={props.each.content}
+            />
+          ) : null}
         </ItemContainer>
       </MessageBody>
     </MessageAnimation>
