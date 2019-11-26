@@ -1,7 +1,22 @@
 import * as React from "react";
-import { StoreContext } from "../Components/KeyValueStore";
+import { StoreContext, Store } from "../Components/KeyValueStore";
 
-export const passes = (store: any, expression: any) => {
+type ExpressionType =
+  | "EQUALS"
+  | "MORE_THAN"
+  | "MORE_THAN_OR_EQUALS"
+  | "LESS_THAN"
+  | "LESS_THAN_OR_EQUALS"
+  | "NOT_EQUALS"
+  | "ALWAYS";
+
+interface Expression {
+  type: ExpressionType;
+  key: any;
+  value: any;
+}
+
+export const passes = (store: Store, expression: Expression) => {
   if (expression.type == "EQUALS") {
     return store[expression.key] == expression.value;
   }
@@ -36,11 +51,12 @@ export const passes = (store: any, expression: any) => {
 export const useGoTo = (
   data: any,
   onGoTo: (targetPassageId: string) => void
-) => {
+): ((name: string) => void) => {
   const { store } = React.useContext(StoreContext);
   const [goTo, setGoTo] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    debugger;
     if (goTo) {
       const newPassage = data.passages.filter(
         (passage: any) => passage.name == goTo
@@ -48,6 +64,7 @@ export const useGoTo = (
       const targetPassage = newPassage ? newPassage.id : data.startPassage;
 
       if (newPassage.redirects.length > 0) {
+        debugger;
         const passableExpressions = newPassage.redirects.filter(
           (expression: any) => {
             return passes(store, expression);
@@ -59,6 +76,7 @@ export const useGoTo = (
           const redirectTo = data.passages.filter(
             (passage: any) => passage.name == to
           )[0];
+          setGoTo(null);
           onGoTo(redirectTo.id);
           return;
         }
@@ -70,7 +88,5 @@ export const useGoTo = (
     setGoTo(null);
   }, [goTo]);
 
-  return (name: string) => {
-    setGoTo(name);
-  };
+  return setGoTo;
 };
