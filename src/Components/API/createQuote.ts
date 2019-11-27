@@ -10,20 +10,20 @@ interface ExtraBuilding {
   area: number;
   hasWaterConnected: boolean;
 }
-
-interface QuoteDetailsCore {
+interface ApartmentQuoteDetails {
   street: string;
   zipCode: string;
   householdSize: number;
   livingSpace: number;
-}
-
-interface ApartmentQuoteDetails extends QuoteDetailsCore {
   type: ApartmentType;
   __typename: "ApartmentQuoteDetails";
 }
 
-interface HouseQuoteDetails extends QuoteDetailsCore {
+interface HouseQuoteDetails {
+  street: string;
+  zipCode: string;
+  householdSize: number;
+  livingSpace: number;
   ancillarySpace: number;
   extraBuildings: [ExtraBuilding];
   __typename: "HouseQuoteDetails";
@@ -100,6 +100,7 @@ interface ExtraBuildingInput {
 
 export interface Variables {
   input: {
+    id: string; // UUID
     firstName: string;
     lastName: string;
     currentInsurer?: string;
