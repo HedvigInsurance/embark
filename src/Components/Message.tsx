@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 import {
   getTextContent,
   replacePlaceholders,
@@ -8,9 +7,15 @@ import {
   MessageAnimation
 } from "./Common";
 import { StoreContext } from "./KeyValueStore";
+import { Expression } from "../Utils/ExpressionsUtil";
+
+interface Message {
+  expressions: [Expression];
+  text: string;
+}
 
 type MessageProps = {
-  message: any;
+  message: Message;
   isResponse: boolean;
 };
 
@@ -18,32 +23,21 @@ const MessageContainer = styled.div`
   padding-bottom: 5px;
 `;
 
-interface Replacements {
-  [key: string]: React.ReactNode;
-}
-
 export const TranslationNode: React.SFC = ({ children }) => <>{children}</>;
 
 export const Message = (props: MessageProps) => {
+  const { store } = React.useContext(StoreContext);
+  const text = getTextContent(store, props.message);
+  if (!text) {
+    return null;
+  }
   return (
-    <StoreContext.Consumer>
-      {({ store }) => {
-        const text = getTextContent(store, props.message);
-
-        if (!text) {
-          return null;
-        }
-
-        return (
-          <MessageContainer>
-            <MessageAnimation>
-              <MessageBody isResponse={props.isResponse}>
-                {replacePlaceholders(store, text)}
-              </MessageBody>
-            </MessageAnimation>
-          </MessageContainer>
-        );
-      }}
-    </StoreContext.Consumer>
+    <MessageContainer>
+      <MessageAnimation>
+        <MessageBody isResponse={props.isResponse}>
+          {replacePlaceholders(store, text)}
+        </MessageBody>
+      </MessageAnimation>
+    </MessageContainer>
   );
 };

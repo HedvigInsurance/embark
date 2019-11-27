@@ -10,10 +10,11 @@ type ExpressionType =
   | "NOT_EQUALS"
   | "ALWAYS";
 
-interface Expression {
+export interface Expression {
   type: ExpressionType;
   key: any;
   value: any;
+  text: string;
 }
 
 export const passes = (store: Store, expression: Expression) => {
