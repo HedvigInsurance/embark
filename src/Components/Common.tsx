@@ -78,15 +78,8 @@ export const MessageBody = styled.p<MessageBodyProps>`
   font-size: 16px;
 `;
 
-interface MessageAnimationProps {
-  key: string;
-}
-
-export const MessageAnimation: React.FunctionComponent<
-  MessageAnimationProps
-> = props => (
+export const MessageAnimation: React.FunctionComponent = props => (
   <motion.li
-    key={props.key}
     variants={{
       visible: {
         opacity: 1,
