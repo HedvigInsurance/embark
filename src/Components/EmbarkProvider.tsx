@@ -9,7 +9,7 @@ interface EmbarkProviderProps {
   onStoreChange?: (store: Store) => void;
 }
 
-const Inner: React.FunctionComponent<EmbarkProviderProps> = props => {
+const StoreListener: React.FunctionComponent<EmbarkProviderProps> = props => {
   const { store } = React.useContext(StoreContext);
 
   React.useEffect(() => {
@@ -25,7 +25,7 @@ export const EmbarkProvider: React.FunctionComponent<
   <ApiContext.Provider value={props.resolvers}>
     <KeywordsContext.Provider value={props.data.keywords}>
       <KeyValueStore>
-        <Inner {...props}>{props.children}</Inner>
+        <StoreListener {...props}>{props.children}</StoreListener>
       </KeyValueStore>
     </KeywordsContext.Provider>
   </ApiContext.Provider>
