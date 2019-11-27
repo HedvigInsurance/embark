@@ -47,7 +47,6 @@ export const Response = (props: ResponseProps) => {
       <Message
         isResponse={true}
         message={{
-          delay: 0,
           ...props.response
         }}
       />
