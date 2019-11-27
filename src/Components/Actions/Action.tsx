@@ -10,7 +10,6 @@ import { TextActionSet } from "./TextActionSet/TextActionSet";
 type ActionProps = {
   passageName: string;
   action: any;
-  api?: ApiComponent;
   changePassage: (name: string) => void;
 };
 
@@ -25,6 +24,7 @@ export const Action = (props: ActionProps) => {
         passageName={props.passageName}
         action={props.action}
         changePassage={props.changePassage}
+        api={props.action.data.api}
       />
     );
   }

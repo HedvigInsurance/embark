@@ -235,11 +235,14 @@ const getTextActionSet = (textActionSetNode: Element) => {
     };
   });
 
+  const api = parseApi(textActionSetNode);
+
   return {
     component: "TextActionSet",
     data: {
       link: links && links[0],
-      textActions
+      textActions,
+      api
     }
   };
 };
