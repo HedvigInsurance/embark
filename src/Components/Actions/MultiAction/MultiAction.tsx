@@ -19,7 +19,12 @@ const Container = styled.div`
   white-space: nowrap;
   max-width: 100vw;
   overflow-x: scroll;
+  scrollbar-width: none;
   transition: all 250ms;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MultiActionBase = styled.div`
