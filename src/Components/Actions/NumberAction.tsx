@@ -52,6 +52,8 @@ const isWithinBounds = (
   return true;
 };
 
+const InputWithMask = wrapWithMask(Input);
+
 export const NumberAction = (props: NumberActionProps) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [isFocused, setIsFocused] = React.useState(false);
@@ -63,8 +65,6 @@ export const NumberAction = (props: NumberActionProps) => {
     setValue(`${props.autoResultKey}Result`, textValue);
     props.onContinue();
   };
-
-  const InputWithMask = wrapWithMask(Input);
 
   return (
     <Container>

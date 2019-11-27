@@ -44,12 +44,7 @@ export const Response = (props: ResponseProps) => {
   }
   return (
     <ResponseAlignment>
-      <Message
-        isResponse={true}
-        message={{
-          ...props.response
-        }}
-      />
+      <Message isResponse={true} message={props.response} />
     </ResponseAlignment>
   );
 };
