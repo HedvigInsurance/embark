@@ -1,8 +1,10 @@
 import React from "react";
 
-type KeyValueStoreProps = {};
-
 export type Store = { [key: string]: string };
+
+type KeyValueStoreProps = {
+  initial?: Store;
+};
 
 export const StoreContext = React.createContext<{
   store: Store;
@@ -38,8 +40,8 @@ const reducer = (
   }
 };
 
-export const KeyValueStore = (props: React.Props<KeyValueStoreProps>) => {
-  const [store, dispatch] = React.useReducer(reducer, {});
+export const KeyValueStore: React.FC<KeyValueStoreProps> = props => {
+  const [store, dispatch] = React.useReducer(reducer, props.initial || {});
 
   return (
     <StoreContext.Provider

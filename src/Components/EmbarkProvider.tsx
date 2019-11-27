@@ -7,6 +7,7 @@ interface EmbarkProviderProps {
   data: any;
   resolvers: TApiContext;
   onStoreChange?: (store: Store) => void;
+  initialStore?: Store;
 }
 
 const StoreListener: React.FunctionComponent<EmbarkProviderProps> = props => {
@@ -24,7 +25,7 @@ export const EmbarkProvider: React.FunctionComponent<
 > = props => (
   <ApiContext.Provider value={props.resolvers}>
     <KeywordsContext.Provider value={props.data.keywords}>
-      <KeyValueStore>
+      <KeyValueStore initial={props.initialStore}>
         <StoreListener {...props}>{props.children}</StoreListener>
       </KeyValueStore>
     </KeywordsContext.Provider>
