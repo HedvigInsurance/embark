@@ -64,7 +64,6 @@ export const useGoTo = (
       const targetPassage = newPassage ? newPassage.id : data.startPassage;
 
       if (newPassage.redirects.length > 0) {
-        debugger;
         const passableExpressions = newPassage.redirects.filter(
           (expression: any) => {
             return passes(store, expression);
