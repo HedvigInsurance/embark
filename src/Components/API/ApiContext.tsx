@@ -28,23 +28,23 @@ export const ApiContext = React.createContext<TApiContext>({
   }
 });
 
+export const mockApiResolvers: TApiContext = {
+  personalInformationApi: async _ => {
+    await timeout(300);
+    return personalInformationQueryMocks[0].result.data as PData;
+  },
+  houseInformation: async _ => {
+    await timeout(300);
+    return houseInformationMocks[0];
+  },
+  createQuote: async _ => {
+    await timeout(300);
+    return createQuoteMocks[0].result.data as CQData;
+  }
+};
+
 export const MockApiContext: React.FunctionComponent = props => (
-  <ApiContext.Provider
-    value={{
-      personalInformationApi: async _ => {
-        await timeout(300);
-        return personalInformationQueryMocks[0].result.data as PData;
-      },
-      houseInformation: async _ => {
-        await timeout(300);
-        return houseInformationMocks[0];
-      },
-      createQuote: async _ => {
-        await timeout(300);
-        return createQuoteMocks[0].result.data as CQData;
-      }
-    }}
-  >
+  <ApiContext.Provider value={mockApiResolvers}>
     {props.children}
   </ApiContext.Provider>
 );

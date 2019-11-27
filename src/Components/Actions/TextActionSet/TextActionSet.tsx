@@ -6,6 +6,10 @@ import { Tooltip } from "../../Tooltip";
 import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import { StoreContext } from "../../KeyValueStore";
 import { unmaskValue, isValid } from "../masking";
+import { ApiComponent } from "../../API/apiComponent";
+import { Loading } from "../../API/Loading";
+import { ApiContext } from "../../API/ApiContext";
+import { callApi } from "../../API";
 
 const Container = styled.div`
   display: flex;
@@ -52,6 +56,7 @@ const Spacer = styled.div`
 `;
 
 interface Props {
+  api?: ApiComponent;
   passageName: string;
   action: any;
   changePassage: (name: string) => void;
@@ -102,7 +107,8 @@ const findMask = (textActions: any, key: string) => {
 };
 
 export const TextActionSet: React.FunctionComponent<Props> = props => {
-  const { setValue } = React.useContext(StoreContext);
+  const { setValue, store } = React.useContext(StoreContext);
+  const [loading, setLoading] = React.useState(false);
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
     const values = props.action.data.textActions.reduce(
       (acc: { [key: string]: any }, curr: any) => {
@@ -116,16 +122,22 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
       continueDisabled: true
     };
   });
+  const api = React.useContext(ApiContext);
 
   const onContinue = () => {
-    Object.keys(state.values).forEach(key => {
-      setValue(
-        key,
-        unmaskValue(
+    const unmaskedValues = Object.keys(state.values).reduce<{
+      [key: string]: any;
+    }>((acc, key) => {
+      return {
+        ...acc,
+        [key]: unmaskValue(
           state.values[key],
           findMask(props.action.data.textActions, key)
         )
-      );
+      };
+    }, {});
+    Object.entries(unmaskedValues).forEach(([key, value]) => {
+      setValue(key, value);
     });
     setValue(
       `${props.passageName}Result`,
@@ -134,7 +146,18 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
         ""
       )
     );
-    props.changePassage(props.action.data.link.name);
+    if (props.api) {
+      setLoading(true);
+      callApi(
+        props.api,
+        api,
+        { ...store, ...unmaskedValues },
+        setValue,
+        props.changePassage
+      );
+    } else {
+      props.changePassage(props.action.data.link.name);
+    }
   };
 
   return (
@@ -145,27 +168,35 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           onContinue();
         }}
       >
-        {props.action.data.textActions.map((textAction: any, index: number) => (
-          <Card key={textAction.data.key}>
-            <Tooltip tooltip={textAction.data.tooltip} />
-            <CardTitle>{textAction.data.title}</CardTitle>
-            <InlineTextAction
-              autoFocus={index === 0}
-              large={textAction.data.large}
-              placeholder={textAction.data.placeholder}
-              onChange={value => {
-                dispatch({
-                  type: "setValue",
-                  key: textAction.data.key,
-                  value,
-                  textActions: props.action.data.textActions
-                });
-              }}
-              value={state.values[textAction.data.key] || ""}
-              mask={textAction.data.mask}
-            />
-          </Card>
-        ))}
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            {props.action.data.textActions.map(
+              (textAction: any, index: number) => (
+                <Card key={textAction.data.key}>
+                  <Tooltip tooltip={textAction.data.tooltip} />
+                  <CardTitle>{textAction.data.title}</CardTitle>
+                  <InlineTextAction
+                    autoFocus={index === 0}
+                    large={textAction.data.large}
+                    placeholder={textAction.data.placeholder}
+                    onChange={value => {
+                      dispatch({
+                        type: "setValue",
+                        key: textAction.data.key,
+                        value,
+                        textActions: props.action.data.textActions
+                      });
+                    }}
+                    value={state.values[textAction.data.key] || ""}
+                    mask={textAction.data.mask}
+                  />
+                </Card>
+              )
+            )}
+          </>
+        )}
         <input type="submit" style={{ display: "none" }} />
       </CardsContainer>
       <Spacer />
