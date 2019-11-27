@@ -568,6 +568,7 @@ export const parseStoryData = (storyData: any) => ({
       id: passage.id,
       text: passage.text,
       name: passage.name,
+      url: passage.url,
       allLinks: parseLinks(passage.text) || [],
       messages,
       redirects,
