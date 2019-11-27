@@ -1,4 +1,3 @@
-import * as React from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { colorsV2 } from "@hedviginsurance/brand";
@@ -30,6 +29,7 @@ export const CardContainer = styled.div`
   overflow: hidden;
   padding: 20px;
   width: 175px;
+  height: 223px;
   min-height: 223px;
 `;
 

@@ -21,6 +21,7 @@ const AddItemButtonBase = styled.button`
   color: ${colorsV2.gray};
   font-size: 16px;
   cursor: pointer;
+  height: 223px;
 
   svg {
     margin-bottom: 10px;

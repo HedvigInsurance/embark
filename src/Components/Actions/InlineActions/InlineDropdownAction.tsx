@@ -16,6 +16,7 @@ type DropdownActionProps = {
 
 const Select = styled.select`
   -webkit-appearance: none;
+  -moz-appearance: none;
   outline: 0;
   width: 100%;
   font-family: ${fonts.CIRCULAR};
@@ -30,6 +31,12 @@ const Select = styled.select`
 
   :not(:valid) {
     color: ${colorsV2.gray};
+  }
+
+  option {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: initial;
   }
 `;
 
