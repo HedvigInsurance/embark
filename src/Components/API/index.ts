@@ -11,6 +11,7 @@ import { TApiContext } from "./ApiContext";
 import { Store } from "../KeyValueStore";
 import { getMultiActionItems } from "../Actions/MultiAction/MultiAction";
 import { isHouseInformationComponent } from "./houseInformation";
+import uuid from "uuid";
 
 export const callApi = async (
   component: ApiComponent,
@@ -67,6 +68,7 @@ export const callApi = async (
   if (isCreateQuoteApiComponent(component)) {
     let variables: CQVariables = {
       input: {
+        id: uuid.v1(),
         firstName: store.firstName,
         lastName: store.lastName,
         ssn: store.personalNumber,
