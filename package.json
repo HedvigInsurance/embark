@@ -1,6 +1,6 @@
 {
   "name": "@hedviginsurance/embark",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "source": "src/package.ts",
   "main": "dist/package.js",

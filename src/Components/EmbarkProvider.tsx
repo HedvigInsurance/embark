@@ -13,7 +13,7 @@ const StoreListener: React.FunctionComponent<EmbarkProviderProps> = props => {
   const { store } = React.useContext(StoreContext);
 
   React.useEffect(() => {
-    props.onStoreChange(store);
+    props.onStoreChange && props.onStoreChange(store);
   }, [store]);
 
   return <>{props.children}</>;
