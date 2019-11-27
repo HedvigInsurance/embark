@@ -23,19 +23,19 @@ export const passes = (store: Store, expression: Expression) => {
   }
 
   if (expression.type == "MORE_THAN") {
-    return store[expression.key] > expression.value;
+    return Number(store[expression.key]) > Number(expression.value);
   }
 
   if (expression.type == "MORE_THAN_OR_EQUALS") {
-    return store[expression.key] >= expression.value;
+    return Number(store[expression.key]) >= Number(expression.value);
   }
 
   if (expression.type == "LESS_THAN") {
-    return store[expression.key] < expression.value;
+    return Number(store[expression.key]) < Number(expression.value);
   }
 
   if (expression.type == "LESS_THAN_OR_EQUALS") {
-    return store[expression.key] <= expression.value;
+    return Number(store[expression.key]) <= Number(expression.value);
   }
 
   if (expression.type == "NOT_EQUALS") {
@@ -64,6 +64,7 @@ export const useGoTo = (
       const targetPassage = newPassage ? newPassage.id : data.startPassage;
 
       if (newPassage.redirects.length > 0) {
+        debugger;
         const passableExpressions = newPassage.redirects.filter(
           (expression: any) => {
             return passes(store, expression);
