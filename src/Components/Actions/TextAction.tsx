@@ -51,7 +51,6 @@ export const TextAction: React.FunctionComponent<Props> = props => {
       ...derivedValues(props.mask, props.storeKey, unmaskedValue)
     };
     Object.entries(newValues).forEach(([key, value]) => setValue(key, value));
-    setValue(props.storeKey, unmaskValue(textValue, props.mask));
     setValue(`${props.passageName}Result`, textValue);
     if (props.api) {
       setLoading(true);

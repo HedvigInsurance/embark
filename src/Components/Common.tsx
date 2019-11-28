@@ -15,8 +15,8 @@ export interface Replacements {
 
 export const TranslationNode: React.SFC = ({ children }) => <>{children}</>;
 
-export const placeholderRegex = new RegExp("({[a-zA-Z0-9_]+})", "g");
-export const placeholderKeyRegex = new RegExp("([a-zA-Z0-9_]+)", "g");
+export const placeholderRegex = new RegExp("({[a-zA-Z0-9_.]+})", "g");
+export const placeholderKeyRegex = new RegExp("([a-zA-Z0-9_.]+)", "g");
 
 export const replacePlaceholders = (
   replacements: Replacements,
