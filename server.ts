@@ -5,6 +5,7 @@ import * as mount from "koa-mount";
 import * as cors from "@koa/cors";
 import { JSDOM } from "jsdom";
 import { parseStoryData } from "./src/parseStoryData";
+import { storyKeywords } from "./src/storyKeywords";
 
 declare global {
   namespace NodeJS {
@@ -17,7 +18,6 @@ declare global {
 global.document = new JSDOM("<html></html").window.document;
 
 const app = new Koa();
-
 app.use(cors());
 app.use(mount("/assets", serve(__dirname + "/src/Assets")));
 
@@ -71,7 +71,8 @@ app.use(
       author: "Hedvig",
       description: "",
       proofing: isProofing,
-      source: html
+      source: html,
+      storyKeywords
     };
 
     const outputString =
