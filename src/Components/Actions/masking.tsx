@@ -1,5 +1,8 @@
 import * as React from "react";
-import InputMask, { Props as InputMaskProps } from "react-input-mask";
+import InputMask from "react-input-mask";
+import parse from "date-fns/parse";
+import differenceInYears from "date-fns/differenceInYears";
+
 export type MaskType = "PersonalNumber" | "PostalCode";
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[-]?[0-9]{4}$/;
@@ -43,6 +46,26 @@ export const unmaskValue = (value: string, m?: MaskType): string => {
   }
 
   return value;
+};
+
+export const derivedValues = (
+  mask: MaskType | undefined,
+  key: string,
+  value: string
+): { [k: string]: any } | null => {
+  if (!mask) {
+    return null;
+  }
+
+  if (mask === "PersonalNumber") {
+    const dateOfBirth = parse(value.substring(0, 6), "yyMMdd", 0);
+
+    return {
+      [`${key}.Age`]: differenceInYears(new Date(), dateOfBirth)
+    };
+  }
+
+  return null;
 };
 
 interface MaskComponentProps {
