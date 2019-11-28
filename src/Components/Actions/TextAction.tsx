@@ -5,7 +5,13 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
-import { MaskType, wrapWithMask, unmaskValue, isValid } from "./masking";
+import {
+  MaskType,
+  wrapWithMask,
+  unmaskValue,
+  isValid,
+  derivedValues
+} from "./masking";
 import { callApi } from "../API";
 import { ApiContext } from "../API/ApiContext";
 import { ApiComponent } from "../API/apiComponent";
@@ -39,6 +45,12 @@ export const TextAction: React.FunctionComponent<Props> = props => {
   const api = React.useContext(ApiContext);
 
   const onContinue = () => {
+    const unmaskedValue = unmaskValue(textValue, props.mask);
+    const newValues: { [key: string]: any } = {
+      [props.storeKey]: unmaskedValue,
+      ...derivedValues(props.mask, props.storeKey, unmaskedValue)
+    };
+    Object.entries(newValues).forEach(([key, value]) => setValue(key, value));
     setValue(props.storeKey, unmaskValue(textValue, props.mask));
     setValue(`${props.passageName}Result`, textValue);
     if (props.api) {
@@ -46,7 +58,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
       callApi(
         props.api,
         api,
-        { ...store, [props.storeKey]: unmaskValue(textValue, props.mask) },
+        { ...store, ...newValues },
         setValue,
         props.onContinue
       );
