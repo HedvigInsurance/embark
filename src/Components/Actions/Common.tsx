@@ -1,16 +1,18 @@
+import * as React from "react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { Loading } from "../API/Loading";
 
 interface Focusable {
   isFocused: boolean;
 }
 
-export const Card = styled.form<Focusable>`
+const CardPrimitive = styled(motion.form)<Focusable>`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 250px;
   border-radius: 8px;
   background-color: ${colorsV2.white};
   transition: all 250ms;
@@ -22,6 +24,60 @@ export const Card = styled.form<Focusable>`
         transform: translateY(-3px);
     `};
 `;
+
+interface CardProps extends Focusable {
+  loading?: boolean;
+}
+
+const LoadingContainer = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+`;
+
+export const Card: React.FC<CardProps> = ({ loading, children }) => (
+  <CardPrimitive>
+    {loading && (
+      <LoadingContainer
+        initial={{
+          y: 0,
+          opacity: 0
+        }}
+        animate={{
+          y: "-50%",
+          opacity: 1
+        }}
+        transition={{
+          delay: 0.25,
+          type: "spring",
+          stiffness: 400,
+          damping: 100
+        }}
+      >
+        <Loading />
+      </LoadingContainer>
+    )}
+    <motion.div
+      animate={{
+        width: loading ? "125px" : "auto",
+        height: loading ? "60px" : "auto",
+        overflow: "hidden"
+      }}
+      transition={{ delay: 0.25, type: "spring", stiffness: 400, damping: 100 }}
+    >
+      <motion.div
+        animate={{
+          opacity: loading ? 0 : 1
+        }}
+        transition={{
+          ease: "easeOut",
+          duration: 0.25
+        }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  </CardPrimitive>
+);
 
 export const Input = styled.input`
   margin-left: 16px;

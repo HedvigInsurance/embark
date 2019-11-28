@@ -1,4 +1,5 @@
 import * as React from "react";
+import { motion } from "framer-motion";
 import { StoreContext } from "../KeyValueStore";
 import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
@@ -6,7 +7,6 @@ import styled from "@emotion/styled";
 import { ContinueButton } from "../ContinueButton";
 import { MaskType, wrapWithMask, unmaskValue, isValid } from "./masking";
 import { callApi } from "../API";
-import { Loading } from "../API/Loading";
 import { ApiContext } from "../API/ApiContext";
 import { ApiComponent } from "../API/apiComponent";
 
@@ -58,6 +58,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
   return (
     <Container>
       <Card
+        loading={loading}
         isFocused={isFocused || isHovered}
         onSubmit={e => {
           e.preventDefault();
@@ -66,34 +67,44 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <Tooltip tooltip={props.tooltip} />
-            <Masked
-              mask={props.mask}
-              autoFocus
-              size={Math.max(props.placeholder.length, textValue.length)}
-              placeholder={props.placeholder}
-              type="text"
-              value={textValue}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setTextValue(e.target.value)
-              }
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-            />
-            <input type="submit" style={{ display: "none" }} />
-          </>
-        )}
+        <Tooltip tooltip={props.tooltip} />
+        <Masked
+          mask={props.mask}
+          autoFocus
+          size={Math.max(props.placeholder.length, textValue.length)}
+          placeholder={props.placeholder}
+          type="text"
+          value={textValue}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTextValue(e.target.value)
+          }
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        <input type="submit" style={{ display: "none" }} />
       </Card>
       <Spacer />
-      <ContinueButton
-        onClick={onContinue}
-        disabled={textValue.length === 0 || !isValid(props.mask, textValue)}
-        text={(props.link && props.link.label) || "Nästa"}
-      />
+      <motion.div
+        animate={{
+          opacity: loading ? 0 : 1
+        }}
+        transition={{ ease: "easeOut", duration: 0.25 }}
+      >
+        <motion.div
+          animate={{
+            height: loading ? 0 : "auto",
+            overflow: loading ? "hidden" : "inherit",
+            opacity: loading ? 0 : 1
+          }}
+          transition={{ delay: 0.25 }}
+        >
+          <ContinueButton
+            onClick={onContinue}
+            disabled={textValue.length === 0 || !isValid(props.mask, textValue)}
+            text={(props.link && props.link.label) || "Nästa"}
+          />
+        </motion.div>
+      </motion.div>
     </Container>
   );
 };

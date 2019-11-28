@@ -30,7 +30,7 @@ export const ApiContext = React.createContext<TApiContext>({
 
 export const mockApiResolvers: TApiContext = {
   personalInformationApi: async _ => {
-    await timeout(300);
+    await timeout(500);
     return personalInformationQueryMocks[0].result.data as PData;
   },
   houseInformation: async _ => {
