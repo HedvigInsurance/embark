@@ -60,7 +60,7 @@ const getSelectAction = (actionNode: Element | undefined) => {
 
     const tooltips = parseTooltips(option);
 
-    const api = parseApi(actionNode);
+    const api = parseApi(option);
 
     return {
       key,
