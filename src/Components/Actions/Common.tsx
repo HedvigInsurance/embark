@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 import { Loading } from "../API/Loading";
 
@@ -25,8 +25,12 @@ const CardPrimitive = styled(motion.form)<Focusable>`
     `};
 `;
 
-interface CardProps extends Focusable {
+interface CardProps {
   loading?: boolean;
+  isFocused: boolean;
+  onSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
 const LoadingContainer = styled(motion.div)`
@@ -34,8 +38,12 @@ const LoadingContainer = styled(motion.div)`
   top: 50%;
 `;
 
-export const Card: React.FC<CardProps> = ({ loading, children }) => (
-  <CardPrimitive>
+const FormContents = styled(motion.div)`
+  text-align: center;
+`;
+
+export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
+  <CardPrimitive {...rest} style={{ minWidth: loading ? "0px" : "250px" }}>
     {loading && (
       <LoadingContainer
         initial={{
@@ -64,7 +72,7 @@ export const Card: React.FC<CardProps> = ({ loading, children }) => (
       }}
       transition={{ delay: 0.25, type: "spring", stiffness: 400, damping: 100 }}
     >
-      <motion.div
+      <FormContents
         animate={{
           opacity: loading ? 0 : 1
         }}
@@ -74,7 +82,7 @@ export const Card: React.FC<CardProps> = ({ loading, children }) => (
         }}
       >
         {children}
-      </motion.div>
+      </FormContents>
     </motion.div>
   </CardPrimitive>
 );

@@ -60,7 +60,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
       <Card
         loading={loading}
         isFocused={isFocused || isHovered}
-        onSubmit={e => {
+        onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
           e.preventDefault();
           onContinue();
         }}
