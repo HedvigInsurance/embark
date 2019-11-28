@@ -82,6 +82,12 @@ app.use(
   })
 );
 
+app.use(
+  mount("/health", async ctx => {
+    ctx.body = { status: "ok" };
+  })
+);
+
 const port = process.env.PORT ? process.env.PORT : 3000;
 app.listen(port);
 
