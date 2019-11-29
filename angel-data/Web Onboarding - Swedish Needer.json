@@ -1,90 +1,97 @@
 {
   "id": "1180341409",
   "ifid": "030C12E5-CA06-444F-B65C-0C29E1E0186E",
-  "lastUpdate": "2019-11-25T17:21:06.432Z",
+  "keywords": {
+    "selectActionSelectLabel": "Välj",
+    "tooltipModalInformationLabel": "Information"
+  },
+  "lastUpdate": "2019-11-29T10:35:58.286Z",
   "name": "Web Onboarding - Swedish Needer",
   "passages": [
     {
       "height": 100,
       "id": "-488850112",
-      "left": 775,
+      "left": 600,
       "name": "TypeOfHomeVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur bor du i villan?\n</Message>\n\n<Response>\n  {TypeOfHomeVilla}\n</Response>\n\n<SelectAction>\n  <Option key=\"TypeOfHomeVilla\">\n    [[Jag äger den->SSNVillaOwn]]\n  </Option>\n  <Option key=\"TypeOfHomeVilla\">\n    [[Jag hyr den->SizeVillaRent]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"TypeOfHomeVilla\"\n          value=\"villaOwn\"\n  >\n    [[Jag äger den->personalNumberVilla]]\n  </Option>\n  <Option key=\"TypeOfHomeVilla\"\n          value=\"villaRent\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
       "top": 300,
-      "width": 100
+      "width": 100,
+      "url": ""
     },
     {
       "height": 100,
       "id": "1602154768",
-      "left": 1500,
-      "name": "SizeApartment",
+      "left": 1600,
+      "name": "livingSpaceApartment",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  <When expression=\"RecidencyType == 'dorm'\">\n    Hur stort är studentboendet?\n  </When>\n</Message>\n\n<Message>\n  <When expression=\"RecidencyType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till?\n  </When>\n</Message>\n\n<Message>\n  <When expression=\"RecidencyType == 'subletter'\">\n    Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n</Message>\n\n<Message>\n  <When expression=\"RecidencyType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n</Message>\n\n<Response>\n  {ApartmentSizeResponse} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"ApartmentSizeResponse\"\n              next=\"[[Fortsätt->CoInsuredApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på lägenheten. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  <When expression=\"RecidencyType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"RecidencyType == 'dorm'\">\n    Hur stort är studentboendet?\n  </When>\n  <When expression=\"RecidencyType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till? Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n  <When expression=\"TypeOfHomeVilla == 'villaRent'\">\n    Okej! Då får du en försäkring för hyresrätt, det kommer ge dig bäst skydd. Hur stor är villan?\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              next=\"[[Fortsätt->householdSizeApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på bostaden. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
       "width": 100
     },
     {
       "height": 100,
       "id": "1409468533",
-      "left": 1500,
-      "name": "CoInsuredApartment",
+      "left": 1600,
+      "name": "householdSizeApartment",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Message>\n  <When expression=\"Subletter == 'true'\">\n    Tänk på att om flera ska täckas måste deras rum också räknas in i storleken du angav innan\n  </When>\n</Message>\n\n<Redirect when=\"ApartmentSizeResponse > 250\"\n          to=\"[[ErrorSizeApartment]]\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"CoInsuredApartmentResponse > 1\">\n    {CoInsuredApartmentResponse} personer\n  </when>\n  <when expression=\"CoInsuredApartmentResponse == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"CoInsuredApartmentResponse\"\n              next=\"[[Fortsätt->SSNApartment]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies. Även spädbarn räknas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Message>\n  <When expression=\"subletter == 'true'\">\n    Om flera ska täckas av försäkringen behöver deras rum också räknas in i den totala storleken\n  </When>\n</Message>\n\n<Redirect when=\"livingSpace > 250\"\n          to=\"[[errorLivingSpaceApartment]]\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->personalNumberApartment]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 650,
       "width": 100
     },
     {
       "height": 100,
       "id": "1860250629",
-      "left": 1500,
-      "name": "SSNApartment",
+      "left": 1600,
+      "name": "personalNumberApartment",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<Redirect when=\"IsMover == true\"\n          to=\"[[SSNApartmentMover]]\"\n>\n</Redirect>\n\n<Redirect when=\"CoInsuredApartmentResponse > 6\"\n          to=\"[[ErrorCoInsuredApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->CorrectAdressApartment]]\"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder och adress\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Okej! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta resten av informationen som behövs för att ge dig ett pris\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAddressApartment]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAddressApartment]]\"\n                          nomatch=\"[[manualNameApartment]]\"\n                          error=\"[[manualNameApartment]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 800,
       "width": 100
     },
     {
       "height": 100,
       "id": "805326227",
-      "left": 1500,
-      "name": "CorrectAdressApartment",
+      "left": 1600,
+      "name": "correctStreetAddressApartment",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Okej! Är det lägenheten på Roslangsgatan 12 det gäller?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->NewAdressApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n    <CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                    success=\"[[Offer]]\"\n                    error=\"[[CreateQuoteError]]\"\n    >\n    </CreateQuoteApi>\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "width": 100
     },
     {
       "height": 200,
       "id": "1181176379",
-      "left": 1600,
+      "left": 1300,
       "name": "Offer",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\nSuper. Ditt försäkringsförslag är klart.\n</Message>",
-      "top": 1425,
+      "text": "<Message>\n  Super! Ditt försäkringsförslag är klart\n</Message>",
+      "top": 1500,
       "width": 200
     },
     {
       "height": 100,
       "id": "1703617053",
-      "left": 1625,
-      "name": "NewAdressApartment",
+      "left": 1750,
+      "name": "newStreetAddressApartment",
       "selected": false,
       "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->Offer]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Gatunamn\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"172 40\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->Offer]]\">\n  <createquoteapi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                  success=\"[[Offer]]\"\n                  error=\"[[CreateQuoteError]]\"\n  >\n    <TextAction title=\"Adress\"\n                placeholder=\"Exempelgatan 21\"\n                large=\"true\"\n                key=\"streetAddress\"\n    >\n    </TextAction>\n    <TextAction title=\"Postnummer\"\n                placeholder=\"137 50\"\n                mask=\"PostalCode\"\n                key=\"postalNumber\"\n    >\n    </TextAction>\n  </createquoteapi>\n</TextActionSet>",
       "top": 950,
       "width": 100
     },
@@ -96,203 +103,145 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"TypeOfHomeApartmentResponse\">\n    [[Bostadsrätt->SizeApartment]]\n  </Option>\n  <Option key=\"TypeOfHomeApartmentResponse\">\n    [[Hyresrätt->SizeApartment]]\n  </Option>\n  <Option key=\"TypeOfHomeApartmentResponse\">\n    [[Hyr i andra hand->SizeApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"TypeOfHomeApartmentResponse\">\n    [[Bostadsrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Bostadsrätt\n      </Title>\n      <Description>\n        Du äger en bostadsrätt och behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"TypeOfHomeApartmentResponse\">\n    [[Hyresrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyresrätt\n      </Title>\n      <Description>\n        Du hyr en hyresrätt eller äger en bostadsrätt där du inte behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"TypeOfHomeApartmentResponse\">\n    [[Hyr i andra hand->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyr i andra hand\n      </Title>\n      <Description>\n        Du hyr en bostadsrätt eller hyresrätt i andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 300,
       "width": 100
     },
     {
       "height": 100,
-      "id": "-326941307",
-      "left": 1100,
-      "name": "SizeVillaRent",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Okej, hur stor är den?\n</Message>\n\n<Response>\n  {SizeVillaRentResponse} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"120\"\n              key=\"SizeVillaRentResponse\"\n              next=\"[[Fortsätt->CoInsuredVillaRent]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Villastorlek\n    </Title>\n    <Description>\n      Den totala ytan på villan. Är du osäker hittar du den i ditt hyreskontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
-      "top": 500,
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "-1526243803",
-      "left": 675,
-      "name": "SSNVillaOwn",
+      "left": 500,
+      "name": "personalNumberVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Då behöver jag bara ditt personnummer så kan jag hämta information om ditt boende automatiskt\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNVillaOwnResponse\"\n            next=\"[[Fortsätt->CorrectAdressVillaOwn]]\"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder, adress och bostadsinformation\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNVillaOwnResponse\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 500,
       "width": 100
     },
     {
       "height": 100,
       "id": "-36252969",
-      "left": 675,
-      "name": "CorrectAdressVillaOwn",
+      "left": 500,
+      "name": "correctStreetAdressVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Okej! Är det huset på Roslangsgatan 12 det gäller?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->CorrectInfoVillaOwn]]\n  </Option>\n  <Option>\n    [[Nej->NewAdressVillaOwn]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Okej! Är det villan på {streetAddress} det gäller?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->correctInfoVilla]]\n    <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                         nomatch=\"[[manualInfoVilla]]\"\n                         error=\"[[manualInfoVilla]]\"\n    >\n    </HouseInformationApi>\n  </Option>\n  <Option>\n    [[Nej->newStreetAdressVilla]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "width": 100
     },
     {
       "height": 100,
       "id": "43910991",
-      "left": 675,
-      "name": "CorrectInfoVillaOwn",
+      "left": 500,
+      "name": "correctInfoVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Vi har hämtat lite information om ditt hus som vi behöver\n</Message>\n\n<Message>\n  Stämmer all den här informationen?\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {SizeVillaOwnResponse} kvm\n  </Item>\n  <Item>\n    Biyta: {AncillaryAreaResponse} kvm\n  </Item>\n  <Item>\n    Byggår: {YearOfConstructionResponse}\n  </Item>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->BathsVillaOwn]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"SizeVillaOwnResponse\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        A title\n      </Title>\n      <Description>\n        A description\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"AncillaryAreaResponse\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1986\"\n                key=\"YearOfConstructionResponse\"\n  >\n  </NumberAction>\n</NumberActionSet>",
+      "text": "<Message>\n  Toppen! Då har vi hämtat lite information om din villa\n</Message>\n\n<Message>\n  Stämmer det här?\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n  <Tooltip>\n    <Title>\n      Boyta\n    </Title>\n    <Description>\n      DESCRIPTION\n    </Description>\n  </Tooltip>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1986\"\n                key=\"yearOfConstruction\"\n  >\n  </NumberAction>\n</NumberActionSet>",
       "top": 800,
       "width": 100
     },
     {
       "height": 100,
       "id": "-1531296499",
-      "left": 550,
-      "name": "NewAdressVillaOwn",
+      "left": 350,
+      "name": "newStreetAdressVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->CorrectInfoVillaOwn]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Adress\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
-      "top": 800,
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->correctInfoVilla]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
+      "top": 650,
       "width": 100
     },
     {
       "height": 100,
       "id": "-1346642377",
-      "left": 675,
-      "name": "BathsVillaOwn",
+      "left": 500,
+      "name": "bathsVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"1Baths\"\n          value=\"1\"\n  >\n    [[1 badrum->4FloorsVillaOwn]]\n  </Option>\n  <Option key=\"2Baths\"\n          value=\"2\"\n  >\n    [[2 badrum->4FloorsVillaOwn]]\n  </Option>\n  <Option key=\"2+Baths\"\n          value=\"2+\"\n  >\n    [[Fler än 2->ErrorBathsVillaOwn]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"1Baths\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"2Baths\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"2+Baths\"\n          value=\"2+\"\n  >\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 950,
       "width": 100
     },
     {
       "height": 100,
       "id": "1829067506",
-      "left": 675,
-      "name": "4FloorsVillaOwn",
+      "left": 500,
+      "name": "floorsVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Har huset mer än 4 våningar? Bara så du vet så räknas källaren som en våning\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Error4FloorsVillaOwn]]\n  </Option>\n  <Option>\n    [[Nej->CoInsuredVillaOwn]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hur många våningar har villan? Källaren räknas som en våning, bara så du vet\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Fyra våningar eller färre->householdSizeVilla]]\n    <Tooltip>\n      <Title>\n        Fyra våningar eller färre\n      </Title>\n      <Description>\n        Huset har max 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än fyra våningar->errorFloorsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än fyra våningar\n      </Title>\n      <Description>\n        Huset har fler än 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1100,
       "width": 100
     },
     {
       "height": 100,
       "id": "-266229071",
-      "left": 550,
-      "name": "ErrorBathsVillaOwn",
+      "left": 650,
+      "name": "errorBathsVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 2 badrum för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 2 badrum?\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 2 badrum för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 2 badrum?\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 950,
       "width": 100
     },
     {
       "height": 100,
       "id": "724168940",
-      "left": 550,
-      "name": "Error4FloorsVillaOwn",
+      "left": 650,
+      "name": "errorFloorsVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 4 våningar för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 4 våningar?\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 4 våningar för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 4 våningar?\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 1100,
       "width": 100
     },
     {
       "height": 100,
       "id": "648014572",
-      "left": 675,
-      "name": "RentOutVillaOwn",
+      "left": 500,
+      "name": "rentOutVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"CoInsuredVillaOwnResponse > 6\"\n          to=\"[[ErrorCoInsuredVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Ja->ExtraBuildingsVillaOwn]]\n  </Option>\n  <Option>\n    [[Nej->ExtraBuildingsVillaOwn]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"CoInsuredVillaOwnResponse > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option>\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "width": 100
     },
     {
       "height": 100,
       "id": "-1124302200",
-      "left": 675,
-      "name": "ExtraBuildingsVillaOwn",
+      "left": 500,
+      "name": "extraBuildingsVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Super! Till sist behöver vi lite mer information om dina extra byggnader\n</Message>\n\n<Message>\n  Du kan försäkra upp till 4 extra byggnader\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Item>\n    {buildingType}, {livingSpace}\n  </Item>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildingresponse\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"buildingType\"\n                    label=\"Byggnadstyp\"\n    >\n      <Option value=\"garage\">\n        Garage\n      </Option>\n      <Option value=\"attefall\">\n        Attefall\n      </Option>\n      <Option value=\"friggebod\">\n        Friggebod\n      </Option>\n      <Option value=\"guesthouse\">\n        Gästhus\n      </Option>\n      <Option value=\"carport\">\n        Carport\n      </Option>\n      <Option value=\"sauna\">\n        Bastu\n      </Option>\n      <Option value=\"boathouse\">\n        Båthus\n      </Option>\n      <Option value=\"other\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"livingSpace\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnectedResponse\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
+      "text": "<Message>\n  Okej, då vet vi. Till sist behöver vi lite information om eventuella extra byggnader om du vill att de ska täckas av försäkringen\n</Message>\n\n<Message>\n  Du kan försäkra upp till 4 extra byggnader\n</Message>\n\n<Message>\n  Om du inte vill försäkra några extra byggnader, tryck bara Fortsätt\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Item>\n    {buildingType}, {livingSpace}\n  </Item>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildingresponse\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"buildingType\"\n                    label=\"Välj typ\"\n    >\n      <Option value=\"garage\">\n        Garage\n      </Option>\n      <Option value=\"attefall\">\n        Attefall\n      </Option>\n      <Option value=\"friggebod\">\n        Friggebod\n      </Option>\n      <Option value=\"guesthouse\">\n        Gästhus\n      </Option>\n      <Option value=\"carport\">\n        Carport\n      </Option>\n      <Option value=\"sauna\">\n        Bastu\n      </Option>\n      <Option value=\"boathouse\">\n        Båthus\n      </Option>\n      <Option value=\"other\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"livingSpace\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnectedResponse\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
       "top": 1550,
       "width": 100
     },
     {
       "height": 100,
-      "id": "-519627542",
-      "left": 1100,
-      "name": "CoInsuredVillaRent",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Hur många som bor där ska täckas av försäkringen?\n</Message>\n\n<Redirect when=\"SizeVillaRentResponse > 250\"\n          to=\"[[ErrorSizeVillaRent]]\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"CoInsuredVillaRentResponse > 1\">\n    {CoInsuredVillaRentResponse} personer\n  </when>\n  <when expression=\"CoInsuredVillaRentResponse == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"CoInsuredVillaRentResponse\"\n              next=\"[[Fortsätt->SSNVillaRent]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies. Även spädbarn räknas såklart\n    </Description>\n  </Tooltip>\n</NumberAction>",
-      "top": 650,
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "-68845446",
-      "left": 1100,
-      "name": "SSNVillaRent",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<Redirect when=\"CoInsuredVillaRent > 6\"\n          to=\"[[ErrorCoInsuredVillaRent]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->CorrectAdressApartment]]\"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder och adress\n    </Description>\n  </Tooltip>\n</TextAction>",
-      "top": 800,
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "-1123769848",
-      "left": 1100,
-      "name": "CorrectAdressVillaRent",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Okej! Är det lägenheten på Roslangsgatan 12 det gäller?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->NewAdressVillaRent]]\n  </Option>\n</SelectAction>",
-      "top": 950,
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "-225479022",
-      "left": 1225,
-      "name": "NewAdressVillaRent",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->Offer]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Gatunamn\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"172 40\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n    <Tooltip>\n      <Title>\n        En titel\n      </Title>\n      <Description>\n        En beskrivning\n      </Description>\n    </Tooltip>\n  </TextAction>\n</TextActionSet>",
-      "top": 950,
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "537424821",
-      "left": 675,
-      "name": "CoInsuredVillaOwn",
+      "left": 500,
+      "name": "householdSizeVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Response>\n  <when expression=\"CoInsuredVillaOwnResponse > 1\">\n    {CoInsuredVillaOwnResponse} personer\n  </when>\n  <when expression=\"CoInsuredVillaOwnResponse == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"CoInsuredVillaOwnResponse\"\n              next=\"[[Fortsätt->RentOutVillaOwn]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies. Även spädbarn räknas såklart. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring.\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {CoInsuredVillaOwnResponse} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->rentOutVilla]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "width": 100
     },
@@ -300,36 +249,25 @@
       "height": 200,
       "id": "392921887",
       "left": 1000,
-      "name": "Recidency",
+      "name": "newInsuranceStart",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hej! Låt oss fixa ett prisförslag, det kommer bara ta 1 minut\n</Message>\n\n<Message>\n  Vilken typ av bostad pratar vi om?\n</Message>\n\n<SelectAction>\n  <Option key=\"RecidencyType\"\n          value=\"apartment\"\n  >\n    [[En lägenhet->TypeOfHomeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        Hit räknas bostadsrätter och hyresrätter, samt andrahands\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[En villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        Hit räknas villor, radhus och kedjehus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"RecidencyType\"\n          value=\"dorm\"\n  >\n    [[Studentkorridor->SizeApartment]]\n    <Tooltip>\n      <Title>\n        Studentkorridor\n      </Title>\n      <Description>\n        Du hyr ett rum i studentkorridor med delade utrymmen såsom kök eller badrum\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"RecidencyType\"\n          value=\"subletter\"\n  >\n    [[Bo inneboende->SizeApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        Du hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hej! Låt oss ta fram ett prisförslag, det tar bara 1 minut\n</Message>\n\n<Message>\n  Vilken typ av bostad vill du ha ett förslag för?\n</Message>\n\n<SelectAction>\n  <Option key=\"RecidencyType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->TypeOfHomeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"RecidencyType\"\n          value=\"dorm\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"RecidencyType\"\n          value=\"subletter\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 100,
-      "width": 200
-    },
-    {
-      "height": 100,
-      "id": "1120694844",
-      "left": 1900,
-      "name": "SSNApartmentMover",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Okej! Då behöver jag bara ditt personnummer så kan jag hämta resten av informationen som behövs automatiskt\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNResponse\"\n            next=\"[[Fortsätt->Offer]]\"\n>\n  <Tooltip>\n    <Title>\n      Personuppgifter\n    </Title>\n    <Description>\n      Informationen som vi hämtar är ålder\n    </Description>\n  </Tooltip>\n</TextAction>",
-      "top": 800,
-      "width": 100
+      "width": 200,
+      "url": ""
     },
     {
       "height": 100,
       "id": "1950569822",
-      "left": 1350,
+      "left": 1200,
       "name": "Student",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Bonusfråga! Är du kanske student? I så fall har du rätt till vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
-      "top": 1275,
+      "text": "<Message>\n  Bonusfråga! Är du möjligtvis student? I så fall kan du ta del av vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1300,
       "width": 100
     },
     {
@@ -341,78 +279,148 @@
       "story": "1180341409",
       "tags": [],
       "text": "<Message>\n  Tack, vi hörs i din mailkorg!\n</Message>",
-      "top": 1150,
+      "top": 900,
       "width": 100
     },
     {
       "height": 100,
       "id": "1074758265",
-      "left": 1625,
-      "name": "ErrorSizeApartment",
+      "left": 1450,
+      "name": "errorLivingSpaceApartment",
       "selected": false,
       "story": "1180341409",
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra lägenheter upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora lägenheter som din\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  <When expression=\"TypeOfHomeVilla != 'villaRent'\">\n    Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora lägenheter som din\n  </When>\n  <When expression=\"TypeOfHomeVilla == 'villaRent'\">\n    Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora villor som din\n  </When>\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 500,
       "width": 100
     },
     {
       "height": 100,
       "id": "-1009037440",
-      "left": 1625,
-      "name": "ErrorCoInsuredApartment",
+      "left": 1450,
+      "name": "errorHouseholdSizeApartment",
       "selected": false,
       "story": "1180341409",
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 650,
       "width": 100
     },
     {
       "height": 100,
       "id": "-1662742286",
-      "left": 550,
-      "name": "ErrorCoInsuredVilla",
+      "left": 650,
+      "name": "errorhouseholdSizeVilla",
       "selected": false,
       "story": "1180341409",
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Nästa->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Nästa->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 1250,
       "width": 100
     },
     {
-      "height": 100,
-      "id": "1901731343",
-      "left": 1225,
-      "name": "ErrorSizeVillaRent",
-      "selected": false,
+      "id": "105302688",
       "story": "1180341409",
+      "top": 800,
+      "left": 1750,
+      "width": 100,
+      "height": 100,
       "tags": [
-        "Error"
+        "Manual"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora lägenheter som din\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
-      "top": 500,
-      "width": 100
+      "name": "manualNameApartment",
+      "selected": false,
+      "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualStreetAdressApartment]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>"
     },
     {
-      "height": 100,
-      "id": "1850888771",
-      "left": 1225,
-      "name": "ErrorCoInsuredVillaRent",
-      "selected": false,
+      "id": "1330758668",
       "story": "1180341409",
+      "top": 800,
+      "left": 350,
+      "width": 100,
+      "height": 100,
+      "tags": [
+        "Manual"
+      ],
+      "name": "manualInfoVilla",
+      "selected": false,
+      "text": "<Message>\n  Vi kan inte hämta någon information om din villa. Ingen fara, fyll bara i uppgifterna här\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n  <Tooltip>\n    <Title>\n      Boyta\n    </Title>\n    <Description>\n      DESCRIPTION\n    </Description>\n  </Tooltip>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1986\"\n                key=\"yearOfConstruction\"\n  >\n  </NumberAction>\n</NumberActionSet>"
+    },
+    {
+      "id": "-45591540",
+      "story": "1180341409",
+      "top": 500,
+      "left": 350,
+      "width": 100,
+      "height": 100,
+      "tags": [
+        "Manual"
+      ],
+      "name": "manualNameVilla",
+      "selected": false,
+      "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualAdressVilla]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>"
+    },
+    {
+      "id": "-1016912535",
+      "story": "1180341409",
+      "top": 500,
+      "left": 200,
+      "width": 100,
+      "height": 100,
+      "tags": [
+        "Manual"
+      ],
+      "name": "manualAdressVilla",
+      "selected": false,
+      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->correctInfoVilla]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>"
+    },
+    {
+      "id": "349636715",
+      "story": "1180341409",
+      "top": 800,
+      "left": 1900,
+      "width": 100,
+      "height": 100,
+      "tags": [
+        "Manual"
+      ],
+      "name": "manualStreetAdressApartment",
+      "selected": false,
+      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->Offer]]\">\n  <CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                  success=\"[[Offer]]\"\n                  error=\"[[CreateQuoteError]]\"\n  >\n  </CreateQuoteApi>\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>"
+    },
+    {
+      "id": "1602384014",
+      "story": "1180341409",
+      "top": 1500,
+      "left": 1600,
+      "width": 100,
+      "height": 100,
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Nästa->NewsletterSuccess]]\"\n>\n  <Tooltip>\n    <Title>\n      En titel\n    </Title>\n    <Description>\n      En beskrivning\n    </Description>\n  </Tooltip>\n</TextAction>",
-      "top": 650,
-      "width": 100
+      "name": "ApartmentUwlimitsHit",
+      "selected": false,
+      "text": "Double-click this passage to edit it."
+    },
+    {
+      "id": "-538920246",
+      "story": "1180341409",
+      "top": 1500,
+      "left": 1800,
+      "width": 100,
+      "height": 100,
+      "tags": [
+        "Error"
+      ],
+      "name": "CreateQuoteError",
+      "selected": false,
+      "text": "Double-click this passage to edit it."
     }
   ],
   "script": "",
@@ -422,11 +430,9 @@
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
-    "Error": "red"
+    "Error": "red",
+    "Review": "purple",
+    "Manual": "yellow"
   },
-  "zoom": 1,
-  "keywords": {
-    "selectActionSelectLabel": "Välj",
-    "tooltipModalInformationLabel": "Information"
-  }
+  "zoom": 1
 }
