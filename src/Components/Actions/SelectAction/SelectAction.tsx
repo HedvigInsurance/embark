@@ -19,7 +19,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const ARRAY_REGEX = /^\[.+,.+\]$/g; // Matches values wrapped in brackets, containing at least one ','
+const ARRAY_REGEX = /^\[.+,.+\]$/; // Matches values wrapped in brackets, containing at least one ','
 const ARRAY_SYMBOL_REGEX = /[\[\]]/g; // Matches either '[' or ']'
 
 const parseToArray = (value: string): string[] =>
