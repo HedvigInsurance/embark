@@ -38,7 +38,10 @@ const ButtonSpacer = styled.div`
   height: 20px;
 `;
 
-export const getMultiActionItems = (store: Store, key: string) =>
+export const getMultiActionItems = <T extends {}>(
+  store: Store,
+  key: string
+): { [key: string]: T } =>
   Object.keys(store)
     .filter(storeKey => storeKey.includes(key))
     .reduce<{ [key: string]: any }>((acc, storeKey) => {

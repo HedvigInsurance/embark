@@ -92,7 +92,7 @@ enum ExtraBuildingType {
   OTHER = "OTHER"
 }
 
-interface ExtraBuildingInput {
+export interface ExtraBuildingInput {
   type: ExtraBuildingType;
   area: number;
   hasWaterConnected: boolean;
@@ -118,7 +118,7 @@ export interface Variables {
       householdSize: number;
       livingSpace: number;
       ancillarySpace: number;
-      extraBuildings: [ExtraBuildingInput];
+      extraBuildings: ExtraBuildingInput[];
     };
   };
 }
