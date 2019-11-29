@@ -5,7 +5,8 @@ import {
   isUnderwritingLimitsHit,
   isQuote,
   Variables as CQVariables,
-  ApartmentType
+  ApartmentType,
+  ExtraBuildingInput
 } from "./createQuote";
 import { TApiContext } from "./ApiContext";
 import { Store } from "../KeyValueStore";
@@ -92,10 +93,10 @@ export const callApi = async (
         zipCode: store.postalNumber,
         householdSize: Number(store.householdSize),
         livingSpace: Number(store.livingSpace),
-        ancillarySpace: Number(store.ancillarySpace),
+        ancillarySpace: Number(store.ancillaryArea),
         extraBuildings: Object.values(
-          getMultiActionItems(store, "extraBuildings")
-        ) as any
+          getMultiActionItems<ExtraBuildingInput>(store, "extraBuildings")
+        )
       };
     }
 
