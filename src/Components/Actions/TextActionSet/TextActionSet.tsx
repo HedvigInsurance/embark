@@ -112,7 +112,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
     const values = props.action.data.textActions.reduce(
       (acc: { [key: string]: any }, curr: any) => {
-        return { ...acc, [curr.data.key]: null };
+        return { ...acc, [curr.data.key]: store[curr.data.key] || null };
       },
       {}
     );

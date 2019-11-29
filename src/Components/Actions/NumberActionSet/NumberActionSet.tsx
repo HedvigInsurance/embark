@@ -62,13 +62,24 @@ const reducer = (state: any, action: any) => {
 };
 
 export const NumberActionSet = (props: NumberActionSetProps) => {
+  const { setValue, store } = React.useContext(StoreContext);
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
     return props.action.data.numberActions.reduce((acc: any, curr: any) => {
-      return { ...acc, [curr.data.key]: null };
+      return { ...acc, [curr.data.key]: store[curr.data.key] || null };
     }, {});
   });
   const [continueDisabled, setContinueDisabled] = React.useState(true);
-  const { setValue } = React.useContext(StoreContext);
+
+  const onContinue = () => {
+    Object.keys(state).forEach(key => {
+      setValue(key, state[key]);
+    });
+    setValue(
+      `${props.passageName}Result`,
+      Object.keys(state).reduce((acc, curr) => `${acc} ${state[curr]}`, "")
+    );
+    props.changePassage(props.action.data.link.name);
+  };
 
   React.useEffect(() => {
     setContinueDisabled(
@@ -84,6 +95,12 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
         {props.action.data.numberActions.map(
           (numberAction: any, index: number) => (
             <Card
+              onSubmit={e => {
+                e.preventDefault();
+                if (!continueDisabled) {
+                  onContinue();
+                }
+              }}
               key={numberAction.data.key}
               borderRadius={(() => {
                 if (index == props.action.data.numberActions.length - 1) {
@@ -115,19 +132,7 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
       <ContinueButton
         disabled={continueDisabled}
         text={props.action.data.link.label}
-        onClick={() => {
-          Object.keys(state).forEach(key => {
-            setValue(key, state[key]);
-          });
-          setValue(
-            `${props.passageName}Result`,
-            Object.keys(state).reduce(
-              (acc, curr) => `${acc} ${state[curr]}`,
-              ""
-            )
-          );
-          props.changePassage(props.action.data.link.name);
-        }}
+        onClick={onContinue}
       />
     </Container>
   );
