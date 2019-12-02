@@ -6,7 +6,7 @@ export const isCreateQuoteApiComponent = (
   (t && t.component === "CreateQuoteApi") || false;
 
 interface ExtraBuilding {
-  type: ExtraBuildingType;
+  displayName: string;
   area: number;
   hasWaterConnected: boolean;
 }
@@ -16,7 +16,7 @@ interface ApartmentQuoteDetails {
   householdSize: number;
   livingSpace: number;
   type: ApartmentType;
-  __typename: "ApartmentQuoteDetails";
+  __typename: "CompleteApartmentQuoteDetails";
 }
 
 interface HouseQuoteDetails {
@@ -26,7 +26,7 @@ interface HouseQuoteDetails {
   livingSpace: number;
   ancillarySpace: number;
   extraBuildings: [ExtraBuilding];
-  __typename: "HouseQuoteDetails";
+  __typename: "CompleteHouseQuoteDetails";
 }
 
 type QuoteDetails = ApartmentQuoteDetails | HouseQuoteDetails;
@@ -42,7 +42,7 @@ interface Quote {
   };
   details: QuoteDetails;
   expiresAt: string; // TODO: This is an Instant - we should treat it as such
-  __typename: "Quote";
+  __typename: "CompleteQuote";
 }
 
 interface UnderwritingLimit {
@@ -57,7 +57,7 @@ interface UnderwritingLimitsHit {
 type QuoteResult = Quote | UnderwritingLimitsHit;
 
 export const isQuote = (result?: QuoteResult): result is Quote =>
-  (result && result.__typename === "Quote") || false;
+  (result && result.__typename === "CompleteQuote") || false;
 
 export const isUnderwritingLimitsHit = (
   result?: QuoteResult
