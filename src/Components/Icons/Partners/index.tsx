@@ -1,5 +1,6 @@
 import * as React from "react";
-import { WordmarkXDreams } from "./SEB";
+import { WordmarkXSEB } from "./SEB";
+import { WordmarkXDreams } from "./Dreams";
 import { Wordmark } from "../Wordmark";
 
 export type Partner = "seb" | "dreams";
@@ -10,7 +11,7 @@ interface Props {
 
 export const PartnerWordmark: React.FC<Props> = props => {
   if (props.partner === "seb") {
-    return <WordmarkXDreams />;
+    return <WordmarkXSEB />;
   }
 
   if (props.partner === "dreams") {

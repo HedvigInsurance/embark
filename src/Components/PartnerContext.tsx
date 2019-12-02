@@ -1,5 +1,10 @@
 import * as React from "react";
+import { Partner } from "./Icons/Partners";
 
-export const PartnerContext = React.createContext<{ partnerImageUrl?: string }>(
-  { partnerImageUrl: undefined }
-);
+interface TPartnerContext {
+  partner?: Partner;
+}
+
+export const PartnerContext = React.createContext<TPartnerContext>({
+  partner: undefined
+});

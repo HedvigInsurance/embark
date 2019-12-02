@@ -3,11 +3,12 @@ import { KeyValueStore, Store, StoreContext } from "./KeyValueStore";
 import { KeywordsContext } from "./KeywordsContext";
 import { TApiContext, ApiContext } from "./API/ApiContext";
 import { PartnerContext } from "./PartnerContext";
+import { Partner } from "./Icons/Partners";
 
 interface EmbarkProviderProps {
   data: any;
   resolvers: TApiContext;
-  partnerImageUrl?: string;
+  partner?: Partner;
   onStoreChange?: (store: Store) => void;
   initialStore?: Store;
 }
@@ -25,7 +26,7 @@ const StoreListener: React.FunctionComponent<EmbarkProviderProps> = props => {
 export const EmbarkProvider: React.FunctionComponent<
   EmbarkProviderProps
 > = props => (
-  <PartnerContext.Provider value={{ partnerImageUrl: props.partnerImageUrl }}>
+  <PartnerContext.Provider value={{ partner: props.partner }}>
     <ApiContext.Provider value={props.resolvers}>
       <KeywordsContext.Provider value={props.data.keywords}>
         <KeyValueStore initial={props.initialStore}>
