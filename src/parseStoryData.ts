@@ -82,15 +82,13 @@ const getSelectAction = (actionNode: Element | undefined) => {
     const tooltips = parseTooltips(option);
 
     const api = parseApi(option);
-    const externalRedirect = parseExternalRedirect(option);
 
     return {
       key,
       value,
       link: links && links[0],
       tooltip: tooltips[0] ? tooltips[0] : null,
-      api,
-      externalRedirect
+      api
     };
   });
 
