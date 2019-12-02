@@ -6,6 +6,7 @@ import { Wordmark } from "./Icons/Wordmark";
 interface HeaderProps {
   passage: any;
   storyData: any;
+  partnerImageUrl?: string;
 }
 
 interface ProgressLineProps {
@@ -87,6 +88,12 @@ export const Header = (props: HeaderProps) => {
   return (
     <Background>
       <Wordmark />
+      {props.partnerImageUrl ? (
+        <>
+          x
+          <img src={props.partnerImageUrl} />
+        </>
+      ) : null}
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
