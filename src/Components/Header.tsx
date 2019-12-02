@@ -2,11 +2,12 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand";
 import { Wordmark } from "./Icons/Wordmark";
+import { Partner, PartnerWordmark } from "./Icons/Partners";
 
 interface HeaderProps {
   passage: any;
   storyData: any;
-  partnerImageUrl?: string;
+  partner?: Partner;
 }
 
 interface ProgressLineProps {
@@ -87,13 +88,11 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <Background>
-      <Wordmark />
-      {props.partnerImageUrl ? (
-        <>
-          x
-          <img src={props.partnerImageUrl} />
-        </>
-      ) : null}
+      {props.partner ? (
+        <PartnerWordmark partner={props.partner} />
+      ) : (
+        <Wordmark />
+      )}
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
