@@ -169,7 +169,15 @@ const Root = () => {
 };
 
 const RootContainer = () => (
-  <EmbarkProvider data={data} resolvers={mockApiResolvers}>
+  <EmbarkProvider
+    data={data}
+    resolvers={mockApiResolvers}
+    externalRedirects={{
+      Offer: () => {
+        console.log("Should redirect to Offer!");
+      }
+    }}
+  >
     <Root />
   </EmbarkProvider>
 );
