@@ -587,6 +587,8 @@ export const parseStoryData = (storyData: any) => ({
       };
     });
 
+    const externalRedirect = parseExternalRedirect(containerElement);
+
     return {
       id: passage.id,
       text: passage.text,
@@ -595,6 +597,7 @@ export const parseStoryData = (storyData: any) => ({
       allLinks: parseLinks(passage.text) || [],
       messages,
       redirects,
+      externalRedirect,
       action: getAction(containerElement),
       response: getResponse(passage.name, containerElement),
       tooltips: Array.from(

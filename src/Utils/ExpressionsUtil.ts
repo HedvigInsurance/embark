@@ -1,5 +1,9 @@
 import * as React from "react";
 import { StoreContext, Store } from "../Components/KeyValueStore";
+import {
+  ExternalRedirectContext,
+  performExternalRedirect
+} from "../externalRedirect";
 
 type ExpressionType =
   | "EQUALS"
@@ -54,6 +58,7 @@ export const useGoTo = (
   onGoTo: (targetPassageId: string) => void
 ): ((name: string) => void) => {
   const { store } = React.useContext(StoreContext);
+  const externalRedirectContext = React.useContext(ExternalRedirectContext);
   const [goTo, setGoTo] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -79,6 +84,15 @@ export const useGoTo = (
           onGoTo(redirectTo.id);
           return;
         }
+      }
+
+      if (newPassage.externalRedirect) {
+        setGoTo(null);
+        performExternalRedirect(
+          externalRedirectContext,
+          newPassage.externalRedirect
+        );
+        return;
       }
 
       onGoTo(targetPassage);
