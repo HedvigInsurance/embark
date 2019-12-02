@@ -62,6 +62,18 @@ export const history = createHashHistory({
 const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "GO_TO":
+      const passage = data.passages.find(
+        (passage: any) => passage.id == state.passageId
+      );
+
+      if (passage.api) {
+        return {
+          ...state,
+          history: [...state.history],
+          passageId: action.passageId
+        };
+      }
+
       history.push(`${action.passageId}`);
       return {
         ...state,
@@ -85,9 +97,9 @@ const Root = () => {
     history: [getStartPassage()],
     passageId: getStartPassage()
   });
-  const passage = data.passages.filter(
+  const passage = data.passages.find(
     (passage: any) => passage.id == state.passageId
-  )[0];
+  );
   const goTo = useGoTo(data, targetPassageId => {
     dispatch({
       type: "GO_TO",
