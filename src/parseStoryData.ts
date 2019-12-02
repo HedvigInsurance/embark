@@ -45,6 +45,27 @@ const parseTooltip = (element: Element) => {
   };
 };
 
+/*
+<ExternalRedirect to="Offer"></ExternalRedirect>
+*/
+
+const parseExternalRedirect = (containerElement: Element) => {
+  const node = containerElement.getElementsByTagName("ExternalRedirect")[0];
+
+  if (!node) {
+    return null;
+  }
+
+  const location = node.getAttribute("to");
+
+  return {
+    component: "ExternalRedirect",
+    data: {
+      location
+    }
+  };
+};
+
 const getSelectAction = (actionNode: Element | undefined) => {
   if (!actionNode) {
     return null;
@@ -564,6 +585,8 @@ export const parseStoryData = (storyData: any) => ({
       };
     });
 
+    const externalRedirect = parseExternalRedirect(containerElement);
+
     return {
       id: passage.id,
       text: passage.text,
@@ -572,6 +595,7 @@ export const parseStoryData = (storyData: any) => ({
       allLinks: parseLinks(passage.text) || [],
       messages,
       redirects,
+      externalRedirect,
       action: getAction(containerElement),
       response: getResponse(passage.name, containerElement),
       tooltips: Array.from(
