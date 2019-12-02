@@ -45,6 +45,27 @@ const parseTooltip = (element: Element) => {
   };
 };
 
+/*
+<ExternalRedirect to="Offer"></ExternalRedirect>
+*/
+
+const parseExternalRedirect = (containerElement: Element) => {
+  const node = containerElement.getElementsByTagName("ExternalRedirect")[0];
+
+  if (!node) {
+    return null;
+  }
+
+  const location = node.getAttribute("to");
+
+  return {
+    component: "ExternalRedirect",
+    data: {
+      location
+    }
+  };
+};
+
 const getSelectAction = (actionNode: Element | undefined) => {
   if (!actionNode) {
     return null;
@@ -61,13 +82,15 @@ const getSelectAction = (actionNode: Element | undefined) => {
     const tooltips = parseTooltips(option);
 
     const api = parseApi(option);
+    const externalRedirect = parseExternalRedirect(option);
 
     return {
       key,
       value,
       link: links && links[0],
       tooltip: tooltips[0] ? tooltips[0] : null,
-      api
+      api,
+      externalRedirect
     };
   });
 

@@ -5,6 +5,10 @@ import { StoreContext } from "../../KeyValueStore";
 import { callApi } from "../../API";
 import { ApiContext } from "../../API/ApiContext";
 import { Loading } from "../../API/Loading";
+import {
+  performExternalRedirect,
+  ExternalRedirectContext
+} from "../../../externalRedirect";
 
 type SelectActionProps = {
   passageName: string;
@@ -42,6 +46,7 @@ export const SelectAction: React.FunctionComponent<
   const { store, setValue } = React.useContext(StoreContext);
   const [loading, setLoading] = React.useState(false);
   const api = React.useContext(ApiContext);
+  const externalRedirect = React.useContext(ExternalRedirectContext);
 
   if (loading) {
     return <Loading />;
@@ -70,7 +75,14 @@ export const SelectAction: React.FunctionComponent<
               setLoading(true);
               callApi(option.api, api, store, setValue, props.changePassage);
             } else {
-              props.changePassage(option.link.name);
+              if (option.externalRedirect) {
+                performExternalRedirect(
+                  externalRedirect,
+                  option.externalRedirect
+                );
+              } else {
+                props.changePassage(option.link.name);
+              }
             }
           }}
         />
