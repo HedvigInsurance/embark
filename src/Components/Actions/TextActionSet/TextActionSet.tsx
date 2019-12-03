@@ -170,6 +170,9 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
       <CardsContainer
         onSubmit={e => {
           e.preventDefault();
+          if (state.continueDisabled) {
+            return;
+          }
           onContinue();
         }}
       >
