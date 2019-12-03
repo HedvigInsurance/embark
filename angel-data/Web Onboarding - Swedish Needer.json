@@ -6,7 +6,7 @@
     "tooltipModalInformationLabel": "Information",
     "backButton": "Tillbaka"
   },
-  "lastUpdate": "2019-11-29T15:33:45.243Z",
+  "lastUpdate": "2019-12-03T10:41:18.243Z",
   "name": "Web Onboarding - Swedish Needer",
   "passages": [
     {
@@ -30,7 +30,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  <When expression=\"apartmentType == 'brf'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'villa'\">\n    Hur stor är villan?\n  </When>\n  <When expression=\"rentalType == 'studentHousing'\">\n    Hur stor är studentbostaden?\n  </When>\n  <When expression=\"rentalType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till? Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              next=\"[[Fortsätt->householdSizeApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på bostaden. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  <When expression=\"apartmentType == 'BRF'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'villa'\">\n    Hur stor är villan?\n  </When>\n  <When expression=\"rentalType == 'studentHousing'\">\n    Hur stor är studentbostaden?\n  </When>\n  <When expression=\"rentalType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till? Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              next=\"[[Fortsätt->householdSizeApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på bostaden. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
       "width": 100
     },
@@ -66,7 +66,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n    <CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                    success=\"[[Offer]]\"\n                    error=\"[[CreateQuoteError]]\"\n    >\n    </CreateQuoteApi>\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "width": 100
     },
@@ -78,7 +78,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Super! Ditt försäkringsförslag är klart\n</Message>",
+      "text": "<CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                success=\"[[OfferSuccess]]\"\n                error=\"[[CreateQuoteError]]\"\n>\n</CreateQuoteApi>\n\n<Message>\n  Super! Ditt försäkringsförslag är klart\n</Message>",
       "top": 1500,
       "width": 200
     },
@@ -104,7 +104,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"brf\"\n  >\n    [[Bostadsrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Bostadsrätt\n      </Title>\n      <Description>\n        Du äger en bostadsrätt och behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[rent,apartment]\"\n  >\n    [[Hyresrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyresrätt\n      </Title>\n      <Description>\n        Du hyr en hyresrätt eller äger en bostadsrätt där du inte behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[rent,apartment]\"\n  >\n    [[Hyr i andra hand->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyr i andra hand\n      </Title>\n      <Description>\n        Du hyr en bostadsrätt eller hyresrätt i andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"BRF\"\n  >\n    [[Bostadsrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Bostadsrätt\n      </Title>\n      <Description>\n        Du äger en bostadsrätt och behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Hyresrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyresrätt\n      </Title>\n      <Description>\n        Du hyr en hyresrätt eller äger en bostadsrätt där du inte behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Hyr i andra hand->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyr i andra hand\n      </Title>\n      <Description>\n        Du hyr en bostadsrätt eller hyresrätt i andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 300,
       "width": 100
     },
@@ -422,6 +422,18 @@
       "text": "Double-click this passage to edit it.",
       "top": 1500,
       "width": 100
+    },
+    {
+      "id": "1375401964",
+      "story": "1180341409",
+      "top": 1750,
+      "left": 1300,
+      "width": 100,
+      "height": 100,
+      "tags": [],
+      "name": "OfferSuccess",
+      "selected": false,
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>"
     }
   ],
   "script": "",
