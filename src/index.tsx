@@ -8,9 +8,9 @@ import { createHashHistory } from "history";
 
 import { parseStoryData } from "./parseStoryData";
 import { Header } from "./Components/Header";
-import { useGoTo } from "./Utils/ExpressionsUtil";
 import { EmbarkProvider } from "./Components/EmbarkProvider";
 import { mockApiResolvers } from "./Components/API/ApiContext";
+import { useEmbark } from "./Utils/useEmbark";
 
 declare global {
   interface Window {
@@ -93,19 +93,22 @@ const reducer = (state: any, action: any) => {
 };
 
 const Root = () => {
-  const [state, dispatch] = React.useReducer(reducer, {
+  const {
+    reducer: [state, dispatch],
+    goTo
+  } = useEmbark(() => ({
+    data,
     history: [getStartPassage()],
     passageId: getStartPassage()
-  });
+  }));
+
   const passage = data.passages.find(
     (passage: any) => passage.id == state.passageId
   );
-  const goTo = useGoTo(data, targetPassageId => {
-    dispatch({
-      type: "GO_TO",
-      passageId: targetPassageId
-    });
-  });
+
+  React.useEffect(() => {
+    history.push(`/${passage.id}`);
+  }, [passage]);
 
   if (isProofing) {
     return (
