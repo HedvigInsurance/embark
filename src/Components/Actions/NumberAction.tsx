@@ -60,6 +60,9 @@ export const NumberAction = (props: NumberActionProps) => {
   const { store, setValue } = React.useContext(StoreContext);
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || "");
 
+  const canContinue =
+    textValue.length > 0 &&
+    isWithinBounds(textValue, props.minValue, props.maxValue);
   const onContinue = () => {
     setValue(props.storeKey, textValue);
     setValue(`${props.autoResultKey}Result`, textValue);
@@ -71,6 +74,11 @@ export const NumberAction = (props: NumberActionProps) => {
       <Card
         onSubmit={e => {
           e.preventDefault();
+
+          if (!canContinue) {
+            return;
+          }
+
           onContinue();
         }}
         isFocused={isFocused || isHovered}
@@ -94,10 +102,7 @@ export const NumberAction = (props: NumberActionProps) => {
       <Spacer />
       <ContinueButton
         onClick={onContinue}
-        disabled={
-          textValue.length === 0 ||
-          !isWithinBounds(textValue, props.minValue, props.maxValue)
-        }
+        disabled={!canContinue}
         text={props.link.label}
       />
     </Container>

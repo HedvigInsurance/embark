@@ -44,6 +44,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || "");
   const api = React.useContext(ApiContext);
 
+  const canContinue = textValue.length > 0 && isValid(props.mask, textValue);
   const onContinue = () => {
     const unmaskedValue = unmaskValue(textValue, props.mask);
     const newValues: { [key: string]: any } = {
@@ -73,6 +74,11 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         isFocused={isFocused || isHovered}
         onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
           e.preventDefault();
+
+          if (!canContinue) {
+            return;
+          }
+
           onContinue();
         }}
         onMouseEnter={() => setIsHovered(true)}
@@ -111,8 +117,8 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         >
           <ContinueButton
             onClick={onContinue}
-            disabled={textValue.length === 0 || !isValid(props.mask, textValue)}
-            text={(props.link && props.link.label) || "Nästa"}
+            disabled={!canContinue}
+            text={props.link?.label || "Nästa"}
           />
         </motion.div>
       </motion.div>
