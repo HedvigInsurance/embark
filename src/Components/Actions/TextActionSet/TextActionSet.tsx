@@ -74,6 +74,18 @@ interface Action {
   textActions: any;
 }
 
+const isDisabled = (textActions: any) => (
+  values: Record<string, string>
+): boolean =>
+  Object.keys(values)
+    .map(
+      key =>
+        values[key] === null ||
+        values[key] === "" ||
+        !isValid(findMask(textActions, key), values[key])
+    )
+    .includes(true);
+
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "setValue":
@@ -81,14 +93,7 @@ const reducer = (state: State, action: Action) => {
       return {
         ...state,
         values: newValues,
-        continueDisabled: Object.keys(newValues)
-          .map(
-            key =>
-              newValues[key] === null ||
-              newValues[key] === "" ||
-              !isValid(findMask(action.textActions, key), newValues[key])
-          )
-          .includes(true)
+        continueDisabled: isDisabled(action.textActions)(newValues)
       };
     default:
       return state;
@@ -119,7 +124,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
 
     return {
       values,
-      continueDisabled: true
+      continueDisabled: isDisabled(props.action.data.textActions)(values)
     };
   });
   const api = React.useContext(ApiContext);
