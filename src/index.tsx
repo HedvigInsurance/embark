@@ -59,39 +59,6 @@ export const history = createHashHistory({
   hashType: "hashbang"
 });
 
-const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "GO_TO":
-      const passage = data.passages.find(
-        (passage: any) => passage.id == state.passageId
-      );
-
-      if (passage.api) {
-        return {
-          ...state,
-          history: [...state.history],
-          passageId: action.passageId
-        };
-      }
-
-      history.push(`${action.passageId}`);
-      return {
-        ...state,
-        history: [...state.history, action.passageId],
-        passageId: action.passageId
-      };
-    case "GO_BACK":
-      const historyLength = state.history.length;
-      return {
-        ...state,
-        history: state.history.slice(0, -1),
-        passageId: state.history[historyLength - 2]
-      };
-    default:
-      return state;
-  }
-};
-
 const Root = () => {
   const {
     reducer: [state, dispatch],
@@ -135,6 +102,14 @@ const Root = () => {
     );
   }
 
+  const [urlParams, setUrlParams] = React.useState<URLSearchParams | null>(
+    null
+  );
+
+  React.useEffect(() => {
+    setUrlParams(new URLSearchParams(window.location.search));
+  }, []);
+
   return (
     <>
       <Global
@@ -161,7 +136,11 @@ const Root = () => {
                 ${getCdnFontFaces()}
             `}
       />
-      <Header passage={passage} storyData={data} />
+      <Header
+        partnerName={urlParams && urlParams.get("partner")}
+        passage={passage}
+        storyData={data}
+      />
       <Passage
         canGoBack={state.history.length > 1}
         historyGoBackListener={onGoBack =>

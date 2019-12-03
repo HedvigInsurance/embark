@@ -1,18 +1,29 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand";
-import { Wordmark } from "./Icons/Wordmark";
 
 interface HeaderProps {
   passage: any;
   storyData: any;
+  partnerName: string | null;
 }
 
 interface ProgressLineProps {
   progress: number;
 }
 
-const Background = styled.div`
+interface Alignable {
+  alignment: "left" | "center";
+}
+
+const PartnerImage = styled.img`
+  width: auto;
+  height: auto;
+  max-height: 50px;
+  max-width: 230px;
+`;
+
+const Background = styled.div<Alignable>`
   display: flex;
   align-items: center;
   height: 80px;
@@ -21,6 +32,14 @@ const Background = styled.div`
   position: relative;
   padding: 0 10vw;
   box-sizing: border-box;
+  ${props =>
+    props.alignment === "center"
+      ? `
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+  `
+      : ""}
 `;
 
 const ProgressLineBackground = styled.div`
@@ -46,6 +65,16 @@ const ProgressLine = styled.div<ProgressLineProps>`
 export const Header = (props: HeaderProps) => {
   const [progress, setProgress] = React.useState(0);
   const [totalSteps, setTotalSteps] = React.useState(0);
+  const [partner, setPartner] = React.useState<null | any>(null);
+
+  React.useEffect(() => {
+    setPartner(
+      props.storyData.partnerConfigs.find(
+        (partner: any) =>
+          partner.name === props.partnerName || partner.isDefault
+      )
+    );
+  }, [props.partnerName]);
 
   React.useEffect(() => {
     const findMaxDepth = (passageName: string, previousDepth: number = 0) => {
@@ -85,8 +114,8 @@ export const Header = (props: HeaderProps) => {
   }, [props.passage]);
 
   return (
-    <Background>
-      <Wordmark />
+    <Background alignment={partner ? partner.alignment : "left"}>
+      {partner ? <PartnerImage src={partner.image} /> : null}
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
