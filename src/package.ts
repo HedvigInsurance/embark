@@ -7,7 +7,7 @@ if (typeof window !== "undefined") {
 export { KeyValueStore } from "./Components/KeyValueStore";
 export { Passage } from "./Components/Passage";
 export { Header } from "./Components/Header";
-export { useGoTo } from "./Utils/ExpressionsUtil";
+export { useEmbark } from "./Utils/useEmbark";
 export { EmbarkProvider } from "./Components/EmbarkProvider";
 
 export {

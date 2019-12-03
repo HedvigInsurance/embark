@@ -1,17 +1,22 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { Action } from "./Actions/Action";
 import { Message } from "./Message";
 import { Response } from "./Response/Response";
+import { MessageAnimation } from "./Common";
 
 import { BackButton } from "./BackButton";
 import { Questionmark } from "./Icons/Questionmark";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
 import hexToRgba from "hex-to-rgba";
 import { Modal } from "./Modal";
+import { StoreContext } from "./KeyValueStore";
 import { KeywordsContext } from "./KeywordsContext";
+import { ApiContext } from "./API/ApiContext";
+import { Loading } from "./API/Loading";
+import { callApi } from "./API";
 
 interface PassageProps {
   passage: any;
@@ -156,9 +161,14 @@ export const Passage = (props: PassageProps) => {
   );
   const [isShowingHelp, setIsShowingHelp] = React.useState(false);
   const { tooltipModalInformationLabel } = React.useContext(KeywordsContext);
+  const api = React.useContext(ApiContext);
+  const { store, setValue } = React.useContext(StoreContext);
+  const [loading, setLoading] = React.useState(false);
 
   const shouldShowActions = !(
-    isResponding || messagesAnimationState == "reverse"
+    isResponding ||
+    messagesAnimationState == "reverse" ||
+    loading
   );
 
   const goBack = () => {
@@ -172,6 +182,21 @@ export const Passage = (props: PassageProps) => {
 
   React.useEffect(() => {
     console.log(`Rendering passage ${props.passage.name}`, props.passage);
+
+    if (props.passage.api) {
+      setLoading(true);
+
+      callApi(props.passage.api, api, store, setValue, name => {
+        setTimeout(() => {
+          setLoading(false);
+          setMessagesAnimationState("visible");
+        }, 650);
+
+        setTimeout(() => {
+          props.changePassage(name);
+        }, 1800);
+      });
+    }
   }, [props.passage]);
 
   React.useEffect(() => {
@@ -215,13 +240,21 @@ export const Passage = (props: PassageProps) => {
             animate="visible"
             variants={messageListMotionVariants}
           >
-            {props.passage.messages.map((message: any) => (
-              <Message
-                key={message.text}
-                isResponse={false}
-                message={message}
-              />
-            ))}
+            <AnimatePresence>
+              {loading && (
+                <MessageAnimation>
+                  <Loading />
+                </MessageAnimation>
+              )}
+            </AnimatePresence>
+            {!loading &&
+              props.passage.messages.map((message: any) => (
+                <Message
+                  key={message.text}
+                  isResponse={false}
+                  message={message}
+                />
+              ))}
             {isResponding && props.passage.response && (
               <Response response={props.passage.response} />
             )}
@@ -236,7 +269,7 @@ export const Passage = (props: PassageProps) => {
               y: 0
             },
             hidden: {
-              opacity: 0,
+              opacity: -0.05,
               y: 150
             }
           }}

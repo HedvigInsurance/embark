@@ -92,6 +92,11 @@ export const MessageAnimation: React.FunctionComponent = props => (
         rotate: 1
       }
     }}
+    exit={{
+      height: 0,
+      opacity: 0,
+      rotate: 1
+    }}
     transition={{
       type: "spring",
       stiffness: 260,

@@ -5,7 +5,7 @@ import { colorsV2 } from "@hedviginsurance/brand";
 
 const DotOuterContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const DotContainer = styled.div`
@@ -13,9 +13,9 @@ const DotContainer = styled.div`
   flex-direction: row;
   padding-top: 18px;
   padding-bottom: 18px;
-  padding-left: 8px;
-  padding-right: 8px;
-  border-radius: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 23px;
   width: 40px;
   background-color: ${colorsV2.white};
 `;
