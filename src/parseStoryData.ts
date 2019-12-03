@@ -487,12 +487,29 @@ const parseGroupedResponse = (element: Element) => {
   };
 };
 
-const parseApi = (element: Element) => {
+const getFirstLevelNodes = (node: Element) => {
+  var children = new Array();
+  for (var child in node.childNodes) {
+    if (node.childNodes[child].nodeType == 1) {
+      children.push(node.childNodes[child]);
+    }
+  }
+  return children;
+};
+
+const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
   const personalInformationApi = element.getElementsByTagName(
     "personalinformationapi"
   )[0];
 
   if (personalInformationApi) {
+    if (
+      allowNestedChildren == false &&
+      !getFirstLevelNodes(element).includes(personalInformationApi)
+    ) {
+      return null;
+    }
+
     const match = personalInformationApi.getAttribute("match");
     const noMatch = personalInformationApi.getAttribute("noMatch");
     const error = personalInformationApi.getAttribute("error");
@@ -516,6 +533,13 @@ const parseApi = (element: Element) => {
   )[0];
 
   if (houseInformationApi) {
+    if (
+      allowNestedChildren == false &&
+      !getFirstLevelNodes(element).includes(houseInformationApi)
+    ) {
+      return null;
+    }
+
     const match = houseInformationApi.getAttribute("match");
     const noMatch = houseInformationApi.getAttribute("noMatch");
     const error = houseInformationApi.getAttribute("error");
@@ -537,6 +561,13 @@ const parseApi = (element: Element) => {
   const createQuoteApi = element.getElementsByTagName("createquoteapi")[0];
 
   if (createQuoteApi) {
+    if (
+      allowNestedChildren == false &&
+      !getFirstLevelNodes(element).includes(createQuoteApi)
+    ) {
+      return null;
+    }
+
     const uwlimits = createQuoteApi.getAttribute("uwlimits");
     const success = createQuoteApi.getAttribute("success");
     const error = createQuoteApi.getAttribute("error");
@@ -567,6 +598,8 @@ export const parseStoryData = (storyData: any) => ({
     var containerElement = document.createElement("div");
     containerElement.innerHTML = passage.text;
 
+    const api = parseApi(containerElement, false);
+
     const messages = Array.from(
       containerElement.getElementsByTagName("message")
     ).map(message => parsePossibleExpressionContent(message));
@@ -593,6 +626,7 @@ export const parseStoryData = (storyData: any) => ({
       name: passage.name,
       url: passage.url,
       allLinks: parseLinks(passage.text) || [],
+      api: api || null,
       messages,
       redirects,
       externalRedirect,
