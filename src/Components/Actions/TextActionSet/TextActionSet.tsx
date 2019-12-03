@@ -1,9 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../../ContinueButton";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
-import { Tooltip } from "../../Tooltip";
-import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import { StoreContext } from "../../KeyValueStore";
 import { unmaskValue, isValid } from "../masking";
 import { ApiComponent } from "../../API/apiComponent";
