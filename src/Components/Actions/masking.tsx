@@ -9,7 +9,6 @@ const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/;
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/;
 
 export const isValid = (m: MaskType | undefined, value: string): boolean => {
-  console.log("mask, value", m, value);
   const unmaskedValue = unmaskValue(value, m);
   if (m === "PersonalNumber") {
     return PERSONAL_NUMBER_REGEX.test(unmaskedValue);
