@@ -102,8 +102,6 @@ const Root = () => {
     passageId: getStartPassage()
   }));
 
-  console.log(state);
-
   const passage = data.passages.find(
     (passage: any) => passage.id == state.passageId
   );
