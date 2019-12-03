@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-03T12:31:37.595Z",
+  "lastUpdate": "2019-12-03T15:33:24.075Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -202,6 +202,19 @@
     },
     {
       "height": 100,
+      "id": "-563905203",
+      "left": 1500,
+      "name": "StudentRentQuestion",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [],
+      "text": "<Message>\n  Bonusfråga! Är du möjligtvis student? I så fall kan du ta del av vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"STUDENT_RENT\"\n  >\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1200,
+      "url": "/student-rent",
+      "width": 100
+    },
+    {
+      "height": 100,
       "id": "-835975962",
       "left": 1100,
       "name": "NewsletterSuccess",
@@ -238,6 +251,18 @@
       ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora bostäder som din\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 500,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "121856252",
+      "left": 1100,
+      "name": "StudentBrfQuestion",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [],
+      "text": "<Message>\n  Bonusfråga! Är du möjligtvis student? I så fall kan du ta del av vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"STUDENT_BRF\"\n  >\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1200,
       "width": 100
     },
     {
@@ -314,7 +339,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->Offer]]\">\n  <createquoteapi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                  success=\"[[Offer]]\"\n                  error=\"[[CreateQuoteError]]\"\n  >\n    <TextAction title=\"Adress\"\n                placeholder=\"Exempelgatan 21\"\n                large=\"true\"\n                key=\"streetAddress\"\n    >\n    </TextAction>\n    <TextAction title=\"Postnummer\"\n                placeholder=\"137 50\"\n                mask=\"PostalCode\"\n                key=\"postalNumber\"\n    >\n    </TextAction>\n  </createquoteapi>\n</TextActionSet>",
+      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->StudentEligibilityCheck]]\">\n  <createquoteapi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                  success=\"[[StudentEligibilityCheck]]\"\n                  error=\"[[CreateQuoteError]]\"\n  >\n    <TextAction title=\"Adress\"\n                placeholder=\"Exempelgatan 21\"\n                large=\"true\"\n                key=\"streetAddress\"\n    >\n    </TextAction>\n    <TextAction title=\"Postnummer\"\n                placeholder=\"137 50\"\n                mask=\"PostalCode\"\n                key=\"postalNumber\"\n    >\n    </TextAction>\n  </createquoteapi>\n</TextActionSet>",
       "top": 950,
       "width": 100
     },
@@ -345,13 +370,13 @@
     {
       "height": 100,
       "id": "1950569822",
-      "left": 1200,
-      "name": "Student",
+      "left": 1300,
+      "name": "StudentEligibilityCheck",
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Bonusfråga! Är du möjligtvis student? I så fall kan du ta del av vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
-      "top": 1300,
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>",
+      "top": 1100,
       "width": 100
     },
     {
@@ -364,7 +389,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->Offer]]\">\n  <CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                  success=\"[[Offer]]\"\n                  error=\"[[CreateQuoteError]]\"\n  >\n  </CreateQuoteApi>\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->StudentEligibilityCheck]]\">\n  <CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                  success=\"[[StudentEligibilityCheck]]\"\n                  error=\"[[CreateQuoteError]]\"\n  >\n  </CreateQuoteApi>\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "width": 100
     },
@@ -388,7 +413,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {CoInsuredVillaOwnResponse} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->rentOutVilla]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->rentOutVilla]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "width": 100
     },
@@ -400,7 +425,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"CoInsuredVillaOwnResponse > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option>\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option>\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "width": 100
     },
@@ -426,7 +451,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->StudentEligibilityCheck]]\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "width": 100
     },
