@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { fonts, colorsV2 } from "@hedviginsurance/brand";
 import { MaskType, wrapWithMask } from "../masking";
 
-const Input = styled.input`
+const Input = styled.input<Pick<Props, "strongPlaceholder">>`
   margin-left: 16px;
   margin-right: 16px;
   font-size: 40px;
@@ -14,14 +14,23 @@ const Input = styled.input`
   color: ${colorsV2.black};
   font-weight: 500;
   outline: 0;
+  width: 100%;
 
   ::placeholder {
-    color: ${colorsV2.lightgray};
+    color: ${props =>
+      props.strongPlaceholder ? colorsV2.darkgray : colorsV2.lightgray};
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+    margin-top: 0;
   }
 `;
 
 interface Props {
   placeholder: string;
+  strongPlaceholder?: boolean;
+  exampleValue?: string;
   value: string;
   onChange: (value: string) => void;
   mask?: MaskType;
@@ -31,14 +40,18 @@ interface Props {
 
 const Masked = wrapWithMask(Input);
 
-const getInputSize = (placeholder: string, value: string, large?: "true") =>
+const getInputSize = (exampleValue: string, value: string, large?: "true") =>
   Math.max(
-    large === "true" ? placeholder.length * 2 : placeholder.length,
+    large === "true" ? exampleValue.length * 2 : exampleValue.length,
     value.length
   );
 
 export const InlineTextAction: React.FunctionComponent<Props> = props => {
-  const size = getInputSize(props.placeholder, props.value, props.large);
+  const size = getInputSize(
+    props.exampleValue ?? props.placeholder,
+    props.value,
+    props.large
+  );
 
   return (
     <Masked
@@ -47,6 +60,7 @@ export const InlineTextAction: React.FunctionComponent<Props> = props => {
       type="text"
       size={size}
       placeholder={props.placeholder}
+      strongPlaceholder={props.strongPlaceholder}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
         props.onChange(e.target.value)
       }

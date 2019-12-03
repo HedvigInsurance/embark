@@ -10,45 +10,29 @@ import { ApiComponent } from "../../API/apiComponent";
 import { Loading } from "../../API/Loading";
 import { ApiContext } from "../../API/ApiContext";
 import { callApi } from "../../API";
+import { CARD_COUNT_BASE_BP, TextEditCard } from "./TextEditCard";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 100%;
 `;
 
-const CardsContainer = styled.form`
+const CardsContainer = styled.form<{ cardCount: number }>`
   display: flex;
   justify-content: center;
-`;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
 
-const Card = styled.div`
-  background-color: ${colorsV2.white};
-  padding-bottom: 36px;
-
-  :first-of-type {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+  ${props => `
+    @media (max-width: ${props.cardCount * CARD_COUNT_BASE_BP}px) {
+      display: flex;
+      flex-direction: column;
   }
-
-  :not(:last-child) {
-    margin-right: 1px;
-  }
-
-  :nth-last-of-type(1) {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-`;
-
-const CardTitle = styled.span`
-  font-family: ${fonts.CIRCULAR};
-  font-size: 14px;
-  font-weight: 500;
-  padding-top: 16px;
-  padding-left: 16px;
-  display: block;
+  `}
 `;
 
 const Spacer = styled.div`
@@ -175,6 +159,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           }
           onContinue();
         }}
+        cardCount={props.action?.data?.textActions?.length ?? 0}
       >
         {loading ? (
           <Loading />
@@ -182,25 +167,20 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           <>
             {props.action.data.textActions.map(
               (textAction: any, index: number) => (
-                <Card key={textAction.data.key}>
-                  <Tooltip tooltip={textAction.data.tooltip} />
-                  <CardTitle>{textAction.data.title}</CardTitle>
-                  <InlineTextAction
-                    autoFocus={index === 0}
-                    large={textAction.data.large}
-                    placeholder={textAction.data.placeholder}
-                    onChange={value => {
-                      dispatch({
-                        type: "setValue",
-                        key: textAction.data.key,
-                        value,
-                        textActions: props.action.data.textActions
-                      });
-                    }}
-                    value={state.values[textAction.data.key] || ""}
-                    mask={textAction.data.mask}
-                  />
-                </Card>
+                <TextEditCard
+                  textAction={textAction}
+                  cardCount={props.action?.data?.textActions?.length ?? 0}
+                  autoFocus={index === 0}
+                  onChange={value => {
+                    dispatch({
+                      type: "setValue",
+                      key: textAction.data.key,
+                      value,
+                      textActions: props.action.data.textActions
+                    });
+                  }}
+                  value={state.values[textAction.data.key] || ""}
+                />
               )
             )}
           </>
