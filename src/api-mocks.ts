@@ -88,9 +88,9 @@ export const createQuoteMocks = [
             householdSize: 1,
             livingSpace: 50,
             type: ApartmentType.BRF,
-            __typename: "ApartmentQuoteDetails"
+            __typename: "CompleteApartmentQuoteDetails"
           },
-          __typename: "Quote"
+          __typename: "CompleteQuote"
         }
       } as CQData
     }

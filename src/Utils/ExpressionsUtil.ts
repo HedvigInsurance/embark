@@ -6,6 +6,8 @@ import {
 } from "../externalRedirect";
 
 type ExpressionType =
+  | "AND"
+  | "OR"
   | "EQUALS"
   | "MORE_THAN"
   | "MORE_THAN_OR_EQUALS"
@@ -19,9 +21,22 @@ export interface Expression {
   key: any;
   value: any;
   text: string;
+  subExpressions?: Expression[];
 }
 
-export const passes = (store: Store, expression: Expression) => {
+export const passes = (store: Store, expression: Expression): boolean => {
+  if (expression.type === "AND") {
+    return !expression
+      .subExpressions!.map(exp => passes(store, exp))
+      .includes(false);
+  }
+
+  if (expression.type === "OR") {
+    return expression
+      .subExpressions!.map(exp => passes(store, exp))
+      .includes(true);
+  }
+
   if (expression.type == "EQUALS") {
     return store[expression.key] == expression.value;
   }

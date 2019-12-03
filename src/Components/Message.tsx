@@ -10,7 +10,7 @@ import { StoreContext } from "./KeyValueStore";
 import { Expression } from "../Utils/ExpressionsUtil";
 
 interface Message {
-  expressions: [Expression];
+  expressions: Expression[];
   text: string;
 }
 

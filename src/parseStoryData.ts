@@ -345,7 +345,62 @@ const getAction = (containerElement: Element) => {
   return null;
 };
 
-const parseExpression = (expression: string) => {
+interface BinaryExpression {
+  type: string;
+  key: string;
+  value: string;
+}
+
+interface UnaryExpression {
+  type: string;
+}
+
+type SingleExpression = UnaryExpression | BinaryExpression;
+
+interface MultipleExpressions {
+  type: "AND" | "OR";
+  subExpressions: Expression[];
+}
+
+type Expression = SingleExpression | MultipleExpressions;
+
+const AND_REGEX = /^(.+)&&(.+)$/;
+const OR_REGEX = /^(.+)\|\|(.+)$/;
+
+const parseExpression = (expression: string): Expression | null => {
+  console.log("parsing expression");
+  if (expression.includes("&&")) {
+    const splitted = expression.match(AND_REGEX);
+
+    if (!splitted) {
+      return null;
+    }
+
+    return {
+      type: "AND",
+      subExpressions: [
+        parseExpression(splitted[1].trim()),
+        parseExpression(splitted[2].trim())
+      ] as Expression[]
+    };
+  }
+
+  if (expression.includes("||")) {
+    const splitted = expression.match(OR_REGEX);
+
+    if (!splitted) {
+      return null;
+    }
+
+    return {
+      type: "OR",
+      subExpressions: [
+        parseExpression(splitted[1].trim()),
+        parseExpression(splitted[2].trim())
+      ] as Expression[]
+    };
+  }
+
   if (expression.includes("==")) {
     const splitted = expression.split("==");
 
