@@ -1,14 +1,39 @@
 {
   "id": "1180341409",
+  "lastUpdate": "2019-12-03T12:31:37.595Z",
   "ifid": "030C12E5-CA06-444F-B65C-0C29E1E0186E",
-  "keywords": {
-    "selectActionSelectLabel": "Välj",
-    "tooltipModalInformationLabel": "Information",
-    "backButton": "Tillbaka"
+  "tagColors": {
+    "Error": "red",
+    "Manual": "yellow",
+    "Review": "purple"
   },
-  "lastUpdate": "2019-12-03T10:41:18.243Z",
-  "name": "Web Onboarding - Swedish Needer",
   "passages": [
+    {
+      "height": 100,
+      "id": "-1124302200",
+      "left": 500,
+      "name": "extraBuildingsVilla",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [],
+      "text": "<Message>\n  Okej, då vet vi. Till sist behöver vi lite information om eventuella extra byggnader om du vill att de ska täckas av försäkringen\n</Message>\n\n<Message>\n  Du kan försäkra upp till 4 extra byggnader\n</Message>\n\n<Message>\n  Om du inte vill försäkra några extra byggnader, tryck bara Fortsätt\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Item>\n    {buildingType}, {livingSpace}\n  </Item>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildingresponse\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"buildingType\"\n                    label=\"Välj typ\"\n    >\n      <Option value=\"garage\">\n        Garage\n      </Option>\n      <Option value=\"attefall\">\n        Attefall\n      </Option>\n      <Option value=\"friggebod\">\n        Friggebod\n      </Option>\n      <Option value=\"guesthouse\">\n        Gästhus\n      </Option>\n      <Option value=\"carport\">\n        Carport\n      </Option>\n      <Option value=\"sauna\">\n        Bastu\n      </Option>\n      <Option value=\"boathouse\">\n        Båthus\n      </Option>\n      <Option value=\"other\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"livingSpace\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnectedResponse\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
+      "top": 1550,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1016912535",
+      "left": 200,
+      "name": "manualAdressVilla",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->correctInfoVilla]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
+      "top": 500,
+      "width": 100
+    },
     {
       "height": 100,
       "id": "-488850112",
@@ -224,18 +249,6 @@
     },
     {
       "height": 100,
-      "id": "-1124302200",
-      "left": 500,
-      "name": "extraBuildingsVilla",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [],
-      "text": "<Message>\n  Okej, då vet vi. Till sist behöver vi lite information om eventuella extra byggnader om du vill att de ska täckas av försäkringen\n</Message>\n\n<Message>\n  Du kan försäkra upp till 4 extra byggnader\n</Message>\n\n<Message>\n  Om du inte vill försäkra några extra byggnader, tryck bara Fortsätt\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Item>\n    {buildingType}, {livingSpace}\n  </Item>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildingresponse\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"buildingType\"\n                    label=\"Välj typ\"\n    >\n      <Option value=\"garage\">\n        Garage\n      </Option>\n      <Option value=\"attefall\">\n        Attefall\n      </Option>\n      <Option value=\"friggebod\">\n        Friggebod\n      </Option>\n      <Option value=\"guesthouse\">\n        Gästhus\n      </Option>\n      <Option value=\"carport\">\n        Carport\n      </Option>\n      <Option value=\"sauna\">\n        Bastu\n      </Option>\n      <Option value=\"boathouse\">\n        Båthus\n      </Option>\n      <Option value=\"other\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"livingSpace\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnectedResponse\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
-      "top": 1550,
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "537424821",
       "left": 500,
       "name": "householdSizeVilla",
@@ -369,20 +382,6 @@
     },
     {
       "height": 100,
-      "id": "-1016912535",
-      "left": 200,
-      "name": "manualAdressVilla",
-      "selected": false,
-      "story": "1180341409",
-      "tags": [
-        "Manual"
-      ],
-      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->correctInfoVilla]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
-      "top": 500,
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "349636715",
       "left": 1900,
       "name": "manualStreetAdressApartment",
@@ -436,16 +435,37 @@
       "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>"
     }
   ],
-  "script": "",
-  "snapToGrid": true,
+  "name": "Web Onboarding - Swedish Needer",
   "startPassage": "392921887",
+  "zoom": 1,
+  "snapToGrid": true,
+  "stylesheet": "",
+  "script": "",
   "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0",
-  "stylesheet": "",
-  "tagColors": {
-    "Error": "red",
-    "Manual": "yellow",
-    "Review": "purple"
+  "keywords": {
+    "selectActionSelectLabel": "Välj",
+    "tooltipModalInformationLabel": "Information",
+    "backButton": "Tillbaka"
   },
-  "zoom": 1
+  "partnerConfigs": [
+    {
+      "name": "hedvig",
+      "alignment": "center",
+      "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTQiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iI0ZGRiIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNNzEuOTI0IDIxLjI1NmgzLjE0NVY2LjYyaC0zLjE0NXpNNDcuNDEzIDIxLjI1N2gzLjE0NlYuMTQzaC0zLjE0NnoiLz48cGF0aCBkPSJNNDIuODgxIDkuMzQ3YTQuNTM3IDQuNTM3IDAgMDAtNC41MzIgNC41MzIgNC41MzcgNC41MzcgMCAwMDQuNTMyIDQuNTMyIDQuNTM3IDQuNTM3IDAgMDA0LjUzMi00LjUzMiA0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyem0wIDEyLjIwOWMtNC4yMzMgMC03LjY3OC0zLjQ0NC03LjY3OC03LjY3NyAwLTQuMjM0IDMuNDQ1LTcuNjc4IDcuNjc4LTcuNjc4IDQuMjMzIDAgNy42NzggMy40NDQgNy42NzggNy42NzggMCA0LjIzMy0zLjQ0NSA3LjY3Ny03LjY3OCA3LjY3N3pNMTIuMjA5IDIxLjI1NWgzLjE0NnYtNy4zNzhIMTIuMjF6Ii8+PHBhdGggZD0iTTE1LjM1NiAxMy44NzhoLTMuMTQ3YTQuNTM3IDQuNTM3IDAgMDAtNC41MzItNC41MzIgNC41MzcgNC41MzcgMCAwMC00LjUzMSA0LjUzMkgwQzAgOS42NDQgMy40NDQgNi4yIDcuNjc3IDYuMnM3LjY3OSAzLjQ0NCA3LjY3OSA3LjY3OE03NS42NzQgMi4xNzhhMi4xNzggMi4xNzggMCAxMS00LjM1NiAwIDIuMTc4IDIuMTc4IDAgMDE0LjM1NiAwIi8+PHBhdGggZD0iTTAgMjEuMjU3aDMuMTQ1Vi4xNDNIMHpNOTMuNDA0IDEzLjg3OGgtMy4xNDZhNC41MzcgNC41MzcgMCAwMC00LjUzMi00LjUzMiA0LjUzNyA0LjUzNyAwIDAwLTQuNTMgNC41MzJoLTMuMTQ3YzAtNC4yMzQgMy40NDMtNy42NzggNy42NzctNy42NzggNC4yMzMgMCA3LjY3OCAzLjQ0NCA3LjY3OCA3LjY3OCIvPjxwYXRoIGQ9Ik05MC4yNTggNi42MTl2Ny4yNTlhNC41MzggNC41MzggMCAwMS00LjUzMiA0LjUzMyA0LjUzNyA0LjUzNyAwIDAxLTQuNTMtNC41MzNoLTMuMTQ3YzAgNC4yMzQgMy40NDMgNy42NzggNy42NzcgNy42NzggNC4yMzMgMCA3LjY3OC0zLjQ0NCA3LjY3OC03LjY3OHYtNy4yNmgtMy4xNDZ6TTYwLjk2IDE3LjM5Mkw1Ni4xNjMgNi42MTlINTIuNzJsNi41MTggMTQuNjM4aC4wMDJ6Ii8+PHBhdGggZD0iTTY1Ljc1NiA2LjYxOUw1OS4yNCAyMS4yNTZINjIuNjgyTDY5LjIgNi42MTl6TTkwLjI1OCAyMS4zNmE0LjUzOCA0LjUzOCAwIDAxLTQuNTMyIDQuNTI3IDQuNDk5IDQuNDk5IDAgMDEtMi4yNjEtLjYxMUw4MS44ODkgMjhhNy42MjYgNy42MjYgMCAwMDMuODM3IDEuMDMzYzQuMjMzIDAgNy42NzctMy40NDUgNy42NzgtNy42NzdsLTMuMTQ2LjAwM3pNMjcuNDQ3IDE3Ljg1N2E0LjUxIDQuNTEgMCAwMS0uNzkuMzM4bC0uMDc2LjAyM2E0LjQxNyA0LjQxNyAwIDAxLS4zNTUuMDkxYy0uMDE1LjAwMy0uMDMuMDA4LS4wNDYuMDFhNC4zNDYgNC4zNDYgMCAwMS0uNDkuMDcgNC40NiA0LjQ2IDAgMDEtLjQxLjAyMiA0LjUzNiA0LjUzNiAwIDAxLTQuMjQ2LTIuOTZoLTMuMjdhNy42MjQgNy42MjQgMCAwMDEuNTkzIDMuMzA4IDcuODQgNy44NCAwIDAwMS4zMzIgMS4yNyA3LjYxMyA3LjYxMyAwIDAwNS4wNTMgMS41MTMgNi45NiA2Ljk2IDAgMDAuNTk1LS4wNmMuMTM3LS4wMi4yNzYtLjA0Mi40MTItLjA2OGwuMDQtLjAwOGE2LjUyMiA2LjUyMiAwIDAwLjU0Ni0uMTMyYy4xMTUtLjAzLjIyOC0uMDY2LjM0LS4xMDJsLjE0Ny0uMDVjLjA5My0uMDM0LjE4Ni0uMDY4LjI3OS0uMTA1bC4xNTctLjA2MmMuMTItLjA1LjIzOC0uMTA1LjM1NS0uMTZhOC43MzYgOC43MzYgMCAwMC4zNzItLjE5NWwuMTMyLS4wNzYtMS41NzMtMi43MmMtLjAzMi4wMi0uMDY1LjAzNi0uMDk3LjA1M00zMi43OTQgMTIuMzA2Yy0uNzI4LTMuNDgyLTMuODItNi4xMDYtNy41MTUtNi4xMDYtMy42OTQgMC02Ljc4NiAyLjYyNC03LjUxNCA2LjEwNmgzLjI3YTQuNTM2IDQuNTM2IDAgMDE0LjI0NC0yLjk2IDQuNTM2IDQuNTM2IDAgMDE0LjI0NSAyLjk2IDQuNDkgNC40OSAwIDAxLjI4NyAxLjU3MiA0LjQ5IDQuNDkgMCAwMS0uMjg3IDEuNTczaDMuMjdhNy42NTEgNy42NTEgMCAwMDAtMy4xNDUiLz48cGF0aCBkPSJNMjkuNTI0IDEyLjMwNmgtMTEuNzZhNy42NTEgNy42NTEgMCAwMDAgMy4xNDVoMTEuNzZjLjE4Mi0uNDkuMjg3LTEuMDIuMjg3LTEuNTczIDAtLjU1My0uMTA1LTEuMDgyLS4yODctMS41NzIiLz48L2c+PC9zdmc+",
+      "isDefault": true
+    },
+    {
+      "name": "dreams",
+      "alignment": "center",
+      "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUxIiBoZWlnaHQ9IjMzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+PHBhdGggZD0iTTE0Ni40NzYgMGMyLjgyIDAgNS40MTIuNjcyIDcuNzc0IDIuMDE4IDIuMzYyIDEuMzQ1IDQuMjMyIDMuMTczIDUuNjEgNS40ODYgMS4zNzggMi4yOTYgMi4wNjcgNC44MDYgMi4wNjcgNy41MjlzLS42OTcgNS4yMjQtMi4wOTIgNy41MDRjLTEuMzc3IDIuMjY0LTMuMjU1IDQuMDYtNS42MzQgNS4zODgtMi4zNjIgMS4zMjktNC45MzcgMS45OTMtNy43MjUgMS45OTMtMS42NCAwLTMuMDQzLS4xOTctNC4yMDgtLjU5bC40MTktMi40ODVjMS40MS4zNiAyLjY3My41NCAzLjc4OS41NGExMi43OCAxMi43OCAwIDAwNi4yOTgtMS42MjMgMTIuMzcyIDEyLjM3MiAwIDAwNC42NzUtNC40MjljMS4xOC0xLjg4NiAxLjc3MS0zLjk4NSAxLjc3MS02LjI5OHMtLjU2Ni00LjQyLTEuNjk3LTYuMzIzYTEyLjA3NiAxMi4wNzYgMCAwMC00LjYwMS00LjUyN2MtMS45NTItMS4xLTQuMS0xLjY0OS02LjQ0Ni0xLjY0OXMtNC40OTUuNTUtNi40NDYgMS42NDlhMTIuMjU3IDEyLjI1NyAwIDAwLTQuNjI2IDQuNTI3Yy0xLjEzMiAxLjkwMi0xLjY5OCA0LjAxLTEuNjk4IDYuMzIzIDAgMi4wNS40MjcgMy44MzggMS4yOCA1LjM2My44NTMgMS41MSAxLjkwMiAyLjc3MiAzLjE0OSAzLjc5di0xLjg3aDUuMzY0di0zLjc0aDUuNDEydi0zLjU2OGg1LjY4NGMuMDE2LS4xMTUuMDI0LS4zMTEuMDI0LS41OSAwLS41OS0uMjA1LTEuMDY2LS42MTUtMS40MjctLjM5My0uMzYxLS45NDMtLjU0Mi0xLjY0OC0uNTQyLS41NTggMC0xLjA1LjA2Ni0xLjQ3Ni4xOTctLjA1LTEuMDgyLS4zNy0xLjk1Mi0uOTYtMi42MDgtLjU3NC0uNjcyLTEuMzUzLTEuMDA4LTIuMzM3LTEuMDA4LTEgMC0xLjc4OC4yOTUtMi4zNjIuODg1LS41NTguNTc0LS45MjcgMS4zMzctMS4xMDcgMi4yODhhNC4yMTMgNC4yMTMgMCAwMC0xLjMyOS0uNTY2IDYuODY1IDYuODY1IDAgMDAtMS41MjUtLjE0N2MtLjkxOSAwLTEuNjQuMjctMi4xNjUuODEyLS41MjUuNTQxLS43ODggMS4xOTctLjc4OCAxLjk2OCAwIC4xNjQuMDE3LjQxLjA1LjczOGg3LjM4djIuNTM0aC05LjUyMWMtLjM3Ny0uODItLjU2Ni0xLjgyOS0uNTY2LTMuMDI2IDAtLjg1My4xNzItMS43MDYuNTE3LTIuNTU5LjM2LS44NjkuOTM1LTEuNTkgMS43MjItMi4xNjUuNzg3LS41OSAxLjc4OC0uODg1IDMuMDAyLS44ODUuNzIxIDAgMS4zNDUuMTA2IDEuODcuMzIuMzYtLjczOS45MjYtMS4zODcgMS42OTctMS45NDQuNzcxLS41NTggMS44MDUtLjgzNyAzLjEtLjgzNyAxIDAgMS44NzguMTk3IDIuNjMzLjU5Ljc3LjM5NCAxLjM4Ni44OTUgMS44NDUgMS41MDEuNDYuNTkuNzQ2IDEuMTkuODYxIDEuNzk2bC4zNy0uMDI0Yy43MzcgMCAxLjQxLjE4IDIuMDE3LjU0MWEzLjYzNiAzLjYzNiAwIDAxMS40NTEgMS40NTJjLjM2MS42MjMuNTQyIDEuMzM3LjU0MiAyLjE0IDAgLjY0LS4wNSAxLjIzOS0uMTQ4IDEuNzk2YTguOTE2IDguOTE2IDAgMDEtLjMyIDEuMzA0aC01LjMxNHYzLjU0M2gtNS40MTN2My43NGgtNS4zMzl2Mi42MzNoLTIuNjA4YTE0LjkyIDE0LjkyIDAgMDEtNS4xOTEtNS4yNjUgMTMuOTM1IDEzLjkzNSAwIDAxLTEuOTQ0LTcuMTZjMC0yLjcyMy42ODktNS4yMzMgMi4wNjctNy41MjkgMS4zNzgtMi4zMTMgMy4yNDctNC4xNDEgNS42MS01LjQ4NkMxNDEuMDU0LjY3MSAxNDMuNjU0IDAgMTQ2LjQ3NSAwek0xNzMuMDExIDYuNDk1YzEuNjQgMCAzLjA2LjM3IDQuMjU3IDEuMTA4IDEuMTk3LjczOCAyLjEwNyAxLjc3MSAyLjczIDMuMS42NCAxLjMxMi45NiAyLjgyLjk2IDQuNTI3IDAgMS43MDYtLjMyIDMuMjIzLS45NiA0LjU1MS0uNjIzIDEuMzEzLTEuNTMzIDIuMzM4LTIuNzMgMy4wNzYtMS4xOTguNzM4LTIuNjE3IDEuMTA3LTQuMjU3IDEuMTA3aC03LjExVjYuNDk1aDcuMTF6TTE2OS4zNDUgOS40VjIxLjA2aDMuMTVjMS40OTIgMCAyLjY4MS0uNDkyIDMuNTY3LTEuNDc3LjkwMi0uOTg0IDEuMzUzLTIuNDM1IDEuMzUzLTQuMzU0IDAtMS45Mi0uNDUtMy4zNzEtMS4zNTMtNC4zNTUtLjg4Ni0uOTg0LTIuMDc1LTEuNDc2LTMuNTY3LTEuNDc2aC0zLjE1ek0xODkuMzE4IDExLjI0NGMuMzEyIDAgLjYwNy4wMzMuODg2LjA5OC4yNzguMDUuNjQ3LjE0IDEuMTA3LjI3bC0uNTY2IDIuNzgxYy0uNjQtLjE2NC0xLjE3My0uMjQ2LTEuNi0uMjQ2LS44NTIgMC0xLjUyNS4zMi0yLjAxNy45Ni0uNDkyLjY0LS43MzggMS41MjUtLjczOCAyLjY1N3Y2LjJoLTMuMTk4VjExLjM5MmgyLjk3N3YxLjg0NWMuNjU2LTEuMzI5IDEuNzA1LTEuOTkzIDMuMTQ5LTEuOTkzek0xOTguMzk3IDIxLjY1MWMuNzA2IDAgMS4zMDQtLjEyMyAxLjc5Ni0uMzY5LjUwOS0uMjQ2IDEuMTU3LS42OTcgMS45NDQtMS4zNTNsMS43OTYgMS45NjhjLS44ODYuOTAyLTEuNzggMS41NDItMi42ODIgMS45Mi0uODg1LjM2LTEuODYxLjU0LTIuOTI4LjU0LTEuMzQ1IDAtMi41MTctLjI3LTMuNTE4LS44MTFhNS42NSA1LjY1IDAgMDEtMi4yODgtMi4zMTNjLS41MjUtMS0uNzg3LTIuMTY1LS43ODctMy40OTQgMC0xLjI5Ni4yNTQtMi40NTIuNzYyLTMuNDY5LjUwOS0xLjAzMyAxLjIzOS0xLjgzNyAyLjE5LTIuNDExLjk1MS0uNTkgMi4wNzUtLjg4NiAzLjM3LS44ODYgMS44ODcgMCAzLjMzOS41NTggNC4zNTYgMS42NzMgMS4wMTcgMS4xIDEuNTI1IDIuNjMzIDEuNTI1IDQuNjAxIDAgLjQ3Ni0uMDE2Ljg5NC0uMDUgMS4yNTVoLTkuMDI5Yy4xNDguOTY4LjUwOSAxLjczOSAxLjA4MyAyLjMxMy41OS41NTcgMS40MS44MzYgMi40Ni44MzZ6bS0uNDQzLTguMTY4Yy0uODIgMC0xLjQ4NC4yNDYtMS45OTIuNzM4LS41MDkuNDc2LS44NTMgMS4xNC0xLjAzNCAxLjk5M2g1Ljg4Yy0uMDY1LS44NTMtLjM0NC0xLjUxNy0uODM2LTEuOTkzLS40OTItLjQ5Mi0xLjE2NS0uNzM4LTIuMDE4LS43Mzh6TTIxMS41MDQgMTAuOTczYzEuNzU2IDAgMy4xLjQxIDQuMDM1IDEuMjMuOTUyLjgyIDEuNDI3IDEuOTExIDEuNDI3IDMuMjczdjguNDg4aC0yLjg3OFYyMi42NmMtLjM5NC41NDEtLjkzNS45NjgtMS42MjQgMS4yOC0uNjcyLjI5NS0xLjQ4NC40NDItMi40MzYuNDQyLTEuMjk2IDAtMi4zNy0uMjk1LTMuMjIzLS44ODYtLjg1My0uNjA2LTEuMjgtMS41MDktMS4yOC0yLjcwNiAwLTEuMzI4LjQ4NS0yLjMyIDEuNDUyLTIuOTc3Ljk4NC0uNjcyIDIuMzEzLTEuMTU2IDMuOTg2LTEuNDUybDIuOTUzLS41NHYtLjI5NmMwLS42MDctLjIxNC0xLjA3NS0uNjQtMS40MDItLjQxLS4zNDUtLjk4NC0uNTE3LTEuNzIyLS41MTctLjc4OCAwLTEuNDQ0LjE1Ni0xLjk2OS40NjctLjUyNS4zMTItMS4xNzIuODM3LTEuOTQzIDEuNTc1bC0yLjAxOC0xLjg0NWMuODA0LS45NTIgMS42ODEtMS42NTcgMi42MzMtMi4xMTYuOTUxLS40NzYgMi4wMzQtLjcxNCAzLjI0Ny0uNzE0em0tLjkzNCAxMC44NWMuOTE4IDAgMS43MDUtLjIzNyAyLjM2MS0uNzEzLjY1Ni0uNDkyLjk4NS0xLjI0Ny45ODUtMi4yNjR2LS43MzhsLTIuMTE2LjQ0M2MtMS4wNjcuMjMtMS44NjIuNDkyLTIuMzg3Ljc4OC0uNTA4LjI3OC0uNzYzLjY4OC0uNzYzIDEuMjMgMCAuMzkzLjE2NC43MDUuNDkyLjkzNS4zNDUuMjEzLjgyLjMyIDEuNDI3LjMyek0yMzMuNTg4IDEwLjk3M2MxLjMyOSAwIDIuMzU0LjM3NyAzLjA3NSAxLjEzMi43MzguNzU1IDEuMTA4IDEuNzggMS4xMDggMy4wNzV2OC43ODRoLTMuMTk5VjE2LjE0YzAtLjc1NS0uMTY0LTEuMzQ1LS40OTItMS43NzItLjMxMi0uNDI2LS44MTItLjY0LTEuNTAxLS42NC0uNzA1IDAtMS4yNTUuMjM5LTEuNjQ4LjcxNC0uMzc4LjQ2LS41NjYgMS4wNTgtLjU2NiAxLjc5NnY3LjcyNmgtMy4xOTlWMTYuMTRjMC0xLjYwNy0uNjY0LTIuNDExLTEuOTkyLTIuNDExLS43MDYgMC0xLjI1NS4yMzgtMS42NDkuNzEzLS4zNzcuNDYtLjU2NiAxLjA1OC0uNTY2IDEuNzk2djcuNzI2aC0zLjE5OFYxMS4zOTJoMi45Nzd2MS40MDJjLjczOC0xLjIxNCAxLjkzNS0xLjgyIDMuNTkyLTEuODIuODA0IDAgMS41LjE2MyAyLjA5MS40OTEuNTkuMzEyIDEuMDU4Ljc2MyAxLjQwMyAxLjM1NC44NTItMS4yMyAyLjEwNy0xLjg0NiAzLjc2NC0xLjg0NnpNMjQ1LjM5IDEwLjk3M2MxLjA4MyAwIDIuMDM0LjE0OCAyLjg1NC40NDMuODM3LjI5NSAxLjY5LjgwNCAyLjU1OSAxLjUyNWwtMS43MjIgMi4wOTJjLS43MzgtLjU3NC0xLjM4Ni0uOTYtMS45NDQtMS4xNTctLjU0MS0uMjEzLTEuMTQ4LS4zMi0xLjgyLS4zMi0uNjQgMC0xLjE1Ny4xMTUtMS41NS4zNDUtLjM3OC4yMy0uNTY2LjUzMy0uNTY2LjkxIDAgLjI2My4wOS40NjguMjcuNjE2LjE5Ny4xNDcuNDY4LjI3LjgxMi4zNjkuMzQ1LjA5OC45Ni4yNDYgMS44NDUuNDQyIDEuMTk4LjI2MyAyLjE0MS41NTggMi44My44ODYuNzA1LjMxMiAxLjIyMi43MjIgMS41NSAxLjIzLjMyOC40OTIuNDkyIDEuMTI0LjQ5MiAxLjg5NSAwIDEuMjMtLjQ4NCAyLjIyMi0xLjQ1MiAyLjk3Ny0uOTUxLjc1NC0yLjI2MyAxLjEzMi0zLjkzNiAxLjEzMi0xLjE5OCAwLTIuMjY0LS4xNzMtMy4xOTktLjUxNy0uOTE4LS4zNi0xLjg3OC0uOTg0LTIuODc4LTEuODdsMS44NDUtMi4wNjdjLjkwMi43MzggMS42NTcgMS4yMzkgMi4yNjQgMS41MDEuNjA2LjI0NiAxLjI4Ny4zNyAyLjA0Mi4zNy42MzkgMCAxLjE2NC0uMTE2IDEuNTc0LS4zNDUuNDEtLjIzLjYxNS0uNTU4LjYxNS0uOTg0IDAtLjMyOC0uMTIzLS41ODMtLjM2OS0uNzYzYTIuMjIgMi4yMiAwIDAwLS44ODUtLjQxOGMtLjM0NS0uMDk5LS45Ni0uMjQ2LTEuODQ2LS40NDMtMS4yMTQtLjI2My0yLjE0OC0uNTUtMi44MDUtLjg2MS0uNjU2LS4zMjgtMS4xMjMtLjczLTEuNDAyLTEuMjA2LS4yNzktLjQ3Ni0uNDE4LTEuMDktLjQxOC0xLjg0NSAwLS43MjIuMjA1LTEuMzc4LjYxNS0xLjk2OS40MS0uNjA2IDEuMDA5LTEuMDgyIDEuNzk2LTEuNDI3LjgwNC0uMzYgMS43NDctLjU0IDIuODI5LS41NHoiLz48Zz48cGF0aCBkPSJNNzEuOTI0IDI0LjI1NmgzLjE0NVY5LjYyaC0zLjE0NXYxNC42MzZ6bS0yNC41MTEuMDAxaDMuMTQ2VjMuMTQzaC0zLjE0NnYyMS4xMTR6Ii8+PHBhdGggZD0iTTQyLjg4MSAxMi4zNDdhNC41MzcgNC41MzcgMCAwMC00LjUzMiA0LjUzMiA0LjUzNyA0LjUzNyAwIDAwNC41MzIgNC41MzIgNC41MzcgNC41MzcgMCAwMDQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzItNC41MzJ6bTAgMTIuMjA5Yy00LjIzMyAwLTcuNjc4LTMuNDQ0LTcuNjc4LTcuNjc3IDAtNC4yMzQgMy40NDUtNy42NzggNy42NzgtNy42NzggNC4yMzMgMCA3LjY3OCAzLjQ0NCA3LjY3OCA3LjY3OCAwIDQuMjMzLTMuNDQ1IDcuNjc3LTcuNjc4IDcuNjc3em0tMzAuNjcyLS4zMDFoMy4xNDZ2LTcuMzc4SDEyLjIxbC0uMDAxIDcuMzc4eiIvPjxwYXRoIGQ9Ik0xNS4zNTYgMTYuODc4aC0zLjE0N2E0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzEgNC41MzJIMEMwIDEyLjY0NCAzLjQ0NCA5LjIgNy42NzcgOS4yczcuNjc5IDMuNDQ0IDcuNjc5IDcuNjc4bTYwLjMxOC0xMS43YTIuMTc4IDIuMTc4IDAgMTEtNC4zNTYgMCAyLjE3OCAyLjE3OCAwIDAxNC4zNTYgMCIvPjxwYXRoIGQ9Ik0wIDI0LjI1N2gzLjE0NVYzLjE0M0gwdjIxLjExNHptOTMuNDA0LTcuMzc5aC0zLjE0NmE0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MyA0LjUzMmgtMy4xNDdjMC00LjIzNCAzLjQ0My03LjY3OCA3LjY3Ny03LjY3OCA0LjIzMyAwIDcuNjc4IDMuNDQ0IDcuNjc4IDcuNjc4eiIvPjxwYXRoIGQ9Ik05MC4yNTggOS42MTl2Ny4yNTlhNC41MzggNC41MzggMCAwMS00LjUzMiA0LjUzMyA0LjUzNyA0LjUzNyAwIDAxLTQuNTMtNC41MzNoLTMuMTQ3YzAgNC4yMzQgMy40NDMgNy42NzggNy42NzcgNy42NzggNC4yMzMgMCA3LjY3OC0zLjQ0NCA3LjY3OC03LjY3OHYtNy4yNmgtMy4xNDZ2LjAwMXpNNjAuOTYgMjAuMzkyTDU2LjE2MyA5LjYxOUg1Mi43Mmw2LjUxOCAxNC42MzhoLjAwMmwxLjcyLTMuODY1eiIvPjxwYXRoIGQ9Ik02NS43NTYgOS42MTlMNTkuMjQgMjQuMjU2aDMuNDQyTDY5LjIgOS42MTloLTMuNDQ0ek05MC4yNTggMjQuMzZhNC41MzggNC41MzggMCAwMS00LjUzMiA0LjUyNyA0LjQ5OSA0LjQ5OSAwIDAxLTIuMjYxLS42MTFMODEuODg5IDMxYTcuNjI2IDcuNjI2IDAgMDAzLjgzNyAxLjAzM2M0LjIzMyAwIDcuNjc3LTMuNDQ1IDcuNjc4LTcuNjc3bC0zLjE0Ni4wMDN2LjAwMXptLTYyLjgxMS0zLjUwM2E0LjUxIDQuNTEgMCAwMS0uNzkuMzM4bC0uMDc2LjAyM2E0LjQxNyA0LjQxNyAwIDAxLS4zNTUuMDkxYy0uMDE1LjAwMy0uMDMuMDA4LS4wNDYuMDFhNC4zNDYgNC4zNDYgMCAwMS0uNDkuMDcgNC40NiA0LjQ2IDAgMDEtLjQxLjAyMiA0LjUzNiA0LjUzNiAwIDAxLTQuMjQ2LTIuOTZoLTMuMjdhNy42MjQgNy42MjQgMCAwMDEuNTkzIDMuMzA4Yy4zOTMuNDc0Ljg0LjkgMS4zMzIgMS4yN2E3LjYxMyA3LjYxMyAwIDAwNS42NDggMS40NTNjLjEzNy0uMDIuMjc2LS4wNDIuNDEyLS4wNjhsLjA0LS4wMDhjLjE4NC0uMDM2LjM2Ni0uMDguNTQ2LS4xMzIuMTE1LS4wMy4yMjgtLjA2Ni4zNC0uMTAybC4xNDctLjA1Yy4wOTMtLjAzNC4xODYtLjA2OC4yNzktLjEwNWwuMTU3LS4wNjJjLjEyLS4wNS4yMzgtLjEwNS4zNTUtLjE2LjEyNi0uMDYyLjI1LS4xMjcuMzcyLS4xOTVsLjEzMi0uMDc2LTEuNTczLTIuNzJjLS4wMzIuMDItLjA2NS4wMzYtLjA5Ny4wNTN6bTUuMzQ3LTUuNTUxYy0uNzI4LTMuNDgyLTMuODItNi4xMDYtNy41MTUtNi4xMDYtMy42OTQgMC02Ljc4NiAyLjYyNC03LjUxNCA2LjEwNmgzLjI3YTQuNTM2IDQuNTM2IDAgMDE0LjI0NC0yLjk2IDQuNTM2IDQuNTM2IDAgMDE0LjI0NSAyLjk2IDQuNDkgNC40OSAwIDAxLjI4NyAxLjU3MiA0LjQ5IDQuNDkgMCAwMS0uMjg3IDEuNTczaDMuMjdhNy42NTEgNy42NTEgMCAwMDAtMy4xNDV6Ii8+PHBhdGggZD0iTTI5LjUyNCAxNS4zMDZoLTExLjc2YTcuNjUxIDcuNjUxIDAgMDAwIDMuMTQ1aDExLjc2Yy4xODItLjQ5LjI4Ny0xLjAyLjI4Ny0xLjU3MyAwLS41NTMtLjEwNS0xLjA4Mi0uMjg3LTEuNTcyIi8+PC9nPjxwYXRoIGQ9Ik0xMDcuNjUzIDIxbDMuNTQtNC45Mi0zLjQ4LTQuODJoMi43NmMuMTguMyAxLjk2IDIuODQgMi4xNCAzLjEybDIuMTItMy4xMmgyLjY0bC0zLjQyIDQuNzggMy41NCA0Ljk2aC0yLjcybC0yLjI2LTMuMjZjLS4yLjMtMi4wMiAyLjk2LTIuMiAzLjI2aC0yLjY2eiIvPjwvZz48L3N2Zz4=",
+      "isDefault": false
+    },
+    {
+      "name": "seb",
+      "alignment": "center",
+      "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTk5IiBoZWlnaHQ9IjMzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+PHBhdGggZD0iTTE0OS40MDIgNy42NDdsLTMuNjQ4IDIuNzVjLTEuNzIzLTEuNDk2LTMuOTQ4LTEuNzg5LTUuMTY3LTEuNzg5LTEuMjIgMC0yLjUzOC4zNTgtMi43MzIgMS4yNTYtLjE5NC44NzEuNjA4IDEuNTQ5IDEuOTg2IDEuOTI2IDEuNTcuNDI3IDMuMDAyLjgwNiA1LjIwNSAxLjQ0IDMuMjc3Ljk0NCA1LjUxOCAyLjM3NiA1LjUxOCA1LjY5NSAwIDQuNTc1LTQuMDIzIDYuOTQ3LTkuNDEyIDYuOTQ3LTUuMzg5IDAtOS4wNi0yLjgzNS0xMC4xNTItNC4xNTdsMy44NTYtMi45MTFjMi43MDkgMi4zODQgNC41OTMgMi43MiA2LjE2OCAyLjcyIDEuODA2IDAgMy40OTUtLjM5MSAzLjcxMi0xLjQyMy4xNzYtLjgyOS0uNTA1LTEuNDg4LTIuMDQzLTEuODUxLTEuNzQxLS40MDYtMy4yMS0uNzMyLTQuODUtMS4xNjctNC40NDUtMS4xNzgtNS42OTgtMy43ODctNS42OTgtNi4xMyAwLTMuMjI3IDIuOTc1LTYuNTQxIDguNDE2LTYuNTQxIDUuNTggMCA4Ljg0NyAzLjIyNyA4Ljg0NyAzLjIyN2wtLjAwNi4wMDh6bTIzLjI1Ni0yLjkxMmgtMTYuMjY3djIwLjUyOWgxNi41NnYtNC43MzJoLTEwLjg0OHYtMy4zMDZoNy40NzNWMTIuN2gtNy40NzNWOS40MjVoMTAuNTUxbC4wMDQtNC42OXpNMTUyLjE4MiAzMGgxLjI3VjBoLTEuMjd2MzB6bTIyLjkwNiAwaDEuMjY5VjBoLTEuMjd2MzBoLjAwMXptNC4yMDItNC43MzZoMTMuMDYyYzMuNDkzIDAgNi4zMjItMi4xMjYgNi4zMjItNS41MyAwLTIuNjU0LTEuNzIxLTQuNDEyLTQuMTM0LTUuMTkxYTEuMzQxIDEuMzQxIDAgMDAtLjIzNC0uMDNjLjA4LS4wMDcuMTU4LS4wMjEuMjM0LS4wNDEgMS4zODItLjU1MiAyLjkxMy0yLjAyMyAyLjkxMy00LjUyNyAwLTMuMTc2LTIuNzgzLTUuMjAyLTYuMjE4LTUuMjAySDE3OS4yOXYyMC41MjF6bTUuNzM4LTE2LjI1M2g0LjU2M2MxLjA1IDAgMS45LjgzNyAxLjkgMS44IDAgLjk2Mi0uODQ1IDEuODAyLTEuOSAxLjgwMmgtNC41NjNWOS4wMXYuMDAxem01LjU4MSAxMS42OTJoLTUuNThWMTYuOTZoNS41OGMuOTk1LjA0IDEuNzgyLjg2NSAxLjc4MiAxLjg3YTEuODY0IDEuODY0IDAgMDEtMS43ODIgMS44NzF2LjAwMnpNNzEuOTI0IDI0LjI1NmgzLjE0NVY5LjYyaC0zLjE0NXYxNC42MzZ6bS0yNC41MTEuMDAxaDMuMTQ2VjMuMTQzaC0zLjE0NnYyMS4xMTR6Ii8+PHBhdGggZD0iTTQyLjg4MSAxMi4zNDdhNC41MzcgNC41MzcgMCAwMC00LjUzMiA0LjUzMiA0LjUzNyA0LjUzNyAwIDAwNC41MzIgNC41MzIgNC41MzcgNC41MzcgMCAwMDQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzItNC41MzJ6bTAgMTIuMjA5Yy00LjIzMyAwLTcuNjc4LTMuNDQ0LTcuNjc4LTcuNjc3IDAtNC4yMzQgMy40NDUtNy42NzggNy42NzgtNy42NzggNC4yMzMgMCA3LjY3OCAzLjQ0NCA3LjY3OCA3LjY3OCAwIDQuMjMzLTMuNDQ1IDcuNjc3LTcuNjc4IDcuNjc3em0tMzAuNjcyLS4zMDFoMy4xNDZ2LTcuMzc4SDEyLjIxbC0uMDAxIDcuMzc4eiIvPjxwYXRoIGQ9Ik0xNS4zNTYgMTYuODc4aC0zLjE0N2E0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzEgNC41MzJIMEMwIDEyLjY0NCAzLjQ0NCA5LjIgNy42NzcgOS4yczcuNjc5IDMuNDQ0IDcuNjc5IDcuNjc4bTYwLjMxOC0xMS43YTIuMTc4IDIuMTc4IDAgMTEtNC4zNTYgMCAyLjE3OCAyLjE3OCAwIDAxNC4zNTYgMCIvPjxwYXRoIGQ9Ik0wIDI0LjI1N2gzLjE0NVYzLjE0M0gwdjIxLjExNHptOTMuNDA0LTcuMzc5aC0zLjE0NmE0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MyA0LjUzMmgtMy4xNDdjMC00LjIzNCAzLjQ0My03LjY3OCA3LjY3Ny03LjY3OCA0LjIzMyAwIDcuNjc4IDMuNDQ0IDcuNjc4IDcuNjc4Ii8+PHBhdGggZD0iTTkwLjI1OCA5LjYxOXY3LjI1OWE0LjUzOCA0LjUzOCAwIDAxLTQuNTMyIDQuNTMzIDQuNTM3IDQuNTM3IDAgMDEtNC41My00LjUzM2gtMy4xNDdjMCA0LjIzNCAzLjQ0MyA3LjY3OCA3LjY3NyA3LjY3OCA0LjIzMyAwIDcuNjc4LTMuNDQ0IDcuNjc4LTcuNjc4di03LjI2aC0zLjE0NnYuMDAxek02MC45NiAyMC4zOTJMNTYuMTYzIDkuNjE5SDUyLjcybDYuNTE4IDE0LjYzOGguMDAybDEuNzItMy44NjV6Ii8+PHBhdGggZD0iTTY1Ljc1NiA5LjYxOUw1OS4yNCAyNC4yNTZoMy40NDJMNjkuMiA5LjYxOWgtMy40NDR6TTkwLjI1OCAyNC4zNmE0LjUzOCA0LjUzOCAwIDAxLTQuNTMyIDQuNTI3IDQuNDk5IDQuNDk5IDAgMDEtMi4yNjEtLjYxMUw4MS44ODkgMzFhNy42MjYgNy42MjYgMCAwMDMuODM3IDEuMDMzYzQuMjMzIDAgNy42NzctMy40NDUgNy42NzgtNy42NzdsLTMuMTQ2LjAwM3YuMDAxem0tNjIuODExLTMuNTAzYTQuNTEgNC41MSAwIDAxLS43OS4zMzhsLS4wNzYuMDIzYTQuNDE3IDQuNDE3IDAgMDEtLjM1NS4wOTFjLS4wMTUuMDAzLS4wMy4wMDgtLjA0Ni4wMWE0LjM0NiA0LjM0NiAwIDAxLS40OS4wNyA0LjQ2IDQuNDYgMCAwMS0uNDEuMDIyIDQuNTM2IDQuNTM2IDAgMDEtNC4yNDYtMi45NmgtMy4yN2E3LjYyNCA3LjYyNCAwIDAwMS41OTMgMy4zMDhjLjM5My40NzQuODQuOSAxLjMzMiAxLjI3YTcuNjEzIDcuNjEzIDAgMDA1LjY0OCAxLjQ1M2MuMTM3LS4wMi4yNzYtLjA0Mi40MTItLjA2OGwuMDQtLjAwOGMuMTg0LS4wMzYuMzY2LS4wOC41NDYtLjEzMi4xMTUtLjAzLjIyOC0uMDY2LjM0LS4xMDJsLjE0Ny0uMDVjLjA5My0uMDM0LjE4Ni0uMDY4LjI3OS0uMTA1bC4xNTctLjA2MmMuMTItLjA1LjIzOC0uMTA1LjM1NS0uMTYuMTI2LS4wNjIuMjUtLjEyNy4zNzItLjE5NWwuMTMyLS4wNzYtMS41NzMtMi43MmMtLjAzMi4wMi0uMDY1LjAzNi0uMDk3LjA1M201LjM0Ny01LjU1MWMtLjcyOC0zLjQ4Mi0zLjgyLTYuMTA2LTcuNTE1LTYuMTA2LTMuNjk0IDAtNi43ODYgMi42MjQtNy41MTQgNi4xMDZoMy4yN2E0LjUzNiA0LjUzNiAwIDAxNC4yNDQtMi45NiA0LjUzNiA0LjUzNiAwIDAxNC4yNDUgMi45NiA0LjQ5IDQuNDkgMCAwMS4yODcgMS41NzIgNC40OSA0LjQ5IDAgMDEtLjI4NyAxLjU3M2gzLjI3YTcuNjUxIDcuNjUxIDAgMDAwLTMuMTQ1Ii8+PHBhdGggZD0iTTI5LjUyNCAxNS4zMDZoLTExLjc2YTcuNjUxIDcuNjUxIDAgMDAwIDMuMTQ1aDExLjc2Yy4xODItLjQ5LjI4Ny0xLjAyLjI4Ny0xLjU3MyAwLS41NTMtLjEwNS0xLjA4Mi0uMjg3LTEuNTcyTTEwNy42NTMgMjFsMy41NC00LjkyLTMuNDgtNC44MmgyLjc2Yy4xOC4zIDEuOTYgMi44NCAyLjE0IDMuMTJsMi4xMi0zLjEyaDIuNjRsLTMuNDIgNC43OCAzLjU0IDQuOTZoLTIuNzJsLTIuMjYtMy4yNmMtLjIuMy0yLjAyIDIuOTYtMi4yIDMuMjZoLTIuNjZ6Ii8+PC9nPjwvc3ZnPg==",
+      "isDefault": false
+    }
+  ]
 }
