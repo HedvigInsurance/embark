@@ -102,12 +102,16 @@ const Root = () => {
     passageId: getStartPassage()
   }));
 
+  console.log(state);
+
   const passage = data.passages.find(
     (passage: any) => passage.id == state.passageId
   );
 
   React.useEffect(() => {
-    history.push(`/${passage.id}`);
+    if (!history.location.pathname.includes(passage.id)) {
+      history.push(`/${passage.id}`);
+    }
   }, [passage]);
 
   if (isProofing) {
