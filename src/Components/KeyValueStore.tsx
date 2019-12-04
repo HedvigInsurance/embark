@@ -24,17 +24,14 @@ const reducer = (
     case "setValue":
       return { ...state, [action.key]: action.value };
     case "removeValues":
-      return {
-        ...Object.keys(state)
-          .filter(key => key.includes(action.key))
-          .reduce(
-            (acc, curr) => ({
-              ...acc,
-              [curr]: state[curr]
-            }),
-            {}
-          )
-      };
+      const matching = Object.keys(state).filter(key =>
+        key.includes(action.key)
+      );
+      const res = { ...state };
+      matching.forEach(m => {
+        delete res[m];
+      });
+      return res;
     default:
       return state;
   }
