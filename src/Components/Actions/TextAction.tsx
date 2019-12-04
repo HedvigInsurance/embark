@@ -18,6 +18,10 @@ import { ApiComponent } from "../API/apiComponent";
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
+  
+  @media (max-width: 600px) {
+    margin-bottom: 16px;
+  }
 `;
 
 interface Props {

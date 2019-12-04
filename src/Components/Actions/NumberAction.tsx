@@ -13,6 +13,10 @@ const Unit = styled.p`
   text-align: center;
   color: ${colors.DARK_GRAY};
   font-family: ${fonts.CIRCULAR};
+  
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 type NumberActionProps = {
@@ -37,7 +41,7 @@ const isWithinBounds = (
   maxValue: number | undefined
 ): boolean => {
   const asNumber = Number(value);
-  if (asNumber === NaN) {
+  if (isNaN(asNumber)) {
     return false;
   }
 

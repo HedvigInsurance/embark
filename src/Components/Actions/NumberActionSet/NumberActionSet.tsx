@@ -1,10 +1,9 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
 import { ContinueButton } from "../../ContinueButton";
-import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
-import { Tooltip } from "../../Tooltip";
 import { StoreContext } from "../../KeyValueStore";
+import { NumberEditCard } from "./NumberEditCard";
+import { CARD_COUNT_BASE_BP_SM, mediaCardCount } from "../../Utils/cardCount";
 
 type NumberActionSetProps = {
   passageName: string;
@@ -17,35 +16,20 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 `;
 
-const CardsContainer = styled.div`
+const CardsContainer = styled.div<{ cardCount: number }>`
   display: flex;
   justify-content: center;
-`;
-
-interface CardProps {
-  borderRadius: string;
-}
-
-const Card = styled.form<CardProps>`
-  position: relative;
   border-radius: 8px;
-  background-color: ${colorsV2.white};
-  display: inline-block;
-  width: 100%;
-  max-width: 200px;
-  margin-right: 1px;
-  ${props => `border-radius: ${props.borderRadius}`};
-`;
+  overflow: hidden;
 
-const CardTitle = styled.span`
-  font-family: ${fonts.CIRCULAR};
-  font-size: 14px;
-  font-weight: 500;
-  padding-top: 15px;
-  padding-left: 20px;
-  display: inline-block;
+  ${props => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  `}
 `;
 
 const Spacer = styled.div`
@@ -91,42 +75,27 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
 
   return (
     <Container>
-      <CardsContainer>
-        {props.action.data.numberActions.map(
-          (numberAction: any, index: number) => (
-            <Card
-              onSubmit={e => {
-                e.preventDefault();
-                if (!continueDisabled) {
-                  onContinue();
-                }
-              }}
-              key={numberAction.data.key}
-              borderRadius={(() => {
-                if (index == props.action.data.numberActions.length - 1) {
-                  return "0 8px 8px 0";
-                }
-
-                return index == 0 ? "8px 0 0 8px" : "0";
-              })()}
-            >
-              <Tooltip tooltip={numberAction.data.tooltip} />
-              <CardTitle>{numberAction.data.title}</CardTitle>
-              <InlineNumberAction
-                placeholder={numberAction.data.placeholder}
-                unit={numberAction.data.unit}
-                value={state[numberAction.data.key] || ""}
-                onValue={value => {
-                  dispatch({
-                    type: "setValue",
-                    key: numberAction.data.key,
-                    value
-                  });
-                }}
-              />
-            </Card>
-          )
-        )}
+      <CardsContainer cardCount={props.action.data.numberActions.length}>
+        {props.action.data.numberActions.map((action: any) => (
+          <NumberEditCard
+            key={action.data.key}
+            action={action}
+            onSubmit={() => {
+              if (!continueDisabled) {
+                onContinue();
+              }
+            }}
+            value={state[action.data.key] || ""}
+            onChange={value =>
+              dispatch({
+                type: "setValue",
+                key: action.data.key,
+                value
+              })
+            }
+            cardCount={props.action.data.numberActions.length}
+          />
+        ))}
       </CardsContainer>
       <Spacer />
       <ContinueButton

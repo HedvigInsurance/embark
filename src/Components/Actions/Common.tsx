@@ -90,7 +90,6 @@ export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
 export const Input = styled.input`
   margin-left: 16px;
   margin-right: 16px;
-  margin-top: 24px;
   font-size: 56px;
   line-height: 1;
   font-family: ${fonts.CIRCULAR};
@@ -108,6 +107,15 @@ export const Input = styled.input`
     color: ${colorsV2.lightgray};
     font-family: ${fonts.CIRCULAR};
     font-size: 50px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+    line-height: 1.25;
+
+    ::placeholder {
+      font-size: 20px;
+    }
   }
 `;
 

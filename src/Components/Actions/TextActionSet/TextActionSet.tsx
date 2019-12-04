@@ -2,12 +2,13 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../../ContinueButton";
 import { StoreContext } from "../../KeyValueStore";
-import { unmaskValue, isValid } from "../masking";
+import { isValid, unmaskValue } from "../masking";
 import { ApiComponent } from "../../API/apiComponent";
 import { Loading } from "../../API/Loading";
 import { ApiContext } from "../../API/ApiContext";
 import { callApi } from "../../API";
-import { CARD_COUNT_BASE_BP, TextEditCard } from "./TextEditCard";
+import { TextEditCard } from "./TextEditCard";
+import { mediaCardCount } from "../../Utils/cardCount";
 
 const Container = styled.div`
   display: flex;
@@ -24,11 +25,9 @@ const CardsContainer = styled.form<{ cardCount: number }>`
   border-radius: 8px;
   overflow: hidden;
 
-  ${props => `
-    @media (max-width: ${props.cardCount * CARD_COUNT_BASE_BP}px) {
+  ${props => mediaCardCount(props.cardCount)`
       display: flex;
       flex-direction: column;
-  }
   `}
 `;
 
