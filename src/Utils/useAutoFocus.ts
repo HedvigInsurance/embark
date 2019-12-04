@@ -15,7 +15,6 @@ export const useAutoFocus = (shouldAutoFocus: boolean) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   useEffectOnceWhen(() => {
-    console.log(inputRef);
     if (inputRef.current) {
       inputRef.current.focus();
     }
