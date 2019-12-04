@@ -41,6 +41,10 @@ const TooltipContainer = styled(motion.div)`
   position: absolute;
   top: 0px;
   right: 0px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Tooltippy = styled.div`
