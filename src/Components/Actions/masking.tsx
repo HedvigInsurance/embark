@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputMask from "react-input-mask";
+import InputMask, { ReactInputMask } from "react-input-mask";
 import parse from "date-fns/parse";
 import differenceInYears from "date-fns/differenceInYears";
 
@@ -70,6 +70,7 @@ export const derivedValues = (
 };
 
 interface MaskComponentProps {
+  inputRef?: React.RefObject<HTMLInputElement>;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -78,13 +79,14 @@ interface MaskComponentProps {
 }
 
 export function wrapWithMask<T>(
-  Component: React.ComponentType<T>,
+  Component: React.ComponentType<
+    T | { ref: React.RefObject<HTMLInputElement> }
+  >,
   mask?: MaskType
 ): React.ComponentType<T & MaskComponentProps> {
-  const PotentiallyMasked: React.FunctionComponent<
-    MaskComponentProps & T
-  > = props => {
-    const { mask, onChange, onFocus, onBlur, value, ...rest } = props;
+  const PotentiallyMasked: React.FunctionComponent<MaskComponentProps &
+    T> = props => {
+    const { mask, onChange, onFocus, onBlur, value, inputRef, ...rest } = props;
     if (mask) {
       return (
         <InputMask
@@ -95,12 +97,14 @@ export function wrapWithMask<T>(
           onBlur={onBlur}
           value={value}
         >
-          {(inputProps: any) => <Component {...inputProps} {...rest} />}
+          {(inputProps: any) => (
+            <Component ref={inputRef} {...inputProps} {...rest} />
+          )}
         </InputMask>
       );
     }
 
-    return <Component {...props} />;
+    return <Component ref={inputRef} {...props} />;
   };
 
   return PotentiallyMasked;

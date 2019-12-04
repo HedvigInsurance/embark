@@ -5,8 +5,10 @@ import { ContinueButton } from "../../ContinueButton";
 import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
 import { Tooltip } from "../../Tooltip";
 import { StoreContext } from "../../KeyValueStore";
+import { useAutoFocus } from "../../../Utils/useAutoFocus";
 
 type NumberActionSetProps = {
+  isTransitioning: boolean;
   passageName: string;
   action: any;
   changePassage: (name: string) => void;
@@ -89,6 +91,8 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
     );
   }, [state]);
 
+  const inputRef = useAutoFocus(!props.isTransitioning);
+
   return (
     <Container>
       <CardsContainer>
@@ -113,6 +117,7 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
               <Tooltip tooltip={numberAction.data.tooltip} />
               <CardTitle>{numberAction.data.title}</CardTitle>
               <InlineNumberAction
+                inputRef={(index === 0 && inputRef) || undefined}
                 placeholder={numberAction.data.placeholder}
                 unit={numberAction.data.unit}
                 value={state[numberAction.data.key] || ""}

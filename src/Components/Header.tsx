@@ -39,7 +39,7 @@ const Background = styled.div<Alignable>`
     justify-content: center;
   }
   `
-      : ""}
+      : ""};
 `;
 
 const ProgressLineBackground = styled.div`

@@ -15,12 +15,14 @@ import {
 import { callApi } from "../API";
 import { ApiContext } from "../API/ApiContext";
 import { ApiComponent } from "../API/apiComponent";
+import { useAutoFocus } from "../../Utils/useAutoFocus";
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
 `;
 
 interface Props {
+  isTransitioning: boolean;
   passageName: string;
   storeKey: string;
   link: any;
@@ -67,6 +69,8 @@ export const TextAction: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const inputRef = useAutoFocus(!props.isTransitioning);
+
   return (
     <Container>
       <Card
@@ -86,8 +90,8 @@ export const TextAction: React.FunctionComponent<Props> = props => {
       >
         <Tooltip tooltip={props.tooltip} />
         <Masked
+          inputRef={inputRef}
           mask={props.mask}
-          autoFocus
           size={Math.max(props.placeholder.length, textValue.length)}
           placeholder={props.placeholder}
           type="text"
@@ -118,7 +122,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
           <ContinueButton
             onClick={onContinue}
             disabled={!canContinue}
-            text={props.link?.label || "Nästa"}
+            text={(props.link || {}).label || "Nästa"}
           />
         </motion.div>
       </motion.div>

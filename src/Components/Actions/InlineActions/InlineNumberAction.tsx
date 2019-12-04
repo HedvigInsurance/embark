@@ -41,6 +41,7 @@ const Unit = styled.p`
 `;
 
 type InlineNumberActionProps = {
+  inputRef?: React.RefObject<HTMLInputElement>;
   placeholder: string;
   unit: string;
   value: string;
@@ -50,6 +51,7 @@ type InlineNumberActionProps = {
 export const InlineNumberAction = (props: InlineNumberActionProps) => (
   <Container>
     <Input
+      ref={props.inputRef}
       type="text"
       placeholder={props.placeholder}
       value={props.value}
