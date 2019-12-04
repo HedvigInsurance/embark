@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-03T15:42:31.694Z",
+  "lastUpdate": "2019-12-04T16:32:16.186Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -181,7 +181,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualAdressVilla]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualAdressVilla]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "width": 100
     },
@@ -195,7 +195,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Vi kan inte hämta någon information om din villa. Ingen fara, fyll bara i uppgifterna här\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n  <Tooltip>\n    <Title>\n      Boyta\n    </Title>\n    <Description>\n      DESCRIPTION\n    </Description>\n  </Tooltip>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1986\"\n                key=\"yearOfConstruction\"\n  >\n  </NumberAction>\n</NumberActionSet>",
+      "text": "<Message>\n  Vi kan inte hämta någon information om din villa. Ingen fara, fyll bara i uppgifterna här\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n  <Tooltip>\n    <Title>\n      Boyta\n    </Title>\n    <Description>\n      DESCRIPTION\n    </Description>\n  </Tooltip>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Boyta\n      </Title>\n      <Description>\n        Boyta är den yta som är tänkt att leva på\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Biyta\n      </Title>\n      <Description>\n        Exempel på utrymmen som räknas som biytor är förråd, kallvind, pannrum och garage som sitter ihop med huset\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1986\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        Byggår\n      </Title>\n      <Description>\n        Året huset byggdes\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
       "top": 1100,
       "width": 100
     },
@@ -231,7 +231,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Toppen! Då har vi hämtat lite information om din villa\n</Message>\n\n<Message>\n  Stämmer det här?\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n  <Tooltip>\n    <Title>\n      Boyta\n    </Title>\n    <Description>\n      DESCRIPTION\n    </Description>\n  </Tooltip>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1998\"\n                key=\"yearOfConstruction\"\n  >\n  </NumberAction>\n</NumberActionSet>",
+      "text": "<Message>\n  Toppen! Då har vi hämtat lite information om din villa\n</Message>\n\n<Message>\n  Stämmer det här?\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Boyta\n      </Title>\n      <Description>\n        Boyta är den yta som är tänkt att leva på\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Biyta\n      </Title>\n      <Description>\n        Exempel på utrymmen som räknas som biytor är förråd, kallvind, pannrum och garage som sitter ihop med huset\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                placeholder=\"1998\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        Byggår\n      </Title>\n      <Description>\n        Året huset byggdes\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
       "top": 1100,
       "width": 100
     },
@@ -411,7 +411,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualStreetAdressApartment]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualStreetAdressApartment]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 1100,
       "width": 100
     },
