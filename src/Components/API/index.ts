@@ -22,98 +22,116 @@ export const callApi = async (
   changePassage: (name: string) => void
 ) => {
   if (isPersonalInformationApiComponent(component)) {
-    const result = await apiContext.personalInformationApi(
-      store.personalNumber
-    );
-    if (result instanceof Error) {
+    try {
+      const result = await apiContext.personalInformationApi(
+        store.personalNumber
+      );
+      if (result instanceof Error) {
+        changePassage(component.data.error.name);
+        return;
+      }
+      if (!result.personalInformation) {
+        changePassage(component.data.noMatch.name);
+        return;
+      }
+
+      Object.entries(result.personalInformation).forEach(([key, value]) =>
+        setValue(key, value)
+      );
+      changePassage(component.data.match.name);
+      return;
+    } catch (e) {
       changePassage(component.data.error.name);
       return;
     }
-    if (!result.personalInformation) {
-      changePassage(component.data.noMatch.name);
-      return;
-    }
-
-    Object.entries(result.personalInformation).forEach(([key, value]) =>
-      setValue(key, value)
-    );
-    changePassage(component.data.match.name);
-    return;
   }
 
   if (isHouseInformationComponent(component)) {
-    const result = await apiContext.houseInformation({
-      input: {
-        streetAddress: store.streetAddress,
-        postalNumber: store.postalNumber
-      }
-    });
+    try {
+      const result = await apiContext.houseInformation({
+        input: {
+          streetAddress: store.streetAddress,
+          postalNumber: store.postalNumber
+        }
+      });
 
-    if (result instanceof Error) {
+      if (result instanceof Error) {
+        changePassage(component.data.error.name);
+        return;
+      }
+
+      if (!result.houseInformation) {
+        changePassage(component.data.noMatch.name);
+        return;
+      }
+
+      Object.entries(result.houseInformation).forEach(([key, value]) =>
+        setValue(key, String(value))
+      );
+      changePassage(component.data.match.name);
+      return;
+    } catch (e) {
       changePassage(component.data.error.name);
       return;
     }
-
-    if (!result.houseInformation) {
-      changePassage(component.data.noMatch.name);
-      return;
-    }
-
-    Object.entries(result.houseInformation).forEach(([key, value]) =>
-      setValue(key, String(value))
-    );
-    changePassage(component.data.match.name);
-    return;
   }
 
   if (isCreateQuoteApiComponent(component)) {
-    let variables: CQVariables = {
-      input: {
-        id: uuid.v1(),
-        firstName: store.firstName,
-        lastName: store.lastName,
-        ssn: store.personalNumber,
-        currentInsurer: store.currentInsurer
+    try {
+      let variables: CQVariables = {
+        input: {
+          id: uuid.v1(),
+          firstName: store.firstName,
+          lastName: store.lastName,
+          ssn: store.personalNumber,
+          currentInsurer: store.currentInsurer
+        }
+      };
+
+      if (store.homeType === "apartment") {
+        variables.input.apartment = {
+          street: store.streetAddress,
+          zipCode: store.postalNumber,
+          householdSize: Number(store.householdSize),
+          livingSpace: Number(store.livingSpace),
+          type: store.apartmentType as ApartmentType
+        };
       }
-    };
 
-    if (store.homeType === "apartment") {
-      variables.input.apartment = {
-        street: store.streetAddress,
-        zipCode: store.postalNumber,
-        householdSize: Number(store.householdSize),
-        livingSpace: Number(store.livingSpace),
-        type: store.apartmentType as ApartmentType
-      };
-    }
+      if (store.homeType === "house") {
+        variables.input.house = {
+          street: store.streetAddress,
+          zipCode: store.postalNumber,
+          householdSize: Number(store.householdSize),
+          livingSpace: Number(store.livingSpace),
+          ancillarySpace: Number(store.ancillaryArea),
+          extraBuildings: Object.values(
+            getMultiActionItems<ExtraBuildingInput>(store, "extraBuildings")
+          )
+        };
+      }
 
-    if (store.homeType === "house") {
-      variables.input.house = {
-        street: store.streetAddress,
-        zipCode: store.postalNumber,
-        householdSize: Number(store.householdSize),
-        livingSpace: Number(store.livingSpace),
-        ancillarySpace: Number(store.ancillaryArea),
-        extraBuildings: Object.values(
-          getMultiActionItems<ExtraBuildingInput>(store, "extraBuildings")
-        )
-      };
-    }
+      const result = await apiContext.createQuote(variables);
 
-    const result = await apiContext.createQuote(variables);
+      if (result instanceof Error) {
+        changePassage(component.data.error.name);
+        return;
+      }
 
-    if (result instanceof Error) {
+      if (isUnderwritingLimitsHit(result.createQuote)) {
+        changePassage(component.data.uwlimits.name);
+        return;
+      }
+
+      if (isQuote(result.createQuote)) {
+        changePassage(component.data.success.name);
+        return;
+      }
+
       changePassage(component.data.error.name);
       return;
-    }
-
-    if (isUnderwritingLimitsHit(result.createQuote)) {
-      changePassage(component.data.uwlimits.name);
-      return;
-    }
-
-    if (isQuote(result.createQuote)) {
-      changePassage(component.data.success.name);
+    } catch (e) {
+      changePassage(component.data.error.name);
       return;
     }
   }
