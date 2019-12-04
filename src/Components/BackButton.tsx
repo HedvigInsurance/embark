@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { fonts, colorsV2 } from "@hedviginsurance/brand";
 import hexToRgba from "hex-to-rgba";
+import { KeywordsContext } from "./KeywordsContext";
 
 import { ArrowUp } from "./Icons/ArrowUp";
 
@@ -47,10 +48,14 @@ type BackButtonProps = {
   onClick: () => void;
 };
 
-export const BackButton = (props: BackButtonProps) => (
-  <Button onClick={props.onClick}>
-    <ArrowUp />
-    <Spacer />
-    Go Back
-  </Button>
-);
+export const BackButton = (props: BackButtonProps) => {
+  const { backButton } = React.useContext(KeywordsContext);
+
+  return (
+    <Button onClick={props.onClick}>
+      <ArrowUp />
+      <Spacer />
+      {backButton}
+    </Button>
+  );
+};
