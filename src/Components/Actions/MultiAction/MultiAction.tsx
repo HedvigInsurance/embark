@@ -96,13 +96,24 @@ const reducer = (state: any, action: any) => {
   }
 };
 
+const getDefaultItemsByComponents = (components: any[]) =>
+  components
+    .map(c => {
+      if (c.component === "SwitchAction" && c.data.defaultValue) {
+        return { [c.data.key]: c.data.defaultValue };
+      }
+      return {};
+    })
+    .reduce((acc, current) => ({ ...acc, ...current }), {});
+
 export const MultiAction = (props: MultiActionProps) => {
   const createItem = (index: number, values?: Object) => {
     return {
       index,
       id: uuid.v1(),
       components: props.action.data.components,
-      values: values || {}
+      values:
+        values || getDefaultItemsByComponents(props.action.data.components)
     };
   };
 
