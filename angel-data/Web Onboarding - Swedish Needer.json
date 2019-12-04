@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-03T15:43:22.590Z",
+  "lastUpdate": "2019-12-04T09:07:29.151Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -101,7 +101,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNVillaOwnResponse\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 500,
       "width": 100
     },
