@@ -25,9 +25,7 @@ const StoreListener: React.FunctionComponent<EmbarkProviderProps> = props => {
   return <>{props.children}</>;
 };
 
-export const EmbarkProvider: React.FunctionComponent<
-  EmbarkProviderProps
-> = props => (
+export const EmbarkProvider: React.FunctionComponent<EmbarkProviderProps> = props => (
   <ExternalRedirectContext.Provider value={props.externalRedirects}>
     <ApiContext.Provider value={props.resolvers}>
       <KeywordsContext.Provider value={props.data.keywords}>

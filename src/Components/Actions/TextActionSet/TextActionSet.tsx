@@ -10,6 +10,7 @@ import { ApiComponent } from "../../API/apiComponent";
 import { Loading } from "../../API/Loading";
 import { ApiContext } from "../../API/ApiContext";
 import { callApi } from "../../API";
+import { useAutoFocus } from "../../../Utils/useAutoFocus";
 
 const Container = styled.div`
   display: flex;
@@ -56,6 +57,7 @@ const Spacer = styled.div`
 `;
 
 interface Props {
+  isTransitioning: boolean;
   api?: ApiComponent;
   passageName: string;
   action: any;
@@ -165,6 +167,8 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const inputRef = useAutoFocus(!props.isTransitioning);
+
   return (
     <Container>
       <CardsContainer
@@ -186,7 +190,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
                   <Tooltip tooltip={textAction.data.tooltip} />
                   <CardTitle>{textAction.data.title}</CardTitle>
                   <InlineTextAction
-                    autoFocus={index === 0}
+                    inputRef={(index === 0 && inputRef) || undefined}
                     large={textAction.data.large}
                     placeholder={textAction.data.placeholder}
                     onChange={value => {

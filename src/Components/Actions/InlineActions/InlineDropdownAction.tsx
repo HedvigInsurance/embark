@@ -83,21 +83,21 @@ export const InlineDropdownAction = (props: DropdownActionProps) => (
             dy="8"
             in="SourceAlpha"
             result="shadowOffsetOuter1"
-          ></feOffset>
+          />
           <feGaussianBlur
             stdDeviation="6.5"
             in="shadowOffsetOuter1"
             result="shadowBlurOuter1"
-          ></feGaussianBlur>
+          />
           <feColorMatrix
             values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.174579327 0"
             type="matrix"
             in="shadowBlurOuter1"
             result="shadowMatrixOuter1"
-          ></feColorMatrix>
+          />
           <feMerge>
-            <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-            <feMergeNode in="SourceGraphic"></feMergeNode>
+            <feMergeNode in="shadowMatrixOuter1" />
+            <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
       </defs>
@@ -131,7 +131,7 @@ export const InlineDropdownAction = (props: DropdownActionProps) => (
                     id="Path-2"
                     transform="translate(216.000000, 9.500000) rotate(-90.000000) translate(-216.000000, -9.500000) "
                     points="219 4.41578715 218.578294 4 213 9.5 218.578294 15 219 14.5842129 213.843412 9.5"
-                  ></polygon>
+                  />
                 </g>
               </g>
             </g>

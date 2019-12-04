@@ -6,6 +6,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
+import { useAutoFocus } from "../../Utils/useAutoFocus";
 
 const Unit = styled.p`
   margin-top: 8px;
@@ -16,6 +17,7 @@ const Unit = styled.p`
 `;
 
 type NumberActionProps = {
+  isTransitioning: boolean;
   autoResultKey: string;
   placeholder: string;
   storeKey: string;
@@ -69,6 +71,8 @@ export const NumberAction = (props: NumberActionProps) => {
     props.onContinue();
   };
 
+  const inputRef = useAutoFocus(!props.isTransitioning);
+
   return (
     <Container>
       <Card
@@ -87,12 +91,14 @@ export const NumberAction = (props: NumberActionProps) => {
       >
         <Tooltip tooltip={props.tooltip} />
         <InputWithMask
+          inputRef={inputRef}
           size={Math.max(props.placeholder.length, textValue.length)}
-          autoFocus
           type="text"
           placeholder={props.placeholder}
           value={textValue}
-          onChange={e => setTextValue(unmaskValue(e.target.value, props.mask))}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTextValue(unmaskValue(e.target.value, props.mask))
+          }
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
