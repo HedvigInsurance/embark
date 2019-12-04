@@ -26,7 +26,7 @@ const reducer = (
     case "removeValues":
       return {
         ...Object.keys(state)
-          .filter(key => key.includes(action.key))
+          .filter(key => !key.includes(action.key))
           .reduce(
             (acc, curr) => ({
               ...acc,

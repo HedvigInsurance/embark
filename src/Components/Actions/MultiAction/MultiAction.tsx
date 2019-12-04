@@ -40,14 +40,18 @@ const ButtonSpacer = styled.div`
 
 export const getMultiActionItems = <T extends {}>(
   store: Store,
-  key: string
+  key: string,
+  withAdditional: boolean = false
 ): { [key: string]: T } =>
   Object.keys(store)
     .filter(storeKey => storeKey.includes(key))
     .reduce<{ [key: string]: any }>((acc, storeKey) => {
-      const matches = new RegExp(/\[([0-9]+)\]([a-zA-Z]+)/g).exec(
-        storeKey.replace(key, "")
-      );
+      let matches;
+      if (withAdditional) {
+        matches = /\[([0-9]+)\]([a-zA-Z.]+)/g.exec(storeKey.replace(key, ""));
+      } else {
+        matches = /\[([0-9]+)\]([a-zA-Z]+)/g.exec(storeKey.replace(key, ""));
+      }
 
       if (!matches) {
         return acc;
@@ -106,7 +110,7 @@ export const MultiAction = (props: MultiActionProps) => {
   const [state, dispatch] = React.useReducer(reducer, { items: [] });
 
   React.useEffect(() => {
-    const storedItems = getMultiActionItems(store, props.action.data.key);
+    const storedItems = getMultiActionItems(store, props.action.data.key, true);
 
     const items = Object.keys(storedItems).map(key =>
       createItem(parseInt(key), storedItems[key])

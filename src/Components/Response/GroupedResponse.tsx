@@ -45,7 +45,9 @@ interface EachProps {
 }
 
 const Each: React.FunctionComponent<EachProps> = props => {
-  const items = Object.values(getMultiActionItems(props.store, props.eachKey));
+  const items = Object.values(
+    getMultiActionItems(props.store, props.eachKey, true)
+  );
 
   return (
     <>
