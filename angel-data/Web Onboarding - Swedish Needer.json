@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-04T16:45:32.409Z",
+  "lastUpdate": "2019-12-05T08:58:11.193Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -181,7 +181,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[Jag äger den->personalNumberVilla]]\n  </Option>\n  <Option key=\"[homeType,rentalType]\"\n          value=\"[apartment,villa]\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[Jag äger den->houseNotAvailable]]\n  </Option>\n  <Option key=\"[homeType,rentalType]\"\n          value=\"[apartment,villa]\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "",
       "width": 100
@@ -378,6 +378,18 @@
       "tags": [],
       "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>",
       "top": 1100,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1999654053",
+      "left": 400,
+      "name": "houseNotAvailable",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [],
+      "text": "<Message>\n  Snart kommer du kunna på prisförslag för villa på Webben, tills dess kan du ladda ner appen!\n</Message>",
+      "top": 300,
       "width": 100
     },
     {
