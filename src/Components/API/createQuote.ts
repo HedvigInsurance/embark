@@ -118,6 +118,9 @@ export interface Variables {
       householdSize: number;
       livingSpace: number;
       ancillarySpace: number;
+      yearOfConstruction: number;
+      numberOfBathrooms: number;
+      isSubleted: boolean;
       extraBuildings: ExtraBuildingInput[];
     };
   };

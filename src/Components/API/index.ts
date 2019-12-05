@@ -105,9 +105,16 @@ export const callApi = async (
           householdSize: Number(store.householdSize),
           livingSpace: Number(store.livingSpace),
           ancillarySpace: Number(store.ancillaryArea),
+          yearOfConstruction: Number(store.yearOfConstruction),
+          numberOfBathrooms: Number(store.numberOfBathrooms),
+          isSubleted: Boolean(store.isSubleted),
           extraBuildings: Object.values(
             getMultiActionItems<ExtraBuildingInput>(store, "extraBuildings")
-          )
+          ).map<ExtraBuildingInput>(item => ({
+            area: Number(item.area),
+            type: item.type,
+            hasWaterConnected: Boolean(item.hasWaterConnected)
+          }))
         };
       }
 
