@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-05T15:33:22.104Z",
+  "lastUpdate": "2019-12-05T15:43:59.761Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -332,7 +332,7 @@
       "tags": [],
       "text": "<Message>\n  <When expression=\"apartmentType == 'BRF'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'villa'\">\n    Hur stor är villan?\n  </When>\n  <When expression=\"rentalType == 'studentHousing'\">\n    Hur stor är studentbostaden?\n  </When>\n  <When expression=\"rentalType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till? Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              next=\"[[Fortsätt->householdSizeApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på bostaden. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
-      "url": "living-space",
+      "url": "/living-space",
       "width": 100
     },
     {
