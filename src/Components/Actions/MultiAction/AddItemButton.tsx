@@ -11,6 +11,7 @@ const AddItemButtonBase = styled.button`
   width: 100%;
   height: 100%;
   min-height: 223px;
+  min-width: 175px;
   border: 0;
   -webkit-appearance: none;
   background-color: ${hexToRgba(colorsV2.white, 0.7)};
