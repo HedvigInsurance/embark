@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-04T16:32:16.186Z",
+  "lastUpdate": "2019-12-05T08:58:46.523Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -37,7 +37,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[Jag äger den->personalNumberVilla]]\n  </Option>\n  <Option key=\"[homeType,rentalType]\"\n          value=\"[apartment,villa]\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[Jag äger den->houseNotAvailable]]\n  </Option>\n  <Option key=\"[homeType,rentalType]\"\n          value=\"[apartment,villa]\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "",
       "width": 100
@@ -325,6 +325,18 @@
       "tags": [],
       "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option>\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
       "top": 1700,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1467792027",
+      "left": 500,
+      "name": "houseNotAvailable",
+      "selected": false,
+      "story": "-650548383",
+      "tags": [],
+      "text": "<Message>\n  Snart kommer du kunna på prisförslag för villa på Webben, tills dess kan du ladda ner appen!\n</Message>",
+      "top": 600,
       "width": 100
     },
     {
