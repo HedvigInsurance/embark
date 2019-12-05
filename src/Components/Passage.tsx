@@ -17,6 +17,7 @@ import { KeywordsContext } from "./KeywordsContext";
 import { ApiContext } from "./API/ApiContext";
 import { Loading } from "./API/Loading";
 import { callApi } from "./API";
+const smoothScroll = require("smoothscroll");
 
 interface PassageProps {
   passage: any;
@@ -28,10 +29,12 @@ interface PassageProps {
 
 const ChatContainer = styled.div`
   display: flex;
-  height: calc(90% - 80px);
+  height: calc(95% - 80px);
   overflow: scroll;
   flex-direction: column;
   justify-content: space-between;
+  transition: height 300ms;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const ChatPadding = styled.div`
@@ -47,6 +50,10 @@ const ChatPadding = styled.div`
 
   @media all and (max-width: 700px) {
     padding: 20px;
+  }
+
+  @media (max-width: 375px) {
+    padding: 10px;
   }
 `;
 
@@ -65,10 +72,9 @@ const BottomContent = styled.div`
 `;
 
 const HelpButtonWrapper = styled.div`
-  display: flex;
-  justifycontent: center;
-  margin-top: 20px;
   display: none;
+  justify-content: center;
+  margin-top: 20px;
   @media (max-width: 768px) {
     display: flex;
   }
@@ -304,6 +310,7 @@ export const Passage = (props: PassageProps) => {
                     setMessagesAnimationState("visible");
                     setIsResponding(false);
                     props.changePassage(name);
+                    smoothScroll(0);
                   }, 1000);
                 }}
               />

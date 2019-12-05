@@ -21,6 +21,11 @@ const PartnerImage = styled.img`
   height: auto;
   max-height: 50px;
   max-width: 230px;
+  margin-top: 3px;
+
+  @media (max-width: 375px) {
+    max-height: 48px;
+  }
 `;
 
 const Background = styled.div<Alignable>`
@@ -40,6 +45,10 @@ const Background = styled.div<Alignable>`
   }
   `
       : ""}
+
+  @media (max-width: 375px) {
+    height: 64px;
+  }
 `;
 
 const ProgressLineBackground = styled.div`

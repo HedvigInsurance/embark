@@ -68,15 +68,15 @@ export class TextEditCard extends React.Component<{
   value: string;
 }> {
   private handleResize = () => {
-    this.forceUpdate()
-  }
+    this.forceUpdate();
+  };
 
   componentDidMount(): void {
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener("resize", this.handleResize);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener("resize", this.handleResize);
   }
 
   render() {
@@ -97,7 +97,9 @@ export class TextEditCard extends React.Component<{
         <InlineTextAction
           autoFocus={autoFocus}
           large={textAction.data.large}
-          placeholder={isSm ? textAction.data.title : textAction.data.placeholder}
+          placeholder={
+            isSm ? textAction.data.title : textAction.data.placeholder
+          }
           strongPlaceholder={isSm}
           exampleValue={textAction.data.placeholder}
           onChange={onChange}

@@ -6,6 +6,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
+const smoothScroll = require("smoothscroll");
 
 const Unit = styled.p`
   margin-top: 8px;
@@ -13,7 +14,7 @@ const Unit = styled.p`
   text-align: center;
   color: ${colors.DARK_GRAY};
   font-family: ${fonts.CIRCULAR};
-  
+
   @media (max-width: 600px) {
     font-size: 14px;
   }
@@ -93,12 +94,16 @@ export const NumberAction = (props: NumberActionProps) => {
         <InputWithMask
           size={Math.max(props.placeholder.length, textValue.length)}
           autoFocus
-          type="text"
+          type="number"
+          pattern={`[0-9]*`}
           placeholder={props.placeholder}
           value={textValue}
           onChange={e => setTextValue(unmaskValue(e.target.value, props.mask))}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => {
+            setIsFocused(false);
+            smoothScroll(0);
+          }}
         />
         <Unit>{props.unit}</Unit>
         <input type="submit" style={{ display: "none" }} />

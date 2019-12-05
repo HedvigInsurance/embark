@@ -24,6 +24,14 @@ const Input = styled.input<{ isSm?: boolean }>`
     font-weight: 500;
     outline: 0;
 
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    appearance: none;
+    -moz-appearance: textfield;
+
     ${props =>
       props.isSm
         ? `
@@ -65,7 +73,8 @@ type InlineNumberActionProps = {
 export const InlineNumberAction = (props: InlineNumberActionProps) => (
   <Container>
     <Input
-      type="text"
+      type="number"
+      pattern={`[0-9]*`}
       placeholder={props.placeholder}
       value={props.value}
       onChange={e => {

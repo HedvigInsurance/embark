@@ -101,12 +101,20 @@ export const Input = styled.input`
   color: ${colorsV2.black};
   font-weight: 500;
   outline: 0;
-  ${props => `width: ${(props.size || 0) / 1.5}em;`}
+  ${props => `width: ${Math.max(props.size || 0, 5) / 1.5}em;`}
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  appearance: none;
+  -moz-appearance: textfield;
 
   ::placeholder {
     color: ${colorsV2.lightgray};
     font-family: ${fonts.CIRCULAR};
-    font-size: 50px;
+    font-size: 56px;
   }
 
   @media (max-width: 600px) {
@@ -115,6 +123,7 @@ export const Input = styled.input`
 
     ::placeholder {
       font-size: 20px;
+      line-height: 1.25;
     }
   }
 `;

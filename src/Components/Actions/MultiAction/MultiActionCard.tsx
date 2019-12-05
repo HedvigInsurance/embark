@@ -14,7 +14,10 @@ import {
   CardContents,
   cardWidth
 } from "./MultiActionCardComponents";
-import { CARD_COUNT_BASE_BP_SM, getCardCountMediaQuery } from "../../Utils/cardCount";
+import {
+  CARD_COUNT_BASE_BP_SM,
+  getCardCountMediaQuery
+} from "../../Utils/cardCount";
 
 const ExitAnimation = styled(motion.div)`
   display: inline-block;
