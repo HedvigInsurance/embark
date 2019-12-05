@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-05T12:17:09.194Z",
+  "lastUpdate": "2019-12-05T12:45:20.525Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -208,7 +208,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Bonusfråga! Är du möjligtvis student? I så fall kan du ta del av vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"STUDENT_RENT\"\n  >\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonusfråga! Är du möjligtvis student? I så fall kan du ta del av vårt studenterbjudande\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"STUDENT_RENT\"\n  >\n    [[Ja->Offer]]\n  </Option>\n  <Option>\n    [[Nej->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/student-rent",
       "width": 100
