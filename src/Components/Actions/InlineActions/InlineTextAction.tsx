@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { fonts, colorsV2 } from "@hedviginsurance/brand";
 import { MaskType, wrapWithMask } from "../masking";
 
-const Input = styled.input<Pick<Props, "strongPlaceholder">>`
+const Input = styled.input`
   margin-left: 16px;
   margin-right: 16px;
   font-size: 40px;
@@ -35,7 +35,7 @@ interface Props {
   onChange: (value: string) => void;
   mask?: MaskType;
   large?: "true";
-  autoFocus: boolean;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const Masked = wrapWithMask(Input);
@@ -56,7 +56,7 @@ export const InlineTextAction: React.FunctionComponent<Props> = props => {
   return (
     <Masked
       mask={props.mask}
-      autoFocus={props.autoFocus}
+      inputRef={props.inputRef}
       type="text"
       size={size}
       placeholder={props.placeholder}

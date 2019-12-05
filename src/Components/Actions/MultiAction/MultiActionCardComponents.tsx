@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { colorsV2 } from "@hedviginsurance/brand";
 
-const cardHeight = 223;
 export const cardWidth = 175;
 
 interface Focusable {
@@ -28,8 +27,8 @@ export const CardContainer = styled.div`
   display: inline-block;
   overflow: hidden;
   padding: 20px;
-  width: 175px;
-  height: 223px;
+  max-width: ${cardWidth}px;
+  box-sizing: content-box;
   min-height: 223px;
 `;
 

@@ -8,6 +8,7 @@ import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 import { TextActionSet } from "./TextActionSet/TextActionSet";
 
 type ActionProps = {
+  isTransitioning: boolean;
   passageName: string;
   action: any;
   changePassage: (name: string) => void;
@@ -21,6 +22,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component === "TextActionSet") {
     return (
       <TextActionSet
+        isTransitioning={props.isTransitioning}
         passageName={props.passageName}
         action={props.action}
         changePassage={props.changePassage}
@@ -32,6 +34,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component == "NumberActionSet") {
     return (
       <NumberActionSet
+        isTransitioning={props.isTransitioning}
         passageName={props.passageName}
         action={props.action}
         changePassage={props.changePassage}
@@ -62,6 +65,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component == "NumberAction") {
     return (
       <NumberAction
+        isTransitioning={props.isTransitioning}
         autoResultKey={props.passageName}
         mask={props.action.data.mask}
         tooltip={props.action.data.tooltip}
@@ -79,6 +83,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component == "TextAction") {
     return (
       <TextAction
+        isTransitioning={props.isTransitioning}
         passageName={props.passageName}
         mask={props.action.data.mask}
         tooltip={props.action.data.tooltip}

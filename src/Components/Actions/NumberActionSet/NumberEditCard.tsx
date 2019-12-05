@@ -70,6 +70,7 @@ export class NumberEditCard extends React.Component<{
   value: string;
   onChange: (value: string) => void;
   cardCount: number;
+  inputRef: React.RefObject<HTMLInputElement>;
 }> {
   private handleResize = () => {
     this.forceUpdate();
@@ -109,6 +110,7 @@ export class NumberEditCard extends React.Component<{
           {this.props.action.data.title}
         </CardTitle>
         <InlineNumberAction
+          inputRef={this.props.inputRef}
           placeholder={
             isSm
               ? this.props.action.data.title

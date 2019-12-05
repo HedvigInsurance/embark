@@ -16,6 +16,7 @@ const DotContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 23px;
+  box-sizing: content-box;
   width: 40px;
   background-color: ${colorsV2.white};
 `;

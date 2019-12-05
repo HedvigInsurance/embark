@@ -170,6 +170,9 @@ export const Passage = (props: PassageProps) => {
   const api = React.useContext(ApiContext);
   const { store, setValue } = React.useContext(StoreContext);
   const [loading, setLoading] = React.useState(false);
+  const [isActionsTransitioning, setIsActionsTransitioning] = React.useState(
+    true
+  );
 
   const shouldShowActions = !(
     isResponding ||
@@ -279,6 +282,12 @@ export const Passage = (props: PassageProps) => {
               y: 150
             }
           }}
+          onAnimationStart={() => {
+            setIsActionsTransitioning(true);
+          }}
+          onAnimationComplete={() => {
+            setIsActionsTransitioning(false);
+          }}
           transition={{
             type: "spring",
             stiffness: 260,
@@ -296,6 +305,7 @@ export const Passage = (props: PassageProps) => {
             )}
             <Actions>
               <Action
+                isTransitioning={isActionsTransitioning}
                 key={props.passage.name}
                 passageName={props.passage.name}
                 action={props.passage.action}

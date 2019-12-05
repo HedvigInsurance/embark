@@ -4,8 +4,10 @@ import { ContinueButton } from "../../ContinueButton";
 import { StoreContext } from "../../KeyValueStore";
 import { NumberEditCard } from "./NumberEditCard";
 import { CARD_COUNT_BASE_BP_SM, mediaCardCount } from "../../Utils/cardCount";
+import { useAutoFocus } from "../../../Utils/useAutoFocus";
 
 type NumberActionSetProps = {
+  isTransitioning: boolean;
   passageName: string;
   action: any;
   changePassage: (name: string) => void;
@@ -73,11 +75,14 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
     );
   }, [state]);
 
+  const inputRef = useAutoFocus(!props.isTransitioning);
+
   return (
     <Container>
       <CardsContainer cardCount={props.action.data.numberActions.length}>
         {props.action.data.numberActions.map((action: any) => (
           <NumberEditCard
+            inputRef={inputRef}
             key={action.data.key}
             action={action}
             onSubmit={() => {

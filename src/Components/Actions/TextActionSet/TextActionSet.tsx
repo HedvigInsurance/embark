@@ -9,6 +9,7 @@ import { ApiContext } from "../../API/ApiContext";
 import { callApi } from "../../API";
 import { TextEditCard } from "./TextEditCard";
 import { mediaCardCount } from "../../Utils/cardCount";
+import { useAutoFocus } from "../../../Utils/useAutoFocus";
 
 const Container = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const Spacer = styled.div`
 `;
 
 interface Props {
+  isTransitioning: boolean;
   api?: ApiComponent;
   passageName: string;
   action: any;
@@ -145,6 +147,8 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const inputRef = useAutoFocus(!props.isTransitioning);
+
   return (
     <Container>
       <CardsContainer
@@ -164,6 +168,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
             {props.action.data.textActions.map(
               (textAction: any, index: number) => (
                 <TextEditCard
+                  inputRef={inputRef}
                   textAction={textAction}
                   cardCount={props.action?.data?.textActions?.length ?? 0}
                   autoFocus={index === 0}

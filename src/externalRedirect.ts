@@ -2,6 +2,7 @@ import * as React from "react";
 
 export interface TExternalRedirectContext {
   Offer: () => void;
+  MailingList: () => void;
 }
 
 export const ExternalRedirectContext = React.createContext<
@@ -11,13 +12,18 @@ export const ExternalRedirectContext = React.createContext<
     throw Error(
       "Must provide an implementation for `ExternalRedirectContext.Offer`"
     );
+  },
+  MailingList: () => {
+    throw Error(
+      "Must provide an implementation for `ExternalRedirectContext.MailingList`"
+    );
   }
 });
 
 interface ExternalRedirect {
   component: "ExternalRedirect";
   data: {
-    location: "Offer";
+    location: "Offer" | "MailingList";
   };
 }
 export const performExternalRedirect = (
@@ -26,5 +32,9 @@ export const performExternalRedirect = (
 ) => {
   if (externalRedirect.data.location === "Offer") {
     context.Offer();
+  }
+
+  if (externalRedirect.data.location === "MailingList") {
+    context.MailingList();
   }
 };

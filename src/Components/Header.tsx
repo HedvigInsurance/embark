@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand";
 
 interface HeaderProps {
-  passage: any;
-  storyData: any;
+  passage: any | undefined;
+  storyData: any | undefined;
   partnerName: string | null;
 }
 
@@ -37,6 +37,7 @@ const Background = styled.div<Alignable>`
   position: relative;
   padding: 0 10vw;
   box-sizing: border-box;
+
   ${props =>
     props.alignment === "center"
       ? `
@@ -86,6 +87,10 @@ export const Header = (props: HeaderProps) => {
   }, [props.partnerName]);
 
   React.useEffect(() => {
+    if (!props.passage || !props.storyData) {
+      return;
+    }
+
     const findMaxDepth = (passageName: string, previousDepth: number = 0) => {
       const passage = props.storyData.passages.filter(
         (passage: any) => passageName == passage.name
