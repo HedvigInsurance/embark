@@ -47,6 +47,8 @@ const reducer = (state: any, action: any) => {
   }
 };
 
+const NON_DIGITS = /[^\d]/;
+
 export const NumberActionSet = (props: NumberActionSetProps) => {
   const { setValue, store } = React.useContext(StoreContext);
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
@@ -91,13 +93,15 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
               }
             }}
             value={state[action.data.key] || ""}
-            onChange={value =>
-              dispatch({
-                type: "setValue",
-                key: action.data.key,
-                value
-              })
-            }
+            onChange={value => {
+              if (!NON_DIGITS.test(value)) {
+                dispatch({
+                  type: "setValue",
+                  key: action.data.key,
+                  value
+                });
+              }
+            }}
             cardCount={props.action.data.numberActions.length}
           />
         ))}
