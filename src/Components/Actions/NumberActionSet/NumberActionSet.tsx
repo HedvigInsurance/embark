@@ -31,7 +31,7 @@ const CardsContainer = styled.div<{ cardCount: number }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-  `}
+  `};
 `;
 
 const Spacer = styled.div`

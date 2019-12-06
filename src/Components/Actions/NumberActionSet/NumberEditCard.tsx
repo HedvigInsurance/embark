@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Tooltip } from "../../Tooltip";
+import { motion } from "framer-motion";
 import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand/colors";
@@ -31,10 +32,10 @@ const Card = styled.form<{
       margin-right: 0;
       margin-bottom: 1px;
     }
-  `}
+  `};
 `;
 
-const CardTitle = styled.span<{ cardCount: number; pushUp?: boolean }>`
+const CardTitle = styled(motion.span)<{ cardCount: number; pushUp?: boolean }>`
   font-family: ${fonts.CIRCULAR};
   font-size: 14px;
   font-weight: 500;
@@ -49,79 +50,86 @@ const CardTitle = styled.span<{ cardCount: number; pushUp?: boolean }>`
     padding: 8px 0 4px 16px; 
     line-height: 1;
     font-size: 12px;
-
-   ${
-     props.pushUp
-       ? `
-          opacity: .5;
-          transform: translateY(0);
-       `
-       : `
-          opacity: 0;
-          transform: translateY(25%);
-       `
-   } 
-  `}
+  `};
 `;
 
-export class NumberEditCard extends React.Component<{
+interface NumberEditCardProps {
   onSubmit: () => void;
   action: any;
   value: string;
   onChange: (value: string) => void;
   cardCount: number;
   inputRef: React.RefObject<HTMLInputElement>;
-}> {
-  private handleResize = () => {
-    this.forceUpdate();
-  };
+}
 
-  componentDidMount(): void {
-    window.addEventListener("resize", this.handleResize);
-  }
-
-  componentWillUnmount(): void {
-    window.removeEventListener("resize", this.handleResize);
-  }
-
-  render() {
-    let isSm = false;
+export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
+  const matchMediaQuery = () => {
     try {
-      isSm = window.matchMedia(
-        getCardCountMediaQuery(this.props.cardCount, CARD_COUNT_BASE_BP_SM)
+      return window.matchMedia(
+        getCardCountMediaQuery(props.cardCount, CARD_COUNT_BASE_BP_SM)
       ).matches;
     } catch {
-      // noop
+      return false;
     }
+  };
+  const [isSm, setIsSm] = React.useState(matchMediaQuery());
 
-    return (
-      <Card
-        onSubmit={e => {
-          e.preventDefault();
-          this.props.onSubmit();
+  React.useEffect(() => {
+    const handleResize = () => {
+      console.log(matchMediaQuery());
+      setIsSm(matchMediaQuery());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
+  const shouldPushUp = (props.value || "").trim().length > 0;
+
+  return (
+    <Card
+      onSubmit={e => {
+        e.preventDefault();
+        props.onSubmit();
+      }}
+      cardCount={props.cardCount}
+    >
+      <Tooltip tooltip={props.action.data.tooltip} />
+      <motion.span
+        initial={{
+          opacity: 0
         }}
-        cardCount={this.props.cardCount}
+        animate={{
+          opacity: shouldPushUp ? 0.5 : 0
+        }}
+        transition={{ delay: shouldPushUp ? 0.25 : 0 }}
       >
-        <Tooltip tooltip={this.props.action.data.tooltip} />
         <CardTitle
-          cardCount={this.props.cardCount}
-          pushUp={this.props.value?.trim()?.length > 0}
+          initial={{
+            height: 0
+          }}
+          animate={{
+            height: shouldPushUp ? "12px" : "0px"
+          }}
+          transition={{ delay: shouldPushUp ? 0 : 0.25 }}
+          cardCount={props.cardCount}
         >
-          {this.props.action.data.title}
+          {props.action.data.title}
         </CardTitle>
-        <InlineNumberAction
-          inputRef={this.props.inputRef}
-          placeholder={
-            isSm
-              ? this.props.action.data.title
-              : this.props.action.data.placeholder
-          }
-          unit={this.props.action.data.unit}
-          value={this.props.value}
-          onValue={this.props.onChange}
-          isSm={isSm}
-        />
-      </Card>
-    );
-  }
-}
+      </motion.span>
+      <InlineNumberAction
+        inputRef={props.inputRef}
+        placeholder={
+          isSm ? props.action.data.title : props.action.data.placeholder
+        }
+        unit={props.action.data.unit}
+        value={props.value}
+        onValue={props.onChange}
+        isSm={isSm}
+      />
+    </Card>
+  );
+};

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { fonts, colorsV2 } from "@hedviginsurance/brand";
 import { MaskType, wrapWithMask } from "../masking";
 
-const Input = styled.input`
+const Input = styled.input<{ strongPlaceholder: boolean }>`
   margin-left: 16px;
   margin-right: 16px;
   font-size: 40px;
@@ -48,7 +48,7 @@ const getInputSize = (exampleValue: string, value: string, large?: "true") =>
 
 export const InlineTextAction: React.FunctionComponent<Props> = props => {
   const size = getInputSize(
-    props.exampleValue ?? props.placeholder,
+    props.exampleValue || props.placeholder,
     props.value,
     props.large
   );
@@ -60,7 +60,7 @@ export const InlineTextAction: React.FunctionComponent<Props> = props => {
       type="text"
       size={size}
       placeholder={props.placeholder}
-      strongPlaceholder={props.strongPlaceholder}
+      strongPlaceholder={props.strongPlaceholder || false}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
         props.onChange(e.target.value)
       }

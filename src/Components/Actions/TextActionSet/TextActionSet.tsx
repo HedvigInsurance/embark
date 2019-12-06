@@ -29,7 +29,7 @@ const CardsContainer = styled.form<{ cardCount: number }>`
   ${props => mediaCardCount(props.cardCount)`
       display: flex;
       flex-direction: column;
-  `}
+  `};
 `;
 
 const Spacer = styled.div`
@@ -159,7 +159,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           }
           onContinue();
         }}
-        cardCount={props.action?.data?.textActions?.length ?? 0}
+        cardCount={props.action.data.textActions.length || 0}
       >
         {loading ? (
           <Loading />
@@ -170,7 +170,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
                 <TextEditCard
                   inputRef={inputRef}
                   textAction={textAction}
-                  cardCount={props.action?.data?.textActions?.length ?? 0}
+                  cardCount={props.action.data.textActions.length || 0}
                   autoFocus={index === 0}
                   onChange={value => {
                     dispatch({

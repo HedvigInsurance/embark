@@ -15,7 +15,7 @@ export const mediaCardCount = (
 ) => `
   @media ${getCardCountMediaQuery(cardCount, baseBp)} {
     ${literals
-      .map((literal, i) => literal + (interpolations[i] ?? ""))
-      .join("") ?? ""}
+      .map((literal, i) => literal + (interpolations[i] || ""))
+      .join("") || ""}
   }
 `;
