@@ -100,7 +100,7 @@ export const NumberAction = (props: NumberActionProps) => {
         <InputWithMask
           inputRef={inputRef}
           size={Math.max(props.placeholder.length, textValue.length)}
-          type="tel"
+          type="number"
           pattern={`[0-9]*`}
           placeholder={props.placeholder}
           value={textValue}

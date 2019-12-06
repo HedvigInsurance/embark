@@ -74,7 +74,7 @@ type InlineNumberActionProps = {
 export const InlineNumberAction = (props: InlineNumberActionProps) => (
   <Container>
     <Input
-      type="tel"
+      type="number"
       pattern={`[0-9]*`}
       ref={props.inputRef}
       placeholder={props.placeholder}
