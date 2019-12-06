@@ -87,7 +87,7 @@ export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
     };
   });
 
-  const shouldPushUp = (props.value || "").trim().length > 0;
+  const shouldPushUp = !isSm || (props.value || "").trim().length > 0;
 
   return (
     <Card
@@ -105,7 +105,12 @@ export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
         animate={{
           opacity: shouldPushUp ? 0.5 : 0
         }}
-        transition={{ delay: shouldPushUp ? 0.25 : 0 }}
+        transition={{
+          delay: shouldPushUp ? 0.25 : 0,
+          type: "spring",
+          stiffness: 400,
+          damping: 100
+        }}
       >
         <CardTitle
           initial={{
@@ -114,7 +119,12 @@ export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
           animate={{
             height: shouldPushUp ? "12px" : "0px"
           }}
-          transition={{ delay: shouldPushUp ? 0 : 0.25 }}
+          transition={{
+            delay: shouldPushUp ? 0 : 0.25,
+            type: "spring",
+            stiffness: 400,
+            damping: 100
+          }}
           cardCount={props.cardCount}
         >
           {props.action.data.title}

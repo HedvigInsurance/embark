@@ -24,8 +24,8 @@ const Input = styled.input<{ isSm?: boolean }>`
     font-weight: 500;
     outline: 0;
 
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
