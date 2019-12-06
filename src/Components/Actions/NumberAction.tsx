@@ -3,7 +3,7 @@ import { StoreContext } from "../KeyValueStore";
 import styled from "@emotion/styled";
 import { colors, fonts } from "@hedviginsurance/brand";
 import { Tooltip } from "../Tooltip";
-import { Card, Input, Container, Spacer } from "./Common";
+import { Card, Input, Container, Spacer, SubmitOnEnter } from "./Common";
 import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
 import animateScrollTo from "animated-scroll-to";
@@ -59,6 +59,8 @@ const isWithinBounds = (
   return true;
 };
 
+const NON_DIGITS = /[^\d]/;
+
 const InputWithMask = wrapWithMask(Input);
 
 export const NumberAction = (props: NumberActionProps) => {
@@ -98,13 +100,16 @@ export const NumberAction = (props: NumberActionProps) => {
         <InputWithMask
           inputRef={inputRef}
           size={Math.max(props.placeholder.length, textValue.length)}
-          type="number"
+          type="tel"
           pattern={`[0-9]*`}
           placeholder={props.placeholder}
           value={textValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setTextValue(unmaskValue(e.target.value, props.mask))
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const value = e.target.value;
+            if (!NON_DIGITS.test(value)) {
+              setTextValue(unmaskValue(value, props.mask));
+            }
+          }}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
             setIsFocused(false);
@@ -112,7 +117,7 @@ export const NumberAction = (props: NumberActionProps) => {
           }}
         />
         <Unit>{props.unit}</Unit>
-        <input type="submit" style={{ display: "none" }} />
+        <SubmitOnEnter />
       </Card>
       <Spacer />
       <ContinueButton
