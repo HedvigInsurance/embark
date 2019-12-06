@@ -39,6 +39,7 @@ const CardTitle = styled(motion.span)<{ pushUp?: boolean; cardCount: number }>`
   padding-top: 16px;
   padding-left: 16px;
   display: block;
+  box-sizing: content-box;
 
   transition: opacity 200ms, transform 150ms;
 

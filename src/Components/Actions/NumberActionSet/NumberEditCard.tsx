@@ -44,6 +44,7 @@ const CardTitle = styled(motion.span)<{ cardCount: number; pushUp?: boolean }>`
   display: inline-block;
   transition: opacity 200ms, transform 150ms;
   padding-bottom: 16px;
+  box-sizing: content-box;
 
   ${props => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
     transform-origin: top left;
