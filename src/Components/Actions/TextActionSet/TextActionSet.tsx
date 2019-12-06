@@ -1,15 +1,14 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { ContinueButton } from "../../ContinueButton";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
-import { Tooltip } from "../../Tooltip";
-import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import { StoreContext } from "../../KeyValueStore";
-import { unmaskValue, isValid } from "../masking";
+import { isValid, unmaskValue } from "../masking";
 import { ApiComponent } from "../../API/apiComponent";
 import { Loading } from "../../API/Loading";
 import { ApiContext } from "../../API/ApiContext";
 import { callApi } from "../../API";
+import { TextEditCard } from "./TextEditCard";
+import { mediaCardCount } from "../../Utils/cardCount";
 import { useAutoFocus } from "../../../Utils/useAutoFocus";
 
 const Container = styled.div`
@@ -17,39 +16,20 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 100%;
 `;
 
-const CardsContainer = styled.form`
+const CardsContainer = styled.form<{ cardCount: number }>`
   display: flex;
   justify-content: center;
-`;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
 
-const Card = styled.div`
-  background-color: ${colorsV2.white};
-  padding-bottom: 36px;
-
-  :first-of-type {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-  }
-
-  :not(:last-child) {
-    margin-right: 1px;
-  }
-
-  :nth-last-of-type(1) {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-`;
-
-const CardTitle = styled.span`
-  font-family: ${fonts.CIRCULAR};
-  font-size: 14px;
-  font-weight: 500;
-  padding-top: 16px;
-  padding-left: 16px;
-  display: block;
+  ${props => mediaCardCount(props.cardCount)`
+      display: flex;
+      flex-direction: column;
+  `};
 `;
 
 const Spacer = styled.div`
@@ -179,6 +159,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           }
           onContinue();
         }}
+        cardCount={props.action.data.textActions.length || 0}
       >
         {loading ? (
           <Loading />
@@ -186,25 +167,21 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
           <>
             {props.action.data.textActions.map(
               (textAction: any, index: number) => (
-                <Card key={textAction.data.key}>
-                  <Tooltip tooltip={textAction.data.tooltip} />
-                  <CardTitle>{textAction.data.title}</CardTitle>
-                  <InlineTextAction
-                    inputRef={(index === 0 && inputRef) || undefined}
-                    large={textAction.data.large}
-                    placeholder={textAction.data.placeholder}
-                    onChange={value => {
-                      dispatch({
-                        type: "setValue",
-                        key: textAction.data.key,
-                        value,
-                        textActions: props.action.data.textActions
-                      });
-                    }}
-                    value={state.values[textAction.data.key] || ""}
-                    mask={textAction.data.mask}
-                  />
-                </Card>
+                <TextEditCard
+                  inputRef={inputRef}
+                  textAction={textAction}
+                  cardCount={props.action.data.textActions.length || 0}
+                  autoFocus={index === 0}
+                  onChange={value => {
+                    dispatch({
+                      type: "setValue",
+                      key: textAction.data.key,
+                      value,
+                      textActions: props.action.data.textActions
+                    });
+                  }}
+                  value={state.values[textAction.data.key] || ""}
+                />
               )
             )}
           </>

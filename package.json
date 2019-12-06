@@ -29,13 +29,13 @@
     "koa": "^2.10.0",
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
-    "prettier": "^1.19.1",
     "pretty-quick": "^2.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.10.2",
     "react-emotion": "^10.0.0",
     "react-input-mask": "^2.0.4",
     "requestidlecallback": "^0.3.0",
+    "smoothscroll": "^0.4.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.7.2",
     "uglify-js": "^3.6.3",
@@ -56,19 +56,20 @@
     "react-dom": "^16.10.x"
   },
   "devDependencies": {
+    "@koa/cors": "^2.2.3",
     "@types/history": "^4.7.3",
     "@types/koa": "^2.0.51",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
     "@types/react-input-mask": "^2.0.4",
     "@types/uuid": "^3.4.6",
-    "parcel-bundler": "^1.12.4",
-    "rollup": "^1.27.2",
-    "rollup-plugin-graphql": "^0.1.0",
-    "rollup-plugin-typescript2": "^0.25.2",
-    "@koa/cors": "^2.2.3",
     "concurrently": "^5.0.0",
     "graphql": "^14.5.8",
-    "graphql-tag": "^2.10.1"
+    "graphql-tag": "^2.10.1",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1",
+    "rollup": "^1.27.2",
+    "rollup-plugin-graphql": "^0.1.0",
+    "rollup-plugin-typescript2": "^0.25.2"
   }
 }

@@ -76,6 +76,10 @@ export const MessageBody = styled.p<MessageBodyProps>`
   font-family: ${fonts.CIRCULAR};
   line-height: 25px;
   font-size: 16px;
+
+  @media (max-width: 320px) {
+    font-size: 14px;
+  }
 `;
 
 export const MessageAnimation: React.FunctionComponent = props => (

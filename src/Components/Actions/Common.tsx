@@ -90,7 +90,6 @@ export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
 export const Input = styled.input`
   margin-left: 16px;
   margin-right: 16px;
-  margin-top: 24px;
   font-size: 56px;
   line-height: 1;
   font-family: ${fonts.CIRCULAR};
@@ -102,10 +101,30 @@ export const Input = styled.input`
   color: ${colorsV2.black};
   font-weight: 500;
   outline: 0;
-  ${props => `width: ${(props.size || 0) / 1.5}em;`} ::placeholder {
+  ${props =>
+    `width: ${Math.max(props.size || 0, 5) /
+      1.5}em;`} input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  appearance: none;
+  -moz-appearance: textfield;
+
+  ::placeholder {
     color: ${colorsV2.lightgray};
     font-family: ${fonts.CIRCULAR};
-    font-size: 50px;
+    font-size: 56px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+    line-height: 1.25;
+
+    ::placeholder {
+      font-size: 20px;
+      line-height: 1.25;
+    }
   }
 `;
 

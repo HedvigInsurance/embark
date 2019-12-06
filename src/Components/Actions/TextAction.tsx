@@ -15,10 +15,15 @@ import {
 import { callApi } from "../API";
 import { ApiContext } from "../API/ApiContext";
 import { ApiComponent } from "../API/apiComponent";
+import smoothScroll from "smoothscroll";
 import { useAutoFocus } from "../../Utils/useAutoFocus";
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
+
+  @media (max-width: 600px) {
+    margin-bottom: 16px;
+  }
 `;
 
 interface Props {
@@ -92,15 +97,18 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         <Masked
           inputRef={inputRef}
           mask={props.mask}
+          type="text"
           size={Math.max(props.placeholder.length, textValue.length)}
           placeholder={props.placeholder}
-          type="text"
           value={textValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setTextValue(e.target.value)
           }
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => {
+            setIsFocused(false);
+            smoothScroll(0);
+          }}
         />
         <input type="submit" style={{ display: "none" }} />
       </Card>

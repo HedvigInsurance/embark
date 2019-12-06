@@ -6,6 +6,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
+const smoothScroll = require("smoothscroll");
 import { useAutoFocus } from "../../Utils/useAutoFocus";
 
 const Unit = styled.p`
@@ -14,6 +15,10 @@ const Unit = styled.p`
   text-align: center;
   color: ${colors.DARK_GRAY};
   font-family: ${fonts.CIRCULAR};
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 type NumberActionProps = {
@@ -39,7 +44,7 @@ const isWithinBounds = (
   maxValue: number | undefined
 ): boolean => {
   const asNumber = Number(value);
-  if (asNumber === NaN) {
+  if (isNaN(asNumber)) {
     return false;
   }
 
@@ -93,14 +98,18 @@ export const NumberAction = (props: NumberActionProps) => {
         <InputWithMask
           inputRef={inputRef}
           size={Math.max(props.placeholder.length, textValue.length)}
-          type="text"
+          type="number"
+          pattern={`[0-9]*`}
           placeholder={props.placeholder}
           value={textValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setTextValue(unmaskValue(e.target.value, props.mask))
           }
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => {
+            setIsFocused(false);
+            smoothScroll(0);
+          }}
         />
         <Unit>{props.unit}</Unit>
         <input type="submit" style={{ display: "none" }} />
