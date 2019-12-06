@@ -139,3 +139,7 @@ export const Container = styled.div`
 export const Spacer = styled.span`
   height: 20px;
 `;
+
+export const SubmitOnEnter = styled.input`
+  display: none;
+`;
