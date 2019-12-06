@@ -58,6 +58,7 @@ const Tooltippy = styled.div`
   font-family: ${fonts.CIRCULAR};
   max-width: 150px;
   min-width: 35px;
+  font-size: 16px;
   text-align: center;
   justify-content: center;
   transform: translateX(calc(50% - 24px));
