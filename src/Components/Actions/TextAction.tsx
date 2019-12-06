@@ -15,7 +15,7 @@ import {
 import { callApi } from "../API";
 import { ApiContext } from "../API/ApiContext";
 import { ApiComponent } from "../API/apiComponent";
-import smoothScroll from "smoothscroll";
+import animateScrollTo from "animated-scroll-to";
 import { useAutoFocus } from "../../Utils/useAutoFocus";
 
 const BottomSpacedInput = styled(Input)`
@@ -107,7 +107,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
             setIsFocused(false);
-            smoothScroll(0);
+            animateScrollTo(0);
           }}
         />
         <input type="submit" style={{ display: "none" }} />

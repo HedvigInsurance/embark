@@ -1,4 +1,5 @@
 import * as React from "react";
+import ismobilejs from "ismobilejs";
 
 const useEffectOnceWhen = (effect: () => void, shouldRun: boolean) => {
   const [hasBeenTriggered, setHasBeenTriggered] = React.useState(false);
@@ -15,7 +16,7 @@ export const useAutoFocus = (shouldAutoFocus: boolean) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   useEffectOnceWhen(() => {
-    if (inputRef.current) {
+    if (inputRef.current && !ismobilejs()) {
       inputRef.current.focus();
     }
   }, shouldAutoFocus);

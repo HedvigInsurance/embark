@@ -17,7 +17,7 @@ import { KeywordsContext } from "./KeywordsContext";
 import { ApiContext } from "./API/ApiContext";
 import { Loading } from "./API/Loading";
 import { callApi } from "./API";
-const smoothScroll = require("smoothscroll");
+import animateScrollTo from "animated-scroll-to";
 
 interface PassageProps {
   passage: any;
@@ -35,6 +35,10 @@ const ChatContainer = styled.div`
   justify-content: space-between;
   transition: height 300ms;
   -webkit-overflow-scrolling: touch;
+
+  & > * {
+    box-sizing: content-box;
+  }
 
   @media (max-width: 375px) {
     height: calc(100% - 64px);
@@ -324,7 +328,7 @@ export const Passage = (props: PassageProps) => {
                     setMessagesAnimationState("visible");
                     setIsResponding(false);
                     props.changePassage(name);
-                    smoothScroll(0);
+                    animateScrollTo(0);
                   }, 1000);
                 }}
               />

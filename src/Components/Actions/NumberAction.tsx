@@ -6,7 +6,7 @@ import { Tooltip } from "../Tooltip";
 import { Card, Input, Container, Spacer } from "./Common";
 import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
-const smoothScroll = require("smoothscroll");
+import animateScrollTo from "animated-scroll-to";
 import { useAutoFocus } from "../../Utils/useAutoFocus";
 
 const Unit = styled.p`
@@ -108,7 +108,7 @@ export const NumberAction = (props: NumberActionProps) => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
             setIsFocused(false);
-            smoothScroll(0);
+            animateScrollTo(0);
           }}
         />
         <Unit>{props.unit}</Unit>

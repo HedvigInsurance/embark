@@ -171,6 +171,9 @@ const RootContainer = () => (
     externalRedirects={{
       Offer: () => {
         console.log("Should redirect to Offer!");
+      },
+      MailingList: () => {
+        console.log("Should redirect to mailing list");
       }
     }}
   >
