@@ -295,6 +295,19 @@ const getTextAction = (textActionNode: Element) => {
   };
 };
 
+const getExternalInsuranceProviderAction = (
+  externalInsuranceProviderActionNode: Element
+) => {
+  const next = externalInsuranceProviderActionNode.getAttribute("next");
+
+  return {
+    component: "ExternalInsuranceProviderAction",
+    data: {
+      next
+    }
+  };
+};
+
 const getAction = (containerElement: Element) => {
   const numberActionSetNode = containerElement.getElementsByTagName(
     "numberactionset"
@@ -340,6 +353,16 @@ const getAction = (containerElement: Element) => {
 
   if (textActionNode) {
     return getTextAction(textActionNode);
+  }
+
+  const externalInsuranceProviderActionNode = containerElement.getElementsByTagName(
+    "externalinsuranceprovideraction"
+  )[0];
+
+  if (externalInsuranceProviderActionNode) {
+    return getExternalInsuranceProviderAction(
+      externalInsuranceProviderActionNode
+    );
   }
 
   return null;

@@ -3,9 +3,9 @@ import { SelectAction } from "./SelectAction/SelectAction";
 import { NumberAction } from "./NumberAction";
 import { MultiAction } from "./MultiAction/MultiAction";
 import { TextAction } from "./TextAction";
-import { ApiComponent } from "../API/apiComponent";
 import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 import { TextActionSet } from "./TextActionSet/TextActionSet";
+import { ExternalInsuranceProviderAction } from "./ExternalInsuranceProviderAction";
 
 type ActionProps = {
   isTransitioning: boolean;
@@ -96,6 +96,10 @@ export const Action = (props: ActionProps) => {
         }
       />
     );
+  }
+
+  if (props.action.component == "ExternalInsuranceProviderAction") {
+    return <ExternalInsuranceProviderAction />;
   }
 
   return null;
