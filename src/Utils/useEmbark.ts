@@ -21,14 +21,6 @@ const shouldBeAddedToHistory = (passage: any) => {
     return false;
   }
 
-  if (
-    passage.redirects.length > 0 &&
-    passage.messages.length === 0 &&
-    passage.action === null
-  ) {
-    return false;
-  }
-
   return true;
 };
 
