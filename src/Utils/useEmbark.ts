@@ -23,7 +23,7 @@ const reducer: (state: State, action: Action) => State = (state, action) => {
         (passage: any) => passage.id == state.passageId
       );
 
-      if (passage.api) {
+      if (passage.api || passage.externalRedirect) {
         return {
           ...state,
           history: [...state.history],
