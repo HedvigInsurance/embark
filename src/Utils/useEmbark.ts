@@ -40,7 +40,7 @@ const reducer: (state: State, action: Action) => State = (state, action) => {
       }
 
       const passage = state.data.passages.find(
-        (passage: any) => passage.id == state.passageId
+        (passage: any) => passage.id == action.passageId
       );
 
       if (!shouldBeAddedToHistory(passage)) {
