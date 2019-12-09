@@ -12,6 +12,26 @@ type Action =
   | { type: "SET_STATE"; state: State }
   | { type: "GO_BACK" };
 
+const shouldBeAddedToHistory = (passage: any) => {
+  if (passage.api) {
+    return false;
+  }
+
+  if (passage.externalRedirect) {
+    return false;
+  }
+
+  if (
+    passage.redirects.length > 0 &&
+    passage.messages.length === 0 &&
+    passage.action === null
+  ) {
+    return false;
+  }
+
+  return true;
+};
+
 const reducer: (state: State, action: Action) => State = (state, action) => {
   switch (action.type) {
     case "GO_TO":
@@ -20,10 +40,10 @@ const reducer: (state: State, action: Action) => State = (state, action) => {
       }
 
       const passage = state.data.passages.find(
-        (passage: any) => passage.id == state.passageId
+        (passage: any) => passage.id == action.passageId
       );
 
-      if (passage.api || passage.externalRedirect) {
+      if (!shouldBeAddedToHistory(passage)) {
         return {
           ...state,
           history: [...state.history],

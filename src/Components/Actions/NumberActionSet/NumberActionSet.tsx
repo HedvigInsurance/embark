@@ -77,7 +77,6 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
           const numberAction = props.action.data.numberActions.filter(
             (na: any) => na.data.key === key
           )[0];
-          debugger;
           return (
             !state[key] ||
             !(state[key].length > 0) ||
