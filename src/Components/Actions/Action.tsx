@@ -6,6 +6,7 @@ import { TextAction } from "./TextAction";
 import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 import { TextActionSet } from "./TextActionSet/TextActionSet";
 import { ExternalInsuranceProviderAction } from "./ExternalInsuranceProviderAction";
+import { PreviousInsuranceProviderAction } from "./PreviousInsuranceProviderAction";
 
 type ActionProps = {
   isTransitioning: boolean;
@@ -99,7 +100,23 @@ export const Action = (props: ActionProps) => {
   }
 
   if (props.action.component == "ExternalInsuranceProviderAction") {
-    return <ExternalInsuranceProviderAction />;
+    return (
+      <ExternalInsuranceProviderAction
+        next={props.action.data.next.name}
+        onContinue={next => props.changePassage(next)}
+      />
+    );
+  }
+
+  if (props.action.component == "PreviousInsuranceProviderAction") {
+    return (
+      <PreviousInsuranceProviderAction
+        tooltip={props.action.data.tooltip}
+        passageName={props.passageName}
+        next={props.action.data.next.name}
+        onContinue={next => props.changePassage(next)}
+      />
+    );
   }
 
   return null;
