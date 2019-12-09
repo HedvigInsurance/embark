@@ -9,31 +9,31 @@ export const providers = [
     name: "If"
   },
   {
-    id: "trygg-hansa",
+    id: "Trygg-Hansa",
     name: "Trygg Hansa"
   },
   {
-    id: "folksam",
+    id: "Folksam",
     name: "Folksam"
   },
   {
-    id: "länsförsäkringar",
+    id: "Länsförsäkringar",
     name: "Länsförsäkringar"
   },
   {
-    id: "moderna",
+    id: "Moderna",
     name: "Moderna"
   },
   {
-    id: "gjensidige",
+    id: "Gjensidige",
     name: "Gjensidige"
   },
   {
-    id: "vardia",
+    id: "Vardia",
     name: "Vardia"
   },
   {
-    id: "tre-kronor",
+    id: "Tre Kronor",
     name: "Tre Kronor"
   }
 ];
