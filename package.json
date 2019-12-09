@@ -5,7 +5,7 @@
   "source": "src/package.ts",
   "main": "dist/package.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "server": "ts-node --project tsconfig.server.json server.ts",
     "build-package": "rollup -c",
     "build": "parcel build src/index.tsx --out-dir dist/output",
@@ -60,6 +60,7 @@
   "devDependencies": {
     "@koa/cors": "^2.2.3",
     "@types/history": "^4.7.3",
+    "@types/jest": "^24.0.23",
     "@types/koa": "^2.0.51",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
@@ -68,10 +69,12 @@
     "concurrently": "^5.0.0",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
+    "jest": "^24.9.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1",
     "rollup": "^1.27.2",
     "rollup-plugin-graphql": "^0.1.0",
-    "rollup-plugin-typescript2": "^0.25.2"
+    "rollup-plugin-typescript2": "^0.25.2",
+    "ts-jest": "^24.2.0"
   }
 }

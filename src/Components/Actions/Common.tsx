@@ -140,6 +140,10 @@ export const Spacer = styled.span`
   height: 20px;
 `;
 
-export const SubmitOnEnter = styled.input`
+const SubmitOnEnterStyle = styled.input`
   display: none;
 `;
+
+export const SubmitOnEnter: React.FC = () => (
+  <SubmitOnEnterStyle type="submit" />
+);
