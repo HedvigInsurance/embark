@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-06T10:51:18.218Z",
+  "lastUpdate": "2019-12-09T09:14:01.516Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -37,7 +37,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[Jag äger den->houseNotAvailable]]\n  </Option>\n  <Option key=\"[homeType,rentalType]\"\n          value=\"[apartment,villa]\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Äger du eller hyr du villan?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[Jag äger den->personalNumberVilla]]\n  </Option>\n  <Option key=\"[homeType,rentalType]\"\n          value=\"[apartment,villa]\"\n  >\n    [[Jag hyr den->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "",
       "width": 100
@@ -76,7 +76,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vilken typ av bostad gäller det?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,rent,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,rent,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Vilken typ av bostad gäller det?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 400,
       "url": "",
       "width": 100
@@ -89,7 +89,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"SSNVillaOwnResponse\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 800,
       "width": 100
     },
@@ -115,7 +115,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"brf\"\n  >\n    [[Bostadsrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Bostadsrätt\n      </Title>\n      <Description>\n        Du äger en bostadsrätt och behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[rent,apartment]\"\n  >\n    [[Hyresrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyresrätt\n      </Title>\n      <Description>\n        Du hyr en hyresrätt eller äger en bostadsrätt där du inte behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[rent,apartment]\"\n  >\n    [[Hyr i andra hand->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyr i andra hand\n      </Title>\n      <Description>\n        Du hyr en bostadsrätt eller hyresrätt i andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"BRF\"\n  >\n    [[Bostadsrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Bostadsrätt\n      </Title>\n      <Description>\n        Du äger en bostadsrätt och behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Hyresrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyresrätt\n      </Title>\n      <Description>\n        Du hyr en hyresrätt eller äger en bostadsrätt där du inte behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Hyr i andra hand->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyr i andra hand\n      </Title>\n      <Description>\n        Du hyr en bostadsrätt eller hyresrätt i andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 600,
       "width": 100
     },
@@ -139,7 +139,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hur många våningar har villan? Källaren räknas som en våning, bara så du vet\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Fyra våningar eller färre->householdSizeVilla]]\n    <Tooltip>\n      <Title>\n        Fyra våningar eller färre\n      </Title>\n      <Description>\n        Huset har max 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än fyra våningar->errorFloorsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än fyra våningar\n      </Title>\n      <Description>\n        Huset har fler än 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hur många våningar har villan? Källaren räknas som en våning, bara så du vet\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Fyra våningar eller färre->householdSizeVilla]]\n    <Tooltip>\n      <Title>\n        4 våningar eller färre\n      </Title>\n      <Description>\n        Huset har max 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än fyra våningar->errorFloorsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 4 våningar\n      </Title>\n      <Description>\n        Huset har fler än 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1400,
       "width": 100
     },
@@ -207,7 +207,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  <When expression=\"apartmentType == 'brf'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'villa'\">\n    Hur stor är villan?\n  </When>\n  <When expression=\"rentalType == 'studentHousing'\">\n    Hur stor är studentbostaden?\n  </When>\n  <When expression=\"rentalType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till? Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              next=\"[[Fortsätt->householdSizeApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på bostaden. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  <When expression=\"apartmentType == 'BRF'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'apartment'\">\n    Hur stor är lägenheten?\n  </When>\n  <When expression=\"rentalType == 'villa'\">\n    Hur stor är villan?\n  </When>\n  <When expression=\"rentalType == 'studentHousing'\">\n    Hur stor är studentbostaden?\n  </When>\n  <When expression=\"rentalType == 'subletter'\">\n    Hur stort är ditt rum och de gemensamma ytorna du har tillgång till? Till gemensamma ytor räknas exempelvis kök, badrum och vardagsrum\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              next=\"[[Fortsätt->householdSizeApartment]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Lägenhetsstorlek\n    </Title>\n    <Description>\n      Den totala ytan på bostaden. Är du osäker hittar du den i ditt hyres- eller köpekontrakt\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 800,
       "width": 100
     },
@@ -323,20 +323,8 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option>\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"isSubletted\"\n          value=\"false\"\n  >\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option key=\"isSubletted\"\n          value=\"true\"\n  >\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
       "top": 1700,
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "1467792027",
-      "left": 500,
-      "name": "houseNotAvailable",
-      "selected": false,
-      "story": "-650548383",
-      "tags": [],
-      "text": "<Message>\n  Snart kommer du kunna på prisförslag för villa på Webben, tills dess kan du ladda ner appen!\n</Message>",
-      "top": 600,
       "width": 100
     },
     {
@@ -397,7 +385,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"1Baths\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"2Baths\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"2+Baths\"\n          value=\"2+\"\n  >\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1250,
       "width": 100
     },
@@ -475,7 +463,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Okej, då vet vi. Till sist behöver vi lite information om eventuella extra byggnader om du vill att de ska täckas av försäkringen\n</Message>\n\n<Message>\n  Du kan försäkra upp till 4 extra byggnader\n</Message>\n\n<Message>\n  Om du inte vill försäkra några extra byggnader, tryck bara Fortsätt\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} kvadratmeter\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Välj typ\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Gästhus\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Bastu\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Båthus\n      </Option>\n      <Option value=\"OTHER\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
+      "text": "<Message>\n  Okej, då vet vi. Till sist behöver vi lite information om eventuella extra byggnader om du vill att de ska täckas av försäkringen\n</Message>\n\n<Message>\n  Om du inte vill försäkra några extra byggnader, tryck bara Fortsätt\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} kvadratmeter\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Välj typ\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Gästhus\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Bastu\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Båthus\n      </Option>\n      <Option value=\"OTHER\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
       "top": 1850,
       "width": 100
     },
