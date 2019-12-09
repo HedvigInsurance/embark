@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-06T14:57:55.939Z",
+  "lastUpdate": "2019-12-09T09:23:15.729Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -207,7 +207,7 @@
       "tags": [
         "Error"
       ],
-      "text": "Double-click this passage to edit it.",
+      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, försök igen snart!\n</Message>",
       "top": 1600,
       "url": "/error",
       "width": 100
@@ -345,7 +345,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Något gick knas :(\n</Message>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra bostäder som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
       "top": 1400,
       "url": "/oh-no",
       "width": 100
