@@ -8,7 +8,7 @@ interface Focusable {
   isFocused: boolean;
 }
 
-const CardPrimitive = styled(motion.form)<Focusable>`
+export const CardPrimitive = styled(motion.form)<Focusable>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -97,7 +97,6 @@ export const Input = styled.input`
   border: none;
   box-sizing: border-box;
   text-align: center;
-  margin-top: 16px;
   color: ${colorsV2.black};
   font-weight: 500;
   outline: 0;

@@ -295,6 +295,37 @@ const getTextAction = (textActionNode: Element) => {
   };
 };
 
+const getExternalInsuranceProviderAction = (
+  externalInsuranceProviderActionNode: Element
+) => {
+  const next = externalInsuranceProviderActionNode.getAttribute("next");
+  const nextLinks = next ? parseLinks(next) : [];
+
+  return {
+    component: "ExternalInsuranceProviderAction",
+    data: {
+      next: nextLinks && nextLinks[0]
+    }
+  };
+};
+
+const getPreviousInsuranceProviderAction = (
+  previousInsuranceProviderActionNode: Element
+) => {
+  const next = previousInsuranceProviderActionNode.getAttribute("next");
+  const nextLinks = next ? parseLinks(next) : [];
+
+  const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0];
+
+  return {
+    component: "PreviousInsuranceProviderAction",
+    data: {
+      next: nextLinks && nextLinks[0],
+      ...(tooltip && { tooltip })
+    }
+  };
+};
+
 const getAction = (containerElement: Element) => {
   const numberActionSetNode = containerElement.getElementsByTagName(
     "numberactionset"
@@ -340,6 +371,26 @@ const getAction = (containerElement: Element) => {
 
   if (textActionNode) {
     return getTextAction(textActionNode);
+  }
+
+  const externalInsuranceProviderActionNode = containerElement.getElementsByTagName(
+    "externalinsuranceprovideraction"
+  )[0];
+
+  if (externalInsuranceProviderActionNode) {
+    return getExternalInsuranceProviderAction(
+      externalInsuranceProviderActionNode
+    );
+  }
+
+  const previousInsuranceProviderActionNode = containerElement.getElementsByTagName(
+    "previousinsuranceprovideraction"
+  )[0];
+
+  if (previousInsuranceProviderActionNode) {
+    return getPreviousInsuranceProviderAction(
+      previousInsuranceProviderActionNode
+    );
   }
 
   return null;
