@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-09T09:23:15.729Z",
+  "lastUpdate": "2019-12-09T10:52:39.224Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -317,7 +317,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Message>\n  <When expression=\"subletter == 'true'\">\n    Om flera ska täckas av försäkringen behöver deras rum också räknas in i den totala storleken\n  </When>\n</Message>\n\n<Redirect when=\"livingSpace > 250\"\n          to=\"[[errorLivingSpaceApartment]]\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->personalNumberApartment]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Message>\n  <When expression=\"subletter == 'true'\">\n    Om flera ska täckas av försäkringen behöver deras rum också räknas in i den totala storleken\n  </When>\n</Message>\n\n<Redirect when=\"livingSpace > 250\"\n          to=\"[[errorLivingSpaceApartment]]\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"1\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->personalNumberApartment]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 650,
       "url": "/household-size",
       "width": 100
@@ -440,7 +440,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              next=\"[[Fortsätt->rentOutVilla]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hur många personer ska täckas av försäkringen?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} personer\n  </when>\n  <when expression=\"householdSize == 1\">\n    Bara jag\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              minvalue=\"1\"\n              next=\"[[Fortsätt->rentOutVilla]]\"\n              unit=\"personer (inkl. mig själv)\"\n>\n  <Tooltip>\n    <Title>\n      Antal försäkrade\n    </Title>\n    <Description>\n      Exempelvis partner, barn eller roomies som ska täckas. De medförsäkrade måste bo tillsammans med dig för att täckas av din försäkring\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "url": "/household-size",
       "width": 100
