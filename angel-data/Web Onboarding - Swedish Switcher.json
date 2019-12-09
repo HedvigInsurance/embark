@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-09T09:14:01.516Z",
+  "lastUpdate": "2019-12-09T11:48:53.804Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -76,8 +76,8 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vilken typ av bostad gäller det?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
-      "top": 400,
+      "text": "<Message>\n  <When expression=\"isMover == 'false'\">\n    Vad för bostad är det?\n  </When>\n  <When expression=\"isMover == 'true'\">\n    Vad för typ av bostad ska du flytta till?\n  </When>\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "top": 500,
       "url": "",
       "width": 100
     },
@@ -91,6 +91,18 @@
       "tags": [],
       "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 800,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-15593889",
+      "left": 975,
+      "name": "oldInsurance",
+      "selected": false,
+      "story": "-650548383",
+      "tags": [],
+      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\">\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "top": 325,
       "width": 100
     },
     {
@@ -475,7 +487,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hej! Låt oss jämföra Hedvig med försäkringen du har idag\n</Message>\n\n<Message>\n  Vill du ha ett förslag för din nuvarande bostad eller ska du flytta?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nuvarande bostad->typeOfRecidency]]\n    <Tooltip>\n      <Title>\n        Nuvarande bostad\n      </Title>\n      <Description>\n        Det gäller en bostad du redan har en hemförsäkring för\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jag ska flytta->typeOfRecidency]]\n    <Tooltip>\n      <Title>\n        Ska flytta\n      </Title>\n      <Description>\n        Det gäller en bostad du ännu inte har en hemförsäkring för\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hej! Låt oss jämföra Hedvig med försäkringen du har idag\n</Message>\n\n<Message>\n  Vill du ha ett förslag för din nuvarande bostad eller ska du flytta?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nuvarande bostad->oldInsurance]]\n    <Tooltip>\n      <Title>\n        Nuvarande bostad\n      </Title>\n      <Description>\n        Det gäller en bostad du redan har en hemförsäkring för\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jag ska flytta->typeOfRecidency]]\n    <Tooltip>\n      <Title>\n        Ska flytta\n      </Title>\n      <Description>\n        Det gäller en bostad du ännu inte har en hemförsäkring för\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 100,
       "width": 200
     },
