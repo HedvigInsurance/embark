@@ -25,6 +25,10 @@ export const providers = [
     name: "Moderna"
   },
   {
+    id: "ICA",
+    name: "ICA"
+  },
+  {
     id: "Gjensidige",
     name: "Gjensidige"
   },
