@@ -5,6 +5,7 @@ import { StoreContext } from "../../KeyValueStore";
 import { NumberEditCard } from "./NumberEditCard";
 import { CARD_COUNT_BASE_BP_SM, mediaCardCount } from "../../Utils/cardCount";
 import { useAutoFocus } from "../../../Utils/useAutoFocus";
+import { isWithinBounds } from "../NumberAction";
 
 type NumberActionSetProps = {
   isTransitioning: boolean;
@@ -72,7 +73,21 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
   React.useEffect(() => {
     setContinueDisabled(
       Object.keys(state)
-        .map(key => state[key] == null || state[key] == "" || state[key] == 0)
+        .map(key => {
+          const numberAction = props.action.data.numberActions.filter(
+            (na: any) => na.data.key === key
+          )[0];
+          debugger;
+          return (
+            !state[key] ||
+            !(state[key].length > 0) ||
+            !isWithinBounds(
+              state[key],
+              numberAction.data.minValue,
+              numberAction.data.maxValue
+            )
+          );
+        })
         .indexOf(true) != -1
     );
   }, [state]);
