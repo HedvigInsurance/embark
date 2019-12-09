@@ -36,7 +36,7 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
       <Content>
         <SelectProvider
           onPickProvider={provider => {
-            setValue("previousInsurer", provider.name);
+            setValue("previousInsurer", provider.id);
             setValue(`${passageName}Result`, provider.name);
             onContinue(next);
           }}
