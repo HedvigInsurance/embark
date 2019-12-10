@@ -9,10 +9,10 @@ interface Measured {
 }
 
 export const useMeasure = <T extends Element>(): [
-  { ref: React.MutableRefObject<T> },
+  { ref: React.MutableRefObject<T | null> },
   Measured
 ] => {
-  const ref = React.useRef<T>();
+  const ref = React.useRef<T>(null);
   const [bounds, set] = React.useState({
     left: 0,
     top: 0,
@@ -26,5 +26,5 @@ export const useMeasure = <T extends Element>(): [
     if (ref.current) ro.observe(ref.current);
     return () => ro.disconnect();
   }, []);
-  return [{ ref }, bounds] as [{ ref: React.MutableRefObject<T> }, Measured];
+  return [{ ref }, bounds];
 };
