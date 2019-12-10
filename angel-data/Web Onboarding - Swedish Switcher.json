@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-09T16:09:49.567Z",
+  "lastUpdate": "2019-12-10T10:44:43.351Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -151,7 +151,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hur många våningar har villan? Källaren räknas som en våning, bara så du vet\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Fyra våningar eller färre->householdSizeVilla]]\n    <Tooltip>\n      <Title>\n        4 våningar eller färre\n      </Title>\n      <Description>\n        Huset har max 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än fyra våningar->errorFloorsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 4 våningar\n      </Title>\n      <Description>\n        Huset har fler än 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hur många våningar har villan? Källaren räknas som en våning, bara så du vet\n</Message>\n\n<SelectAction>\n  <Option>\n    [[4 våningar eller färre->householdSizeVilla]]\n    <Tooltip>\n      <Title>\n        Fyra våningar eller färre\n      </Title>\n      <Description>\n        Huset har max 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än 4 våningar->errorFloorsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än Fyra våningar\n      </Title>\n      <Description>\n        Huset har fler än 4 våningar om man räknar med källaren\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1400,
       "width": 100
     },
