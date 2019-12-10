@@ -10,7 +10,7 @@ import {
 } from "./createQuote";
 import { TApiContext } from "./ApiContext";
 import { Store } from "../KeyValueStore";
-import { getMultiActionItems } from "../Actions/MultiAction/MultiAction";
+import { getMultiActionItems } from "../Actions/MultiAction/util";
 import { isHouseInformationComponent } from "./houseInformation";
 import uuid from "uuid";
 
