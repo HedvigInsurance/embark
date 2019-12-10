@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Tooltip } from "../../Tooltip";
 import { motion } from "framer-motion";
-import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
+import { InlineNumberAction } from "./InlineNumberAction";
 import styled from "@emotion/styled";
 import { colorsV2 } from "@hedviginsurance/brand/colors";
 import { fonts } from "@hedviginsurance/brand/fonts/index";
@@ -77,7 +77,6 @@ export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
 
   React.useEffect(() => {
     const handleResize = () => {
-      console.log(matchMediaQuery());
       setIsSm(matchMediaQuery());
     };
 

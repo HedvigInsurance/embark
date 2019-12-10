@@ -426,7 +426,6 @@ const AND_REGEX = /^(.+)&&(.+)$/;
 const OR_REGEX = /^(.+)\|\|(.+)$/;
 
 const parseExpression = (expression: string): Expression | null => {
-  console.log("parsing expression");
   if (expression.includes("&&")) {
     const splitted = expression.match(AND_REGEX);
 
@@ -469,16 +468,6 @@ const parseExpression = (expression: string): Expression | null => {
     };
   }
 
-  if (expression.includes(">")) {
-    const splitted = expression.split(">");
-
-    return {
-      type: "MORE_THAN",
-      key: splitted[0].trim(),
-      value: splitted[1].trim().replace(/'/g, "")
-    };
-  }
-
   if (expression.includes(">=")) {
     const splitted = expression.split(">=");
 
@@ -489,21 +478,31 @@ const parseExpression = (expression: string): Expression | null => {
     };
   }
 
-  if (expression.includes("<")) {
-    const splitted = expression.split("<");
-
-    return {
-      type: "LESS_THAN",
-      key: splitted[0].trim(),
-      value: splitted[1].trim().replace(/'/g, "")
-    };
-  }
-
   if (expression.includes("<=")) {
     const splitted = expression.split("<=");
 
     return {
       type: "LESS_THAN_OR_EQUALS",
+      key: splitted[0].trim(),
+      value: splitted[1].trim().replace(/'/g, "")
+    };
+  }
+
+  if (expression.includes(">")) {
+    const splitted = expression.split(">");
+
+    return {
+      type: "MORE_THAN",
+      key: splitted[0].trim(),
+      value: splitted[1].trim().replace(/'/g, "")
+    };
+  }
+
+  if (expression.includes("<")) {
+    const splitted = expression.split("<");
+
+    return {
+      type: "LESS_THAN",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
     };

@@ -90,6 +90,7 @@ export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
 export const Input = styled.input`
   margin-left: 16px;
   margin-right: 16px;
+  margin-top: 16px;
   font-size: 56px;
   line-height: 1;
   font-family: ${fonts.CIRCULAR};
@@ -139,6 +140,10 @@ export const Spacer = styled.span`
   height: 20px;
 `;
 
-export const SubmitOnEnter = styled.input`
+const SubmitOnEnterStyle = styled.input`
   display: none;
 `;
+
+export const SubmitOnEnter: React.FC = () => (
+  <SubmitOnEnterStyle type="submit" />
+);

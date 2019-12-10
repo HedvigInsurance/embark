@@ -55,7 +55,7 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
           skipLink={skipLink}
           onlyShowProvidersWithExternalCapabilities={false}
           onPickProvider={provider => {
-            setValue("previousInsurer", provider.id);
+            setValue("currentInsurer", provider.id);
             setValue(`${passageName}Result`, provider.name);
             onContinue(next);
           }}

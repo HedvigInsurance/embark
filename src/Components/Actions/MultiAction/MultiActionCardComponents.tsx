@@ -29,9 +29,9 @@ export const CardContainer = styled.div`
   padding: 20px;
   max-width: ${cardWidth}px;
   box-sizing: content-box;
-  min-height: 223px;
 `;
 
 export const CardContents = styled(motion.div)`
   overflow: hidden;
+  min-height: 223px;
 `;

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { RemoveItemButton } from "./RemoveItemButton";
 
 import { InlineDropdownAction } from "../InlineActions/InlineDropdownAction";
-import { InlineNumberAction } from "../InlineActions/InlineNumberAction";
+import { InlineNumberAction } from "./InlineNumberAction";
 import { InlineSwitchAction } from "../InlineActions/InlineSwitchAction";
 import {
   Card,
@@ -14,10 +14,6 @@ import {
   CardContents,
   cardWidth
 } from "./MultiActionCardComponents";
-import {
-  CARD_COUNT_BASE_BP_SM,
-  getCardCountMediaQuery
-} from "../../Utils/cardCount";
 
 const ExitAnimation = styled(motion.div)`
   display: inline-block;
@@ -93,15 +89,6 @@ const componentForItem = (props: MultiActionCardProps) =>
       }
 
       if (component.component == "NumberAction") {
-        let isSm = false;
-        try {
-          isSm = window.matchMedia(
-            getCardCountMediaQuery(props.action.data.components.length)
-          ).matches;
-        } catch {
-          // noop
-        }
-
         return (
           <InlineNumberAction
             placeholder={component.data.placeholder}
@@ -110,7 +97,6 @@ const componentForItem = (props: MultiActionCardProps) =>
             onValue={value =>
               props.updateItems({ [component.data.key]: value })
             }
-            isSm={isSm}
           />
         );
       }

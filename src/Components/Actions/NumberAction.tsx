@@ -38,7 +38,7 @@ type NumberActionProps = {
   onContinue: () => void;
 };
 
-const isWithinBounds = (
+export const isWithinBounds = (
   value: string,
   minValue: number | undefined,
   maxValue: number | undefined
