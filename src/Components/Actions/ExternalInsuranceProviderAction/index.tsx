@@ -106,7 +106,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
 
   return (
     <Card isFocused={true}>
-      <HeightCalculation {...bind}>
+      <HeightCalculation ref={bind.ref}>
         {state.currentStep == Step.SELECT_PROVIDER && content[0]}
         {state.currentStep == Step.PERSONAL_NUMBER && content[1]}
       </HeightCalculation>
