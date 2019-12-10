@@ -16,8 +16,9 @@ type MultiActionProps = {
 };
 
 const Container = styled.div`
-  display: block;
+  display: flex;
   white-space: nowrap;
+  align-items: center;
   max-width: 100vw;
   overflow-x: scroll;
   scrollbar-width: none;
