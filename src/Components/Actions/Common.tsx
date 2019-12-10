@@ -100,9 +100,9 @@ export const Input = styled.input`
   color: ${colorsV2.black};
   font-weight: 500;
   outline: 0;
-  ${props => `width: ${Math.max(props.size || 0, 5) / 1.5}em;`}
-
-  ::-webkit-outer-spin-button,
+  ${props =>
+    `width: ${Math.max(props.size || 0, 5) /
+      1.5}em;`} ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;

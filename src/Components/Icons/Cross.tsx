@@ -35,10 +35,7 @@ export const Cross = () => (
         fill="#FFFFFF"
         fillRule="nonzero"
       >
-        <g
-          filter="url(#filter-1)"
-          transform="translate(102.000000, 1627.000000)"
-        >
+        <g transform="translate(102.000000, 1627.000000)">
           <g>
             <g transform="translate(228.000000, 0.000000)">
               <path

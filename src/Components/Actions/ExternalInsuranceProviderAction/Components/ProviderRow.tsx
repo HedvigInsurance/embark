@@ -25,14 +25,27 @@ const Name = styled.span`
   font-weight: 600;
 `;
 
+const ProviderInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 interface ProviderRowProps {
   name: string;
   onClick: () => void;
+  icon?: React.ReactNode;
 }
 
-export const ProviderRow: React.FC<ProviderRowProps> = ({ onClick, name }) => (
+export const ProviderRow: React.FC<ProviderRowProps> = ({
+  icon,
+  onClick,
+  name
+}) => (
   <Row onClick={onClick}>
-    <Name>{name}</Name>
+    <ProviderInfo>
+      {icon}
+      <Name>{name}</Name>
+    </ProviderInfo>
     <ArrowRight />
   </Row>
 );

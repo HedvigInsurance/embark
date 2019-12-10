@@ -37,6 +37,7 @@
     "react-emotion": "^10.0.0",
     "react-input-mask": "^2.0.4",
     "requestidlecallback": "^0.3.0",
+    "resize-observer-polyfill": "^1.5.1",
     "smoothscroll": "^0.4.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.7.2",

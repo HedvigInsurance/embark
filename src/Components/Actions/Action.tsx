@@ -102,6 +102,7 @@ export const Action = (props: ActionProps) => {
   if (props.action.component == "ExternalInsuranceProviderAction") {
     return (
       <ExternalInsuranceProviderAction
+        skipLink={props.action.data.skip}
         next={props.action.data.next.name}
         onContinue={next => props.changePassage(next)}
       />
@@ -114,6 +115,7 @@ export const Action = (props: ActionProps) => {
         tooltip={props.action.data.tooltip}
         passageName={props.passageName}
         next={props.action.data.next.name}
+        skipLink={props.action.data.skip}
         onContinue={next => props.changePassage(next)}
       />
     );

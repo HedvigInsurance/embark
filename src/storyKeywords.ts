@@ -5,5 +5,9 @@ export const storyKeywords = {
   externalInsuranceProviderSelectTitle:
     "External insurance provider - Select Title",
   externalInsuranceProviderPersonalNumberTitle:
-    "External insurance provider - Personal Number Title"
+    "External insurance provider - Personal Number Title",
+  externalInsuranceProviderOtherProviderButton:
+    "External insurance provider - Other provider button",
+  externalInsuranceProviderOtherProviderModal:
+    "External insurance provider - Other provider modal"
 };

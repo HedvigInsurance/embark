@@ -4,10 +4,12 @@ import { SelectProvider } from "../ExternalInsuranceProviderAction/SelectProvide
 import { StoreContext } from "../../KeyValueStore";
 import { CardPrimitive } from "../Common";
 import { Tooltip } from "../../Tooltip";
+import { KeywordsContext } from "../../KeywordsContext";
 
 const Card = styled(CardPrimitive.withComponent("div"))`
   width: 400px;
   max-width: 100%;
+  overflow: hidden;
 `;
 
 const Content = styled.div`
@@ -20,21 +22,36 @@ interface PreviousInsuranceProviderActionProps {
   next: string;
   onContinue: (name: string) => void;
   tooltip?: any;
+  skipLink: { name: string; label: string };
 }
 
 export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProviderActionProps> = ({
   tooltip,
   next,
   onContinue,
-  passageName
+  passageName,
+  skipLink
 }) => {
   const { setValue } = React.useContext(StoreContext);
+  const { externalInsuranceProviderOtherProviderButton } = React.useContext(
+    KeywordsContext
+  );
 
   return (
     <Card isFocused>
       {tooltip && <Tooltip tooltip={tooltip} />}
       <Content>
         <SelectProvider
+          onSkip={() => {
+            setValue("previousInsurer", "other");
+            setValue(
+              `${passageName}Result`,
+              externalInsuranceProviderOtherProviderButton
+            );
+            onContinue(skipLink.name);
+          }}
+          skipLink={skipLink}
+          onlyShowProvidersWithExternalCapabilities={false}
           onPickProvider={provider => {
             setValue("previousInsurer", provider.id);
             setValue(`${passageName}Result`, provider.name);
