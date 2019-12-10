@@ -14,7 +14,8 @@ type SelectActionProps = {
 
 const Container = styled.div`
   display: flex;
-  flex-flow: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: center;
 `;
@@ -36,9 +37,7 @@ const parseKeyValues = (key: string, value: string) => {
   return [[key, value]];
 };
 
-export const SelectAction: React.FunctionComponent<
-  SelectActionProps
-> = props => {
+export const SelectAction: React.FunctionComponent<SelectActionProps> = props => {
   const { store, setValue } = React.useContext(StoreContext);
   const [loading, setLoading] = React.useState(false);
   const api = React.useContext(ApiContext);
