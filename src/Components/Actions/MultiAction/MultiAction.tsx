@@ -4,9 +4,10 @@ import uuid from "uuid";
 import { AnimatePresence } from "framer-motion";
 
 import { ContinueButton } from "../../ContinueButton";
-import { StoreContext, Store } from "../../KeyValueStore";
+import { StoreContext } from "../../KeyValueStore";
 import { MultiActionAddButton } from "./MultiActionAddButton";
 import { MultiActionCard } from "./MultiActionCard";
+import { getMultiActionItems } from "./util";
 
 type MultiActionProps = {
   passageName: string;
@@ -37,39 +38,6 @@ const MultiActionBase = styled.div`
 const ButtonSpacer = styled.div`
   height: 20px;
 `;
-
-export const getMultiActionItems = <T extends {}>(
-  store: Store,
-  key: string,
-  withAdditional: boolean = false
-): { [key: string]: T } =>
-  Object.keys(store)
-    .filter(storeKey => storeKey.includes(key))
-    .reduce<{ [key: string]: any }>((acc, storeKey) => {
-      let matches;
-      if (withAdditional) {
-        matches = /\[([0-9]+)\]([a-zA-Z.]+)$/g.exec(storeKey.replace(key, ""));
-      } else {
-        matches = /\[([0-9]+)\]([a-zA-Z]+)[^\.]$/g.exec(
-          storeKey.replace(key, "")
-        );
-      }
-
-      if (!matches) {
-        return acc;
-      }
-
-      const index = matches[1];
-      const dataKey = matches[2];
-
-      return {
-        ...acc,
-        [index]: {
-          ...(acc[index] ? acc[index] : {}),
-          [dataKey]: store[storeKey]
-        }
-      };
-    }, {});
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
