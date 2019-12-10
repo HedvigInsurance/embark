@@ -48,9 +48,11 @@ export const getMultiActionItems = <T extends {}>(
     .reduce<{ [key: string]: any }>((acc, storeKey) => {
       let matches;
       if (withAdditional) {
-        matches = /\[([0-9]+)\]([a-zA-Z.]+)/g.exec(storeKey.replace(key, ""));
+        matches = /\[([0-9]+)\]([a-zA-Z.]+)$/g.exec(storeKey.replace(key, ""));
       } else {
-        matches = /\[([0-9]+)\]([a-zA-Z]+)/g.exec(storeKey.replace(key, ""));
+        matches = /\[([0-9]+)\]([a-zA-Z]+)[^\.]$/g.exec(
+          storeKey.replace(key, "")
+        );
       }
 
       if (!matches) {
