@@ -9,7 +9,7 @@ import {
 import { StoreContext, Store } from "../KeyValueStore";
 import styled from "@emotion/styled";
 import { colorsV2, fonts } from "@hedviginsurance/brand";
-import { getMultiActionItems } from "../Actions/MultiAction/MultiAction";
+import { getMultiActionItems } from "../Actions/MultiAction/util";
 
 const Title = styled.p`
   color: ${colorsV2.white};
