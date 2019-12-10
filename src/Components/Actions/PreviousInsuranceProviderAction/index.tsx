@@ -17,6 +17,10 @@ const Content = styled.div`
   box-sizing: border-box;
 `;
 
+const Container = styled.div`
+  position: relative;
+`;
+
 interface PreviousInsuranceProviderActionProps {
   passageName: string;
   next: string;
@@ -39,28 +43,30 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
   } = React.useContext(KeywordsContext);
 
   return (
-    <Card isFocused>
+    <Container>
+      <Card isFocused>
+        <Content>
+          <SelectProvider
+            otherProviderModalText={previousInsuranceProviderOtherProviderModal}
+            onSkip={() => {
+              setValue("previousInsurer", "other");
+              setValue(
+                `${passageName}Result`,
+                externalInsuranceProviderOtherProviderButton
+              );
+              onContinue(skipLink.name);
+            }}
+            skipLink={skipLink}
+            onlyShowProvidersWithExternalCapabilities={false}
+            onPickProvider={provider => {
+              setValue("currentInsurer", provider.id);
+              setValue(`${passageName}Result`, provider.name);
+              onContinue(next);
+            }}
+          />
+        </Content>
+      </Card>
       {tooltip && <Tooltip tooltip={tooltip} />}
-      <Content>
-        <SelectProvider
-          otherProviderModalText={previousInsuranceProviderOtherProviderModal}
-          onSkip={() => {
-            setValue("previousInsurer", "other");
-            setValue(
-              `${passageName}Result`,
-              externalInsuranceProviderOtherProviderButton
-            );
-            onContinue(skipLink.name);
-          }}
-          skipLink={skipLink}
-          onlyShowProvidersWithExternalCapabilities={false}
-          onPickProvider={provider => {
-            setValue("currentInsurer", provider.id);
-            setValue(`${passageName}Result`, provider.name);
-            onContinue(next);
-          }}
-        />
-      </Content>
-    </Card>
+    </Container>
   );
 };

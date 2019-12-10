@@ -8,7 +8,10 @@ interface Measured {
   height: number;
 }
 
-export function useMeasure<T extends Element>() {
+export const useMeasure = <T extends Element>(): [
+  { ref: React.MutableRefObject<T> },
+  Measured
+] => {
   const ref = React.useRef<T>();
   const [bounds, set] = React.useState({
     left: 0,
@@ -24,4 +27,4 @@ export function useMeasure<T extends Element>() {
     return () => ro.disconnect();
   }, []);
   return [{ ref }, bounds] as [{ ref: React.MutableRefObject<T> }, Measured];
-}
+};
