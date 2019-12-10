@@ -419,7 +419,6 @@ const AND_REGEX = /^(.+)&&(.+)$/;
 const OR_REGEX = /^(.+)\|\|(.+)$/;
 
 const parseExpression = (expression: string): Expression | null => {
-  console.log("parsing expression");
   if (expression.includes("&&")) {
     const splitted = expression.match(AND_REGEX);
 
