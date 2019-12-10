@@ -1,3 +1,4 @@
+import { getTextContent } from "./Components/Common";
 const parseLinks = (text: string) => {
   if (!text) {
     return null;
@@ -299,12 +300,15 @@ const getExternalInsuranceProviderAction = (
   externalInsuranceProviderActionNode: Element
 ) => {
   const next = externalInsuranceProviderActionNode.getAttribute("next");
+  const skip = externalInsuranceProviderActionNode.getAttribute("skip");
+  const skipLinks = skip ? parseLinks(skip) : [];
   const nextLinks = next ? parseLinks(next) : [];
 
   return {
     component: "ExternalInsuranceProviderAction",
     data: {
-      next: nextLinks && nextLinks[0]
+      next: nextLinks && nextLinks[0],
+      skip: skipLinks && skipLinks[0]
     }
   };
 };
@@ -313,6 +317,8 @@ const getPreviousInsuranceProviderAction = (
   previousInsuranceProviderActionNode: Element
 ) => {
   const next = previousInsuranceProviderActionNode.getAttribute("next");
+  const skip = previousInsuranceProviderActionNode.getAttribute("skip");
+  const skipLinks = skip ? parseLinks(skip) : [];
   const nextLinks = next ? parseLinks(next) : [];
 
   const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0];
@@ -321,6 +327,7 @@ const getPreviousInsuranceProviderAction = (
     component: "PreviousInsuranceProviderAction",
     data: {
       next: nextLinks && nextLinks[0],
+      skip: skipLinks && skipLinks[0],
       ...(tooltip && { tooltip })
     }
   };
