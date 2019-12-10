@@ -3,10 +3,15 @@
   "ifid": "776DB1EB-952B-46C8-8105-E85D86A8A2F1",
   "keywords": {
     "backButton": "Tillbaka",
+    "externalInsuranceProviderOtherProviderButton": "Annat bolag",
+    "externalInsuranceProviderOtherProviderModal": "",
+    "externalInsuranceProviderPersonalNumberTitle": "Logga in hos {provider}",
+    "externalInsuranceProviderSelectTitle": "Välj försäkringsbolag",
+    "previousInsuranceProviderOtherProviderModal": "Du kommer behöva kontakta ditt gamla försäkringsbolag och säga upp din försäkring själv om du väljer att bli medlem hos oss senare.",
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-09T16:09:49.567Z",
+  "lastUpdate": "2019-12-10T11:12:35.990Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -101,7 +106,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\">\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Okej->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 325,
       "width": 100
     },
