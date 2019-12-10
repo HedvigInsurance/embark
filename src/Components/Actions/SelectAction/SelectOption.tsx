@@ -17,7 +17,7 @@ const Container = styled.button`
   cursor: pointer;
   outline: 0;
   flex-grow: 1;
-  flex-basis: 0;
+  flex-basis: 100%;
   transition: all 350ms;
   max-width: 225px;
 
