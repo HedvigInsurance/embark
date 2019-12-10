@@ -37,7 +37,7 @@ export const providers = [
     )
   },
   {
-    id: "trygg-hansa",
+    id: "Trygg-Hansa",
     name: "Trygg Hansa",
     hasExternalCapabilities: true,
     icon: () => (
@@ -53,7 +53,7 @@ export const providers = [
     )
   },
   {
-    id: "folksam",
+    id: "Folksam",
     name: "Folksam",
     hasExternalCapabilities: true,
     icon: () => (
@@ -68,7 +68,7 @@ export const providers = [
     )
   },
   {
-    id: "länsförsäkringar",
+    id: "Länsförsäkringar",
     name: "Länsförsäkringar",
     hasExternalCapabilities: true,
     icon: () => (
@@ -84,7 +84,7 @@ export const providers = [
     )
   },
   {
-    id: "moderna",
+    id: "Moderna",
     name: "Moderna",
     hasExternalCapabilities: true,
     icon: () => (
@@ -105,7 +105,7 @@ export const providers = [
     )
   },
   {
-    id: "gjensidige",
+    id: "Gjensidige",
     name: "Gjensidige",
     hasExternalCapabilities: false,
     icon: () => (
@@ -127,7 +127,7 @@ export const providers = [
     )
   },
   {
-    id: "dina",
+    id: "Dina",
     name: "Dina Försäkringar",
     hasExternalCapabilities: true,
     icon: () => (
@@ -176,12 +176,12 @@ export const providers = [
     )
   },
   {
-    id: "vardia",
+    id: "Vardia",
     name: "Vardia",
     hasExternalCapabilities: false
   },
   {
-    id: "tre-kronor",
+    id: "Tre Kronor",
     name: "Tre Kronor",
     hasExternalCapabilities: true,
     icon: () => (
@@ -206,7 +206,7 @@ export const providers = [
     )
   },
   {
-    id: "ica",
+    id: "ICA",
     name: "ICA Försäkring",
     hasExternalCapabilities: false,
     icon: () => (
