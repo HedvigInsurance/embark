@@ -127,7 +127,7 @@ export const providers = [
     )
   },
   {
-    id: "Dina",
+    id: "Dina Försäkringar",
     name: "Dina Försäkringar",
     hasExternalCapabilities: true,
     icon: () => (
