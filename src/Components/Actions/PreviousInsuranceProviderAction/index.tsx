@@ -33,15 +33,17 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
   skipLink
 }) => {
   const { setValue } = React.useContext(StoreContext);
-  const { externalInsuranceProviderOtherProviderButton } = React.useContext(
-    KeywordsContext
-  );
+  const {
+    externalInsuranceProviderOtherProviderButton,
+    previousInsuranceProviderOtherProviderModal
+  } = React.useContext(KeywordsContext);
 
   return (
     <Card isFocused>
       {tooltip && <Tooltip tooltip={tooltip} />}
       <Content>
         <SelectProvider
+          otherProviderModalText={previousInsuranceProviderOtherProviderModal}
           onSkip={() => {
             setValue("previousInsurer", "other");
             setValue(

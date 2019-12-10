@@ -9,5 +9,7 @@ export const storyKeywords = {
   externalInsuranceProviderOtherProviderButton:
     "External insurance provider - Other provider button",
   externalInsuranceProviderOtherProviderModal:
-    "External insurance provider - Other provider modal"
+    "External insurance provider - Other provider modal",
+  previousInsuranceProviderOtherProviderModal:
+    "Previous insurance provider - Other provider modal"
 };

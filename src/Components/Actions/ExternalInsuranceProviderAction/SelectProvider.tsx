@@ -49,18 +49,19 @@ interface SelectProviderProps {
   onlyShowProvidersWithExternalCapabilities: boolean;
   skipLink: { name: string; label: string };
   onSkip: () => void;
+  otherProviderModalText: string;
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
   onPickProvider,
   onlyShowProvidersWithExternalCapabilities,
   skipLink,
-  onSkip
+  onSkip,
+  otherProviderModalText
 }) => {
   const {
     externalInsuranceProviderSelectTitle,
-    externalInsuranceProviderOtherProviderButton,
-    externalInsuranceProviderOtherProviderModal
+    externalInsuranceProviderOtherProviderButton
   } = React.useContext(KeywordsContext);
   const [modalOpened, setModalOpened] = React.useState(false);
 
@@ -84,7 +85,7 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
         {externalInsuranceProviderOtherProviderButton}
       </OtherButton>
       <Modal isVisible={modalOpened} onClose={() => setModalOpened(false)}>
-        <OtherText>{externalInsuranceProviderOtherProviderModal}</OtherText>
+        <OtherText>{otherProviderModalText}</OtherText>
         <ContinueButton
           disabled={false}
           onClick={onSkip}

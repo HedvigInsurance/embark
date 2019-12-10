@@ -6,6 +6,7 @@ import { CardPrimitive } from "../Common";
 import { Provider } from "./providers";
 import { PersonalNumber } from "./PersonalNumber";
 import { useMeasure } from "../../../Utils/useMeasure";
+import { KeywordsContext } from "../../KeywordsContext";
 
 const Card = styled(CardPrimitive.withComponent("div"))`
   width: 400px;
@@ -65,9 +66,13 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     selectedProvider: null as Provider | null
   });
   const [bind, measured] = useMeasure<HTMLDivElement>();
+  const { previousInsuranceProviderOtherProviderModal } = React.useContext(
+    KeywordsContext
+  );
 
   const content = [
     <SelectProvider
+      otherProviderModalText={previousInsuranceProviderOtherProviderModal}
       onlyShowProvidersWithExternalCapabilities
       onPickProvider={provider => {
         setState({
