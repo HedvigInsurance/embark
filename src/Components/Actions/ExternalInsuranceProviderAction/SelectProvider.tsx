@@ -45,18 +45,15 @@ const OtherText = styled.p`
 `;
 
 interface SelectProviderProps {
-  onPickProvider: (provider: Provider) => void;
-  onlyShowProvidersWithExternalCapabilities: boolean;
-  skipLink: { name: string; label: string };
-  onSkip: () => void;
+  onPickProvider: (provider?: Provider) => void;
+  onlyAcceptProvidersWithExternalCapabilities: boolean;
   otherProviderModalText: string;
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
   onPickProvider,
-  onlyShowProvidersWithExternalCapabilities,
+  onlyAcceptProvidersWithExternalCapabilities,
   skipLink,
-  onSkip,
   otherProviderModalText
 }) => {
   const {
@@ -64,31 +61,41 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
     externalInsuranceProviderOtherProviderButton
   } = React.useContext(KeywordsContext);
   const [modalOpened, setModalOpened] = React.useState(false);
+  const [modalResult, setModalResult] = React.useState<Provider | undefined>();
 
   return (
     <Container>
       <Title>{externalInsuranceProviderSelectTitle}</Title>
-      {providers
-        .filter(provider =>
-          onlyShowProvidersWithExternalCapabilities
-            ? provider.hasExternalCapabilities === true
-            : true
-        )
-        .map(provider => (
-          <ProviderRow
-            onClick={() => onPickProvider(provider)}
-            name={provider.name}
-            icon={provider.icon && provider.icon()}
-          />
-        ))}
-      <OtherButton onClick={() => setModalOpened(true)}>
+      {providers.map(provider => (
+        <ProviderRow
+          onClick={() => {
+            if (
+              onlyAcceptProvidersWithExternalCapabilities &&
+              !provider.hasExternalCapabilities
+            ) {
+              setModalOpened(true);
+              setModalResult(provider);
+            } else {
+              onPickProvider(provider);
+            }
+          }}
+          name={provider.name}
+          icon={provider.icon && provider.icon({ forceWidth: true })}
+        />
+      ))}
+      <OtherButton
+        onClick={() => {
+          setModalResult();
+          setModalOpened(true);
+        }}
+      >
         {externalInsuranceProviderOtherProviderButton}
       </OtherButton>
       <Modal isVisible={modalOpened} onClose={() => setModalOpened(false)}>
         <OtherText>{otherProviderModalText}</OtherText>
         <ContinueButton
           disabled={false}
-          onClick={onSkip}
+          onClick={() => onPickProvider(modalResult)}
           text={skipLink.label}
         />
       </Modal>
