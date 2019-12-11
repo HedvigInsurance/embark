@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 
-const Icon = styled.div<{ width: number }>`
+const Icon = styled.div<{ width: number; forceWidth: boolean }>`
   display: inline-block;
   margin-right: 13px;
-  width: 50px;
+  ${props => (props.forceWidth ? `width: 50px;` : null)};
   text-align: center;
 
   svg {
@@ -16,8 +16,12 @@ const Icon = styled.div<{ width: number }>`
 export interface Provider {
   id: string;
   name: string;
-  icon?: () => React.ReactNode;
+  icon?: (props: IconProps) => React.ReactNode;
   hasExternalCapabilities: boolean;
+}
+
+interface IconProps {
+  forceWidth: boolean;
 }
 
 export const providers = [
@@ -25,8 +29,8 @@ export const providers = [
     id: "if",
     name: "If",
     hasExternalCapabilities: true,
-    icon: () => (
-      <Icon width={30}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={30} forceWidth={forceWidth}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1.042 63.859 62.874">
           <path
             fill="#2EA7E5"
@@ -40,8 +44,8 @@ export const providers = [
     id: "Trygg-Hansa",
     name: "Trygg Hansa",
     hasExternalCapabilities: true,
-    icon: () => (
-      <Icon width={30}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={30} forceWidth={forceWidth}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 280 270"
@@ -56,8 +60,8 @@ export const providers = [
     id: "Folksam",
     name: "Folksam",
     hasExternalCapabilities: true,
-    icon: () => (
-      <Icon width={50}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={50} forceWidth={forceWidth}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 968 203">
           <path
             fill="#009ce0"
@@ -71,8 +75,8 @@ export const providers = [
     id: "Länsförsäkringar",
     name: "Länsförsäkringar",
     hasExternalCapabilities: true,
-    icon: () => (
-      <Icon width={30}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={30} forceWidth={forceWidth}>
         <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fill-rule="evenodd">
             <path fill="#E30613" d="M10 10h8v8h-8z" />
@@ -87,8 +91,8 @@ export const providers = [
     id: "Moderna",
     name: "Moderna",
     hasExternalCapabilities: true,
-    icon: () => (
-      <Icon width={50}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={50} forceWidth={forceWidth}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 144">
           <g fill-rule="evenodd">
             <path
@@ -108,8 +112,8 @@ export const providers = [
     id: "Gjensidige",
     name: "Gjensidige",
     hasExternalCapabilities: false,
-    icon: () => (
-      <Icon width={30}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={30} forceWidth={forceWidth}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 387">
           <g fill="none" fill-rule="evenodd">
             <path
@@ -130,8 +134,8 @@ export const providers = [
     id: "Dina Försäkringar",
     name: "Dina Försäkringar",
     hasExternalCapabilities: true,
-    icon: () => (
-      <Icon width={30}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={30} forceWidth={forceWidth}>
         <svg viewBox="0 0 310 310" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fill-rule="evenodd">
             <path
@@ -179,8 +183,8 @@ export const providers = [
     id: "Vardia",
     name: "Vardia",
     hasExternalCapabilities: false,
-    icon: () => (
-      <Icon width={50}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={50} forceWidth={forceWidth}>
         <svg width="50" height="9" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fill-rule="evenodd">
             <path
@@ -208,8 +212,8 @@ export const providers = [
     id: "ICA",
     name: "ICA Försäkring",
     hasExternalCapabilities: false,
-    icon: () => (
-      <Icon width={50}>
+    icon: ({ forceWidth }: IconProps) => (
+      <Icon width={50} forceWidth={forceWidth}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 121">
           <g fill="none" fill-rule="evenodd">
             <path

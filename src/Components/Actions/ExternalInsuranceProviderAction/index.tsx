@@ -7,6 +7,7 @@ import { Provider } from "./providers";
 import { PersonalNumber } from "./PersonalNumber";
 import { useMeasure } from "../../../Utils/useMeasure";
 import { KeywordsContext } from "../../KeywordsContext";
+import { StoreContext } from "../../KeyValueStore";
 
 const Card = styled(CardPrimitive.withComponent("div"))`
   width: 400px;
@@ -54,35 +55,52 @@ interface ExternalInsuranceProviderActionProps {
   next: string;
   onContinue: (name: string) => void;
   skipLink: { name: string; label: string };
+  passageName: string;
 }
 
 export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProviderActionProps> = ({
   onContinue,
-  skipLink
+  skipLink,
+  passageName,
+  next
 }) => {
+  const { setValue } = React.useContext(StoreContext);
   const [state, setState] = React.useState({
     currentStep: Step.SELECT_PROVIDER,
     animationDirection: AnimationDirection.FORWARDS,
     selectedProvider: null as Provider | null
   });
   const [bind, measured] = useMeasure<HTMLDivElement>();
-  const { previousInsuranceProviderOtherProviderModal } = React.useContext(
-    KeywordsContext
-  );
+  const {
+    externalInsuranceProviderOtherProviderModal,
+    externalInsuranceProviderOtherProviderButton
+  } = React.useContext(KeywordsContext);
 
-  const content = [
+  const [selectProvider, personalNumber] = [
     <SelectProvider
-      otherProviderModalText={previousInsuranceProviderOtherProviderModal}
-      onlyShowProvidersWithExternalCapabilities
+      otherProviderModalText={externalInsuranceProviderOtherProviderModal}
+      onlyAcceptProvidersWithExternalCapabilities
       onPickProvider={provider => {
-        setState({
-          selectedProvider: provider,
-          animationDirection: AnimationDirection.FORWARDS,
-          currentStep: Step.PERSONAL_NUMBER
-        });
-      }}
-      onSkip={() => {
-        onContinue(skipLink.name);
+        if (provider && provider.hasExternalCapabilities) {
+          setState({
+            selectedProvider: provider,
+            animationDirection: AnimationDirection.FORWARDS,
+            currentStep: Step.PERSONAL_NUMBER
+          });
+        } else {
+          if (provider) {
+            setValue("currentInsurer", provider.id);
+            setValue(`${passageName}Result`, provider.name);
+          } else {
+            setValue("currentInsurer", "other");
+            setValue(
+              `${passageName}Result`,
+              externalInsuranceProviderOtherProviderButton
+            );
+          }
+
+          onContinue(next);
+        }
       }}
       skipLink={skipLink}
     />,
@@ -100,19 +118,19 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
 
   const transitionConfig = {
     type: "spring",
-    stiffness: 150,
-    damping: 200
+    stiffness: 250,
+    damping: 800
   };
 
   return (
     <Card isFocused={true}>
       <HeightCalculation {...bind}>
-        {state.currentStep == Step.SELECT_PROVIDER && content[0]}
-        {state.currentStep == Step.PERSONAL_NUMBER && content[1]}
+        {state.currentStep == Step.SELECT_PROVIDER && selectProvider}
+        {state.currentStep == Step.PERSONAL_NUMBER && personalNumber}
       </HeightCalculation>
       <HeightAnimation
         animate={{ height: measured.height }}
-        transition={transitionConfig}
+        transition={{ ...transitionConfig, clamp: true }}
       >
         <Content>
           <AnimatePresence>
@@ -130,7 +148,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
                 exit={{ opacity: 0, x: "-100%" }}
                 transition={transitionConfig}
               >
-                {content[0]}
+                {selectProvider}
               </ContentItem>
             )}
             {state.currentStep == Step.PERSONAL_NUMBER && (
@@ -141,7 +159,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
                 exit={{ opacity: 0, x: "100%" }}
                 transition={transitionConfig}
               >
-                {content[1]}
+                {personalNumber}
               </ContentItem>
             )}
           </AnimatePresence>
