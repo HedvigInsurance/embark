@@ -11,7 +11,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-10T14:32:53.999Z",
+  "lastUpdate": "2019-12-11T13:42:59.928Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -70,7 +70,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 4 våningar för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 4 våningar?\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 4 våningar för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 4 våningar?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "url": "/error",
       "width": 100
@@ -178,7 +178,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
       "width": 100
@@ -193,7 +193,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora bostäder som din\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora bostäder som din\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "url": "/error",
       "width": 100
@@ -256,6 +256,20 @@
     },
     {
       "height": 100,
+      "id": "-312477408",
+      "left": 750,
+      "name": "errorInfoVilla",
+      "selected": false,
+      "story": "-650548383",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra så stora villor som din för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora villor som din\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 1100,
+      "width": 100
+    },
+    {
+      "height": 100,
       "id": "-483429545",
       "left": 600,
       "name": "correctInfoVilla",
@@ -277,7 +291,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra bostäder som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra bostäder som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1800,
       "url": "/uw-limit",
       "width": 100
@@ -320,7 +334,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Nästa->NewsletterSuccess]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1550,
       "url": "/error",
       "width": 100
@@ -335,7 +349,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 2 badrum för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du skriva upp dig på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 2 badrum?\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            key=\"EmailResponse\"\n            next=\"[[Fortsätt->NewsletterSuccess]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 2 badrum för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 2 badrum?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
       "width": 100
@@ -389,7 +403,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Tack, vi hörs i din mailkorg!\n</Message>",
+      "text": "<ExternalRedirect to=\"MailingList\">\n</ExternalRedirect>",
       "top": 1200,
       "url": "/newsletter-success",
       "width": 100
@@ -428,7 +442,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace >= 250 || ancillaryArea >= 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction <= 1926\"\n>\n</Redirect>\n\n<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/baths",
       "width": 100
@@ -515,6 +529,20 @@
       "text": "<Message>\n  Okej, då vet vi. Till sist behöver vi lite information om eventuella extra byggnader om du vill att de ska täckas av försäkringen\n</Message>\n\n<Message>\n  Om du inte vill försäkra några extra byggnader, tryck bara Fortsätt\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra byggnader\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} kvadratmeter\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Fortsätt->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Välj typ\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Gästhus\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Bastu\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Båthus\n      </Option>\n      <Option value=\"OTHER\">\n        Annan\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"kvadratmeter\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Indraget vatten\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
       "top": 1850,
       "url": "/extra-buildings",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "93429214",
+      "left": 750,
+      "name": "errorAgeVilla",
+      "selected": false,
+      "story": "-650548383",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra villor byggda innan 1926 för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så gamla villor som din\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 950,
       "width": 100
     },
     {
