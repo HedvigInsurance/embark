@@ -17,6 +17,12 @@ const Row = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${colorsV2.white};
+  transition: background-color 250ms;
+
+  :active {
+    background-color: ${colorsV2.lightgray};
+  }
 `;
 
 const Name = styled.span`

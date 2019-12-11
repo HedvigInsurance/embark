@@ -48,20 +48,21 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
         <Content>
           <SelectProvider
             otherProviderModalText={previousInsuranceProviderOtherProviderModal}
-            onSkip={() => {
-              setValue("previousInsurer", "other");
-              setValue(
-                `${passageName}Result`,
-                externalInsuranceProviderOtherProviderButton
-              );
-              onContinue(skipLink.name);
-            }}
             skipLink={skipLink}
-            onlyShowProvidersWithExternalCapabilities={false}
+            onlyAcceptProvidersWithExternalCapabilities={false}
             onPickProvider={provider => {
-              setValue("currentInsurer", provider.id);
-              setValue(`${passageName}Result`, provider.name);
-              onContinue(next);
+              if (provider) {
+                setValue("currentInsurer", provider.id);
+                setValue(`${passageName}Result`, provider.name);
+                onContinue(next);
+              } else {
+                setValue("previousInsurer", "other");
+                setValue(
+                  `${passageName}Result`,
+                  externalInsuranceProviderOtherProviderButton
+                );
+                onContinue(skipLink.name);
+              }
             }}
           />
         </Content>

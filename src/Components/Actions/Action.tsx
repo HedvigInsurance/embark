@@ -105,6 +105,7 @@ export const Action = (props: ActionProps) => {
         skipLink={props.action.data.skip}
         next={props.action.data.next.name}
         onContinue={next => props.changePassage(next)}
+        passageName={props.passageName}
       />
     );
   }
