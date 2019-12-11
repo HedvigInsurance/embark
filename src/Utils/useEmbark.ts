@@ -64,7 +64,12 @@ const reducer: (state: State, action: Action) => State = (state, action) => {
   }
 };
 
-export const useEmbark = (getInitialState: () => State) => {
+export const useEmbark = (
+  getInitialState: () => State
+): {
+  reducer: [State, React.Dispatch<Action>];
+  goTo: (name: string) => void;
+} => {
   const [state, dispatch] = React.useReducer(reducer, null, getInitialState);
 
   const goTo = useGoTo(state.data, targetPassageId => {
@@ -75,7 +80,7 @@ export const useEmbark = (getInitialState: () => State) => {
   });
 
   return {
-    reducer: [state, dispatch] as [State, React.Dispatch<Action>],
+    reducer: [state, dispatch],
     goTo
   };
 };
