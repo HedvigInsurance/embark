@@ -701,6 +701,30 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
   return null;
 };
 
+const parseTrack = (element: Element) => {
+  const trackElement = element.getElementsByTagName("track")[0];
+
+  if (trackElement) {
+    const eventName = trackElement.getAttribute("name");
+    const eventKeys = trackElement.getAttribute("keys") || "";
+
+    if (!eventName) {
+      return null;
+    }
+
+    return {
+      eventName,
+      eventKeys: eventKeys
+        .replace(/^\[/g, "")
+        .replace(/\]$/g, "")
+        .split(",")
+        .filter(key => key)
+    };
+  }
+
+  return null;
+};
+
 export const parseStoryData = (storyData: any) => ({
   id: storyData.id,
   name: storyData.name,
@@ -712,6 +736,7 @@ export const parseStoryData = (storyData: any) => ({
     containerElement.innerHTML = passage.text;
 
     const api = parseApi(containerElement, false);
+    const track = parseTrack(containerElement);
 
     const messages = Array.from(
       containerElement.getElementsByTagName("message")
@@ -740,6 +765,7 @@ export const parseStoryData = (storyData: any) => ({
       url: passage.url,
       allLinks: parseLinks(passage.text) || [],
       api: api || null,
+      track,
       messages,
       redirects,
       externalRedirect,

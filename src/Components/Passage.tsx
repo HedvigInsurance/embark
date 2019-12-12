@@ -175,6 +175,7 @@ export const Passage = (props: PassageProps) => {
   );
   const [isShowingHelp, setIsShowingHelp] = React.useState(false);
   const { tooltipModalInformationLabel } = React.useContext(KeywordsContext);
+  const { track } = React.useContext(ApiContext);
   const api = React.useContext(ApiContext);
   const { store, setValue } = React.useContext(StoreContext);
   const [loading, setLoading] = React.useState(false);
@@ -213,6 +214,22 @@ export const Passage = (props: PassageProps) => {
           props.changePassage(name);
         }, 1800);
       });
+    }
+
+    const passageTracking = props.passage.track;
+
+    if (passageTracking) {
+      track(
+        passageTracking.eventName,
+        passageTracking.eventKeys.reduce(
+          (acc: { [key: string]: any }, curr: string) => {
+            return { ...acc, [curr]: store[curr] };
+          },
+          {
+            passage: props.passage.name
+          }
+        )
+      );
     }
   }, [props.passage]);
 
