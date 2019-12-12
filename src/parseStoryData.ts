@@ -706,9 +706,9 @@ const parseTrack = (element: Element) => {
 
   if (trackElement) {
     const eventName = trackElement.getAttribute("name");
-    const eventKeys = trackElement.getAttribute("keys");
+    const eventKeys = trackElement.getAttribute("keys") || "";
 
-    if (!eventName || !eventKeys) {
+    if (!eventName) {
       return null;
     }
 
