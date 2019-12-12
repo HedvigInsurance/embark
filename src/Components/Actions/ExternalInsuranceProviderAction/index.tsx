@@ -173,7 +173,11 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     />,
     <BackgroundFetchStep
       provider={state.selectedProvider!}
-      onContinue={() => {}}
+      onContinue={() => {
+        setValue("currentInsurer", state.selectedProvider!.id);
+        setValue(`${passageName}Result`, state.selectedProvider!.name);
+        onContinue(next);
+      }}
     />
   ];
 
