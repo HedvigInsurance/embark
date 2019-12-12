@@ -14,6 +14,7 @@ export interface TApiContext {
   personalInformationApi: (personalNumber: string) => Promise<PData | Error>;
   houseInformation: (variables: HVariables) => Promise<HData | Error>;
   createQuote: (variables: CQVariables) => Promise<CQData | Error>;
+  track: (eventName: string, payload: { [key: string]: any }) => void;
 }
 
 export const ApiContext = React.createContext<TApiContext>({
@@ -25,6 +26,9 @@ export const ApiContext = React.createContext<TApiContext>({
   },
   createQuote: _ => {
     throw Error("Must provide an implementation for `createQuote`");
+  },
+  track: () => {
+    throw Error("Must provide an implementation for `track`");
   }
 });
 
@@ -40,6 +44,9 @@ export const mockApiResolvers: TApiContext = {
   createQuote: async _ => {
     await timeout(300);
     return createQuoteMocks[0].result.data as CQData;
+  },
+  track: (eventName, payload) => {
+    console.log(`Tracking ${eventName} with payload:`, payload);
   }
 };
 
