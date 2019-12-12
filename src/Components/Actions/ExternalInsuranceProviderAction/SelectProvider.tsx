@@ -48,14 +48,14 @@ interface SelectProviderProps {
   onPickProvider: (provider?: Provider) => void;
   onlyAcceptProvidersWithExternalCapabilities: boolean;
   otherProviderModalText: string;
-  skipLink: { name: string; label: string };
+  otherProviderModalButton: string;
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
   onPickProvider,
   onlyAcceptProvidersWithExternalCapabilities,
-  skipLink,
-  otherProviderModalText
+  otherProviderModalText,
+  otherProviderModalButton
 }) => {
   const {
     externalInsuranceProviderSelectTitle,
@@ -97,7 +97,7 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
         <ContinueButton
           disabled={false}
           onClick={() => onPickProvider(modalResult)}
-          text={skipLink.label}
+          text={otherProviderModalButton}
         />
       </Modal>
     </Container>

@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { fonts } from "@hedviginsurance/brand";
 import { BankID } from "../../Icons/BankID";
 import { DummyQRCode } from "../../Icons/DummyQRCode";
+import { KeywordsContext } from "../../KeywordsContext";
 
 const Container = styled.div`
   display: flex;
@@ -21,15 +22,36 @@ const Title = styled.h4`
 
 interface AuthStepProps {
   requiresQRAuth: boolean;
+  onDone: () => void;
 }
 
-export const AuthStep: React.FC<AuthStepProps> = ({ requiresQRAuth }) => (
-  <Container>
-    {requiresQRAuth ? <DummyQRCode /> : <BankID />}
-    <Title>
-      {requiresQRAuth
-        ? "Skanna QR-koden med BankID appen för att logga in"
-        : "Öppna BankID på din mobiltelefon för att logga in."}
-    </Title>
-  </Container>
-);
+export const AuthStep: React.FC<AuthStepProps> = ({
+  requiresQRAuth,
+  onDone
+}) => {
+  const {
+    externalInsuranceProviderAuthScanBankID,
+    externalInsuranceProviderAuthOpenBankId
+  } = React.useContext(KeywordsContext);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      onDone();
+    }, 10000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <Container>
+      {requiresQRAuth ? <DummyQRCode /> : <BankID />}
+      <Title>
+        {requiresQRAuth
+          ? externalInsuranceProviderAuthScanBankID
+          : externalInsuranceProviderAuthOpenBankId}
+      </Title>
+    </Container>
+  );
+};

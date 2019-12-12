@@ -39,7 +39,8 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
   const { setValue } = React.useContext(StoreContext);
   const {
     externalInsuranceProviderOtherProviderButton,
-    previousInsuranceProviderOtherProviderModal
+    previousInsuranceProviderOtherProviderModal,
+    previousInsuranceProviderOtherProviderModalButton
   } = React.useContext(KeywordsContext);
 
   return (
@@ -48,7 +49,9 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
         <Content>
           <SelectProvider
             otherProviderModalText={previousInsuranceProviderOtherProviderModal}
-            skipLink={skipLink}
+            otherProviderModalButton={
+              previousInsuranceProviderOtherProviderModalButton
+            }
             onlyAcceptProvidersWithExternalCapabilities={false}
             onPickProvider={provider => {
               if (provider) {

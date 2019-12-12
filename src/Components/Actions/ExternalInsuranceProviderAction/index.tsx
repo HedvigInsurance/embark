@@ -13,6 +13,13 @@ import { SetupStep } from "./SetupStep";
 import { AuthStep } from "./AuthStep";
 import { Animator } from "./Animator";
 import uuid from "uuid/v1";
+import { SkipButton } from "./Components/SkipButton";
+import { BackgroundFetchStep } from "./BackgroundFetchStep";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Card = styled(CardPrimitive.withComponent("div"))`
   max-width: 100%;
@@ -33,6 +40,11 @@ const HeightAnimation = styled(motion.div)`
 
 const Content = styled.div`
   width: 100%;
+`;
+
+const ButtonContainer = styled(motion.div)`
+  margin-top: 20px;
+  text-align: center;
 `;
 
 enum Step {
@@ -71,14 +83,21 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   const [bind, measured] = useMeasure<HTMLDivElement>();
   const {
     externalInsuranceProviderOtherProviderModal,
-    externalInsuranceProviderOtherProviderButton
+    externalInsuranceProviderOtherProviderButton,
+    externalInsuranceProviderOtherProviderModalButton
   } = React.useContext(KeywordsContext);
 
   React.useEffect(() => {
     setValue("externalInsuranceProviderSessionId", uuid());
   }, []);
 
-  const [selectProvider, personalNumber, setupStep, authStep] = [
+  const [
+    selectProvider,
+    personalNumber,
+    setupStep,
+    authStep,
+    backgroundFetchStep
+  ] = [
     <SelectProvider
       key="SELECT_PROVIDER"
       otherProviderModalText={externalInsuranceProviderOtherProviderModal}
@@ -106,7 +125,9 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
           onContinue(next);
         }
       }}
-      skipLink={skipLink}
+      otherProviderModalButton={
+        externalInsuranceProviderOtherProviderModalButton
+      }
     />,
     <PersonalNumber
       key="PERSONAL_NUMBER"
@@ -139,7 +160,21 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         });
       }}
     />,
-    <AuthStep requiresQRAuth={true} key="EXTERNAL_AUTH" />
+    <AuthStep
+      requiresQRAuth={true}
+      key="EXTERNAL_AUTH"
+      onDone={() => {
+        setState({
+          ...state,
+          animationDirection: AnimationDirection.FORWARDS,
+          currentStep: Step.BACKGROUND_FETCH
+        });
+      }}
+    />,
+    <BackgroundFetchStep
+      provider={state.selectedProvider!}
+      onContinue={() => {}}
+    />
   ];
 
   const transitionConfig = {
@@ -148,27 +183,54 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     damping: 800
   };
 
+  const getStepContent = () => {
+    switch (state.currentStep) {
+      case Step.SELECT_PROVIDER:
+        return selectProvider;
+      case Step.PERSONAL_NUMBER:
+        return personalNumber;
+      case Step.SETUP:
+        return setupStep;
+      case Step.EXTERNAL_AUTH:
+        return authStep;
+      case Step.BACKGROUND_FETCH:
+        return backgroundFetchStep;
+    }
+  };
+
+  const stepContent = getStepContent();
+
   return (
-    <Card isFocused={true}>
-      <HeightCalculation {...bind}>
-        {state.currentStep == Step.SELECT_PROVIDER && selectProvider}
-        {state.currentStep == Step.PERSONAL_NUMBER && personalNumber}
-        {state.currentStep == Step.SETUP && setupStep}
-        {state.currentStep == Step.EXTERNAL_AUTH && authStep}
-      </HeightCalculation>
-      <HeightAnimation
-        animate={{ height: measured.height, width: measured.width }}
-        transition={{ ...transitionConfig, clamp: true }}
+    <Container>
+      <Card isFocused={true}>
+        <HeightCalculation {...bind}>{stepContent}</HeightCalculation>
+        <HeightAnimation
+          animate={{ height: measured.height, width: measured.width }}
+          transition={{ ...transitionConfig, clamp: true }}
+        >
+          <Content>
+            <Animator animationDirection={state.animationDirection}>
+              {stepContent}
+            </Animator>
+          </Content>
+        </HeightAnimation>
+      </Card>
+      <ButtonContainer
+        initial={{ height: "auto", opacity: 1 }}
+        animate={
+          state.currentStep == Step.BACKGROUND_FETCH
+            ? { height: 0, opacity: 0 }
+            : { height: "auto", opacity: 1 }
+        }
       >
-        <Content>
-          <Animator animationDirection={state.animationDirection}>
-            {state.currentStep == Step.SELECT_PROVIDER && selectProvider}
-            {state.currentStep == Step.PERSONAL_NUMBER && personalNumber}
-            {state.currentStep == Step.SETUP && setupStep}
-            {state.currentStep == Step.EXTERNAL_AUTH && authStep}
-          </Animator>
-        </Content>
-      </HeightAnimation>
-    </Card>
+        <SkipButton
+          onClick={() => {
+            setValue(`${passageName}Result`, skipLink.label);
+            onContinue(skipLink.name);
+          }}
+          text={skipLink.label}
+        />
+      </ButtonContainer>
+    </Container>
   );
 };

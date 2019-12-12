@@ -110,7 +110,8 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
   const {
     externalInsuranceProviderPersonalNumberTitle,
     externalInsuranceProviderGoBackButton,
-    externalInsuranceProviderPersonalNumberSubtitle
+    externalInsuranceProviderPersonalNumberSubtitle,
+    externalInsuranceProviderContinueButton
   } = React.useContext(KeywordsContext);
 
   return (
@@ -143,7 +144,7 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
           onClick={() => {
             onContinue(value);
           }}
-          text="Fortsätt"
+          text={externalInsuranceProviderContinueButton}
         />
       </ButtonContainer>
     </Container>
