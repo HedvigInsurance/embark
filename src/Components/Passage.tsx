@@ -225,7 +225,10 @@ export const Passage = (props: PassageProps) => {
           (acc: { [key: string]: any }, curr: string) => {
             return { ...acc, [curr]: store[curr] };
           },
-          {}
+          {
+            client: "WEB",
+            passage: props.passage.name
+          }
         )
       );
     }

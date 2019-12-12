@@ -714,7 +714,11 @@ const parseTrack = (element: Element) => {
 
     return {
       eventName,
-      eventKeys: eventKeys.split(",")
+      eventKeys: eventKeys
+        .replace(/^\[/g, "")
+        .replace(/\]$/g, "")
+        .split(",")
+        .filter(key => key)
     };
   }
 

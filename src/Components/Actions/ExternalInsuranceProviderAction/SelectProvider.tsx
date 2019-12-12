@@ -48,6 +48,7 @@ interface SelectProviderProps {
   onPickProvider: (provider?: Provider) => void;
   onlyAcceptProvidersWithExternalCapabilities: boolean;
   otherProviderModalText: string;
+  skipLink: { name: string; label: string };
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
@@ -85,7 +86,7 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
       ))}
       <OtherButton
         onClick={() => {
-          setModalResult();
+          setModalResult(undefined);
           setModalOpened(true);
         }}
       >
