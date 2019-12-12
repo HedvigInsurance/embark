@@ -226,7 +226,6 @@ export const Passage = (props: PassageProps) => {
             return { ...acc, [curr]: store[curr] };
           },
           {
-            client: "WEB",
             passage: props.passage.name
           }
         )
