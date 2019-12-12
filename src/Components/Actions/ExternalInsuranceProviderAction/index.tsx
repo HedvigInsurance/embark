@@ -9,9 +9,13 @@ import { useMeasure } from "../../../Utils/useMeasure";
 import { KeywordsContext } from "../../KeywordsContext";
 import { StoreContext } from "../../KeyValueStore";
 
+import { SetupStep } from "./SetupStep";
+import { AuthStep } from "./AuthStep";
+import { Animator } from "./Animator";
+
 const Card = styled(CardPrimitive.withComponent("div"))`
-  width: 400px;
   max-width: 100%;
+  width: 400px;
   overflow: hidden;
 `;
 
@@ -46,7 +50,7 @@ enum Step {
   BACKGROUND_FETCH
 }
 
-enum AnimationDirection {
+export enum AnimationDirection {
   FORWARDS,
   BACKWARDS
 }
@@ -68,7 +72,8 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   const [state, setState] = React.useState({
     currentStep: Step.SELECT_PROVIDER,
     animationDirection: AnimationDirection.FORWARDS,
-    selectedProvider: null as Provider | null
+    selectedProvider: null as Provider | null,
+    personalNumber: null as string | null
   });
   const [bind, measured] = useMeasure<HTMLDivElement>();
   const {
@@ -76,13 +81,15 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     externalInsuranceProviderOtherProviderButton
   } = React.useContext(KeywordsContext);
 
-  const [selectProvider, personalNumber] = [
+  const [selectProvider, personalNumber, setupStep, authStep] = [
     <SelectProvider
+      key="SELECT_PROVIDER"
       otherProviderModalText={externalInsuranceProviderOtherProviderModal}
       onlyAcceptProvidersWithExternalCapabilities
       onPickProvider={provider => {
         if (provider && provider.hasExternalCapabilities) {
           setState({
+            ...state,
             selectedProvider: provider,
             animationDirection: AnimationDirection.FORWARDS,
             currentStep: Step.PERSONAL_NUMBER
@@ -105,15 +112,37 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
       skipLink={skipLink}
     />,
     <PersonalNumber
+      key="PERSONAL_NUMBER"
       provider={state.selectedProvider!}
       onCancel={() => {
         setState({
+          ...state,
           selectedProvider: null,
-          animationDirection: AnimationDirection.FORWARDS,
+          animationDirection: AnimationDirection.BACKWARDS,
           currentStep: Step.SELECT_PROVIDER
         });
       }}
-    />
+      onContinue={personalNumber => {
+        setState({
+          ...state,
+          personalNumber: personalNumber,
+          animationDirection: AnimationDirection.FORWARDS,
+          currentStep: Step.SETUP
+        });
+      }}
+    />,
+    <SetupStep
+      key="SETUP"
+      provider={state.selectedProvider!}
+      onSetup={() => {
+        setState({
+          ...state,
+          animationDirection: AnimationDirection.FORWARDS,
+          currentStep: Step.EXTERNAL_AUTH
+        });
+      }}
+    />,
+    <AuthStep key="EXTERNAL_AUTH" />
   ];
 
   const transitionConfig = {
@@ -127,42 +156,20 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
       <HeightCalculation {...bind}>
         {state.currentStep == Step.SELECT_PROVIDER && selectProvider}
         {state.currentStep == Step.PERSONAL_NUMBER && personalNumber}
+        {state.currentStep == Step.SETUP && setupStep}
+        {state.currentStep == Step.EXTERNAL_AUTH && authStep}
       </HeightCalculation>
       <HeightAnimation
         animate={{ height: measured.height }}
         transition={{ ...transitionConfig, clamp: true }}
       >
         <Content>
-          <AnimatePresence>
-            {state.currentStep == Step.SELECT_PROVIDER && (
-              <ContentItem
-                key="SELECT_PROVIDER"
-                initial={{
-                  opacity: 0,
-                  x:
-                    state.animationDirection == AnimationDirection.BACKWARDS
-                      ? "100%"
-                      : "-100%"
-                }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: "-100%" }}
-                transition={transitionConfig}
-              >
-                {selectProvider}
-              </ContentItem>
-            )}
-            {state.currentStep == Step.PERSONAL_NUMBER && (
-              <ContentItem
-                key="PERSONAL_NUMBER"
-                initial={{ opacity: 0, x: "100%" }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: "100%" }}
-                transition={transitionConfig}
-              >
-                {personalNumber}
-              </ContentItem>
-            )}
-          </AnimatePresence>
+          <Animator animationDirection={state.animationDirection}>
+            {state.currentStep == Step.SELECT_PROVIDER && selectProvider}
+            {state.currentStep == Step.PERSONAL_NUMBER && personalNumber}
+            {state.currentStep == Step.SETUP && setupStep}
+            {state.currentStep == Step.EXTERNAL_AUTH && authStep}
+          </Animator>
         </Content>
       </HeightAnimation>
     </Card>
