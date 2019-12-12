@@ -1,0 +1,557 @@
+{
+  "id": "1899048031",
+  "ifid": "2D124E31-D47C-4045-990D-ECE0DFD51831",
+  "keywords": {
+    "backButton": "Back",
+    "selectActionSelectLabel": "Select",
+    "tooltipModalInformationLabel": "Information"
+  },
+  "lastUpdate": "2019-12-12T09:49:37.411Z",
+  "name": "Web Onboarding - English Needer",
+  "partnerConfigs": [
+    {
+      "alignment": "center",
+      "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTk5IiBoZWlnaHQ9IjMzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+PHBhdGggZD0iTTE0OS40MDIgNy42NDdsLTMuNjQ4IDIuNzVjLTEuNzIzLTEuNDk2LTMuOTQ4LTEuNzg5LTUuMTY3LTEuNzg5LTEuMjIgMC0yLjUzOC4zNTgtMi43MzIgMS4yNTYtLjE5NC44NzEuNjA4IDEuNTQ5IDEuOTg2IDEuOTI2IDEuNTcuNDI3IDMuMDAyLjgwNiA1LjIwNSAxLjQ0IDMuMjc3Ljk0NCA1LjUxOCAyLjM3NiA1LjUxOCA1LjY5NSAwIDQuNTc1LTQuMDIzIDYuOTQ3LTkuNDEyIDYuOTQ3LTUuMzg5IDAtOS4wNi0yLjgzNS0xMC4xNTItNC4xNTdsMy44NTYtMi45MTFjMi43MDkgMi4zODQgNC41OTMgMi43MiA2LjE2OCAyLjcyIDEuODA2IDAgMy40OTUtLjM5MSAzLjcxMi0xLjQyMy4xNzYtLjgyOS0uNTA1LTEuNDg4LTIuMDQzLTEuODUxLTEuNzQxLS40MDYtMy4yMS0uNzMyLTQuODUtMS4xNjctNC40NDUtMS4xNzgtNS42OTgtMy43ODctNS42OTgtNi4xMyAwLTMuMjI3IDIuOTc1LTYuNTQxIDguNDE2LTYuNTQxIDUuNTggMCA4Ljg0NyAzLjIyNyA4Ljg0NyAzLjIyN2wtLjAwNi4wMDh6bTIzLjI1Ni0yLjkxMmgtMTYuMjY3djIwLjUyOWgxNi41NnYtNC43MzJoLTEwLjg0OHYtMy4zMDZoNy40NzNWMTIuN2gtNy40NzNWOS40MjVoMTAuNTUxbC4wMDQtNC42OXpNMTUyLjE4MiAzMGgxLjI3VjBoLTEuMjd2MzB6bTIyLjkwNiAwaDEuMjY5VjBoLTEuMjd2MzBoLjAwMXptNC4yMDItNC43MzZoMTMuMDYyYzMuNDkzIDAgNi4zMjItMi4xMjYgNi4zMjItNS41MyAwLTIuNjU0LTEuNzIxLTQuNDEyLTQuMTM0LTUuMTkxYTEuMzQxIDEuMzQxIDAgMDAtLjIzNC0uMDNjLjA4LS4wMDcuMTU4LS4wMjEuMjM0LS4wNDEgMS4zODItLjU1MiAyLjkxMy0yLjAyMyAyLjkxMy00LjUyNyAwLTMuMTc2LTIuNzgzLTUuMjAyLTYuMjE4LTUuMjAySDE3OS4yOXYyMC41MjF6bTUuNzM4LTE2LjI1M2g0LjU2M2MxLjA1IDAgMS45LjgzNyAxLjkgMS44IDAgLjk2Mi0uODQ1IDEuODAyLTEuOSAxLjgwMmgtNC41NjNWOS4wMXYuMDAxem01LjU4MSAxMS42OTJoLTUuNThWMTYuOTZoNS41OGMuOTk1LjA0IDEuNzgyLjg2NSAxLjc4MiAxLjg3YTEuODY0IDEuODY0IDAgMDEtMS43ODIgMS44NzF2LjAwMnpNNzEuOTI0IDI0LjI1NmgzLjE0NVY5LjYyaC0zLjE0NXYxNC42MzZ6bS0yNC41MTEuMDAxaDMuMTQ2VjMuMTQzaC0zLjE0NnYyMS4xMTR6Ii8+PHBhdGggZD0iTTQyLjg4MSAxMi4zNDdhNC41MzcgNC41MzcgMCAwMC00LjUzMiA0LjUzMiA0LjUzNyA0LjUzNyAwIDAwNC41MzIgNC41MzIgNC41MzcgNC41MzcgMCAwMDQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzItNC41MzJ6bTAgMTIuMjA5Yy00LjIzMyAwLTcuNjc4LTMuNDQ0LTcuNjc4LTcuNjc3IDAtNC4yMzQgMy40NDUtNy42NzggNy42NzgtNy42NzggNC4yMzMgMCA3LjY3OCAzLjQ0NCA3LjY3OCA3LjY3OCAwIDQuMjMzLTMuNDQ1IDcuNjc3LTcuNjc4IDcuNjc3em0tMzAuNjcyLS4zMDFoMy4xNDZ2LTcuMzc4SDEyLjIxbC0uMDAxIDcuMzc4eiIvPjxwYXRoIGQ9Ik0xNS4zNTYgMTYuODc4aC0zLjE0N2E0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzEgNC41MzJIMEMwIDEyLjY0NCAzLjQ0NCA5LjIgNy42NzcgOS4yczcuNjc5IDMuNDQ0IDcuNjc5IDcuNjc4bTYwLjMxOC0xMS43YTIuMTc4IDIuMTc4IDAgMTEtNC4zNTYgMCAyLjE3OCAyLjE3OCAwIDAxNC4zNTYgMCIvPjxwYXRoIGQ9Ik0wIDI0LjI1N2gzLjE0NVYzLjE0M0gwdjIxLjExNHptOTMuNDA0LTcuMzc5aC0zLjE0NmE0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MyA0LjUzMmgtMy4xNDdjMC00LjIzNCAzLjQ0My03LjY3OCA3LjY3Ny03LjY3OCA0LjIzMyAwIDcuNjc4IDMuNDQ0IDcuNjc4IDcuNjc4Ii8+PHBhdGggZD0iTTkwLjI1OCA5LjYxOXY3LjI1OWE0LjUzOCA0LjUzOCAwIDAxLTQuNTMyIDQuNTMzIDQuNTM3IDQuNTM3IDAgMDEtNC41My00LjUzM2gtMy4xNDdjMCA0LjIzNCAzLjQ0MyA3LjY3OCA3LjY3NyA3LjY3OCA0LjIzMyAwIDcuNjc4LTMuNDQ0IDcuNjc4LTcuNjc4di03LjI2aC0zLjE0NnYuMDAxek02MC45NiAyMC4zOTJMNTYuMTYzIDkuNjE5SDUyLjcybDYuNTE4IDE0LjYzOGguMDAybDEuNzItMy44NjV6Ii8+PHBhdGggZD0iTTY1Ljc1NiA5LjYxOUw1OS4yNCAyNC4yNTZoMy40NDJMNjkuMiA5LjYxOWgtMy40NDR6TTkwLjI1OCAyNC4zNmE0LjUzOCA0LjUzOCAwIDAxLTQuNTMyIDQuNTI3IDQuNDk5IDQuNDk5IDAgMDEtMi4yNjEtLjYxMUw4MS44ODkgMzFhNy42MjYgNy42MjYgMCAwMDMuODM3IDEuMDMzYzQuMjMzIDAgNy42NzctMy40NDUgNy42NzgtNy42NzdsLTMuMTQ2LjAwM3YuMDAxem0tNjIuODExLTMuNTAzYTQuNTEgNC41MSAwIDAxLS43OS4zMzhsLS4wNzYuMDIzYTQuNDE3IDQuNDE3IDAgMDEtLjM1NS4wOTFjLS4wMTUuMDAzLS4wMy4wMDgtLjA0Ni4wMWE0LjM0NiA0LjM0NiAwIDAxLS40OS4wNyA0LjQ2IDQuNDYgMCAwMS0uNDEuMDIyIDQuNTM2IDQuNTM2IDAgMDEtNC4yNDYtMi45NmgtMy4yN2E3LjYyNCA3LjYyNCAwIDAwMS41OTMgMy4zMDhjLjM5My40NzQuODQuOSAxLjMzMiAxLjI3YTcuNjEzIDcuNjEzIDAgMDA1LjY0OCAxLjQ1M2MuMTM3LS4wMi4yNzYtLjA0Mi40MTItLjA2OGwuMDQtLjAwOGMuMTg0LS4wMzYuMzY2LS4wOC41NDYtLjEzMi4xMTUtLjAzLjIyOC0uMDY2LjM0LS4xMDJsLjE0Ny0uMDVjLjA5My0uMDM0LjE4Ni0uMDY4LjI3OS0uMTA1bC4xNTctLjA2MmMuMTItLjA1LjIzOC0uMTA1LjM1NS0uMTYuMTI2LS4wNjIuMjUtLjEyNy4zNzItLjE5NWwuMTMyLS4wNzYtMS41NzMtMi43MmMtLjAzMi4wMi0uMDY1LjAzNi0uMDk3LjA1M201LjM0Ny01LjU1MWMtLjcyOC0zLjQ4Mi0zLjgyLTYuMTA2LTcuNTE1LTYuMTA2LTMuNjk0IDAtNi43ODYgMi42MjQtNy41MTQgNi4xMDZoMy4yN2E0LjUzNiA0LjUzNiAwIDAxNC4yNDQtMi45NiA0LjUzNiA0LjUzNiAwIDAxNC4yNDUgMi45NiA0LjQ5IDQuNDkgMCAwMS4yODcgMS41NzIgNC40OSA0LjQ5IDAgMDEtLjI4NyAxLjU3M2gzLjI3YTcuNjUxIDcuNjUxIDAgMDAwLTMuMTQ1Ii8+PHBhdGggZD0iTTI5LjUyNCAxNS4zMDZoLTExLjc2YTcuNjUxIDcuNjUxIDAgMDAwIDMuMTQ1aDExLjc2Yy4xODItLjQ5LjI4Ny0xLjAyLjI4Ny0xLjU3MyAwLS41NTMtLjEwNS0xLjA4Mi0uMjg3LTEuNTcyTTEwNy42NTMgMjFsMy41NC00LjkyLTMuNDgtNC44MmgyLjc2Yy4xOC4zIDEuOTYgMi44NCAyLjE0IDMuMTJsMi4xMi0zLjEyaDIuNjRsLTMuNDIgNC43OCAzLjU0IDQuOTZoLTIuNzJsLTIuMjYtMy4yNmMtLjIuMy0yLjAyIDIuOTYtMi4yIDMuMjZoLTIuNjZ6Ii8+PC9nPjwvc3ZnPg==",
+      "isDefault": false,
+      "name": "seb"
+    },
+    {
+      "alignment": "center",
+      "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUxIiBoZWlnaHQ9IjMzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+PHBhdGggZD0iTTE0Ni40NzYgMGMyLjgyIDAgNS40MTIuNjcyIDcuNzc0IDIuMDE4IDIuMzYyIDEuMzQ1IDQuMjMyIDMuMTczIDUuNjEgNS40ODYgMS4zNzggMi4yOTYgMi4wNjcgNC44MDYgMi4wNjcgNy41MjlzLS42OTcgNS4yMjQtMi4wOTIgNy41MDRjLTEuMzc3IDIuMjY0LTMuMjU1IDQuMDYtNS42MzQgNS4zODgtMi4zNjIgMS4zMjktNC45MzcgMS45OTMtNy43MjUgMS45OTMtMS42NCAwLTMuMDQzLS4xOTctNC4yMDgtLjU5bC40MTktMi40ODVjMS40MS4zNiAyLjY3My41NCAzLjc4OS41NGExMi43OCAxMi43OCAwIDAwNi4yOTgtMS42MjMgMTIuMzcyIDEyLjM3MiAwIDAwNC42NzUtNC40MjljMS4xOC0xLjg4NiAxLjc3MS0zLjk4NSAxLjc3MS02LjI5OHMtLjU2Ni00LjQyLTEuNjk3LTYuMzIzYTEyLjA3NiAxMi4wNzYgMCAwMC00LjYwMS00LjUyN2MtMS45NTItMS4xLTQuMS0xLjY0OS02LjQ0Ni0xLjY0OXMtNC40OTUuNTUtNi40NDYgMS42NDlhMTIuMjU3IDEyLjI1NyAwIDAwLTQuNjI2IDQuNTI3Yy0xLjEzMiAxLjkwMi0xLjY5OCA0LjAxLTEuNjk4IDYuMzIzIDAgMi4wNS40MjcgMy44MzggMS4yOCA1LjM2My44NTMgMS41MSAxLjkwMiAyLjc3MiAzLjE0OSAzLjc5di0xLjg3aDUuMzY0di0zLjc0aDUuNDEydi0zLjU2OGg1LjY4NGMuMDE2LS4xMTUuMDI0LS4zMTEuMDI0LS41OSAwLS41OS0uMjA1LTEuMDY2LS42MTUtMS40MjctLjM5My0uMzYxLS45NDMtLjU0Mi0xLjY0OC0uNTQyLS41NTggMC0xLjA1LjA2Ni0xLjQ3Ni4xOTctLjA1LTEuMDgyLS4zNy0xLjk1Mi0uOTYtMi42MDgtLjU3NC0uNjcyLTEuMzUzLTEuMDA4LTIuMzM3LTEuMDA4LTEgMC0xLjc4OC4yOTUtMi4zNjIuODg1LS41NTguNTc0LS45MjcgMS4zMzctMS4xMDcgMi4yODhhNC4yMTMgNC4yMTMgMCAwMC0xLjMyOS0uNTY2IDYuODY1IDYuODY1IDAgMDAtMS41MjUtLjE0N2MtLjkxOSAwLTEuNjQuMjctMi4xNjUuODEyLS41MjUuNTQxLS43ODggMS4xOTctLjc4OCAxLjk2OCAwIC4xNjQuMDE3LjQxLjA1LjczOGg3LjM4djIuNTM0aC05LjUyMWMtLjM3Ny0uODItLjU2Ni0xLjgyOS0uNTY2LTMuMDI2IDAtLjg1My4xNzItMS43MDYuNTE3LTIuNTU5LjM2LS44NjkuOTM1LTEuNTkgMS43MjItMi4xNjUuNzg3LS41OSAxLjc4OC0uODg1IDMuMDAyLS44ODUuNzIxIDAgMS4zNDUuMTA2IDEuODcuMzIuMzYtLjczOS45MjYtMS4zODcgMS42OTctMS45NDQuNzcxLS41NTggMS44MDUtLjgzNyAzLjEtLjgzNyAxIDAgMS44NzguMTk3IDIuNjMzLjU5Ljc3LjM5NCAxLjM4Ni44OTUgMS44NDUgMS41MDEuNDYuNTkuNzQ2IDEuMTkuODYxIDEuNzk2bC4zNy0uMDI0Yy43MzcgMCAxLjQxLjE4IDIuMDE3LjU0MWEzLjYzNiAzLjYzNiAwIDAxMS40NTEgMS40NTJjLjM2MS42MjMuNTQyIDEuMzM3LjU0MiAyLjE0IDAgLjY0LS4wNSAxLjIzOS0uMTQ4IDEuNzk2YTguOTE2IDguOTE2IDAgMDEtLjMyIDEuMzA0aC01LjMxNHYzLjU0M2gtNS40MTN2My43NGgtNS4zMzl2Mi42MzNoLTIuNjA4YTE0LjkyIDE0LjkyIDAgMDEtNS4xOTEtNS4yNjUgMTMuOTM1IDEzLjkzNSAwIDAxLTEuOTQ0LTcuMTZjMC0yLjcyMy42ODktNS4yMzMgMi4wNjctNy41MjkgMS4zNzgtMi4zMTMgMy4yNDctNC4xNDEgNS42MS01LjQ4NkMxNDEuMDU0LjY3MSAxNDMuNjU0IDAgMTQ2LjQ3NSAwek0xNzMuMDExIDYuNDk1YzEuNjQgMCAzLjA2LjM3IDQuMjU3IDEuMTA4IDEuMTk3LjczOCAyLjEwNyAxLjc3MSAyLjczIDMuMS42NCAxLjMxMi45NiAyLjgyLjk2IDQuNTI3IDAgMS43MDYtLjMyIDMuMjIzLS45NiA0LjU1MS0uNjIzIDEuMzEzLTEuNTMzIDIuMzM4LTIuNzMgMy4wNzYtMS4xOTguNzM4LTIuNjE3IDEuMTA3LTQuMjU3IDEuMTA3aC03LjExVjYuNDk1aDcuMTF6TTE2OS4zNDUgOS40VjIxLjA2aDMuMTVjMS40OTIgMCAyLjY4MS0uNDkyIDMuNTY3LTEuNDc3LjkwMi0uOTg0IDEuMzUzLTIuNDM1IDEuMzUzLTQuMzU0IDAtMS45Mi0uNDUtMy4zNzEtMS4zNTMtNC4zNTUtLjg4Ni0uOTg0LTIuMDc1LTEuNDc2LTMuNTY3LTEuNDc2aC0zLjE1ek0xODkuMzE4IDExLjI0NGMuMzEyIDAgLjYwNy4wMzMuODg2LjA5OC4yNzguMDUuNjQ3LjE0IDEuMTA3LjI3bC0uNTY2IDIuNzgxYy0uNjQtLjE2NC0xLjE3My0uMjQ2LTEuNi0uMjQ2LS44NTIgMC0xLjUyNS4zMi0yLjAxNy45Ni0uNDkyLjY0LS43MzggMS41MjUtLjczOCAyLjY1N3Y2LjJoLTMuMTk4VjExLjM5MmgyLjk3N3YxLjg0NWMuNjU2LTEuMzI5IDEuNzA1LTEuOTkzIDMuMTQ5LTEuOTkzek0xOTguMzk3IDIxLjY1MWMuNzA2IDAgMS4zMDQtLjEyMyAxLjc5Ni0uMzY5LjUwOS0uMjQ2IDEuMTU3LS42OTcgMS45NDQtMS4zNTNsMS43OTYgMS45NjhjLS44ODYuOTAyLTEuNzggMS41NDItMi42ODIgMS45Mi0uODg1LjM2LTEuODYxLjU0LTIuOTI4LjU0LTEuMzQ1IDAtMi41MTctLjI3LTMuNTE4LS44MTFhNS42NSA1LjY1IDAgMDEtMi4yODgtMi4zMTNjLS41MjUtMS0uNzg3LTIuMTY1LS43ODctMy40OTQgMC0xLjI5Ni4yNTQtMi40NTIuNzYyLTMuNDY5LjUwOS0xLjAzMyAxLjIzOS0xLjgzNyAyLjE5LTIuNDExLjk1MS0uNTkgMi4wNzUtLjg4NiAzLjM3LS44ODYgMS44ODcgMCAzLjMzOS41NTggNC4zNTYgMS42NzMgMS4wMTcgMS4xIDEuNTI1IDIuNjMzIDEuNTI1IDQuNjAxIDAgLjQ3Ni0uMDE2Ljg5NC0uMDUgMS4yNTVoLTkuMDI5Yy4xNDguOTY4LjUwOSAxLjczOSAxLjA4MyAyLjMxMy41OS41NTcgMS40MS44MzYgMi40Ni44MzZ6bS0uNDQzLTguMTY4Yy0uODIgMC0xLjQ4NC4yNDYtMS45OTIuNzM4LS41MDkuNDc2LS44NTMgMS4xNC0xLjAzNCAxLjk5M2g1Ljg4Yy0uMDY1LS44NTMtLjM0NC0xLjUxNy0uODM2LTEuOTkzLS40OTItLjQ5Mi0xLjE2NS0uNzM4LTIuMDE4LS43Mzh6TTIxMS41MDQgMTAuOTczYzEuNzU2IDAgMy4xLjQxIDQuMDM1IDEuMjMuOTUyLjgyIDEuNDI3IDEuOTExIDEuNDI3IDMuMjczdjguNDg4aC0yLjg3OFYyMi42NmMtLjM5NC41NDEtLjkzNS45NjgtMS42MjQgMS4yOC0uNjcyLjI5NS0xLjQ4NC40NDItMi40MzYuNDQyLTEuMjk2IDAtMi4zNy0uMjk1LTMuMjIzLS44ODYtLjg1My0uNjA2LTEuMjgtMS41MDktMS4yOC0yLjcwNiAwLTEuMzI4LjQ4NS0yLjMyIDEuNDUyLTIuOTc3Ljk4NC0uNjcyIDIuMzEzLTEuMTU2IDMuOTg2LTEuNDUybDIuOTUzLS41NHYtLjI5NmMwLS42MDctLjIxNC0xLjA3NS0uNjQtMS40MDItLjQxLS4zNDUtLjk4NC0uNTE3LTEuNzIyLS41MTctLjc4OCAwLTEuNDQ0LjE1Ni0xLjk2OS40NjctLjUyNS4zMTItMS4xNzIuODM3LTEuOTQzIDEuNTc1bC0yLjAxOC0xLjg0NWMuODA0LS45NTIgMS42ODEtMS42NTcgMi42MzMtMi4xMTYuOTUxLS40NzYgMi4wMzQtLjcxNCAzLjI0Ny0uNzE0em0tLjkzNCAxMC44NWMuOTE4IDAgMS43MDUtLjIzNyAyLjM2MS0uNzEzLjY1Ni0uNDkyLjk4NS0xLjI0Ny45ODUtMi4yNjR2LS43MzhsLTIuMTE2LjQ0M2MtMS4wNjcuMjMtMS44NjIuNDkyLTIuMzg3Ljc4OC0uNTA4LjI3OC0uNzYzLjY4OC0uNzYzIDEuMjMgMCAuMzkzLjE2NC43MDUuNDkyLjkzNS4zNDUuMjEzLjgyLjMyIDEuNDI3LjMyek0yMzMuNTg4IDEwLjk3M2MxLjMyOSAwIDIuMzU0LjM3NyAzLjA3NSAxLjEzMi43MzguNzU1IDEuMTA4IDEuNzggMS4xMDggMy4wNzV2OC43ODRoLTMuMTk5VjE2LjE0YzAtLjc1NS0uMTY0LTEuMzQ1LS40OTItMS43NzItLjMxMi0uNDI2LS44MTItLjY0LTEuNTAxLS42NC0uNzA1IDAtMS4yNTUuMjM5LTEuNjQ4LjcxNC0uMzc4LjQ2LS41NjYgMS4wNTgtLjU2NiAxLjc5NnY3LjcyNmgtMy4xOTlWMTYuMTRjMC0xLjYwNy0uNjY0LTIuNDExLTEuOTkyLTIuNDExLS43MDYgMC0xLjI1NS4yMzgtMS42NDkuNzEzLS4zNzcuNDYtLjU2NiAxLjA1OC0uNTY2IDEuNzk2djcuNzI2aC0zLjE5OFYxMS4zOTJoMi45Nzd2MS40MDJjLjczOC0xLjIxNCAxLjkzNS0xLjgyIDMuNTkyLTEuODIuODA0IDAgMS41LjE2MyAyLjA5MS40OTEuNTkuMzEyIDEuMDU4Ljc2MyAxLjQwMyAxLjM1NC44NTItMS4yMyAyLjEwNy0xLjg0NiAzLjc2NC0xLjg0NnpNMjQ1LjM5IDEwLjk3M2MxLjA4MyAwIDIuMDM0LjE0OCAyLjg1NC40NDMuODM3LjI5NSAxLjY5LjgwNCAyLjU1OSAxLjUyNWwtMS43MjIgMi4wOTJjLS43MzgtLjU3NC0xLjM4Ni0uOTYtMS45NDQtMS4xNTctLjU0MS0uMjEzLTEuMTQ4LS4zMi0xLjgyLS4zMi0uNjQgMC0xLjE1Ny4xMTUtMS41NS4zNDUtLjM3OC4yMy0uNTY2LjUzMy0uNTY2LjkxIDAgLjI2My4wOS40NjguMjcuNjE2LjE5Ny4xNDcuNDY4LjI3LjgxMi4zNjkuMzQ1LjA5OC45Ni4yNDYgMS44NDUuNDQyIDEuMTk4LjI2MyAyLjE0MS41NTggMi44My44ODYuNzA1LjMxMiAxLjIyMi43MjIgMS41NSAxLjIzLjMyOC40OTIuNDkyIDEuMTI0LjQ5MiAxLjg5NSAwIDEuMjMtLjQ4NCAyLjIyMi0xLjQ1MiAyLjk3Ny0uOTUxLjc1NC0yLjI2MyAxLjEzMi0zLjkzNiAxLjEzMi0xLjE5OCAwLTIuMjY0LS4xNzMtMy4xOTktLjUxNy0uOTE4LS4zNi0xLjg3OC0uOTg0LTIuODc4LTEuODdsMS44NDUtMi4wNjdjLjkwMi43MzggMS42NTcgMS4yMzkgMi4yNjQgMS41MDEuNjA2LjI0NiAxLjI4Ny4zNyAyLjA0Mi4zNy42MzkgMCAxLjE2NC0uMTE2IDEuNTc0LS4zNDUuNDEtLjIzLjYxNS0uNTU4LjYxNS0uOTg0IDAtLjMyOC0uMTIzLS41ODMtLjM2OS0uNzYzYTIuMjIgMi4yMiAwIDAwLS44ODUtLjQxOGMtLjM0NS0uMDk5LS45Ni0uMjQ2LTEuODQ2LS40NDMtMS4yMTQtLjI2My0yLjE0OC0uNTUtMi44MDUtLjg2MS0uNjU2LS4zMjgtMS4xMjMtLjczLTEuNDAyLTEuMjA2LS4yNzktLjQ3Ni0uNDE4LTEuMDktLjQxOC0xLjg0NSAwLS43MjIuMjA1LTEuMzc4LjYxNS0xLjk2OS40MS0uNjA2IDEuMDA5LTEuMDgyIDEuNzk2LTEuNDI3LjgwNC0uMzYgMS43NDctLjU0IDIuODI5LS41NHoiLz48Zz48cGF0aCBkPSJNNzEuOTI0IDI0LjI1NmgzLjE0NVY5LjYyaC0zLjE0NXYxNC42MzZ6bS0yNC41MTEuMDAxaDMuMTQ2VjMuMTQzaC0zLjE0NnYyMS4xMTR6Ii8+PHBhdGggZD0iTTQyLjg4MSAxMi4zNDdhNC41MzcgNC41MzcgMCAwMC00LjUzMiA0LjUzMiA0LjUzNyA0LjUzNyAwIDAwNC41MzIgNC41MzIgNC41MzcgNC41MzcgMCAwMDQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzItNC41MzJ6bTAgMTIuMjA5Yy00LjIzMyAwLTcuNjc4LTMuNDQ0LTcuNjc4LTcuNjc3IDAtNC4yMzQgMy40NDUtNy42NzggNy42NzgtNy42NzggNC4yMzMgMCA3LjY3OCAzLjQ0NCA3LjY3OCA3LjY3OCAwIDQuMjMzLTMuNDQ1IDcuNjc3LTcuNjc4IDcuNjc3em0tMzAuNjcyLS4zMDFoMy4xNDZ2LTcuMzc4SDEyLjIxbC0uMDAxIDcuMzc4eiIvPjxwYXRoIGQ9Ik0xNS4zNTYgMTYuODc4aC0zLjE0N2E0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MzEgNC41MzJIMEMwIDEyLjY0NCAzLjQ0NCA5LjIgNy42NzcgOS4yczcuNjc5IDMuNDQ0IDcuNjc5IDcuNjc4bTYwLjMxOC0xMS43YTIuMTc4IDIuMTc4IDAgMTEtNC4zNTYgMCAyLjE3OCAyLjE3OCAwIDAxNC4zNTYgMCIvPjxwYXRoIGQ9Ik0wIDI0LjI1N2gzLjE0NVYzLjE0M0gwdjIxLjExNHptOTMuNDA0LTcuMzc5aC0zLjE0NmE0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyIDQuNTM3IDQuNTM3IDAgMDAtNC41MyA0LjUzMmgtMy4xNDdjMC00LjIzNCAzLjQ0My03LjY3OCA3LjY3Ny03LjY3OCA0LjIzMyAwIDcuNjc4IDMuNDQ0IDcuNjc4IDcuNjc4eiIvPjxwYXRoIGQ9Ik05MC4yNTggOS42MTl2Ny4yNTlhNC41MzggNC41MzggMCAwMS00LjUzMiA0LjUzMyA0LjUzNyA0LjUzNyAwIDAxLTQuNTMtNC41MzNoLTMuMTQ3YzAgNC4yMzQgMy40NDMgNy42NzggNy42NzcgNy42NzggNC4yMzMgMCA3LjY3OC0zLjQ0NCA3LjY3OC03LjY3OHYtNy4yNmgtMy4xNDZ2LjAwMXpNNjAuOTYgMjAuMzkyTDU2LjE2MyA5LjYxOUg1Mi43Mmw2LjUxOCAxNC42MzhoLjAwMmwxLjcyLTMuODY1eiIvPjxwYXRoIGQ9Ik02NS43NTYgOS42MTlMNTkuMjQgMjQuMjU2aDMuNDQyTDY5LjIgOS42MTloLTMuNDQ0ek05MC4yNTggMjQuMzZhNC41MzggNC41MzggMCAwMS00LjUzMiA0LjUyNyA0LjQ5OSA0LjQ5OSAwIDAxLTIuMjYxLS42MTFMODEuODg5IDMxYTcuNjI2IDcuNjI2IDAgMDAzLjgzNyAxLjAzM2M0LjIzMyAwIDcuNjc3LTMuNDQ1IDcuNjc4LTcuNjc3bC0zLjE0Ni4wMDN2LjAwMXptLTYyLjgxMS0zLjUwM2E0LjUxIDQuNTEgMCAwMS0uNzkuMzM4bC0uMDc2LjAyM2E0LjQxNyA0LjQxNyAwIDAxLS4zNTUuMDkxYy0uMDE1LjAwMy0uMDMuMDA4LS4wNDYuMDFhNC4zNDYgNC4zNDYgMCAwMS0uNDkuMDcgNC40NiA0LjQ2IDAgMDEtLjQxLjAyMiA0LjUzNiA0LjUzNiAwIDAxLTQuMjQ2LTIuOTZoLTMuMjdhNy42MjQgNy42MjQgMCAwMDEuNTkzIDMuMzA4Yy4zOTMuNDc0Ljg0LjkgMS4zMzIgMS4yN2E3LjYxMyA3LjYxMyAwIDAwNS42NDggMS40NTNjLjEzNy0uMDIuMjc2LS4wNDIuNDEyLS4wNjhsLjA0LS4wMDhjLjE4NC0uMDM2LjM2Ni0uMDguNTQ2LS4xMzIuMTE1LS4wMy4yMjgtLjA2Ni4zNC0uMTAybC4xNDctLjA1Yy4wOTMtLjAzNC4xODYtLjA2OC4yNzktLjEwNWwuMTU3LS4wNjJjLjEyLS4wNS4yMzgtLjEwNS4zNTUtLjE2LjEyNi0uMDYyLjI1LS4xMjcuMzcyLS4xOTVsLjEzMi0uMDc2LTEuNTczLTIuNzJjLS4wMzIuMDItLjA2NS4wMzYtLjA5Ny4wNTN6bTUuMzQ3LTUuNTUxYy0uNzI4LTMuNDgyLTMuODItNi4xMDYtNy41MTUtNi4xMDYtMy42OTQgMC02Ljc4NiAyLjYyNC03LjUxNCA2LjEwNmgzLjI3YTQuNTM2IDQuNTM2IDAgMDE0LjI0NC0yLjk2IDQuNTM2IDQuNTM2IDAgMDE0LjI0NSAyLjk2IDQuNDkgNC40OSAwIDAxLjI4NyAxLjU3MiA0LjQ5IDQuNDkgMCAwMS0uMjg3IDEuNTczaDMuMjdhNy42NTEgNy42NTEgMCAwMDAtMy4xNDV6Ii8+PHBhdGggZD0iTTI5LjUyNCAxNS4zMDZoLTExLjc2YTcuNjUxIDcuNjUxIDAgMDAwIDMuMTQ1aDExLjc2Yy4xODItLjQ5LjI4Ny0xLjAyLjI4Ny0xLjU3MyAwLS41NTMtLjEwNS0xLjA4Mi0uMjg3LTEuNTcyIi8+PC9nPjxwYXRoIGQ9Ik0xMDcuNjUzIDIxbDMuNTQtNC45Mi0zLjQ4LTQuODJoMi43NmMuMTguMyAxLjk2IDIuODQgMi4xNCAzLjEybDIuMTItMy4xMmgyLjY0bC0zLjQyIDQuNzggMy41NCA0Ljk2aC0yLjcybC0yLjI2LTMuMjZjLS4yLjMtMi4wMiAyLjk2LTIuMiAzLjI2aC0yLjY2eiIvPjwvZz48L3N2Zz4=",
+      "isDefault": false,
+      "name": "dreams"
+    },
+    {
+      "alignment": "center",
+      "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTQiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iI0ZGRiIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNNzEuOTI0IDIxLjI1NmgzLjE0NVY2LjYyaC0zLjE0NXpNNDcuNDEzIDIxLjI1N2gzLjE0NlYuMTQzaC0zLjE0NnoiLz48cGF0aCBkPSJNNDIuODgxIDkuMzQ3YTQuNTM3IDQuNTM3IDAgMDAtNC41MzIgNC41MzIgNC41MzcgNC41MzcgMCAwMDQuNTMyIDQuNTMyIDQuNTM3IDQuNTM3IDAgMDA0LjUzMi00LjUzMiA0LjUzNyA0LjUzNyAwIDAwLTQuNTMyLTQuNTMyem0wIDEyLjIwOWMtNC4yMzMgMC03LjY3OC0zLjQ0NC03LjY3OC03LjY3NyAwLTQuMjM0IDMuNDQ1LTcuNjc4IDcuNjc4LTcuNjc4IDQuMjMzIDAgNy42NzggMy40NDQgNy42NzggNy42NzggMCA0LjIzMy0zLjQ0NSA3LjY3Ny03LjY3OCA3LjY3N3pNMTIuMjA5IDIxLjI1NWgzLjE0NnYtNy4zNzhIMTIuMjF6Ii8+PHBhdGggZD0iTTE1LjM1NiAxMy44NzhoLTMuMTQ3YTQuNTM3IDQuNTM3IDAgMDAtNC41MzItNC41MzIgNC41MzcgNC41MzcgMCAwMC00LjUzMSA0LjUzMkgwQzAgOS42NDQgMy40NDQgNi4yIDcuNjc3IDYuMnM3LjY3OSAzLjQ0NCA3LjY3OSA3LjY3OE03NS42NzQgMi4xNzhhMi4xNzggMi4xNzggMCAxMS00LjM1NiAwIDIuMTc4IDIuMTc4IDAgMDE0LjM1NiAwIi8+PHBhdGggZD0iTTAgMjEuMjU3aDMuMTQ1Vi4xNDNIMHpNOTMuNDA0IDEzLjg3OGgtMy4xNDZhNC41MzcgNC41MzcgMCAwMC00LjUzMi00LjUzMiA0LjUzNyA0LjUzNyAwIDAwLTQuNTMgNC41MzJoLTMuMTQ3YzAtNC4yMzQgMy40NDMtNy42NzggNy42NzctNy42NzggNC4yMzMgMCA3LjY3OCAzLjQ0NCA3LjY3OCA3LjY3OCIvPjxwYXRoIGQ9Ik05MC4yNTggNi42MTl2Ny4yNTlhNC41MzggNC41MzggMCAwMS00LjUzMiA0LjUzMyA0LjUzNyA0LjUzNyAwIDAxLTQuNTMtNC41MzNoLTMuMTQ3YzAgNC4yMzQgMy40NDMgNy42NzggNy42NzcgNy42NzggNC4yMzMgMCA3LjY3OC0zLjQ0NCA3LjY3OC03LjY3OHYtNy4yNmgtMy4xNDZ6TTYwLjk2IDE3LjM5Mkw1Ni4xNjMgNi42MTlINTIuNzJsNi41MTggMTQuNjM4aC4wMDJ6Ii8+PHBhdGggZD0iTTY1Ljc1NiA2LjYxOUw1OS4yNCAyMS4yNTZINjIuNjgyTDY5LjIgNi42MTl6TTkwLjI1OCAyMS4zNmE0LjUzOCA0LjUzOCAwIDAxLTQuNTMyIDQuNTI3IDQuNDk5IDQuNDk5IDAgMDEtMi4yNjEtLjYxMUw4MS44ODkgMjhhNy42MjYgNy42MjYgMCAwMDMuODM3IDEuMDMzYzQuMjMzIDAgNy42NzctMy40NDUgNy42NzgtNy42NzdsLTMuMTQ2LjAwM3pNMjcuNDQ3IDE3Ljg1N2E0LjUxIDQuNTEgMCAwMS0uNzkuMzM4bC0uMDc2LjAyM2E0LjQxNyA0LjQxNyAwIDAxLS4zNTUuMDkxYy0uMDE1LjAwMy0uMDMuMDA4LS4wNDYuMDFhNC4zNDYgNC4zNDYgMCAwMS0uNDkuMDcgNC40NiA0LjQ2IDAgMDEtLjQxLjAyMiA0LjUzNiA0LjUzNiAwIDAxLTQuMjQ2LTIuOTZoLTMuMjdhNy42MjQgNy42MjQgMCAwMDEuNTkzIDMuMzA4IDcuODQgNy44NCAwIDAwMS4zMzIgMS4yNyA3LjYxMyA3LjYxMyAwIDAwNS4wNTMgMS41MTMgNi45NiA2Ljk2IDAgMDAuNTk1LS4wNmMuMTM3LS4wMi4yNzYtLjA0Mi40MTItLjA2OGwuMDQtLjAwOGE2LjUyMiA2LjUyMiAwIDAwLjU0Ni0uMTMyYy4xMTUtLjAzLjIyOC0uMDY2LjM0LS4xMDJsLjE0Ny0uMDVjLjA5My0uMDM0LjE4Ni0uMDY4LjI3OS0uMTA1bC4xNTctLjA2MmMuMTItLjA1LjIzOC0uMTA1LjM1NS0uMTZhOC43MzYgOC43MzYgMCAwMC4zNzItLjE5NWwuMTMyLS4wNzYtMS41NzMtMi43MmMtLjAzMi4wMi0uMDY1LjAzNi0uMDk3LjA1M00zMi43OTQgMTIuMzA2Yy0uNzI4LTMuNDgyLTMuODItNi4xMDYtNy41MTUtNi4xMDYtMy42OTQgMC02Ljc4NiAyLjYyNC03LjUxNCA2LjEwNmgzLjI3YTQuNTM2IDQuNTM2IDAgMDE0LjI0NC0yLjk2IDQuNTM2IDQuNTM2IDAgMDE0LjI0NSAyLjk2IDQuNDkgNC40OSAwIDAxLjI4NyAxLjU3MiA0LjQ5IDQuNDkgMCAwMS0uMjg3IDEuNTczaDMuMjdhNy42NTEgNy42NTEgMCAwMDAtMy4xNDUiLz48cGF0aCBkPSJNMjkuNTI0IDEyLjMwNmgtMTEuNzZhNy42NTEgNy42NTEgMCAwMDAgMy4xNDVoMTEuNzZjLjE4Mi0uNDkuMjg3LTEuMDIuMjg3LTEuNTczIDAtLjU1My0uMTA1LTEuMDgyLS4yODctMS41NzIiLz48L2c+PC9zdmc+",
+      "isDefault": true,
+      "name": "hedvig"
+    }
+  ],
+  "passages": [
+    {
+      "height": 100,
+      "id": "-1073551330",
+      "left": 350,
+      "name": "manualNameVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  Hm, weird. Right now we can't find your address. But no worries, we'll just ask some extra questions!\n</Message>\n\n<Message>\n  What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->manualAdressVilla]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 500,
+      "url": "/manual-name",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1075782693",
+      "left": 350,
+      "name": "manualInfoVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  We can't fetch any information about your house. But no worries, just fill in the information here\n</Message>\n\n<GroupedResponse>\n  <Title>\n    House information\n  </Title>\n  <Item>\n    Living space: {livingSpace} sqm\n  </Item>\n  <Item>\n    Ancillary area: {ancillaryArea} sqm\n  </Item>\n  <Item>\n    Year of construction: {yearOfConstruction}\n  </Item>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Continue->bathsVilla]]\">\n  <NumberAction title=\"Living space\"\n                placeholder=\"120\"\n                minvalue=\"1\"\n                key=\"livingSpace\"\n                unit=\"square meters\"\n  >\n    <Tooltip>\n      <Title>\n        Living space\n      </Title>\n      <Description>\n        Living space is the space meant to live in. Storage space, connected garage, attic and similar are not included\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Ancillary area\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"square meters\"\n  >\n    <Tooltip>\n      <Title>\n        Ancillary area\n      </Title>\n      <Description>\n        Examples of spaces that count as ancillary areas are storage rooms, attics and garage connected to the house\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Year of construction\"\n                minvalue=\"1\"\n                placeholder=\"1998\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        Year of construction\n      </Title>\n      <Description>\n        The year the house was built\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
+      "top": 800,
+      "url": "/manual-info",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1237186458",
+      "left": 500,
+      "name": "personalNumberVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Great! Now we need your swedish personal number so that we can automatically fetch information about your house\n</Message>\n\n<TextAction placeholder=\"yymmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Continue->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "top": 500,
+      "url": "/personal-number",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1363287990",
+      "left": 1600,
+      "name": "personalNumberApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  OK! All we need now is your swedish personal number so that we can automatically fetch the rest of the information needed to create your offer\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"yymmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Continue->correctStreetAddressApartment]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAddressApartment]]\"\n                          nomatch=\"[[manualNameApartment]]\"\n                          error=\"[[manualNameApartment]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "top": 800,
+      "url": "/personal-number",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1564021004",
+      "left": 1900,
+      "name": "manualStreetAdressApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  What address do you want an offer for?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->StudentEligibilityCheck]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 800,
+      "url": "/manual-address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1611264475",
+      "left": 1500,
+      "name": "apartmentTypeApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Do you rent or own it?\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"BRF\"\n  >\n    [[Own it->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Homeowner\n      </Title>\n      <Description>\n        You own an apartment and need tenant ownership insurance\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Rent it->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Renter\n      </Title>\n      <Description>\n        You rent an apartment or own one and don't need tenant ownership insurance\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Rent a sublet->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Rent a sublet\n      </Title>\n      <Description>\n        You live in a house or apartment that is subletted to you\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/apartment-type",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-174682803",
+      "left": 500,
+      "name": "householdSizeVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  How many people should be covered by the insurance?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} people\n  </when>\n  <when expression=\"householdSize == 1\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              minvalue=\"1\"\n              next=\"[[Continue->rentOutVilla]]\"\n              unit=\"people (incl. myself)\"\n>\n  <Tooltip>\n    <Title>\n      Number of insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. The co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 1250,
+      "url": "/household-size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1778870905",
+      "left": 1600,
+      "name": "CreateQuoteError",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Uh-oh. Something technical seems to have gone wrong and we can't create and offer for you right now. We're working on it, try again soon!\n</Message>",
+      "top": 1600,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1803492745",
+      "left": 1750,
+      "name": "StudentEligibilityCheck",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "top": 1100,
+      "url": "/student",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-187267066",
+      "left": 1300,
+      "name": "OfferSuccess",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "top": 1750,
+      "url": "/success",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1880424232",
+      "left": 500,
+      "name": "rentOutVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Are you sublettning any part of your house to someone?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"isSubleted\"\n          value=\"false\"\n  >\n    [[No, I don't sublet->extraBuildingsVilla]]\n  </Option>\n  <Option key=\"isSubleted\"\n          value=\"true\"\n  >\n    [[Yes, I sublet->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
+      "top": 1400,
+      "url": "/subleted",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1959475297",
+      "left": 600,
+      "name": "TypeOfHomeVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Do you rent or own the house?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"house\"\n  >\n    [[I own it->personalNumberVilla]]\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,villa]\"\n  >\n    [[I rent it->livingSpaceApartment]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/type-of-home",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-2009956726",
+      "left": 500,
+      "name": "correctStreetAdressVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  OK! Is it the house on {streetAddress} you want an offer for?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes->correctInfoVilla]]\n    <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                         nomatch=\"[[manualInfoVilla]]\"\n                         error=\"[[manualInfoVilla]]\"\n    >\n    </HouseInformationApi>\n  </Option>\n  <Option>\n    [[No->newStreetAdressVilla]]\n  </Option>\n</SelectAction>",
+      "top": 650,
+      "url": "/confirm-address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-254292770",
+      "left": 650,
+      "name": "errorFloorsVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Hm. Unfortunately we can only insure houses with maximum 4 floors at the moment\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences with more than 4 floors!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 1100,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-297055177",
+      "left": 650,
+      "name": "errorInfoVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately we can't insure houses that large right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences in your size!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 800,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-680565320",
+      "left": 650,
+      "name": "errorAgeVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately we can't insure houses built before 1926 right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences like yours!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 650,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-759770249",
+      "left": 650,
+      "name": "errorhouseholdSizeVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Hm. Unfortunately we can only insure houses with maximum 6 people right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 1250,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-831268972",
+      "left": 350,
+      "name": "newStreetAdressVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  No worries! What address do you want an offer for?\n</Message>\n\n<TextActionSet next=\"[[Continue->correctInfoVilla]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
+      "top": 650,
+      "url": "/manual-address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-837982469",
+      "left": 1450,
+      "name": "errorHouseholdSizeApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 650,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1070521982",
+      "left": 1450,
+      "name": "errorLivingSpaceApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 500,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "128069608",
+      "left": 500,
+      "name": "floorsVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  How many floors does the house have? Just so you know, the cellar counts as a floor\n</Message>\n\n<SelectAction>\n  <Option>\n    [[4 floors or less->householdSizeVilla]]\n    <Tooltip>\n      <Title>\n        4 floors or less\n      </Title>\n      <Description>\n        The house has maximum four floors, including the cellar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[More than 4 floors->errorFloorsVilla]]\n    <Tooltip>\n      <Title>\n        More than 4 floors\n      </Title>\n      <Description>\n        The house has more than four floors, including the cellar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "top": 1100,
+      "url": "/floors",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1347829355",
+      "left": 1100,
+      "name": "NewsletterSuccess",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<ExternalRedirect to=\"MailingList\">\n</ExternalRedirect>",
+      "top": 900,
+      "url": "/newsletter-success",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "181471436",
+      "left": 1600,
+      "name": "correctStreetAddressApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Great! Is it the residence at {streetAddress} you want to have an offer for?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes->StudentEligibilityCheck]]\n  </Option>\n  <Option>\n    [[No->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
+      "top": 950,
+      "url": "/confirm-address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "186538086",
+      "left": 1600,
+      "name": "ApartmentUwlimitsHit",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately, we cannot insure recidences like yours at the moment\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 1400,
+      "url": "/oh-no",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "191677523",
+      "left": 200,
+      "name": "manualAdressVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  What address do you want an offer for?\n</Message>\n\n<TextActionSet next=\"[[Continue->correctInfoVilla]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
+      "top": 500,
+      "url": "/manual-address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1961335217",
+      "left": 1600,
+      "name": "householdSizeApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  How many people should be covered by the insurance?\n</Message>\n\n<Message>\n  <When expression=\"subletter == 'true'\">\n    If additional people are to be covered, please add the size of their rooms to the total area\n  </When>\n</Message>\n\n<Redirect when=\"livingSpace > 250\"\n          to=\"[[errorLivingSpaceApartment]]\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"householdSize > 1\">\n    {householdSize} people\n  </when>\n  <when expression=\"householdSize == 1\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"1\"\n              key=\"householdSize\"\n              next=\"[[Continue->personalNumberApartment]]\"\n              unit=\"people (incl. myself)\"\n>\n  <Tooltip>\n    <Title>\n      Number of insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. The co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 650,
+      "url": "/household-size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1972356610",
+      "left": 1750,
+      "name": "newStreetAddressApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  No worries! What address do you want an offer for?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->StudentEligibilityCheck]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 950,
+      "url": "/manual-address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "238344608",
+      "left": 1400,
+      "name": "StudentBrfQuestion",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Bonus question! Are you by any chance a student? In that case you can get our student discount!\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"STUDENT_BRF\"\n  >\n    [[Yes->Offer]]\n  </Option>\n  <Option>\n    [[No->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1100,
+      "url": "/student",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "303482167",
+      "left": 650,
+      "name": "errorBathsVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately we can only insure houses with maximum 2 bathrooms right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure houses with more than 2 bathrooms!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 950,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "38721773",
+      "left": 500,
+      "name": "bathsVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace >= 250 || ancillaryArea >= 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction <= 1926\"\n>\n</Redirect>\n\n<Message>\n  How many bathrooms are there in the house?\n</Message>\n\n<Message>\n  Bathrooms do not include smaller guest toilets without shower/bathtub\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 bathroom->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 bathrooms\n      </Title>\n      <Description>\n        There is only one bathroom with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 bathrooms->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 bathrooms\n      </Title>\n      <Description>\n        There are two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[More than 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        More than 2 bathrooms\n      </Title>\n      <Description>\n        There are more than two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "top": 950,
+      "url": "/baths",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "473004117",
+      "left": 500,
+      "name": "correctInfoVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Great! We fetched some information about your house\n</Message>\n\n<Message>\n  Is this correct?\n</Message>\n\n<GroupedResponse>\n  <Title>\n    House information\n  </Title>\n  <Item>\n    Living space: {livingSpace} sqm\n  </Item>\n  <Item>\n    Ancillary area: {ancillaryArea} sqm\n  </Item>\n  <Item>\n    Year of construction: {yearOfConstruction}\n  </Item>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Continue->bathsVilla]]\">\n  <NumberAction title=\"Living space\"\n                placeholder=\"120\"\n                minvalue=\"1\"\n                key=\"livingSpace\"\n                unit=\"square meters\"\n  >\n    <Tooltip>\n      <Title>\n        Living space\n      </Title>\n      <Description>\n        Living space is the space meant to live in. Storage space, connected garage, attic and similar are not included\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Ancillary area\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"square meters\"\n  >\n    <Tooltip>\n      <Title>\n        Ancillary area\n      </Title>\n      <Description>\n        Examples of spaces that count as ancillary areas are storage rooms, attics and garage connected to the house\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Year of construction\"\n                placeholder=\"1998\"\n                minvalue=\"1\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        Year of construction\n      </Title>\n      <Description>\n        The year the house was built\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
+      "top": 800,
+      "url": "/confirm-info",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "501368500",
+      "left": 1600,
+      "name": "livingSpaceApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  <When expression=\"apartmentType == 'BRF'\">\n    How many square meters is the apartment?\n  </When>\n  <When expression=\"rentalType == 'apartment'\">\n    How many square meters is the apartment?\n  </When>\n  <When expression=\"rentalType == 'villa'\">\n    How many square meters is the house?\n  </When>\n  <When expression=\"rentalType == 'studentHousing'\">\n    How many square meters is it?\n  </When>\n  <When expression=\"rentalType == 'subletter'\">\n    How many square meters is your room and the common areas you have access to? Common areas might include a kitchen, bathroom or living room\n  </When>\n</Message>\n\n<Response>\n  {livingSpace} square meters\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Continue->householdSizeApartment]]\"\n              unit=\"square meters\"\n>\n  <Tooltip>\n    <Title>\n      Residence size\n    </Title>\n    <Description>\n      The total area of the residence. If you're unsure you can find the information in your lease or purchase contract\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 500,
+      "url": "/living-space",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "643215675",
+      "left": 1400,
+      "name": "StudentRentQuestion",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Bonus question! Are you by any chance a student? In that case you can get our student discount!\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"STUDENT_RENT\"\n  >\n    [[Yes->Offer]]\n  </Option>\n  <Option>\n    [[No->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1250,
+      "url": "/student",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "689447938",
+      "left": 1750,
+      "name": "manualNameApartment",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [
+        "Manual"
+      ],
+      "text": "<Message>\n  Sorry, right now we can't find your address. But no worries, we'll just ask some extra questions!\n</Message>\n\n<Message>\n  What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->manualStreetAdressApartment]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 800,
+      "url": "/manual-name",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "947434432",
+      "left": 500,
+      "name": "extraBuildingsVilla",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  OK, then we know. At last we need some information about any extra buildings on the site, if you want them to be covered by the insurance\n</Message>\n\n<Message>\n  If you don't want to insure any extra buildings, just press Continue\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra buildings\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} square meters\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Continue->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Select type\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Guest house\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Sauna\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Boathouse\n      </Option>\n      <Option value=\"OTHER\">\n        Other\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"square meters\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Water connected\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
+      "top": 1550,
+      "url": "/extra-buildings",
+      "width": 100
+    },
+    {
+      "height": 200,
+      "id": "-1914453783",
+      "left": 1000,
+      "name": "newInsuranceStart",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<Message>\n  Hi! Let's create an offer, it'll only take a minute\n</Message>\n\n<Message>\n  What type of residence would you like an offer for?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Apartment->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Apartment\n      </Title>\n      <Description>\n        For those of you who rent or own an apartment\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[House->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        House\n      </Title>\n      <Description>\n        For those of you who live in a detached or terraced house. We don't insure holiday homes\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Student housing->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Student housing\n      </Title>\n      <Description>\n        For those of you who rent a student apartment or a room in a student corridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Renting a room->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Renting a room\n      </Title>\n      <Description>\n        For those of you who rent one or several rooms in an apartment or house\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "top": 100,
+      "url": "/welcome",
+      "width": 200
+    },
+    {
+      "height": 200,
+      "id": "1632624957",
+      "left": 1300,
+      "name": "Offer",
+      "selected": false,
+      "story": "1899048031",
+      "tags": [],
+      "text": "<CreateQuoteApi uwlimits=\"[[ApartmentUwlimitsHit]]\"\n                success=\"[[OfferSuccess]]\"\n                error=\"[[CreateQuoteError]]\"\n>\n</CreateQuoteApi>\n\n<Message>\n  OK! Your offer is ready!\n</Message>",
+      "top": 1500,
+      "width": 200
+    }
+  ],
+  "script": "",
+  "snapToGrid": true,
+  "startPassage": "-1914453783",
+  "storyFormat": "Hedvig",
+  "storyFormatVersion": "1.0.0",
+  "stylesheet": "",
+  "tagColors": {
+    "Error": "red",
+    "Manual": "yellow",
+    "Review": "purple"
+  },
+  "zoom": 1
+}
