@@ -8,7 +8,7 @@ const DotOuterContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const DotContainer = styled.div`
+const DotContainer = styled.div<{ addBorder: boolean }>`
   display: flex;
   flex-direction: row;
   padding-top: 18px;
@@ -19,6 +19,7 @@ const DotContainer = styled.div`
   box-sizing: content-box;
   width: 40px;
   background-color: ${colorsV2.white};
+  ${props => props.addBorder && `border: 1px solid ${colorsV2.lightgray};`};
 `;
 
 const Dot = styled(motion.div)`
@@ -30,31 +31,37 @@ const Dot = styled(motion.div)`
   background-color: ${colorsV2.semilightgray};
 `;
 
-export const Loading = React.forwardRef<HTMLDivElement>((props, ref) => (
-  <DotOuterContainer ref={ref}>
-    <DotContainer>
-      <Dot
-        animate={{ y: [8, -8] }}
-        transition={{ ease: "easeInOut", flip: Infinity, duration: 0.3 }}
-      />
-      <Dot
-        animate={{ y: [8, -8] }}
-        transition={{
-          ease: "easeInOut",
-          flip: Infinity,
-          duration: 0.3,
-          delay: 0.15
-        }}
-      />
-      <Dot
-        animate={{ y: [8, -8] }}
-        transition={{
-          ease: "easeInOut",
-          flip: Infinity,
-          duration: 0.3,
-          delay: 0.3
-        }}
-      />
-    </DotContainer>
-  </DotOuterContainer>
-));
+interface LoadingProps {
+  addBorder?: boolean;
+}
+
+export const Loading = React.forwardRef<HTMLDivElement, LoadingProps>(
+  (props, ref) => (
+    <DotOuterContainer ref={ref}>
+      <DotContainer addBorder={props.addBorder || false}>
+        <Dot
+          animate={{ y: [8, -8] }}
+          transition={{ ease: "easeInOut", flip: Infinity, duration: 0.3 }}
+        />
+        <Dot
+          animate={{ y: [8, -8] }}
+          transition={{
+            ease: "easeInOut",
+            flip: Infinity,
+            duration: 0.3,
+            delay: 0.15
+          }}
+        />
+        <Dot
+          animate={{ y: [8, -8] }}
+          transition={{
+            ease: "easeInOut",
+            flip: Infinity,
+            duration: 0.3,
+            delay: 0.3
+          }}
+        />
+      </DotContainer>
+    </DotOuterContainer>
+  )
+);

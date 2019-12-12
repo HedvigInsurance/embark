@@ -8,13 +8,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 30px 20px;
+  width: 200px;
 `;
 
 const Title = styled.h3`
   font-family: ${fonts.CIRCULAR};
   font-weight: 800;
   margin-bottom: 15px;
+  text-align: center;
 `;
 
 interface SetupStepProps {
@@ -26,7 +28,7 @@ export const SetupStep: React.FC<SetupStepProps> = ({ provider, onSetup }) => {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       onSetup();
-    }, 1200);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);
@@ -36,7 +38,7 @@ export const SetupStep: React.FC<SetupStepProps> = ({ provider, onSetup }) => {
   return (
     <Container>
       <Title>Kontaktar {provider.name}...</Title>
-      <Loading />
+      <Loading addBorder />
     </Container>
   );
 };

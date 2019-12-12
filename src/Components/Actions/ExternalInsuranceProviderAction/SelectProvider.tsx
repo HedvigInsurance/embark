@@ -9,7 +9,7 @@ import { Modal } from "../../Modal";
 import { ContinueButton } from "../../ContinueButton";
 
 const Container = styled.div`
-  width: 100%;
+  width: 400px;
   max-height: 250px;
   max-height: 40vh;
   overflow-y: scroll;

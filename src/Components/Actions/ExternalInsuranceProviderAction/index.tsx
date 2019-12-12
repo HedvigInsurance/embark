@@ -12,10 +12,10 @@ import { StoreContext } from "../../KeyValueStore";
 import { SetupStep } from "./SetupStep";
 import { AuthStep } from "./AuthStep";
 import { Animator } from "./Animator";
+import uuid from "uuid/v1";
 
 const Card = styled(CardPrimitive.withComponent("div"))`
   max-width: 100%;
-  width: 400px;
   overflow: hidden;
 `;
 
@@ -29,13 +29,6 @@ const HeightAnimation = styled(motion.div)`
   width: 100%;
   overflow: hidden;
   position: relative;
-`;
-
-const ContentItem = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
 `;
 
 const Content = styled.div`
@@ -80,6 +73,10 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     externalInsuranceProviderOtherProviderModal,
     externalInsuranceProviderOtherProviderButton
   } = React.useContext(KeywordsContext);
+
+  React.useEffect(() => {
+    setValue("externalInsuranceProviderSessionId", uuid());
+  }, []);
 
   const [selectProvider, personalNumber, setupStep, authStep] = [
     <SelectProvider
@@ -142,7 +139,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         });
       }}
     />,
-    <AuthStep key="EXTERNAL_AUTH" />
+    <AuthStep requiresQRAuth={true} key="EXTERNAL_AUTH" />
   ];
 
   const transitionConfig = {
@@ -160,7 +157,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         {state.currentStep == Step.EXTERNAL_AUTH && authStep}
       </HeightCalculation>
       <HeightAnimation
-        animate={{ height: measured.height }}
+        animate={{ height: measured.height, width: measured.width }}
         transition={{ ...transitionConfig, clamp: true }}
       >
         <Content>

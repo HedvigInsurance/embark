@@ -12,6 +12,7 @@ import { ArrowLeft } from "../../Icons/ArrowLeft";
 const Container = styled.div`
   padding: 20px;
   box-sizing: border-box;
+  width: 400px;
 `;
 
 const PersonalNumberInput = wrapWithMask(Input);
