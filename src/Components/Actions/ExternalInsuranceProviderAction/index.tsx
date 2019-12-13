@@ -15,6 +15,10 @@ import { Animator } from "./Animator";
 import uuid from "uuid/v1";
 import { SkipButton } from "./Components/SkipButton";
 import { BackgroundFetchStep } from "./BackgroundFetchStep";
+import {
+  BackgroundFetchContext,
+  BackgroundFetchStatus
+} from "./BackgroundFetchContext";
 
 const Container = styled.div`
   display: flex;
@@ -73,8 +77,10 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   passageName,
   next
 }) => {
+  const { updateOperation } = React.useContext(BackgroundFetchContext);
   const { setValue } = React.useContext(StoreContext);
   const [state, setState] = React.useState({
+    id: uuid(),
     currentStep: Step.SELECT_PROVIDER,
     animationDirection: AnimationDirection.FORWARDS,
     selectedProvider: null as Provider | null,
@@ -88,7 +94,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   } = React.useContext(KeywordsContext);
 
   React.useEffect(() => {
-    setValue("externalInsuranceProviderSessionId", uuid());
+    setValue("externalInsuranceProviderSessionId", state.id);
   }, []);
 
   const [
@@ -141,6 +147,8 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         });
       }}
       onContinue={personalNumber => {
+        setValue("personalNumber", personalNumber);
+
         setState({
           ...state,
           personalNumber: personalNumber,
@@ -164,6 +172,20 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
       requiresQRAuth={true}
       key="EXTERNAL_AUTH"
       onDone={() => {
+        updateOperation({
+          id: state.id,
+          status: BackgroundFetchStatus.ONGOING,
+          provider: state.selectedProvider!
+        });
+
+        setTimeout(() => {
+          updateOperation({
+            id: state.id,
+            status: BackgroundFetchStatus.COMPLETED,
+            provider: state.selectedProvider!
+          });
+        }, 5000);
+
         setState({
           ...state,
           animationDirection: AnimationDirection.FORWARDS,

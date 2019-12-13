@@ -6,6 +6,7 @@ import {
   TExternalRedirectContext,
   ExternalRedirectContext
 } from "../externalRedirect";
+import { BackgroundFetchContextProvider } from "./Actions/ExternalInsuranceProviderAction/BackgroundFetchContext";
 
 interface EmbarkProviderProps {
   data: any;
@@ -27,12 +28,14 @@ const StoreListener: React.FunctionComponent<EmbarkProviderProps> = props => {
 
 export const EmbarkProvider: React.FunctionComponent<EmbarkProviderProps> = props => (
   <ExternalRedirectContext.Provider value={props.externalRedirects}>
-    <ApiContext.Provider value={props.resolvers}>
-      <KeywordsContext.Provider value={props.data.keywords}>
-        <KeyValueStore initial={props.initialStore}>
-          <StoreListener {...props}>{props.children}</StoreListener>
-        </KeyValueStore>
-      </KeywordsContext.Provider>
-    </ApiContext.Provider>
+    <BackgroundFetchContextProvider>
+      <ApiContext.Provider value={props.resolvers}>
+        <KeywordsContext.Provider value={props.data.keywords}>
+          <KeyValueStore initial={props.initialStore}>
+            <StoreListener {...props}>{props.children}</StoreListener>
+          </KeyValueStore>
+        </KeywordsContext.Provider>
+      </ApiContext.Provider>
+    </BackgroundFetchContextProvider>
   </ExternalRedirectContext.Provider>
 );
