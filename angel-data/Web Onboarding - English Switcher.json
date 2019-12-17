@@ -11,7 +11,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-12T10:32:38.197Z",
+  "lastUpdate": "2019-12-12T12:50:48.202Z",
   "name": "Web Onboarding - English Switcher",
   "partnerConfigs": [
     {
@@ -136,7 +136,7 @@
       "selected": false,
       "story": "-1327401859",
       "tags": [],
-      "text": "<Message>\n  OK, then we know. At last we need some information about any extra buildings on the site, if you want them to be covered by the insurance\n</Message>\n\n<Message>\n  If you don't want to insure any extra buildings, just press Continue\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra buildings\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} square meters\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Continue->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Select type\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Guest house\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Sauna\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Boathouse\n      </Option>\n      <Option value=\"OTHER\">\n        Other\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"square meters\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Water connected\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
+      "text": "<Message>\n  OK, then we know. Finally, we need some information about any extra buildings on the site, if you want them to be covered by the insurance\n</Message>\n\n<Message>\n  If you don't want to insure any extra buildings, just press Continue\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra buildings\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} square meters\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Continue->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Select type\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Guest house\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Sauna\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Boathouse\n      </Option>\n      <Option value=\"OTHER\">\n        Other\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"square meters\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Water connected\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
       "top": 1850,
       "url": "/extra-buildings",
       "width": 100
@@ -361,7 +361,7 @@
       "selected": false,
       "story": "-1327401859",
       "tags": [],
-      "text": "<Message>\n  What's your current insurer?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->typeOfRecidency]]\"\n                                 skip=\"[[Okay->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      If you enter your current insurer we can help you with the switch to Hedvig more easily later\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  Who is your current insurer?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->typeOfRecidency]]\"\n                                 skip=\"[[Okay->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Let us know who your current insurer is and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 325,
       "url": "/old-insurer",
       "width": 100
