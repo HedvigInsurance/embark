@@ -10,9 +10,9 @@ const ContentItem = styled(motion.div)`
   width: 100%;
 `;
 
-const usePrevious = (value: React.ReactNode) => {
-  const prevRef = React.useRef<React.ReactNode>();
-  const currRef = React.useRef<React.ReactNode>();
+const usePrevious = <T extends React.ReactElement>(value: T) => {
+  const prevRef = React.useRef<T>();
+  const currRef = React.useRef<T>();
   React.useEffect(() => {
     if (!currRef.current) {
       currRef.current = value;
@@ -26,6 +26,7 @@ const usePrevious = (value: React.ReactNode) => {
 
 interface AnimatorProps {
   animationDirection: AnimationDirection;
+  children: React.ReactElement;
 }
 
 export const Animator: React.FC<AnimatorProps> = ({
@@ -40,10 +41,10 @@ export const Animator: React.FC<AnimatorProps> = ({
 
   const mainContent = React.Children.toArray(children).filter(
     child => child
-  )[0] as React.ReactNode & { key: string };
+  )[0] as React.ReactElement & { key: string };
   const previousContent = React.Children.toArray(prevChildren).filter(
     child => child
-  )[0] as React.ReactNode & { key: string };
+  )[0] as React.ReactElement & { key: string };
 
   if (!mainContent || !previousContent) {
     return null;

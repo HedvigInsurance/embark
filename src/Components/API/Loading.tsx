@@ -8,9 +8,11 @@ const DotOuterContainer = styled.div`
   justify-content: flex-start;
 `;
 
+type Size = "small" | "large";
+
 const DotContainer = styled.div<{
   addBorder: boolean;
-  size: "small" | "large";
+  size: Size;
 }>`
   display: flex;
   flex-direction: row;
@@ -35,7 +37,7 @@ const DotContainer = styled.div<{
   `};
 `;
 
-const Dot = styled(motion.div)<{ size: "small" | "large" }>`
+const Dot = styled(motion.div)<{ size: Size }>`
   width: 8px;
   margin-left: 3px;
   margin-right: 3px;
@@ -53,7 +55,7 @@ const Dot = styled(motion.div)<{ size: "small" | "large" }>`
 
 interface LoadingProps {
   addBorder?: boolean;
-  size?: "small" | "large";
+  size?: Size;
 }
 
 export const Loading = React.forwardRef<HTMLDivElement, LoadingProps>(

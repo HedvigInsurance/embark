@@ -79,13 +79,13 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
 }) => {
   const { updateOperation } = React.useContext(BackgroundFetchContext);
   const { setValue } = React.useContext(StoreContext);
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState(() => ({
     id: uuid(),
     currentStep: Step.SELECT_PROVIDER,
     animationDirection: AnimationDirection.FORWARDS,
     selectedProvider: null as Provider | null,
     personalNumber: null as string | null
-  });
+  }));
   const [bind, measured] = useMeasure<HTMLDivElement>();
   const {
     externalInsuranceProviderOtherProviderModal,
