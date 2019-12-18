@@ -45,7 +45,9 @@ const Background = styled.div<Alignable>`
     justify-content: center;
   }
   `
-      : ""} @media (max-width: 375px) {
+      : ""};
+
+  @media (max-width: 375px) {
     height: 64px;
   }
 `;

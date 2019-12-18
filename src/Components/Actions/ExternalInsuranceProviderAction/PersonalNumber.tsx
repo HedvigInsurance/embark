@@ -11,6 +11,8 @@ import { ArrowLeft } from "../../Icons/ArrowLeft";
 
 const Container = styled.div`
   padding: 20px;
+  box-sizing: border-box;
+  width: 400px;
 `;
 
 const PersonalNumberInput = wrapWithMask(Input);
@@ -96,17 +98,20 @@ const Subtitle = styled.h4`
 interface PersonalNumberProps {
   provider: Provider;
   onCancel: () => void;
+  onContinue: (personalNumber: string) => void;
 }
 
 export const PersonalNumber: React.FC<PersonalNumberProps> = ({
   onCancel,
+  onContinue,
   provider
 }) => {
   const [value, setValue] = React.useState("");
   const {
     externalInsuranceProviderPersonalNumberTitle,
     externalInsuranceProviderGoBackButton,
-    externalInsuranceProviderPersonalNumberSubtitle
+    externalInsuranceProviderPersonalNumberSubtitle,
+    externalInsuranceProviderContinueButton
   } = React.useContext(KeywordsContext);
 
   return (
@@ -136,8 +141,10 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
       <ButtonContainer>
         <ContinueButton
           disabled={!isValid("PersonalNumber", value)}
-          onClick={() => {}}
-          text="Fortsätt"
+          onClick={() => {
+            onContinue(value);
+          }}
+          text={externalInsuranceProviderContinueButton}
         />
       </ButtonContainer>
     </Container>

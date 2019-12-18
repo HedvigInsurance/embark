@@ -9,7 +9,7 @@ import { Modal } from "../../Modal";
 import { ContinueButton } from "../../ContinueButton";
 
 const Container = styled.div`
-  width: 100%;
+  width: 400px;
   max-height: 250px;
   max-height: 40vh;
   overflow-y: scroll;
@@ -48,14 +48,14 @@ interface SelectProviderProps {
   onPickProvider: (provider?: Provider) => void;
   onlyAcceptProvidersWithExternalCapabilities: boolean;
   otherProviderModalText: string;
-  skipLink: { name: string; label: string };
+  otherProviderModalButton: string;
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
   onPickProvider,
   onlyAcceptProvidersWithExternalCapabilities,
-  skipLink,
-  otherProviderModalText
+  otherProviderModalText,
+  otherProviderModalButton
 }) => {
   const {
     externalInsuranceProviderSelectTitle,
@@ -97,7 +97,7 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
         <ContinueButton
           disabled={false}
           onClick={() => onPickProvider(modalResult)}
-          text={skipLink.label}
+          text={otherProviderModalButton}
         />
       </Modal>
     </Container>

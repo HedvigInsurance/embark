@@ -8,7 +8,12 @@ const DotOuterContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const DotContainer = styled.div`
+type Size = "small" | "large";
+
+const DotContainer = styled.div<{
+  addBorder: boolean;
+  size: Size;
+}>`
   display: flex;
   flex-direction: row;
   padding-top: 18px;
@@ -19,42 +24,73 @@ const DotContainer = styled.div`
   box-sizing: content-box;
   width: 40px;
   background-color: ${colorsV2.white};
+  ${props => props.addBorder && `border: 1px solid ${colorsV2.lightgray};`};
+  ${props =>
+    props.size == "small" &&
+    `
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 12px;
+    width: 30px;
+  `};
 `;
 
-const Dot = styled(motion.div)`
+const Dot = styled(motion.div)<{ size: Size }>`
   width: 8px;
   margin-left: 3px;
   margin-right: 3px;
   height: 8px;
   border-radius: 4px;
   background-color: ${colorsV2.semilightgray};
+  ${props =>
+    props.size == "small" &&
+    `
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+  `};
 `;
 
-export const Loading = React.forwardRef<HTMLDivElement>((props, ref) => (
-  <DotOuterContainer ref={ref}>
-    <DotContainer>
-      <Dot
-        animate={{ y: [8, -8] }}
-        transition={{ ease: "easeInOut", flip: Infinity, duration: 0.3 }}
-      />
-      <Dot
-        animate={{ y: [8, -8] }}
-        transition={{
-          ease: "easeInOut",
-          flip: Infinity,
-          duration: 0.3,
-          delay: 0.15
-        }}
-      />
-      <Dot
-        animate={{ y: [8, -8] }}
-        transition={{
-          ease: "easeInOut",
-          flip: Infinity,
-          duration: 0.3,
-          delay: 0.3
-        }}
-      />
-    </DotContainer>
-  </DotOuterContainer>
-));
+interface LoadingProps {
+  addBorder?: boolean;
+  size?: Size;
+}
+
+export const Loading = React.forwardRef<HTMLDivElement, LoadingProps>(
+  (props, ref) => (
+    <DotOuterContainer ref={ref}>
+      <DotContainer
+        addBorder={props.addBorder || false}
+        size={props.size || "large"}
+      >
+        <Dot
+          size={props.size || "large"}
+          animate={{ opacity: [0.4, 1] }}
+          transition={{ ease: "easeInOut", flip: Infinity, duration: 0.8 }}
+        />
+        <Dot
+          size={props.size || "large"}
+          animate={{ opacity: [0.4, 1] }}
+          transition={{
+            ease: "easeInOut",
+            flip: Infinity,
+            duration: 0.8,
+            delay: 0.4
+          }}
+        />
+        <Dot
+          size={props.size || "large"}
+          animate={{ opacity: [0.4, 1] }}
+          transition={{
+            ease: "easeInOut",
+            flip: Infinity,
+            duration: 0.8,
+            delay: 0.8
+          }}
+        />
+      </DotContainer>
+    </DotOuterContainer>
+  )
+);
