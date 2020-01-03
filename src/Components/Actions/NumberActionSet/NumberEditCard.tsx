@@ -24,6 +24,15 @@ const Card = styled.form<{
     margin-right: 1px;
   }
 
+  &:first-of-type {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &:last-of-type {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
   ${props => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
     padding-bottom: 16px;
     width: 100%;
