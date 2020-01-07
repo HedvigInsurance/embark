@@ -7,7 +7,7 @@ export enum BackgroundFetchStatus {
   COMPLETED
 }
 
-interface BackgroundFetchOperation {
+export interface BackgroundFetchOperation {
   id: string;
   status: BackgroundFetchStatus;
   provider: Provider;

@@ -25,8 +25,6 @@ const Container = styled.div`
 const CardsContainer = styled.div<{ cardCount: number }>`
   display: flex;
   justify-content: center;
-  border-radius: 8px;
-  overflow: hidden;
 
   ${props => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
     display: flex;
