@@ -16,6 +16,10 @@ interface Alignable {
   alignment: "left" | "center";
 }
 
+const LogoLink = styled("a")`
+  display: inline-block;
+`;
+
 const PartnerImage = styled.img`
   width: auto;
   height: auto;
@@ -129,7 +133,9 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <Background alignment={partner ? partner.alignment : "left"}>
-      {partner ? <PartnerImage src={partner.image} /> : null}
+      <LogoLink href="/">
+        {partner ? <PartnerImage src={partner.image} /> : null}
+      </LogoLink>
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
