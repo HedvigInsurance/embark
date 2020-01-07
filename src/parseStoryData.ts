@@ -94,6 +94,7 @@ const getSelectAction = (actionNode: Element | undefined) => {
   });
 
   return {
+    __typename: "AngelSelectAction",
     component: "SelectAction",
     data: {
       options: actionNodeOptions
@@ -115,6 +116,7 @@ const getNumberAction = (numberActionNode: Element) => {
   const api = parseApi(numberActionNode);
 
   return {
+    __typename: "AngelNumberAction",
     component: "NumberAction",
     data: {
       placeholder,
@@ -143,6 +145,7 @@ const getDropdownAction = (dropdownActionNode: Element) => {
   });
 
   return {
+    __typename: "AngelDropdownAction",
     component: "DropdownAction",
     data: {
       label,
@@ -159,6 +162,7 @@ const getSwitchAction = (switchActionNode: Element) => {
     switchActionNode.getAttribute("defaultvalue") == "true" ? true : false;
 
   return {
+    __typename: "AngelSwitchAction",
     component: "SwitchAction",
     data: {
       label,
@@ -200,6 +204,7 @@ const getMultiAction = (multiActionNode: Element) => {
   const api = parseApi(multiActionNode);
 
   return {
+    __typename: "AngelMultiAction",
     component: "MultiAction",
     data: {
       key,
@@ -231,6 +236,7 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
   });
 
   return {
+    __typename: "AngelNumberActionSet",
     component: "NumberActionSet",
     data: {
       link: links && links[0],
@@ -260,6 +266,7 @@ const getTextActionSet = (textActionSetNode: Element) => {
   const api = parseApi(textActionSetNode);
 
   return {
+    __typename: "AngelTextActionSet",
     component: "TextActionSet",
     data: {
       link: links && links[0],
@@ -283,6 +290,7 @@ const getTextAction = (textActionNode: Element) => {
   const api = parseApi(textActionNode);
 
   return {
+    __typename: "AngelTextAction",
     component: "TextAction",
     data: {
       placeholder,
@@ -404,18 +412,21 @@ const getAction = (containerElement: Element) => {
 };
 
 interface BinaryExpression {
+  __typename: string;
   type: string;
   key: string;
   value: string;
 }
 
 interface UnaryExpression {
+  __typename: string;
   type: string;
 }
 
 type SingleExpression = UnaryExpression | BinaryExpression;
 
 interface MultipleExpressions {
+  __typename: string;
   type: "AND" | "OR";
   subExpressions: Expression[];
 }
@@ -434,6 +445,7 @@ const parseExpression = (expression: string): Expression | null => {
     }
 
     return {
+      __typename: "AngelExpressionMultiple",
       type: "AND",
       subExpressions: [
         parseExpression(splitted[1].trim()),
@@ -450,6 +462,7 @@ const parseExpression = (expression: string): Expression | null => {
     }
 
     return {
+      __typename: "AngelExpressionMultiple",
       type: "OR",
       subExpressions: [
         parseExpression(splitted[1].trim()),
@@ -462,6 +475,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split("==");
 
     return {
+      __typename: "AngelExpressionBinary",
       type: "EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -472,6 +486,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split(">=");
 
     return {
+      __typename: "AngelExpressionBinary",
       type: "MORE_THAN_OR_EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -482,6 +497,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split("<=");
 
     return {
+      __typename: "AngelExpressionBinary",
       type: "LESS_THAN_OR_EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -492,6 +508,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split(">");
 
     return {
+      __typename: "AngelExpressionBinary",
       type: "MORE_THAN",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -502,6 +519,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split("<");
 
     return {
+      __typename: "AngelExpressionBinary",
       type: "LESS_THAN",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -511,6 +529,7 @@ const parseExpression = (expression: string): Expression | null => {
   if (expression.includes("!=")) {
     const splitted = expression.split("!=");
     return {
+      __typename: "AngelExpressionBinary",
       type: "NOT_EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -519,12 +538,14 @@ const parseExpression = (expression: string): Expression | null => {
 
   if (expression == "true") {
     return {
+      __typename: "AngelExpressionUnary",
       type: "ALWAYS"
     };
   }
 
   if (expression == "false") {
     return {
+      __typename: "AngelExpressionUnary",
       type: "NEVER"
     };
   }
@@ -570,6 +591,7 @@ const getResponse = (passageName: string, containerElement: Element) => {
   }
 
   return {
+    __typename: "AngelMessage",
     expressions: [],
     text: `{${passageName}Result}`
   };
@@ -581,6 +603,7 @@ const parseEach = (element: Element) => {
   const content = parsePossibleExpressionContent(element);
 
   return {
+    __typename: "AngelGroupedResponseEach",
     key,
     content
   };
@@ -592,10 +615,11 @@ const parseGroupedResponse = (element: Element) => {
   const each = element.getElementsByTagName("each")[0];
 
   return {
+    __typename: "AngelGroupedResponse",
     component: "GroupedResponse",
     title: parsePossibleExpressionContent(title),
     items: items.map(parsePossibleExpressionContent),
-    each: each && parseEach(each)
+    each: (each && parseEach(each)) || []
   };
 };
 
@@ -631,6 +655,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
     const errorLinks = parseLinks(error || "");
 
     return {
+      __typename: "AngelApiPersonalInformation",
       component: "PersonalInformationApi",
       data: {
         match: matchLinks && matchLinks[0],
@@ -661,6 +686,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
     const errorLinks = parseLinks(error || "");
 
     return {
+      __typename: "AngelApiHouseInformation",
       component: "HouseInformationApi",
       data: {
         match: matchLinks && matchLinks[0],
@@ -689,6 +715,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
     const errorLinks = parseLinks(error || "");
 
     return {
+      __typename: "AngelApiCreateQuote",
       component: "CreateQuoteApi",
       data: {
         uwlimits: uwlimitsLinks && uwlimitsLinks[0],
@@ -744,17 +771,44 @@ export const parseStoryData = (storyData: any) => ({
 
     const redirects = Array.from(
       containerElement.getElementsByTagName("redirect")
-    ).map(redirect => {
-      redirect.getAttribute;
-      const whenAttribute = redirect.getAttribute("when");
-      const toAttribute = redirect.getAttribute("to");
-      const links = parseLinks(toAttribute || "");
+    )
+      .map(redirect => {
+        redirect.getAttribute;
+        const whenAttribute = redirect.getAttribute("when");
+        const toAttribute = redirect.getAttribute("to");
+        const links = parseLinks(toAttribute || "");
 
-      return {
-        ...parseExpression(whenAttribute || ""),
-        to: links && links[0].name
-      };
-    });
+        const expression = parseExpression(whenAttribute || "");
+
+        if (!expression || !links) {
+          return null;
+        }
+
+        console.log(expression.__typename);
+
+        if (expression.__typename === "AngelExpressionUnary") {
+          return {
+            ...expression,
+            __typename: "AngelRedirectUnaryExpression",
+            to: links[0].name
+          };
+        }
+
+        if (expression.__typename === "AngelExpressionBinary") {
+          return {
+            ...expression,
+            __typename: "AngelRedirectBinaryExpression",
+            to: links[0].name
+          };
+        }
+
+        return {
+          ...expression,
+          __typename: "AngelRedirectMultipleExpressions",
+          to: links[0].name
+        };
+      })
+      .filter(item => item);
 
     const externalRedirect = parseExternalRedirect(containerElement);
 

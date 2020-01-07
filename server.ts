@@ -6,6 +6,9 @@ import * as cors from "@koa/cors";
 import { JSDOM } from "jsdom";
 import { parseStoryData } from "./src/parseStoryData";
 import { storyKeywords } from "./src/storyKeywords";
+import * as graphqlHTTP from "koa-graphql";
+
+import { schema } from "./schema";
 
 declare global {
   namespace NodeJS {
@@ -20,6 +23,16 @@ global.document = new JSDOM("<html></html").window.document;
 const app = new Koa();
 app.use(cors());
 app.use(mount("/assets", serve(__dirname + "/src/Assets")));
+
+app.use(
+  mount(
+    "/graphql",
+    graphqlHTTP({
+      schema,
+      graphiql: true
+    })
+  )
+);
 
 app.use(
   mount("/client.js", async ctx => {
