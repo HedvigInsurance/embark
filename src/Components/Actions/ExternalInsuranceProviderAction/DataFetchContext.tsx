@@ -3,14 +3,13 @@ import { Provider } from "./providers";
 import { ApiContext } from "../../API/ApiContext";
 import {
   ExternalInsuranceProviderEventEmitter,
-  ExternalInsuranceProviderStatus,
   ExternalInsuranceProviderData
 } from "../../API/externalInsuranceProviderData";
 import EventEmitter from "eventemitter3";
 
 export interface DataFetchOperation {
   id: string;
-  status?: ExternalInsuranceProviderStatus;
+  data?: ExternalInsuranceProviderData;
   provider: Provider;
 }
 
@@ -43,7 +42,7 @@ export const DataFetchContextProvider: React.FC = ({ children }) => {
         if (operation) {
           setOperation({
             ...operation,
-            status: data.status
+            data
           });
         }
       };

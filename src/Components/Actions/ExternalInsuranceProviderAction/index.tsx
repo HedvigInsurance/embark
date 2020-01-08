@@ -15,7 +15,7 @@ import { Animator } from "./Animator";
 import uuid from "uuid/v1";
 import { SkipButton } from "./Components/SkipButton";
 import { BackgroundFetchStep } from "./BackgroundFetchStep";
-import { DataFetchContext, DataFetchStatus } from "./DataFetchContext";
+import { DataFetchContext } from "./DataFetchContext";
 
 const Container = styled.div`
   display: flex;
@@ -166,7 +166,6 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
       }}
     />,
     <AuthStep
-      requiresQRAuth={true}
       key="EXTERNAL_AUTH"
       onDone={() => {
         setState({

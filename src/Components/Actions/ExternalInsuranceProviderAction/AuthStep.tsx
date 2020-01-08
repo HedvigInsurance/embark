@@ -22,15 +22,16 @@ const Title = styled.h4`
   margin-top: 15px;
 `;
 
+const QRImage = styled.img`
+  width: 150px;
+  height: 150px;
+`;
+
 interface AuthStepProps {
-  requiresQRAuth: boolean;
   onDone: () => void;
 }
 
-export const AuthStep: React.FC<AuthStepProps> = ({
-  requiresQRAuth,
-  onDone
-}) => {
+export const AuthStep: React.FC<AuthStepProps> = ({ onDone }) => {
   const {
     externalInsuranceProviderAuthScanBankID,
     externalInsuranceProviderAuthOpenBankId
@@ -38,20 +39,26 @@ export const AuthStep: React.FC<AuthStepProps> = ({
   const { operation } = React.useContext(DataFetchContext);
 
   React.useEffect(() => {
-    if (!operation?.status) {
+    if (!operation?.data?.status) {
       return;
     }
 
-    if (operation?.status != ExternalInsuranceProviderStatus.REQUIRES_AUTH) {
+    if (
+      operation?.data?.status != ExternalInsuranceProviderStatus.REQUIRES_AUTH
+    ) {
       onDone();
     }
   }, [operation]);
 
   return (
     <Container>
-      {requiresQRAuth ? <DummyQRCode /> : <BankID />}
+      {operation?.data?.imageValue ? (
+        <QRImage src={operation?.data?.imageValue} />
+      ) : (
+        <BankID />
+      )}
       <Title>
-        {requiresQRAuth
+        {operation?.data?.imageValue
           ? externalInsuranceProviderAuthScanBankID
           : externalInsuranceProviderAuthOpenBankId}
       </Title>

@@ -35,12 +35,12 @@ export const SetupStep: React.FC<SetupStepProps> = ({ provider, onSetup }) => {
   );
 
   React.useEffect(() => {
-    if (!operation?.status) {
-      return;
-    }
-
-    if (operation?.status !== ExternalInsuranceProviderStatus.CONNECTING) {
-      onSetup();
+    if (
+      operation?.data?.status !== ExternalInsuranceProviderStatus.CONNECTING
+    ) {
+      if (operation?.data?.status) {
+        onSetup();
+      }
     }
   }, [operation]);
 

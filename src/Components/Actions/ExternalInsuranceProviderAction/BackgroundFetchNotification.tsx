@@ -50,8 +50,8 @@ export const BackgroundFetchNotification = () => {
 
   React.useEffect(() => {
     if (
-      operation?.status !== ExternalInsuranceProviderStatus.FETCHING &&
-      operation?.status !== ExternalInsuranceProviderStatus.COMPLETED
+      operation?.data?.status !== ExternalInsuranceProviderStatus.FETCHING &&
+      operation?.data?.status !== ExternalInsuranceProviderStatus.COMPLETED
     ) {
       setHidden(true);
       setCurrentOperation(operation);
@@ -92,13 +92,13 @@ export const BackgroundFetchNotification = () => {
             <Body>
               <Title>{currentOperation.provider.name}</Title>
               <Subtitle>
-                {currentOperation.status ==
+                {currentOperation.data?.status ==
                 ExternalInsuranceProviderStatus.FETCHING
                   ? "Vi hämtar din försäkring..."
                   : `Vi hittade din försäkring hos ${currentOperation.provider.name}.`}
               </Subtitle>
             </Body>
-            {currentOperation.status ==
+            {currentOperation.data?.status ==
               ExternalInsuranceProviderStatus.FETCHING && (
               <Loading addBorder size="small" />
             )}
