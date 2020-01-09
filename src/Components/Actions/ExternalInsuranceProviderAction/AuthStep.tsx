@@ -2,7 +2,6 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { fonts } from "@hedviginsurance/brand";
 import { BankID } from "../../Icons/BankID";
-import { DummyQRCode } from "../../Icons/DummyQRCode";
 import { KeywordsContext } from "../../KeywordsContext";
 import { DataFetchContext } from "./DataFetchContext";
 import { ExternalInsuranceProviderStatus } from "../../API/externalInsuranceProviderData";

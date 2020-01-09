@@ -2,6 +2,7 @@ import * as React from "react";
 import { fonts, colorsV2 } from "@hedviginsurance/brand";
 import styled from "@emotion/styled";
 import { KeywordsContext } from "../../KeywordsContext";
+import { ApiContext } from "../../API/ApiContext";
 
 import { ProviderRow } from "./Components/ProviderRow";
 import { providers, Provider } from "./providers";
@@ -57,29 +58,62 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
   otherProviderModalText,
   otherProviderModalButton
 }) => {
+  const { externalInsuranceProviderProviderStatus } = React.useContext(
+    ApiContext
+  );
   const {
     externalInsuranceProviderSelectTitle,
     externalInsuranceProviderOtherProviderButton
   } = React.useContext(KeywordsContext);
   const [modalOpened, setModalOpened] = React.useState(false);
   const [modalResult, setModalResult] = React.useState<Provider | undefined>();
+  const [functionalProviders, setFunctionalProviders] = React.useState<
+    Provider[] | undefined
+  >();
+
+  React.useEffect(() => {
+    externalInsuranceProviderProviderStatus().then(statuses => {
+      setFunctionalProviders(
+        statuses
+          .filter(status => status.functional)
+          .map(status =>
+            providers.find(
+              provider => provider.externalCollectionId === status.id
+            )
+          )
+          .filter(item => item) as Provider[]
+      );
+    });
+  }, []);
+
+  const onClickRow = (provider: Provider) => {
+    if (
+      onlyAcceptProvidersWithExternalCapabilities &&
+      !provider.hasExternalCapabilities
+    ) {
+      setModalOpened(true);
+      setModalResult(provider);
+    } else {
+      if (!functionalProviders) {
+        return;
+      }
+
+      if (!functionalProviders.includes(provider)) {
+        setModalResult(undefined);
+        setModalOpened(true);
+        return;
+      }
+
+      onPickProvider(provider);
+    }
+  };
 
   return (
     <Container>
       <Title>{externalInsuranceProviderSelectTitle}</Title>
       {providers.map(provider => (
         <ProviderRow
-          onClick={() => {
-            if (
-              onlyAcceptProvidersWithExternalCapabilities &&
-              !provider.hasExternalCapabilities
-            ) {
-              setModalOpened(true);
-              setModalResult(provider);
-            } else {
-              onPickProvider(provider);
-            }
-          }}
+          onClick={() => onClickRow(provider)}
           name={provider.name}
           icon={provider.icon && provider.icon({ forceWidth: true })}
         />

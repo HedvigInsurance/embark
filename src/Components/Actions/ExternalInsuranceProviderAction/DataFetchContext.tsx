@@ -62,7 +62,17 @@ export const DataFetchContextProvider: React.FC = ({ children }) => {
       value={{
         operation,
         startSession: (id, provider, personalNumber) => {
-          setSession(externalInsuranceProviderStartSession(id, personalNumber));
+          if (!provider.externalCollectionId) {
+            throw new Error("can't initiate a session for this provider");
+          }
+
+          setSession(
+            externalInsuranceProviderStartSession(
+              id,
+              provider.externalCollectionId,
+              personalNumber
+            )
+          );
           setOperation({
             id,
             provider

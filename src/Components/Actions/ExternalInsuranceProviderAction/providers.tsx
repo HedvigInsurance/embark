@@ -16,6 +16,7 @@ const Icon = styled.div<{ width: number; forceWidth: boolean }>`
 export interface Provider {
   id: string;
   name: string;
+  externalCollectionId?: string;
   icon?: (props: IconProps) => React.ReactNode;
   hasExternalCapabilities: boolean;
 }
@@ -27,6 +28,7 @@ interface IconProps {
 export const providers = [
   {
     id: "if",
+    externalCollectionId: "IF",
     name: "If",
     hasExternalCapabilities: true,
     icon: ({ forceWidth }: IconProps) => (
@@ -42,6 +44,7 @@ export const providers = [
   },
   {
     id: "Trygg-Hansa",
+    externalCollectionId: "TRYGGHANSA",
     name: "Trygg Hansa",
     hasExternalCapabilities: true,
     icon: ({ forceWidth }: IconProps) => (
@@ -58,6 +61,7 @@ export const providers = [
   },
   {
     id: "Folksam",
+    externalCollectionId: "FOLKSAM",
     name: "Folksam",
     hasExternalCapabilities: true,
     icon: ({ forceWidth }: IconProps) => (
@@ -73,6 +77,7 @@ export const providers = [
   },
   {
     id: "Länsförsäkringar",
+    externalCollectionId: "LANSFORSAKRINGAR",
     name: "Länsförsäkringar",
     hasExternalCapabilities: true,
     icon: ({ forceWidth }: IconProps) => (
@@ -89,6 +94,7 @@ export const providers = [
   },
   {
     id: "Moderna",
+    externalCollectionId: "MODERNA",
     name: "Moderna",
     hasExternalCapabilities: true,
     icon: ({ forceWidth }: IconProps) => (
@@ -132,6 +138,7 @@ export const providers = [
   },
   {
     id: "Dina Försäkringar",
+    externalCollectionId: "DINA",
     name: "Dina Försäkringar",
     hasExternalCapabilities: true,
     icon: ({ forceWidth }: IconProps) => (

@@ -22,8 +22,12 @@ export interface TApiContext {
   track: (eventName: string, payload: { [key: string]: any }) => void;
   externalInsuranceProviderStartSession: (
     id: string,
+    providerId: string,
     personalNumber: string
   ) => EventEmitter<ExternalInsuranceProviderEventEmitter>;
+  externalInsuranceProviderProviderStatus: () => Promise<
+    { id: string; functional: boolean }[]
+  >;
 }
 
 export const ApiContext = React.createContext<TApiContext>({
@@ -43,6 +47,11 @@ export const ApiContext = React.createContext<TApiContext>({
     throw Error(
       "Must provide an implementation for `externalInsuranceProviderStartSession`"
     );
+  },
+  externalInsuranceProviderProviderStatus: () => {
+    throw Error(
+      "Must provide an implementation for `externalInsuranceProviderProviderStatus`"
+    );
   }
 });
 
@@ -61,6 +70,17 @@ export const mockApiResolvers: TApiContext = {
   },
   track: (eventName, payload) => {
     console.log(`Tracking ${eventName} with payload:`, payload);
+  },
+  externalInsuranceProviderProviderStatus: async () => {
+    await timeout(300);
+
+    return [
+      { id: "FOLKSAM", functional: true },
+      { id: "DINA", functional: false },
+      { id: "TRYGGHANSA", functional: true },
+      { id: "LANSFORSAKRINGAR", functional: true },
+      { id: "IF", functional: true }
+    ];
   },
   externalInsuranceProviderStartSession: () => {
     const eventEmitter = new EventEmitter<
