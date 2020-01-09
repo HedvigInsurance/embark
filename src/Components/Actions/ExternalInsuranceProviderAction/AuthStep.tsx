@@ -43,7 +43,7 @@ export const AuthStep: React.FC<AuthStepProps> = ({ onDone }) => {
     }
 
     if (
-      operation?.data?.status != ExternalInsuranceProviderStatus.REQUIRES_AUTH
+      operation?.data?.status !== ExternalInsuranceProviderStatus.REQUIRES_AUTH
     ) {
       onDone();
     }

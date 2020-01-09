@@ -58,7 +58,7 @@ export const BackgroundFetchNotification = () => {
       return;
     }
 
-    if (currentOperation == null) {
+    if (currentOperation === null) {
       setHidden(false);
       setCurrentOperation(operation);
     } else {
@@ -92,13 +92,13 @@ export const BackgroundFetchNotification = () => {
             <Body>
               <Title>{currentOperation.provider.name}</Title>
               <Subtitle>
-                {currentOperation.data?.status ==
+                {currentOperation.data?.status ===
                 ExternalInsuranceProviderStatus.FETCHING
                   ? "Vi hämtar din försäkring..."
                   : `Vi hittade din försäkring hos ${currentOperation.provider.name}.`}
               </Subtitle>
             </Body>
-            {currentOperation.data?.status ==
+            {currentOperation.data?.status ===
               ExternalInsuranceProviderStatus.FETCHING && (
               <Loading addBorder size="small" />
             )}
