@@ -2,11 +2,8 @@ import * as React from "react";
 import { fonts, colorsV2 } from "@hedviginsurance/brand";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import {
-  BackgroundFetchContext,
-  BackgroundFetchOperation,
-  BackgroundFetchStatus
-} from "./BackgroundFetchContext";
+import { DataFetchContext, DataFetchOperation } from "./DataFetchContext";
+import { ExternalInsuranceProviderStatus } from "../../API/externalInsuranceProviderData";
 import { Loading } from "../../API/Loading";
 
 const Container = styled.div`
@@ -43,22 +40,25 @@ const Subtitle = styled.p`
 `;
 
 export const BackgroundFetchNotification = () => {
-  const { operation } = React.useContext(BackgroundFetchContext);
+  const { operation } = React.useContext(DataFetchContext);
 
   const [
     currentOperation,
     setCurrentOperation
-  ] = React.useState<BackgroundFetchOperation | null>(null);
+  ] = React.useState<DataFetchOperation | null>(null);
   const [hidden, setHidden] = React.useState(true);
 
   React.useEffect(() => {
-    if (!operation) {
+    if (
+      operation?.data?.status !== ExternalInsuranceProviderStatus.FETCHING &&
+      operation?.data?.status !== ExternalInsuranceProviderStatus.COMPLETED
+    ) {
       setHidden(true);
       setCurrentOperation(operation);
       return;
     }
 
-    if (currentOperation == null) {
+    if (currentOperation === null) {
       setHidden(false);
       setCurrentOperation(operation);
     } else {
@@ -66,7 +66,7 @@ export const BackgroundFetchNotification = () => {
       setTimeout(() => {
         setHidden(false);
         setCurrentOperation(operation);
-      }, 500);
+      }, 1000);
     }
   }, [operation]);
 
@@ -92,12 +92,14 @@ export const BackgroundFetchNotification = () => {
             <Body>
               <Title>{currentOperation.provider.name}</Title>
               <Subtitle>
-                {currentOperation.status == BackgroundFetchStatus.ONGOING
+                {currentOperation.data?.status ===
+                ExternalInsuranceProviderStatus.FETCHING
                   ? "Vi hämtar din försäkring..."
-                  : "Vi har hämtat..."}
+                  : `Vi hittade din försäkring hos ${currentOperation.provider.name}.`}
               </Subtitle>
             </Body>
-            {currentOperation.status == BackgroundFetchStatus.ONGOING && (
+            {currentOperation.data?.status ===
+              ExternalInsuranceProviderStatus.FETCHING && (
               <Loading addBorder size="small" />
             )}
           </>

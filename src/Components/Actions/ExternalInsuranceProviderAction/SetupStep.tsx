@@ -5,6 +5,8 @@ import { Loading } from "../../API/Loading";
 import { Provider } from "./providers";
 import { KeywordsContext } from "../../KeywordsContext";
 import { replacePlaceholders } from "../../Common";
+import { DataFetchContext } from "./DataFetchContext";
+import { ExternalInsuranceProviderStatus } from "../../API/externalInsuranceProviderData";
 
 const Container = styled.div`
   display: flex;
@@ -27,18 +29,20 @@ interface SetupStepProps {
 }
 
 export const SetupStep: React.FC<SetupStepProps> = ({ provider, onSetup }) => {
+  const { operation } = React.useContext(DataFetchContext);
   const { externalInsuranceProviderSetupTitle } = React.useContext(
     KeywordsContext
   );
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      onSetup();
-    }, 3000);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+  React.useEffect(() => {
+    if (
+      operation?.data?.status !== ExternalInsuranceProviderStatus.CONNECTING
+    ) {
+      if (operation?.data?.status) {
+        onSetup();
+      }
+    }
+  }, [operation]);
 
   return (
     <Container>
