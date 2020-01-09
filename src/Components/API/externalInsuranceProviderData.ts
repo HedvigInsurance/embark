@@ -1,9 +1,9 @@
 export enum ExternalInsuranceProviderStatus {
-  CONNECTING,
-  REQUIRES_AUTH,
-  FAILED,
-  FETCHING,
-  COMPLETED
+  CONNECTING = "CONNECTING",
+  REQUIRES_AUTH = "REQUIRES_AUTH",
+  FAILED = "FAILED",
+  FETCHING = "FETCHING",
+  COMPLETED = "COMPLETED"
 }
 
 interface MonetaryAmount {
