@@ -8,6 +8,9 @@
     "externalInsuranceProviderBackgroundFetchBody": "Vi hämtar nu data från {provider} i bakgrunden, fortsätt genom att svar på några till frågor.",
     "externalInsuranceProviderBackgroundFetchTitle": "Toppen!",
     "externalInsuranceProviderContinueButton": "Fortsätt",
+    "externalInsuranceProviderFailureButton": "Försök igen",
+    "externalInsuranceProviderFailureMessage": "Vi kunde tyvärr inte hämta din försäkringsdata från ditt gamla försäkringsbolag",
+    "externalInsuranceProviderFailureTitle": "Något gick fel!",
     "externalInsuranceProviderGoBackButton": "Tillbaka",
     "externalInsuranceProviderOtherProviderButton": "Annat bolag",
     "externalInsuranceProviderOtherProviderModal": "Vi har ännu ingen koppling till ditt gamla försäkringsbolag, men vi kan skapa ett försäkringförslag åt dig ändå!",
@@ -21,7 +24,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-08T09:39:05.615Z",
+  "lastUpdate": "2020-01-09T14:28:23.273Z",
   "name": "Switcher Onboarding Playground",
   "partnerConfigs": [
     {
