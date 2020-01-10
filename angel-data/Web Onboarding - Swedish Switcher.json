@@ -27,7 +27,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-10T16:20:13.483Z",
+  "lastUpdate": "2020-01-10T17:39:48.795Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -138,7 +138,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<ExternalInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Okej->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</ExternalInsuranceProviderAction>",
+      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<ExternalInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Fortsätt utan->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</ExternalInsuranceProviderAction>",
       "top": 325,
       "url": "/old-insurer",
       "width": 100
