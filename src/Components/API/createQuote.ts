@@ -105,6 +105,7 @@ export interface Variables {
     lastName: string;
     currentInsurer?: string;
     ssn: string;
+    email?: string;
     apartment?: {
       street: string;
       zipCode: string;

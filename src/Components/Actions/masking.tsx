@@ -3,10 +3,11 @@ import InputMask, { ReactInputMask } from "react-input-mask";
 import parse from "date-fns/parse";
 import differenceInYears from "date-fns/differenceInYears";
 
-export type MaskType = "PersonalNumber" | "PostalCode";
+export type MaskType = "PersonalNumber" | "PostalCode" | "Email";
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/;
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/;
+const EMAIL_REGEX = /^.+@.+\..+$/;
 
 export const isValid = (m: MaskType | undefined, value: string): boolean => {
   const unmaskedValue = unmaskValue(value, m);
@@ -18,10 +19,14 @@ export const isValid = (m: MaskType | undefined, value: string): boolean => {
     return POSTAL_CODE_REGEX.test(unmaskedValue);
   }
 
+  if (m === "Email") {
+    return EMAIL_REGEX.test(unmaskedValue);
+  }
+
   return true;
 };
 
-const resolveMask = (m: MaskType): string => {
+const resolveMask = (m?: MaskType): string => {
   if (m === "PersonalNumber") {
     return "999999-9999";
   }
@@ -87,7 +92,7 @@ export function wrapWithMask<T>(
   const PotentiallyMasked: React.FunctionComponent<MaskComponentProps &
     T> = props => {
     const { mask, onChange, onFocus, onBlur, value, inputRef, ...rest } = props;
-    if (mask) {
+    if (mask && mask !== "Email") {
       return (
         <InputMask
           maskChar={null}
