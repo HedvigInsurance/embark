@@ -68,7 +68,7 @@ export const BackgroundFetchNotification = () => {
         setCurrentOperation(operation);
       }, 1000);
     }
-  }, [operation]);
+  }, [operation?.data?.status]);
 
   return (
     <Container>

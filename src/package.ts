@@ -14,6 +14,8 @@ export {
   ExternalInsuranceProviderEventEmitter
 } from "./Components/API/externalInsuranceProviderData";
 
+export { providers as externalInsuranceProviders } from "./Components/Actions/ExternalInsuranceProviderAction/providers";
+
 export { Data as PersonalInformationData } from "./Components/API/personalInformation";
 export {
   Data as HouseInformationData,

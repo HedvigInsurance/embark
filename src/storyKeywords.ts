@@ -2,6 +2,12 @@ export const storyKeywords = {
   selectActionSelectLabel: "Select action - select label",
   tooltipModalInformationLabel: "Tooltip modal - information label",
   backButton: "Back button",
+  externalInsuranceProviderFailureTitle:
+    "External insurance provider - Failure Title",
+  externalInsuranceProviderFailureMessage:
+    "External insurance provider - Failure Message",
+  externalInsuranceProviderFailureButton:
+    "External insurance provider - Failure Button",
   externalInsuranceProviderSelectTitle:
     "External insurance provider - Select Title",
   externalInsuranceProviderPersonalNumberTitle:
