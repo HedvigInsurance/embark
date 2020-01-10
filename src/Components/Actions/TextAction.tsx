@@ -97,7 +97,7 @@ export const TextAction: React.FunctionComponent<Props> = props => {
         <Masked
           inputRef={inputRef}
           mask={props.mask}
-          type="text"
+          type={props.mask === "Email" ? "email" : "text"}
           size={Math.max(props.placeholder.length, textValue.length)}
           placeholder={props.placeholder}
           value={textValue}
