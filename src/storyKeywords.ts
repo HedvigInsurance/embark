@@ -2,6 +2,16 @@ export const storyKeywords = {
   selectActionSelectLabel: "Select action - select label",
   tooltipModalInformationLabel: "Tooltip modal - information label",
   backButton: "Back button",
+  externalInsuranceProviderConfirmTitle:
+    "External insurance provider - Confirm Title",
+  externalInsuranceProviderConfirmPrivacyPolicy:
+    "External insurance provider - Confirm Privacy Policy",
+  externalInsuranceProviderConfirmMessage:
+    "External insurance provider - Confirm Message",
+  externalInsuranceProviderConfirmButton:
+    "External insurance provider - Confirm Button",
+  externalInsuranceProviderConfirmRejectButton:
+    "External insurance provider - Confirm Reject Button",
   externalInsuranceProviderFailureTitle:
     "External insurance provider - Failure Title",
   externalInsuranceProviderFailureMessage:
@@ -16,10 +26,6 @@ export const storyKeywords = {
     "External insurance provider - Personal Number Subtitle",
   externalInsuranceProviderOtherProviderButton:
     "External insurance provider - Other provider button",
-  externalInsuranceProviderOtherProviderModal:
-    "External insurance provider - Other provider modal",
-  externalInsuranceProviderOtherProviderModalButton:
-    "External insurance provider - Other provider modal button",
   externalInsuranceProviderGoBackButton:
     "External insurance provider - Go back button",
   externalInsuranceProviderContinueButton:

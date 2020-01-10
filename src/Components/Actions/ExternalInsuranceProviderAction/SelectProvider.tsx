@@ -48,22 +48,20 @@ const OtherText = styled.p`
 interface SelectProviderProps {
   onPickProvider: (provider?: Provider) => void;
   onlyAcceptProvidersWithExternalCapabilities: boolean;
-  otherProviderModalText: string;
-  otherProviderModalButton: string;
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
   onPickProvider,
-  onlyAcceptProvidersWithExternalCapabilities,
-  otherProviderModalText,
-  otherProviderModalButton
+  onlyAcceptProvidersWithExternalCapabilities
 }) => {
   const { externalInsuranceProviderProviderStatus } = React.useContext(
     ApiContext
   );
   const {
     externalInsuranceProviderSelectTitle,
-    externalInsuranceProviderOtherProviderButton
+    externalInsuranceProviderOtherProviderButton,
+    previousInsuranceProviderOtherProviderModal,
+    previousInsuranceProviderOtherProviderModalButton
   } = React.useContext(KeywordsContext);
   const [modalOpened, setModalOpened] = React.useState(false);
   const [modalResult, setModalResult] = React.useState<Provider | undefined>();
@@ -91,17 +89,14 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
       onlyAcceptProvidersWithExternalCapabilities &&
       !provider.hasExternalCapabilities
     ) {
-      setModalOpened(true);
-      setModalResult(provider);
+      onPickProvider(provider);
     } else {
       if (!functionalProviders) {
         return;
       }
 
       if (!functionalProviders.includes(provider)) {
-        setModalResult(undefined);
-        setModalOpened(true);
-        return;
+        provider.hasExternalCapabilities = false;
       }
 
       onPickProvider(provider);
@@ -127,11 +122,11 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
         {externalInsuranceProviderOtherProviderButton}
       </OtherButton>
       <Modal isVisible={modalOpened} onClose={() => setModalOpened(false)}>
-        <OtherText>{otherProviderModalText}</OtherText>
+        <OtherText>{previousInsuranceProviderOtherProviderModal}</OtherText>
         <ContinueButton
           disabled={false}
           onClick={() => onPickProvider(modalResult)}
-          text={otherProviderModalButton}
+          text={previousInsuranceProviderOtherProviderModalButton}
         />
       </Modal>
     </Container>
