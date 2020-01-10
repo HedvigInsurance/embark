@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-12T12:06:32.743Z",
+  "lastUpdate": "2020-01-10T13:03:54.835Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -96,6 +96,19 @@
       "text": "<Message>\n  Vad för typ av boende är det?\n</Message>\n\n<SelectAction>\n  <Option key=\"apartmentType\"\n          value=\"BRF\"\n  >\n    [[Bostadsrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Bostadsrätt\n      </Title>\n      <Description>\n        Du äger en bostadsrätt och behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Hyresrätt->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyresrätt\n      </Title>\n      <Description>\n        Du hyr en hyresrätt eller äger en bostadsrätt där du inte behöver bostadsrättstillägg\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[apartmentType,rentalType]\"\n          value=\"[RENT,apartment]\"\n  >\n    [[Hyr i andra hand->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Hyr i andra hand\n      </Title>\n      <Description>\n        Du hyr en bostadsrätt eller hyresrätt i andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/apartment-type",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-1476752317",
+      "left": 1600,
+      "name": "emailAdressApartment",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [],
+      "text": "<Message>\n  Super! Skriv in din email adress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->StudentEligibilityCheck]]\"\n>\n</TextAction>",
+      "top": 1100,
+      "url": "/email-adress",
       "width": 100
     },
     {
@@ -390,7 +403,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->StudentEligibilityCheck]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->emailAdressApartment]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 950,
       "url": "/manual-address",
       "width": 100
@@ -424,13 +437,13 @@
     {
       "height": 100,
       "id": "1950569822",
-      "left": 1750,
+      "left": 1600,
       "name": "StudentEligibilityCheck",
       "selected": false,
       "story": "1180341409",
       "tags": [],
       "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
-      "top": 1100,
+      "top": 1250,
       "url": "/student",
       "width": 100
     },
@@ -444,7 +457,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->StudentEligibilityCheck]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->emailAdressApartment]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/manual-address",
       "width": 100
@@ -511,7 +524,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->StudentEligibilityCheck]]\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Toppen! Är det bostaden på {streetAddress} du vill ha ett prisförslag för?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja->emailAdressApartment]]\n  </Option>\n  <Option>\n    [[Nej->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/confirm-address",
       "width": 100
@@ -536,7 +549,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hej! Låt oss ta fram ett prisförslag, det tar bara 1 minut\n</Message>\n\n<Message>\n  Vilken typ av bostad vill du ha ett förslag för?\n</Message>\n\n<Track name=\"Start\">\n</Track>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hej! Låt oss ta fram ett prisförslag, det tar bara 1 minut\n</Message>\n\n<Message>\n  Vilken typ av bostad vill du ha ett förslag för?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 100,
       "url": "/welcome",
       "width": 200
