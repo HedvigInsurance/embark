@@ -89,7 +89,7 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
       <Subtitle>{externalInsuranceProviderPersonalNumberSubtitle}</Subtitle>
       <InputContainer>
         <PersonalNumberInput
-          placeholder="ååmmdd-yyyy"
+          placeholder="ååmmdd-xxxx"
           mask="PersonalNumber"
           value={value}
           onChange={e => {
