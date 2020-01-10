@@ -11,7 +11,7 @@
     "externalInsuranceProviderConfirmMessage": "Så kan du jämföra pris och skydd med Hedvig",
     "externalInsuranceProviderConfirmPrivacyPolicy": "Genom att klicka på \"Ja, tack!\" godkänner du att Hedvig hämtar data från {provider} i enlighet med vår {privacyUrl}",
     "externalInsuranceProviderConfirmRejectButton": "Skippa det",
-    "externalInsuranceProviderConfirmTitle": "Vill du hämta information om din nuvarande hemförsäkring hos {provider}",
+    "externalInsuranceProviderConfirmTitle": "Vill du hämta information om din nuvarande hemförsäkring hos {provider}?",
     "externalInsuranceProviderContinueButton": "Fortsätt",
     "externalInsuranceProviderFailureButton": "Försök igen",
     "externalInsuranceProviderFailureMessage": "Vi kunde tyvärr inte hämta din nuvarande försäkring",
@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-10T14:42:08.471Z",
+  "lastUpdate": "2020-01-10T14:54:39.310Z",
   "name": "Switcher Onboarding Playground",
   "partnerConfigs": [
     {
