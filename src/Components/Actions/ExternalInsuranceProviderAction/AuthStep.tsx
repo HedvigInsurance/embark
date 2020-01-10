@@ -4,7 +4,6 @@ import { fonts } from "@hedviginsurance/brand";
 import { BankID } from "../../Icons/BankID";
 import { KeywordsContext } from "../../KeywordsContext";
 import { DataFetchContext } from "./DataFetchContext";
-import { ExternalInsuranceProviderStatus } from "../../API/externalInsuranceProviderData";
 
 const Container = styled.div`
   display: flex;
@@ -26,28 +25,12 @@ const QRImage = styled.img`
   height: 150px;
 `;
 
-interface AuthStepProps {
-  onDone: () => void;
-}
-
-export const AuthStep: React.FC<AuthStepProps> = ({ onDone }) => {
+export const AuthStep: React.FC = () => {
   const {
     externalInsuranceProviderAuthScanBankID,
     externalInsuranceProviderAuthOpenBankId
   } = React.useContext(KeywordsContext);
   const { operation } = React.useContext(DataFetchContext);
-
-  React.useEffect(() => {
-    if (!operation?.data?.status) {
-      return;
-    }
-
-    if (
-      operation?.data?.status !== ExternalInsuranceProviderStatus.REQUIRES_AUTH
-    ) {
-      onDone();
-    }
-  }, [operation]);
 
   return (
     <Container>

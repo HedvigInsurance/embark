@@ -36,6 +36,7 @@ interface Quote {
   firstName: string;
   lastName: string;
   currentInsurer?: string;
+  dataCollectionId?: string;
   price: {
     amount: number;
     currency: string;
@@ -105,6 +106,7 @@ export interface Variables {
     lastName: string;
     currentInsurer?: string;
     ssn: string;
+    dataCollectionId?: string;
     apartment?: {
       street: string;
       zipCode: string;
