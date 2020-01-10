@@ -37,21 +37,15 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
   skipLink
 }) => {
   const { setValue } = React.useContext(StoreContext);
-  const {
-    externalInsuranceProviderOtherProviderButton,
-    previousInsuranceProviderOtherProviderModal,
-    previousInsuranceProviderOtherProviderModalButton
-  } = React.useContext(KeywordsContext);
+  const { externalInsuranceProviderOtherProviderButton } = React.useContext(
+    KeywordsContext
+  );
 
   return (
     <Container>
       <Card isFocused>
         <Content>
           <SelectProvider
-            otherProviderModalText={previousInsuranceProviderOtherProviderModal}
-            otherProviderModalButton={
-              previousInsuranceProviderOtherProviderModalButton
-            }
             onlyAcceptProvidersWithExternalCapabilities={false}
             onPickProvider={provider => {
               if (provider) {

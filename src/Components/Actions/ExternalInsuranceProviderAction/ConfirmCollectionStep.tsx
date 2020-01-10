@@ -115,7 +115,7 @@ export const ConfirmCollectionStep: React.FC<ConfirmCollectionStepProps> = ({
           {
             provider: provider.name,
             privacyUrl: (
-              <PrivacyLink href="https://hedvig.com/privacy">
+              <PrivacyLink href="https://hedvig.com/privacy" target="_blank">
                 Privacy Policy
               </PrivacyLink>
             )
