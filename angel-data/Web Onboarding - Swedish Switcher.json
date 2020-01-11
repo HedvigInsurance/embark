@@ -27,7 +27,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-10T17:39:48.795Z",
+  "lastUpdate": "2020-01-11T09:33:05.784Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -101,7 +101,7 @@
       "tags": [],
       "text": "<Message>\n  Super! Skriv in din email adress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
       "top": 2000,
-      "url": "email-address-villa",
+      "url": "/email-address-villa",
       "width": 100
     },
     {
@@ -138,7 +138,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<ExternalInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Fortsätt utan->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</ExternalInsuranceProviderAction>",
+      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Fortsätt utan->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 325,
       "url": "/old-insurer",
       "width": 100
