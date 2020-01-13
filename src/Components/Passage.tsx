@@ -18,7 +18,6 @@ import { ApiContext } from "./API/ApiContext";
 import { Loading } from "./API/Loading";
 import { callApi } from "./API";
 import animateScrollTo from "animated-scroll-to";
-import { BackgroundFetchNotification } from "./Actions/ExternalInsuranceProviderAction/BackgroundFetchNotification";
 
 interface PassageProps {
   passage: any;
@@ -365,7 +364,6 @@ export const Passage = (props: PassageProps) => {
           </BottomContent>
         </motion.div>
       </ChatPadding>
-      <BackgroundFetchNotification />
       {props.passage.tooltips.length !== 0 && (
         <Modal
           isVisible={isShowingHelp}

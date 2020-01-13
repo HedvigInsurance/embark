@@ -11,7 +11,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2019-12-12T12:50:48.202Z",
+  "lastUpdate": "2020-01-10T13:26:35.663Z",
   "name": "Web Onboarding - English Switcher",
   "partnerConfigs": [
     {
@@ -34,6 +34,19 @@
     }
   ],
   "passages": [
+    {
+      "height": 100,
+      "id": "-1035951696",
+      "left": 600,
+      "name": "emailAddressVilla",
+      "selected": false,
+      "story": "-1327401859",
+      "tags": [],
+      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
+      "top": 2000,
+      "url": "/email-adress-villa",
+      "width": 100
+    },
     {
       "height": 100,
       "id": "-1049930132",
@@ -118,13 +131,13 @@
     {
       "height": 100,
       "id": "-1490134887",
-      "left": 1800,
+      "left": 1700,
       "name": "StudentEligibilityCheck",
       "selected": false,
       "story": "-1327401859",
       "tags": [],
       "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
-      "top": 1500,
+      "top": 1550,
       "url": "/student",
       "width": 100
     },
@@ -136,7 +149,7 @@
       "selected": false,
       "story": "-1327401859",
       "tags": [],
-      "text": "<Message>\n  OK, then we know. Finally, we need some information about any extra buildings on the site, if you want them to be covered by the insurance\n</Message>\n\n<Message>\n  If you don't want to insure any extra buildings, just press Continue\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra buildings\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} square meters\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Continue->Offer]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Select type\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Guest house\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Sauna\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Boathouse\n      </Option>\n      <Option value=\"OTHER\">\n        Other\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"square meters\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Water connected\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
+      "text": "<Message>\n  OK, then we know. Finally, we need some information about any extra buildings on the site, if you want them to be covered by the insurance\n</Message>\n\n<Message>\n  If you don't want to insure any extra buildings, just press Continue\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Extra buildings\n  </Title>\n  <Each key=\"extraBuildings\">\n    {type.Label}, {area} square meters\n  </Each>\n</GroupedResponse>\n\n<MultiAction maxamount=\"4\"\n             key=\"extraBuildings\"\n             next=\"[[Continue->emailAddressVilla]]\"\n>\n  <Add label=\"Add building\">\n    <DropdownAction key=\"type\"\n                    label=\"Select type\"\n    >\n      <Option value=\"GARAGE\">\n        Garage\n      </Option>\n      <Option value=\"ATTEFALL\">\n        Attefall\n      </Option>\n      <Option value=\"FRIGGEBOD\">\n        Friggebod\n      </Option>\n      <Option value=\"GUESTHOUSE\">\n        Guest house\n      </Option>\n      <Option value=\"CARPORT\">\n        Carport\n      </Option>\n      <Option value=\"SAUNA\">\n        Sauna\n      </Option>\n      <Option value=\"BOATHOUSE\">\n        Boathouse\n      </Option>\n      <Option value=\"OTHER\">\n        Other\n      </Option>\n    </DropdownAction>\n    <NumberAction placeholder=\"20\"\n                  key=\"area\"\n                  unit=\"square meters\"\n    >\n    </NumberAction>\n    <SwitchAction key=\"hasWaterConnected\"\n                  label=\"Water connected\"\n                  defaultvalue=\"false\"\n    >\n    </SwitchAction>\n  </Add>\n</MultiAction>",
       "top": 1850,
       "url": "/extra-buildings",
       "width": 100
@@ -222,7 +235,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  <When expression=\"isMover == 'true'\">\n    What address are you moving to?\n  </When>\n  <When expression=\"isMover == 'false'\">\n    No worries! What address do you want an offer for?\n  </When>\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->StudentEligibilityCheck]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  <When expression=\"isMover == 'true'\">\n    What address are you moving to?\n  </When>\n  <When expression=\"isMover == 'false'\">\n    No worries! What address do you want an offer for?\n  </When>\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->emailAddressApartment]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 1250,
       "url": "/new-address",
       "width": 100
@@ -230,7 +243,7 @@
     {
       "height": 100,
       "id": "-1847031715",
-      "left": 1600,
+      "left": 1575,
       "name": "StudentRentQuestion",
       "selected": false,
       "story": "-1327401859",
@@ -307,7 +320,7 @@
       "selected": false,
       "story": "-1327401859",
       "tags": [],
-      "text": "<Message>\n  Great! Is it the residence at {streetAddress} you want to have an offer for?\n</Message>\n\n<Redirect when=\"isMover == 'true'\"\n          to=\"[[newStreetAddressApartment]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Yes->StudentEligibilityCheck]]\n  </Option>\n  <Option>\n    [[No->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Great! Is it the residence at {streetAddress} you want to have an offer for?\n</Message>\n\n<Redirect when=\"isMover == 'true'\"\n          to=\"[[newStreetAddressApartment]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option>\n    [[Yes->emailAddressApartment]]\n  </Option>\n  <Option>\n    [[No->newStreetAddressApartment]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/confirm-address",
       "width": 100
@@ -328,7 +341,7 @@
     {
       "height": 100,
       "id": "-950364610",
-      "left": 1600,
+      "left": 1575,
       "name": "StudentBrfQuestion",
       "selected": false,
       "story": "-1327401859",
@@ -351,6 +364,19 @@
       "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1213164599",
+      "left": 1700,
+      "name": "emailAddressApartment",
+      "selected": false,
+      "story": "-1327401859",
+      "tags": [],
+      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->StudentEligibilityCheck]]\"\n>\n</TextAction>",
+      "top": 1400,
+      "url": "/email-address",
       "width": 100
     },
     {
@@ -473,7 +499,7 @@
       "tags": [
         "Manual"
       ],
-      "text": "<Message>\n  What address do you want an offer for?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->StudentEligibilityCheck]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  What address do you want an offer for?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->emailAddressApartment]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 1100,
       "url": "/manual-address",
       "width": 100
@@ -512,7 +538,7 @@
       "selected": false,
       "story": "-1327401859",
       "tags": [],
-      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace >= 250 || ancillaryArea >= 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction <= 1926\"\n>\n</Redirect>\n\n<Message>\n  How many bathrooms are there in the house?\n</Message>\n\n<Message>\n  MindreBathrooms do not include smaller guest toilets without shower/bathtub\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 bathroom->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 bathroom\n      </Title>\n      <Description>\n        There is only one bathroom with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 bathrooms->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 bathrooms\n      </Title>\n      <Description>\n        There are two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[More than 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        More than 2 bathrooms\n      </Title>\n      <Description>\n        There are more than two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace >= 250 || ancillaryArea >= 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction <= 1926\"\n>\n</Redirect>\n\n<Message>\n  How many bathrooms are there in the house?\n</Message>\n\n<Message>\n  Bathrooms do not include smaller guest toilets without shower/bathtub\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 bathroom->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 bathroom\n      </Title>\n      <Description>\n        There is only one bathroom with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 bathrooms->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 bathrooms\n      </Title>\n      <Description>\n        There are two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[More than 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        More than 2 bathrooms\n      </Title>\n      <Description>\n        There are more than two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/baths",
       "width": 100

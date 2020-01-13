@@ -9,10 +9,14 @@ export { Passage } from "./Components/Passage";
 export { Header } from "./Components/Header";
 export { useEmbark } from "./Utils/useEmbark";
 export { EmbarkProvider } from "./Components/EmbarkProvider";
-
 export {
-  Data as PersonalInformationData
-} from "./Components/API/personalInformation";
+  ExternalInsuranceProviderStatus,
+  ExternalInsuranceProviderEventEmitter
+} from "./Components/API/externalInsuranceProviderData";
+
+export { providers as externalInsuranceProviders } from "./Components/Actions/ExternalInsuranceProviderAction/providers";
+
+export { Data as PersonalInformationData } from "./Components/API/personalInformation";
 export {
   Data as HouseInformationData,
   Variables as HouseInformationVariables

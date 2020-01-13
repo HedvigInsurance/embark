@@ -6,19 +6,19 @@ import { CardPrimitive } from "../Common";
 import { Provider } from "./providers";
 import { PersonalNumber } from "./PersonalNumber";
 import { useMeasure } from "../../../Utils/useMeasure";
-import { KeywordsContext } from "../../KeywordsContext";
 import { StoreContext } from "../../KeyValueStore";
 
+import { FailedStep } from "./FailedStep";
 import { SetupStep } from "./SetupStep";
 import { AuthStep } from "./AuthStep";
 import { Animator } from "./Animator";
+import { ConfirmCollectionStep } from "./ConfirmCollectionStep";
 import uuid from "uuid/v1";
 import { SkipButton } from "./Components/SkipButton";
 import { BackgroundFetchStep } from "./BackgroundFetchStep";
-import {
-  BackgroundFetchContext,
-  BackgroundFetchStatus
-} from "./BackgroundFetchContext";
+import { DataFetchContext } from "./DataFetchContext";
+import { ExternalInsuranceProviderStatus } from "../../API/externalInsuranceProviderData";
+import { KeywordsContext } from "../../KeywordsContext";
 
 const Container = styled.div`
   display: flex;
@@ -53,10 +53,12 @@ const ButtonContainer = styled(motion.div)`
 
 enum Step {
   SELECT_PROVIDER,
+  CONFIRM_COLLECTION,
   PERSONAL_NUMBER,
   SETUP,
   EXTERNAL_AUTH,
-  BACKGROUND_FETCH
+  BACKGROUND_FETCH,
+  FAILED
 }
 
 export enum AnimationDirection {
@@ -77,8 +79,8 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   passageName,
   next
 }) => {
-  const { updateOperation } = React.useContext(BackgroundFetchContext);
-  const { setValue } = React.useContext(StoreContext);
+  const { startSession, endSession } = React.useContext(DataFetchContext);
+  const { setValue, removeValues } = React.useContext(StoreContext);
   const [state, setState] = React.useState(() => ({
     id: uuid(),
     currentStep: Step.SELECT_PROVIDER,
@@ -86,27 +88,66 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     selectedProvider: null as Provider | null,
     personalNumber: null as string | null
   }));
+  const { externalInsuranceProviderOtherProviderButton } = React.useContext(
+    KeywordsContext
+  );
   const [bind, measured] = useMeasure<HTMLDivElement>();
-  const {
-    externalInsuranceProviderOtherProviderModal,
-    externalInsuranceProviderOtherProviderButton,
-    externalInsuranceProviderOtherProviderModalButton
-  } = React.useContext(KeywordsContext);
+  const { operation } = React.useContext(DataFetchContext);
 
   React.useEffect(() => {
-    setValue("externalInsuranceProviderSessionId", state.id);
+    endSession();
+    setValue("dataCollectionId", state.id);
   }, []);
+
+  React.useEffect(() => {
+    if (!operation?.data?.status) {
+      return;
+    }
+
+    switch (operation.data.status) {
+      case ExternalInsuranceProviderStatus.CONNECTING:
+        setState({
+          ...state,
+          animationDirection: AnimationDirection.FORWARDS,
+          currentStep: Step.SETUP
+        });
+        break;
+      case ExternalInsuranceProviderStatus.REQUIRES_AUTH:
+        setState({
+          ...state,
+          currentStep: Step.EXTERNAL_AUTH,
+          animationDirection: AnimationDirection.FORWARDS
+        });
+        break;
+      case ExternalInsuranceProviderStatus.COMPLETED:
+      case ExternalInsuranceProviderStatus.FETCHING:
+        setState({
+          ...state,
+          currentStep: Step.BACKGROUND_FETCH,
+          animationDirection: AnimationDirection.FORWARDS
+        });
+        break;
+      case ExternalInsuranceProviderStatus.FAILED:
+        setState({
+          ...state,
+          currentStep: Step.FAILED,
+          animationDirection: AnimationDirection.FORWARDS
+        });
+        break;
+    }
+  }, [operation?.data?.status]);
 
   const [
     selectProvider,
+    confirmCollection,
     personalNumber,
     setupStep,
     authStep,
+    failedStep,
     backgroundFetchStep
   ] = [
     <SelectProvider
       key="SELECT_PROVIDER"
-      otherProviderModalText={externalInsuranceProviderOtherProviderModal}
       onlyAcceptProvidersWithExternalCapabilities
       onPickProvider={provider => {
         if (provider && provider.hasExternalCapabilities) {
@@ -114,9 +155,11 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
             ...state,
             selectedProvider: provider,
             animationDirection: AnimationDirection.FORWARDS,
-            currentStep: Step.PERSONAL_NUMBER
+            currentStep: Step.CONFIRM_COLLECTION
           });
         } else {
+          removeValues("dataCollectionId");
+
           if (provider) {
             setValue("currentInsurer", provider.id);
             setValue(`${passageName}Result`, provider.name);
@@ -131,12 +174,9 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
           onContinue(next);
         }
       }}
-      otherProviderModalButton={
-        externalInsuranceProviderOtherProviderModalButton
-      }
     />,
-    <PersonalNumber
-      key="PERSONAL_NUMBER"
+    <ConfirmCollectionStep
+      key="CONFIRM_COLLECTION"
       provider={state.selectedProvider!}
       onCancel={() => {
         setState({
@@ -146,9 +186,33 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
           currentStep: Step.SELECT_PROVIDER
         });
       }}
+      onAccept={() => {
+        setState({
+          ...state,
+          animationDirection: AnimationDirection.FORWARDS,
+          currentStep: Step.PERSONAL_NUMBER
+        });
+      }}
+      onReject={() => {
+        removeValues("dataCollectionId");
+        setValue("currentInsurer", state.selectedProvider!.id);
+        setValue(`${passageName}Result`, state.selectedProvider!.name);
+        onContinue(next);
+      }}
+    />,
+    <PersonalNumber
+      key="PERSONAL_NUMBER"
+      provider={state.selectedProvider!}
+      onCancel={() => {
+        setState({
+          ...state,
+          animationDirection: AnimationDirection.BACKWARDS,
+          currentStep: Step.CONFIRM_COLLECTION
+        });
+      }}
       onContinue={personalNumber => {
         setValue("personalNumber", personalNumber);
-
+        startSession(state.id, state.selectedProvider!, personalNumber);
         setState({
           ...state,
           personalNumber: personalNumber,
@@ -157,39 +221,15 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         });
       }}
     />,
-    <SetupStep
-      key="SETUP"
-      provider={state.selectedProvider!}
-      onSetup={() => {
+    <SetupStep key="SETUP" provider={state.selectedProvider!} />,
+    <AuthStep key="EXTERNAL_AUTH" />,
+    <FailedStep
+      key="FAILED_STEP"
+      onRetry={() => {
         setState({
           ...state,
-          animationDirection: AnimationDirection.FORWARDS,
-          currentStep: Step.EXTERNAL_AUTH
-        });
-      }}
-    />,
-    <AuthStep
-      requiresQRAuth={true}
-      key="EXTERNAL_AUTH"
-      onDone={() => {
-        updateOperation({
-          id: state.id,
-          status: BackgroundFetchStatus.ONGOING,
-          provider: state.selectedProvider!
-        });
-
-        setTimeout(() => {
-          updateOperation({
-            id: state.id,
-            status: BackgroundFetchStatus.COMPLETED,
-            provider: state.selectedProvider!
-          });
-        }, 5000);
-
-        setState({
-          ...state,
-          animationDirection: AnimationDirection.FORWARDS,
-          currentStep: Step.BACKGROUND_FETCH
+          animationDirection: AnimationDirection.BACKWARDS,
+          currentStep: Step.SELECT_PROVIDER
         });
       }}
     />,
@@ -213,6 +253,8 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     switch (state.currentStep) {
       case Step.SELECT_PROVIDER:
         return selectProvider;
+      case Step.CONFIRM_COLLECTION:
+        return confirmCollection;
       case Step.PERSONAL_NUMBER:
         return personalNumber;
       case Step.SETUP:
@@ -221,6 +263,8 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         return authStep;
       case Step.BACKGROUND_FETCH:
         return backgroundFetchStep;
+      case Step.FAILED:
+        return failedStep;
     }
   };
 
@@ -244,7 +288,10 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
       <ButtonContainer
         initial={{ height: "auto", opacity: 1 }}
         animate={
-          state.currentStep == Step.BACKGROUND_FETCH
+          state.currentStep == Step.BACKGROUND_FETCH ||
+          state.currentStep == Step.CONFIRM_COLLECTION ||
+          state.currentStep == Step.SELECT_PROVIDER ||
+          state.currentStep == Step.PERSONAL_NUMBER
             ? { height: 0, opacity: 0 }
             : { height: "auto", opacity: 1 }
         }

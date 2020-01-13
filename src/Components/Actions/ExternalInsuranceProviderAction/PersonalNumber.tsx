@@ -7,7 +7,7 @@ import { wrapWithMask, isValid } from "../masking";
 import { Provider } from "./providers";
 import { KeywordsContext } from "../../KeywordsContext";
 import { ContinueButton } from "../../ContinueButton";
-import { ArrowLeft } from "../../Icons/ArrowLeft";
+import { BackButton } from "./Components/BackButton";
 
 const Container = styled.div`
   padding: 20px;
@@ -35,44 +35,6 @@ const InputContainer = styled.div`
   }
 `;
 
-const BackButton = styled.button`
-  appearance: none;
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 300;
-  font-size: 13px;
-  color: ${colorsV2.gray};
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  transition: color 250ms;
-
-  :active {
-    color: ${colorsV2.darkgray};
-
-    svg {
-      & > path {
-        stroke: ${colorsV2.darkgray};
-      }
-    }
-  }
-
-  svg {
-    transform: scale(0.8);
-
-    & > path {
-      transition: stroke 250ms;
-    }
-  }
-`;
-
-const BackButtonText = styled.span`
-  margin-left: 6px;
-  transform: translateY(-0.5px);
-`;
-
 const ButtonContainer = styled.div`
   margin-top: 10px;
   display: flex;
@@ -84,6 +46,13 @@ const Title = styled.h3`
   align-items: center;
   font-family: ${fonts.CIRCULAR};
   font-weight: 800;
+  margin-bottom: 5px;
+`;
+
+const BetaInfo = styled.p`
+  font-family: ${fonts.CIRCULAR};
+  color: ${colorsV2.darkgray};
+  font-size: 12px;
   margin-bottom: 15px;
 `;
 
@@ -109,17 +78,14 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
   const [value, setValue] = React.useState("");
   const {
     externalInsuranceProviderPersonalNumberTitle,
-    externalInsuranceProviderGoBackButton,
     externalInsuranceProviderPersonalNumberSubtitle,
-    externalInsuranceProviderContinueButton
+    externalInsuranceProviderContinueButton,
+    externalInsuranceProviderBETATag
   } = React.useContext(KeywordsContext);
 
   return (
     <Container>
-      <BackButton onClick={onCancel}>
-        <ArrowLeft />
-        <BackButtonText>{externalInsuranceProviderGoBackButton}</BackButtonText>
-      </BackButton>
+      <BackButton onClick={onCancel} />
       <Title>
         {provider.icon && provider.icon({ forceWidth: false })}
         {replacePlaceholders(
@@ -127,10 +93,11 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
           externalInsuranceProviderPersonalNumberTitle
         )}
       </Title>
+      <BetaInfo>{externalInsuranceProviderBETATag}</BetaInfo>
       <Subtitle>{externalInsuranceProviderPersonalNumberSubtitle}</Subtitle>
       <InputContainer>
         <PersonalNumberInput
-          placeholder="ååmmdd-yyyy"
+          placeholder="ååmmdd-xxxx"
           mask="PersonalNumber"
           value={value}
           onChange={e => {

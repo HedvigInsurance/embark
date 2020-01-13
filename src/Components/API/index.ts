@@ -84,6 +84,8 @@ export const callApi = async (
           firstName: store.firstName,
           lastName: store.lastName,
           ssn: store.personalNumber,
+          dataCollectionId: store.dataCollectionId,
+          email: store.email,
           currentInsurer: store.currentInsurer
         }
       };

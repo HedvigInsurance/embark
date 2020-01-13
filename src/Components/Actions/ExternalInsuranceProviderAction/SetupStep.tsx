@@ -23,22 +23,12 @@ const Title = styled.h3`
 
 interface SetupStepProps {
   provider: Provider;
-  onSetup: () => void;
 }
 
-export const SetupStep: React.FC<SetupStepProps> = ({ provider, onSetup }) => {
+export const SetupStep: React.FC<SetupStepProps> = ({ provider }) => {
   const { externalInsuranceProviderSetupTitle } = React.useContext(
     KeywordsContext
   );
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      onSetup();
-    }, 3000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
 
   return (
     <Container>

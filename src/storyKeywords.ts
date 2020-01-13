@@ -2,6 +2,22 @@ export const storyKeywords = {
   selectActionSelectLabel: "Select action - select label",
   tooltipModalInformationLabel: "Tooltip modal - information label",
   backButton: "Back button",
+  externalInsuranceProviderConfirmTitle:
+    "External insurance provider - Confirm Title",
+  externalInsuranceProviderConfirmPrivacyPolicy:
+    "External insurance provider - Confirm Privacy Policy",
+  externalInsuranceProviderConfirmMessage:
+    "External insurance provider - Confirm Message",
+  externalInsuranceProviderConfirmButton:
+    "External insurance provider - Confirm Button",
+  externalInsuranceProviderConfirmRejectButton:
+    "External insurance provider - Confirm Reject Button",
+  externalInsuranceProviderFailureTitle:
+    "External insurance provider - Failure Title",
+  externalInsuranceProviderFailureMessage:
+    "External insurance provider - Failure Message",
+  externalInsuranceProviderFailureButton:
+    "External insurance provider - Failure Button",
   externalInsuranceProviderSelectTitle:
     "External insurance provider - Select Title",
   externalInsuranceProviderPersonalNumberTitle:
@@ -10,10 +26,6 @@ export const storyKeywords = {
     "External insurance provider - Personal Number Subtitle",
   externalInsuranceProviderOtherProviderButton:
     "External insurance provider - Other provider button",
-  externalInsuranceProviderOtherProviderModal:
-    "External insurance provider - Other provider modal",
-  externalInsuranceProviderOtherProviderModalButton:
-    "External insurance provider - Other provider modal button",
   externalInsuranceProviderGoBackButton:
     "External insurance provider - Go back button",
   externalInsuranceProviderContinueButton:
@@ -28,6 +40,7 @@ export const storyKeywords = {
     "External insurance provider - Background fetch title",
   externalInsuranceProviderBackgroundFetchBody:
     "External insurance provider - Background fetch body",
+  externalInsuranceProviderBETATag: "External insurance provider - Beta Tag",
   previousInsuranceProviderOtherProviderModal:
     "Previous insurance provider - Other provider modal",
   previousInsuranceProviderOtherProviderModalButton:

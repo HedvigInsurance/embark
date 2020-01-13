@@ -2,8 +2,8 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { fonts } from "@hedviginsurance/brand";
 import { BankID } from "../../Icons/BankID";
-import { DummyQRCode } from "../../Icons/DummyQRCode";
 import { KeywordsContext } from "../../KeywordsContext";
+import { DataFetchContext } from "./DataFetchContext";
 
 const Container = styled.div`
   display: flex;
@@ -20,35 +20,27 @@ const Title = styled.h4`
   margin-top: 15px;
 `;
 
-interface AuthStepProps {
-  requiresQRAuth: boolean;
-  onDone: () => void;
-}
+const QRImage = styled.img`
+  width: 150px;
+  height: 150px;
+`;
 
-export const AuthStep: React.FC<AuthStepProps> = ({
-  requiresQRAuth,
-  onDone
-}) => {
+export const AuthStep: React.FC = () => {
   const {
     externalInsuranceProviderAuthScanBankID,
     externalInsuranceProviderAuthOpenBankId
   } = React.useContext(KeywordsContext);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      onDone();
-    }, 10000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+  const { operation } = React.useContext(DataFetchContext);
 
   return (
     <Container>
-      {requiresQRAuth ? <DummyQRCode /> : <BankID />}
+      {operation?.data?.imageValue ? (
+        <QRImage src={operation?.data?.imageValue} />
+      ) : (
+        <BankID />
+      )}
       <Title>
-        {requiresQRAuth
+        {operation?.data?.imageValue
           ? externalInsuranceProviderAuthScanBankID
           : externalInsuranceProviderAuthOpenBankId}
       </Title>
