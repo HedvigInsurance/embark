@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-10T13:14:23.429Z",
+  "lastUpdate": "2020-01-11T09:33:55.732Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -59,7 +59,9 @@
       "name": "errorHouseholdSizeApartment",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
@@ -72,7 +74,9 @@
       "name": "manualAdressVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->correctInfoVilla]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
       "top": 500,
       "url": "/manual-address",
@@ -137,7 +141,9 @@
       "name": "newStreetAdressVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->correctInfoVilla]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
       "top": 650,
       "url": "/manual-address",
@@ -150,7 +156,9 @@
       "name": "errorhouseholdSizeVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
@@ -163,7 +171,9 @@
       "name": "errorBathsVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 2 badrum för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 2 badrum?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
@@ -176,7 +186,9 @@
       "name": "errorAgeVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra så gamla villor som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
@@ -202,7 +214,9 @@
       "name": "manualNameVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualAdressVilla]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 500,
       "url": "/manual-name",
@@ -228,7 +242,9 @@
       "name": "CreateQuoteError",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, försök igen snart!\n</Message>",
       "top": 1600,
       "url": "/error",
@@ -267,7 +283,9 @@
       "name": "manualNameApartment",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Hm, konstigt. Just nu kan vi inte hitta din adress. Men ingen fara, vi ställer bara några extra frågor!\n</Message>\n\n<Message>\n  Vad heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsätt->manualStreetAdressApartment]]\">\n  <TextAction title=\"Förnamn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Efternamn\"\n              placeholder=\"Hedvigsson\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/manual-name",
@@ -280,7 +298,9 @@
       "name": "errorLivingSpaceApartment",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder upp till 250 kvadrat för tillfället\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra så stora bostäder som din\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 500,
       "url": "/error",
@@ -306,7 +326,9 @@
       "name": "manualInfoVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Vi kan inte hämta någon information om din villa. Ingen fara, fyll bara i uppgifterna här\n</Message>\n\n<GroupedResponse>\n  <Title>\n    Bostadsinfo\n  </Title>\n  <Item>\n    Boyta: {livingSpace} kvm\n  </Item>\n  <Item>\n    Biyta: {ancillaryArea} kvm\n  </Item>\n  <Item>\n    Byggår: {yearOfConstruction}\n  </Item>\n  <Tooltip>\n    <Title>\n      Boyta\n    </Title>\n    <Description>\n      DESCRIPTION\n    </Description>\n  </Tooltip>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Boyta\"\n                placeholder=\"120\"\n                minvalue=\"1\"\n                key=\"livingSpace\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Boyta\n      </Title>\n      <Description>\n        Boyta är den yta som är tänkt att leva på\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Biyta\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Biyta\n      </Title>\n      <Description>\n        Exempel på utrymmen som räknas som biytor är förråd, kallvind, pannrum och garage som sitter ihop med huset\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Byggår\"\n                minvalue=\"1\"\n                placeholder=\"1998\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        Byggår\n      </Title>\n      <Description>\n        Året huset byggdes\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
       "top": 800,
       "url": "/manual-info",
@@ -345,7 +367,9 @@
       "name": "errorInfoVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra så stora villor som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "url": "/error",
@@ -371,7 +395,9 @@
       "name": "ApartmentUwlimitsHit",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra bostäder som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "url": "/oh-no",
@@ -384,7 +410,9 @@
       "name": "newStreetAddressApartment",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Inga problem! Vilken adress gäller det?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->emailAdressApartment]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 950,
       "url": "/manual-address",
@@ -439,7 +467,7 @@
       "tags": [],
       "text": "<Message>\n  Super! Skriv in din email adress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
       "top": 1700,
-      "url": "email-address-villa",
+      "url": "/email-address-villa",
       "width": 100
     },
     {
@@ -449,7 +477,9 @@
       "name": "manualStreetAdressApartment",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Manual"],
+      "tags": [
+        "Manual"
+      ],
       "text": "<Message>\n  Vilken adress vill du ha ett försäkringsförslag för?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Fortsätt->emailAdressApartment]]\">\n  <TextAction title=\"Adress\"\n              placeholder=\"Exempelgatan 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postnummer\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/manual-address",
@@ -501,7 +531,9 @@
       "name": "errorFloorsVilla",
       "selected": false,
       "story": "1180341409",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra villor med max 4 våningar för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra villor med fler än 4 våningar?\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/error",
