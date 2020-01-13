@@ -92,6 +92,8 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
       onPickProvider(provider);
     } else {
       if (!functionalProviders) {
+        provider.hasExternalCapabilities = false;
+        onPickProvider(provider);
         return;
       }
 
