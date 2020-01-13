@@ -7,6 +7,7 @@
     "externalInsuranceProviderAuthScanBankID": "Skanna QR-koden med BankID appen för att logga in",
     "externalInsuranceProviderBackgroundFetchBody": "Vi hämtar nu data från {provider} i bakgrunden, fortsätt genom att svar på några till frågor.",
     "externalInsuranceProviderBackgroundFetchTitle": "Toppen!",
+    "externalInsuranceProviderBETATag": "Denna funktionen är i BETA",
     "externalInsuranceProviderConfirmButton": "Ja, tack!",
     "externalInsuranceProviderConfirmMessage": "Så kan du jämföra pris och skydd med Hedvig",
     "externalInsuranceProviderConfirmPrivacyPolicy": "Genom att klicka på \"Ja, tack!\" godkänner du att Hedvig hämtar data från {provider} i enlighet med vår {privacyUrl}",
@@ -27,7 +28,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-13T09:02:58.987Z",
+  "lastUpdate": "2020-01-13T12:50:51.014Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -616,7 +617,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-1738431846",
-  "storyFormat": "Hedvig Twine",
+  "storyFormat": "Hedvig - Development",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
