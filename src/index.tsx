@@ -176,6 +176,9 @@ const RootContainer = () => (
         console.log("Should redirect to mailing list");
       }
     }}
+    onStoreChange={store => {
+      console.log("store changed", store);
+    }}
   >
     <Root />
   </EmbarkProvider>
