@@ -15,6 +15,7 @@ export interface DataFetchOperation {
 
 export const DataFetchContext = React.createContext<{
   operation: DataFetchOperation | null;
+  endSession: () => void;
   startSession: (
     id: string,
     provider: Provider,
@@ -22,7 +23,8 @@ export const DataFetchContext = React.createContext<{
   ) => void;
 }>({
   operation: null,
-  startSession: () => {}
+  startSession: () => {},
+  endSession: () => {}
 });
 
 export const DataFetchContextProvider: React.FC = ({ children }) => {
@@ -61,6 +63,10 @@ export const DataFetchContextProvider: React.FC = ({ children }) => {
     <DataFetchContext.Provider
       value={{
         operation,
+        endSession: () => {
+          setOperation(null);
+          setSession(null);
+        },
         startSession: (id, provider, personalNumber) => {
           if (!provider.externalCollectionId) {
             throw new Error("can't initiate a session for this provider");

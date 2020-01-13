@@ -79,7 +79,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   passageName,
   next
 }) => {
-  const { startSession } = React.useContext(DataFetchContext);
+  const { startSession, endSession } = React.useContext(DataFetchContext);
   const { setValue } = React.useContext(StoreContext);
   const [state, setState] = React.useState(() => ({
     id: uuid(),
@@ -95,6 +95,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   const { operation } = React.useContext(DataFetchContext);
 
   React.useEffect(() => {
+    endSession();
     setValue("dataCollectionId", state.id);
   }, []);
 
