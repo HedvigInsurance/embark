@@ -40,6 +40,7 @@ export const storyKeywords = {
     "External insurance provider - Background fetch title",
   externalInsuranceProviderBackgroundFetchBody:
     "External insurance provider - Background fetch body",
+  externalInsuranceProviderBETATag: "External insurance provider - Beta Tag",
   previousInsuranceProviderOtherProviderModal:
     "Previous insurance provider - Other provider modal",
   previousInsuranceProviderOtherProviderModalButton:

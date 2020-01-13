@@ -46,6 +46,13 @@ const Title = styled.h3`
   align-items: center;
   font-family: ${fonts.CIRCULAR};
   font-weight: 800;
+  margin-bottom: 5px;
+`;
+
+const BetaInfo = styled.p`
+  font-family: ${fonts.CIRCULAR};
+  color: ${colorsV2.darkgray};
+  font-size: 12px;
   margin-bottom: 15px;
 `;
 
@@ -71,9 +78,9 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
   const [value, setValue] = React.useState("");
   const {
     externalInsuranceProviderPersonalNumberTitle,
-    externalInsuranceProviderGoBackButton,
     externalInsuranceProviderPersonalNumberSubtitle,
-    externalInsuranceProviderContinueButton
+    externalInsuranceProviderContinueButton,
+    externalInsuranceProviderBETATag
   } = React.useContext(KeywordsContext);
 
   return (
@@ -86,6 +93,7 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
           externalInsuranceProviderPersonalNumberTitle
         )}
       </Title>
+      <BetaInfo>{externalInsuranceProviderBETATag}</BetaInfo>
       <Subtitle>{externalInsuranceProviderPersonalNumberSubtitle}</Subtitle>
       <InputContainer>
         <PersonalNumberInput
