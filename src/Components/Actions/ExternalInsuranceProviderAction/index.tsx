@@ -80,7 +80,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
   next
 }) => {
   const { startSession, endSession } = React.useContext(DataFetchContext);
-  const { setValue } = React.useContext(StoreContext);
+  const { setValue, removeValues } = React.useContext(StoreContext);
   const [state, setState] = React.useState(() => ({
     id: uuid(),
     currentStep: Step.SELECT_PROVIDER,
@@ -158,6 +158,8 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
             currentStep: Step.CONFIRM_COLLECTION
           });
         } else {
+          removeValues("dataCollectionId");
+
           if (provider) {
             setValue("currentInsurer", provider.id);
             setValue(`${passageName}Result`, provider.name);
@@ -192,6 +194,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
         });
       }}
       onReject={() => {
+        removeValues("dataCollectionId");
         setValue("currentInsurer", state.selectedProvider!.id);
         setValue(`${passageName}Result`, state.selectedProvider!.name);
         onContinue(next);
