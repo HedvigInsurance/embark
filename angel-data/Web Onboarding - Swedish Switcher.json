@@ -28,7 +28,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-13T12:50:51.014Z",
+  "lastUpdate": "2020-01-14T11:48:53.387Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -472,7 +472,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace > 50 || householdSize > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1550,
       "url": "/student",
       "width": 100
