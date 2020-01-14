@@ -6,7 +6,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-10T13:22:15.009Z",
+  "lastUpdate": "2020-01-14T11:52:46.130Z",
   "name": "Web Onboarding - English Needer",
   "partnerConfigs": [
     {
@@ -149,7 +149,7 @@
       "selected": false,
       "story": "1899048031",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace > 50 || householdSize > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1250,
       "url": "/student",
       "width": 100
@@ -571,7 +571,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-1914453783",
-  "storyFormat": "Hedvig",
+  "storyFormat": "Hedvig Twine",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
