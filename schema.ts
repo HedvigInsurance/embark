@@ -260,9 +260,11 @@ export const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
-      angelStory: async (_, { name }) => {
-        if (name.includes("../")) {
-          throw new Error("Can't traverse downwards");
+      angelStory: async (_, { name }: { name: string }) => {
+        const dir = await promises.readdir("angel-data");
+
+        if (!dir.includes(`${name}.json`)) {
+          throw new Error(`Can't find story with name: ${name}`);
         }
 
         const file = await promises.readFile(`angel-data/${name}.json`, {
