@@ -94,7 +94,7 @@ const getSelectAction = (actionNode: Element | undefined) => {
   });
 
   return {
-    __typename: "AngelSelectAction",
+    __typename: "EmbarkSelectAction",
     component: "SelectAction",
     data: {
       options: actionNodeOptions
@@ -116,7 +116,7 @@ const getNumberAction = (numberActionNode: Element) => {
   const api = parseApi(numberActionNode);
 
   return {
-    __typename: "AngelNumberAction",
+    __typename: "EmbarkNumberAction",
     component: "NumberAction",
     data: {
       placeholder,
@@ -145,7 +145,7 @@ const getDropdownAction = (dropdownActionNode: Element) => {
   });
 
   return {
-    __typename: "AngelDropdownAction",
+    __typename: "EmbarkDropdownAction",
     component: "DropdownAction",
     data: {
       label,
@@ -162,7 +162,7 @@ const getSwitchAction = (switchActionNode: Element) => {
     switchActionNode.getAttribute("defaultvalue") == "true" ? true : false;
 
   return {
-    __typename: "AngelSwitchAction",
+    __typename: "EmbarkSwitchAction",
     component: "SwitchAction",
     data: {
       label,
@@ -204,7 +204,7 @@ const getMultiAction = (multiActionNode: Element) => {
   const api = parseApi(multiActionNode);
 
   return {
-    __typename: "AngelMultiAction",
+    __typename: "EmbarkMultiAction",
     component: "MultiAction",
     data: {
       key,
@@ -236,7 +236,7 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
   });
 
   return {
-    __typename: "AngelNumberActionSet",
+    __typename: "EmbarkNumberActionSet",
     component: "NumberActionSet",
     data: {
       link: links && links[0],
@@ -266,7 +266,7 @@ const getTextActionSet = (textActionSetNode: Element) => {
   const api = parseApi(textActionSetNode);
 
   return {
-    __typename: "AngelTextActionSet",
+    __typename: "EmbarkTextActionSet",
     component: "TextActionSet",
     data: {
       link: links && links[0],
@@ -290,7 +290,7 @@ const getTextAction = (textActionNode: Element) => {
   const api = parseApi(textActionNode);
 
   return {
-    __typename: "AngelTextAction",
+    __typename: "EmbarkTextAction",
     component: "TextAction",
     data: {
       placeholder,
@@ -445,7 +445,7 @@ const parseExpression = (expression: string): Expression | null => {
     }
 
     return {
-      __typename: "AngelExpressionMultiple",
+      __typename: "EmbarkExpressionMultiple",
       type: "AND",
       subExpressions: [
         parseExpression(splitted[1].trim()),
@@ -462,7 +462,7 @@ const parseExpression = (expression: string): Expression | null => {
     }
 
     return {
-      __typename: "AngelExpressionMultiple",
+      __typename: "EmbarkExpressionMultiple",
       type: "OR",
       subExpressions: [
         parseExpression(splitted[1].trim()),
@@ -475,7 +475,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split("==");
 
     return {
-      __typename: "AngelExpressionBinary",
+      __typename: "EmbarkExpressionBinary",
       type: "EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -486,7 +486,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split(">=");
 
     return {
-      __typename: "AngelExpressionBinary",
+      __typename: "EmbarkExpressionBinary",
       type: "MORE_THAN_OR_EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -497,7 +497,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split("<=");
 
     return {
-      __typename: "AngelExpressionBinary",
+      __typename: "EmbarkExpressionBinary",
       type: "LESS_THAN_OR_EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -508,7 +508,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split(">");
 
     return {
-      __typename: "AngelExpressionBinary",
+      __typename: "EmbarkExpressionBinary",
       type: "MORE_THAN",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -519,7 +519,7 @@ const parseExpression = (expression: string): Expression | null => {
     const splitted = expression.split("<");
 
     return {
-      __typename: "AngelExpressionBinary",
+      __typename: "EmbarkExpressionBinary",
       type: "LESS_THAN",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -529,7 +529,7 @@ const parseExpression = (expression: string): Expression | null => {
   if (expression.includes("!=")) {
     const splitted = expression.split("!=");
     return {
-      __typename: "AngelExpressionBinary",
+      __typename: "EmbarkExpressionBinary",
       type: "NOT_EQUALS",
       key: splitted[0].trim(),
       value: splitted[1].trim().replace(/'/g, "")
@@ -538,14 +538,14 @@ const parseExpression = (expression: string): Expression | null => {
 
   if (expression == "true") {
     return {
-      __typename: "AngelExpressionUnary",
+      __typename: "EmbarkExpressionUnary",
       type: "ALWAYS"
     };
   }
 
   if (expression == "false") {
     return {
-      __typename: "AngelExpressionUnary",
+      __typename: "EmbarkExpressionUnary",
       type: "NEVER"
     };
   }
@@ -591,7 +591,7 @@ const getResponse = (passageName: string, containerElement: Element) => {
   }
 
   return {
-    __typename: "AngelMessage",
+    __typename: "EmbarkMessage",
     expressions: [],
     text: `{${passageName}Result}`
   };
@@ -603,7 +603,7 @@ const parseEach = (element: Element) => {
   const content = parsePossibleExpressionContent(element);
 
   return {
-    __typename: "AngelGroupedResponseEach",
+    __typename: "EmbarkGroupedResponseEach",
     key,
     content
   };
@@ -615,7 +615,7 @@ const parseGroupedResponse = (element: Element) => {
   const each = element.getElementsByTagName("each")[0];
 
   return {
-    __typename: "AngelGroupedResponse",
+    __typename: "EmbarkGroupedResponse",
     component: "GroupedResponse",
     title: parsePossibleExpressionContent(title),
     items: items.map(parsePossibleExpressionContent),
@@ -655,7 +655,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
     const errorLinks = parseLinks(error || "");
 
     return {
-      __typename: "AngelApiPersonalInformation",
+      __typename: "EmbarkApiPersonalInformation",
       component: "PersonalInformationApi",
       data: {
         match: matchLinks && matchLinks[0],
@@ -686,7 +686,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
     const errorLinks = parseLinks(error || "");
 
     return {
-      __typename: "AngelApiHouseInformation",
+      __typename: "EmbarkApiHouseInformation",
       component: "HouseInformationApi",
       data: {
         match: matchLinks && matchLinks[0],
@@ -715,7 +715,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
     const errorLinks = parseLinks(error || "");
 
     return {
-      __typename: "AngelApiCreateQuote",
+      __typename: "EmbarkApiCreateQuote",
       component: "CreateQuoteApi",
       data: {
         uwlimits: uwlimitsLinks && uwlimitsLinks[0],
@@ -784,25 +784,25 @@ export const parseStoryData = (storyData: any) => ({
           return null;
         }
 
-        if (expression.__typename === "AngelExpressionUnary") {
+        if (expression.__typename === "EmbarkExpressionUnary") {
           return {
             ...expression,
-            __typename: "AngelRedirectUnaryExpression",
+            __typename: "EmbarkRedirectUnaryExpression",
             to: links[0].name
           };
         }
 
-        if (expression.__typename === "AngelExpressionBinary") {
+        if (expression.__typename === "EmbarkExpressionBinary") {
           return {
             ...expression,
-            __typename: "AngelRedirectBinaryExpression",
+            __typename: "EmbarkRedirectBinaryExpression",
             to: links[0].name
           };
         }
 
         return {
           ...expression,
-          __typename: "AngelRedirectMultipleExpressions",
+          __typename: "EmbarkRedirectMultipleExpressions",
           to: links[0].name
         };
       })

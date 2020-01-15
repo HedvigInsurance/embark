@@ -5,188 +5,188 @@ import { parseStoryData } from "./src/parseStoryData";
 
 const typeDefs = `
     type Query {
-        angelStory(name: String!): AngelStory
+        embarkStory(name: String!): EmbarkStory
     }
 
-    type AngelKeywords {
+    type EmbarkKeywords {
         ${Object.keys(storyKeywords).map(key => `${key}: String`)}
     }
 
-    enum AngelPartnerConfigAlignment {
+    enum EmbarkPartnerConfigAlignment {
         center
         left
     }
 
-    type AngelPartnerConfig {
-        alignment: AngelPartnerConfigAlignment!
+    type EmbarkPartnerConfig {
+        alignment: EmbarkPartnerConfigAlignment!
         image: String!
         isDefault: Boolean!
         name: String!
     }
 
-    type AngelLink {
+    type EmbarkLink {
         name: String!
         label: String!
     }
 
-    interface AngelApiCore {
+    interface EmbarkApiCore {
         component: String!
     }
 
-    type AngelApiPersonalInformationData {
-        match: AngelLink!
-        noMatch: AngelLink!
-        error: AngelLink!
+    type EmbarkApiPersonalInformationData {
+        match: EmbarkLink!
+        noMatch: EmbarkLink!
+        error: EmbarkLink!
     }
 
-    type AngelApiPersonalInformation implements AngelApiCore {
+    type EmbarkApiPersonalInformation implements EmbarkApiCore {
         component: String!
-        data: AngelApiPersonalInformationData!
+        data: EmbarkApiPersonalInformationData!
     }
 
-    type AngelApiHouseInformationData {
-        match: AngelLink!
-        noMatch: AngelLink!
-        error: AngelLink!
+    type EmbarkApiHouseInformationData {
+        match: EmbarkLink!
+        noMatch: EmbarkLink!
+        error: EmbarkLink!
     }
 
-    type AngelApiHouseInformation implements AngelApiCore {
+    type EmbarkApiHouseInformation implements EmbarkApiCore {
         component: String!
-        data: AngelApiHouseInformation!
+        data: EmbarkApiHouseInformation!
     }
 
-    type AngelApiCreateQuoteData {
-        uwlimits: AngelLink!
-        success: AngelLink!
-        error: AngelLink!
+    type EmbarkApiCreateQuoteData {
+        uwlimits: EmbarkLink!
+        success: EmbarkLink!
+        error: EmbarkLink!
     }
 
-    type AngelApiCreateQuote implements AngelApiCore {
+    type EmbarkApiCreateQuote implements EmbarkApiCore {
         component: String!
-        data: AngelApiCreateQuoteData!
+        data: EmbarkApiCreateQuoteData!
     }
 
-    union AngelApi = AngelApiPersonalInformation | AngelApiHouseInformation | AngelApiCreateQuote
+    union EmbarkApi = EmbarkApiPersonalInformation | EmbarkApiHouseInformation | EmbarkApiCreateQuote
 
-    enum AngelExternalRedirect {
+    enum EmbarkExternalRedirect {
         email
     }
 
-    interface AngelActionCore {
+    interface EmbarkActionCore {
         component: String!
     }
 
-    type AngelNumberActionSetData {
-        link: AngelLink!
+    type EmbarkNumberActionSetData {
+        link: EmbarkLink!
     }
 
-    type AngelNumberActionSet implements AngelActionCore {
+    type EmbarkNumberActionSet implements EmbarkActionCore {
         component: String!
-        data: AngelNumberActionSetData
+        data: EmbarkNumberActionSetData
     }
 
-    type AngelTextActionSetData {
-        link: AngelLink!
+    type EmbarkTextActionSetData {
+        link: EmbarkLink!
     }
 
-    type AngelTextActionSet implements AngelActionCore {
+    type EmbarkTextActionSet implements EmbarkActionCore {
         component: String!
-        data: AngelTextActionSetData
+        data: EmbarkTextActionSetData
     }
 
-    type AngelTextAction implements AngelActionCore {
-        component: String!
-    }
-
-    type AngelSelectAction implements AngelActionCore {
+    type EmbarkTextAction implements EmbarkActionCore {
         component: String!
     }
 
-    type AngelNumberAction implements AngelActionCore {
+    type EmbarkSelectAction implements EmbarkActionCore {
         component: String!
     }
 
-    type AngelMultiActionData {
-        components: [AngelMultiActionComponent!]!
-    }
-
-    type AngelMultiAction implements AngelActionCore {
+    type EmbarkNumberAction implements EmbarkActionCore {
         component: String!
-        data: AngelMultiActionData!
     }
 
-    type AngelDropdownOption {
+    type EmbarkMultiActionData {
+        components: [EmbarkMultiActionComponent!]!
+    }
+
+    type EmbarkMultiAction implements EmbarkActionCore {
+        component: String!
+        data: EmbarkMultiActionData!
+    }
+
+    type EmbarkDropdownOption {
         value: String!
         text: String!
     }
 
-    type AngelDropdownActionData {
+    type EmbarkDropdownActionData {
         label: String!
         key: String!
-        options: [AngelDropdownOption!]!
+        options: [EmbarkDropdownOption!]!
     }
 
-    type AngelDropdownAction implements AngelActionCore {
+    type EmbarkDropdownAction implements EmbarkActionCore {
         component: String!
-        data: AngelDropdownActionData!
+        data: EmbarkDropdownActionData!
     }
 
-    type AngelSwitchActionData {
+    type EmbarkSwitchActionData {
         label: String!
         key: String!
         defaultValue: Boolean!
     }
 
-    type AngelSwitchAction implements AngelActionCore {
+    type EmbarkSwitchAction implements EmbarkActionCore {
         component: String!
-        data: AngelSwitchActionData!
+        data: EmbarkSwitchActionData!
     }
 
-    union AngelAction = AngelNumberActionSet | AngelTextActionSet | AngelTextAction | AngelSelectAction | AngelNumberAction | AngelMultiAction
+    union EmbarkAction = EmbarkNumberActionSet | EmbarkTextActionSet | EmbarkTextAction | EmbarkSelectAction | EmbarkNumberAction | EmbarkMultiAction
 
-    union AngelMultiActionComponent = AngelNumberAction | AngelDropdownAction | AngelSwitchAction
+    union EmbarkMultiActionComponent = EmbarkNumberAction | EmbarkDropdownAction | EmbarkSwitchAction
 
-    type AngelGroupedResponseEach {
+    type EmbarkGroupedResponseEach {
         key: String!
-        content: AngelMessage!
+        content: EmbarkMessage!
     }
 
-    type AngelGroupedResponse {
+    type EmbarkGroupedResponse {
         component: String!
         title: String!
-        items: [AngelMessage!]!
-        each: [AngelGroupedResponseEach!]!
+        items: [EmbarkMessage!]!
+        each: [EmbarkGroupedResponseEach!]!
     }
 
-    union AngelResponse = AngelGroupedResponse | AngelMessage
+    union EmbarkResponse = EmbarkGroupedResponse | EmbarkMessage
 
-    type AngelTooltip {
+    type EmbarkTooltip {
         title: String!
         description: String!
     }
 
-    type AngelPassage {
+    type EmbarkPassage {
         id: String!
         text: String!
         name: String!
         url: String
-        allLinks: [AngelLink!]!
-        api: [AngelApi!]!
-        messages: [AngelMessage!]!
-        externalRedirect: AngelExternalRedirect
-        action: AngelAction
-        response: [AngelResponse!]!
-        tooltips: [AngelTooltip!]!
-        track: AngelTrack
-        redirects: [AngelRedirect!]!
+        allLinks: [EmbarkLink!]!
+        api: [EmbarkApi!]!
+        messages: [EmbarkMessage!]!
+        externalRedirect: EmbarkExternalRedirect
+        action: EmbarkAction
+        response: [EmbarkResponse!]!
+        tooltips: [EmbarkTooltip!]!
+        track: EmbarkTrack
+        redirects: [EmbarkRedirect!]!
     }
 
-    type AngelTrack {
+    type EmbarkTrack {
         eventName: String!
         eventKeys: String!
     }
 
-    enum AngelExpressionType {
+    enum EmbarkExpressionType {
         AND
         OR
         EQUALS
@@ -199,60 +199,60 @@ const typeDefs = `
         NEVER
     }
 
-    interface AngelExpressionCore {
-        type: AngelExpressionType!
+    interface EmbarkExpressionCore {
+        type: EmbarkExpressionType!
     }
 
-    union AngelExpression = AngelExpressionUnary | AngelExpressionBinary | AngelExpressionMultiple
+    union EmbarkExpression = EmbarkExpressionUnary | EmbarkExpressionBinary | EmbarkExpressionMultiple
 
-    type AngelExpressionUnary implements AngelExpressionCore {
-        type: AngelExpressionType!
+    type EmbarkExpressionUnary implements EmbarkExpressionCore {
+        type: EmbarkExpressionType!
     }
 
-    type AngelExpressionBinary implements AngelExpressionCore {
-        type: AngelExpressionType!
+    type EmbarkExpressionBinary implements EmbarkExpressionCore {
+        type: EmbarkExpressionType!
         key: String!
         value: String!
         text: String
     }
 
-    type AngelExpressionMultiple {
-        type: AngelExpressionType!
-        subExpressions: [AngelExpression!]!
+    type EmbarkExpressionMultiple {
+        type: EmbarkExpressionType!
+        subExpressions: [EmbarkExpression!]!
     }
 
-    union AngelRedirect = AngelRedirectUnaryExpression | AngelRedirectBinaryExpression | AngelRedirectMultipleExpressions
+    union EmbarkRedirect = EmbarkRedirectUnaryExpression | EmbarkRedirectBinaryExpression | EmbarkRedirectMultipleExpressions
 
-    type AngelRedirectUnaryExpression implements AngelExpressionCore {
-        type: AngelExpressionType!
+    type EmbarkRedirectUnaryExpression implements EmbarkExpressionCore {
+        type: EmbarkExpressionType!
         to: String!
     }
 
-    type AngelRedirectBinaryExpression implements AngelExpressionCore {
-        type: AngelExpressionType!
+    type EmbarkRedirectBinaryExpression implements EmbarkExpressionCore {
+        type: EmbarkExpressionType!
         key: String!
         value: String!
         to: String!
     }
 
-    type AngelRedirectMultipleExpressions {
+    type EmbarkRedirectMultipleExpressions {
         to: String!
-        type: AngelExpressionType!,
-        subExpressions: [AngelExpression!]!
+        type: EmbarkExpressionType!,
+        subExpressions: [EmbarkExpression!]!
     }
 
-    type AngelMessage {
-        expressions: [AngelExpression!]!
+    type EmbarkMessage {
+        expressions: [EmbarkExpression!]!
         text: String!
     }
 
-    type AngelStory {
+    type EmbarkStory {
         id: String!
         startPassage: String!
         name: String!
-        keywords: AngelKeywords!
-        partnerConfigs: [AngelPartnerConfig!]!
-        passages: [AngelPassage!]!
+        keywords: EmbarkKeywords!
+        partnerConfigs: [EmbarkPartnerConfig!]!
+        passages: [EmbarkPassage!]!
     }
 `;
 
@@ -260,7 +260,7 @@ export const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
-      angelStory: async (_, { name }: { name: string }) => {
+      embarkStory: async (_, { name }: { name: string }) => {
         const dir = await promises.readdir("angel-data");
 
         if (!dir.includes(`${name}.json`)) {
