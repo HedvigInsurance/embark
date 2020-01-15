@@ -784,8 +784,6 @@ export const parseStoryData = (storyData: any) => ({
           return null;
         }
 
-        console.log(expression.__typename);
-
         if (expression.__typename === "AngelExpressionUnary") {
           return {
             ...expression,
