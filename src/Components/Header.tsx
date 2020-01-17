@@ -6,6 +6,7 @@ interface HeaderProps {
   passage: any | undefined;
   storyData: any | undefined;
   partnerName: string | null;
+  startPageLink?: string;
 }
 
 interface ProgressLineProps {
@@ -133,7 +134,7 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <Background alignment={partner ? partner.alignment : "left"}>
-      <LogoLink href="/">
+      <LogoLink href={props.startPageLink}>
         {partner ? <PartnerImage src={partner.image} /> : null}
       </LogoLink>
       <ProgressLineBackground />
