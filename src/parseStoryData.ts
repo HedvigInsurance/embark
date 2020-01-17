@@ -11,12 +11,14 @@ const parseLinks = (text: string) => {
 
     if (differentName) {
       return {
+        __typename: "EmbarkLink",
         label: differentName[1],
         name: differentName[2]
       };
     } else {
       link = link.substring(2, link.length - 2);
       return {
+        __typename: "EmbarkLink",
         name: link,
         label: link
       };
@@ -41,6 +43,7 @@ const parseTooltip = (element: Element) => {
   ).trim();
 
   return {
+    __typename: "EmbarkTooltip",
     title,
     description
   };
@@ -87,16 +90,20 @@ const getSelectAction = (actionNode: Element | undefined) => {
     return {
       key,
       value,
-      link: links && links[0],
+      link: links ? links[0] : null,
       tooltip: tooltips[0] ? tooltips[0] : null,
-      api
+      api,
+      __typename: "EmbarkSelectActionOption"
     };
   });
+
+  console.log(actionNodeOptions);
 
   return {
     __typename: "EmbarkSelectAction",
     component: "SelectAction",
     data: {
+      __typename: "EmbarkSelectActionData",
       options: actionNodeOptions
     }
   };
@@ -572,7 +579,7 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
 
   return {
     expressions,
-    text: containerElement.textContent
+    text: (containerElement.textContent || "").trim()
   };
 };
 

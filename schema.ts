@@ -94,12 +94,36 @@ const typeDefs = `
         data: EmbarkTextActionSetData
     }
 
+    type EmbarkTextActionData {
+        placeholder: String!
+        key: String!
+        api: EmbarkApi
+        link: EmbarkLink!
+        large: Boolean
+        mask: String
+        tooltip: EmbarkTooltip
+    }
+
     type EmbarkTextAction implements EmbarkActionCore {
         component: String!
+        data: EmbarkTextActionData!
+    }
+
+    type EmbarkSelectActionOption {
+        key: String
+        value: String
+        link: EmbarkLink!
+        tooltip: EmbarkTooltip
+        api: EmbarkApi
+    }
+
+    type EmbarkSelectActionData {
+        options: [EmbarkSelectActionOption!]!
     }
 
     type EmbarkSelectAction implements EmbarkActionCore {
         component: String!
+        data: EmbarkSelectActionData!
     }
 
     type EmbarkNumberAction implements EmbarkActionCore {
@@ -186,50 +210,54 @@ const typeDefs = `
         eventKeys: String!
     }
 
-    enum EmbarkExpressionType {
+    enum EmbarkExpressionTypeMultiple {
         AND
         OR
+    }
+
+    enum EmbarkExpressionTypeBinary {
         EQUALS
         NOT_EQUALS
         MORE_THAN
         LESS_THAN
         MORE_THAN_OR_EQUALS
         LESS_THAN_OR_EQUALS
+    }
+
+    enum EmbarkExpressionTypeUnary {
         ALWAYS
         NEVER
     }
 
-    interface EmbarkExpressionCore {
-        type: EmbarkExpressionType!
-    }
-
     union EmbarkExpression = EmbarkExpressionUnary | EmbarkExpressionBinary | EmbarkExpressionMultiple
 
-    type EmbarkExpressionUnary implements EmbarkExpressionCore {
-        type: EmbarkExpressionType!
+    type EmbarkExpressionUnary {
+        type: EmbarkExpressionTypeUnary!
+        text: String
     }
 
-    type EmbarkExpressionBinary implements EmbarkExpressionCore {
-        type: EmbarkExpressionType!
+    type EmbarkExpressionBinary {
+        type: EmbarkExpressionTypeBinary!
         key: String!
         value: String!
         text: String
     }
 
     type EmbarkExpressionMultiple {
-        type: EmbarkExpressionType!
+        type: EmbarkExpressionTypeMultiple!
+        text: String
         subExpressions: [EmbarkExpression!]!
     }
 
     union EmbarkRedirect = EmbarkRedirectUnaryExpression | EmbarkRedirectBinaryExpression | EmbarkRedirectMultipleExpressions
 
-    type EmbarkRedirectUnaryExpression implements EmbarkExpressionCore {
-        type: EmbarkExpressionType!
+    type EmbarkRedirectUnaryExpression {
+        type: EmbarkExpressionTypeUnary!
         to: String!
     }
 
-    type EmbarkRedirectBinaryExpression implements EmbarkExpressionCore {
-        type: EmbarkExpressionType!
+    type EmbarkRedirectBinaryExpression {
+        type: EmbarkExpressionTypeBinary!
         key: String!
         value: String!
         to: String!
@@ -237,7 +265,7 @@ const typeDefs = `
 
     type EmbarkRedirectMultipleExpressions {
         to: String!
-        type: EmbarkExpressionType!,
+        type: EmbarkExpressionTypeMultiple!,
         subExpressions: [EmbarkExpression!]!
     }
 
