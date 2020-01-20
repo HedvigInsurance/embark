@@ -6,6 +6,7 @@ interface HeaderProps {
   passage: any | undefined;
   storyData: any | undefined;
   partnerName: string | null;
+  startPageLink?: string;
 }
 
 interface ProgressLineProps {
@@ -15,6 +16,10 @@ interface ProgressLineProps {
 interface Alignable {
   alignment: "left" | "center";
 }
+
+const LogoLink = styled("a")`
+  display: inline-block;
+`;
 
 const PartnerImage = styled.img`
   width: auto;
@@ -129,7 +134,9 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <Background alignment={partner ? partner.alignment : "left"}>
-      {partner ? <PartnerImage src={partner.image} /> : null}
+      <LogoLink href={props.startPageLink}>
+        {partner ? <PartnerImage src={partner.image} /> : null}
+      </LogoLink>
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
