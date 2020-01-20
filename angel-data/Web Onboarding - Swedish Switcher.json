@@ -28,7 +28,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-14T11:48:53.387Z",
+  "lastUpdate": "2020-01-20T10:40:30.008Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -433,7 +433,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, försök igen snart!\n</Message>",
+      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, under tiden kan du få ett prisförslag i appen istället!\n</Message>",
       "top": 1925,
       "url": "/quote-error",
       "width": 100
@@ -617,7 +617,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-1738431846",
-  "storyFormat": "Hedvig - Development",
+  "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
