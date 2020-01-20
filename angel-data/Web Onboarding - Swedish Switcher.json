@@ -3,32 +3,15 @@
   "ifid": "776DB1EB-952B-46C8-8105-E85D86A8A2F1",
   "keywords": {
     "backButton": "Tillbaka",
-    "externalInsuranceProviderAuthOpenBankId": "Öppna BankID appen på telefonen där du har det installerat",
-    "externalInsuranceProviderAuthScanBankID": "Skanna QR-koden med BankID appen för att logga in",
-    "externalInsuranceProviderBackgroundFetchBody": "Vi hämtar nu data från {provider} i bakgrunden, fortsätt genom att svar på några till frågor.",
-    "externalInsuranceProviderBackgroundFetchTitle": "Toppen!",
-    "externalInsuranceProviderBETATag": "Denna funktionen är i BETA",
-    "externalInsuranceProviderConfirmButton": "Ja, tack!",
-    "externalInsuranceProviderConfirmMessage": "Så kan du jämföra pris och skydd med Hedvig",
-    "externalInsuranceProviderConfirmPrivacyPolicy": "Genom att klicka på \"Ja, tack!\" godkänner du att Hedvig hämtar data från {provider} i enlighet med vår {privacyUrl}",
-    "externalInsuranceProviderConfirmRejectButton": "Skippa det",
-    "externalInsuranceProviderConfirmTitle": "Vill du hämta information om din nuvarande hemförsäkring hos {provider}?",
-    "externalInsuranceProviderContinueButton": "Fortsätt",
-    "externalInsuranceProviderFailureButton": "Försök igen",
-    "externalInsuranceProviderFailureMessage": "Vi kunde tyvärr inte hämta din nuvarande försäkring",
-    "externalInsuranceProviderFailureTitle": "Något gick fel",
-    "externalInsuranceProviderGoBackButton": "Tillbaka",
     "externalInsuranceProviderOtherProviderButton": "Annat bolag",
-    "externalInsuranceProviderPersonalNumberSubtitle": "Personnummer",
-    "externalInsuranceProviderPersonalNumberTitle": "Hämta information om min hemförsäkring hos {provider}",
+    "externalInsuranceProviderOtherProviderModal": "",
+    "externalInsuranceProviderPersonalNumberTitle": "Logga in hos {provider}",
     "externalInsuranceProviderSelectTitle": "Välj försäkringsbolag",
-    "externalInsuranceProviderSetupTitle": "Kontaktar {provider}...",
     "previousInsuranceProviderOtherProviderModal": "Du kommer behöva kontakta ditt gamla försäkringsbolag och säga upp din försäkring själv om du väljer att bli medlem hos oss senare.",
-    "previousInsuranceProviderOtherProviderModalButton": "Okej",
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-14T11:48:53.387Z",
+  "lastUpdate": "2020-01-20T10:16:32.403Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -102,7 +85,7 @@
       "tags": [],
       "text": "<Message>\n  Super! Skriv in din email adress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
       "top": 2000,
-      "url": "/email-address-villa",
+      "url": "email-address-villa",
       "width": 100
     },
     {
@@ -139,7 +122,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<ExternalInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Fortsätt utan->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</ExternalInsuranceProviderAction>",
+      "text": "<Message>\n  Vilket bolag har du hemförsäkring med idag?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsätt->typeOfRecidency]]\"\n                                 skip=\"[[Okej->typeOfRecidency]]\"\n>\n  <Tooltip>\n    <Title>\n      Nuvarande försäkring\n    </Title>\n    <Description>\n      Om du anger ditt gamla försäkringsbolag kan vi enklare hjälpa dig med bytet om du väljer att teckna Hedvig sen\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 325,
       "url": "/old-insurer",
       "width": 100
@@ -433,7 +416,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, försök igen snart!\n</Message>",
+      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, under tiden kan du få ett prisförslag i appen istället!\n</Message>",
       "top": 1925,
       "url": "/quote-error",
       "width": 100
@@ -472,7 +455,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace > 50 || householdSize > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"personalNumber.Age >= 30 || livingSpace >= 50 || householdSize >= 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentBrfQuestion]]\"\n          when=\"apartmentType == 'BRF'\"\n>\n</Redirect>\n\n<Redirect to=\"[[StudentRentQuestion]]\"\n          when=\"apartmentType == 'RENT'\"\n>\n</Redirect>\n\n<Redirect to=\"[[Offer]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1550,
       "url": "/student",
       "width": 100
@@ -617,7 +600,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-1738431846",
-  "storyFormat": "Hedvig - Development",
+  "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
