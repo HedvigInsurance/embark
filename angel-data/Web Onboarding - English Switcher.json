@@ -11,7 +11,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-14T11:51:20.055Z",
+  "lastUpdate": "2020-01-20T10:41:00.240Z",
   "name": "Web Onboarding - English Switcher",
   "partnerConfigs": [
     {
@@ -97,7 +97,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Uh-oh. Something technical seems to have gone wrong and we can't create and offer for you right now. We're working on it, try again soon!\n</Message>",
+      "text": "<Message>\n  Uh-oh. Something technical seems to have gone wrong and we can't create and offer for you right now. We're working on it, meanwhile you can get an offer in the app instead!\n</Message>",
       "top": 1925,
       "url": "/quote-error",
       "width": 100
@@ -600,7 +600,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-117329756",
-  "storyFormat": "Hedvig Twine",
+  "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
