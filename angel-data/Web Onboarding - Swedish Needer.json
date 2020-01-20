@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-14T11:50:07.054Z",
+  "lastUpdate": "2020-01-20T10:39:28.340Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -245,7 +245,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, försök igen snart!\n</Message>",
+      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, under tiden kan du få ett prisförslag i appen istället!\n</Message>",
       "top": 1600,
       "url": "/error",
       "width": 100
@@ -594,7 +594,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "392921887",
-  "storyFormat": "Hedvig Twine",
+  "storyFormat": "Hedvig",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
