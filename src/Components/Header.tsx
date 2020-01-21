@@ -7,14 +7,11 @@ interface HeaderProps {
   storyData: any | undefined;
   partnerName: string | null;
   startPageLink?: string;
+  customTrailingContent?: React.ReactNode;
 }
 
 interface ProgressLineProps {
   progress: number;
-}
-
-interface Alignable {
-  alignment: "left" | "center";
 }
 
 const LogoLink = styled("a")`
@@ -33,7 +30,7 @@ const PartnerImage = styled.img`
   }
 `;
 
-const Background = styled.div<Alignable>`
+const Background = styled.div`
   display: flex;
   align-items: center;
   height: 80px;
@@ -43,14 +40,11 @@ const Background = styled.div<Alignable>`
   padding: 0 10vw;
   box-sizing: border-box;
 
-  ${props =>
-    props.alignment === "center"
-      ? `
+  justify-content: space-between;
+
   @media (max-width: 768px) {
-    justify-content: center;
+    padding: 0 25px;
   }
-  `
-      : ""};
 
   @media (max-width: 375px) {
     height: 64px;
@@ -133,10 +127,11 @@ export const Header = (props: HeaderProps) => {
   }, [props.passage]);
 
   return (
-    <Background alignment={partner ? partner.alignment : "left"}>
+    <Background>
       <LogoLink href={props.startPageLink}>
         {partner ? <PartnerImage src={partner.image} /> : null}
       </LogoLink>
+      {props.customTrailingContent}
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
