@@ -16,7 +16,7 @@ export const useAutoFocus = (shouldAutoFocus: boolean) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   useEffectOnceWhen(() => {
-    if (inputRef.current && !ismobilejs()) {
+    if (inputRef.current && !ismobilejs().any) {
       inputRef.current.focus();
     }
   }, shouldAutoFocus);
