@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-01-20T10:39:28.340Z",
+  "lastUpdate": "2020-02-04T09:22:31.868Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -245,7 +245,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Uh-oh. Något tekniskt verkar ha gått allvarligt fel och vi kan inte skapa ett prisförslag till dig just nu. Vi jobbar på det, under tiden kan du få ett prisförslag i appen istället!\n</Message>",
+      "text": "<Message>\n  Tack! Tyvärr kan vi inte ta fram ett pris till dig här på hemsidan. En av våra försäkringsexperter behöver kika på din ansökan. För att få ditt erbjudande, maila till oss på prisforslag@hedvig.com\n</Message>",
       "top": 1600,
       "url": "/error",
       "width": 100
@@ -602,5 +602,5 @@
     "Manual": "yellow",
     "Review": "purple"
   },
-  "zoom": 1
+  "zoom": 0.25
 }
