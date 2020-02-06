@@ -10,7 +10,7 @@
     "externalInsuranceProviderBETATag": "Denna funktionen är i BETA",
     "externalInsuranceProviderConfirmButton": "Ja, tack!",
     "externalInsuranceProviderConfirmMessage": "Så kan du jämföra pris och skydd med Hedvig",
-    "externalInsuranceProviderConfirmPrivacyPolicy": "Genom att klicka på \"Ja, tack!\" godkänner du att Hedvig hämtar data från {provider} i enlighet med vår {privacyUrl}",
+    "externalInsuranceProviderConfirmPrivacyPolicy": "Genom att klicka på \"Ja, tack!\" godkänner du att Hedvig hämtar data från {provider} i enlighet med vår {privacyUrl}. Detta kan komma att inkludera “känslig data” i enlighet med GDPR.",
     "externalInsuranceProviderConfirmRejectButton": "Skippa det",
     "externalInsuranceProviderConfirmTitle": "Vill du hämta information om din nuvarande hemförsäkring hos {provider}?",
     "externalInsuranceProviderContinueButton": "Fortsätt",
@@ -28,7 +28,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-02-04T09:14:16.713Z",
+  "lastUpdate": "2020-02-06T13:28:47.419Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -625,5 +625,5 @@
     "Manual": "yellow",
     "Review": "purple"
   },
-  "zoom": 0.25
+  "zoom": 1
 }
