@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-02-04T09:22:31.868Z",
+  "lastUpdate": "2020-02-17T07:22:31.949Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -465,7 +465,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Super! Skriv in din email adress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Super! Skriv in din epostadress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
       "top": 1700,
       "url": "/email-address-villa",
       "width": 100
@@ -560,7 +560,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Super! Skriv in din email adress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->StudentEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Super! Skriv in din epostadress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->StudentEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1100,
       "url": "/email-address",
       "width": 100
