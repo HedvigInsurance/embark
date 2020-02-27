@@ -2,6 +2,34 @@ interface Link {
   name: string;
 }
 
+export interface GraphQLVariable {
+  key: string;
+  from: string;
+  as: string;
+}
+
+export interface GraphQLError {
+  contains?: string;
+  next: Link;
+}
+
+export interface GraphQLResult {
+  key: string;
+  as: string;
+}
+
+export interface GraphQLApiComponent {
+  component: "GraphQLApi";
+  data: {
+    next: Link;
+    query?: string;
+    mutation?: string;
+    variables: [GraphQLVariable];
+    errors: [GraphQLError];
+    results: [GraphQLResult];
+  };
+}
+
 export interface PersonalInformationApiComponent {
   component: "PersonalInformationApi";
   data: {
@@ -33,4 +61,5 @@ export type ApiComponent =
   | PersonalInformationApiComponent
   | CreateQuoteApiComponent
   | HouseInformationApiComponent
+  | GraphQLApiComponent
   | undefined;

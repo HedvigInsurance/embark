@@ -36,7 +36,7 @@ app.use(
 
 app.use(
   mount("/client.js", async ctx => {
-    const javascript = fs.readFileSync("dist/output/index.js", "utf-8");
+    const javascript = fs.readFileSync("dist/main.js", "utf-8");
     ctx.type = "application/javascript";
     ctx.body = javascript;
   })
