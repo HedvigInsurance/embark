@@ -15,14 +15,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
     "@hedviginsurance/brand": "^2.0.0",
-    "@types/lodash.get": "^4.4.6",
     "animated-scroll-to": "^2.0.5",
     "apollo-link-http": "^1.5.16",
-    "awesome-typescript-loader": "^5.2.1",
-    "babel-loader": "^8.0.6",
     "date-fns": "^2.8.1",
     "emotion": "^10.0.17",
     "eventemitter3": "^4.0.0",
@@ -67,10 +65,13 @@
     "react-dom": "^16.10.x"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@koa/cors": "^2.2.3",
     "@types/history": "^4.7.3",
     "@types/jest": "^24.0.23",
     "@types/koa": "^2.0.51",
+    "@types/lodash.get": "^4.4.6",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
     "@types/react-input-mask": "^2.0.4",
@@ -78,7 +79,6 @@
     "concurrently": "^5.0.0",
     "graphql-tag": "^2.10.1",
     "jest": "^24.9.0",
-    "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1",
     "rollup": "^1.27.2",
     "rollup-plugin-typescript2": "^0.25.2",
@@ -87,7 +87,8 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "babel-loader": "^8.0.6"
   },
   "resolutions": {
     "graphql": "^14.6.0"
