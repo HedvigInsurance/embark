@@ -6,7 +6,7 @@ import { Global, css } from "@emotion/core";
 import { getCdnFontFaces } from "@hedviginsurance/brand";
 import { createHashHistory } from "history";
 
-import { parseStoryData } from "./parseStoryData";
+import { parseStoryData } from "./Parsing/parseStoryData";
 import { Header } from "./Components/Header";
 import { EmbarkProvider } from "./Components/EmbarkProvider";
 import { mockApiResolvers } from "./Components/API/ApiContext";

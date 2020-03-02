@@ -1,7 +1,7 @@
 import { storyKeywords } from "./src/storyKeywords";
 import { makeExecutableSchema } from "graphql-tools";
 import { promises } from "fs";
-import { parseStoryData } from "./src/parseStoryData";
+import { parseStoryData } from "./src/Parsing/parseStoryData";
 
 const typeDefs = `
     type Query {
@@ -31,6 +31,43 @@ const typeDefs = `
 
     interface EmbarkApiCore {
         component: String!
+    }
+
+    enum EmbarkAPIGraphQLVariableCasting {
+        string
+        int
+    }
+
+    type EmbarkAPIGraphQLVariable {
+        key: String!
+        from: String!
+        as: EmbarkAPIGraphQLVariableCasting!
+    }
+
+    type EmbarkAPIGraphQLError {
+        contains: String
+        next: EmbarkLink!
+    }
+
+    type EmbarkAPIGraphQLResult {
+        key: String!
+        as: String!
+    }
+    
+    type EmbarkApiGraphQLQuery {
+        next: EmbarkLink!
+        query: String!
+        variables: [EmbarkAPIGraphQLVariable!]!
+        errors: [EmbarkAPIGraphQLError!]!
+        results: [EmbarkAPIGraphQLResult!]!
+    }
+
+    type EmbarkApiGraphQLMutation {
+        next: EmbarkLink!
+        mutation: String!
+        variables: [EmbarkAPIGraphQLVariable!]!
+        errors: [EmbarkAPIGraphQLError!]!
+        results: [EmbarkAPIGraphQLResult]!
     }
 
     type EmbarkApiPersonalInformationData {
@@ -66,7 +103,7 @@ const typeDefs = `
         data: EmbarkApiCreateQuoteData!
     }
 
-    union EmbarkApi = EmbarkApiPersonalInformation | EmbarkApiHouseInformation | EmbarkApiCreateQuote
+    union EmbarkApi = EmbarkApiPersonalInformation | EmbarkApiHouseInformation | EmbarkApiCreateQuote | EmbarkApiGraphQLQuery | EmbarkApiGraphQLMutation
 
     enum EmbarkExternalRedirect {
         email

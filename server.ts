@@ -4,7 +4,7 @@ import * as serve from "koa-static";
 import * as mount from "koa-mount";
 import * as cors from "@koa/cors";
 import { JSDOM } from "jsdom";
-import { parseStoryData } from "./src/parseStoryData";
+import { parseStoryData } from "./src/Parsing/parseStoryData";
 import { storyKeywords } from "./src/storyKeywords";
 import * as graphqlHTTP from "koa-graphql";
 

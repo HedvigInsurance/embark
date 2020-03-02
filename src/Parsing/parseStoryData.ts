@@ -1,32 +1,5 @@
-import { getTextContent } from "./Components/Common";
-const parseLinks = (text: string) => {
-  if (!text) {
-    return null;
-  }
-
-  const trimmedText = text.replace(/(\r\n|\n|\r)/gm, "").trim();
-  const links = trimmedText.match(/\[\[.+?\]\]/g) || [];
-  const transformedLinks = links.map(function(link) {
-    var differentName = link.match(/\[\[(.*?)\->(.*?)\]\]/);
-
-    if (differentName) {
-      return {
-        __typename: "EmbarkLink",
-        label: differentName[1],
-        name: differentName[2]
-      };
-    } else {
-      link = link.substring(2, link.length - 2);
-      return {
-        __typename: "EmbarkLink",
-        name: link,
-        label: link
-      };
-    }
-  });
-
-  return transformedLinks;
-};
+import { parseGraphQLApi } from "./parseGraphQLApi";
+import { getFirstLevelNodes, parseLinks } from "./utils";
 
 const parseTooltips = (containerElement: Element) => {
   const tooltips = Array.from(containerElement.getElementsByTagName("Tooltip"));
@@ -628,113 +601,11 @@ const parseGroupedResponse = (element: Element) => {
   };
 };
 
-const getFirstLevelNodes = (node: Element) => {
-  var children = new Array();
-  for (var child in node.childNodes) {
-    if (node.childNodes[child].nodeType == 1) {
-      children.push(node.childNodes[child]);
-    }
-  }
-  return children;
-};
-
 const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
-  const graphQLApi = element.getElementsByTagName("graphqlapi")[0];
+  const graphQLApi = parseGraphQLApi(element, allowNestedChildren);
 
   if (graphQLApi) {
-    if (
-      allowNestedChildren == false &&
-      !getFirstLevelNodes(element).includes(graphQLApi)
-    ) {
-      return null;
-    }
-
-    const parseVariables = (element: Element) => {
-      const key = element.getAttribute("key");
-      const from = element.getAttribute("from");
-      const as = element.getAttribute("as");
-
-      return {
-        key,
-        from,
-        as
-      };
-    };
-
-    const parseErrors = (element: Element) => {
-      const contains = element.getAttribute("contains");
-      const next = element.getAttribute("next");
-      const nextLinks = parseLinks(next || "");
-
-      return {
-        contains,
-        next: nextLinks && nextLinks[0]
-      };
-    };
-
-    const parseResults = (element: Element) => {
-      const key = element.getAttribute("key");
-      const as = element.getAttribute("as");
-
-      return {
-        key,
-        as
-      };
-    };
-
-    const queryElement = graphQLApi.getElementsByTagName("query")[0];
-
-    if (queryElement) {
-      const query = queryElement.textContent;
-      const nextLinks = parseLinks(graphQLApi.getAttribute("next") || "");
-      const variables = Array.from(
-        graphQLApi.getElementsByTagName("variable")
-      ).map(parseVariables);
-      const errors = Array.from(graphQLApi.getElementsByTagName("error")).map(
-        parseErrors
-      );
-      const results = Array.from(graphQLApi.getElementsByTagName("result")).map(
-        parseResults
-      );
-
-      return {
-        __typename: "EmbarkGraphQLApiQuery",
-        component: "GraphQLApi",
-        data: {
-          next: nextLinks && nextLinks[0],
-          query,
-          variables,
-          errors,
-          results
-        }
-      };
-    }
-
-    const mutationElement = graphQLApi.getElementsByTagName("mutation")[0];
-
-    const mutation = mutationElement.textContent;
-    const nextLinks = parseLinks(graphQLApi.getAttribute("next") || "");
-    const variables = Array.from(
-      graphQLApi.getElementsByTagName("variable")
-    ).map(parseVariables);
-    const errors = Array.from(graphQLApi.getElementsByTagName("error")).map(
-      parseErrors
-    );
-    const results = Array.from(graphQLApi.getElementsByTagName("result")).map(
-      parseResults
-    );
-
-    return {
-      __typename: "EmbarkGraphQLApiMutation",
-      component: "GraphQLApi",
-      data: {
-        next: nextLinks && nextLinks[0],
-        mutation,
-        variables,
-        errors,
-        results
-      }
-    };
+    return graphQLApi;
   }
 
   const personalInformationApi = element.getElementsByTagName(
