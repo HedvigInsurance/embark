@@ -33,16 +33,34 @@ const typeDefs = `
         component: String!
     }
 
-    enum EmbarkAPIGraphQLVariableCasting {
+    enum EmbarkAPIGraphQLSingleVariableCasting {
         string
         int
+        boolean
     }
 
-    type EmbarkAPIGraphQLVariable {
+    type EmbarkAPIGraphQLSingleVariable {
         key: String!
         from: String!
         as: EmbarkAPIGraphQLVariableCasting!
     }
+
+    enum EmbarkAPIGraphQLGeneratedVariableType {
+        uuid
+    }
+
+    type EmbarkAPIGraphQLGeneratedVariable {
+        key: String!
+        storeAs: String!
+        type: EmbarkAPIGraphQLVariableGeneratedType!
+    }
+
+    type EmbarkAPIGraphQLMultiActionVariable {
+        key: String!
+        variables: [EmbarkAPIGraphQLVariable!]!
+    }
+
+    union EmbarkAPIGraphQLVariable = EmbarkAPIGraphQLSingleVariable | EmbarkAPIGraphQLGeneratedVariable | EmbarkAPIGraphQLMultiActionVariable
 
     type EmbarkAPIGraphQLError {
         contains: String

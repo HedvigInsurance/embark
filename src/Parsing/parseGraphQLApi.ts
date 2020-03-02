@@ -1,14 +1,77 @@
 import { getFirstLevelNodes, parseLinks } from "./utils";
 
-const parseVariables = (element: Element) => {
+export type Variable = SingleVariable | GeneratedVariable | MultiActionVariable;
+
+export interface SingleVariable {
+  __typename: string;
+  key: string;
+  from: string;
+  as: string;
+}
+
+enum GeneratedVariableType {
+  uuid = "uuid"
+}
+
+export interface GeneratedVariable {
+  __typename: string;
+  key: string;
+  type: GeneratedVariableType;
+  storeAs: string;
+}
+
+export interface MultiActionVariable {
+  __typename: string;
+  key: string;
+  variables: [Variable];
+}
+
+const parseVariables = (element: Element): SingleVariable => {
   const key = element.getAttribute("key");
   const from = element.getAttribute("from");
   const as = element.getAttribute("as");
 
   return {
+    __typename: "EmbarkGraphQLApiSingleVariable",
+    key: key || "",
+    from: from || "",
+    as: as || ""
+  };
+};
+
+const parseGeneratedVariables = (element: Element): GeneratedVariable => {
+  const key = element.getAttribute("key");
+  const type = element.getAttribute("type");
+  const storeAs = element.getAttribute("storeAs");
+
+  if (type !== "uuid") {
+    throw new Error(`passed not allowed type ${type} as generated variable`);
+  }
+
+  return {
+    __typename: "EmbarkGraphQLApiGeneratedVariable",
+    key: key || "",
+    type: GeneratedVariableType.uuid,
+    storeAs: storeAs || ""
+  };
+};
+
+const parseMultiActionVariables = (element: Element): MultiActionVariable => {
+  const key = element.getAttribute("key");
+  const variables = Array.from(element.getElementsByTagName("variable")).map(
+    parseVariables
+  );
+  const generatedVariables = Array.from(
+    element.getElementsByTagName("generatedvariable")
+  ).map(parseGeneratedVariables);
+  const multiActionVariables = Array.from(
+    element.getElementsByTagName("multiactionvariable")
+  ).map(parseMultiActionVariables);
+
+  return {
+    __typename: "EmbarkGraphQLApiMultiActionVariable",
     key,
-    from,
-    as
+    variables: [...variables, ...generatedVariables, ...multiActionVariables]
   };
 };
 
@@ -33,6 +96,32 @@ const parseResults = (element: Element) => {
   };
 };
 
+const parseCommonFields = (graphQLApi: Element) => {
+  const nextLinks = parseLinks(graphQLApi.getAttribute("next") || "");
+  const variables = Array.from(graphQLApi.getElementsByTagName("variable"))
+    .filter(element => element.parentElement == graphQLApi)
+    .map(parseVariables);
+  const generatedVariables = Array.from(
+    graphQLApi.getElementsByTagName("generatedvariable")
+  ).map(parseGeneratedVariables);
+  const multiActionVariables = Array.from(
+    graphQLApi.getElementsByTagName("multiactionvariable")
+  ).map(parseMultiActionVariables);
+  const errors = Array.from(graphQLApi.getElementsByTagName("error")).map(
+    parseErrors
+  );
+  const results = Array.from(graphQLApi.getElementsByTagName("result")).map(
+    parseResults
+  );
+
+  return {
+    next: nextLinks && nextLinks[0],
+    variables: [...variables, ...generatedVariables, ...multiActionVariables],
+    errors,
+    results
+  };
+};
+
 export const parseGraphQLApi = (
   element: Element,
   allowNestedChildren: boolean = true
@@ -51,53 +140,26 @@ export const parseGraphQLApi = (
 
     if (queryElement) {
       const query = queryElement.textContent;
-      const nextLinks = parseLinks(graphQLApi.getAttribute("next") || "");
-      const variables = Array.from(
-        graphQLApi.getElementsByTagName("variable")
-      ).map(parseVariables);
-      const errors = Array.from(graphQLApi.getElementsByTagName("error")).map(
-        parseErrors
-      );
-      const results = Array.from(graphQLApi.getElementsByTagName("result")).map(
-        parseResults
-      );
 
       return {
         __typename: "EmbarkGraphQLApiQuery",
         component: "GraphQLApi",
         data: {
-          next: nextLinks && nextLinks[0],
-          query,
-          variables,
-          errors,
-          results
+          ...parseCommonFields(graphQLApi),
+          query
         }
       };
     }
 
     const mutationElement = graphQLApi.getElementsByTagName("mutation")[0];
-
     const mutation = mutationElement.textContent;
-    const nextLinks = parseLinks(graphQLApi.getAttribute("next") || "");
-    const variables = Array.from(
-      graphQLApi.getElementsByTagName("variable")
-    ).map(parseVariables);
-    const errors = Array.from(graphQLApi.getElementsByTagName("error")).map(
-      parseErrors
-    );
-    const results = Array.from(graphQLApi.getElementsByTagName("result")).map(
-      parseResults
-    );
 
     return {
       __typename: "EmbarkGraphQLApiMutation",
       component: "GraphQLApi",
       data: {
-        next: nextLinks && nextLinks[0],
-        mutation,
-        variables,
-        errors,
-        results
+        ...parseCommonFields(graphQLApi),
+        mutation
       }
     };
   }

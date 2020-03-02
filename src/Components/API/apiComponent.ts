@@ -1,11 +1,7 @@
+import { Variable as GraphQLVariable } from "../../Parsing/parseGraphQLApi";
+
 interface Link {
   name: string;
-}
-
-export interface GraphQLVariable {
-  key: string;
-  from: string;
-  as: string;
 }
 
 export interface GraphQLError {

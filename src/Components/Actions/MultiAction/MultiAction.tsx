@@ -70,7 +70,7 @@ const reducer = (state: any, action: any) => {
 const getDefaultItemsByComponents = (components: any[]) =>
   components
     .map(c => {
-      if (c.component === "SwitchAction" && c.data.defaultValue) {
+      if (c.component === "SwitchAction") {
         return { [c.data.key]: c.data.defaultValue };
       }
       return {};
