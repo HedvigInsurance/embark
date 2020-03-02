@@ -3,8 +3,7 @@ import { Tooltip } from "../../Tooltip";
 import { motion } from "framer-motion";
 import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import styled from "@emotion/styled";
-import { colorsV2 } from "@hedviginsurance/brand/colors";
-import { fonts } from "@hedviginsurance/brand/fonts/index";
+import { colorsV2, fonts } from "@hedviginsurance/brand";
 import {
   CARD_COUNT_BASE_BP_SM,
   getCardCountMediaQuery,

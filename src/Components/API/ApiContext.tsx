@@ -12,6 +12,9 @@ import {
   ExternalInsuranceProviderEventEmitter
 } from "./externalInsuranceProviderData";
 import EventEmitter from "eventemitter3";
+import { HttpLink } from "apollo-link-http";
+import { introspectSchema, addMockFunctionsToSchema } from "graphql-tools";
+import { graphql, ExecutionResult } from "graphql";
 
 const timeout = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -19,6 +22,14 @@ export interface TApiContext {
   personalInformationApi: (personalNumber: string) => Promise<PData | Error>;
   houseInformation: (variables: HVariables) => Promise<HData | Error>;
   createQuote: (variables: CQVariables) => Promise<CQData | Error>;
+  graphqlQuery: (
+    query: string,
+    variables: { [key: string]: any }
+  ) => Promise<ExecutionResult<any>>;
+  graphqlMutation: (
+    query: string,
+    variables: { [key: string]: any }
+  ) => Promise<ExecutionResult<any>>;
   track: (eventName: string, payload: { [key: string]: any }) => void;
   externalInsuranceProviderStartSession: (
     id: string,
@@ -42,6 +53,12 @@ export const ApiContext = React.createContext<TApiContext>({
   },
   track: () => {
     throw Error("Must provide an implementation for `track`");
+  },
+  graphqlQuery: () => {
+    throw Error("Must provide an implementation for `graphqlQuery`");
+  },
+  graphqlMutation: () => {
+    throw Error("Must provide an implementation for `graphqlMutation`");
   },
   externalInsuranceProviderStartSession: () => {
     throw Error(
@@ -70,6 +87,34 @@ export const mockApiResolvers: TApiContext = {
   },
   track: (eventName, payload) => {
     console.log(`Tracking ${eventName} with payload:`, payload);
+  },
+  graphqlQuery: async (query, variables) => {
+    const link = new HttpLink({
+      uri: "https://graphql.dev.hedvigit.com/graphql"
+    });
+    const schema = await introspectSchema(link);
+
+    addMockFunctionsToSchema({ schema });
+
+    const result = await graphql(schema, query, null, null, variables);
+
+    console.log("Got graphql result", result);
+
+    return result;
+  },
+  graphqlMutation: async (mutation, variables) => {
+    const link = new HttpLink({
+      uri: "https://graphql.dev.hedvigit.com/graphql"
+    });
+    const schema = await introspectSchema(link);
+
+    addMockFunctionsToSchema({ schema });
+
+    const result = await graphql(schema, mutation, null, null, variables);
+
+    console.log("Got graphql result", result);
+
+    return result;
   },
   externalInsuranceProviderProviderStatus: async () => {
     await timeout(300);

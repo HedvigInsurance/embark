@@ -1,5 +1,4 @@
 import typescript from "rollup-plugin-typescript2";
-import graphql from "rollup-plugin-graphql";
 import pkg from "./package.json";
 
 export default {
@@ -15,7 +14,6 @@ export default {
     typescript({
       typescript: require("typescript"),
       declarationDir: "dist"
-    }),
-    graphql()
+    })
   ]
 };

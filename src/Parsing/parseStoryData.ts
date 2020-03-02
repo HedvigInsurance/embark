@@ -1,32 +1,5 @@
-import { getTextContent } from "./Components/Common";
-const parseLinks = (text: string) => {
-  if (!text) {
-    return null;
-  }
-
-  const trimmedText = text.replace(/(\r\n|\n|\r)/gm, "").trim();
-  const links = trimmedText.match(/\[\[.+?\]\]/g) || [];
-  const transformedLinks = links.map(function(link) {
-    var differentName = link.match(/\[\[(.*?)\->(.*?)\]\]/);
-
-    if (differentName) {
-      return {
-        __typename: "EmbarkLink",
-        label: differentName[1],
-        name: differentName[2]
-      };
-    } else {
-      link = link.substring(2, link.length - 2);
-      return {
-        __typename: "EmbarkLink",
-        name: link,
-        label: link
-      };
-    }
-  });
-
-  return transformedLinks;
-};
+import { parseGraphQLApi } from "./parseGraphQLApi";
+import { getFirstLevelNodes, parseLinks } from "./utils";
 
 const parseTooltips = (containerElement: Element) => {
   const tooltips = Array.from(containerElement.getElementsByTagName("Tooltip"));
@@ -96,8 +69,6 @@ const getSelectAction = (actionNode: Element | undefined) => {
       __typename: "EmbarkSelectActionOption"
     };
   });
-
-  console.log(actionNodeOptions);
 
   return {
     __typename: "EmbarkSelectAction",
@@ -630,17 +601,13 @@ const parseGroupedResponse = (element: Element) => {
   };
 };
 
-const getFirstLevelNodes = (node: Element) => {
-  var children = new Array();
-  for (var child in node.childNodes) {
-    if (node.childNodes[child].nodeType == 1) {
-      children.push(node.childNodes[child]);
-    }
-  }
-  return children;
-};
-
 const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
+  const graphQLApi = parseGraphQLApi(element, allowNestedChildren);
+
+  if (graphQLApi) {
+    return graphQLApi;
+  }
+
   const personalInformationApi = element.getElementsByTagName(
     "personalinformationapi"
   )[0];

@@ -12,6 +12,7 @@ import { TApiContext } from "./ApiContext";
 import { Store } from "../KeyValueStore";
 import { getMultiActionItems } from "../Actions/MultiAction/util";
 import { isHouseInformationComponent } from "./houseInformation";
+import { isGraphqlApi, graphQLApiHandler } from "./graphql";
 import uuid from "uuid";
 
 export const callApi = async (
@@ -21,6 +22,11 @@ export const callApi = async (
   setValue: (key: string, value: string) => void,
   changePassage: (name: string) => void
 ) => {
+  if (isGraphqlApi(component)) {
+    graphQLApiHandler(component, apiContext, store, setValue, changePassage);
+    return;
+  }
+
   if (isPersonalInformationApiComponent(component)) {
     try {
       const result = await apiContext.personalInformationApi(

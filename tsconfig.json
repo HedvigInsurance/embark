@@ -16,5 +16,5 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true
   },
-  "exclude": ["server.ts", "dist", "schema.ts"]
+  "exclude": ["server.ts", "dist", "schema.ts", "node_modules"]
 }
