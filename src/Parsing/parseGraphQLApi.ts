@@ -23,7 +23,7 @@ export interface GeneratedVariable {
 export interface MultiActionVariable {
   __typename: string;
   key: string;
-  variables: [Variable];
+  variables: Variable[];
 }
 
 const parseVariables = (element: Element): SingleVariable => {

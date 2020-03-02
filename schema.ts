@@ -42,10 +42,10 @@ const typeDefs = `
     type EmbarkAPIGraphQLSingleVariable {
         key: String!
         from: String!
-        as: EmbarkAPIGraphQLVariableCasting!
+        as: EmbarkAPIGraphQLSingleVariableCasting!
     }
 
-    enum EmbarkAPIGraphQLGeneratedVariableType {
+    enum EmbarkAPIGraphQLVariableGeneratedType {
         uuid
     }
 
@@ -55,12 +55,12 @@ const typeDefs = `
         type: EmbarkAPIGraphQLVariableGeneratedType!
     }
 
+    union EmbarkAPIGraphQLVariable = EmbarkAPIGraphQLSingleVariable | EmbarkAPIGraphQLGeneratedVariable | EmbarkAPIGraphQLMultiActionVariable
+
     type EmbarkAPIGraphQLMultiActionVariable {
         key: String!
         variables: [EmbarkAPIGraphQLVariable!]!
     }
-
-    union EmbarkAPIGraphQLVariable = EmbarkAPIGraphQLSingleVariable | EmbarkAPIGraphQLGeneratedVariable | EmbarkAPIGraphQLMultiActionVariable
 
     type EmbarkAPIGraphQLError {
         contains: String
