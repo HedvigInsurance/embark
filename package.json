@@ -1,6 +1,6 @@
 {
   "name": "@hedviginsurance/embark",
-  "version": "1.0.54",
+  "version": "1.0.57",
   "description": "",
   "source": "src/package.ts",
   "main": "dist/package.js",
@@ -20,7 +20,6 @@
     "@emotion/styled": "^10.0.17",
     "@hedviginsurance/brand": "^2.0.0",
     "animated-scroll-to": "^2.0.5",
-    "apollo-link-http": "^1.5.16",
     "date-fns": "^2.8.1",
     "emotion": "^10.0.17",
     "eventemitter3": "^4.0.0",
@@ -88,7 +87,8 @@
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "apollo-link-http": "^1.5.16"
   },
   "resolutions": {
     "graphql": "^14.6.0"

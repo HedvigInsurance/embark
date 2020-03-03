@@ -12,7 +12,6 @@ import {
   ExternalInsuranceProviderEventEmitter
 } from "./externalInsuranceProviderData";
 import EventEmitter from "eventemitter3";
-import { HttpLink } from "apollo-link-http";
 import { introspectSchema, addMockFunctionsToSchema } from "graphql-tools";
 import { graphql, ExecutionResult } from "graphql";
 
@@ -89,6 +88,8 @@ export const mockApiResolvers: TApiContext = {
     console.log(`Tracking ${eventName} with payload:`, payload);
   },
   graphqlQuery: async (query, variables) => {
+    const { HttpLink } = require("apollo-link-http");
+
     const link = new HttpLink({
       uri: "https://graphql.dev.hedvigit.com/graphql"
     });
@@ -103,6 +104,8 @@ export const mockApiResolvers: TApiContext = {
     return result;
   },
   graphqlMutation: async (mutation, variables) => {
+    const { HttpLink } = require("apollo-link-http");
+
     const link = new HttpLink({
       uri: "https://graphql.dev.hedvigit.com/graphql"
     });

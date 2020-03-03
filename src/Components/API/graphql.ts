@@ -45,7 +45,7 @@ const isSingleVariable = (variable: Variable): variable is SingleVariable => {
 };
 
 const reduceVariables = (
-  variables: [Variable],
+  variables: Variable[],
   store: Store,
   setValue: (key: string, value: string) => void
 ): { [key: string]: any } =>
@@ -137,10 +137,10 @@ export const graphQLApiHandler = async (
         variables
       );
 
-      if (graphqlQueryResult.data) {
-        handleData(graphqlQueryResult);
-      } else if (graphqlQueryResult.errors) {
+      if (graphqlQueryResult.errors) {
         handleErrors(graphqlQueryResult);
+      } else if (graphqlQueryResult.data) {
+        handleData(graphqlQueryResult);
       }
 
       return;
@@ -150,10 +150,10 @@ export const graphQLApiHandler = async (
         variables
       );
 
-      if (graphqlMutationResult.data) {
-        handleData(graphqlMutationResult);
-      } else if (graphqlMutationResult.errors) {
+      if (graphqlMutationResult.errors) {
         handleErrors(graphqlMutationResult);
+      } else if (graphqlMutationResult.data) {
+        handleData(graphqlMutationResult);
       }
 
       return;

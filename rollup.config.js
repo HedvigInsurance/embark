@@ -9,7 +9,7 @@ export default {
       format: "cjs"
     }
   ],
-  external: [...Object.keys(pkg.peerDependencies || {})],
+  external: [...Object.keys(pkg.peerDependencies || {}), "apollo-link-http"],
   plugins: [
     typescript({
       typescript: require("typescript"),
