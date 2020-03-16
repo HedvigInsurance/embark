@@ -191,7 +191,7 @@ export const Passage = (props: PassageProps) => {
 
   const goBack = () => {
     setMessagesAnimationState("reverse");
-
+    track(`Passage Go Back - ${props.passage.name}`, {});
     setTimeout(() => {
       props.goBack();
       setMessagesAnimationState("visible");
