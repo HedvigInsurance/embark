@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-03T14:35:49.809Z",
+  "lastUpdate": "2020-03-16T15:09:10.840Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -162,6 +162,19 @@
       "text": "<Message>\n  Hmm. Tyvärr kan vi bara försäkra bostäder med max 6 personer för tillfället...\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder med fler än 6 personer\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-2040773890",
+      "left": 1050,
+      "name": "OfferHouse",
+      "selected": false,
+      "story": "1180341409",
+      "tags": [],
+      "text": "<Message>\n  Super! Ditt försäkringsförslag är klart\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateQuoteHouse(\n\t\t\t$id: ID!\n\t\t\t$firstName: String!\n\t\t\t$lastName: String!\n\t\t\t$currentInsurer: String\n\t\t\t$ssn: String!\n\t\t\t$street: String!\n\t\t\t$zipCode: String!\n\t\t\t$householdSize: Int!\n\t\t\t$livingSpace: Int!\n\t\t\t$ancillarySpace: Int!\n\t\t\t$yearOfConstruction: Int!\n\t\t\t$numberOfBathrooms: Int!\n\t\t\t$isSubleted: Boolean!\n\t\t\t$extraBuildings: [ExtraBuildingInput!]!\n\t\t\t$email: String\n\t\t\t$dataCollectionId: ID\n\t\t) {\n\t\t  createQuote(input: {\n\t\t  \tid: $id,\n\t\t\tfirstName: $firstName,\n\t\t\tlastName: $lastName,\n\t\t\tcurrentInsurer: $currentInsurer,\n\t\t\tssn: $ssn,\n\t\t\temail: $email\n\t\t\tdataCollectionId: $dataCollectionId,\n\t\t\thouse: {\n\t\t\t  street: $street\n\t\t\t  zipCode: $zipCode\n\t\t\t  householdSize: $householdSize\n\t\t\t  livingSpace: $livingSpace\n\t\t\t  ancillarySpace: $ancillarySpace\n\t\t\t  yearOfConstruction: $yearOfConstruction\n\t\t\t  numberOfBathrooms: $numberOfBathrooms\n\t\t\t  isSubleted: $isSubleted\n\t\t\t  extraBuildings: $extraBuildings\n\t\t\t}\n\t\t  }) {\n\t\t\t... on CompleteQuote {\n\t\t\t  id\n\t\t\t  insuranceCost {\n\t\t\t\tmonthlyGross {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyDiscount {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyNet {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t  }\n\t\t\t}\n\t\t  }\n  \t  \t}\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"currentInsurer\"\n            from=\"currentInsurer\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"ssn\"\n            from=\"personalNumber\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"ssn\"\n            from=\"personalNumber\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"streetAddress\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"postalNumber\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"householdSize\"\n            from=\"householdSize\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"ancillarySpace\"\n            from=\"ancillaryArea\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"yearOfConstruction\"\n            from=\"yearOfConstruction\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"numberOfBathrooms\"\n            from=\"numberOfBathrooms\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"isSubleted\"\n            from=\"isSubleted\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <MultiActionVariable key=\"extraBuildings\">\n    <Variable key=\"type\"\n              from=\"type\"\n              as=\"string\"\n    >\n    </Variable>\n    <Variable key=\"area\"\n              from=\"area\"\n              as=\"int\"\n    >\n    </Variable>\n    <Variable key=\"hasWaterConnected\"\n              from=\"hasWaterConnected\"\n              as=\"boolean\"\n    >\n    </Variable>\n  </MultiActionVariable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"dataCollectionId\"\n            from=\"dataCollectionId\"\n            as=\"string\"\n  >\n  </Variable>\n  <Error next=\"[[CreateQuoteError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "top": 1750,
+      "url": "/offer",
       "width": 100
     },
     {
@@ -465,7 +478,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Super! Skriv in din epostadress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Super! Skriv in din epostadress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->OfferHouse]]\"\n>\n</TextAction>",
       "top": 1700,
       "url": "/email-address-villa",
       "width": 100
@@ -585,7 +598,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Hej! Låt oss ta fram ett prisförslag, det tar bara 1 minut\n</Message>\n\n<Message>\n  Vilken typ av bostad vill du ha ett förslag för?\n</Message>\n\n<Track name=\"Start\">\n</Track>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hej! Låt oss ta fram ett prisförslag, det tar bara 1 minut\n</Message>\n\n<Message>\n  Vilken typ av bostad vill du ha ett förslag för?\n</Message>\n\n<SelectAction>\n  <Option key=\"homeType\"\n          value=\"apartment\"\n  >\n    [[Lägenhet->apartmentTypeApartment]]\n    <Tooltip>\n      <Title>\n        Lägenhet\n      </Title>\n      <Description>\n        För dig som bor i hyresrätt, bostadsrätt eller andra hand\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Villa->TypeOfHomeVilla]]\n    <Tooltip>\n      <Title>\n        Villa\n      </Title>\n      <Description>\n        För dig som bor i villa eller radhus. Vi försäkrar inte fritidshus\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,studentHousing]\"\n  >\n    [[Studentboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Studentboende\n      </Title>\n      <Description>\n        För dig som hyr en studentlägenhet eller ett rum i studentkorridor\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"[homeType,apartmentType,rentalType]\"\n          value=\"[apartment,RENT,subletter]\"\n  >\n    [[Inneboende->livingSpaceApartment]]\n    <Tooltip>\n      <Title>\n        Inneboende\n      </Title>\n      <Description>\n        För dig som hyr ett eller flera rum i en lägenhet eller villa\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 100,
       "url": "/welcome",
       "width": 200
@@ -594,7 +607,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "392921887",
-  "storyFormat": "Hedvig",
+  "storyFormat": "Hedvig Twine",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
