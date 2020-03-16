@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "server": "ts-node --project tsconfig.server.json server.ts",
-    "postinstall": "webpack",
+    "build": "webpack",
     "build-package": "rollup -c",
     "watch": "webpack-dev-server",
     "dev": "concurrently -n \"server, watch\" \"npm run server\" \"npm run watch\"",
