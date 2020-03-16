@@ -702,28 +702,51 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
   return null;
 };
 
-const parseTrack = (element: Element) => {
-  const trackElement = element.getElementsByTagName("track")[0];
-
-  if (trackElement) {
-    const eventName = trackElement.getAttribute("name");
-    const eventKeys = trackElement.getAttribute("keys") || "";
-
-    if (!eventName) {
-      return null;
-    }
-
-    return {
-      eventName,
-      eventKeys: eventKeys
-        .replace(/^\[/g, "")
-        .replace(/\]$/g, "")
-        .split(",")
-        .filter(key => key)
-    };
+const isJson = (str: string) => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
   }
+  return true;
+};
 
-  return null;
+const parseTracks = (element: Element) => {
+  const trackElements = Array.from(element.getElementsByTagName("track"));
+
+  return trackElements
+    .map(trackElement => {
+      const eventName = trackElement.getAttribute("name");
+      const eventKeys = trackElement.getAttribute("keys") || "";
+      const includeAllKeys = trackElement.getAttribute("includeAllKeys");
+      const customData = trackElement.getAttribute("customData")
+        ? trackElement.getAttribute("customData").replace(/'/g, '"')
+        : null;
+
+      if (!eventName) {
+        return null;
+      }
+
+      if (customData) {
+        // make sure customData is actual JSON, else crash
+        if (!isJson(customData)) {
+          throw new Error("customData must be valid JSON.");
+        }
+      }
+
+      return {
+        __typename: "EmbarkTrack",
+        eventName,
+        eventKeys: eventKeys
+          .replace(/^\[/g, "")
+          .replace(/\]$/g, "")
+          .split(",")
+          .filter(key => key),
+        includeAllKeys: !!includeAllKeys,
+        customData: customData
+      };
+    })
+    .filter(track => !!track);
 };
 
 export const parseStoryData = (storyData: any) => ({
@@ -737,7 +760,7 @@ export const parseStoryData = (storyData: any) => ({
     containerElement.innerHTML = passage.text;
 
     const api = parseApi(containerElement, false);
-    const track = parseTrack(containerElement);
+    const tracks = parseTracks(containerElement);
 
     const messages = Array.from(
       containerElement.getElementsByTagName("message")
@@ -791,7 +814,16 @@ export const parseStoryData = (storyData: any) => ({
       url: passage.url,
       allLinks: parseLinks(passage.text) || [],
       api: api || null,
-      track,
+      tracks: [
+        ...tracks,
+        {
+          __typename: "EmbarkTrack",
+          eventName: `Passage Shown - ${passage.name}`,
+          eventKeys: [],
+          includeAllKeys: true,
+          customData: null
+        }
+      ],
       messages,
       redirects,
       externalRedirect,
