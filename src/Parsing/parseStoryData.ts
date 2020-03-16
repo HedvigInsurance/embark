@@ -728,7 +728,6 @@ const parseTracks = (element: Element) => {
       }
 
       if (customData) {
-        // make sure customData is actual JSON, else crash
         if (!isJson(customData)) {
           throw new Error("customData must be valid JSON.");
         }
