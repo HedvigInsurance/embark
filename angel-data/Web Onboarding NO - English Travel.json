@@ -1,0 +1,164 @@
+{
+  "id": "830193891",
+  "ifid": "2158DE53-C887-44DA-B393-E59546A48200",
+  "keywords": {
+    "backButton": "Back",
+    "externalInsuranceProviderConfirmTitle": "",
+    "selectActionSelectLabel": "Select",
+    "tooltipModalInformationLabel": "Information"
+  },
+  "lastUpdate": "2020-03-16T15:46:51.198Z",
+  "name": "Web Onboarding NO - English Travel",
+  "passages": [
+    {
+      "height": 100,
+      "id": "-1350275239",
+      "left": 650,
+      "name": "email",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "top": 1100,
+      "url": "/email",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-2016568488",
+      "left": 650,
+      "name": "errorSize",
+      "selected": false,
+      "story": "830193891",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 950,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-416048836",
+      "left": 650,
+      "name": "youthEligibilityCheck",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"age >= 30 || householdSize > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          <\n          redirect\n>\n</Redirect>",
+      "top": 1250,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-471167024",
+      "left": 800,
+      "name": "NewsletterSuccess",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 950,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1884612924",
+      "left": 500,
+      "name": "age",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  How old are you?\n</Message>\n\n<Response>\n  {age} years old\n</Response>\n\n<NumberAction placeholder=\"28\"\n              key=\"age\"\n              minvalue=\"1\"\n              next=\"[[Continue->numberOfPeople]]\"\n              unit=\"years old\"\n>\n</NumberAction>",
+      "top": 800,
+      "url": "/age",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "2081465448",
+      "left": 650,
+      "name": "youth",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  Youth selected :)\n</Message>",
+      "top": 1400,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "322924583",
+      "left": 500,
+      "name": "currentlyInsured",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  Are you already covered by another contents insurance?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"householdSize > 6\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Yes, I have contents insurance->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[No, I'm not covered->email]]\n  </Option>\n</SelectAction>",
+      "top": 1100,
+      "url": "/currentlyinsured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "508358165",
+      "left": 500,
+      "name": "insurerInput",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  What insurer do you have travel insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->offer\n]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "top": 1250,
+      "url": "/currentinsurer",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "684461394",
+      "left": 500,
+      "name": "numberOfPeople",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  Nice. How many others would you like to be covered by the insurance?\n</Message>\n\n<Response>\n  <when expression=\"householdSize > 0\">\n    {householdSize} others\n  </when>\n  <when expression=\"householdSize == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"householdSize\"\n              next=\"[[Continue->currentlyInsured]]\"\n              unit=\"other people (excl. myself)\"\n>\n  <Tooltip>\n    <Title>\n      Number of co-insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. Co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 950,
+      "url": "/numberofpeople",
+      "width": 100
+    },
+    {
+      "height": 200,
+      "id": "-1375721153",
+      "left": 200,
+      "name": "Start",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  Hi! Let's get you an offer, it'll only take a minute\n</Message>\n\n<Message>\n  First things first, what's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->age]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 800,
+      "url": "/start",
+      "width": 200
+    },
+    {
+      "height": 200,
+      "id": "1497558510",
+      "left": 825,
+      "name": "Offer",
+      "selected": false,
+      "story": "830193891",
+      "tags": [],
+      "text": "<Message>\n  Great, your offer is ready!\n</Message>",
+      "top": 1250,
+      "width": 200
+    }
+  ],
+  "script": "",
+  "snapToGrid": true,
+  "startPassage": "-1375721153",
+  "storyFormat": "Hedvig",
+  "storyFormatVersion": "1.0.0",
+  "stylesheet": "",
+  "tagColors": {
+    "Error": "red"
+  },
+  "zoom": 1
+}
