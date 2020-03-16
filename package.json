@@ -1,12 +1,13 @@
 {
   "name": "@hedviginsurance/embark",
-  "version": "1.0.57",
+  "version": "1.0.58",
   "description": "",
   "source": "src/package.ts",
   "main": "dist/package.js",
   "scripts": {
     "test": "jest",
     "server": "ts-node --project tsconfig.server.json server.ts",
+    "postinstall": "webpack",
     "build-package": "rollup -c",
     "watch": "webpack-dev-server",
     "dev": "concurrently -n \"server, watch\" \"npm run server\" \"npm run watch\"",
