@@ -1,3 +1,4 @@
+import { ApiContext } from "./../../Components/API/ApiContext";
 import * as React from "react";
 import { StoreContext } from "../../Components/KeyValueStore";
 import {
@@ -11,6 +12,7 @@ export const useGoTo = (
   onGoTo: (targetPassageId: string) => void
 ): ((name: string) => void) => {
   const { store } = React.useContext(StoreContext);
+  const { track } = React.useContext(ApiContext);
   const externalRedirectContext = React.useContext(ExternalRedirectContext);
   const [goTo, setGoTo] = React.useState<string | null>(null);
 
@@ -40,6 +42,10 @@ export const useGoTo = (
       }
 
       if (newPassage.externalRedirect) {
+        track("External Redirect", {
+          ...store,
+          redirectLocation: newPassage.externalRedirect.data.location
+        });
         setGoTo(null);
         performExternalRedirect(
           externalRedirectContext,
