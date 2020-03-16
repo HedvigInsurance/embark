@@ -262,7 +262,7 @@ const typeDefs = `
 
     type EmbarkTrack {
         eventName: String!
-        eventKeys: String!
+        eventKeys: [String]!
         includeAllKeys: Boolean!
         customData: JSONString!
     }
