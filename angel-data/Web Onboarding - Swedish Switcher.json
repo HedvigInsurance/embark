@@ -28,7 +28,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-02-17T07:21:10.234Z",
+  "lastUpdate": "2020-03-16T15:15:27.505Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -100,7 +100,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Super! Skriv in din epostadress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->Offer]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Super! Skriv in din epostadress nedan för att gå vidare till ditt försäkringsförslag\n</Message>\n\n<TextAction placeholder=\"din.epost@här.nu\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->OfferHouse]]\"\n>\n</TextAction>",
       "top": 2000,
       "url": "/email-address-villa",
       "width": 100
@@ -384,6 +384,19 @@
     },
     {
       "height": 100,
+      "id": "1092695205",
+      "left": 1100,
+      "name": "OfferHouse",
+      "selected": false,
+      "story": "-650548383",
+      "tags": [],
+      "text": "<Message>\n  Super! Ditt försäkringsförslag är klart\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateQuoteHouse(\n\t\t\t$id: ID!\n\t\t\t$firstName: String!\n\t\t\t$lastName: String!\n\t\t\t$currentInsurer: String\n\t\t\t$ssn: String!\n\t\t\t$street: String!\n\t\t\t$zipCode: String!\n\t\t\t$householdSize: Int!\n\t\t\t$livingSpace: Int!\n\t\t\t$ancillarySpace: Int!\n\t\t\t$yearOfConstruction: Int!\n\t\t\t$numberOfBathrooms: Int!\n\t\t\t$isSubleted: Boolean!\n\t\t\t$extraBuildings: [ExtraBuildingInput!]!\n\t\t\t$email: String\n\t\t\t$dataCollectionId: ID\n\t\t) {\n\t\t  createQuote(input: {\n\t\t  \tid: $id,\n\t\t\tfirstName: $firstName,\n\t\t\tlastName: $lastName,\n\t\t\tcurrentInsurer: $currentInsurer,\n\t\t\tssn: $ssn,\n\t\t\temail: $email\n\t\t\tdataCollectionId: $dataCollectionId,\n\t\t\thouse: {\n\t\t\t  street: $street\n\t\t\t  zipCode: $zipCode\n\t\t\t  householdSize: $householdSize\n\t\t\t  livingSpace: $livingSpace\n\t\t\t  ancillarySpace: $ancillarySpace\n\t\t\t  yearOfConstruction: $yearOfConstruction\n\t\t\t  numberOfBathrooms: $numberOfBathrooms\n\t\t\t  isSubleted: $isSubleted\n\t\t\t  extraBuildings: $extraBuildings\n\t\t\t}\n\t\t  }) {\n\t\t\t... on CompleteQuote {\n\t\t\t  id\n\t\t\t  insuranceCost {\n\t\t\t\tmonthlyGross {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyDiscount {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyNet {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t  }\n\t\t\t}\n\t\t  }\n  \t  \t}\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"currentInsurer\"\n            from=\"currentInsurer\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"ssn\"\n            from=\"personalNumber\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"ssn\"\n            from=\"personalNumber\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"streetAddress\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"postalNumber\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"householdSize\"\n            from=\"householdSize\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"ancillarySpace\"\n            from=\"ancillaryArea\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"yearOfConstruction\"\n            from=\"yearOfConstruction\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"numberOfBathrooms\"\n            from=\"numberOfBathrooms\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"isSubleted\"\n            from=\"isSubleted\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <MultiActionVariable key=\"extraBuildings\">\n    <Variable key=\"type\"\n              from=\"type\"\n              as=\"string\"\n    >\n    </Variable>\n    <Variable key=\"area\"\n              from=\"area\"\n              as=\"int\"\n    >\n    </Variable>\n    <Variable key=\"hasWaterConnected\"\n              from=\"hasWaterConnected\"\n              as=\"boolean\"\n    >\n    </Variable>\n  </MultiActionVariable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"dataCollectionId\"\n            from=\"dataCollectionId\"\n            as=\"string\"\n  >\n  </Variable>\n  <Error next=\"[[CreateQuoteError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "top": 1950,
+      "url": "/offer",
+      "width": 100
+    },
+    {
+      "height": 100,
       "id": "1103913461",
       "left": 750,
       "name": "errorBathsVilla",
@@ -418,7 +431,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"isSubletted\"\n          value=\"false\"\n  >\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option key=\"isSubletted\"\n          value=\"true\"\n  >\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hyr du ut någon del av ditt hus till någon?\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorhouseholdSizeVilla]]\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"isSubleted\"\n          value=\"false\"\n  >\n    [[Nej, jag hyr inte ut->extraBuildingsVilla]]\n  </Option>\n  <Option key=\"isSubleted\"\n          value=\"true\"\n  >\n    [[Ja, jag hyr ut->extraBuildingsVilla]]\n  </Option>\n</SelectAction>",
       "top": 1700,
       "url": "/subletted",
       "width": 100
@@ -617,7 +630,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-1738431846",
-  "storyFormat": "Hedvig",
+  "storyFormat": "Hedvig Twine",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
