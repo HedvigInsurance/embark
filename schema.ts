@@ -256,13 +256,15 @@ const typeDefs = `
         action: EmbarkAction
         response: [EmbarkResponse!]!
         tooltips: [EmbarkTooltip!]!
-        track: EmbarkTrack
+        tracks: [EmbarkTrack!]!
         redirects: [EmbarkRedirect!]!
     }
 
     type EmbarkTrack {
         eventName: String!
-        eventKeys: String!
+        eventKeys: [String]!
+        includeAllKeys: Boolean!
+        customData: JSONString!
     }
 
     enum EmbarkExpressionTypeMultiple {
@@ -337,6 +339,8 @@ const typeDefs = `
         partnerConfigs: [EmbarkPartnerConfig!]!
         passages: [EmbarkPassage!]!
     }
+
+    scalar JSONString
 `;
 
 export const schema = makeExecutableSchema({

@@ -191,7 +191,7 @@ export const Passage = (props: PassageProps) => {
 
   const goBack = () => {
     setMessagesAnimationState("reverse");
-
+    track(`Passage Go Back - ${props.passage.name}`, {});
     setTimeout(() => {
       props.goBack();
       setMessagesAnimationState("visible");
@@ -216,20 +216,37 @@ export const Passage = (props: PassageProps) => {
       });
     }
 
-    const passageTracking = props.passage.track;
+    const passageTracks = props.passage.tracks;
 
-    if (passageTracking) {
-      track(
-        passageTracking.eventName,
-        passageTracking.eventKeys.reduce(
-          (acc: { [key: string]: any }, curr: string) => {
-            return { ...acc, [curr]: store[curr] };
-          },
-          {
-            passage: props.passage.name
-          }
-        )
-      );
+    if (passageTracks) {
+      passageTracks.forEach((passageTracking: any) => {
+        const customData = passageTracking.customData
+          ? JSON.parse(passageTracking.customData)
+          : {};
+
+        if (passageTracking.includeAllKeys) {
+          track(passageTracking.eventName, {
+            ...store,
+            passage: props.passage.name,
+            ...customData
+          });
+
+          return;
+        }
+
+        track(
+          passageTracking.eventName,
+          passageTracking.eventKeys.reduce(
+            (acc: { [key: string]: any }, curr: string) => {
+              return { ...acc, [curr]: store[curr] };
+            },
+            {
+              passage: props.passage.name,
+              ...customData
+            }
+          )
+        );
+      });
     }
   }, [props.passage]);
 
