@@ -772,8 +772,8 @@ export const parseStoryData = (storyData: any) => ({
         redirect.getAttribute;
         const whenAttribute = redirect.getAttribute("when");
         const toAttribute = redirect.getAttribute("to");
-        const key = redirect.getAttribute("key");
-        const value = redirect.getAttribute("value");
+        const keyAttribute = redirect.getAttribute("key");
+        const valueAttribute = redirect.getAttribute("value");
         const links = parseLinks(toAttribute || "");
 
         const expression = parseExpression(whenAttribute || "");
@@ -787,8 +787,8 @@ export const parseStoryData = (storyData: any) => ({
             ...expression,
             __typename: "EmbarkRedirectUnaryExpression",
             to: links[0].name,
-            key: key,
-            value: value
+            passedExpressionKey: keyAttribute,
+            passedExpressionValue: valueAttribute
           };
         }
 
@@ -797,8 +797,8 @@ export const parseStoryData = (storyData: any) => ({
             ...expression,
             __typename: "EmbarkRedirectBinaryExpression",
             to: links[0].name,
-            key: key,
-            value: value
+            passedExpressionKey: keyAttribute,
+            passedExpressionValue: valueAttribute
           };
         }
 
@@ -806,8 +806,8 @@ export const parseStoryData = (storyData: any) => ({
           ...expression,
           __typename: "EmbarkRedirectMultipleExpressions",
           to: links[0].name,
-          key: key,
-          value: value
+          passedExpressionKey: keyAttribute,
+          passedExpressionValue: valueAttribute
         };
       })
       .filter(item => item);

@@ -32,12 +32,16 @@ export const useGoTo = (
         );
 
         if (passableExpressions.length > 0) {
-          const { to, key, value } = passableExpressions[0];
+          const {
+            to,
+            passedExpressionKey,
+            passedExpressionValue
+          } = passableExpressions[0];
           const redirectTo = data.passages.find(
             (passage: any) => passage.name == to
           );
-          if (key !== null && value !== null) {
-            setValue(key, value);
+          if (passedExpressionKey !== null && passedExpressionValue !== null) {
+            setValue(passedExpressionKey, passedExpressionValue);
           }
           setGoTo(null);
           onGoTo(redirectTo.id);
