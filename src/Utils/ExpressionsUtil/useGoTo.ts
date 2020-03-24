@@ -36,7 +36,9 @@ export const useGoTo = (
           const redirectTo = data.passages.find(
             (passage: any) => passage.name == to
           );
-          setValue(key, value)
+          if (key !== null && value !== null) {
+            setValue(key, value);
+          }
           setGoTo(null);
           onGoTo(redirectTo.id);
           return;
