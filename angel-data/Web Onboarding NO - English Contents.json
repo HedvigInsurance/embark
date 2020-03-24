@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-18T12:56:20.230Z",
+  "lastUpdate": "2020-03-24T08:43:35.528Z",
   "name": "Web Onboarding NO - English Contents",
   "passages": [
     {
@@ -18,7 +18,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Redirect to=\"[[errorHouseholdSize]]\"\n          when=\"householdSize > 5\"\n>\n</Redirect>\n\n<Message>\n  OK! What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->age]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Redirect to=\"[[errorHouseholdSize]]\"\n          when=\"householdSize > 5\"\n>\n</Redirect>\n\n<Message>\n  OK! What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/name",
       "width": 100
@@ -27,13 +27,13 @@
       "height": 100,
       "id": "-1427799172",
       "left": 500,
-      "name": "age",
+      "name": "birthDate",
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  How old are you?\n</Message>\n\n<Response>\n  {age} years old\n</Response>\n\n<NumberAction placeholder=\"28\"\n              key=\"age\"\n              minvalue=\"1\"\n              next=\"[[Continue->currentlyInsured]]\"\n              unit=\"years old\"\n>\n</NumberAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"yyyy-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Continue->currentlyInsured]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
       "top": 950,
-      "url": "/age",
+      "url": "/birth-date",
       "width": 100
     },
     {
