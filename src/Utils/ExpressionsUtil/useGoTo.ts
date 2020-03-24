@@ -15,6 +15,7 @@ export const useGoTo = (
   const { track } = React.useContext(ApiContext);
   const externalRedirectContext = React.useContext(ExternalRedirectContext);
   const [goTo, setGoTo] = React.useState<string | null>(null);
+  const { setValue } = React.useContext(StoreContext);
 
   React.useEffect(() => {
     if (goTo) {
@@ -31,10 +32,11 @@ export const useGoTo = (
         );
 
         if (passableExpressions.length > 0) {
-          const { to } = passableExpressions[0];
-          const redirectTo = data.passages.filter(
+          const { to, key, value } = passableExpressions[0];
+          const redirectTo = data.passages.find(
             (passage: any) => passage.name == to
-          )[0];
+          );
+          setValue(key, value)
           setGoTo(null);
           onGoTo(redirectTo.id);
           return;
