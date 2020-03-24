@@ -7,9 +7,21 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-24T08:43:35.528Z",
+  "lastUpdate": "2020-03-24T19:25:02.073Z",
   "name": "Web Onboarding NO - English Contents",
   "passages": [
+    {
+      "height": 100,
+      "id": "-1072011587",
+      "left": 850,
+      "name": "OfferSuccess",
+      "selected": false,
+      "story": "1392201379",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 1375,
+      "width": 100
+    },
     {
       "height": 100,
       "id": "-1311719506",
@@ -31,7 +43,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"yyyy-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Continue->currentlyInsured]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"yyyy-mm-dd\"\n            mask=\"BirthDate\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Continue->currentlyInsured]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
       "top": 950,
       "url": "/birth-date",
       "width": 100
@@ -44,7 +56,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"age >= 30 || livingSpace > 50 || householdSize > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          <\n          redirect\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age >= 30 || livingSpace > 50 || householdSize > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1100,
       "url": "/youth-eligibility-check",
       "width": 100
@@ -112,7 +124,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  What's the address?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->sizeInput]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"0123\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  What's the address?\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[Continue->sizeInput]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"0123\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 350,
       "url": "/address",
       "width": 100
@@ -133,12 +145,12 @@
     {
       "height": 100,
       "id": "-864959493",
-      "left": 800,
+      "left": 700,
       "name": "youth",
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance with a fixed price of XXX kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"insuranceType\"\n          value=\"YOUTH_CONTENTS\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option>\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance with a fixed price of XXX kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/youth",
       "width": 100
@@ -164,9 +176,21 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  Do you rent or own the apartment?\n</Message>\n\n<SelectAction>\n  <Option key=\"ownership\"\n          value=\"rent\"\n  >\n    [[I rent it->address]]\n  </Option>\n  <Option key=\"ownership\"\n          value=\"own\"\n  >\n    [[I own it->address]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Do you rent or own the apartment?\n</Message>\n\n<SelectAction>\n  <Option key=\"type\"\n          value=\"RENT\"\n  >\n    [[I rent it->address]]\n  </Option>\n  <Option key=\"type\"\n          value=\"OWN\"\n  >\n    [[I own it->address]]\n  </Option>\n</SelectAction>",
       "top": 200,
       "url": "/ownership",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1527826832",
+      "left": 1100,
+      "name": "CreateQuoteError",
+      "selected": false,
+      "story": "1392201379",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 1375,
       "width": 100
     },
     {
@@ -216,7 +240,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  Great, your offer is ready!\n</Message>",
+      "text": "<Message>\n  Great, your offer is ready!\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateQuoteNorwegianHomeContents(\n\t\t\t$id: ID!\n\t\t\t$firstName: String!\n\t\t\t$lastName: String!\n\t\t\t$currentInsurer: String\n\t\t\t$birthDate: LocalDate!\n\t\t\t$street: String!\n\t\t\t$zipCode: String!\n\t\t\t$livingSpace: Int!\n\t\t\t$coInsured: Int!\n\t\t\t$isYouth: Boolean!\n\t\t\t$type: NorwegianHomeContentsType!\n\t\t) {\n\t\t  createQuote(input: {\n\t\t  \tid: $id,\n\t\t\tfirstName: $firstName,\n\t\t\tlastName: $lastName,\n\t\t\tcurrentInsurer: $currentInsurer,\n\t\t\tbirthDate: $birthDate,\n\t\t\tnorwegianHomeContents: {\n\t\t\t  street: $street\n\t\t\t  zipCode: $zipCode\n\t\t\t  coInsured: $coInsured\n\t\t\t  isYouth: $isYouth\n\t\t\t  livingSpace: $livingSpace\n\t\t\t  type: $type\n\t\t\t}\n\t\t  }) {\n\t\t\t... on CompleteQuote {\n\t\t\t  id\n\t\t\t  insuranceCost {\n\t\t\t\tmonthlyGross {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyDiscount {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyNet {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t  }\n\t\t\t}\n\t\t  }\n  \t  \t}\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"currentInsurer\"\n            from=\"currentInsurer\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isYouth\"\n            from=\"isYouth\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"street\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"zipCode\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"type\"\n            from=\"type\"\n            as=\"string\"\n  >\n  </Variable>\n  <Error next=\"[[CreateQuoteError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
       "top": 1100,
       "url": "/offer",
       "width": 200
@@ -225,7 +249,7 @@
   "script": "",
   "snapToGrid": true,
   "startPassage": "-2032979073",
-  "storyFormat": "Hedvig",
+  "storyFormat": "Hedvig - Development",
   "storyFormatVersion": "1.0.0",
   "stylesheet": "",
   "tagColors": {
