@@ -3,10 +3,16 @@ import InputMask, { ReactInputMask } from "react-input-mask";
 import parse from "date-fns/parse";
 import differenceInYears from "date-fns/differenceInYears";
 
-export type MaskType = "PersonalNumber" | "PostalCode" | "Email" | "BirthDate";
+export type MaskType =
+  | "PersonalNumber"
+  | "PostalCode"
+  | "Email"
+  | "BirthDate"
+  | "NorwegianPostalCode";
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/;
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/;
+const NORWEGIAN_POSTAL_CODE_REGEX = /^[0-9]{4}$/;
 const EMAIL_REGEX = /^.+@.+\..+$/;
 const BIRTH_DATE_REGEX = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 
@@ -18,6 +24,10 @@ export const isValid = (m: MaskType | undefined, value: string): boolean => {
 
   if (m === "PostalCode") {
     return POSTAL_CODE_REGEX.test(unmaskedValue);
+  }
+
+  if (m === "NorwegianPostalCode") {
+    return NORWEGIAN_POSTAL_CODE_REGEX.test(unmaskedValue);
   }
 
   if (m === "Email") {
@@ -38,6 +48,10 @@ const resolveMask = (m?: MaskType): string => {
 
   if (m === "PostalCode") {
     return "999 99";
+  }
+
+  if (m === "NorwegianPostalCode") {
+    return "9999";
   }
 
   if (m === "BirthDate") {
@@ -97,6 +111,7 @@ interface MaskComponentProps {
   onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  irthDate;
   mask?: MaskType;
 }
 
