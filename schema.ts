@@ -311,8 +311,8 @@ const typeDefs = `
     type EmbarkRedirectUnaryExpression {
         type: EmbarkExpressionTypeUnary!
         to: String!
-        passedExpressionKey: String!
-        passedExpressionValue: String!
+        passedExpressionKey: String
+        passedExpressionValue: String
     }
 
     type EmbarkRedirectBinaryExpression {
@@ -320,16 +320,16 @@ const typeDefs = `
         to: String!
         key: String!
         value: String!
-        passedExpressionKey: String!
-        passedExpressionValue: String!
+        passedExpressionKey: String
+        passedExpressionValue: String
     }
 
     type EmbarkRedirectMultipleExpressions {
         type: EmbarkExpressionTypeMultiple!,
         to: String!
         subExpressions: [EmbarkExpression!]!
-        passedExpressionKey: String!
-        passedExpressionValue: String!
+        passedExpressionKey: String
+        passedExpressionValue: String
     }
 
     type EmbarkMessage {
