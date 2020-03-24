@@ -14,7 +14,7 @@ const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/;
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/;
 const NORWEGIAN_POSTAL_CODE_REGEX = /^[0-9]{4}$/;
 const EMAIL_REGEX = /^.+@.+\..+$/;
-const BIRTH_DATE_REGEX = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+const BIRTH_DATE_REGEX = /^[12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
 export const isValid = (m: MaskType | undefined, value: string): boolean => {
   const unmaskedValue = unmaskValue(value, m);
