@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-24T10:24:35.696Z",
+  "lastUpdate": "2020-03-25T12:01:27.666Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -33,6 +33,7 @@
       "tags": [],
       "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
       "top": 1450,
+      "url": "",
       "width": 100
     },
     {
@@ -45,7 +46,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
       "width": 100
@@ -58,7 +59,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"age >= 30 || coInsured > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || coInsured > 0\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1250,
       "url": "/youth-eligibility-check",
       "width": 100
@@ -95,7 +96,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"1996-02-18\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Continue->numberOfPeople]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"1996-02-18\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Continue->numberOfPeople]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
