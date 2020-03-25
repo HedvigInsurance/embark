@@ -3,11 +3,18 @@ import InputMask, { ReactInputMask } from "react-input-mask";
 import parse from "date-fns/parse";
 import differenceInYears from "date-fns/differenceInYears";
 
-export type MaskType = "PersonalNumber" | "PostalCode" | "Email";
+export type MaskType =
+  | "PersonalNumber"
+  | "PostalCode"
+  | "Email"
+  | "BirthDate"
+  | "NorwegianPostalCode";
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/;
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/;
+const NORWEGIAN_POSTAL_CODE_REGEX = /^[0-9]{4}$/;
 const EMAIL_REGEX = /^.+@.+\..+$/;
+const BIRTH_DATE_REGEX = /^[12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
 export const isValid = (m: MaskType | undefined, value: string): boolean => {
   const unmaskedValue = unmaskValue(value, m);
@@ -19,8 +26,16 @@ export const isValid = (m: MaskType | undefined, value: string): boolean => {
     return POSTAL_CODE_REGEX.test(unmaskedValue);
   }
 
+  if (m === "NorwegianPostalCode") {
+    return NORWEGIAN_POSTAL_CODE_REGEX.test(unmaskedValue);
+  }
+
   if (m === "Email") {
     return EMAIL_REGEX.test(unmaskedValue);
+  }
+
+  if (m === "BirthDate") {
+    return BIRTH_DATE_REGEX.test(unmaskedValue);
   }
 
   return true;
@@ -33,6 +48,14 @@ const resolveMask = (m?: MaskType): string => {
 
   if (m === "PostalCode") {
     return "999 99";
+  }
+
+  if (m === "NorwegianPostalCode") {
+    return "9999";
+  }
+
+  if (m === "BirthDate") {
+    return "9999-99-99";
   }
 
   return "";
@@ -71,6 +94,14 @@ export const derivedValues = (
     };
   }
 
+  if (mask === "BirthDate") {
+    const dateOfBirth = parse(value, "yyyy-MM-dd", 0);
+
+    return {
+      [`${key}.Age`]: differenceInYears(new Date(), dateOfBirth)
+    };
+  }
+
   return null;
 };
 
@@ -80,6 +111,7 @@ interface MaskComponentProps {
   onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  irthDate;
   mask?: MaskType;
 }
 
