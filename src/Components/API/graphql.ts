@@ -76,7 +76,7 @@ const reduceVariables = (
         case "int":
           return { ...curr, [variable.key]: parseInt(store[variable.from]) };
         case "boolean":
-          return { ...curr, [variable.key]: !!store[variable.from] };
+          return { ...curr, [variable.key]: store[variable.from] === "true" };
         default:
           return { ...curr, [variable.key]: store[variable.from] };
       }
