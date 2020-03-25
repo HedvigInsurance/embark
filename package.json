@@ -1,6 +1,6 @@
 {
   "name": "@hedviginsurance/embark",
-  "version": "1.0.58",
+  "version": "1.0.59",
   "description": "",
   "source": "src/package.ts",
   "main": "dist/package.js",
@@ -76,6 +76,8 @@
     "@types/react-dom": "^16.9.2",
     "@types/react-input-mask": "^2.0.4",
     "@types/uuid": "^3.4.6",
+    "apollo-link-http": "^1.5.16",
+    "babel-loader": "^8.0.6",
     "concurrently": "^5.0.0",
     "graphql-tag": "^2.10.1",
     "jest": "^24.9.0",
@@ -87,9 +89,7 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.2.2",
-    "babel-loader": "^8.0.6",
-    "apollo-link-http": "^1.5.16"
+    "webpack-merge": "^4.2.2"
   },
   "resolutions": {
     "graphql": "^14.6.0"
