@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-24T10:24:35.696Z",
+  "lastUpdate": "2020-03-25T12:05:08.206Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -58,7 +58,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"age >= 30 || coInsured > 2\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || coInsured > 0\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1250,
       "url": "/youth-eligibility-check",
       "width": 100
@@ -95,7 +95,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"1996-02-18\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Continue->numberOfPeople]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"1996-02-18\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Continue->numberOfPeople]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
