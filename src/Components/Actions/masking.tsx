@@ -111,7 +111,6 @@ interface MaskComponentProps {
   onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
-  irthDate;
   mask?: MaskType;
 }
 
