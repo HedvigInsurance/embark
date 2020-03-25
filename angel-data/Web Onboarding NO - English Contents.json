@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-25T13:32:35.003Z",
+  "lastUpdate": "2020-03-25T14:01:06.659Z",
   "name": "Web Onboarding NO - English Contents",
   "passages": [
     {
@@ -30,7 +30,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Redirect to=\"[[errorHouseholdSize]]\"\n          when=\"householdSize > 5\"\n>\n</Redirect>\n\n<Message>\n  OK! What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Redirect to=\"[[errorNumberCoInsured]]\"\n          when=\"coInsured > 5\"\n>\n</Redirect>\n\n<Message>\n  OK! What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/name",
       "width": 100
@@ -90,7 +90,7 @@
       "height": 100,
       "id": "-2075072093",
       "left": 650,
-      "name": "errorHouseholdSize",
+      "name": "errorNumberCoInsured",
       "selected": false,
       "story": "1392201379",
       "tags": [
