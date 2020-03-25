@@ -23,7 +23,13 @@ export const callApi = async (
   changePassage: (name: string) => void
 ) => {
   if (isGraphqlApi(component)) {
-    graphQLApiHandler(component, apiContext, store, setValue, changePassage);
+    await graphQLApiHandler(
+      component,
+      apiContext,
+      store,
+      setValue,
+      changePassage
+    );
     return;
   }
 
