@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-23T09:44:23.594Z",
+  "lastUpdate": "2020-03-24T10:24:35.696Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -45,7 +45,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
       "width": 100
