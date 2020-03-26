@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-25T13:57:40.300Z",
+  "lastUpdate": "2020-03-26T14:40:10.009Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -134,7 +134,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What insurer do you have travel insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->offer\n]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  What insurer do you have travel insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->email]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1250,
       "url": "/currentinsurer",
       "width": 100
