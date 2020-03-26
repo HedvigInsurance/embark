@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-24T08:35:05.365Z",
+  "lastUpdate": "2020-03-26T14:39:14.395Z",
   "name": "Web Onboarding NO - English Combo",
   "passages": [
     {
@@ -203,7 +203,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  <When expression=\"prevInsurance == 'travel'\">\n    What insurer do you have travel insurance with?\n  </When>\n</Message>\n\n<Message>\n  <When expression=\"prevInsurance == 'contents'\">\n    What insurer do you have contents insurance with?\n  </When>\n</Message>\n\n<Redirect when=\"prevInsurance == 'contentsAndTravel'\"\n          to=\"[[contentsInsurer]]\"\n>\n</Redirect>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->offer\n]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  <When expression=\"prevInsurance == 'travel'\">\n    What insurer do you have travel insurance with?\n  </When>\n</Message>\n\n<Message>\n  <When expression=\"prevInsurance == 'contents'\">\n    What insurer do you have contents insurance with?\n  </When>\n</Message>\n\n<Redirect when=\"prevInsurance == 'contentsAndTravel'\"\n          to=\"[[contentsInsurer]]\"\n>\n</Redirect>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->email]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1850,
       "url": "/current-insurer",
       "width": 100
