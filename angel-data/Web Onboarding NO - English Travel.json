@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-30T10:57:46.132Z",
+  "lastUpdate": "2020-03-31T09:35:44.200Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -18,7 +18,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Nästa->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Ok! Fyll inn din epostadresse nedenfor for å komme til ditt prisforslag\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1100,
       "url": "/email",
       "width": 100
@@ -45,7 +45,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Dessverre kan vi bare forsikre maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
       "width": 100
@@ -95,7 +95,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"1996-02-18\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"åååå-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Fortsett->numberCoInsured]]\"\n            unit=\"Fødselsdato (åååå-mm-dd)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
@@ -108,7 +108,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance with a fixed price of XXX kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonusspørsmål! Siden du er under 31 år er du kvalifisert for vår ungdomsforsikring med en fast pris på XXX kr/mnd. Høres det bra ut?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Ja, jeg vil gjerne ha ungdomsforsikring->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[Nei, jeg vil ha vanlig forsikring->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "url": "/youth",
       "width": 100
@@ -121,7 +121,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Are you already covered by a travel insurance?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"coInsured > 5\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Yes, I have travel insurance->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[No, I'm not covered->email]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Har du allerede reiseforsikring en annen annen plass?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"coInsured > 5\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har reiseforsikring->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ikke reiseforsikring->email]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/currentlyinsured",
       "width": 100
@@ -134,7 +134,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What insurer do you have travel insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->email]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  I hvilket forsikringsselskap har du din reiseforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende forsikring\n    </Title>\n    <Description>\n      Oppgi ditt nåværende forsikringsselskap, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1250,
       "url": "/currentinsurer",
       "width": 100
@@ -147,7 +147,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Nice. How many others would you like to be covered by the insurance?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Me + {coInsured} other\n  </when>\n  <when expression=\"coInsured > 1\">\n    Me + {coInsured} others\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Continue->currentlyInsured]]\"\n              unit=\"other people (excl. myself)\"\n>\n  <Tooltip>\n    <Title>\n      Number of co-insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. Co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {householdSize} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {householdSize} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->currentlyInsured]]\"\n              unit=\"andre (pluss meg selv)\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 950,
       "url": "/numberCoInsured",
       "width": 100
@@ -160,7 +160,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Hi! Let's get you an offer, it'll only take a minute\n</Message>\n\n<Message>\n  First things first, what's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Hei! Får vi komme med et kjempebra tilbud til deg? Det tar bare ett minutt\n</Message>\n\n<Message>\n  Først, hva heter du?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"Fornavn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Etternavn\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/start",
       "width": 200
@@ -173,7 +173,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Great, your offer is ready!\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateQuoteNorwegianTravel(\n\t\t\t$id: ID!\n\t\t\t$firstName: String!\n\t\t\t$lastName: String!\n\t\t\t$currentInsurer: String\n\t\t\t$birthDate: LocalDate!\n\t\t\t$coInsured: Int!\n\t\t\t$isYouth: Boolean!\n\t\t) {\n\t\t  createQuote(input: {\n\t\t  \tid: $id,\n\t\t\tfirstName: $firstName,\n\t\t\tlastName: $lastName,\n\t\t\tcurrentInsurer: $currentInsurer,\n\t\t\tbirthDate: $birthDate,\n\t\t\tnorwegianTravel: {\n\t\t\t  coInsured: $coInsured\n\t\t\t  isYouth: $isYouth\n\t\t\t}\n\t\t  }) {\n\t\t\t... on CompleteQuote {\n\t\t\t  id\n\t\t\t  insuranceCost {\n\t\t\t\tmonthlyGross {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyDiscount {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyNet {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t  }\n\t\t\t}\n\t\t  }\n  \t  \t}\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"currentInsurer\"\n            from=\"currentInsurer\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isYouth\"\n            from=\"isYouth\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Error next=\"[[CreateQuoteError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "text": "<Message>\n  Toppen! Ditt prisforslag er klart!\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateQuoteNorwegianTravel(\n\t\t\t$id: ID!\n\t\t\t$firstName: String!\n\t\t\t$lastName: String!\n\t\t\t$currentInsurer: String\n\t\t\t$birthDate: LocalDate!\n\t\t\t$coInsured: Int!\n\t\t\t$isYouth: Boolean!\n\t\t) {\n\t\t  createQuote(input: {\n\t\t  \tid: $id,\n\t\t\tfirstName: $firstName,\n\t\t\tlastName: $lastName,\n\t\t\tcurrentInsurer: $currentInsurer,\n\t\t\tbirthDate: $birthDate,\n\t\t\tnorwegianTravel: {\n\t\t\t  coInsured: $coInsured\n\t\t\t  isYouth: $isYouth\n\t\t\t}\n\t\t  }) {\n\t\t\t... on CompleteQuote {\n\t\t\t  id\n\t\t\t  insuranceCost {\n\t\t\t\tmonthlyGross {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyDiscount {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyNet {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t  }\n\t\t\t}\n\t\t  }\n  \t  \t}\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"currentInsurer\"\n            from=\"currentInsurer\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isYouth\"\n            from=\"isYouth\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Error next=\"[[CreateQuoteError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
       "top": 1150,
       "width": 200
     }
