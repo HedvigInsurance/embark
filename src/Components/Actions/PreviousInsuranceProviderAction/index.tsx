@@ -5,6 +5,10 @@ import { StoreContext } from "../../KeyValueStore";
 import { CardPrimitive } from "../Common";
 import { Tooltip } from "../../Tooltip";
 import { KeywordsContext } from "../../KeywordsContext";
+import {
+  swedishProviders,
+  Provider
+} from "../ExternalInsuranceProviderAction/providers";
 
 const Card = styled(CardPrimitive.withComponent("div"))`
   width: 400px;
@@ -22,6 +26,7 @@ const Container = styled.div`
 `;
 
 interface PreviousInsuranceProviderActionProps {
+  providers: ReadonlyArray<Provider>;
   passageName: string;
   next: string;
   onContinue: (name: string) => void;
@@ -30,6 +35,7 @@ interface PreviousInsuranceProviderActionProps {
 }
 
 export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProviderActionProps> = ({
+  providers = swedishProviders,
   tooltip,
   next,
   onContinue,
@@ -46,6 +52,7 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
       <Card isFocused>
         <Content>
           <SelectProvider
+            providers={providers}
             onlyAcceptProvidersWithExternalCapabilities={false}
             onPickProvider={provider => {
               if (provider) {

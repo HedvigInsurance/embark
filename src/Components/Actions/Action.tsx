@@ -7,6 +7,10 @@ import { NumberActionSet } from "./NumberActionSet/NumberActionSet";
 import { TextActionSet } from "./TextActionSet/TextActionSet";
 import { ExternalInsuranceProviderAction } from "./ExternalInsuranceProviderAction";
 import { PreviousInsuranceProviderAction } from "./PreviousInsuranceProviderAction";
+import {
+  norwegianProviders,
+  swedishProviders
+} from "./ExternalInsuranceProviderAction/providers";
 
 type ActionProps = {
   isTransitioning: boolean;
@@ -32,7 +36,7 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "NumberActionSet") {
+  if (props.action.component === "NumberActionSet") {
     return (
       <NumberActionSet
         isTransitioning={props.isTransitioning}
@@ -43,7 +47,7 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "MultiAction") {
+  if (props.action.component === "MultiAction") {
     return (
       <MultiAction
         passageName={props.passageName}
@@ -53,7 +57,7 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "SelectAction") {
+  if (props.action.component === "SelectAction") {
     return (
       <SelectAction
         passageName={props.passageName}
@@ -63,7 +67,7 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "NumberAction") {
+  if (props.action.component === "NumberAction") {
     return (
       <NumberAction
         isTransitioning={props.isTransitioning}
@@ -81,7 +85,7 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "TextAction") {
+  if (props.action.component === "TextAction") {
     return (
       <TextAction
         isTransitioning={props.isTransitioning}
@@ -99,7 +103,7 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "ExternalInsuranceProviderAction") {
+  if (props.action.component === "ExternalInsuranceProviderAction") {
     return (
       <ExternalInsuranceProviderAction
         skipLink={props.action.data.skip}
@@ -110,9 +114,14 @@ export const Action = (props: ActionProps) => {
     );
   }
 
-  if (props.action.component == "PreviousInsuranceProviderAction") {
+  if (props.action.component === "PreviousInsuranceProviderAction") {
     return (
       <PreviousInsuranceProviderAction
+        providers={
+          props.action.data.providers === "norwegian"
+            ? norwegianProviders
+            : swedishProviders
+        }
         tooltip={props.action.data.tooltip}
         passageName={props.passageName}
         next={props.action.data.next.name}
