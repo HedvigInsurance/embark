@@ -5,7 +5,7 @@ import { KeywordsContext } from "../../KeywordsContext";
 import { ApiContext } from "../../API/ApiContext";
 
 import { ProviderRow } from "./Components/ProviderRow";
-import { providers, Provider } from "./providers";
+import { Provider } from "./providers";
 import { Modal } from "../../Modal";
 import { ContinueButton } from "../../ContinueButton";
 
@@ -46,11 +46,13 @@ const OtherText = styled.p`
 `;
 
 interface SelectProviderProps {
+  providers: ReadonlyArray<Provider>;
   onPickProvider: (provider?: Provider) => void;
   onlyAcceptProvidersWithExternalCapabilities: boolean;
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
+  providers,
   onPickProvider,
   onlyAcceptProvidersWithExternalCapabilities
 }) => {
