@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { SelectProvider } from "./SelectProvider";
 import { CardPrimitive } from "../Common";
-import { Provider } from "./providers";
+import { Provider, swedishProviders } from "./providers";
 import { PersonalNumber } from "./PersonalNumber";
 import { useMeasure } from "../../../Utils/useMeasure";
 import { StoreContext } from "../../KeyValueStore";
@@ -147,6 +147,7 @@ export const ExternalInsuranceProviderAction: React.FC<ExternalInsuranceProvider
     backgroundFetchStep
   ] = [
     <SelectProvider
+      providers={swedishProviders}
       key="SELECT_PROVIDER"
       onlyAcceptProvidersWithExternalCapabilities
       onPickProvider={provider => {
