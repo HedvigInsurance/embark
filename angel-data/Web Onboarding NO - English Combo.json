@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-30T15:19:29.954Z",
+  "lastUpdate": "2020-03-31T12:00:04.454Z",
   "name": "Web Onboarding NO - English Combo",
   "passages": [
     {
@@ -31,7 +31,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "Double-click this passage to edit it.",
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
       "top": 1750,
       "width": 100
     },
