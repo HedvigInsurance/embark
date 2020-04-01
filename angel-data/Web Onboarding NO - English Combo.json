@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-03-31T12:06:28.491Z",
+  "lastUpdate": "2020-04-01T12:39:41.435Z",
   "name": "Web Onboarding NO - English Combo",
   "passages": [
     {
@@ -18,7 +18,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  What insurer do you have travel insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->offer \n]]\"\n                                 skip=\"[[Okay->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  What insurer do you have travel insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->offer \n]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1850,
       "url": "/current-travel-insurer",
       "width": 100
@@ -123,7 +123,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  What insurer do you have contents insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->travelInsurer\n]]\"\n                                 skip=\"[[Okay->travelInsurer]]\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  What insurer do you have contents insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->travelInsurer\n]]\"\n                                 skip=\"[[Okay->travelInsurer]]\"\n                                 providers=\"norwegian\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1850,
       "url": "/current-contents-insurer",
       "width": 100
