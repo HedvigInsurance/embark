@@ -15,14 +15,14 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 800;
   margin-bottom: 10px;
   text-align: center;
 `;
 
 const Body = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 300;
   margin-bottom: 15px;
   text-align: center;

@@ -44,7 +44,7 @@ const Card = styled.form<{
 `;
 
 const CardTitle = styled(motion.span)<{ cardCount: number; pushUp?: boolean }>`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 14px;
   font-weight: 500;
   padding-top: 15px;

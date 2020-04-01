@@ -44,13 +44,13 @@ const ButtonContainer = styled.div`
 const Title = styled.h3`
   display: flex;
   align-items: center;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 800;
   margin-bottom: 5px;
 `;
 
 const BetaInfo = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   color: ${colorsV2.darkgray};
   font-size: 12px;
   margin-bottom: 15px;
@@ -59,7 +59,7 @@ const BetaInfo = styled.p`
 const Subtitle = styled.h4`
   display: flex;
   align-items: center;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 600;
   margin-bottom: 10px;
 `;

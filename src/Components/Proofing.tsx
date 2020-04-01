@@ -19,11 +19,11 @@ const Title = styled.h1`
 `;
 
 const PassageTitle = styled.h3`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
 `;
 
 const PassageBody = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   padding-top: 20px;
 `;
 
@@ -34,7 +34,7 @@ const PassageContainer = styled.div`
 
 const Option = styled.p`
   display: inline-block;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   padding: 20px;
   margin-right: 10px;
   background-color: ${colors.WHITE};

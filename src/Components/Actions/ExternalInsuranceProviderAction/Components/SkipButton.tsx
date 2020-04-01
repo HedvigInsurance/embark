@@ -8,7 +8,7 @@ const PillButton = styled.button`
   appearance: none;
   transition: background-color 250ms;
   background-color: ${hexToRgba(colorsV2.lightgray, 0.8)};
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 13px;
   color: ${colorsV2.darkgray};
   cursor: pointer;

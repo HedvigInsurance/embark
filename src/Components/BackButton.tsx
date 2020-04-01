@@ -9,12 +9,12 @@ import { ArrowUp } from "./Icons/ArrowUp";
 const Button = styled.button`
   -webkit-appearance: none;
   border: 0;
-  border-radius: 28px;
+  border-radius: 8px;
   cursor: pointer;
   outline: 0;
   padding: 10px 20px;
   background-color: ${hexToRgba(colorsV2.white, 0.2)};
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   color: ${colorsV2.white};
   font-size: 14px;
   transition: all 250ms;

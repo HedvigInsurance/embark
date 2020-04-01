@@ -1,14 +1,14 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { fonts, colors } from "@hedviginsurance/brand";
 import { Tooltip } from "../../Tooltip";
 import { KeywordsContext } from "../../KeywordsContext";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 
 const Container = styled.button`
   display: inline-block;
   position: relative;
   text-align: center;
-  background: ${colors.WHITE};
+  background: ${colorsV3.white};
   padding: 22px;
   margin: 10px;
   -webkit-appearance: none;
@@ -38,9 +38,8 @@ const Container = styled.button`
 `;
 
 const Label = styled.span`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 18px;
-  font-weight: 800;
 
   @media all and (max-width: 800px) {
     font-size: 16px;
@@ -64,26 +63,15 @@ type SelectLabelProps = {
 
 const SelectLabel = styled.span<SelectLabelProps>`
   display: inline-block;
-  background-color: ${colors.LIGHT_GRAY};
-  padding: 5px 12px;
-  border-radius: 12.5px;
   margin-top: 8px;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 12px;
-  font-weight: 400;
-  color: ${colors.OFF_BLACK};
+  color: ${colorsV3.purple500};
   transition: all 350ms;
 
   @media all and (max-width: 800px) {
     font-size: 10px;
   }
-
-  ${(props: SelectLabelProps) =>
-    props.isHovering &&
-    `
-        background-color: ${colors.PURPLE};
-        color: ${colors.WHITE};
-    `};
 `;
 
 type SelectOptionProps = {

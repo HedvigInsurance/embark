@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 800;
   text-align: left;
 `;
@@ -29,7 +29,7 @@ const Title = styled.h3`
 const OtherButton = styled.button`
   appearance: none;
   color: ${colorsV2.violet500};
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 600;
   font-size: 14px;
   margin-top: 20px;
@@ -39,7 +39,7 @@ const OtherButton = styled.button`
 `;
 
 const OtherText = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 16px;
   margin-top: 25px;
   margin-bottom: 20px;

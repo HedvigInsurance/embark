@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { motion, MotionProps } from "framer-motion";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { motion } from "framer-motion";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 import { Loading } from "../API/Loading";
 
 interface Focusable {
@@ -14,7 +14,7 @@ export const CardPrimitive = styled(motion.form)<Focusable>`
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-  background-color: ${colorsV2.white};
+  background-color: ${colorsV3.white};
   transition: all 250ms;
 
   ${props =>
@@ -92,13 +92,13 @@ export const Input = styled.input`
   margin-right: 16px;
   margin-top: 16px;
   font-size: 56px;
-  line-height: 1;
-  font-family: ${fonts.CIRCULAR};
+  line-height: 1.5;
+  font-family: ${fonts.FAVORIT};
   background: none;
   border: none;
   box-sizing: border-box;
   text-align: center;
-  color: ${colorsV2.black};
+  color: ${colorsV3.black};
   font-weight: 500;
   outline: 0;
   ${props => `width: ${Math.max(props.size || 0, 5) / 1.5}em;`};
@@ -112,8 +112,8 @@ export const Input = styled.input`
   -moz-appearance: textfield;
 
   ::placeholder {
-    color: ${colorsV2.lightgray};
-    font-family: ${fonts.CIRCULAR};
+    color: ${colorsV3.gray300};
+    font-family: ${fonts.FAVORIT};
     font-size: 56px;
   }
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 
 const Container = styled.div`
   display: flex;
@@ -14,13 +14,13 @@ const Input = styled.input<{ isSm?: boolean }>`
     margin-right: 16px;
     font-size: 56px;
     line-height: 1;
-    font-family: ${fonts.CIRCULAR}
+    font-family: ${fonts.FAVORIT}
     background: none;
     border: none;
     box-sizing: border-box;
     text-align: center;
     max-width: 100%;
-    color: ${colorsV2.black};
+    color: ${colorsV3.gray900};
     font-weight: 500;
     outline: 0;
 
@@ -44,22 +44,15 @@ const Input = styled.input<{ isSm?: boolean }>`
         : ""}
 
     ::placeholder {
-        ${props =>
-          props.isSm
-            ? `
-              color: ${colorsV2.gray};
-            `
-            : `
-              color: ${colorsV2.lightgray};
-            `}
+      color: ${colorsV3.gray300};
     }
 `;
 
 const Unit = styled.p`
   margin: 8px auto 11px;
   text-align: center;
-  color: ${colorsV2.gray};
-  font-family: ${fonts.CIRCULAR};
+  color: ${colorsV3.gray700};
+  font-family: ${fonts.FAVORIT};
 `;
 
 type InlineNumberActionProps = {

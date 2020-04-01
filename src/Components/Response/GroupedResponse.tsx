@@ -13,7 +13,7 @@ import { getMultiActionItems } from "../Actions/MultiAction/util";
 
 const Title = styled.p`
   color: ${colorsV2.white};
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: bold;
 `;
 

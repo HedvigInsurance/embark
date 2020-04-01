@@ -19,7 +19,7 @@ const Select = styled.select`
   -moz-appearance: none;
   outline: 0;
   width: 100%;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   background-color: transparent;
   padding: 5px;
   border: 0;

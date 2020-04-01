@@ -26,13 +26,15 @@ const Card = styled.div<{ cardCount: number }>`
         margin-bottom: 1px;
         margin-right: 0;
       }
-  `} @media (max-width: 600px) {
+  `};
+
+  @media (max-width: 600px) {
     padding: 0 0 16px 0;
   }
 `;
 
 const CardTitle = styled(motion.span)<{ pushUp?: boolean; cardCount: number }>`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 14px;
   font-weight: 500;
   padding-top: 16px;

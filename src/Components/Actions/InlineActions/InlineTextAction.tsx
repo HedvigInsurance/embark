@@ -1,24 +1,24 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import { MaskType, wrapWithMask } from "../masking";
 
 const Input = styled.input<{ strongPlaceholder: boolean }>`
   margin-left: 16px;
   margin-right: 16px;
   font-size: 40px;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   background: none;
   border: none;
   margin-top: 16px;
-  color: ${colorsV2.black};
+  color: ${colorsV3.gray900};
   font-weight: 500;
   outline: 0;
   width: 100%;
 
   ::placeholder {
     color: ${props =>
-      props.strongPlaceholder ? colorsV2.darkgray : colorsV2.lightgray};
+      props.strongPlaceholder ? colorsV3.gray500 : colorsV3.gray300};
   }
 
   @media (max-width: 600px) {

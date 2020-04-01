@@ -122,7 +122,7 @@ const HelpButton = styled.button`
 `;
 
 const HelpModalTitle = styled.h1`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 40px;
   line-height: 56px;
   color: ${colorsV2.black};
@@ -131,7 +131,7 @@ const HelpModalTitle = styled.h1`
 `;
 
 const HelpModalText = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 16px;
   line-height: 24px;
   color: ${colorsV2.darkgray};

@@ -28,12 +28,12 @@ const Body = styled.div`
 `;
 
 const Title = styled.h5`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 800;
 `;
 
 const Subtitle = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-weight: 300;
   margin-top: 2px;
   font-size: 11px;

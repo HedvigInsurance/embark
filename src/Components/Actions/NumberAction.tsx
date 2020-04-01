@@ -8,13 +8,14 @@ import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
 import animateScrollTo from "animated-scroll-to";
 import { useAutoFocus } from "../../Utils/useAutoFocus";
+import { colorsV3 } from "@hedviginsurance/brand/dist";
 
 const Unit = styled.p`
   margin-top: 8px;
   margin-bottom: 8px;
   text-align: center;
-  color: ${colors.DARK_GRAY};
-  font-family: ${fonts.CIRCULAR};
+  color: ${colorsV3.gray900};
+  font-family: ${fonts.FAVORIT};
 
   @media (max-width: 600px) {
     font-size: 14px;
