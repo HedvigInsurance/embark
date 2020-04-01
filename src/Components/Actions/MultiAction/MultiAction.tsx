@@ -8,6 +8,7 @@ import { StoreContext } from "../../KeyValueStore";
 import { MultiActionAddButton } from "./MultiActionAddButton";
 import { MultiActionCard } from "./MultiActionCard";
 import { getMultiActionItems } from "./util";
+import { colorsV3 } from "@hedviginsurance/brand/dist";
 
 type MultiActionProps = {
   passageName: string;
@@ -23,6 +24,7 @@ const Container = styled.div`
   overflow-x: scroll;
   scrollbar-width: none;
   transition: all 250ms;
+  color: ${colorsV3.gray900};
 
   ::-webkit-scrollbar {
     display: none;

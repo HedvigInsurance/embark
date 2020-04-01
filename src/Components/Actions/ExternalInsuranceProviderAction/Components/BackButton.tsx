@@ -21,6 +21,7 @@ const BackButtonWrapper = styled.button`
   display: flex;
   align-items: center;
   transition: color 250ms;
+  background: transparent;
 
   :active {
     color: ${colorsV3.gray900};

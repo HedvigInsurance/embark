@@ -7,6 +7,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: ${colorsV3.gray900};
 `;
 
 const Input = styled.input`

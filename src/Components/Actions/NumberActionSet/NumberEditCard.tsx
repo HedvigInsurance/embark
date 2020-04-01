@@ -3,7 +3,7 @@ import { Tooltip } from "../../Tooltip";
 import { motion } from "framer-motion";
 import { InlineNumberAction } from "./InlineNumberAction";
 import styled from "@emotion/styled";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import {
   CARD_COUNT_BASE_BP_SM,
   getCardCountMediaQuery,
@@ -14,7 +14,8 @@ const Card = styled.form<{
   cardCount: number;
 }>`
   position: relative;
-  background-color: ${colorsV2.white};
+  background-color: ${colorsV3.white};
+  color: ${colorsV3.gray900};
   display: inline-block;
   max-width: 100%;
   width: 200px;

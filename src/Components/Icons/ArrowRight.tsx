@@ -32,7 +32,7 @@ export const ArrowRight = () => (
       filter="url(#a)"
       transform="translate(-433 -80)"
       fill-rule="nonzero"
-      stroke="#9B9BAA"
+      stroke="#121212"
       stroke-width="1.2"
       fill="none"
       stroke-linejoin="round"

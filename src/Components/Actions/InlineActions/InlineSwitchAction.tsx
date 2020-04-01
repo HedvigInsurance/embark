@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 
 type InlineSwitchActionProps = {
   label: string;
@@ -29,7 +29,7 @@ const SwitchNobble = styled(motion.span)`
   height: 28px;
   width: 28px;
   border-radius: 14px;
-  background-color: ${colorsV2.white};
+  background-color: ${colorsV3.white};
 `;
 
 const Label = styled.span`
@@ -37,7 +37,7 @@ const Label = styled.span`
   font-family: ${fonts.FAVORIT};
   font-weight: 500;
   font-size: 13px;
-  color: ${colorsV2.black};
+  color: ${colorsV3.gray900};
 `;
 
 export const InlineSwitchAction = (props: InlineSwitchActionProps) => {
@@ -49,7 +49,7 @@ export const InlineSwitchAction = (props: InlineSwitchActionProps) => {
       <Label>Indraget vatten</Label>
       <SwitchContainer
         animate={{
-          backgroundColor: value ? colorsV2.violet500 : colorsV2.gray
+          backgroundColor: value ? colorsV3.gray700 : colorsV3.gray500
         }}
         onTap={() => {
           props.onValue(!value);
