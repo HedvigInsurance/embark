@@ -94,7 +94,7 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
   return (
     <Container>
       <CardsContainer cardCount={props.action.data.numberActions.length}>
-        {props.action.data.numberActions.map((action: any, index) => (
+        {props.action.data.numberActions.map((action: any, index: number) => (
           <NumberEditCard
             inputRef={index === 0 ? inputRef : undefined}
             key={action.data.key}
