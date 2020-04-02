@@ -20,7 +20,7 @@ const DotContainer = styled.div<{
   padding-bottom: 18px;
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 23px;
+  border-radius: 8px;
   box-sizing: content-box;
   width: 40px;
   background-color: ${colorsV2.white};
@@ -32,7 +32,7 @@ const DotContainer = styled.div<{
     padding-bottom: 8px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 30px;
   `};
 `;
