@@ -10,7 +10,6 @@ const Button = styled.button`
   border: 0;
   cursor: pointer;
   font-family: ${fonts.FAVORIT};
-  font-weight: 600;
   color: ${colorsV3.gray900};
   font-size: 15px;
   outline: 0;

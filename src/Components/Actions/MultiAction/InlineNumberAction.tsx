@@ -23,7 +23,6 @@ const Input = styled.input`
     max-width: 100%;
     margin-top: 16px;
     color: ${colorsV3.gray900};
-    font-weight: 500;
     outline: 0;
     ::placeholder {
         color: ${colorsV3.gray500};

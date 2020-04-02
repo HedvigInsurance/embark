@@ -14,7 +14,6 @@ const BackButtonWrapper = styled.button`
   border: 0;
   outline: 0;
   font-family: ${fonts.FAVORIT};
-  font-weight: 300;
   font-size: 13px;
   color: ${colorsV3.gray700};
   margin-bottom: 15px;

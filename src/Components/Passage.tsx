@@ -140,7 +140,6 @@ const HelpModalText = styled.p`
 
 const HelpModalSubtitle = styled(HelpModalText)`
   color: ${colorsV2.black};
-  font-weight: 700;
 `;
 
 const messageListMotionVariants = {

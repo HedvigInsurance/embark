@@ -35,7 +35,6 @@ const SwitchNobble = styled(motion.span)`
 const Label = styled.span`
   display: inline-block;
   font-family: ${fonts.FAVORIT};
-  font-weight: 500;
   font-size: 13px;
   color: ${colorsV3.gray900};
 `;

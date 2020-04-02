@@ -99,7 +99,6 @@ export const Input = styled.input`
   box-sizing: border-box;
   text-align: center;
   color: ${colorsV3.black};
-  font-weight: 500;
   outline: 0;
   ${props => `width: ${Math.max(props.size || 0, 5) / 1.5}em;`};
   ::-webkit-outer-spin-button,

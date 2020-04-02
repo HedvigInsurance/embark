@@ -45,7 +45,6 @@ const Title = styled.h3`
   display: flex;
   align-items: center;
   font-family: ${fonts.FAVORIT};
-  font-weight: 800;
   margin-bottom: 5px;
 `;
 
@@ -60,7 +59,6 @@ const Subtitle = styled.h4`
   display: flex;
   align-items: center;
   font-family: ${fonts.FAVORIT};
-  font-weight: 600;
   margin-bottom: 10px;
 `;
 

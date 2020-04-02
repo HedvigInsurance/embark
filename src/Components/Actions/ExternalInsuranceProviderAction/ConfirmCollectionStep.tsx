@@ -22,14 +22,12 @@ const TextContainer = styled.div`
 
 const Title = styled.h3`
   font-family: ${fonts.FAVORIT};
-  font-weight: 800;
   margin-bottom: 10px;
   text-align: center;
 `;
 
 const Body = styled.p`
   font-family: ${fonts.FAVORIT};
-  font-weight: 300;
   margin-bottom: 15px;
   text-align: center;
 `;
@@ -37,7 +35,6 @@ const Body = styled.p`
 const Privacy = styled.p`
   font-family: ${fonts.FAVORIT};
   font-size: 12px;
-  font-weight: 300;
   margin-top: 15px;
   text-align: center;
   color: ${colorsV3.gray500};

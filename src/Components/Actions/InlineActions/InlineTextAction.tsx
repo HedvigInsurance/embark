@@ -12,7 +12,6 @@ const Input = styled.input<{ strongPlaceholder: boolean }>`
   border: none;
   margin-top: 16px;
   color: ${colorsV3.gray900};
-  font-weight: 500;
   outline: 0;
   width: 100%;
 

@@ -56,7 +56,6 @@ const Card = styled.div<{ cardCount: number }>`
 const CardTitle = styled(motion.span)<{ pushUp?: boolean; cardCount: number }>`
   font-family: ${fonts.FAVORIT};
   font-size: 14px;
-  font-weight: 500;
   padding-top: 16px;
   padding-left: 16px;
   display: block;

@@ -21,7 +21,6 @@ const Input = styled.input<{ isSm?: boolean }>`
     text-align: center;
     max-width: 100%;
     color: ${colorsV3.gray900};
-    font-weight: 500;
     outline: 0;
 
     ::-webkit-outer-spin-button,

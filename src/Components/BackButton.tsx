@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import hexToRgba from "hex-to-rgba";
 import { KeywordsContext } from "./KeywordsContext";
 
@@ -13,24 +13,25 @@ const Button = styled.button`
   cursor: pointer;
   outline: 0;
   padding: 10px 20px;
-  background-color: ${hexToRgba(colorsV2.white, 0.2)};
+  background-color: ${hexToRgba(colorsV3.white, 0.2)};
   font-family: ${fonts.FAVORIT};
-  color: ${colorsV2.white};
+  color: ${colorsV3.white};
   font-size: 14px;
   transition: all 250ms;
 
   .ArrowUpStroke {
     transition: all 250ms;
+    stroke: ${colorsV3.white};
   }
 
   :hover {
     transform: translateY(1.5px);
-    background-color: ${colorsV2.white};
-    color: ${colorsV2.darkgray};
+    background-color: ${colorsV3.white};
+    color: ${colorsV3.gray700};
     box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.18);
 
     .ArrowUpStroke {
-      stroke: ${colorsV2.darkgray};
+      stroke: ${colorsV3.gray700};
     }
   }
 

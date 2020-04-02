@@ -22,7 +22,6 @@ const Container = styled.div`
 
 const Title = styled.h3`
   font-family: ${fonts.FAVORIT};
-  font-weight: 800;
   text-align: left;
 `;
 
@@ -30,7 +29,6 @@ const OtherButton = styled.button`
   appearance: none;
   color: ${colorsV3.purple500};
   font-family: ${fonts.FAVORIT};
-  font-weight: 600;
   font-size: 14px;
   margin-top: 20px;
   border: 0;
