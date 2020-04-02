@@ -69,7 +69,7 @@ interface NumberEditCardProps {
   value: string;
   onChange: (value: string) => void;
   cardCount: number;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 export const NumberEditCard: React.FC<NumberEditCardProps> = props => {

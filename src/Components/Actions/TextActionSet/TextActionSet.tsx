@@ -24,7 +24,6 @@ const CardsContainer = styled.form<{ cardCount: number }>`
   justify-content: center;
   max-width: 100%;
   border-radius: 8px;
-  overflow: hidden;
 
   ${props => mediaCardCount(props.cardCount)`
       display: flex;
@@ -168,7 +167,7 @@ export const TextActionSet: React.FunctionComponent<Props> = props => {
             {props.action.data.textActions.map(
               (textAction: any, index: number) => (
                 <TextEditCard
-                  inputRef={inputRef}
+                  inputRef={index === 0 ? inputRef : undefined}
                   textAction={textAction}
                   cardCount={props.action.data.textActions.length || 0}
                   autoFocus={index === 0}
