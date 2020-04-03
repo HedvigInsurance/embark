@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-01T12:38:39.637Z",
+  "lastUpdate": "2020-04-02T14:35:34.751Z",
   "name": "Web Onboarding NO - Norwegian Contents",
   "passages": [
     {
@@ -122,7 +122,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {householdSize} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {householdSize} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"{householdSize} andre (pluss meg selv)\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 650,
       "url": "/co-insured",
       "width": 100
