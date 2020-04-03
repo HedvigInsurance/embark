@@ -32,6 +32,7 @@ interface PreviousInsuranceProviderActionProps {
   onContinue: (name: string) => void;
   tooltip?: any;
   skipLink: { name: string; label: string };
+  storeKey?: string;
 }
 
 export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProviderActionProps> = ({
@@ -40,7 +41,8 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
   next,
   onContinue,
   passageName,
-  skipLink
+  skipLink,
+  storeKey = "currentInsurer"
 }) => {
   const { setValue } = React.useContext(StoreContext);
   const { externalInsuranceProviderOtherProviderButton } = React.useContext(
@@ -56,11 +58,11 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
             onlyAcceptProvidersWithExternalCapabilities={false}
             onPickProvider={provider => {
               if (provider) {
-                setValue("currentInsurer", provider.id);
+                setValue(storeKey, provider.id);
                 setValue(`${passageName}Result`, provider.name);
                 onContinue(next);
               } else {
-                setValue("previousInsurer", "other");
+                setValue(storeKey, "other");
                 setValue(
                   `${passageName}Result`,
                   externalInsuranceProviderOtherProviderButton
