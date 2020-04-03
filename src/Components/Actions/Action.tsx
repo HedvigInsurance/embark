@@ -127,6 +127,7 @@ export const Action = (props: ActionProps) => {
         next={props.action.data.next.name}
         skipLink={props.action.data.skip}
         onContinue={next => props.changePassage(next)}
+        storeKey={props.action.data.storeKey}
       />
     );
   }
