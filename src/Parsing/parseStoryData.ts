@@ -306,6 +306,9 @@ const getPreviousInsuranceProviderAction = (
   const skip = previousInsuranceProviderActionNode.getAttribute("skip");
   const skipLinks = skip ? parseLinks(skip) : [];
   const nextLinks = next ? parseLinks(next) : [];
+  const providers = previousInsuranceProviderActionNode.getAttribute(
+    "providers"
+  );
 
   const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0];
 
@@ -314,6 +317,7 @@ const getPreviousInsuranceProviderAction = (
     data: {
       next: nextLinks && nextLinks[0],
       skip: skipLinks && skipLinks[0],
+      providers,
       ...(tooltip && { tooltip })
     }
   };
