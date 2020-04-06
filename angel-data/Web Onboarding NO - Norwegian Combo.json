@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-03T15:41:49.258Z",
+  "lastUpdate": "2020-04-06T15:53:47.369Z",
   "name": "Web Onboarding NO - Norwegian Combo",
   "passages": [
     {
@@ -31,7 +31,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {householdSize} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {householdSize} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "url": "/co-insured",
       "width": 100
@@ -242,7 +242,7 @@
       "tags": [],
       "text": "<Message>\n  I hvilket forsikringsselskap har du din innboforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->travelInsurer\n]]\"\n                                 skip=\"[[Okay->travelInsurer]]\"\n                                 providers=\"norwegian\"\n                                 key=\"currentInsurerContents\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende innboforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din innboforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1950,
-      "url": "/current-insurer",
+      "url": "/current-contents-insurer",
       "width": 100
     },
     {
