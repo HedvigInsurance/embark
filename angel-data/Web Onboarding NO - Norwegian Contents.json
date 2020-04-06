@@ -2,12 +2,12 @@
   "id": "1150685733",
   "ifid": "3DCA7C7B-DD62-4A89-BC4E-156CF86B04BB",
   "keywords": {
-    "backButton": "Back",
+    "backButton": "Tilbake",
     "externalInsuranceProviderConfirmTitle": "",
-    "selectActionSelectLabel": "Select",
-    "tooltipModalInformationLabel": "Information"
+    "selectActionSelectLabel": "Velg",
+    "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-03T09:40:28.451Z",
+  "lastUpdate": "2020-04-06T14:23:04.133Z",
   "name": "Web Onboarding NO - Norwegian Contents",
   "passages": [
     {
