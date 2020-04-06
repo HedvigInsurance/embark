@@ -306,6 +306,10 @@ const getPreviousInsuranceProviderAction = (
   const skip = previousInsuranceProviderActionNode.getAttribute("skip");
   const skipLinks = skip ? parseLinks(skip) : [];
   const nextLinks = next ? parseLinks(next) : [];
+  const providers = previousInsuranceProviderActionNode.getAttribute(
+    "providers"
+  );
+  const storeKey = previousInsuranceProviderActionNode.getAttribute("key");
 
   const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0];
 
@@ -314,6 +318,8 @@ const getPreviousInsuranceProviderAction = (
     data: {
       next: nextLinks && nextLinks[0],
       skip: skipLinks && skipLinks[0],
+      providers,
+      storeKey,
       ...(tooltip && { tooltip })
     }
   };
@@ -720,7 +726,7 @@ const parseTracks = (element: Element) => {
       const eventKeys = trackElement.getAttribute("keys") || "";
       const includeAllKeys = trackElement.getAttribute("includeAllKeys");
       const customData = trackElement.getAttribute("customData")
-        ? trackElement.getAttribute("customData").replace(/'/g, '"')
+        ? trackElement.getAttribute("customData")!.replace(/'/g, '"')
         : null;
 
       if (!eventName) {

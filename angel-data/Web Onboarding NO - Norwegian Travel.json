@@ -1,0 +1,191 @@
+{
+  "id": "43351269",
+  "ifid": "B74956E2-2A4E-4A0A-A8CA-61C0750DDBE0",
+  "keywords": {
+    "backButton": "Back",
+    "externalInsuranceProviderConfirmTitle": "",
+    "selectActionSelectLabel": "Select",
+    "tooltipModalInformationLabel": "Information"
+  },
+  "lastUpdate": "2020-04-03T09:38:16.639Z",
+  "name": "Web Onboarding NO - Norwegian Travel",
+  "passages": [
+    {
+      "height": 100,
+      "id": "-1367848283",
+      "left": 800,
+      "name": "NewsletterSuccess",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 950,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-223025111",
+      "left": 500,
+      "name": "currentlyInsured",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Har du allerede reiseforsikring en annen annen plass?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"coInsured > 5\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har reiseforsikring->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ikke reiseforsikring->email]]\n  </Option>\n</SelectAction>",
+      "top": 1100,
+      "url": "/currentlyinsured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-446130744",
+      "left": 500,
+      "name": "birthDate",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"åååå-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Fortsett->numberCoInsured]]\"\n            unit=\"Fødselsdato (åååå-mm-dd)\"\n>\n</TextAction>",
+      "top": 800,
+      "url": "/birth-date",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-577751536",
+      "left": 500,
+      "name": "numberCoInsured",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->currentlyInsured]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 950,
+      "url": "/numberCoInsured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "-838514007",
+      "left": 650,
+      "name": "youthEligibilityCheck",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Redirect to=\"[[Offer]]\"\n          key=\"isYouth\"\n          value=\"false\"\n          when=\"birthDate.Age > 30 || coInsured > 0\"\n>\n</Redirect>\n\n<Redirect to=\"[[youth]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "top": 1250,
+      "url": "/youth-eligibility-check",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1093408484",
+      "left": 650,
+      "name": "errorSize",
+      "selected": false,
+      "story": "43351269",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Dessverre kan vi bare forsikre maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 950,
+      "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1524121484",
+      "left": 1175,
+      "name": "OfferSuccess",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "top": 1450,
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "2013271511",
+      "left": 650,
+      "name": "email",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Ok! Fyll inn din epostadresse nedenfor for å komme til ditt prisforslag\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "top": 1100,
+      "url": "/email",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "2031821070",
+      "left": 650,
+      "name": "youth",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Bonusspørsmål! Siden du er under 31 år er du kvalifisert for vår ungdomsforsikring med en fast pris på XXX kr/mnd. Høres det bra ut?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Ja, jeg vil gjerne ha ungdomsforsikring->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[Nei, jeg vil ha vanlig forsikring->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1400,
+      "url": "/youth",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "666023703",
+      "left": 500,
+      "name": "insurerInput",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  I hvilket forsikringsselskap har du din reiseforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende forsikring\n    </Title>\n    <Description>\n      Oppgi ditt nåværende forsikringsselskap, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "top": 1250,
+      "url": "/currentinsurer",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "765925901",
+      "left": 1000,
+      "name": "CreateQuoteError",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 1450,
+      "width": 100
+    },
+    {
+      "height": 200,
+      "id": "1992750199",
+      "left": 1050,
+      "name": "Offer",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Toppen! Ditt prisforslag er klart!\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateQuoteNorwegianTravel(\n\t\t\t$id: ID!\n\t\t\t$firstName: String!\n\t\t\t$lastName: String!\n\t\t\t$currentInsurer: String\n\t\t\t$birthDate: LocalDate!\n\t\t\t$coInsured: Int!\n\t\t\t$isYouth: Boolean!\n\t\t\t$email: String!\n\t\t) {\n\t\t  createQuote(input: {\n\t\t  \tid: $id,\n\t\t\tfirstName: $firstName,\n\t\t\tlastName: $lastName,\n\t\t\tcurrentInsurer: $currentInsurer,\n\t\t\tbirthDate: $birthDate,\n\t\t\tnorwegianTravel: {\n\t\t\t  coInsured: $coInsured\n\t\t\t  isYouth: $isYouth\n\t\t\t}\n\t\t\temail: $email\n\t\t  }) {\n\t\t\t... on CompleteQuote {\n\t\t\t  id\n\t\t\t  insuranceCost {\n\t\t\t\tmonthlyGross {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyDiscount {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t\tmonthlyNet {\n\t\t\t\t  amount\n\t\t\t\t  currency\n\t\t\t\t}\n\t\t\t  }\n\t\t\t}\n\t\t  }\n  \t  \t}\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"currentInsurer\"\n            from=\"currentInsurer\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isYouth\"\n            from=\"isYouth\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Error next=\"[[CreateQuoteError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "top": 1150,
+      "width": 200
+    },
+    {
+      "height": 200,
+      "id": "1996856957",
+      "left": 200,
+      "name": "Start",
+      "selected": false,
+      "story": "43351269",
+      "tags": [],
+      "text": "<Message>\n  Hei! Får vi komme med et kjempebra tilbud til deg? Det tar bare ett minutt\n</Message>\n\n<Message>\n  Først, hva heter du?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"Fornavn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Etternavn\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 800,
+      "url": "/start",
+      "width": 200
+    }
+  ],
+  "script": "",
+  "snapToGrid": true,
+  "startPassage": "1996856957",
+  "storyFormat": "Hedvig",
+  "storyFormatVersion": "1.0.0",
+  "stylesheet": "",
+  "tagColors": {
+    "Error": "red"
+  },
+  "zoom": 1
+}
