@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-08T07:01:31.558Z",
+  "lastUpdate": "2020-04-08T09:57:15.744Z",
   "name": "Web Onboarding NO - Norwegian Travel",
   "passages": [
     {
@@ -56,7 +56,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->currentlyInsured]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Flott! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->currentlyInsured]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 950,
       "url": "/numberCoInsured",
       "width": 100
@@ -172,7 +172,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Hei! Får vi komme med et kjempebra tilbud til deg? Det tar bare ett minutt\n</Message>\n\n<Message>\n  Først, hva heter du?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"Fornavn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Etternavn\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Hei! La oss gi deg et gods prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Først, hva heter du?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"Fornavn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Etternavn\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/start",
       "width": 200
