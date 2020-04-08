@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-01T12:38:23.203Z",
+  "lastUpdate": "2020-04-08T06:58:24.928Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -108,7 +108,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance with a fixed price of XXX kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance with a fixed price of 109 kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "url": "/youth",
       "width": 100
