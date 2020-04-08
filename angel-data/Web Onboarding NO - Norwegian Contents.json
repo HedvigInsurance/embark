@@ -2,12 +2,12 @@
   "id": "1150685733",
   "ifid": "3DCA7C7B-DD62-4A89-BC4E-156CF86B04BB",
   "keywords": {
-    "backButton": "Back",
+    "backButton": "Tilbake",
     "externalInsuranceProviderConfirmTitle": "",
-    "selectActionSelectLabel": "Select",
-    "tooltipModalInformationLabel": "Information"
+    "selectActionSelectLabel": "Velg",
+    "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-03T09:40:28.451Z",
+  "lastUpdate": "2020-04-08T06:56:51.266Z",
   "name": "Web Onboarding NO - Norwegian Contents",
   "passages": [
     {
@@ -214,7 +214,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Bonusspørsmål! Siden du er under 31 år er du kvalifisert for vår ungdomsforsikring med en fast pris på XXX kr/mnd. Høres det bra ut?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Ja, jeg vil gjerne ha ungdomsforsikring->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[Nei, jeg vil ha vanlig forsikring->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonusspørsmål! Siden du er under 31 år er du kvalifisert for vår ungdomsforsikring med en fast pris på 89 kr/mnd. Høres det bra ut?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Ja, jeg vil gjerne ha ungdomsforsikring->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[Nei, jeg vil ha vanlig forsikring->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/youth",
       "width": 100
