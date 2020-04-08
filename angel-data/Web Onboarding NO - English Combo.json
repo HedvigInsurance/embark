@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-03T15:31:20.468Z",
+  "lastUpdate": "2020-04-08T10:59:06.327Z",
   "name": "Web Onboarding NO - English Combo",
   "passages": [
     {
@@ -56,7 +56,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  Nice. How many others would you like to be covered by the insurance?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Me + {coInsured} other\n  </when>\n  <when expression=\"coInsured > 1\">\n    Me + {coInsured} others\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Continue->name]]\"\n              unit=\"other people (excl. myself)\"\n>\n  <Tooltip>\n    <Title>\n      Number of co-insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. Co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Nice. How many others would you like to be covered by the insurance?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Me + {coInsured} other\n  </when>\n  <when expression=\"coInsured > 1\">\n    Me + {coInsured} others\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Continue->name]]\"\n              unit=\"other people\"\n>\n  <Tooltip>\n    <Title>\n      Number of co-insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. Co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "url": "/co-insured",
       "width": 100
@@ -69,7 +69,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Next->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Continue->youthEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1700,
       "url": "/email",
       "width": 100
@@ -240,7 +240,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance bundle with a fixed price of XXX kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance bundle with a fixed price of 149 kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1850,
       "url": "/youth",
       "width": 100
