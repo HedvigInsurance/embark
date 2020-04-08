@@ -23,6 +23,7 @@ const Content = styled.div`
 
 const Container = styled.div`
   position: relative;
+  max-width: 100%;
 `;
 
 interface PreviousInsuranceProviderActionProps {
