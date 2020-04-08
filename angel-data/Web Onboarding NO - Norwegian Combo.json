@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-08T06:54:22.584Z",
+  "lastUpdate": "2020-04-08T09:54:31.647Z",
   "name": "Web Onboarding NO - Norwegian Combo",
   "passages": [
     {
@@ -31,7 +31,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Toppen! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Flott! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "url": "/co-insured",
       "width": 100
@@ -265,7 +265,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Hei! Får vi komme med et kjempebra tilbud til deg? Det tar bare ett minutt\n</Message>\n\n<Message>\n  Vil du ha et tilbud for leiligheten du bor i nå, eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hei! La oss gi deg et gods prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "url": "/start",
       "width": 200
