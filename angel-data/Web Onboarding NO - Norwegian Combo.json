@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-08T09:54:31.647Z",
+  "lastUpdate": "2020-04-08T11:06:16.588Z",
   "name": "Web Onboarding NO - Norwegian Combo",
   "passages": [
     {
@@ -265,7 +265,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Hei! La oss gi deg et gods prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "url": "/start",
       "width": 200
