@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-06T15:53:47.369Z",
+  "lastUpdate": "2020-04-08T06:54:22.584Z",
   "name": "Web Onboarding NO - Norwegian Combo",
   "passages": [
     {
@@ -188,7 +188,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Bonusspørsmål! Siden du er under 31 år er du kvalifisert for vår ungdomsforsikring med en fast pris på XXX kr/mnd. Høres det bra ut?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Ja, jeg vil gjerne ha ungdomsforsikring->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[Nei, jeg vil ha vanlig forsikring->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonusspørsmål! Siden du er under 31 år er du kvalifisert for vår ungdomsforsikring med en fast pris på 149 kr/mnd. Høres det bra ut?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Ja, jeg vil gjerne ha ungdomsforsikring->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[Nei, jeg vil ha vanlig forsikring->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1850,
       "url": "/youth",
       "width": 100
