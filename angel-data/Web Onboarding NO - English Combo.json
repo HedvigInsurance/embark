@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-03T15:31:20.468Z",
+  "lastUpdate": "2020-04-08T06:53:36.451Z",
   "name": "Web Onboarding NO - English Combo",
   "passages": [
     {
@@ -240,7 +240,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance bundle with a fixed price of XXX kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Bonus question! Since you are under 31 years old you are eligible for our youth insurance bundle with a fixed price of 149 kr/mo. What do you say?\n</Message>\n\n<SelectAction>\n  <Option key=\"isYouth\"\n          value=\"true\"\n  >\n    [[Yes, I want youth insurance->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, I want regular insurance->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1850,
       "url": "/youth",
       "width": 100
