@@ -410,8 +410,6 @@ export const schema = makeExecutableSchema({
         const json = JSON.parse(file);
         const storyData = parseStoryData(json);
 
-        console.log(storyData);
-
         return storyData;
       }
     }
