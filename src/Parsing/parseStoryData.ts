@@ -309,7 +309,7 @@ const getPreviousInsuranceProviderAction = (
   const providers = previousInsuranceProviderActionNode.getAttribute(
     "providers"
   );
-  const storeKey = previousInsuranceProviderActionNode.getAttribute("key");
+  const storeKey = previousInsuranceProviderActionNode.getAttribute("storeKey");
 
   const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0];
 

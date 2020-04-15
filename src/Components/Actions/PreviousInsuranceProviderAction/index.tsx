@@ -43,7 +43,7 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
   onContinue,
   passageName,
   skipLink,
-  storeKey = "currentInsurer"
+  storeKey
 }) => {
   const { setValue } = React.useContext(StoreContext);
   const { externalInsuranceProviderOtherProviderButton } = React.useContext(
@@ -59,11 +59,11 @@ export const PreviousInsuranceProviderAction: React.FC<PreviousInsuranceProvider
             onlyAcceptProvidersWithExternalCapabilities={false}
             onPickProvider={provider => {
               if (provider) {
-                setValue(storeKey, provider.id);
+                setValue(storeKey || "currentInsurer", provider.id);
                 setValue(`${passageName}Result`, provider.name);
                 onContinue(next);
               } else {
-                setValue(storeKey, "other");
+                setValue(storeKey || "currentInsurer", "other");
                 setValue(
                   `${passageName}Result`,
                   externalInsuranceProviderOtherProviderButton
