@@ -15,6 +15,7 @@ export const CardPrimitive = styled(motion.form)<Focusable>`
   align-items: center;
   border-radius: 8px;
   background-color: ${colorsV3.white};
+  color: ${colorsV3.gray900};
   transition: all 250ms;
 
   ${props =>
