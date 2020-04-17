@@ -291,6 +291,7 @@ const getExternalInsuranceProviderAction = (
   const nextLinks = next ? parseLinks(next) : [];
 
   return {
+    __typename: "EmbarkExternalInsuranceProviderAction",
     component: "ExternalInsuranceProviderAction",
     data: {
       next: nextLinks && nextLinks[0],
@@ -314,6 +315,7 @@ const getPreviousInsuranceProviderAction = (
   const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0];
 
   return {
+    __typename: "EmbarkPreviousInsuranceProviderAction",
     component: "PreviousInsuranceProviderAction",
     data: {
       next: nextLinks && nextLinks[0],
@@ -571,7 +573,10 @@ const getResponse = (passageName: string, containerElement: Element) => {
   const responseNode = containerElement.getElementsByTagName("response")[0];
 
   if (responseNode) {
-    return parsePossibleExpressionContent(responseNode);
+    return {
+      __typename: "EmbarkResponseExpression",
+      ...parsePossibleExpressionContent(responseNode)
+    };
   }
 
   return {
@@ -601,7 +606,10 @@ const parseGroupedResponse = (element: Element) => {
   return {
     __typename: "EmbarkGroupedResponse",
     component: "GroupedResponse",
-    title: parsePossibleExpressionContent(title),
+    title: {
+      __typename: "EmbarkResponseExpression",
+      ...parsePossibleExpressionContent(title)
+    },
     items: items.map(parsePossibleExpressionContent),
     each: (each && parseEach(each)) || []
   };

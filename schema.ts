@@ -181,8 +181,46 @@ const typeDefs = `
         data: EmbarkSelectActionData!
     }
 
+    type EmbarkNumberActionData {
+        key: String!
+        placeholder: String!
+        unit: String
+        maxValue: Int
+        minValue: Int
+        link: EmbarkLink!
+    }
+
+    type EmbarkExternalInsuranceProviderActionData {
+        next: EmbarkLink!
+        skip: EmbarkLink!
+    }
+
+    type EmbarkExternalInsuranceProviderAction implements EmbarkActionCore {
+        component: String!
+        data: EmbarkExternalInsuranceProviderActionData!
+    }
+
+    enum EmbarkPreviousInsuranceProviderActionDataProviders {
+        NORWEGIAN
+        SWEDISH
+    }
+
+    type EmbarkPreviousInsuranceProviderActionData {
+        next: EmbarkLink!
+        skip: EmbarkLink!
+        providers: EmbarkPreviousInsuranceProviderActionDataProviders
+        storeKey: String!
+        tooltip: EmbarkTooltip
+    }
+
+    type EmbarkPreviousInsuranceProviderAction implements EmbarkActionCore {
+        component: String!
+        data: EmbarkPreviousInsuranceProviderActionData!
+    }
+
     type EmbarkNumberAction implements EmbarkActionCore {
         component: String!
+        data: EmbarkNumberActionData!
     }
 
     type EmbarkMultiActionData {
@@ -221,7 +259,7 @@ const typeDefs = `
         data: EmbarkSwitchActionData!
     }
 
-    union EmbarkAction = EmbarkNumberActionSet | EmbarkTextActionSet | EmbarkTextAction | EmbarkSelectAction | EmbarkNumberAction | EmbarkMultiAction
+    union EmbarkAction = EmbarkExternalInsuranceProviderAction | EmbarkPreviousInsuranceProviderAction | EmbarkNumberActionSet | EmbarkTextActionSet | EmbarkTextAction | EmbarkSelectAction | EmbarkNumberAction | EmbarkMultiAction
 
     union EmbarkMultiActionComponent = EmbarkNumberAction | EmbarkDropdownAction | EmbarkSwitchAction
 
@@ -232,12 +270,17 @@ const typeDefs = `
 
     type EmbarkGroupedResponse {
         component: String!
-        title: String!
+        title: EmbarkResponseExpression!
         items: [EmbarkMessage!]!
         each: [EmbarkGroupedResponseEach!]!
     }
 
-    union EmbarkResponse = EmbarkGroupedResponse | EmbarkMessage
+    type EmbarkResponseExpression {
+        text: String!
+        expressions: [EmbarkExpression!]!
+    }
+
+    union EmbarkResponse = EmbarkGroupedResponse | EmbarkResponseExpression | EmbarkMessage
 
     type EmbarkTooltip {
         title: String!
@@ -254,7 +297,7 @@ const typeDefs = `
         messages: [EmbarkMessage!]!
         externalRedirect: EmbarkExternalRedirect
         action: EmbarkAction
-        response: [EmbarkResponse!]!
+        response: EmbarkResponse!
         tooltips: [EmbarkTooltip!]!
         tracks: [EmbarkTrack!]!
         redirects: [EmbarkRedirect!]!
