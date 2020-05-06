@@ -11,7 +11,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-29T09:01:59.345Z",
+  "lastUpdate": "2020-05-06T16:10:27.161Z",
   "name": "Web Onboarding - English Switcher",
   "partnerConfigs": [
     {
@@ -97,7 +97,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Thank you! Unfortunately, one of our insurance experts will need to take a look at your application, so we are unable to give you an offer via our website. To receive an offer please email us at prisforslag@hedvig.com\n</Message>",
+      "text": "<Message>\n  Something appears to have gone wrong and we can’t give you a price quote right now. Try again, and if it doesn’t work you can write us in the chat on the website!\n</Message>",
       "top": 1925,
       "url": "/quote-error",
       "width": 100
@@ -484,7 +484,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Unfortunately, we cannot insure recidences like yours at the moment\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences like yours!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Thank you! Unfortunately, one of our insurance experts will need to take a look at your application, so we are unable to give you an offer via our website. To receive an offer please email us at prisforslag@hedvig.com\n</Message>",
       "top": 1800,
       "url": "/uw-limit",
       "width": 100
@@ -608,5 +608,5 @@
     "Manual": "yellow",
     "Review": "purple"
   },
-  "zoom": 0.25
+  "zoom": 1
 }
