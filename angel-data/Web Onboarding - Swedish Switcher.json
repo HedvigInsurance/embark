@@ -28,7 +28,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-29T09:03:20.292Z",
+  "lastUpdate": "2020-05-06T16:11:26.578Z",
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -321,7 +321,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Hmm. Tyvärr kan vi inte försäkra bostäder som din just nu.\n</Message>\n\n<Message>\n  Om du vill kan du prenumerera på vårt nyhetsbrev så är du först med att veta när vi kan försäkra bostäder som din!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, prenumerera på nyhetsbrevet->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Tack! Tyvärr kan vi inte ta fram ett pris till dig här på hemsidan. En av våra försäkringsexperter behöver kika på din ansökan. För att få ditt erbjudande, maila till oss på prisforslag@hedvig.com\n</Message>",
       "top": 1800,
       "url": "/uw-limit",
       "width": 100
@@ -446,7 +446,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Tack! Tyvärr kan vi inte ta fram ett pris till dig här på hemsidan. En av våra försäkringsexperter behöver kika på din ansökan. För att få ditt erbjudande, maila till oss på prisforslag@hedvig.com\n</Message>",
+      "text": "<Message>\n  Något verkar ha gått snett och vi kan inte ta fram ett prisförslag för dig just nu. Prova igen, fungerar det inte då kan du skriva till oss i chatten på hemsidan!\n</Message>",
       "top": 1925,
       "url": "/quote-error",
       "width": 100
