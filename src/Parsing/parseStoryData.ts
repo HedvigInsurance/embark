@@ -43,6 +43,21 @@ const parseExternalRedirect = (containerElement: Element) => {
   };
 };
 
+const getPotentiallyMultipleItemsFromKeyOrValue = (
+  keyOrValue: string | null
+): Array<String> => {
+  if (!keyOrValue) {
+    return [];
+  }
+
+  if (keyOrValue.startsWith("[") && keyOrValue.endsWith("]")) {
+    const withoutBrackets = keyOrValue.replace(/[\[\]]/g, "");
+    return withoutBrackets.split(",");
+  }
+
+  return [keyOrValue];
+};
+
 const getSelectAction = (actionNode: Element | undefined) => {
   if (!actionNode) {
     return null;
@@ -56,13 +71,16 @@ const getSelectAction = (actionNode: Element | undefined) => {
     const key = option.getAttribute("key");
     const value = option.getAttribute("value");
 
+    const keys = getPotentiallyMultipleItemsFromKeyOrValue(key);
+    const values = getPotentiallyMultipleItemsFromKeyOrValue(value);
+
     const tooltips = parseTooltips(option);
 
     const api = parseApi(option);
 
     return {
-      key,
-      value,
+      keys,
+      values,
       link: links ? links[0] : null,
       tooltip: tooltips[0] ? tooltips[0] : null,
       api,
