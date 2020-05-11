@@ -55,7 +55,21 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
       return { ...acc, [curr.data.key]: store[curr.data.key] || null };
     }, {});
   });
-  const [continueDisabled, setContinueDisabled] = React.useState(true);
+  const canContinue = !Object.keys(state)
+    .map(key => {
+      const numberAction = props.action.data.numberActions.filter(
+        (na: any) => na.data.key === key
+      )[0];
+      return Boolean(
+        (typeof state[key] === "string" || typeof state[key] === "number") &&
+          isWithinBounds(
+            state[key],
+            numberAction.data.minValue,
+            numberAction.data.maxValue
+          )
+      );
+    })
+    .includes(false);
 
   const onContinue = () => {
     Object.keys(state).forEach(key => {
@@ -68,27 +82,6 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
     props.changePassage(props.action.data.link.name);
   };
 
-  React.useEffect(() => {
-    setContinueDisabled(
-      Object.keys(state)
-        .map(key => {
-          const numberAction = props.action.data.numberActions.filter(
-            (na: any) => na.data.key === key
-          )[0];
-          return (
-            !state[key] ||
-            !(state[key].length > 0) ||
-            !isWithinBounds(
-              state[key],
-              numberAction.data.minValue,
-              numberAction.data.maxValue
-            )
-          );
-        })
-        .indexOf(true) != -1
-    );
-  }, [state]);
-
   const inputRef = useAutoFocus(!props.isTransitioning);
 
   return (
@@ -100,7 +93,7 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
             key={action.data.key}
             action={action}
             onSubmit={() => {
-              if (!continueDisabled) {
+              if (canContinue) {
                 onContinue();
               }
             }}
@@ -120,7 +113,7 @@ export const NumberActionSet = (props: NumberActionSetProps) => {
       </CardsContainer>
       <Spacer />
       <ContinueButton
-        disabled={continueDisabled}
+        disabled={!canContinue}
         text={props.action.data.link.label}
         onClick={onContinue}
       />

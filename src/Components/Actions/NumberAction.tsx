@@ -40,12 +40,12 @@ type NumberActionProps = {
 };
 
 export const isWithinBounds = (
-  value: string,
+  value: string | null | undefined,
   minValue: number | undefined,
   maxValue: number | undefined
 ): boolean => {
   const asNumber = Number(value);
-  if (isNaN(asNumber)) {
+  if (isNaN(asNumber) || value === null || value === undefined) {
     return false;
   }
 
@@ -71,7 +71,7 @@ export const NumberAction = (props: NumberActionProps) => {
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || "");
 
   const canContinue =
-    textValue.length > 0 &&
+    (typeof textValue === "string" || typeof textValue === "number") &&
     isWithinBounds(textValue, props.minValue, props.maxValue);
   const onContinue = () => {
     setValue(props.storeKey, textValue);
