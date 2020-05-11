@@ -165,8 +165,9 @@ const typeDefs = `
     }
 
     type EmbarkSelectActionOption {
-        key: String
-        value: String
+        keys: [String!]!
+        values: [String!]!
+
         link: EmbarkLink!
         tooltip: EmbarkTooltip
         api: EmbarkApi

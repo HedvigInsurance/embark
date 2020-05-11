@@ -20,23 +20,6 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const ARRAY_REGEX = /^\[.+,.+\]$/; // Matches values wrapped in brackets, containing at least one ','
-const ARRAY_SYMBOL_REGEX = /[\[\]]/g; // Matches either '[' or ']'
-
-const parseToArray = (value: string): string[] =>
-  value.replace(ARRAY_SYMBOL_REGEX, "").split(",");
-
-const parseKeyValues = (key: string, value: string) => {
-  if (ARRAY_REGEX.test(key) && ARRAY_REGEX.test(value)) {
-    const keys = parseToArray(key);
-    const values = parseToArray(value);
-
-    return keys.map((k, idx) => [k, values[idx]]);
-  }
-
-  return [[key, value]];
-};
-
 export const SelectAction: React.FunctionComponent<SelectActionProps> = props => {
   const { store, setValue } = React.useContext(StoreContext);
   const [loading, setLoading] = React.useState(false);
@@ -54,15 +37,17 @@ export const SelectAction: React.FunctionComponent<SelectActionProps> = props =>
           label={option.link.label}
           key={option.link.label}
           onClick={() => {
-            if (option.key) {
-              if (option.value) {
-                setValue(option.key, option.value);
-                parseKeyValues(option.key, option.value).forEach(([k, v]) =>
-                  setValue(k, v)
-                );
+            if (option.keys[0]) {
+              if (option.values[0]) {
+                setValue(option.keys[0], option.values[0]);
               } else {
                 setValue(option.key, option.link.label);
               }
+              const [, ...keyTail] = option.keys;
+              const [, ...valueTail] = option.values;
+              keyTail.forEach((key: string, idx: number) => {
+                setValue(key, valueTail[idx]);
+              });
             }
             setValue(`${props.passageName}Result`, option.link.label);
             if (option.api) {
