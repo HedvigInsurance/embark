@@ -79,8 +79,6 @@ const getSelectAction = (actionNode: Element | undefined) => {
     const api = parseApi(option);
 
     return {
-      key,
-      value,
       keys,
       values,
       link: links ? links[0] : null,
