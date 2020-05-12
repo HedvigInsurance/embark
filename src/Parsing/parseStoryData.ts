@@ -566,11 +566,9 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
       const expression = parseExpression(expressionText);
 
       if (expression) {
-        const text = (when.textContent || "").trim();
         return {
           ...expression,
-          text,
-          resultValue: text
+          text: (when.textContent || "").trim()
         };
       }
 
@@ -808,6 +806,8 @@ export const parseStoryData = (storyData: any) => ({
         redirect.getAttribute;
         const whenAttribute = redirect.getAttribute("when");
         const toAttribute = redirect.getAttribute("to");
+        const keyAttribute = redirect.getAttribute("key");
+        const valueAttribute = redirect.getAttribute("value");
         const links = parseLinks(toAttribute || "");
 
         const expression = parseExpression(whenAttribute || "");
@@ -816,12 +816,32 @@ export const parseStoryData = (storyData: any) => ({
           return null;
         }
 
-        const to = links[0].name;
+        if (expression.__typename === "EmbarkExpressionUnary") {
+          return {
+            ...expression,
+            __typename: "EmbarkRedirectUnaryExpression",
+            to: links[0].name,
+            passedExpressionKey: keyAttribute,
+            passedExpressionValue: valueAttribute
+          };
+        }
+
+        if (expression.__typename === "EmbarkExpressionBinary") {
+          return {
+            ...expression,
+            __typename: "EmbarkRedirectBinaryExpression",
+            to: links[0].name,
+            passedExpressionKey: keyAttribute,
+            passedExpressionValue: valueAttribute
+          };
+        }
 
         return {
           ...expression,
-          to,
-          resultValue: to
+          __typename: "EmbarkRedirectMultipleExpressions",
+          to: links[0].name,
+          passedExpressionKey: keyAttribute,
+          passedExpressionValue: valueAttribute
         };
       })
       .filter(item => item);

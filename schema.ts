@@ -301,7 +301,7 @@ const typeDefs = `
         response: EmbarkResponse!
         tooltips: [EmbarkTooltip!]!
         tracks: [EmbarkTrack!]!
-        redirects: [EmbarkExpression!]!
+        redirects: [EmbarkRedirect!]!
     }
 
     type EmbarkTrack {
@@ -334,20 +334,46 @@ const typeDefs = `
 
     type EmbarkExpressionUnary {
         type: EmbarkExpressionTypeUnary!
-        resultValue: String
+        text: String
     }
 
     type EmbarkExpressionBinary {
         type: EmbarkExpressionTypeBinary!
         key: String!
         value: String!
-        resultValue: String
+        text: String
     }
 
     type EmbarkExpressionMultiple {
         type: EmbarkExpressionTypeMultiple!
-        resultValue: String
+        text: String
         subExpressions: [EmbarkExpression!]!
+    }
+
+    union EmbarkRedirect = EmbarkRedirectUnaryExpression | EmbarkRedirectBinaryExpression | EmbarkRedirectMultipleExpressions
+
+    type EmbarkRedirectUnaryExpression {
+        type: EmbarkExpressionTypeUnary!
+        to: String!
+        passedExpressionKey: String
+        passedExpressionValue: String
+    }
+
+    type EmbarkRedirectBinaryExpression {
+        type: EmbarkExpressionTypeBinary!
+        to: String!
+        key: String!
+        value: String!
+        passedExpressionKey: String
+        passedExpressionValue: String
+    }
+
+    type EmbarkRedirectMultipleExpressions {
+        type: EmbarkExpressionTypeMultiple!,
+        to: String!
+        subExpressions: [EmbarkExpression!]!
+        passedExpressionKey: String
+        passedExpressionValue: String
     }
 
     type EmbarkMessage {
