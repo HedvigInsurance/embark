@@ -30,8 +30,8 @@ type NumberActionProps = {
   unit: string;
   link: any;
   mask?: MaskType;
-  maxValue?: number;
-  minValue?: number;
+  maxValue?: string;
+  minValue?: string;
   tooltip?: {
     title: string;
     description: string;
@@ -41,19 +41,23 @@ type NumberActionProps = {
 
 export const isWithinBounds = (
   value: string | null | undefined,
-  minValue: number | undefined,
-  maxValue: number | undefined
+  minValue: string | undefined,
+  maxValue: string | undefined
 ): boolean => {
+  if (value === "") {
+    return false;
+  }
+
   const asNumber = Number(value);
   if (isNaN(asNumber) || value === null || value === undefined) {
     return false;
   }
 
-  if (minValue && asNumber < minValue) {
+  if (minValue && asNumber < Number(minValue)) {
     return false;
   }
 
-  if (maxValue && asNumber > maxValue) {
+  if (maxValue && asNumber > Number(maxValue)) {
     return false;
   }
 
