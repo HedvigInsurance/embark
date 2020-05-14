@@ -102,17 +102,17 @@ export const InlineDropdownAction = (props: DropdownActionProps) => (
       <g
         id="Component-Sheet"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
         fillRule="evenodd"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       >
         <g
           id="Web-Onboarding-#Components-#Desktop"
           transform="translate(-584.000000, -895.000000)"
           fillRule="nonzero"
           stroke="#121212"
-          stroke-width="1.19999993"
+          strokeWidth="1.19999993"
         >
           <g
             id="Group"
