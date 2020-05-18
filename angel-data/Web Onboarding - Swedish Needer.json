@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-05-06T16:10:58.198Z",
+  "lastUpdate": "2020-05-18T09:57:15.849Z",
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -103,7 +103,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace >= 250 || ancillaryArea >= 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction <= 1926\"\n>\n</Redirect>\n\n<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace > 250 || ancillaryArea > 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction < 1925\"\n>\n</Redirect>\n\n<Message>\n  Hur många badrum finns i huset?\n</Message>\n\n<Message>\n  Mindre gästtoaletter utan dusch/bad räknas inte som badrum\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 badrum\n      </Title>\n      <Description>\n        Det finns bara ett badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 badrum->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 badrum\n      </Title>\n      <Description>\n        Det finns två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option>\n    [[Fler än 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        Fler än 2 badrum\n      </Title>\n      <Description>\n        Det finns fler än två badrum i huset med dusch eller badkar\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/baths",
       "width": 100
