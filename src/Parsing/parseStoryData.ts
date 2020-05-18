@@ -255,8 +255,9 @@ const getTextActionSet = (textActionSetNode: Element) => {
     return {
       ...textAction,
       data: {
+        ...textAction.data,
         title: textActionNode.getAttribute("title"),
-        ...textAction.data
+        __typename: "EmbarkTextActionSetTextAction"
       }
     };
   });
@@ -267,6 +268,7 @@ const getTextActionSet = (textActionSetNode: Element) => {
     __typename: "EmbarkTextActionSet",
     component: "TextActionSet",
     data: {
+      __typename: "EmbarkTextActionSetData",
       link: links && links[0],
       textActions,
       api

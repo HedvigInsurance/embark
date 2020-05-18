@@ -140,8 +140,24 @@ const typeDefs = `
         data: EmbarkNumberActionSetData
     }
 
+    type EmbarkTextActionSetTextAction {
+        data: EmbarkTextActionSetTextActionData
+    }
+
+    type EmbarkTextActionSetTextActionData {
+        placeholder: String!
+        key: String!
+        api: EmbarkApi
+        large: Boolean
+        mask: String
+        tooltip: EmbarkTooltip
+        title: String!
+    }
+
     type EmbarkTextActionSetData {
         link: EmbarkLink!
+        api: EmbarkApi
+        textActions: [EmbarkTextActionSetTextAction!]!
     }
 
     type EmbarkTextActionSet implements EmbarkActionCore {
