@@ -11,7 +11,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-05-06T16:10:27.161Z",
+  "lastUpdate": "2020-05-18T09:56:05.674Z",
   "name": "Web Onboarding - English Switcher",
   "partnerConfigs": [
     {
@@ -538,7 +538,7 @@
       "selected": false,
       "story": "-1327401859",
       "tags": [],
-      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace >= 250 || ancillaryArea >= 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction <= 1926\"\n>\n</Redirect>\n\n<Message>\n  How many bathrooms are there in the house?\n</Message>\n\n<Message>\n  Bathrooms do not include smaller guest toilets without shower/bathtub\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 bathroom->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 bathroom\n      </Title>\n      <Description>\n        There is only one bathroom with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 bathrooms->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 bathrooms\n      </Title>\n      <Description>\n        There are two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[More than 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        More than 2 bathrooms\n      </Title>\n      <Description>\n        There are more than two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
+      "text": "<Redirect to=\"[[errorInfoVilla]]\"\n          when=\"livingSpace > 250 || ancillaryArea > 250\"\n>\n</Redirect>\n\n<Redirect to=\"[[errorAgeVilla]]\"\n          when=\"yearOfConstruction < 1925\"\n>\n</Redirect>\n\n<Message>\n  How many bathrooms are there in the house?\n</Message>\n\n<Message>\n  Bathrooms do not include smaller guest toilets without shower/bathtub\n</Message>\n\n<SelectAction>\n  <Option key=\"numberOfBathrooms\"\n          value=\"1\"\n  >\n    [[1 bathroom->floorsVilla]]\n    <Tooltip>\n      <Title>\n        1 bathroom\n      </Title>\n      <Description>\n        There is only one bathroom with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"2\"\n  >\n    [[2 bathrooms->floorsVilla]]\n    <Tooltip>\n      <Title>\n        2 bathrooms\n      </Title>\n      <Description>\n        There are two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n  <Option key=\"numberOfBathrooms\"\n          value=\"99\"\n  >\n    [[More than 2->errorBathsVilla]]\n    <Tooltip>\n      <Title>\n        More than 2 bathrooms\n      </Title>\n      <Description>\n        There are more than two bathrooms with shower/bathtub in the house\n      </Description>\n    </Tooltip>\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/baths",
       "width": 100
