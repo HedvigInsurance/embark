@@ -294,7 +294,7 @@ const typeDefs = `
         name: String!
         url: String
         allLinks: [EmbarkLink!]!
-        api: [EmbarkApi!]!
+        api: EmbarkApi
         messages: [EmbarkMessage!]!
         externalRedirect: EmbarkExternalRedirect
         action: EmbarkAction
