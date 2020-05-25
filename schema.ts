@@ -71,21 +71,31 @@ const typeDefs = `
         key: String!
         as: String!
     }
-    
-    type EmbarkApiGraphQLQuery {
-        next: EmbarkLink!
+
+    type EmbarkApiGraphQLQueryData {
+        next: EmbarkLink
         query: String!
         variables: [EmbarkAPIGraphQLVariable!]!
         errors: [EmbarkAPIGraphQLError!]!
         results: [EmbarkAPIGraphQLResult!]!
     }
+    
+    type EmbarkApiGraphQLQuery {
+        component: String!
+        data: EmbarkApiGraphQLQueryData!
+    }
 
-    type EmbarkApiGraphQLMutation {
-        next: EmbarkLink!
+    type EmbarkApiGraphQLMutationData {
+        next: EmbarkLink
         mutation: String!
         variables: [EmbarkAPIGraphQLVariable!]!
         errors: [EmbarkAPIGraphQLError!]!
         results: [EmbarkAPIGraphQLResult]!
+    }
+
+    type EmbarkApiGraphQLMutation {
+        component: String!
+        data: EmbarkApiGraphQLMutationData!
     }
 
     type EmbarkApiPersonalInformationData {

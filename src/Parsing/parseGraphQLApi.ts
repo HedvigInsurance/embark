@@ -32,7 +32,7 @@ const parseVariables = (element: Element): SingleVariable => {
   const as = element.getAttribute("as");
 
   return {
-    __typename: "EmbarkGraphQLApiSingleVariable",
+    __typename: "EmbarkAPIGraphQLSingleVariable",
     key: key || "",
     from: from || "",
     as: as || ""
@@ -49,7 +49,7 @@ const parseGeneratedVariables = (element: Element): GeneratedVariable => {
   }
 
   return {
-    __typename: "EmbarkGraphQLApiGeneratedVariable",
+    __typename: "EmbarkAPIGraphQLGeneratedVariable",
     key: key || "",
     type: GeneratedVariableType.uuid,
     storeAs: storeAs || ""
@@ -69,7 +69,7 @@ const parseMultiActionVariables = (element: Element): MultiActionVariable => {
   ).map(parseMultiActionVariables);
 
   return {
-    __typename: "EmbarkGraphQLApiMultiActionVariable",
+    __typename: "EmbarkAPIGraphQLMultiActionVariable",
     key,
     variables: [...variables, ...generatedVariables, ...multiActionVariables]
   };
@@ -142,9 +142,10 @@ export const parseGraphQLApi = (
       const query = queryElement.textContent;
 
       return {
-        __typename: "EmbarkGraphQLApiQuery",
+        __typename: "EmbarkApiGraphQLQuery",
         component: "GraphQLApi",
         data: {
+          __typename: "EmbarkApiGraphQLQueryData",
           ...parseCommonFields(graphQLApi),
           query
         }
@@ -155,9 +156,10 @@ export const parseGraphQLApi = (
     const mutation = mutationElement.textContent;
 
     return {
-      __typename: "EmbarkGraphQLApiMutation",
+      __typename: "EmbarkApiGraphQLMutation",
       component: "GraphQLApi",
       data: {
+        __typename: "EmbarkApiGraphQLMutationData",
         ...parseCommonFields(graphQLApi),
         mutation
       }
