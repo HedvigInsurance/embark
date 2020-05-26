@@ -8,13 +8,14 @@ import { ContinueButton } from "../ContinueButton";
 import { wrapWithMask, MaskType, unmaskValue } from "./masking";
 import animateScrollTo from "animated-scroll-to";
 import { useAutoFocus } from "../../Utils/useAutoFocus";
+import { colorsV3 } from "@hedviginsurance/brand/dist";
 
 const Unit = styled.p`
   margin-top: 8px;
   margin-bottom: 8px;
   text-align: center;
-  color: ${colors.DARK_GRAY};
-  font-family: ${fonts.CIRCULAR};
+  color: ${colorsV3.gray900};
+  font-family: ${fonts.FAVORIT};
 
   @media (max-width: 600px) {
     font-size: 14px;
@@ -29,8 +30,8 @@ type NumberActionProps = {
   unit: string;
   link: any;
   mask?: MaskType;
-  maxValue?: number;
-  minValue?: number;
+  maxValue?: string;
+  minValue?: string;
   tooltip?: {
     title: string;
     description: string;
@@ -39,20 +40,24 @@ type NumberActionProps = {
 };
 
 export const isWithinBounds = (
-  value: string,
-  minValue: number | undefined,
-  maxValue: number | undefined
+  value: string | null | undefined,
+  minValue: string | undefined,
+  maxValue: string | undefined
 ): boolean => {
+  if (value === "") {
+    return false;
+  }
+
   const asNumber = Number(value);
-  if (isNaN(asNumber)) {
+  if (isNaN(asNumber) || value === null || value === undefined) {
     return false;
   }
 
-  if (minValue && asNumber < minValue) {
+  if (minValue && asNumber < Number(minValue)) {
     return false;
   }
 
-  if (maxValue && asNumber > maxValue) {
+  if (maxValue && asNumber > Number(maxValue)) {
     return false;
   }
 
@@ -70,7 +75,7 @@ export const NumberAction = (props: NumberActionProps) => {
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || "");
 
   const canContinue =
-    textValue.length > 0 &&
+    (typeof textValue === "string" || typeof textValue === "number") &&
     isWithinBounds(textValue, props.minValue, props.maxValue);
   const onContinue = () => {
     setValue(props.storeKey, textValue);

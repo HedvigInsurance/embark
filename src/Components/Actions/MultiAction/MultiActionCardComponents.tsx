@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { colorsV2 } from "@hedviginsurance/brand";
+import { colorsV3 } from "@hedviginsurance/brand";
 
 export const cardWidth = 175;
 
@@ -11,7 +11,8 @@ interface Focusable {
 export const Card = styled.form<Focusable>`
   position: relative;
   border-radius: 8px;
-  background-color: ${colorsV2.white};
+  background-color: ${colorsV3.white};
+
   display: inline-block;
   width: 100%;
 
@@ -29,6 +30,7 @@ export const CardContainer = styled.div`
   padding: 20px;
   max-width: ${cardWidth}px;
   box-sizing: content-box;
+  color: ${colorsV3.gray900};
 `;
 
 export const CardContents = styled(motion.div)`

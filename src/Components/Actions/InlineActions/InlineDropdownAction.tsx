@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 
 type DropdownActionProps = {
   label: string;
@@ -19,18 +19,16 @@ const Select = styled.select`
   -moz-appearance: none;
   outline: 0;
   width: 100%;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   background-color: transparent;
-  padding: 5px;
   border: 0;
   font-size: 14px;
-  font-weight: 500;
   padding: 16px 20px;
-  color: ${colorsV2.violet500};
+  color: ${colorsV3.gray900};
   cursor: pointer;
 
   :not(:valid) {
-    color: ${colorsV2.gray};
+    color: ${colorsV3.gray500};
   }
 
   option {
@@ -104,17 +102,17 @@ export const InlineDropdownAction = (props: DropdownActionProps) => (
       <g
         id="Component-Sheet"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
         fillRule="evenodd"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       >
         <g
           id="Web-Onboarding-#Components-#Desktop"
           transform="translate(-584.000000, -895.000000)"
           fillRule="nonzero"
-          stroke="#651EFF"
-          stroke-width="1.19999993"
+          stroke="#121212"
+          strokeWidth="1.19999993"
         >
           <g
             id="Group"

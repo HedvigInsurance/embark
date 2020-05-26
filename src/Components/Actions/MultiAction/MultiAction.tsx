@@ -8,6 +8,7 @@ import { StoreContext } from "../../KeyValueStore";
 import { MultiActionAddButton } from "./MultiActionAddButton";
 import { MultiActionCard } from "./MultiActionCard";
 import { getMultiActionItems } from "./util";
+import { colorsV3 } from "@hedviginsurance/brand/dist";
 
 type MultiActionProps = {
   passageName: string;
@@ -23,6 +24,7 @@ const Container = styled.div`
   overflow-x: scroll;
   scrollbar-width: none;
   transition: all 250ms;
+  color: ${colorsV3.gray900};
 
   ::-webkit-scrollbar {
     display: none;
@@ -73,7 +75,7 @@ const getDefaultItemsByComponents = (components: any[]) =>
       if (c.component === "SwitchAction") {
         return { [c.data.key]: c.data.defaultValue };
       }
-      return {};
+      return { [c.data.key]: null };
     })
     .reduce((acc, current) => ({ ...acc, ...current }), {});
 
@@ -109,15 +111,17 @@ export const MultiAction = (props: MultiActionProps) => {
     setIsValid(
       !state.items
         .map((item: any) => {
-          return !(
-            Object.keys(item.values)
-              .map(key => item.values[key] === null)
-              .indexOf(true) != -1
-          );
+          return !Object.keys(item.values)
+            .map(
+              key =>
+                typeof item.values[key] === "boolean" ||
+                Boolean(item.values[key])
+            )
+            .includes(false);
         })
         .includes(false)
     );
-  }, [state.items]);
+  }, [JSON.stringify(state.items)]);
 
   return (
     <MultiActionBase>

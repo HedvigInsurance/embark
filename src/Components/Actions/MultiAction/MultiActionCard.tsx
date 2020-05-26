@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { colorsV2 } from "@hedviginsurance/brand";
 import { motion } from "framer-motion";
 
 import { RemoveItemButton } from "./RemoveItemButton";
@@ -14,6 +13,7 @@ import {
   CardContents,
   cardWidth
 } from "./MultiActionCardComponents";
+import { colorsV3 } from "@hedviginsurance/brand/dist";
 
 const ExitAnimation = styled(motion.div)`
   display: inline-block;
@@ -22,7 +22,7 @@ const ExitAnimation = styled(motion.div)`
 const Divider = styled.div`
   height: 1px;
   width: 100%;
-  background-color: ${colorsV2.lightgray};
+  background-color: ${colorsV3.gray900};
 `;
 
 interface MultiActionCardProps {

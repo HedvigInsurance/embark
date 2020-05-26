@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import { ContinueButton } from "../../ContinueButton";
 import { KeywordsContext } from "../../KeywordsContext";
 import { BackButton } from "./Components/BackButton";
@@ -13,6 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   padding: 30px 20px;
   width: 350px;
+  color: ${colorsV3.gray900};
 `;
 
 const TextContainer = styled.div`
@@ -20,30 +21,27 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 800;
+  font-family: ${fonts.FAVORIT};
   margin-bottom: 10px;
   text-align: center;
 `;
 
 const Body = styled.p`
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 300;
+  font-family: ${fonts.FAVORIT};
   margin-bottom: 15px;
   text-align: center;
 `;
 
 const Privacy = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 12px;
-  font-weight: 300;
   margin-top: 15px;
   text-align: center;
-  color: ${colorsV2.gray};
+  color: ${colorsV3.gray500};
 `;
 
 const PrivacyLink = styled.a`
-  color: ${colorsV2.gray};
+  color: ${colorsV3.gray500};
 `;
 
 const Spacer = styled.div`

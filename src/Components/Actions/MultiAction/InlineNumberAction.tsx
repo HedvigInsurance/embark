@@ -1,12 +1,13 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: ${colorsV3.gray900};
 `;
 
 const Input = styled.input`
@@ -14,18 +15,17 @@ const Input = styled.input`
     margin-right: 16px;
     font-size: 56px;
     line-height: 1;
-    font-family: ${fonts.CIRCULAR}
+    font-family: ${fonts.FAVORIT}
     background: none;
     border: none;
     box-sizing: border-box;
     text-align: center;
     max-width: 100%;
     margin-top: 16px;
-    color: ${colorsV2.black};
-    font-weight: 500;
+    color: ${colorsV3.gray900};
     outline: 0;
     ::placeholder {
-        color: ${colorsV2.lightgray};
+        color: ${colorsV3.gray500};
     }
 
     ::-webkit-outer-spin-button,
@@ -40,8 +40,8 @@ const Input = styled.input`
 const Unit = styled.p`
   margin: 8px auto 11px;
   text-align: center;
-  color: ${colorsV2.gray};
-  font-family: ${fonts.CIRCULAR};
+  color: ${colorsV3.gray900};
+  font-family: ${fonts.FAVORIT};
 `;
 
 type InlineNumberActionProps = {

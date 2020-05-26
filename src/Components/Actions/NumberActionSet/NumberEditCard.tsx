@@ -3,7 +3,7 @@ import { Tooltip } from "../../Tooltip";
 import { motion } from "framer-motion";
 import { InlineNumberAction } from "./InlineNumberAction";
 import styled from "@emotion/styled";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import {
   CARD_COUNT_BASE_BP_SM,
   getCardCountMediaQuery,
@@ -14,7 +14,8 @@ const Card = styled.form<{
   cardCount: number;
 }>`
   position: relative;
-  background-color: ${colorsV2.white};
+  background-color: ${colorsV3.white};
+  color: ${colorsV3.gray900};
   display: inline-block;
   max-width: 100%;
   width: 200px;
@@ -44,9 +45,8 @@ const Card = styled.form<{
 `;
 
 const CardTitle = styled(motion.span)<{ cardCount: number; pushUp?: boolean }>`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 14px;
-  font-weight: 500;
   padding-top: 15px;
   padding-left: 20px;
   display: inline-block;
@@ -68,7 +68,7 @@ interface NumberEditCardProps {
   value: string;
   onChange: (value: string) => void;
   cardCount: number;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 export const NumberEditCard: React.FC<NumberEditCardProps> = props => {

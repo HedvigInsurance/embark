@@ -25,11 +25,12 @@ interface PassageProps {
   historyGoBackListener: (listener: () => void) => () => void;
   goBack: () => void;
   changePassage: (name: string) => void;
+  hasHeader?: boolean;
 }
 
-const ChatContainer = styled.div`
+const ChatContainer = styled.div<{ hasHeader?: boolean }>`
   display: flex;
-  height: calc(100% - 80px);
+  height: ${({ hasHeader }) => (hasHeader ? "calc(100% - 80px)" : "100%")};
   overflow: scroll;
   flex-direction: column;
   justify-content: space-between;
@@ -41,7 +42,7 @@ const ChatContainer = styled.div`
   }
 
   @media (max-width: 375px) {
-    height: calc(100% - 64px);
+    height: ${({ hasHeader }) => (hasHeader ? "calc(100% - 64px)" : "100%")};
   }
 `;
 
@@ -122,7 +123,7 @@ const HelpButton = styled.button`
 `;
 
 const HelpModalTitle = styled.h1`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 40px;
   line-height: 56px;
   color: ${colorsV2.black};
@@ -131,7 +132,7 @@ const HelpModalTitle = styled.h1`
 `;
 
 const HelpModalText = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 16px;
   line-height: 24px;
   color: ${colorsV2.darkgray};
@@ -140,7 +141,6 @@ const HelpModalText = styled.p`
 
 const HelpModalSubtitle = styled(HelpModalText)`
   color: ${colorsV2.black};
-  font-weight: 700;
 `;
 
 const messageListMotionVariants = {
@@ -257,7 +257,7 @@ export const Passage = (props: PassageProps) => {
   });
 
   return (
-    <ChatContainer>
+    <ChatContainer hasHeader={props.hasHeader}>
       <ChatPadding>
         <motion.div
           initial="visible"

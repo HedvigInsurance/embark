@@ -2,7 +2,7 @@ import { passes } from "../Utils/ExpressionsUtil";
 import * as React from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { colors, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 
 export interface ExpressionTextNode {
   text: string;
@@ -65,15 +65,15 @@ type MessageBodyProps = {
 export const MessageBody = styled.p<MessageBodyProps>`
   display: inline-block;
   background-color: ${(props: MessageBodyProps) =>
-    props.isResponse ? colors.PURPLE : colors.WHITE};
+    props.isResponse ? colorsV3.white : colorsV3.gray800};
   color: ${(props: MessageBodyProps) =>
-    props.isResponse ? colors.WHITE : colors.BLACK};
+    props.isResponse ? colorsV3.gray900 : colorsV3.white};
   max-width: 300px;
   padding: 22px;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-radius: 27px;
-  font-family: ${fonts.CIRCULAR};
+  border-radius: 8px;
+  font-family: ${fonts.FAVORIT};
   line-height: 25px;
   font-size: 16px;
 

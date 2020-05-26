@@ -26,9 +26,8 @@ const Row = styled.button`
 `;
 
 const Name = styled.span`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 15px;
-  font-weight: 600;
 `;
 
 const ProviderInfo = styled.div`

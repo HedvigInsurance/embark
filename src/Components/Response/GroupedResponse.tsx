@@ -8,25 +8,25 @@ import {
 } from "../Common";
 import { StoreContext, Store } from "../KeyValueStore";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 import { getMultiActionItems } from "../Actions/MultiAction/util";
 
 const Title = styled.p`
-  color: ${colorsV2.white};
-  font-family: ${fonts.CIRCULAR};
-  font-weight: bold;
+  color: ${colorsV3.gray900};
+  font-family: ${fonts.FAVORIT};
 `;
 
 const ItemContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 const Item = styled.span`
-  background-color: ${colorsV2.violet700};
-  border-radius: 18px;
-  padding: 8px 12px;
-  margin: 4px;
+  display: block;
+  color: ${colorsV3.purple500};
+  margin: 8px 0;
 `;
 
 interface Props {

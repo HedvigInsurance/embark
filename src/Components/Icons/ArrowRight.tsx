@@ -31,11 +31,11 @@ export const ArrowRight = () => (
     <g
       filter="url(#a)"
       transform="translate(-433 -80)"
-      fill-rule="nonzero"
-      stroke="#9B9BAA"
-      stroke-width="1.2"
+      fillRule="nonzero"
+      stroke="#121212"
+      strokeWidth="1.2"
       fill="none"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
     >
       <path d="M445 99.876l.633.624L454 92.25 445.633 84l-.633.624 7.735 7.626z" />
     </g>

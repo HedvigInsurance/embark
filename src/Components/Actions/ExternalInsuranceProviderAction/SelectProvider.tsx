@@ -1,5 +1,5 @@
 import * as React from "react";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import styled from "@emotion/styled";
 import { KeywordsContext } from "../../KeywordsContext";
 import { ApiContext } from "../../API/ApiContext";
@@ -21,16 +21,14 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 800;
+  font-family: ${fonts.FAVORIT};
   text-align: left;
 `;
 
 const OtherButton = styled.button`
   appearance: none;
-  color: ${colorsV2.violet500};
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 600;
+  color: ${colorsV3.purple500};
+  font-family: ${fonts.FAVORIT};
   font-size: 14px;
   margin-top: 20px;
   border: 0;
@@ -39,7 +37,7 @@ const OtherButton = styled.button`
 `;
 
 const OtherText = styled.p`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 16px;
   margin-top: 25px;
   margin-bottom: 20px;

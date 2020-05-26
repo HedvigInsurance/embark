@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { colorsV2 } from "@hedviginsurance/brand";
+import { colorsV3 } from "@hedviginsurance/brand";
 import hexToRgba from "hex-to-rgba";
 import { motion } from "framer-motion";
 import { Cross } from "../Components/Icons/Cross";
@@ -28,7 +28,7 @@ const Background = styled(motion.div)`
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: ${hexToRgba(colorsV2.white, 0.75)};
+  background-color: ${hexToRgba(colorsV3.black, 0.75)};
 `;
 
 const Position = styled(motion.div)`
@@ -42,7 +42,7 @@ const Position = styled(motion.div)`
 const Container = styled(motion.div)`
   position: relative;
   padding: 24px;
-  background: ${colorsV2.white};
+  background: ${colorsV3.white};
   border-radius: 9px;
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
@@ -58,7 +58,7 @@ const CloseButton = styled.button`
   display: flex;
   align-items: center;
   text-align: center;
-  background-color: ${colorsV2.gray};
+  background-color: ${colorsV3.gray500};
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -70,13 +70,13 @@ const CloseButton = styled.button`
   }
 
   :hover {
-    background-color: ${colorsV2.darkgray};
+    background-color: ${colorsV3.gray700};
   }
 
   svg {
     width: 40%;
     height: 40%;
-    fill: ${colorsV2.white};
+    fill: ${colorsV3.white};
     transform: translateX(75%);
   }
 `;

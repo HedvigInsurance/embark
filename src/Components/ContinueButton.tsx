@@ -1,17 +1,16 @@
 import * as React from "react";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 import styled from "@emotion/styled";
 
 const Button = styled.button`
-  border-radius: 28px;
+  border-radius: 8px;
   padding: 16px 20px;
-  background-color: ${colorsV2.violet500};
+  background-color: ${colorsV3.gray200};
   -webkit-appearance: none;
   border: 0;
   cursor: pointer;
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 600;
-  color: ${colorsV2.white};
+  font-family: ${fonts.FAVORIT};
+  color: ${colorsV3.gray900};
   font-size: 15px;
   outline: 0;
   transition: all 250ms;
@@ -23,23 +22,17 @@ const Button = styled.button`
 
   :active {
     transform: translateY(-1.5px);
-    background-color: ${colorsV2.violet700};
   }
 
   ${props =>
     props.disabled &&
     `
-        background-color: ${colorsV2.lightgray};
-        color: ${colorsV2.gray};
+        background-color: ${colorsV3.gray800};
+        color: ${colorsV3.gray700};
 
         :hover {
             box-shadow: none;
             transform: translateY(0);
-        }
-
-        :active {
-            transform: translateY(0);
-            background-color: ${colorsV2.violet500};
         }
     `};
 `;

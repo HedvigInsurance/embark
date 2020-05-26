@@ -14,8 +14,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h4`
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 800;
+  font-family: ${fonts.FAVORIT};
   text-align: center;
   margin-top: 15px;
 `;

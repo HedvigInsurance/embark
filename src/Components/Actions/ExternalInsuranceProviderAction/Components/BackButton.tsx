@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { fonts, colorsV2 } from "@hedviginsurance/brand";
+import { fonts, colorsV3 } from "@hedviginsurance/brand";
 import { KeywordsContext } from "../../../KeywordsContext";
 import { ArrowLeft } from "../../../Icons/ArrowLeft";
 
@@ -13,21 +13,21 @@ const BackButtonWrapper = styled.button`
   cursor: pointer;
   border: 0;
   outline: 0;
-  font-family: ${fonts.CIRCULAR};
-  font-weight: 300;
+  font-family: ${fonts.FAVORIT};
   font-size: 13px;
-  color: ${colorsV2.gray};
+  color: ${colorsV3.gray700};
   margin-bottom: 15px;
   display: flex;
   align-items: center;
   transition: color 250ms;
+  background: transparent;
 
   :active {
-    color: ${colorsV2.darkgray};
+    color: ${colorsV3.gray900};
 
     svg {
       & > path {
-        stroke: ${colorsV2.darkgray};
+        stroke: ${colorsV3.gray900};
       }
     }
   }

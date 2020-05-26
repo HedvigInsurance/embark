@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { colors, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 import { Questionmark } from "./Icons/Questionmark";
 
 const TooltipIcon = styled(motion.div)`
-  background-color: ${colors.LIGHT_GRAY};
+  background-color: ${colorsV3.gray300};
   width: 28px;
   height: 28px;
   position: absolute;
@@ -22,9 +22,9 @@ const TooltipIcon = styled(motion.div)`
   }
 
   :hover {
-    background-color: ${colors.PURPLE};
+    background-color: ${colorsV3.purple500};
     .fillColor {
-      fill: ${colors.WHITE};
+      fill: ${colorsV3.white};
     }
   }
 
@@ -48,18 +48,17 @@ const TooltipContainer = styled(motion.div)`
 `;
 
 const Tooltippy = styled.div`
-  background-color: ${colors.PURPLE};
+  background-color: ${colorsV3.purple500};
   border-radius: 10px;
-  color: ${colors.WHITE};
+  color: ${colorsV3.white};
   display: flex;
   align-items: center;
   text-align: center;
   padding: 10px;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   max-width: 150px;
   min-width: 35px;
   font-size: 16px;
-  text-align: center;
   justify-content: center;
   transform: translateX(calc(50% - 24px));
 
@@ -72,7 +71,7 @@ const Tooltippy = styled.div`
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-top-color: ${colors.PURPLE};
+    border-top-color: ${colorsV3.purple500};
     border-width: 7px;
     margin-left: -7px;
   }

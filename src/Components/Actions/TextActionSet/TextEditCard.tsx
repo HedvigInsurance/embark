@@ -3,7 +3,7 @@ import { Tooltip } from "../../Tooltip";
 import { motion } from "framer-motion";
 import { InlineTextAction } from "../InlineActions/InlineTextAction";
 import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
+import { colorsV3, fonts } from "@hedviginsurance/brand";
 import {
   CARD_COUNT_BASE_BP_SM,
   getCardCountMediaQuery,
@@ -11,11 +11,20 @@ import {
 } from "../../Utils/cardCount";
 
 const Card = styled.div<{ cardCount: number }>`
-  background-color: ${colorsV2.white};
+  background-color: ${colorsV3.white};
   padding-bottom: 36px;
   position: relative;
 
-  :not(:last-child) {
+  &:first-of-type {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &:last-of-type {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  &:not(:last-child) {
     margin-right: 1px;
   }
 
@@ -26,19 +35,32 @@ const Card = styled.div<{ cardCount: number }>`
         margin-bottom: 1px;
         margin-right: 0;
       }
-  `} @media (max-width: 600px) {
+      
+      &:first-of-type {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 8px;
+      }
+      &:last-of-type {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+  `};
+
+  @media (max-width: 600px) {
     padding: 0 0 16px 0;
   }
 `;
 
 const CardTitle = styled(motion.span)<{ pushUp?: boolean; cardCount: number }>`
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   font-size: 14px;
-  font-weight: 500;
   padding-top: 16px;
   padding-left: 16px;
   display: block;
   box-sizing: content-box;
+  color: ${colorsV3.gray900};
 
   transition: opacity 200ms, transform 150ms;
 
@@ -57,7 +79,7 @@ export const TextEditCard: React.FC<{
   autoFocus: boolean;
   onChange: (value: string) => void;
   value: string;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }> = props => {
   const matchMediaQuery = () => {
     try {

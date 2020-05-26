@@ -18,7 +18,7 @@ const AddItemButtonBase = styled.button`
   outline: 0;
   border-radius: 8px;
   transition: transform 250ms, box-shadow 250ms, background-color 250ms;
-  font-family: ${fonts.CIRCULAR};
+  font-family: ${fonts.FAVORIT};
   color: ${colorsV2.gray};
   font-size: 16px;
   cursor: pointer;
