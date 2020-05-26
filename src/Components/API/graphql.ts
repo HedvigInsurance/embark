@@ -19,7 +19,7 @@ export const isGraphqlApi = (t?: ApiComponent): t is GraphQLApiComponent =>
 const isMultiActionVariable = (
   variable: Variable
 ): variable is MultiActionVariable => {
-  if (variable.__typename === "EmbarkGraphQLApiMultiActionVariable") {
+  if (variable.__typename === "EmbarkAPIGraphQLMultiActionVariable") {
     return true;
   }
 
@@ -29,7 +29,7 @@ const isMultiActionVariable = (
 const isGeneratedVariable = (
   variable: Variable
 ): variable is GeneratedVariable => {
-  if (variable.__typename === "EmbarkGraphQLApiGeneratedVariable") {
+  if (variable.__typename === "EmbarkAPIGraphQLGeneratedVariable") {
     return true;
   }
 
@@ -37,7 +37,7 @@ const isGeneratedVariable = (
 };
 
 const isSingleVariable = (variable: Variable): variable is SingleVariable => {
-  if (variable.__typename === "EmbarkGraphQLApiSingleVariable") {
+  if (variable.__typename === "EmbarkAPIGraphQLSingleVariable") {
     return true;
   }
 
