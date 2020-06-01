@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-04-08T11:10:48.870Z",
+  "lastUpdate": "2020-06-01T08:48:26.174Z",
   "name": "Web Onboarding NO - Norwegian Combo",
   "passages": [
     {
@@ -81,7 +81,9 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "-1676947869",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
@@ -157,7 +159,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "-1676947869",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre boliger i den størrelsen du har.\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/error",
@@ -210,7 +214,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  I hvilket forsikringsselskap har du din reiseforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email\n]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n                                 key=\"currentInsurerTravel\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende reiseforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din reiseforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  I hvilket forsikringsselskap har du din reiseforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email\n]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n                                 storekey=\"currentInsurerTravel\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende reiseforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din reiseforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1950,
       "url": "/current-travel-insurer",
       "width": 100
@@ -223,7 +227,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  I hvilket forsikringsselskap har du din innboforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email\n]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n                                 key=\"currentInsurerContents\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende innboforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din innboforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  I hvilket forsikringsselskap har du din innboforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email\n]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n                                 storekey=\"currentInsurerContents\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende innboforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din innboforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1950,
       "url": "/current-contents-insurer",
       "width": 100
@@ -236,7 +240,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  I hvilket forsikringsselskap har du din innboforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->travelInsurer\n]]\"\n                                 skip=\"[[Okay->travelInsurer]]\"\n                                 providers=\"norwegian\"\n                                 key=\"currentInsurerContents\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende innboforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din innboforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  I hvilket forsikringsselskap har du din innboforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->travelInsurer\n]]\"\n                                 skip=\"[[Okay->travelInsurer]]\"\n                                 providers=\"norwegian\"\n                                 storekey=\"currentInsurerContents\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende innboforsikring\n    </Title>\n    <Description>\n      Oppgi i hvilket forsikringsselskap du har din innboforsikring, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1950,
       "url": "/current-contents-insurer",
       "width": 100
@@ -276,5 +280,5 @@
   "tagColors": {
     "Error": "red"
   },
-  "zoom": 1
+  "zoom": 0.6
 }
