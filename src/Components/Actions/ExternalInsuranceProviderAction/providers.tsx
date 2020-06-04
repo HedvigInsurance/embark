@@ -563,7 +563,7 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
     id: "Aktsam",
     externalCollectionId: "AKTSAM",
     name: "Aktsam",
-    hasExternalCapabilities: true,
+    hasExternalCapabilities: false,
     icon: withIcon(30)(() => (
       <svg width="298" height="87" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" fill-rule="evenodd">
