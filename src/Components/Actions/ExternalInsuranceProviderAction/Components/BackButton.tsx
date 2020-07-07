@@ -1,11 +1,11 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { fonts, colorsV3 } from "@hedviginsurance/brand";
-import { KeywordsContext } from "../../../KeywordsContext";
-import { ArrowLeft } from "../../../Icons/ArrowLeft";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { fonts, colorsV3 } from '@hedviginsurance/brand'
+import { KeywordsContext } from '../../../KeywordsContext'
+import { ArrowLeft } from '../../../Icons/ArrowLeft'
 
 interface Props {
-  onClick: () => void;
+  onClick: () => void
 }
 
 const BackButtonWrapper = styled.button`
@@ -39,22 +39,22 @@ const BackButtonWrapper = styled.button`
       transition: stroke 250ms;
     }
   }
-`;
+`
 
 const BackButtonText = styled.span`
   margin-left: 6px;
   transform: translateY(-0.5px);
-`;
+`
 
 export const BackButton: React.FC<Props> = ({ onClick }) => {
   const { externalInsuranceProviderGoBackButton } = React.useContext(
-    KeywordsContext
-  );
+    KeywordsContext,
+  )
 
   return (
     <BackButtonWrapper onClick={onClick}>
       <ArrowLeft />
       <BackButtonText>{externalInsuranceProviderGoBackButton}</BackButtonText>
     </BackButtonWrapper>
-  );
-};
+  )
+}

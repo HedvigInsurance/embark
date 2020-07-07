@@ -1,22 +1,22 @@
-import { ApiComponent, PersonalInformationApiComponent } from "./apiComponent";
+import { ApiComponent, PersonalInformationApiComponent } from './apiComponent'
 
 export const isPersonalInformationApiComponent = (
-  t?: ApiComponent
+  t?: ApiComponent,
 ): t is PersonalInformationApiComponent =>
-  (t && t.component === "PersonalInformationApi") || false;
+  (t && t.component === 'PersonalInformationApi') || false
 
 export interface Data {
   personalInformation: {
-    firstName: string;
-    lastName: string;
-    streetAddress: string;
-    city: string;
-    postalNumber: string;
-  } | null;
+    firstName: string
+    lastName: string
+    streetAddress: string
+    city: string
+    postalNumber: string
+  } | null
 }
 
 export interface Variables {
   input: {
-    personalNumber: string;
-  };
+    personalNumber: string
+  }
 }

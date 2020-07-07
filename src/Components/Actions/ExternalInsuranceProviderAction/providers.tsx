@@ -1,43 +1,43 @@
-import * as React from "react";
-import styled from "@emotion/styled";
+import * as React from 'react'
+import styled from '@emotion/styled'
 
 const Icon = styled.div<{ width: number; forceWidth: boolean }>`
   display: inline-block;
   margin-right: 13px;
-  ${props => (props.forceWidth ? `width: 50px;` : null)};
+  ${(props) => (props.forceWidth ? `width: 50px;` : null)};
   text-align: center;
 
   svg {
-    ${props => `width: ${props.width}px;`};
+    ${(props) => `width: ${props.width}px;`};
     height: auto;
   }
-`;
+`
 
 const withIcon = <T extends object>(width: number) => (
-  Component: React.ComponentType
+  Component: React.ComponentType,
 ): React.FC<T & IconProps> => ({ forceWidth, ...props }) => (
   <Icon width={width} forceWidth={forceWidth}>
     <Component {...props} />
   </Icon>
-);
+)
 
 export interface Provider {
-  id: string;
-  name: string;
-  externalCollectionId?: string;
-  icon?: (props: IconProps) => React.ReactNode;
-  hasExternalCapabilities: boolean;
+  id: string
+  name: string
+  externalCollectionId?: string
+  icon?: (props: IconProps) => React.ReactNode
+  hasExternalCapabilities: boolean
 }
 
 interface IconProps {
-  forceWidth: boolean;
+  forceWidth: boolean
 }
 
 export const swedishProviders = [
   {
-    id: "if",
-    externalCollectionId: "IF",
-    name: "If",
+    id: 'if',
+    externalCollectionId: 'IF',
+    name: 'If',
     hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1.042 63.859 62.874">
@@ -46,12 +46,12 @@ export const swedishProviders = [
           d="M1 34v-3.37c.14-.17.07-.37.1-.56.12-1.48.34-2.95.66-4.4.36-1.6.85-3.2 1.45-4.72.6-1.45 1.28-2.84 2.06-4.18.77-1.3 1.64-2.57 2.6-3.76.95-1.17 2-2.3 3.12-3.35 1-.95 2.08-1.83 3.2-2.63 3.06-2.17 6.46-3.8 10.07-4.8 1.94-.55 3.93-.9 5.94-1.06l.6-.05c.1 0 .2 0 .3-.02 1.23-.05 2.45-.05 3.7 0 .1.03.2.04.3.02l.6.04c.6.05 1.2.1 1.77.2 1.5.2 2.96.52 4.4.93 1.17.33 2.32.73 3.44 1.2 1.33.55 2.6 1.2 3.86 1.9 1.22.72 2.4 1.5 3.5 2.37 3.1 2.4 5.72 5.34 7.74 8.68.75 1.26 1.42 2.57 2 3.92.55 1.3 1 2.62 1.37 3.97.47 1.77.8 3.55.96 5.36 0 .33.04.66.13 1V34c-.03.1-.05.22-.06.33-.04.9-.13 1.8-.27 2.7-.6 4-2 7.88-4.07 11.38-.92 1.53-1.95 2.96-3.1 4.3-.74.87-1.52 1.7-2.35 2.48-1.52 1.45-3.2 2.74-5 3.86-1.24.78-2.54 1.47-3.9 2.08-1.23.56-2.5 1.04-3.8 1.44-1.2.36-2.4.65-3.63.86-1.4.25-2.84.4-4.28.47-1.3.04-2.6.02-3.9-.07-1.3-.1-2.57-.26-3.83-.5-1.5-.3-2.98-.7-4.42-1.2-6.36-2.23-11.85-6.4-15.7-11.93-.7-1.04-1.37-2.13-1.97-3.26-.65-1.22-1.22-2.5-1.7-3.82-.55-1.5-.98-3.04-1.28-4.6-.22-1.06-.38-2.12-.47-3.2 0-.42-.05-.85-.13-1.28V34zm38-11.7h-1.6c-.22 0-.25-.08-.2-.3.28-.93.55-1.86.85-2.8.68-2 1.47-3.98 2.73-5.72.4-.63.94-1.17 1.55-1.6.66-.43 1.6-.35 2.04.38.33.55.57 1.16.72 1.8.06.37.22.74.46 1.05.35.4 1 .5 1.63.26.83-.32 1.5-1 1.8-1.84.34-.88.36-1.54-.55-2.32-.62-.5-1.36-.85-2.14-1.02-1.42-.4-2.93-.4-4.4-.04-1.72.4-3.33 1.28-4.62 2.52-1.38 1.3-2.33 2.9-3.1 4.6-.7 1.54-1.27 3.14-1.72 4.78 0 .1-.05.18-.13.23-.07.06-.16.08-.25.06l-2.3-.03c-.12-.02-.24 0-.34.08-.1.07-.16.18-.18.3l-.35 1.2c-.1.34 0 .45.36.44l2.25-.05c.3 0 .3 0 .25.3l-.83 3.27c-.45 1.87-.9 3.74-1.37 5.6l-1.08 4.3c-.44 1.75-.85 3.5-1.32 5.25-.52 1.95-1.2 3.9-2.05 5.73-.53 1.18-1.17 2.27-2.17 3.1-.88.75-2.1.7-2.6-.5-.18-.44-.26-.9-.43-1.36-.4-1.02-1.3-1.45-2.33-1.05-.88.33-1.56 1.03-1.87 1.9-.37 1-.08 1.88.8 2.46 1.03.7 2.2.92 3.43 1 1.44.1 2.8-.3 4.07-.93 1.52-.74 2.87-1.78 3.96-3.06 1.48-1.78 2.65-3.78 3.46-5.93.7-1.85 1.3-3.75 1.8-5.68l1.1-4.7 1.2-5.24c.35-1.43.7-2.86 1-4.3.06-.18.13-.23.3-.23l3.16.06c.34 0 .47-.1.58-.45l.38-1.1c.12-.33.04-.46-.3-.46H39zM16.37 41.85h.4c1.15-.16 2.16-.66 3.12-1.28.92-.6 1.78-1.3 2.6-2.05.67-.63 1.3-1.3 1.92-2 .1-.07.15-.2.15-.32s-.07-.24-.18-.3c-.18-.2-.36-.37-.54-.54-.07-.08-.17-.13-.28-.13-.1 0-.2.06-.28.14-.5.58-1.04 1.12-1.6 1.63-.38.37-.8.7-1.27.94-.46.2-.68.07-.7-.43.03-.4.12-.8.28-1.2.6-1.63 1.25-3.26 1.92-4.9.8-2 1.7-3.94 2.42-6 .24-.6.38-1.26.4-1.94 0-.65-.26-1.17-.9-1.45-.43-.16-.92-.2-1.4-.12-1.02.15-2 .53-2.87 1.1-1.9 1.16-3.47 2.72-4.92 4.38-.06.06-.1.15-.1.24.02.08.06.17.13.22l.57.55c.25.23.38.22.6 0 .47-.5.94-1 1.42-1.48.33-.4.7-.7 1.14-.96.05-.05.14-.07.22-.05s.15.07.18.15c.12.2.13.46.05.68-.2.77-.46 1.5-.78 2.24l-1.5 3.8-1.5 3.77c-.37.97-.78 1.92-.88 2.97-.1.8.04 1.5.74 2 .42.26.92.4 1.42.34zm8.07-23.92c.8.04 1.54-.3 2.04-.88.62-.74.9-1.72.76-2.7-.05-.54-.33-1.05-.77-1.38-.74-.58-1.76-.67-2.6-.23-1 .48-1.54 1.34-1.7 2.43-.13.6-.03 1.25.3 1.8.43.72 1.13.97 1.98.96zM53.58 39.2c0 1.16.5 2.03 1.56 2.26.96.2 1.83.03 2.52-.73.44-.5.7-1.13.73-1.8.06-.85-.1-1.6-.86-2.12-.7-.5-1.66-.54-2.42-.1-1.07.54-1.48 1.5-1.54 2.5zm-15.54.13c0 .77.28 1.4.78 1.78.76.6 1.97.56 2.75.1.78-.46 1.12-1.22 1.26-2.1.13-.6.02-1.2-.3-1.73-.5-.85-1.55-1.1-2.43-.87-1.23.32-2.03 1.45-2.04 2.83h-.02zm12.6-.67c.02-1.2-.74-2.12-1.92-2.23-.83-.1-1.64.24-2.18.87-.7.77-.95 2.25-.5 3.16.68 1.36 2.72 1.32 3.63.48.68-.6.93-1.4.97-2.27z"
         />
       </svg>
-    ))
+    )),
   },
   {
-    id: "Trygg-Hansa",
-    externalCollectionId: "TRYGGHANSA",
-    name: "Trygg Hansa",
+    id: 'Trygg-Hansa',
+    externalCollectionId: 'TRYGGHANSA',
+    name: 'Trygg Hansa',
     hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
       <svg
@@ -61,12 +61,12 @@ export const swedishProviders = [
       >
         <path d="M122 1C79.8 6.9 44.5 28.7 22 62.7c-48.1 72.8-13.9 169.5 70.3 199.2 16.6 5.8 27.1 7.5 47.7 7.5s31.1-1.7 47.7-7.5c84.2-29.7 118.4-126.4 70.3-199.2-16.8-25.5-41-44.2-70.3-54.6-14.3-5-26.4-7.1-43.7-7.6-8.5-.2-18.4 0-22 .5zm45 14.4c17.3 4 32.2 10.2 45.4 19 8 5.4 22.6 18 22.6 19.6 0 .8-30.5 26-31.5 26-.4 0-3.5-2.5-7.1-5.5C180 60.6 162.1 54 140.7 54c-22.9 0-40.1 6.3-57.3 20.9l-7.1 6-15.6-13.2-15.6-13.2 6.7-6.8C67.9 31.3 92.4 19.1 119 14.4c9.6-1.7 38.9-1.1 48 1zM158.4 69c22.5 5.7 41.2 22.9 49 44.9 2.7 7.7 3 9.8 3.1 20.6 0 10.6-.3 13-2.9 20.9-7.3 22.2-26.3 39.8-49.2 45.6-10.5 2.7-26.3 2.7-36.8 0-22.6-5.8-41.1-22.7-49-44.9-2.8-7.8-3-9.7-3-21.1 0-11.4.2-13.3 3-21.1C80.4 92 99 74.8 121.2 69c10.2-2.6 26.9-2.7 37.2 0zM93.2 202.7c8 5.2 19.4 9.9 29.2 12 10.4 2.2 28.1 1.9 38.1-.6 11.4-3 26.6-10.8 35.6-18.5l7.6-6.4 15.7 13c8.6 7.2 15.5 13.5 15.3 14.1-.5 1.7-15.2 14.2-21.9 18.8-43.4 29.6-101.6 29.5-145.6-.1-8.5-5.7-22.2-17.4-22.2-18.9 0-.4 7-6.7 15.6-14L76.2 189l5.1 4.6c2.9 2.6 8.2 6.7 11.9 9.1z" />
       </svg>
-    ))
+    )),
   },
   {
-    id: "Folksam",
-    externalCollectionId: "FOLKSAM",
-    name: "Folksam",
+    id: 'Folksam',
+    externalCollectionId: 'FOLKSAM',
+    name: 'Folksam',
     hasExternalCapabilities: true,
     icon: withIcon(50)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 968 203">
@@ -75,12 +75,12 @@ export const swedishProviders = [
           d="M479.695 165.356l-35.906-55.024 11.87-13.607c18.534-21.141 26.352-25.195 39.093-26.933V64.58h-57.914v5.212c10.425 0 15.348 2.895 15.348 10.14 0 5.788-2.316 9.265-11.873 20.561l-27.51 31.846V.005h-57.336v5.211c13.318-.875 17.664 4.634 17.664 19.403v149.424c0 13.321-3.187 20.271-17.664 19.692v5.214h73.553v-5.214c-12.455-.299-16.217-6.37-16.217-18.535v-29.246l6.37-7.243 25.77 40.549c2.026 3.183 3.766 6.948 3.766 8.974 0 3.475-2.026 4.634-8.398 5.503v5.214h66.6v-5.214c-6.944-.577-13.603-7.53-27.216-28.381zM333.6 178.966V.005h-57.337v5.21c12.742-.291 17.666 3.766 17.666 18.535V176.94c0 11.582-5.213 16.794-17.666 16.794v5.213h71.818v-5.213c-10.135 0-14.481-4.344-14.481-14.767zm209.806-82.819c-2.897-2.898-5.214-6.951-5.214-10.718 0-7.822 7.815-13.9 17.957-13.9 19.11 0 35.034 13.609 43.433 35.327h3.474V61.397h-3.183c-3.766 5.789-7.24 8.393-11.873 8.393-6.66 0-17.952-8.393-34.168-8.393-24.04 0-42.86 17.948-42.86 41.118 0 11.295 3.477 19.982 12.744 29.244 13.607 13.616 41.409 19.407 54.439 32.439 3.186 3.187 4.919 6.371 4.919 11.583 0 9.554-8.974 17.084-20.85 17.084-19.401 0-34.892-13.898-44.737-37.936H514.3v47.781h2.604c2.607-6.37 5.502-8.976 9.557-8.976 6.373 0 21.86 9.264 39.236 9.264 26.639 0 46.622-18.532 46.622-43.432 0-11.008-4.05-20.855-12.158-28.96-16.506-16.508-44.597-22.299-56.757-34.459zm204.945 82.82c-2.608 4.34-4.343 5.79-7.525 5.79-6.085 0-8.11-7.241-8.11-16.795V98.169c0-23.168-15.93-36.772-48.074-36.772-32.43 0-60.52 17.661-60.52 39.385 0 10.708 8.69 17.948 20.849 17.948 11.299 0 18.823-6.368 18.823-15.634 0-10.426-8.978-13.9-8.978-19.692 0-6.662 8.688-11.874 19.693-11.874 13.033 0 19.49 7.635 19.49 18.063v25.245l-28.754 13.74c-28.96 13.901-42.859 30.118-42.859 46.622 0 15.642 11.582 27.8 26.643 27.8 9.842 0 21.424-4.051 30.69-11.293l14.28-11.086c1.736 13.9 9.76 22.379 24.82 22.379 14.183 0 26.35-8.107 32.139-21.426l-2.607-2.607zm-54.352-8.482c-6.66 5.502-12.249 7.902-18.333 7.902-8.105 0-15.272-6.37-15.303-15.636-.06-15.864 12.784-27.068 33.636-37.781v45.515zm261.26 7.32V99.042c0-23.169-13.319-37.644-35.034-37.644-15.931 0-31.282 8.974-41.992 24.61-3.475-15.35-15.924-24.61-33.591-24.61-14.484 0-26.353 6.948-38.226 22.007h-.578V64.58h-52.993v5.212c10.134.872 13.325 7.24 13.325 20.559v83.692c0 11.875-2.03 18.534-13.325 19.692v5.214h65.731v-5.214c-8.39-1.16-12.738-6.37-12.738-18.535V97.883c7.815-12.163 14.767-17.375 22.59-17.375 8.393 0 12.451 6.08 12.451 16.797v77.32c0 12.159-3.474 17.952-12.16 19.11v5.214h64.284v-5.214c-8.976-1.449-12.452-7.24-12.452-18.244V97.883c9.56-13.32 15.35-17.665 23.462-17.665 8.1 0 11.582 7.818 11.582 15.347v78.19c0 12.74-3.191 19.112-12.457 19.98v5.214H968v-5.214c-8.108-.299-12.74-7.24-12.74-15.93zm-871.86-84.27h-8.973v-82.82h34.167c32.142 0 47.493 11.588 51.257 43.732h5.213V.005H0v5.211C22.01 4.64 28.38 8.982 28.38 31.86v135.525c0 19.978-3.767 27.507-28.38 26.349v5.213h104.83v-5.213c-24.615 1.157-30.118-4.924-30.118-26.35V102.65h5.503c26.934 0 40.832 14.475 42.283 44.303h5.788V51.548h-5.788c-.58 27.8-16.22 41.987-39.1 41.987zm126.405-32.138c-36.78 0-63.418 29.536-63.418 70.362 0 47.785 34.17 71.24 64.575 71.24 25.194 0 63.419-18.821 63.419-70.367 0-46.046-30.119-71.235-64.576-71.235zm.578 131.468c-18.825 0-22.298-18.241-22.298-67.764 0-39.382 6.659-53.571 22.006-53.571 21.14 0 22.587 22.3 22.587 68.918 0 40.835-6.952 52.417-22.295 52.417z"
         />
       </svg>
-    ))
+    )),
   },
   {
-    id: "Länsförsäkringar",
-    externalCollectionId: "LANSFORSAKRINGAR",
-    name: "Länsförsäkringar",
+    id: 'Länsförsäkringar',
+    externalCollectionId: 'LANSFORSAKRINGAR',
+    name: 'Länsförsäkringar',
     hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
       <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
@@ -90,12 +90,12 @@ export const swedishProviders = [
           <path d="M8 0v20h10v8H0V0h8z" fill="#005AA0" />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Länsförsäkringar Stockholm",
-    externalCollectionId: "LANSFORSAKRINGAR_STOCKHOLM",
-    name: "Länsförsäkringar Stockholm",
+    id: 'Länsförsäkringar Stockholm',
+    externalCollectionId: 'LANSFORSAKRINGAR_STOCKHOLM',
+    name: 'Länsförsäkringar Stockholm',
     hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
       <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
@@ -105,12 +105,12 @@ export const swedishProviders = [
           <path d="M8 0v20h10v8H0V0h8z" fill="#005AA0" />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Moderna",
-    externalCollectionId: "MODERNA",
-    name: "Moderna",
+    id: 'Moderna',
+    externalCollectionId: 'MODERNA',
+    name: 'Moderna',
     hasExternalCapabilities: true,
     icon: withIcon(50)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 144">
@@ -125,11 +125,11 @@ export const swedishProviders = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Gjensidige",
-    name: "Gjensidige",
+    id: 'Gjensidige',
+    name: 'Gjensidige',
     hasExternalCapabilities: false,
     icon: withIcon(30)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 387">
@@ -145,12 +145,12 @@ export const swedishProviders = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Dina Försäkringar",
-    externalCollectionId: "DINA",
-    name: "Dina Försäkringar",
+    id: 'Dina Försäkringar',
+    externalCollectionId: 'DINA',
+    name: 'Dina Försäkringar',
     hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
       <svg viewBox="0 0 310 310" xmlns="http://www.w3.org/2000/svg">
@@ -193,11 +193,11 @@ export const swedishProviders = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Vardia",
-    name: "Vardia",
+    id: 'Vardia',
+    name: 'Vardia',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg width="50" height="9" xmlns="http://www.w3.org/2000/svg">
@@ -220,11 +220,11 @@ export const swedishProviders = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "ICA",
-    name: "ICA Försäkring",
+    id: 'ICA',
+    name: 'ICA Försäkring',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 121">
@@ -240,11 +240,11 @@ export const swedishProviders = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Tre Kronor",
-    name: "Tre Kronor",
+    id: 'Tre Kronor',
+    name: 'Tre Kronor',
     hasExternalCapabilities: true,
     icon: withIcon(50)(() => (
       <svg
@@ -263,12 +263,12 @@ export const swedishProviders = [
           d="M510 29.6c0 10.1-8.2 18.2-18.2 18.2-10.1 0-18.2-8.2-18.2-18.2 0-10.1 8.2-18.2 18.2-18.2S510 19.6 510 29.6M541.6 62.5c0 10.1-8.2 18.2-18.2 18.2-10.1 0-18.2-8.2-18.2-18.2 0-10.1 8.2-18.2 18.2-18.2 10.1 0 18.2 8.1 18.2 18.2M553 19.2c0 10.1-8.2 18.2-18.2 18.2-10.1 0-18.2-8.2-18.2-18.2 0-10.1 8.2-18.2 18.2-18.2S553 9.2 553 19.2"
         ></path>
       </svg>
-    ))
+    )),
   },
   {
-    id: "Aktsam",
-    externalCollectionId: "AKTSAM",
-    name: "Aktsam",
+    id: 'Aktsam',
+    externalCollectionId: 'AKTSAM',
+    name: 'Aktsam',
     hasExternalCapabilities: false,
     icon: withIcon(30)(() => (
       <svg
@@ -296,14 +296,14 @@ export const swedishProviders = [
           />
         </g>
       </svg>
-    ))
-  }
-];
+    )),
+  },
+]
 
 export const norwegianProviders: ReadonlyArray<Provider> = [
   {
-    name: "Fremtind",
-    id: "Fremtind",
+    name: 'Fremtind',
+    id: 'Fremtind',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg
@@ -331,11 +331,11 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    name: "If",
-    id: "If NO",
+    name: 'If',
+    id: 'If NO',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.9 62.9">
@@ -344,11 +344,11 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           fill="#0054f0"
         />
       </svg>
-    ))
+    )),
   },
   {
-    name: "Gjensidige",
-    id: "Gjensidige NO",
+    name: 'Gjensidige',
+    id: 'Gjensidige NO',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 387">
@@ -364,11 +364,11 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    name: "Tryg",
-    id: "Tryg",
+    name: 'Tryg',
+    id: 'Tryg',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg
@@ -403,12 +403,12 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
 
   {
-    name: "Eika",
-    id: "Eika",
+    name: 'Eika',
+    id: 'Eika',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg
@@ -445,11 +445,11 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    name: "Frende",
-    id: "Frende",
+    name: 'Frende',
+    id: 'Frende',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg
@@ -502,11 +502,11 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    name: "Storebrand",
-    id: "Storebrand",
+    name: 'Storebrand',
+    id: 'Storebrand',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg
@@ -550,11 +550,11 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
+    )),
   },
   {
-    name: "Codan",
-    id: "Codan",
+    name: 'Codan',
+    id: 'Codan',
     hasExternalCapabilities: false,
     icon: withIcon(50)(() => (
       <svg
@@ -590,6 +590,6 @@ export const norwegianProviders: ReadonlyArray<Provider> = [
           />
         </g>
       </svg>
-    ))
-  }
-];
+    )),
+  },
+]

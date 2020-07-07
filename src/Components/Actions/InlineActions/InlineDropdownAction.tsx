@@ -1,18 +1,18 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
 
 type DropdownActionProps = {
-  label: string;
+  label: string
   options: [
     {
-      value: string;
-      text: string;
-    }
-  ];
-  value: string;
-  onValue: (value: string) => void;
-};
+      value: string
+      text: string
+    },
+  ]
+  value: string
+  onValue: (value: string) => void
+}
 
 const Select = styled.select`
   -webkit-appearance: none;
@@ -32,15 +32,15 @@ const Select = styled.select`
   }
 
   option {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     color: initial;
   }
-`;
+`
 
 const Container = styled.div`
   position: relative;
-`;
+`
 
 const Arrow = styled.svg`
   right: 20px;
@@ -48,21 +48,21 @@ const Arrow = styled.svg`
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-`;
+`
 
 export const InlineDropdownAction = (props: DropdownActionProps) => (
   <Container>
     <Select
       required
       value={props.value}
-      onChange={e => {
-        props.onValue(e.target.value);
+      onChange={(e) => {
+        props.onValue(e.target.value)
       }}
     >
       <option value="" disabled selected>
         {props.label}
       </option>
-      {props.options.map(option => (
+      {props.options.map((option) => (
         <option value={option.value}>{option.text}</option>
       ))}
     </Select>
@@ -138,4 +138,4 @@ export const InlineDropdownAction = (props: DropdownActionProps) => (
       </g>
     </Arrow>
   </Container>
-);
+)

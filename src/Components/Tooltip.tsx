@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
-import { Questionmark } from "./Icons/Questionmark";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
+import { Questionmark } from './Icons/Questionmark'
 
 const TooltipIcon = styled(motion.div)`
   background-color: ${colorsV3.gray300};
@@ -35,7 +35,7 @@ const TooltipIcon = styled(motion.div)`
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 const TooltipContainer = styled(motion.div)`
   position: absolute;
@@ -45,7 +45,7 @@ const TooltipContainer = styled(motion.div)`
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 const Tooltippy = styled.div`
   background-color: ${colorsV3.purple500};
@@ -66,7 +66,7 @@ const Tooltippy = styled.div`
     top: 100%;
     left: 50%;
     border: solid transparent;
-    content: " ";
+    content: ' ';
     height: 0;
     width: 0;
     position: absolute;
@@ -75,46 +75,46 @@ const Tooltippy = styled.div`
     border-width: 7px;
     margin-left: -7px;
   }
-`;
+`
 
 interface TooltipProps {
   tooltip?: {
-    title: string;
-    description: string;
-  };
+    title: string
+    description: string
+  }
 }
 
-export const Tooltip: React.FunctionComponent<TooltipProps> = props => {
-  const [showTooltip, setShowTooltip] = React.useState(false);
+export const Tooltip: React.FunctionComponent<TooltipProps> = (props) => {
+  const [showTooltip, setShowTooltip] = React.useState(false)
   return props.tooltip ? (
     <>
       <>
         <TooltipContainer
           initial="hidden"
-          animate={showTooltip ? "visible" : "hidden"}
+          animate={showTooltip ? 'visible' : 'hidden'}
           transition={{
-            type: "spring",
+            type: 'spring',
             stiffness: 260,
-            damping: 125
+            damping: 125,
           }}
           variants={{
             visible: {
               opacity: 1,
-              pointerEvents: "auto",
-              y: "-105%"
+              pointerEvents: 'auto',
+              y: '-105%',
             },
             hidden: {
               opacity: 0,
-              pointerEvents: "none",
-              y: "-90%"
-            }
+              pointerEvents: 'none',
+              y: '-90%',
+            },
           }}
         >
           <Tooltippy>{props.tooltip.description}</Tooltippy>
         </TooltipContainer>
         <TooltipIcon
           onHoverStart={() => {
-            setShowTooltip(true);
+            setShowTooltip(true)
           }}
           onHoverEnd={() => setShowTooltip(false)}
         >
@@ -122,5 +122,5 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = props => {
         </TooltipIcon>
       </>
     </>
-  ) : null;
-};
+  ) : null
+}

@@ -1,13 +1,13 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+`
 
 const Input = styled.input<{ isSm?: boolean }>`
     margin-left: 16px;
@@ -31,7 +31,7 @@ const Input = styled.input<{ isSm?: boolean }>`
     appearance: none;
     -moz-appearance: textfield;
 
-    ${props =>
+    ${(props) =>
       props.isSm
         ? `
         font-size: 16px;
@@ -40,28 +40,28 @@ const Input = styled.input<{ isSm?: boolean }>`
         padding: 0 16px;
         line-height: 1.2;
         `
-        : ""}
+        : ''}
 
     ::placeholder {
       color: ${colorsV3.gray300};
     }
-`;
+`
 
 const Unit = styled.p`
   margin: 8px auto 11px;
   text-align: center;
   color: ${colorsV3.gray700};
   font-family: ${fonts.FAVORIT};
-`;
+`
 
 type InlineNumberActionProps = {
-  inputRef?: React.RefObject<HTMLInputElement>;
-  placeholder: string;
-  unit: string;
-  value: string;
-  onValue: (value: string) => void;
-  isSm: boolean;
-};
+  inputRef?: React.RefObject<HTMLInputElement>
+  placeholder: string
+  unit: string
+  value: string
+  onValue: (value: string) => void
+  isSm: boolean
+}
 
 export const InlineNumberAction = (props: InlineNumberActionProps) => (
   <Container>
@@ -71,11 +71,11 @@ export const InlineNumberAction = (props: InlineNumberActionProps) => (
       ref={props.inputRef}
       placeholder={props.placeholder}
       value={props.value}
-      onChange={e => {
-        props.onValue(e.target.value);
+      onChange={(e) => {
+        props.onValue(e.target.value)
       }}
       isSm={props.isSm}
     />
     {props.isSm || <Unit>{props.unit}</Unit>}
   </Container>
-);
+)

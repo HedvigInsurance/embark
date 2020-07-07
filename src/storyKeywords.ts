@@ -1,48 +1,48 @@
 export const storyKeywords = {
-  selectActionSelectLabel: "Select action - select label",
-  tooltipModalInformationLabel: "Tooltip modal - information label",
-  backButton: "Back button",
+  selectActionSelectLabel: 'Select action - select label',
+  tooltipModalInformationLabel: 'Tooltip modal - information label',
+  backButton: 'Back button',
   externalInsuranceProviderConfirmTitle:
-    "External insurance provider - Confirm Title",
+    'External insurance provider - Confirm Title',
   externalInsuranceProviderConfirmPrivacyPolicy:
-    "External insurance provider - Confirm Privacy Policy",
+    'External insurance provider - Confirm Privacy Policy',
   externalInsuranceProviderConfirmMessage:
-    "External insurance provider - Confirm Message",
+    'External insurance provider - Confirm Message',
   externalInsuranceProviderConfirmButton:
-    "External insurance provider - Confirm Button",
+    'External insurance provider - Confirm Button',
   externalInsuranceProviderConfirmRejectButton:
-    "External insurance provider - Confirm Reject Button",
+    'External insurance provider - Confirm Reject Button',
   externalInsuranceProviderFailureTitle:
-    "External insurance provider - Failure Title",
+    'External insurance provider - Failure Title',
   externalInsuranceProviderFailureMessage:
-    "External insurance provider - Failure Message",
+    'External insurance provider - Failure Message',
   externalInsuranceProviderFailureButton:
-    "External insurance provider - Failure Button",
+    'External insurance provider - Failure Button',
   externalInsuranceProviderSelectTitle:
-    "External insurance provider - Select Title",
+    'External insurance provider - Select Title',
   externalInsuranceProviderPersonalNumberTitle:
-    "External insurance provider - Personal Number Title",
+    'External insurance provider - Personal Number Title',
   externalInsuranceProviderPersonalNumberSubtitle:
-    "External insurance provider - Personal Number Subtitle",
+    'External insurance provider - Personal Number Subtitle',
   externalInsuranceProviderOtherProviderButton:
-    "External insurance provider - Other provider button",
+    'External insurance provider - Other provider button',
   externalInsuranceProviderGoBackButton:
-    "External insurance provider - Go back button",
+    'External insurance provider - Go back button',
   externalInsuranceProviderContinueButton:
-    "External insurance provider - Continue button",
+    'External insurance provider - Continue button',
   externalInsuranceProviderSetupTitle:
-    "External insurance provider - Setup title",
+    'External insurance provider - Setup title',
   externalInsuranceProviderAuthScanBankID:
-    "External insurance provider - Auth Scan BankID",
+    'External insurance provider - Auth Scan BankID',
   externalInsuranceProviderAuthOpenBankId:
-    "External insurance provider - Open BankID",
+    'External insurance provider - Open BankID',
   externalInsuranceProviderBackgroundFetchTitle:
-    "External insurance provider - Background fetch title",
+    'External insurance provider - Background fetch title',
   externalInsuranceProviderBackgroundFetchBody:
-    "External insurance provider - Background fetch body",
-  externalInsuranceProviderBETATag: "External insurance provider - Beta Tag",
+    'External insurance provider - Background fetch body',
+  externalInsuranceProviderBETATag: 'External insurance provider - Beta Tag',
   previousInsuranceProviderOtherProviderModal:
-    "Previous insurance provider - Other provider modal",
+    'Previous insurance provider - Other provider modal',
   previousInsuranceProviderOtherProviderModalButton:
-    "Previous insurance provider - Other provider modal button"
-};
+    'Previous insurance provider - Other provider modal button',
+}

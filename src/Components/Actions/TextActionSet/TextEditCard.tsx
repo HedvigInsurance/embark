@@ -1,14 +1,14 @@
-import * as React from "react";
-import { Tooltip } from "../../Tooltip";
-import { motion } from "framer-motion";
-import { InlineTextAction } from "../InlineActions/InlineTextAction";
-import styled from "@emotion/styled";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
+import * as React from 'react'
+import { Tooltip } from '../../Tooltip'
+import { motion } from 'framer-motion'
+import { InlineTextAction } from '../InlineActions/InlineTextAction'
+import styled from '@emotion/styled'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
 import {
   CARD_COUNT_BASE_BP_SM,
   getCardCountMediaQuery,
-  mediaCardCount
-} from "../../Utils/cardCount";
+  mediaCardCount,
+} from '../../Utils/cardCount'
 
 const Card = styled.div<{ cardCount: number }>`
   background-color: ${colorsV3.white};
@@ -28,7 +28,7 @@ const Card = styled.div<{ cardCount: number }>`
     margin-right: 1px;
   }
 
-  ${props => mediaCardCount(props.cardCount)`
+  ${(props) => mediaCardCount(props.cardCount)`
       padding-top: 0;
 
       :not(:last-child) {
@@ -51,7 +51,7 @@ const Card = styled.div<{ cardCount: number }>`
   @media (max-width: 600px) {
     padding: 0 0 16px 0;
   }
-`;
+`
 
 const CardTitle = styled(motion.span)<{ pushUp?: boolean; cardCount: number }>`
   font-family: ${fonts.FAVORIT};
@@ -64,77 +64,77 @@ const CardTitle = styled(motion.span)<{ pushUp?: boolean; cardCount: number }>`
 
   transition: opacity 200ms, transform 150ms;
 
-  ${props => mediaCardCount(props.cardCount)`
+  ${(props) => mediaCardCount(props.cardCount)`
     transform-origin: top left;
     padding-top: 8px;
     padding-bottom: 4px;
     line-height: 1;
     font-size: 12px;
   `};
-`;
+`
 
 export const TextEditCard: React.FC<{
-  textAction: any;
-  cardCount: number;
-  autoFocus: boolean;
-  onChange: (value: string) => void;
-  value: string;
-  inputRef?: React.RefObject<HTMLInputElement>;
-}> = props => {
+  textAction: any
+  cardCount: number
+  autoFocus: boolean
+  onChange: (value: string) => void
+  value: string
+  inputRef?: React.RefObject<HTMLInputElement>
+}> = (props) => {
   const matchMediaQuery = () => {
     try {
       return window.matchMedia(
-        getCardCountMediaQuery(props.cardCount, CARD_COUNT_BASE_BP_SM)
-      ).matches;
+        getCardCountMediaQuery(props.cardCount, CARD_COUNT_BASE_BP_SM),
+      ).matches
     } catch {
-      return false;
+      return false
     }
-  };
-  const [isSm, setIsSm] = React.useState(matchMediaQuery());
+  }
+  const [isSm, setIsSm] = React.useState(matchMediaQuery())
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsSm(matchMediaQuery());
-    };
+      setIsSm(matchMediaQuery())
+    }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+      window.removeEventListener('resize', handleResize)
+    }
+  })
 
-  const shouldPushUp = !isSm || (props.value || "").trim().length > 0;
+  const shouldPushUp = !isSm || (props.value || '').trim().length > 0
 
   return (
     <Card key={props.textAction.data.key} cardCount={props.cardCount}>
       <Tooltip tooltip={props.textAction.data.tooltip} />
       <motion.div
         initial={{
-          opacity: 0
+          opacity: 0,
         }}
         animate={{
-          opacity: shouldPushUp ? 0.5 : 0
+          opacity: shouldPushUp ? 0.5 : 0,
         }}
         transition={{
           delay: shouldPushUp ? 0.25 : 0,
-          type: "spring",
+          type: 'spring',
           stiffness: 400,
-          damping: 100
+          damping: 100,
         }}
       >
         <CardTitle
           initial={{
-            height: 0
+            height: 0,
           }}
           animate={{
-            height: shouldPushUp ? "12px" : "0px"
+            height: shouldPushUp ? '12px' : '0px',
           }}
           transition={{
             delay: shouldPushUp ? 0 : 0.25,
-            type: "spring",
+            type: 'spring',
             stiffness: 400,
-            damping: 100
+            damping: 100,
           }}
           cardCount={props.cardCount}
         >
@@ -154,5 +154,5 @@ export const TextEditCard: React.FC<{
         mask={props.textAction.data.mask}
       />
     </Card>
-  );
-};
+  )
+}

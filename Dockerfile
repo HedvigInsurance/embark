@@ -1,10 +1,13 @@
 FROM node:13.2.0-alpine
 WORKDIR /usr/src/app
 
+RUN apk add --no-cache python3 make gcc g++
+RUN npm i -g yarn@1.22.0
+
 ADD package.json .
-ADD package-lock.json .
-RUN npm install --production
+ADD yarn.lock .
+RUN yarn --production
 
 ADD . .
 
-ENTRYPOINT ["npm", "run", "server"]
+ENTRYPOINT ["yarn", "start"]

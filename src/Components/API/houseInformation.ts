@@ -1,21 +1,21 @@
-import { ApiComponent, HouseInformationApiComponent } from "./apiComponent";
+import { ApiComponent, HouseInformationApiComponent } from './apiComponent'
 
 export const isHouseInformationComponent = (
-  component?: ApiComponent
+  component?: ApiComponent,
 ): component is HouseInformationApiComponent =>
-  (component && component.component === "HouseInformationApi") || false;
+  (component && component.component === 'HouseInformationApi') || false
 
 export interface Variables {
   input: {
-    streetAddress: string;
-    postalNumber: string;
-  };
+    streetAddress: string
+    postalNumber: string
+  }
 }
 
 export interface Data {
   houseInformation: {
-    livingSpace: number;
-    ancillaryArea: number;
-    yearOfConstruction: number;
-  } | null;
+    livingSpace: number
+    ancillaryArea: number
+    yearOfConstruction: number
+  } | null
 }

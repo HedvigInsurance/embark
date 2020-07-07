@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 
 export const BankID = () => (
   <svg
@@ -181,4 +181,4 @@ export const BankID = () => (
       </g>
     </g>
   </svg>
-);
+)

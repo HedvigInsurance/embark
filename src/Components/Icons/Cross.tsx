@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 
 export const Cross = () => (
   <svg viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -48,4 +48,4 @@ export const Cross = () => (
       </g>
     </g>
   </svg>
-);
+)

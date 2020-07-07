@@ -1,17 +1,17 @@
-import * as React from "react";
-import { Tooltip } from "../../Tooltip";
-import { motion } from "framer-motion";
-import { InlineNumberAction } from "./InlineNumberAction";
-import styled from "@emotion/styled";
-import { fonts, colorsV3 } from "@hedviginsurance/brand";
+import * as React from 'react'
+import { Tooltip } from '../../Tooltip'
+import { motion } from 'framer-motion'
+import { InlineNumberAction } from './InlineNumberAction'
+import styled from '@emotion/styled'
+import { fonts, colorsV3 } from '@hedviginsurance/brand'
 import {
   CARD_COUNT_BASE_BP_SM,
   getCardCountMediaQuery,
-  mediaCardCount
-} from "../../Utils/cardCount";
+  mediaCardCount,
+} from '../../Utils/cardCount'
 
 const Card = styled.form<{
-  cardCount: number;
+  cardCount: number
 }>`
   position: relative;
   background-color: ${colorsV3.white};
@@ -33,7 +33,7 @@ const Card = styled.form<{
     border-bottom-right-radius: 8px;
   }
 
-  ${props => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
+  ${(props) => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
     padding-bottom: 16px;
     width: 100%;
     
@@ -42,7 +42,7 @@ const Card = styled.form<{
       margin-bottom: 1px;
     }
   `};
-`;
+`
 
 const CardTitle = styled(motion.span)<{ cardCount: number; pushUp?: boolean }>`
   font-family: ${fonts.FAVORIT};
@@ -54,84 +54,84 @@ const CardTitle = styled(motion.span)<{ cardCount: number; pushUp?: boolean }>`
   padding-bottom: 16px;
   box-sizing: content-box;
 
-  ${props => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
+  ${(props) => mediaCardCount(props.cardCount, CARD_COUNT_BASE_BP_SM)`
     transform-origin: top left;
     padding: 8px 0 4px 16px; 
     line-height: 1;
     font-size: 12px;
   `};
-`;
+`
 
 interface NumberEditCardProps {
-  onSubmit: () => void;
-  action: any;
-  value: string;
-  onChange: (value: string) => void;
-  cardCount: number;
-  inputRef?: React.RefObject<HTMLInputElement>;
+  onSubmit: () => void
+  action: any
+  value: string
+  onChange: (value: string) => void
+  cardCount: number
+  inputRef?: React.RefObject<HTMLInputElement>
 }
 
-export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
+export const NumberEditCard: React.FC<NumberEditCardProps> = (props) => {
   const matchMediaQuery = () => {
     try {
       return window.matchMedia(
-        getCardCountMediaQuery(props.cardCount, CARD_COUNT_BASE_BP_SM)
-      ).matches;
+        getCardCountMediaQuery(props.cardCount, CARD_COUNT_BASE_BP_SM),
+      ).matches
     } catch {
-      return false;
+      return false
     }
-  };
-  const [isSm, setIsSm] = React.useState(matchMediaQuery());
+  }
+  const [isSm, setIsSm] = React.useState(matchMediaQuery())
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsSm(matchMediaQuery());
-    };
+      setIsSm(matchMediaQuery())
+    }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+      window.removeEventListener('resize', handleResize)
+    }
+  })
 
-  const shouldPushUp = !isSm || (props.value || "").trim().length > 0;
+  const shouldPushUp = !isSm || (props.value || '').trim().length > 0
 
   return (
     <Card
-      onSubmit={e => {
-        e.preventDefault();
-        props.onSubmit();
+      onSubmit={(e) => {
+        e.preventDefault()
+        props.onSubmit()
       }}
       cardCount={props.cardCount}
     >
       <Tooltip tooltip={props.action.data.tooltip} />
       <motion.span
         initial={{
-          opacity: 0
+          opacity: 0,
         }}
         animate={{
-          opacity: shouldPushUp ? 0.5 : 0
+          opacity: shouldPushUp ? 0.5 : 0,
         }}
         transition={{
           delay: shouldPushUp ? 0.25 : 0,
-          type: "spring",
+          type: 'spring',
           stiffness: 400,
-          damping: 100
+          damping: 100,
         }}
       >
         <CardTitle
           initial={{
-            height: 0
+            height: 0,
           }}
           animate={{
-            height: shouldPushUp ? "12px" : "0px"
+            height: shouldPushUp ? '12px' : '0px',
           }}
           transition={{
             delay: shouldPushUp ? 0 : 0.25,
-            type: "spring",
+            type: 'spring',
             stiffness: 400,
-            damping: 100
+            damping: 100,
           }}
           cardCount={props.cardCount}
         >
@@ -149,5 +149,5 @@ export const NumberEditCard: React.FC<NumberEditCardProps> = props => {
         isSm={isSm}
       />
     </Card>
-  );
-};
+  )
+}

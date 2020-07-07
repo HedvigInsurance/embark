@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { Tooltip } from "../../Tooltip";
-import { KeywordsContext } from "../../KeywordsContext";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { Tooltip } from '../../Tooltip'
+import { KeywordsContext } from '../../KeywordsContext'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
 
 const Container = styled.button`
   display: inline-block;
@@ -35,7 +35,7 @@ const Container = styled.button`
     margin: 1%;
     padding: 15px;
   }
-`;
+`
 
 const Label = styled.span`
   font-family: ${fonts.FAVORIT};
@@ -48,18 +48,18 @@ const Label = styled.span`
   @media (max-width: 320px) {
     font-size: 14px;
   }
-`;
+`
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 type SelectLabelProps = {
-  isHovering: boolean;
-};
+  isHovering: boolean
+}
 
 const SelectLabel = styled.span<SelectLabelProps>`
   display: inline-block;
@@ -72,20 +72,20 @@ const SelectLabel = styled.span<SelectLabelProps>`
   @media all and (max-width: 800px) {
     font-size: 10px;
   }
-`;
+`
 
 type SelectOptionProps = {
-  label: String;
+  label: String
   tooltip: {
-    title: string;
-    description: string;
-  } | null;
-  onClick: () => void;
-};
+    title: string
+    description: string
+  } | null
+  onClick: () => void
+}
 
 export const SelectOption = (props: SelectOptionProps) => {
-  const [isHovering, setIsHovering] = React.useState(false);
-  const { selectActionSelectLabel } = React.useContext(KeywordsContext);
+  const [isHovering, setIsHovering] = React.useState(false)
+  const { selectActionSelectLabel } = React.useContext(KeywordsContext)
 
   return (
     <Container
@@ -101,5 +101,5 @@ export const SelectOption = (props: SelectOptionProps) => {
         </SelectLabel>
       </Content>
     </Container>
-  );
-};
+  )
+}

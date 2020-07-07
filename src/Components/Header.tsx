@@ -1,23 +1,23 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { colorsV2 } from "@hedviginsurance/brand";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { colorsV2 } from '@hedviginsurance/brand'
 
 interface HeaderProps {
-  passage: any | undefined;
-  storyData: any | undefined;
-  partnerName: string | null;
-  startPageLink?: string;
-  customTrailingContent?: React.ReactNode;
+  passage: any | undefined
+  storyData: any | undefined
+  partnerName: string | null
+  startPageLink?: string
+  customTrailingContent?: React.ReactNode
 }
 
 interface ProgressLineProps {
-  progress: number;
+  progress: number
 }
 
-const LogoLink = styled("a")`
+const LogoLink = styled('a')`
   display: inline-block;
   color: inherit;
-`;
+`
 
 const LogoImage = styled.img`
   width: auto;
@@ -29,11 +29,11 @@ const LogoImage = styled.img`
   @media (max-width: 375px) {
     max-height: 48px;
   }
-`;
+`
 
 const Svg = styled.svg`
   fill: currentColor;
-`;
+`
 
 export const HedvigLogo: React.FunctionComponent = () => (
   <Svg width={94} viewBox="0 0 439 124">
@@ -45,7 +45,7 @@ export const HedvigLogo: React.FunctionComponent = () => (
       </g>
     </g>
   </Svg>
-);
+)
 
 const Background = styled.div`
   display: flex;
@@ -66,7 +66,7 @@ const Background = styled.div`
   @media (max-width: 375px) {
     height: 64px;
   }
-`;
+`
 
 const ProgressLineBackground = styled.div`
   width: 100%;
@@ -76,72 +76,72 @@ const ProgressLineBackground = styled.div`
   background-color: ${colorsV2.white};
   opacity: 0.5;
   left: 0;
-`;
+`
 
 const ProgressLine = styled.div<ProgressLineProps>`
-  width: ${props => `${props.progress}%`};
+  width: ${(props) => `${props.progress}%`};
   height: 3px;
   background-color: ${colorsV2.white};
   transition: all 500ms;
   position: absolute;
   bottom: 0px;
   left: 0;
-`;
+`
 
 export const Header = (props: HeaderProps) => {
-  const [progress, setProgress] = React.useState(0);
-  const [totalSteps, setTotalSteps] = React.useState(0);
-  const [partner, setPartner] = React.useState<null | any>(null);
+  const [progress, setProgress] = React.useState(0)
+  const [totalSteps, setTotalSteps] = React.useState(0)
+  const [partner, setPartner] = React.useState<null | any>(null)
 
   React.useEffect(() => {
     setPartner(
       props.storyData.partnerConfigs.find(
         (partner: any) =>
-          partner.name === props.partnerName || partner.isDefault
-      )
-    );
-  }, [props.partnerName]);
+          partner.name === props.partnerName || partner.isDefault,
+      ),
+    )
+  }, [props.partnerName])
 
   React.useEffect(() => {
     if (!props.passage || !props.storyData) {
-      return;
+      return
     }
 
     const findMaxDepth = (passageName: string, previousDepth: number = 0) => {
       const passage = props.storyData.passages.filter(
-        (passage: any) => passageName == passage.name
-      )[0];
-      const links = passage.allLinks.map((link: any) => link.name);
+        (passage: any) => passageName == passage.name,
+      )[0]
+      const links = passage.allLinks.map((link: any) => link.name)
 
       if (links.length == 0 || !links) {
-        return previousDepth;
+        return previousDepth
       }
 
       return links
         .map((link: any) => findMaxDepth(link, previousDepth + 1))
         .reduce((acc: number, curr: number) => {
-          return Math.max(acc, curr);
-        }, 0);
-    };
+          return Math.max(acc, curr)
+        }, 0)
+    }
 
     window.requestIdleCallback(
       () => {
         const passagesLeft = props.passage.allLinks
           .map((link: any) => findMaxDepth(link.name))
           .reduce((acc: number, curr: number) => {
-            return Math.max(acc, curr);
-          }, 0);
+            return Math.max(acc, curr)
+          }, 0)
 
         if (totalSteps == 0) {
-          setTotalSteps(passagesLeft);
-          return;
+          setTotalSteps(passagesLeft)
+          return
         }
 
-        setProgress(((totalSteps - passagesLeft) / totalSteps) * 100);
+        setProgress(((totalSteps - passagesLeft) / totalSteps) * 100)
       },
-      { timeout: 500 }
-    );
-  }, [props.passage]);
+      { timeout: 500 },
+    )
+  }, [props.passage])
 
   return (
     <Background>
@@ -152,5 +152,5 @@ export const Header = (props: HeaderProps) => {
       <ProgressLineBackground />
       <ProgressLine progress={progress} />
     </Background>
-  );
-};
+  )
+}
