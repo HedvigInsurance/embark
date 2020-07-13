@@ -8,6 +8,7 @@
     "test": "jest",
     "start": "ts-node --project tsconfig.server.json server.ts",
     "build-server": "webpack",
+    "heroku-postbuild": "npm run build-server",
     "build-package": "rollup -c",
     "watch-client": "webpack-dev-server",
     "watch": "concurrently -n \"start, watch-client\" \"npm run server\" \"npm run watch\"",
