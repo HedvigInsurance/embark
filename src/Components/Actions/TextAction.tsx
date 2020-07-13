@@ -11,6 +11,8 @@ import {
   unmaskValue,
   isValid,
   derivedValues,
+  mapUnmaskedValue,
+  mapMaskedValue,
 } from './masking'
 import { callApi } from '../API'
 import { ApiContext } from '../API/ApiContext'
@@ -48,12 +50,17 @@ export const TextAction: React.FunctionComponent<Props> = (props) => {
   const [isHovered, setIsHovered] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const { store, setValue } = React.useContext(StoreContext)
-  const [textValue, setTextValue] = React.useState(store[props.storeKey] || '')
+  const [textValue, setTextValue] = React.useState(
+    mapMaskedValue(store[props.storeKey], props.mask) || '',
+  )
   const api = React.useContext(ApiContext)
 
   const canContinue = textValue.length > 0 && isValid(props.mask, textValue)
   const onContinue = () => {
-    const unmaskedValue = unmaskValue(textValue, props.mask)
+    const unmaskedValue = mapUnmaskedValue(
+      unmaskValue(textValue, props.mask),
+      props.mask,
+    )
     const newValues: { [key: string]: any } = {
       [props.storeKey]: unmaskedValue,
       ...derivedValues(props.mask, props.storeKey, unmaskedValue),

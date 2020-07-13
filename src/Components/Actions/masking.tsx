@@ -1,13 +1,13 @@
 import * as React from 'react'
 import InputMask, { ReactInputMask } from 'react-input-mask'
-import parse from 'date-fns/parse'
-import differenceInYears from 'date-fns/differenceInYears'
+import { parse, format, differenceInYears } from 'date-fns'
 
 export type MaskType =
   | 'PersonalNumber'
   | 'PostalCode'
   | 'Email'
   | 'BirthDate'
+  | 'BirthDateReverse'
   | 'NorwegianPostalCode'
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/
@@ -15,6 +15,7 @@ const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/
 const NORWEGIAN_POSTAL_CODE_REGEX = /^[0-9]{4}$/
 const EMAIL_REGEX = /^.+@.+\..+$/
 const BIRTH_DATE_REGEX = /^[12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
+const BIRTH_DATE_REVERSE_REGEX = /^(0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-[12]\d{3}$/
 
 export const isValid = (m: MaskType | undefined, value: string): boolean => {
   const unmaskedValue = unmaskValue(value, m)
@@ -38,6 +39,10 @@ export const isValid = (m: MaskType | undefined, value: string): boolean => {
     return BIRTH_DATE_REGEX.test(unmaskedValue)
   }
 
+  if (m === 'BirthDateReverse') {
+    return BIRTH_DATE_REVERSE_REGEX.test(unmaskedValue)
+  }
+
   return true
 }
 
@@ -58,6 +63,10 @@ const resolveMask = (m?: MaskType): string => {
     return '9999-99-99'
   }
 
+  if (m === 'BirthDateReverse') {
+    return '99-99-9999'
+  }
+
   return ''
 }
 
@@ -72,6 +81,30 @@ export const unmaskValue = (value: string, m?: MaskType): string => {
 
   if (m === 'PostalCode') {
     return value.replace(/\s+/, '')
+  }
+
+  return value
+}
+
+export const mapUnmaskedValue = (value: string, m?: MaskType): string => {
+  if (m === 'BirthDateReverse') {
+    try {
+      return format(parse(value, 'dd-MM-yyyy', 0), 'yyyy-MM-dd')
+    } catch {
+      return value
+    }
+  }
+
+  return value
+}
+
+export const mapMaskedValue = (value: string, m?: MaskType): string => {
+  if (m === 'BirthDateReverse') {
+    try {
+      return format(parse(value, 'yyyy-MM-dd', 0), 'dd-MM-yyyy')
+    } catch {
+      return value
+    }
   }
 
   return value
@@ -94,8 +127,12 @@ export const derivedValues = (
     }
   }
 
-  if (mask === 'BirthDate') {
-    const dateOfBirth = parse(value, 'yyyy-MM-dd', 0)
+  if (mask === 'BirthDate' || mask === 'BirthDateReverse') {
+    const dateOfBirth = parse(
+      value,
+      mask === 'BirthDateReverse' ? 'dd-MM-yyyy' : 'yyyy-MM-dd',
+      0,
+    )
 
     return {
       [`${key}.Age`]: differenceInYears(new Date(), dateOfBirth),

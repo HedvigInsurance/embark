@@ -2,7 +2,12 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { ContinueButton } from '../../ContinueButton'
 import { StoreContext } from '../../KeyValueStore'
-import { isValid, unmaskValue } from '../masking'
+import {
+  isValid,
+  mapMaskedValue,
+  mapUnmaskedValue,
+  unmaskValue,
+} from '../masking'
 import { ApiComponent } from '../../API/apiComponent'
 import { Loading } from '../../API/Loading'
 import { ApiContext } from '../../API/ApiContext'
@@ -96,7 +101,14 @@ export const TextActionSet: React.FunctionComponent<Props> = (props) => {
   const [state, dispatch] = React.useReducer(reducer, undefined, () => {
     const values = props.action.data.textActions.reduce(
       (acc: { [key: string]: any }, curr: any) => {
-        return { ...acc, [curr.data.key]: store[curr.data.key] || null }
+        return {
+          ...acc,
+          [curr.data.key]:
+            mapMaskedValue(
+              store[curr.data.key],
+              findMask(props.action.data.textActions, curr.data.key),
+            ) || null,
+        }
       },
       {},
     )
@@ -112,12 +124,10 @@ export const TextActionSet: React.FunctionComponent<Props> = (props) => {
     const unmaskedValues = Object.keys(state.values).reduce<{
       [key: string]: any
     }>((acc, key) => {
+      const mask = findMask(props.action.data.textActions, key)
       return {
         ...acc,
-        [key]: unmaskValue(
-          state.values[key],
-          findMask(props.action.data.textActions, key),
-        ),
+        [key]: mapUnmaskedValue(unmaskValue(state.values[key], mask), mask),
       }
     }, {})
     Object.entries(unmaskedValues).forEach(([key, value]) => {
