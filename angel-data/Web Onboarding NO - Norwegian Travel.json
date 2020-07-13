@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-08T11:10:19.788Z",
+  "lastUpdate": "2020-07-13T12:10:48.364Z",
   "name": "Web Onboarding NO - Norwegian Travel",
   "passages": [
     {
@@ -43,7 +43,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"åååå-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Fortsett->numberCoInsured]]\"\n            unit=\"Fødselsdato (åååå-mm-dd)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Fortsett->numberCoInsured]]\"\n            unit=\"Fødselsdato (åååå-mm-dd)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
