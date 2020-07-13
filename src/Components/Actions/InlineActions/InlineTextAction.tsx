@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { fonts, colorsV3 } from "@hedviginsurance/brand";
-import { MaskType, wrapWithMask } from "../masking";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { fonts, colorsV3 } from '@hedviginsurance/brand'
+import { MaskType, wrapWithMask } from '../masking'
 
 const Input = styled.input<{ strongPlaceholder: boolean }>`
   margin-left: 16px;
@@ -16,7 +16,7 @@ const Input = styled.input<{ strongPlaceholder: boolean }>`
   width: 100%;
 
   ::placeholder {
-    color: ${props =>
+    color: ${(props) =>
       props.strongPlaceholder ? colorsV3.gray500 : colorsV3.gray300};
   }
 
@@ -24,33 +24,33 @@ const Input = styled.input<{ strongPlaceholder: boolean }>`
     font-size: 16px;
     margin-top: 0;
   }
-`;
+`
 
 interface Props {
-  placeholder: string;
-  strongPlaceholder?: boolean;
-  exampleValue?: string;
-  value: string;
-  onChange: (value: string) => void;
-  mask?: MaskType;
-  large?: "true";
-  inputRef?: React.RefObject<HTMLInputElement>;
+  placeholder: string
+  strongPlaceholder?: boolean
+  exampleValue?: string
+  value: string
+  onChange: (value: string) => void
+  mask?: MaskType
+  large?: 'true'
+  inputRef?: React.RefObject<HTMLInputElement>
 }
 
-const Masked = wrapWithMask(Input);
+const Masked = wrapWithMask(Input)
 
-const getInputSize = (exampleValue: string, value: string, large?: "true") =>
+const getInputSize = (exampleValue: string, value: string, large?: 'true') =>
   Math.max(
-    large === "true" ? exampleValue.length * 2 : exampleValue.length,
-    value.length
-  );
+    large === 'true' ? exampleValue.length * 2 : exampleValue.length,
+    value.length,
+  )
 
-export const InlineTextAction: React.FunctionComponent<Props> = props => {
+export const InlineTextAction: React.FunctionComponent<Props> = (props) => {
   const size = getInputSize(
     props.exampleValue || props.placeholder,
     props.value,
-    props.large
-  );
+    props.large,
+  )
 
   return (
     <Masked
@@ -65,5 +65,5 @@ export const InlineTextAction: React.FunctionComponent<Props> = props => {
       }
       value={props.value}
     />
-  );
-};
+  )
+}

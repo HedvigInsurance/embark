@@ -1,16 +1,16 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { SelectOption } from "./SelectOption";
-import { StoreContext } from "../../KeyValueStore";
-import { callApi } from "../../API";
-import { ApiContext } from "../../API/ApiContext";
-import { Loading } from "../../API/Loading";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { SelectOption } from './SelectOption'
+import { StoreContext } from '../../KeyValueStore'
+import { callApi } from '../../API'
+import { ApiContext } from '../../API/ApiContext'
+import { Loading } from '../../API/Loading'
 
 type SelectActionProps = {
-  passageName: string;
-  action: any;
-  changePassage: (name: string) => void;
-};
+  passageName: string
+  action: any
+  changePassage: (name: string) => void
+}
 
 const Container = styled.div`
   display: flex;
@@ -18,15 +18,17 @@ const Container = styled.div`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-`;
+`
 
-export const SelectAction: React.FunctionComponent<SelectActionProps> = props => {
-  const { store, setValue } = React.useContext(StoreContext);
-  const [loading, setLoading] = React.useState(false);
-  const api = React.useContext(ApiContext);
+export const SelectAction: React.FunctionComponent<SelectActionProps> = (
+  props,
+) => {
+  const { store, setValue } = React.useContext(StoreContext)
+  const [loading, setLoading] = React.useState(false)
+  const api = React.useContext(ApiContext)
 
   if (loading) {
-    return <Loading />;
+    return <Loading />
   }
 
   return (
@@ -39,26 +41,26 @@ export const SelectAction: React.FunctionComponent<SelectActionProps> = props =>
           onClick={() => {
             if (option.keys[0]) {
               if (option.values[0]) {
-                setValue(option.keys[0], option.values[0]);
+                setValue(option.keys[0], option.values[0])
               } else {
-                setValue(option.key, option.link.label);
+                setValue(option.key, option.link.label)
               }
-              const [, ...keyTail] = option.keys;
-              const [, ...valueTail] = option.values;
+              const [, ...keyTail] = option.keys
+              const [, ...valueTail] = option.values
               keyTail.forEach((key: string, idx: number) => {
-                setValue(key, valueTail[idx]);
-              });
+                setValue(key, valueTail[idx])
+              })
             }
-            setValue(`${props.passageName}Result`, option.link.label);
+            setValue(`${props.passageName}Result`, option.link.label)
             if (option.api) {
-              setLoading(true);
-              callApi(option.api, api, store, setValue, props.changePassage);
+              setLoading(true)
+              callApi(option.api, api, store, setValue, props.changePassage)
             } else {
-              props.changePassage(option.link.name);
+              props.changePassage(option.link.name)
             }
           }}
         />
       ))}
     </Container>
-  );
-};
+  )
+}

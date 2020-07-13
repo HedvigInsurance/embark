@@ -1,10 +1,10 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { fonts, colorsV3 } from "@hedviginsurance/brand";
-import hexToRgba from "hex-to-rgba";
-import { KeywordsContext } from "./KeywordsContext";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { fonts, colorsV3 } from '@hedviginsurance/brand'
+import hexToRgba from 'hex-to-rgba'
+import { KeywordsContext } from './KeywordsContext'
 
-import { ArrowUp } from "./Icons/ArrowUp";
+import { ArrowUp } from './Icons/ArrowUp'
 
 const Button = styled.button`
   -webkit-appearance: none;
@@ -38,19 +38,19 @@ const Button = styled.button`
   :active {
     transform: translateY(3px);
   }
-`;
+`
 
 const Spacer = styled.span`
   width: 5px;
   display: inline-block;
-`;
+`
 
 type BackButtonProps = {
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 export const BackButton = (props: BackButtonProps) => {
-  const { backButton } = React.useContext(KeywordsContext);
+  const { backButton } = React.useContext(KeywordsContext)
 
   return (
     <Button onClick={props.onClick}>
@@ -58,5 +58,5 @@ export const BackButton = (props: BackButtonProps) => {
       <Spacer />
       {backButton}
     </Button>
-  );
-};
+  )
+}

@@ -1,11 +1,11 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
-import { Loading } from "../API/Loading";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
+import { Loading } from '../API/Loading'
 
 interface Focusable {
-  isFocused: boolean;
+  isFocused: boolean
 }
 
 export const CardPrimitive = styled(motion.form)<Focusable>`
@@ -18,48 +18,48 @@ export const CardPrimitive = styled(motion.form)<Focusable>`
   color: ${colorsV3.gray900};
   transition: all 250ms;
 
-  ${props =>
+  ${(props) =>
     props.isFocused &&
     `
         box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.18);
         transform: translateY(-3px);
     `};
-`;
+`
 
 interface CardProps {
-  loading?: boolean;
-  isFocused: boolean;
-  onSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  loading?: boolean
+  isFocused: boolean
+  onSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void
+  onMouseEnter: () => void
+  onMouseLeave: () => void
 }
 
 const LoadingContainer = styled(motion.div)`
   position: absolute;
   top: 50%;
-`;
+`
 
 const FormContents = styled(motion.div)`
   text-align: center;
-`;
+`
 
 export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
-  <CardPrimitive {...rest} style={{ minWidth: loading ? "0px" : "250px" }}>
+  <CardPrimitive {...rest} style={{ minWidth: loading ? '0px' : '250px' }}>
     {loading && (
       <LoadingContainer
         initial={{
           y: 0,
-          opacity: 0
+          opacity: 0,
         }}
         animate={{
-          y: "-50%",
-          opacity: 1
+          y: '-50%',
+          opacity: 1,
         }}
         transition={{
           delay: 0.25,
-          type: "spring",
+          type: 'spring',
           stiffness: 400,
-          damping: 100
+          damping: 100,
         }}
       >
         <Loading />
@@ -67,26 +67,26 @@ export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
     )}
     <motion.div
       animate={{
-        width: loading ? "125px" : "auto",
-        height: loading ? "60px" : "auto",
-        overflow: "hidden"
+        width: loading ? '125px' : 'auto',
+        height: loading ? '60px' : 'auto',
+        overflow: 'hidden',
       }}
-      transition={{ delay: 0.25, type: "spring", stiffness: 400, damping: 100 }}
+      transition={{ delay: 0.25, type: 'spring', stiffness: 400, damping: 100 }}
     >
       <FormContents
         animate={{
-          opacity: loading ? 0 : 1
+          opacity: loading ? 0 : 1,
         }}
         transition={{
-          ease: "easeOut",
-          duration: 0.25
+          ease: 'easeOut',
+          duration: 0.25,
         }}
       >
         {children}
       </FormContents>
     </motion.div>
   </CardPrimitive>
-);
+)
 
 export const Input = styled.input`
   margin-left: 16px;
@@ -101,7 +101,7 @@ export const Input = styled.input`
   text-align: center;
   color: ${colorsV3.black};
   outline: 0;
-  ${props => `width: ${Math.max(props.size || 0, 5) / 1.5}em;`};
+  ${(props) => `width: ${Math.max(props.size || 0, 5) / 1.5}em;`};
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -126,23 +126,23 @@ export const Input = styled.input`
       line-height: 1.25;
     }
   }
-`;
+`
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+`
 
 export const Spacer = styled.span`
   height: 20px;
-`;
+`
 
 const SubmitOnEnterStyle = styled.input`
   display: none;
-`;
+`
 
 export const SubmitOnEnter: React.FC = () => (
   <SubmitOnEnterStyle type="submit" />
-);
+)

@@ -1,66 +1,66 @@
-import { passes } from "../Utils/ExpressionsUtil";
-import * as React from "react";
-import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
+import { passes } from '../Utils/ExpressionsUtil'
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
 
 export interface ExpressionTextNode {
-  text: string;
-  expressions: any;
+  text: string
+  expressions: any
 }
 
 export interface Replacements {
-  [key: string]: React.ReactNode;
+  [key: string]: React.ReactNode
 }
 
-export const TranslationNode: React.SFC = ({ children }) => <>{children}</>;
+export const TranslationNode: React.SFC = ({ children }) => <>{children}</>
 
-export const placeholderRegex = new RegExp("({[a-zA-Z0-9_.]+})", "g");
-export const placeholderKeyRegex = new RegExp("([a-zA-Z0-9_.]+)", "g");
+export const placeholderRegex = new RegExp('({[a-zA-Z0-9_.]+})', 'g')
+export const placeholderKeyRegex = new RegExp('([a-zA-Z0-9_.]+)', 'g')
 
 export const replacePlaceholders = (
   replacements: Replacements,
-  text: string
+  text: string,
 ) => {
-  const matches = text.split(placeholderRegex).filter(value => value);
+  const matches = text.split(placeholderRegex).filter((value) => value)
 
   if (!matches) {
-    return [];
+    return []
   }
 
   return matches.map((placeholder, index) => {
     if (!placeholderKeyRegex.test(placeholder)) {
-      return placeholder;
+      return placeholder
     }
-    const key = placeholder.match(placeholderKeyRegex)![0];
+    const key = placeholder.match(placeholderKeyRegex)![0]
 
     if (replacements[key]) {
-      return <TranslationNode key={index}>{replacements[key]}</TranslationNode>;
+      return <TranslationNode key={index}>{replacements[key]}</TranslationNode>
     }
 
-    return placeholder;
-  });
-};
+    return placeholder
+  })
+}
 
 export const getTextContent = (store: any, node: ExpressionTextNode) => {
   if (node.expressions.length > 0) {
     const passableExpressions = node.expressions.filter((expression: any) => {
-      return passes(store, expression);
-    });
+      return passes(store, expression)
+    })
 
     if (passableExpressions.length == 0) {
-      return null;
+      return null
     }
 
-    return passableExpressions[0].text;
+    return passableExpressions[0].text
   }
 
-  return node.text;
-};
+  return node.text
+}
 
 type MessageBodyProps = {
-  isResponse: boolean;
-};
+  isResponse: boolean
+}
 
 export const MessageBody = styled.p<MessageBodyProps>`
   display: inline-block;
@@ -80,36 +80,36 @@ export const MessageBody = styled.p<MessageBodyProps>`
   @media (max-width: 320px) {
     font-size: 14px;
   }
-`;
+`
 
-export const MessageAnimation: React.FunctionComponent = props => (
+export const MessageAnimation: React.FunctionComponent = (props) => (
   <motion.li
     variants={{
       visible: {
         opacity: 1,
         y: 0,
-        rotate: 0
+        rotate: 0,
       },
       hidden: {
         opacity: 0,
         y: 40,
-        rotate: 1
-      }
+        rotate: 1,
+      },
     }}
     exit={{
       height: 0,
       opacity: 0,
-      rotate: 1
+      rotate: 1,
     }}
     transition={{
-      type: "spring",
+      type: 'spring',
       stiffness: 260,
-      damping: 100
+      damping: 100,
     }}
     style={{
-      transformOrigin: "0% 0%"
+      transformOrigin: '0% 0%',
     }}
   >
     {props.children}
   </motion.li>
-);
+)

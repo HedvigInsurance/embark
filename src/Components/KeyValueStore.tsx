@@ -1,61 +1,61 @@
-import React from "react";
+import React from 'react'
 
-export type Store = { [key: string]: string };
+export type Store = { [key: string]: string }
 
 type KeyValueStoreProps = {
-  initial?: Store;
-};
+  initial?: Store
+}
 
 export const StoreContext = React.createContext<{
-  store: Store;
-  setValue: (key: string, value: string) => void;
-  removeValues: (key: string) => void;
+  store: Store
+  setValue: (key: string, value: string) => void
+  removeValues: (key: string) => void
 }>({
   store: {},
   setValue: (key, value) => {},
-  removeValues: key => {}
-});
+  removeValues: (key) => {},
+})
 
 const reducer = (
   state: any,
-  action: { type: string; key: string; value?: any }
+  action: { type: string; key: string; value?: any },
 ) => {
   switch (action.type) {
-    case "setValue":
-      return { ...state, [action.key]: action.value };
-    case "removeValues":
+    case 'setValue':
+      return { ...state, [action.key]: action.value }
+    case 'removeValues':
       return {
         ...Object.keys(state)
-          .filter(key => !key.includes(action.key))
+          .filter((key) => !key.includes(action.key))
           .reduce(
             (acc, curr) => ({
               ...acc,
-              [curr]: state[curr]
+              [curr]: state[curr],
             }),
-            {}
-          )
-      };
+            {},
+          ),
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export const KeyValueStore: React.FC<KeyValueStoreProps> = props => {
-  const [store, dispatch] = React.useReducer(reducer, props.initial || {});
+export const KeyValueStore: React.FC<KeyValueStoreProps> = (props) => {
+  const [store, dispatch] = React.useReducer(reducer, props.initial || {})
 
   return (
     <StoreContext.Provider
       value={{
         store,
         setValue: (key, value) => {
-          dispatch({ type: "setValue", key, value });
+          dispatch({ type: 'setValue', key, value })
         },
-        removeValues: key => {
-          dispatch({ type: "removeValues", key });
-        }
+        removeValues: (key) => {
+          dispatch({ type: 'removeValues', key })
+        },
       }}
     >
       {props.children}
     </StoreContext.Provider>
-  );
-};
+  )
+}

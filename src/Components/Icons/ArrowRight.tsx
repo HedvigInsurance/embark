@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 
 export const ArrowRight = () => (
   <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
@@ -40,4 +40,4 @@ export const ArrowRight = () => (
       <path d="M445 99.876l.633.624L454 92.25 445.633 84l-.633.624 7.735 7.626z" />
     </g>
   </svg>
-);
+)

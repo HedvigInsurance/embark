@@ -1,6 +1,6 @@
-import * as React from "react";
-import { colorsV3, fonts } from "@hedviginsurance/brand";
-import styled from "@emotion/styled";
+import * as React from 'react'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
+import styled from '@emotion/styled'
 
 const Button = styled.button`
   border-radius: 8px;
@@ -24,7 +24,7 @@ const Button = styled.button`
     transform: translateY(-1.5px);
   }
 
-  ${props =>
+  ${(props) =>
     props.disabled &&
     `
         background-color: ${colorsV3.gray800};
@@ -35,16 +35,16 @@ const Button = styled.button`
             transform: translateY(0);
         }
     `};
-`;
+`
 
 type ContinueButtonProps = {
-  text: String;
-  disabled: boolean;
-  onClick: () => void;
-};
+  text: String
+  disabled: boolean
+  onClick: () => void
+}
 
 export const ContinueButton = (props: ContinueButtonProps) => (
   <Button disabled={props.disabled} onClick={props.onClick}>
     {props.text}
   </Button>
-);
+)

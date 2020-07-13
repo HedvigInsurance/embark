@@ -1,13 +1,13 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { colorsV3 } from "@hedviginsurance/brand";
-import hexToRgba from "hex-to-rgba";
-import { motion } from "framer-motion";
-import { Cross } from "../Components/Icons/Cross";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { colorsV3 } from '@hedviginsurance/brand'
+import hexToRgba from 'hex-to-rgba'
+import { motion } from 'framer-motion'
+import { Cross } from '../Components/Icons/Cross'
 
 interface ModalProps {
-  isVisible: boolean;
-  onClose: () => void;
+  isVisible: boolean
+  onClose: () => void
 }
 
 const Wrapper = styled(motion.div)`
@@ -18,7 +18,7 @@ const Wrapper = styled(motion.div)`
   top: 0;
   bottom: 0;
   right: 0;
-`;
+`
 
 const Background = styled(motion.div)`
   position: fixed;
@@ -29,7 +29,7 @@ const Background = styled(motion.div)`
   bottom: 0;
   right: 0;
   background-color: ${hexToRgba(colorsV3.black, 0.75)};
-`;
+`
 
 const Position = styled(motion.div)`
   position: absolute;
@@ -37,7 +37,7 @@ const Position = styled(motion.div)`
   top: 50%;
   width: 500px;
   max-width: calc(100% - 32px);
-`;
+`
 
 const Container = styled(motion.div)`
   position: relative;
@@ -47,7 +47,7 @@ const Container = styled(motion.div)`
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
   overflow-x: scroll;
-`;
+`
 
 const CloseButton = styled.button`
   width: 26px;
@@ -79,77 +79,77 @@ const CloseButton = styled.button`
     fill: ${colorsV3.white};
     transform: translateX(75%);
   }
-`;
+`
 
 export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null)
 
   const handleClick = (e: MouseEvent) => {
     if (containerRef && containerRef.current && e.target) {
       !containerRef.current.contains(e.target as HTMLDivElement) &&
-        props.onClose();
+        props.onClose()
     }
-  };
+  }
 
   React.useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
 
   return (
     <Wrapper
-      initial={"hidden"}
-      animate={props.isVisible ? "visible" : "hidden"}
+      initial={'hidden'}
+      animate={props.isVisible ? 'visible' : 'hidden'}
       variants={{
         visible: {
-          display: "block"
+          display: 'block',
         },
         hidden: {
-          display: "none",
+          display: 'none',
           transition: {
-            delay: 0.5
-          }
-        }
+            delay: 0.5,
+          },
+        },
       }}
     >
       <Background
-        initial={"hidden"}
-        animate={props.isVisible ? "visible" : "hidden"}
+        initial={'hidden'}
+        animate={props.isVisible ? 'visible' : 'hidden'}
         transition={{
-          type: "spring"
+          type: 'spring',
         }}
         variants={{
           visible: {
-            opacity: 1
+            opacity: 1,
           },
           hidden: {
-            opacity: 0
-          }
+            opacity: 0,
+          },
         }}
       >
         <Position
-          initial={"hidden"}
-          animate={props.isVisible ? "visible" : "hidden"}
+          initial={'hidden'}
+          animate={props.isVisible ? 'visible' : 'hidden'}
           transition={{
-            type: "spring",
+            type: 'spring',
             stiffness: 400,
-            damping: 100
+            damping: 100,
           }}
           variants={{
             visible: {
               opacity: 1,
-              transform: "translateX(-50%) translateY(-50%) scale(1)",
+              transform: 'translateX(-50%) translateY(-50%) scale(1)',
               transition: {
-                type: "spring",
+                type: 'spring',
                 stiffness: 400,
                 damping: 100,
-                delay: 0.15
-              }
+                delay: 0.15,
+              },
             },
             hidden: {
               opacity: 0,
-              transform: "translateX(-50%) translateY(50%) scale(0.9)"
-            }
+              transform: 'translateX(-50%) translateY(50%) scale(0.9)',
+            },
           }}
         >
           <Container
@@ -159,7 +159,7 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
             ref={containerRef}
             onDragEnd={(event, info) => {
               if (info.point.y > 20) {
-                props.onClose();
+                props.onClose()
               }
             }}
           >
@@ -171,5 +171,5 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
         </Position>
       </Background>
     </Wrapper>
-  );
-};
+  )
+}

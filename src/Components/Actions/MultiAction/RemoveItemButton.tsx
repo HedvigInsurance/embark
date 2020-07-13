@@ -1,6 +1,6 @@
-import * as React from "react";
-import { colorsV2 } from "@hedviginsurance/brand";
-import styled from "@emotion/styled";
+import * as React from 'react'
+import { colorsV2 } from '@hedviginsurance/brand'
+import styled from '@emotion/styled'
 
 const RemoveItemButtonBase = styled.div`
   border: 0;
@@ -26,11 +26,11 @@ const RemoveItemButtonBase = styled.div`
   :hover {
     background-color: ${colorsV2.darkgray};
   }
-`;
+`
 
 type RemoveItemButtonProps = {
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 export const RemoveItemButton = (props: RemoveItemButtonProps) => (
   <RemoveItemButtonBase onClick={props.onClick}>
@@ -96,4 +96,4 @@ export const RemoveItemButton = (props: RemoveItemButtonProps) => (
       </g>
     </svg>
   </RemoveItemButtonBase>
-);
+)

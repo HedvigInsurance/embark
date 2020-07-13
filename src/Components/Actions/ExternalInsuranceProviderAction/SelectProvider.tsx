@@ -1,13 +1,13 @@
-import * as React from "react";
-import { fonts, colorsV3 } from "@hedviginsurance/brand";
-import styled from "@emotion/styled";
-import { KeywordsContext } from "../../KeywordsContext";
-import { ApiContext } from "../../API/ApiContext";
+import * as React from 'react'
+import { fonts, colorsV3 } from '@hedviginsurance/brand'
+import styled from '@emotion/styled'
+import { KeywordsContext } from '../../KeywordsContext'
+import { ApiContext } from '../../API/ApiContext'
 
-import { ProviderRow } from "./Components/ProviderRow";
-import { Provider } from "./providers";
-import { Modal } from "../../Modal";
-import { ContinueButton } from "../../ContinueButton";
+import { ProviderRow } from './Components/ProviderRow'
+import { Provider } from './providers'
+import { Modal } from '../../Modal'
+import { ContinueButton } from '../../ContinueButton'
 
 const Container = styled.div`
   width: 400px;
@@ -18,12 +18,12 @@ const Container = styled.div`
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   text-align: center;
-`;
+`
 
 const Title = styled.h3`
   font-family: ${fonts.FAVORIT};
   text-align: left;
-`;
+`
 
 const OtherButton = styled.button`
   appearance: none;
@@ -34,81 +34,81 @@ const OtherButton = styled.button`
   border: 0;
   outline: 0;
   cursor: pointer;
-`;
+`
 
 const OtherText = styled.p`
   font-family: ${fonts.FAVORIT};
   font-size: 16px;
   margin-top: 25px;
   margin-bottom: 20px;
-`;
+`
 
 interface SelectProviderProps {
-  providers: ReadonlyArray<Provider>;
-  onPickProvider: (provider?: Provider) => void;
-  onlyAcceptProvidersWithExternalCapabilities: boolean;
+  providers: ReadonlyArray<Provider>
+  onPickProvider: (provider?: Provider) => void
+  onlyAcceptProvidersWithExternalCapabilities: boolean
 }
 
 export const SelectProvider: React.FC<SelectProviderProps> = ({
   providers,
   onPickProvider,
-  onlyAcceptProvidersWithExternalCapabilities
+  onlyAcceptProvidersWithExternalCapabilities,
 }) => {
   const { externalInsuranceProviderProviderStatus } = React.useContext(
-    ApiContext
-  );
+    ApiContext,
+  )
   const {
     externalInsuranceProviderSelectTitle,
     externalInsuranceProviderOtherProviderButton,
     previousInsuranceProviderOtherProviderModal,
-    previousInsuranceProviderOtherProviderModalButton
-  } = React.useContext(KeywordsContext);
-  const [modalOpened, setModalOpened] = React.useState(false);
-  const [modalResult, setModalResult] = React.useState<Provider | undefined>();
+    previousInsuranceProviderOtherProviderModalButton,
+  } = React.useContext(KeywordsContext)
+  const [modalOpened, setModalOpened] = React.useState(false)
+  const [modalResult, setModalResult] = React.useState<Provider | undefined>()
   const [functionalProviders, setFunctionalProviders] = React.useState<
     Provider[] | undefined
-  >();
+  >()
 
   React.useEffect(() => {
-    externalInsuranceProviderProviderStatus().then(statuses => {
+    externalInsuranceProviderProviderStatus().then((statuses) => {
       setFunctionalProviders(
         statuses
-          .filter(status => status.functional)
-          .map(status =>
+          .filter((status) => status.functional)
+          .map((status) =>
             providers.find(
-              provider => provider.externalCollectionId === status.id
-            )
+              (provider) => provider.externalCollectionId === status.id,
+            ),
           )
-          .filter(item => item) as Provider[]
-      );
-    });
-  }, []);
+          .filter((item) => item) as Provider[],
+      )
+    })
+  }, [])
 
   const onClickRow = (provider: Provider) => {
     if (
       onlyAcceptProvidersWithExternalCapabilities &&
       !provider.hasExternalCapabilities
     ) {
-      onPickProvider(provider);
+      onPickProvider(provider)
     } else {
       if (!functionalProviders) {
-        provider.hasExternalCapabilities = false;
-        onPickProvider(provider);
-        return;
+        provider.hasExternalCapabilities = false
+        onPickProvider(provider)
+        return
       }
 
       if (!functionalProviders.includes(provider)) {
-        provider.hasExternalCapabilities = false;
+        provider.hasExternalCapabilities = false
       }
 
-      onPickProvider(provider);
+      onPickProvider(provider)
     }
-  };
+  }
 
   return (
     <Container>
       <Title>{externalInsuranceProviderSelectTitle}</Title>
-      {providers.map(provider => (
+      {providers.map((provider) => (
         <ProviderRow
           onClick={() => onClickRow(provider)}
           name={provider.name}
@@ -117,8 +117,8 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
       ))}
       <OtherButton
         onClick={() => {
-          setModalResult(undefined);
-          setModalOpened(true);
+          setModalResult(undefined)
+          setModalOpened(true)
         }}
       >
         {externalInsuranceProviderOtherProviderButton}
@@ -132,5 +132,5 @@ export const SelectProvider: React.FC<SelectProviderProps> = ({
         />
       </Modal>
     </Container>
-  );
-};
+  )
+}

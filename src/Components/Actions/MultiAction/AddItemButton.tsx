@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
-import hexToRgba from "hex-to-rgba";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { colorsV2, fonts } from '@hedviginsurance/brand'
+import hexToRgba from 'hex-to-rgba'
 
 const AddItemButtonBase = styled.button`
   display: inline-flex;
@@ -37,12 +37,12 @@ const AddItemButtonBase = styled.button`
   :active {
     transform: translateY(-1.5px);
   }
-`;
+`
 
 type AddItemButtonProps = {
-  text: string;
-  onClick: () => void;
-};
+  text: string
+  onClick: () => void
+}
 
 export const AddItemButton = (props: AddItemButtonProps) => (
   <AddItemButtonBase onClick={props.onClick}>
@@ -55,4 +55,4 @@ export const AddItemButton = (props: AddItemButtonProps) => (
     </svg>
     {props.text}
   </AddItemButtonBase>
-);
+)

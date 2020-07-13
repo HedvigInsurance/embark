@@ -1,56 +1,56 @@
-import { Variable as GraphQLVariable } from "../../Parsing/parseGraphQLApi";
+import { Variable as GraphQLVariable } from '../../Parsing/parseGraphQLApi'
 
 interface Link {
-  name: string;
+  name: string
 }
 
 export interface GraphQLError {
-  contains?: string;
-  next: Link;
+  contains?: string
+  next: Link
 }
 
 export interface GraphQLResult {
-  key: string;
-  as: string;
+  key: string
+  as: string
 }
 
 export interface GraphQLApiComponent {
-  component: "GraphQLApi";
+  component: 'GraphQLApi'
   data: {
-    next: Link;
-    query?: string;
-    mutation?: string;
-    variables: [GraphQLVariable];
-    errors: [GraphQLError];
-    results: [GraphQLResult];
-  };
+    next: Link
+    query?: string
+    mutation?: string
+    variables: [GraphQLVariable]
+    errors: [GraphQLError]
+    results: [GraphQLResult]
+  }
 }
 
 export interface PersonalInformationApiComponent {
-  component: "PersonalInformationApi";
+  component: 'PersonalInformationApi'
   data: {
-    match: Link;
-    noMatch: Link;
-    error: Link;
-  };
+    match: Link
+    noMatch: Link
+    error: Link
+  }
 }
 
 export interface CreateQuoteApiComponent {
-  component: "CreateQuoteApi";
+  component: 'CreateQuoteApi'
   data: {
-    uwlimits: Link;
-    success: Link;
-    error: Link;
-  };
+    uwlimits: Link
+    success: Link
+    error: Link
+  }
 }
 
 export interface HouseInformationApiComponent {
-  component: "HouseInformationApi";
+  component: 'HouseInformationApi'
   data: {
-    match: Link;
-    noMatch: Link;
-    error: Link;
-  };
+    match: Link
+    noMatch: Link
+    error: Link
+  }
 }
 
 export type ApiComponent =
@@ -58,4 +58,4 @@ export type ApiComponent =
   | CreateQuoteApiComponent
   | HouseInformationApiComponent
   | GraphQLApiComponent
-  | undefined;
+  | undefined

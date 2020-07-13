@@ -1,34 +1,34 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { Message } from "../Message";
-import { ExpressionTextNode } from "../Common";
-import { GroupedResponse as GroupedResponseComponent } from "./GroupedResponse";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { Message } from '../Message'
+import { ExpressionTextNode } from '../Common'
+import { GroupedResponse as GroupedResponseComponent } from './GroupedResponse'
 
 const ResponseAlignment = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-`;
+`
 
-type Response = ExpressionTextNode | GroupedResponse;
+type Response = ExpressionTextNode | GroupedResponse
 
 interface GroupedResponse {
-  component: string;
-  title: ExpressionTextNode;
-  items: ExpressionTextNode[];
+  component: string
+  title: ExpressionTextNode
+  items: ExpressionTextNode[]
   each?: {
-    key: string;
-    content: ExpressionTextNode;
-  };
+    key: string
+    content: ExpressionTextNode
+  }
 }
 
 type ResponseProps = {
-  response: ExpressionTextNode;
-};
+  response: ExpressionTextNode
+}
 
 const isGroupedResponse = (response: Response): response is GroupedResponse => {
-  return "component" in response && response.component === "GroupedResponse";
-};
+  return 'component' in response && response.component === 'GroupedResponse'
+}
 
 export const Response = (props: ResponseProps) => {
   if (isGroupedResponse(props.response)) {
@@ -40,11 +40,11 @@ export const Response = (props: ResponseProps) => {
           each={props.response.each}
         />
       </ResponseAlignment>
-    );
+    )
   }
   return (
     <ResponseAlignment>
       <Message isResponse={true} message={props.response} />
     </ResponseAlignment>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { colorsV2, fonts } from "@hedviginsurance/brand";
-import { ArrowRight } from "../../../Icons/ArrowRight";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { colorsV2, fonts } from '@hedviginsurance/brand'
+import { ArrowRight } from '../../../Icons/ArrowRight'
 
 const Row = styled.button`
   appearance: none;
@@ -23,28 +23,28 @@ const Row = styled.button`
   :active {
     background-color: ${colorsV2.lightgray};
   }
-`;
+`
 
 const Name = styled.span`
   font-family: ${fonts.FAVORIT};
   font-size: 15px;
-`;
+`
 
 const ProviderInfo = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 interface ProviderRowProps {
-  name: string;
-  onClick: () => void;
-  icon?: React.ReactNode;
+  name: string
+  onClick: () => void
+  icon?: React.ReactNode
 }
 
 export const ProviderRow: React.FC<ProviderRowProps> = ({
   icon,
   onClick,
-  name
+  name,
 }) => (
   <Row onClick={onClick}>
     <ProviderInfo>
@@ -53,4 +53,4 @@ export const ProviderRow: React.FC<ProviderRowProps> = ({
     </ProviderInfo>
     <ArrowRight />
   </Row>
-);
+)

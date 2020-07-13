@@ -1,10 +1,10 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { fonts } from "@hedviginsurance/brand";
-import { Provider } from "./providers";
-import { ContinueButton } from "../../ContinueButton";
-import { KeywordsContext } from "../../KeywordsContext";
-import { replacePlaceholders } from "../../Common";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { fonts } from '@hedviginsurance/brand'
+import { Provider } from './providers'
+import { ContinueButton } from '../../ContinueButton'
+import { KeywordsContext } from '../../KeywordsContext'
+import { replacePlaceholders } from '../../Common'
 
 const Container = styled.div`
   display: flex;
@@ -12,34 +12,34 @@ const Container = styled.div`
   flex-direction: column;
   padding: 30px 20px;
   width: 350px;
-`;
+`
 
 const Title = styled.h3`
   font-family: ${fonts.FAVORIT};
   margin-bottom: 10px;
   text-align: center;
-`;
+`
 
 const Body = styled.p`
   font-family: ${fonts.FAVORIT};
   margin-bottom: 15px;
   text-align: center;
-`;
+`
 
 interface SetupStepProps {
-  provider: Provider;
-  onContinue: () => void;
+  provider: Provider
+  onContinue: () => void
 }
 
 export const BackgroundFetchStep: React.FC<SetupStepProps> = ({
   provider,
-  onContinue
+  onContinue,
 }) => {
   const {
     externalInsuranceProviderContinueButton,
     externalInsuranceProviderBackgroundFetchTitle,
-    externalInsuranceProviderBackgroundFetchBody
-  } = React.useContext(KeywordsContext);
+    externalInsuranceProviderBackgroundFetchBody,
+  } = React.useContext(KeywordsContext)
 
   return (
     <Container>
@@ -47,9 +47,9 @@ export const BackgroundFetchStep: React.FC<SetupStepProps> = ({
       <Body>
         {replacePlaceholders(
           {
-            provider: provider.name
+            provider: provider.name,
           },
-          externalInsuranceProviderBackgroundFetchBody
+          externalInsuranceProviderBackgroundFetchBody,
         )}
       </Body>
       <ContinueButton
@@ -58,5 +58,5 @@ export const BackgroundFetchStep: React.FC<SetupStepProps> = ({
         onClick={onContinue}
       />
     </Container>
-  );
-};
+  )
+}
