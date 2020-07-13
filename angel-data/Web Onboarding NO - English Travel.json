@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-04-08T11:02:39.658Z",
+  "lastUpdate": "2020-07-13T12:19:35.280Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -95,7 +95,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"1996-02-18\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"birth date (yyyy-mm-dd)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1996\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
