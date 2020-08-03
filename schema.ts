@@ -7,7 +7,7 @@ const typeDefs = `
     type Query {
         embarkStory(name: String!): EmbarkStory
         # returns names of all available embark stories
-        embarkStories: [String]
+        embarkStoryNames: [String!]!
     }
 
     type EmbarkKeywords {
@@ -441,7 +441,7 @@ export const schema = makeExecutableSchema({
 
         return storyData;
       },
-      embarkStories: async () => {
+      embarkStoryNames: async () => {
         const dirs = await promises.readdir("angel-data");
         return dirs.map(name => name.replace(".json", ""));
       }
