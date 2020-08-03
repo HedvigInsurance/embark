@@ -6,6 +6,8 @@ import { parseStoryData } from "./src/Parsing/parseStoryData";
 const typeDefs = `
     type Query {
         embarkStory(name: String!): EmbarkStory
+        # returns names of all available embark stories
+        embarkStories: [String]
     }
 
     type EmbarkKeywords {
@@ -438,6 +440,10 @@ export const schema = makeExecutableSchema({
         const storyData = parseStoryData(json);
 
         return storyData;
+      },
+      embarkStories: async () => {
+        const dirs = await promises.readdir("angel-data");
+        return dirs.map(name => name.replace(".json", ""));
       }
     }
   }
