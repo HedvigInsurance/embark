@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { storyKeywords } from './src/storyKeywords'
-import { makeExecutableSchema } from 'graphql-tools'
-import { promises } from 'fs'
-import { parseStoryData } from './src/Parsing/parseStoryData'
+import { storyKeywords } from "./src/storyKeywords";
+import { makeExecutableSchema } from "graphql-tools";
+import { promises } from "fs";
+import { parseStoryData } from "./src/Parsing/parseStoryData";
+import { swedishProviders, norwegianProviders } from "./src/insuranceProviders";
 import { resolveMetadataOnLocale } from './src/Resolvers/resolveStoriesMetadata'
 
 const typeDefs = `
@@ -11,6 +12,32 @@ const typeDefs = `
         # returns names of all available embark stories
         embarkStoryNames: [String!]!
         embarkStories(locale: String!): [EmbarkStoryMetadata!]!
+    }
+
+    type Icon {
+        pdfUrl: String! @deprecated(reason: "use an icon from a variant instead")
+        svgUrl: String! @deprecated(reason: "use an icon from a variant instead")
+        vectorDrawableUrl: String! @deprecated(reason: "use an icon from a variant instead")
+        variants: IconVariants!
+    }
+      
+    type IconVariant {
+        pdfUrl: String!
+        svgUrl: String!
+        vectorDrawableUrl: String!
+    }
+      
+    type IconVariants {
+        dark: IconVariant!
+        light: IconVariant!
+    }
+
+    type EmbarkInsuranceProvider {
+        id: String!
+        name: String!
+        externalCollectionId: String
+        hasExternalCapabilities: Boolean!
+        icon: Icon!
     }
 
     type EmbarkKeywords {
