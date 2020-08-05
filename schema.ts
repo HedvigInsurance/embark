@@ -169,7 +169,8 @@ const typeDefs = `
     union EmbarkApi = EmbarkApiPersonalInformation | EmbarkApiHouseInformation | EmbarkApiCreateQuote | EmbarkApiGraphQLQuery | EmbarkApiGraphQLMutation
 
     enum EmbarkExternalRedirect {
-        email
+        MailingList
+        Offer
     }
 
     interface EmbarkActionCore {
