@@ -44,6 +44,24 @@ const isSingleVariable = (variable: Variable): variable is SingleVariable => {
   return false
 }
 
+export const parseSingleVariable = (variable: SingleVariable, store: Store) => {
+  const value = store[variable.from]
+  if (value === undefined || value === null) {
+    return null
+  }
+
+  switch (variable.as) {
+    case 'string':
+      return String(value)
+    case 'int':
+      return parseInt(value)
+    case 'boolean':
+      return String(value) === 'true'
+    default:
+      return value
+  }
+}
+
 const reduceVariables = (
   variables: Variable[],
   store: Store,
@@ -66,20 +84,8 @@ const reduceVariables = (
     }
 
     if (isSingleVariable(variable)) {
-      if (store[variable.from] === undefined || store[variable.from] === null) {
-        return { ...curr, [variable.key]: null }
-      }
-
-      switch (variable.as) {
-        case 'string':
-          return { ...curr, [variable.key]: String(store[variable.from]) }
-        case 'int':
-          return { ...curr, [variable.key]: parseInt(store[variable.from]) }
-        case 'boolean':
-          return { ...curr, [variable.key]: store[variable.from] === 'true' }
-        default:
-          return { ...curr, [variable.key]: store[variable.from] }
-      }
+      const parsedVariable = parseSingleVariable(variable, store)
+      return { ...curr, [variable.key]: parsedVariable }
     }
 
     return curr
