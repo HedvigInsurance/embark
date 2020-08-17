@@ -128,11 +128,7 @@ export const derivedValues = (
   }
 
   if (mask === 'BirthDate' || mask === 'BirthDateReverse') {
-    const dateOfBirth = parse(
-      value,
-      mask === 'BirthDateReverse' ? 'dd-MM-yyyy' : 'yyyy-MM-dd',
-      0,
-    )
+    const dateOfBirth = parse(value, 'yyyy-MM-dd', 0)
 
     return {
       [`${key}.Age`]: differenceInYears(new Date(), dateOfBirth),
