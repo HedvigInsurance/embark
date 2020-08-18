@@ -43,8 +43,8 @@
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
     "lodash.get": "^4.4.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.10.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "react-emotion": "^10.0.0",
     "react-hot-loader": "^4.12.19",
     "react-input-mask": "^2.0.4",
@@ -65,8 +65,8 @@
     "@emotion/core": "10.0.x",
     "@emotion/styled": "^10.0.x",
     "framer-motion": "1.6.x",
-    "react": "16.11.x",
-    "react-dom": "^16.10.x"
+    "react": "16.13.x",
+    "react-dom": "16.13.x"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
