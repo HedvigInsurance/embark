@@ -5,11 +5,11 @@ import {
   mapUnmaskedValue,
   unmaskValue,
 } from './masking'
-import { differenceInYears } from 'date-fns'
+import { differenceInYears, parse } from 'date-fns'
 
 describe('isValid', () => {
   it('validates PersonalNumber mask', () => {
-    const validPersonalNumber = '121212-1212'
+    const validPersonalNumber = '120130-1212'
     expect(isValid('PersonalNumber', validPersonalNumber)).toBe(true)
     const invalidPersonalNumber = 'not a valid personal number'
     expect(isValid('PersonalNumber', invalidPersonalNumber)).toBe(false)
@@ -37,14 +37,14 @@ describe('isValid', () => {
   })
 
   it('validates BirthDate mask', () => {
-    const validBirthDate = '1912-12-12'
+    const validBirthDate = '1912-01-30'
     expect(isValid('BirthDate', validBirthDate)).toBe(true)
     const invalidBirthDate = 'not a valid birth date'
     expect(isValid('BirthDate', invalidBirthDate)).toBe(false)
   })
 
   it('validates BirthDateReverse mask', () => {
-    const validBirthDate = '12-12-1912'
+    const validBirthDate = '30-01-1912'
     expect(isValid('BirthDateReverse', validBirthDate)).toBe(true)
     const invalidBirthDate = 'not a valid birth date'
     expect(isValid('BirthDateReverse', invalidBirthDate)).toBe(false)
@@ -61,7 +61,7 @@ describe('unmaskValue', () => {
   })
 
   it('removes dash on PersonalNumber mask', () => {
-    expect(unmaskValue('121212-1212', 'PersonalNumber')).toBe('1212121212')
+    expect(unmaskValue('120130-1212', 'PersonalNumber')).toBe('1201301212')
   })
 
   it('removes spaces on PostalCode mask', () => {
@@ -70,15 +70,15 @@ describe('unmaskValue', () => {
 
   it('just returns on other masks', () => {
     expect(unmaskValue('1234', 'NorwegianPostalCode')).toBe('1234')
-    expect(unmaskValue('1923-12-12', 'BirthDate')).toBe('1923-12-12')
-    expect(unmaskValue('12-12-1923', 'BirthDateReverse')).toBe('12-12-1923')
+    expect(unmaskValue('1923-01-30', 'BirthDate')).toBe('1923-01-30')
+    expect(unmaskValue('30-01-1923', 'BirthDateReverse')).toBe('30-01-1923')
   })
 })
 
 describe('mapUnmaskedValue', () => {
   it('maps BirthDateReverse mask from reverse iso date to iso date', () => {
-    expect(mapUnmaskedValue('12-12-1912', 'BirthDateReverse')).toBe(
-      '1912-12-12',
+    expect(mapUnmaskedValue('30-01-1912', 'BirthDateReverse')).toBe(
+      '1912-01-30',
     )
   })
 
@@ -87,13 +87,13 @@ describe('mapUnmaskedValue', () => {
   })
 
   it("doesn't map other masks", () => {
-    expect(mapUnmaskedValue('1912-12-12', 'BirthDate')).toBe('1912-12-12')
+    expect(mapUnmaskedValue('1912-01-30', 'BirthDate')).toBe('1912-01-30')
   })
 })
 
 describe('mapMaskedValue', () => {
   it('maps BirthDateReverse mask from iso date to reverse iso date', () => {
-    expect(mapMaskedValue('1912-12-12', 'BirthDateReverse')).toBe('12-12-1912')
+    expect(mapMaskedValue('1912-01-30', 'BirthDateReverse')).toBe('30-01-1912')
   })
 
   it("doesn't map invalid birth date", () => {
@@ -101,23 +101,32 @@ describe('mapMaskedValue', () => {
   })
 
   it("doesn't map other masks", () => {
-    expect(mapUnmaskedValue('1912-12-12', 'BirthDate')).toBe('1912-12-12')
+    expect(mapUnmaskedValue('1912-01-30', 'BirthDate')).toBe('1912-01-30')
   })
 })
 
 describe('derivedValues', () => {
   it('gets age from personal number', () => {
-    expect(derivedValues('PersonalNumber', 'bla', '010101-1212')).toEqual({
-      'bla.Age': new Date().getFullYear() - 2001,
+    expect(derivedValues('PersonalNumber', 'bla', '010203-1212')).toEqual({
+      'bla.Age': differenceInYears(
+        new Date(),
+        parse('2001-02-03', 'yyyy-MM-dd', 0),
+      ),
     })
   })
 
   it('gets age from BirthDate', () => {
-    expect(derivedValues('BirthDate', 'bla', '2001-01-01')).toEqual({
-      'bla.Age': new Date().getFullYear() - 2001,
+    expect(derivedValues('BirthDate', 'bla', '2001-02-03')).toEqual({
+      'bla.Age': differenceInYears(
+        new Date(),
+        parse('2001-02-03', 'yyyy-MM-dd', 0),
+      ),
     })
-    expect(derivedValues('BirthDateReverse', 'bla', '2001-01-01')).toEqual({
-      'bla.Age': new Date().getFullYear() - 2001,
+    expect(derivedValues('BirthDateReverse', 'bla', '2001-02-03')).toEqual({
+      'bla.Age': differenceInYears(
+        new Date(),
+        parse('2001-02-03', 'yyyy-MM-dd', 0),
+      ),
     })
   })
 
