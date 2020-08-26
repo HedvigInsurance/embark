@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 import { Passage } from './Components/Passage'
 import { Proofing } from './Components/Proofing'
 import { Global, css } from '@emotion/core'
-import { getCdnFontFaces } from '@hedviginsurance/brand'
+import { getCdnFontFaces, colorsV3 } from '@hedviginsurance/brand'
 import { createHashHistory } from 'history'
 
 import { parseStoryData } from './Parsing/parseStoryData'
@@ -95,6 +95,10 @@ const Root = () => {
               list-style-type: none;
             }
 
+            html {
+              background-color: ${colorsV3.gray900};
+            }
+
             ${getCdnFontFaces()};
           `}
         />
@@ -113,27 +117,27 @@ const Root = () => {
     <>
       <Global
         styles={css`
-                * {
-                    margin: 0;
-                    padding: 0;
-                    -webkit-font-smoothing: antialiased;
-	                  -moz-osx-font-smoothing: grayscale;
-                }
+          * {
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
 
-                #root {
-                  height: 100%;
-                }
+          #root {
+            height: 100%;
+          }
 
-                ul, li {
-                    list-style-type: none;
-                }
+          ul,
+          li {
+            list-style-type: none;
+          }
 
-                html {
-                    background-image: url("${scriptHost}/assets/background.png");
-                    background-position: center;
-                }
-                ${getCdnFontFaces()}
-            `}
+          html {
+            background-color: ${colorsV3.gray900};
+          }
+          ${getCdnFontFaces()}
+        `}
       />
       <Header
         partnerName={urlParams && urlParams.get('partner')}
