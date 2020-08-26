@@ -11,7 +11,7 @@
     "heroku-postbuild": "npm run build-server",
     "build-package": "rollup -c",
     "watch-client": "webpack-dev-server",
-    "watch": "concurrently -n \"start, watch-client\" \"npm run server\" \"npm run watch\"",
+    "watch": "concurrently -n \"start, watch-client\" \"npm run start\" \"npm run watch-client\"",
     "prepublishOnly": "rollup -c"
   },
   "author": "",
