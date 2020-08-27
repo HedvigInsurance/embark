@@ -20,11 +20,12 @@ const LogoLink = styled('a')`
 `
 
 const LogoImage = styled.img`
+  position: relative;
+  top: 3px;
   width: auto;
   height: auto;
   max-height: 50px;
   max-width: 230px;
-  margin-top: 3px;
 
   @media (max-width: 375px) {
     max-height: 48px;
