@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-07-13T12:17:09.063Z",
+  "lastUpdate": "2020-09-25T08:44:58.412Z",
   "name": "Web Onboarding NO - English Combo",
   "passages": [
     {
@@ -174,7 +174,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-yyyy\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            next=\"[[Continue->currentlyInsured]]\"\n            unit=\"birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Message>\n  By proceeding I confirm that I understand and that my personal data is handled according to GDPR\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-yyyy\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            next=\"[[Continue->currentlyInsured]]\"\n            unit=\"birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
       "top": 1550,
       "url": "/birth-date",
       "width": 100
