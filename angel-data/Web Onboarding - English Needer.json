@@ -4,7 +4,7 @@
   "keywords": {
     "isTrusted": true
   },
-  "lastUpdate": "2020-05-18T09:51:34.733Z",
+  "lastUpdate": "2020-09-25T11:38:39.122Z",
   "name": "Web Onboarding - English Needer",
   "partnerConfigs": [
     {
@@ -65,7 +65,7 @@
       "selected": false,
       "story": "1899048031",
       "tags": [],
-      "text": "<Message>\n  Great! Now we need your swedish personal number so that we can automatically fetch information about your house\n</Message>\n\n<TextAction placeholder=\"yymmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Continue->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "text": "<Message>\n  Great! Now we need your swedish personal number so that we can automatically fetch information about your house\n</Message>\n\n<Message>\n  By proceeding I confirm that I understand that my personal data is handled according to GDPR\n</Message>\n\n<TextAction placeholder=\"yymmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Continue->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 500,
       "url": "/personal-number",
       "width": 100
