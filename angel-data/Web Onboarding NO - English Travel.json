@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-07-13T12:19:35.280Z",
+  "lastUpdate": "2020-09-25T12:42:46.028Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -95,7 +95,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1996\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Message>\n  By proceeding I confirm that I understand that my personal data is handled according to GDPR https://www.hedvig.com/no-en/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1996\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
