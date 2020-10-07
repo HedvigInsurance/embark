@@ -4,7 +4,7 @@
   "keywords": {
     "isTrusted": true
   },
-  "lastUpdate": "2020-09-25T12:37:45.044Z",
+  "lastUpdate": "2020-10-07T14:29:26.648Z",
   "name": "Web Onboarding - English Needer",
   "partnerConfigs": [
     {
@@ -78,7 +78,7 @@
       "selected": false,
       "story": "1899048031",
       "tags": [],
-      "text": "<Message>\n  OK! All we need now is your swedish personal number so that we can automatically fetch the rest of the information needed to create your offer\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"yymmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Continue->correctStreetAddressApartment]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAddressApartment]]\"\n                          nomatch=\"[[manualNameApartment]]\"\n                          error=\"[[manualNameApartment]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "text": "<Message>\n  OK! All we need now is your swedish personal number so that we can automatically fetch the rest of the information needed to create your offer\n</Message>\n\n<Message>\n  By proceeding I confirm that I understand that my personal data is handled according to GDPR https://www.hedvig.com/se-en/privacy\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"yymmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Continue->correctStreetAddressApartment]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAddressApartment]]\"\n                          nomatch=\"[[manualNameApartment]]\"\n                          error=\"[[manualNameApartment]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 800,
       "url": "/personal-number",
       "width": 100
