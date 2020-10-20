@@ -1,18 +1,21 @@
 import { parseGraphQLApi } from './parseGraphQLApi'
 import { getFirstLevelNodes, parseLinks } from './utils'
+import { resolvePlaceholders } from '@hedviginsurance/textkeyfy'
 
-const parseTooltips = (containerElement: Element) => {
+type Translator = (text: string) => string
+
+const parseTooltips = (containerElement: Element, translate: Translator) => {
   const tooltips = Array.from(containerElement.getElementsByTagName('Tooltip'))
 
-  return tooltips.map(parseTooltip)
+  return tooltips.map(parseTooltip(translate))
 }
 
-const parseTooltip = (element: Element) => {
-  const title = (
-    element.getElementsByTagName('Title')[0].textContent || ''
+const parseTooltip = (translate: Translator) => (element: Element) => {
+  const title = translate(
+    element.getElementsByTagName('Title')[0].textContent || '',
   ).trim()
-  const description = (
-    element.getElementsByTagName('Description')[0].textContent || ''
+  const description = translate(
+    element.getElementsByTagName('Description')[0].textContent || '',
   ).trim()
 
   return {
@@ -45,6 +48,7 @@ const parseExternalRedirect = (containerElement: Element) => {
 
 const getPotentiallyMultipleItemsFromKeyOrValue = (
   keyOrValue: string | null,
+  translate: Translator = (str) => str,
 ): Array<String> => {
   if (!keyOrValue) {
     return []
@@ -52,13 +56,16 @@ const getPotentiallyMultipleItemsFromKeyOrValue = (
 
   if (keyOrValue.startsWith('[') && keyOrValue.endsWith(']')) {
     const withoutBrackets = keyOrValue.replace(/[\[\]]/g, '')
-    return withoutBrackets.split(',')
+    return translate(withoutBrackets).split(',')
   }
 
-  return [keyOrValue]
+  return [translate(keyOrValue)]
 }
 
-const getSelectAction = (actionNode: Element | undefined) => {
+const getSelectAction = (
+  actionNode: Element | undefined,
+  translate: Translator,
+) => {
   if (!actionNode) {
     return null
   }
@@ -66,15 +73,15 @@ const getSelectAction = (actionNode: Element | undefined) => {
   const actionNodeOptions = Array.from(
     actionNode.getElementsByTagName('option'),
   ).map((option) => {
-    const links = parseLinks(option.textContent || '')
+    const links = parseLinks(translate(option.textContent || ''))
 
     const key = option.getAttribute('key')
     const value = option.getAttribute('value')
 
     const keys = getPotentiallyMultipleItemsFromKeyOrValue(key)
-    const values = getPotentiallyMultipleItemsFromKeyOrValue(value)
+    const values = getPotentiallyMultipleItemsFromKeyOrValue(value, translate)
 
-    const tooltips = parseTooltips(option)
+    const tooltips = parseTooltips(option, translate)
 
     const api = parseApi(option)
 
@@ -100,17 +107,19 @@ const getSelectAction = (actionNode: Element | undefined) => {
   }
 }
 
-const getNumberAction = (numberActionNode: Element) => {
-  const placeholder = numberActionNode.getAttribute('placeholder')
-  const next = numberActionNode.getAttribute('next') || ''
+const getNumberAction = (numberActionNode: Element, translate: Translator) => {
+  const placeholder = translate(
+    numberActionNode.getAttribute('placeholder') || '',
+  )
+  const next = translate(numberActionNode.getAttribute('next') || '')
   const key = numberActionNode.getAttribute('key')
-  const unit = numberActionNode.getAttribute('unit') || ''
+  const unit = translate(numberActionNode.getAttribute('unit') || '')
   const mask = numberActionNode.getAttribute('mask')
   const minValue = numberActionNode.getAttribute('minvalue')
   const maxValue = numberActionNode.getAttribute('maxvalue')
 
   const links = parseLinks(next)
-  const tooltip = parseTooltips(numberActionNode)[0]
+  const tooltip = parseTooltips(numberActionNode, translate)[0]
   const api = parseApi(numberActionNode)
 
   return {
@@ -130,15 +139,20 @@ const getNumberAction = (numberActionNode: Element) => {
   }
 }
 
-const getDropdownAction = (dropdownActionNode: Element) => {
+const getDropdownAction = (
+  dropdownActionNode: Element,
+  translate: Translator,
+) => {
   const key = dropdownActionNode.getAttribute('key')
-  const label = dropdownActionNode.getAttribute('label') || ''
+  const label = translate(dropdownActionNode.getAttribute('label') || '')
   const options = Array.from(
     dropdownActionNode.getElementsByTagName('option'),
   ).map((option) => {
     return {
-      value: option.getAttribute('value') || option.textContent,
-      text: option.textContent,
+      value: translate(
+        option.getAttribute('value') || option.textContent || '',
+      ),
+      text: translate(option.textContent || ''),
     }
   })
 
@@ -156,8 +170,7 @@ const getDropdownAction = (dropdownActionNode: Element) => {
 const getSwitchAction = (switchActionNode: Element) => {
   const key = switchActionNode.getAttribute('key')
   const label = switchActionNode.getAttribute('label') || ''
-  const defaultValue =
-    switchActionNode.getAttribute('defaultvalue') == 'true' ? true : false
+  const defaultValue = switchActionNode.getAttribute('defaultvalue') === 'true'
 
   return {
     __typename: 'EmbarkSwitchAction',
@@ -170,11 +183,11 @@ const getSwitchAction = (switchActionNode: Element) => {
   }
 }
 
-const getMultiAction = (multiActionNode: Element) => {
-  const maxAmount = multiActionNode.getAttribute('maxamount')
+const getMultiAction = (multiActionNode: Element, translate: Translator) => {
+  const maxAmount = translate(multiActionNode.getAttribute('maxamount') || '')
   const key = multiActionNode.getAttribute('key')
   const components: Array<any> = []
-  const next = multiActionNode.getAttribute('next')
+  const next = translate(multiActionNode.getAttribute('next') || '')
 
   const links = parseLinks(next || '')
 
@@ -183,13 +196,13 @@ const getMultiAction = (multiActionNode: Element) => {
 
   Array.from(addNode.getElementsByTagName('dropdownaction')).forEach(
     (dropdownNode) => {
-      components.push(getDropdownAction(dropdownNode))
+      components.push(getDropdownAction(dropdownNode, translate))
     },
   )
 
   Array.from(addNode.getElementsByTagName('numberaction')).forEach(
     (numberActionNode) => {
-      components.push(getNumberAction(numberActionNode))
+      components.push(getNumberAction(numberActionNode, translate))
     },
   )
 
@@ -215,19 +228,22 @@ const getMultiAction = (multiActionNode: Element) => {
   }
 }
 
-const getNumberActionSet = (numberActionSetNode: Element) => {
+const getNumberActionSet = (
+  numberActionSetNode: Element,
+  translate: Translator,
+) => {
   const next = numberActionSetNode.getAttribute('next')
   const links = parseLinks(next || '')
 
   const numberActions = Array.from(
     numberActionSetNode.getElementsByTagName('numberaction'),
   ).map((numberActionNode) => {
-    const numberAction = getNumberAction(numberActionNode)
+    const numberAction = getNumberAction(numberActionNode, translate)
 
     return {
       ...numberAction,
       data: {
-        title: numberActionNode.getAttribute('title'),
+        title: translate(numberActionNode.getAttribute('title') || ''),
         ...numberAction.data,
       },
     }
@@ -243,20 +259,23 @@ const getNumberActionSet = (numberActionSetNode: Element) => {
   }
 }
 
-const getTextActionSet = (textActionSetNode: Element) => {
+const getTextActionSet = (
+  textActionSetNode: Element,
+  translate: Translator,
+) => {
   const next = textActionSetNode.getAttribute('next')
-  const links = parseLinks(next || '')
+  const links = parseLinks(translate(next || ''))
 
   const textActions = Array.from(
     textActionSetNode.getElementsByTagName('textaction'),
   ).map((textActionNode) => {
-    const textAction = getTextAction(textActionNode)
+    const textAction = getTextAction(textActionNode, translate)
 
     return {
       ...textAction,
       data: {
         ...textAction.data,
-        title: textActionNode.getAttribute('title'),
+        title: translate(textActionNode.getAttribute('title') || ''),
         __typename: 'EmbarkTextActionSetTextAction',
       },
     }
@@ -276,16 +295,18 @@ const getTextActionSet = (textActionSetNode: Element) => {
   }
 }
 
-const getTextAction = (textActionNode: Element) => {
-  const placeholder = textActionNode.getAttribute('placeholder')
-  const next = textActionNode.getAttribute('next')
+const getTextAction = (textActionNode: Element, translate: Translator) => {
+  const placeholder = translate(
+    textActionNode.getAttribute('placeholder') || '',
+  )
+  const next = translate(textActionNode.getAttribute('next') || '')
   const key = textActionNode.getAttribute('key')
   const mask = textActionNode.getAttribute('mask')
 
   const large = textActionNode.getAttribute('large')
 
   const links = next ? parseLinks(next) : []
-  const tooltip = parseTooltips(textActionNode)[0]
+  const tooltip = parseTooltips(textActionNode, translate)[0]
 
   const api = parseApi(textActionNode)
 
@@ -306,9 +327,14 @@ const getTextAction = (textActionNode: Element) => {
 
 const getExternalInsuranceProviderAction = (
   externalInsuranceProviderActionNode: Element,
+  translate: Translator,
 ) => {
-  const next = externalInsuranceProviderActionNode.getAttribute('next')
-  const skip = externalInsuranceProviderActionNode.getAttribute('skip')
+  const next = translate(
+    externalInsuranceProviderActionNode.getAttribute('next') || '',
+  )
+  const skip = translate(
+    externalInsuranceProviderActionNode.getAttribute('skip') || '',
+  )
   const skipLinks = skip ? parseLinks(skip) : []
   const nextLinks = next ? parseLinks(next) : []
 
@@ -324,9 +350,14 @@ const getExternalInsuranceProviderAction = (
 
 const getPreviousInsuranceProviderAction = (
   previousInsuranceProviderActionNode: Element,
+  translate: Translator,
 ) => {
-  const next = previousInsuranceProviderActionNode.getAttribute('next')
-  const skip = previousInsuranceProviderActionNode.getAttribute('skip')
+  const next = translate(
+    previousInsuranceProviderActionNode.getAttribute('next') || '',
+  )
+  const skip = translate(
+    previousInsuranceProviderActionNode.getAttribute('skip') || '',
+  )
   const skipLinks = skip ? parseLinks(skip) : []
   const nextLinks = next ? parseLinks(next) : []
   const providers = previousInsuranceProviderActionNode.getAttribute(
@@ -334,7 +365,10 @@ const getPreviousInsuranceProviderAction = (
   )
   const storeKey = previousInsuranceProviderActionNode.getAttribute('storeKey')
 
-  const tooltip = parseTooltips(previousInsuranceProviderActionNode)[0]
+  const tooltip = parseTooltips(
+    previousInsuranceProviderActionNode,
+    translate,
+  )[0]
 
   return {
     __typename: 'EmbarkPreviousInsuranceProviderAction',
@@ -349,13 +383,13 @@ const getPreviousInsuranceProviderAction = (
   }
 }
 
-const getAction = (containerElement: Element) => {
+const getAction = (containerElement: Element, translate: Translator) => {
   const numberActionSetNode = containerElement.getElementsByTagName(
     'numberactionset',
   )[0]
 
   if (numberActionSetNode) {
-    return getNumberActionSet(numberActionSetNode)
+    return getNumberActionSet(numberActionSetNode, translate)
   }
 
   const textActionSetNode = containerElement.getElementsByTagName(
@@ -363,7 +397,7 @@ const getAction = (containerElement: Element) => {
   )[0]
 
   if (textActionSetNode) {
-    return getTextActionSet(textActionSetNode)
+    return getTextActionSet(textActionSetNode, translate)
   }
 
   const multiActionNode = containerElement.getElementsByTagName(
@@ -371,7 +405,7 @@ const getAction = (containerElement: Element) => {
   )[0]
 
   if (multiActionNode) {
-    return getMultiAction(multiActionNode)
+    return getMultiAction(multiActionNode, translate)
   }
 
   const selectActionNode = containerElement.getElementsByTagName(
@@ -379,7 +413,7 @@ const getAction = (containerElement: Element) => {
   )[0]
 
   if (selectActionNode) {
-    return getSelectAction(selectActionNode)
+    return getSelectAction(selectActionNode, translate)
   }
 
   const numberActionNode = containerElement.getElementsByTagName(
@@ -387,13 +421,13 @@ const getAction = (containerElement: Element) => {
   )[0]
 
   if (numberActionNode) {
-    return getNumberAction(numberActionNode)
+    return getNumberAction(numberActionNode, translate)
   }
 
   const textActionNode = containerElement.getElementsByTagName('textaction')[0]
 
   if (textActionNode) {
-    return getTextAction(textActionNode)
+    return getTextAction(textActionNode, translate)
   }
 
   const externalInsuranceProviderActionNode = containerElement.getElementsByTagName(
@@ -403,6 +437,7 @@ const getAction = (containerElement: Element) => {
   if (externalInsuranceProviderActionNode) {
     return getExternalInsuranceProviderAction(
       externalInsuranceProviderActionNode,
+      translate,
     )
   }
 
@@ -413,6 +448,7 @@ const getAction = (containerElement: Element) => {
   if (previousInsuranceProviderActionNode) {
     return getPreviousInsuranceProviderAction(
       previousInsuranceProviderActionNode,
+      translate,
     )
   }
 
@@ -561,7 +597,14 @@ const parseExpression = (expression: string): Expression | null => {
   return null
 }
 
-const parsePossibleExpressionContent = (containerElement: Element) => {
+type TextKeyObject = Record<string, string>
+type PossibleExpressionContentParser = (
+  containerElement: Element,
+) => { expressions: Expression[]; text: string }
+
+const createParsePossibleExpressionContent = (
+  translate: Translator,
+): PossibleExpressionContentParser => (containerElement) => {
   const expressions = Array.from(containerElement.getElementsByTagName('When'))
     .map((when) => {
       const expressionText = when.getAttribute('expression') || ''
@@ -570,26 +613,30 @@ const parsePossibleExpressionContent = (containerElement: Element) => {
       if (expression) {
         return {
           ...expression,
-          text: (when.textContent || '').trim(),
+          text: translate(when.textContent || '').trim(),
         }
       }
 
       return null
     })
-    .filter((expression) => expression)
+    .filter((expression) => expression) as Expression[]
 
   return {
     expressions,
-    text: (containerElement.textContent || '').trim(),
+    text: translate(containerElement.textContent || '').trim(),
   }
 }
 
-const getResponse = (passageName: string, containerElement: Element) => {
+const getResponse = (
+  passageName: string,
+  containerElement: Element,
+  parsePossibleExpressionContent: PossibleExpressionContentParser,
+) => {
   const groupedResponse = containerElement.getElementsByTagName(
     'groupedresponse',
   )[0]
   if (groupedResponse) {
-    return parseGroupedResponse(groupedResponse)
+    return parseGroupedResponse(groupedResponse, parsePossibleExpressionContent)
   }
 
   const responseNode = containerElement.getElementsByTagName('response')[0]
@@ -608,7 +655,10 @@ const getResponse = (passageName: string, containerElement: Element) => {
   }
 }
 
-const parseEach = (element: Element) => {
+const parseEach = (
+  element: Element,
+  parsePossibleExpressionContent: PossibleExpressionContentParser,
+) => {
   const key = element.getAttribute('key')
 
   const content = parsePossibleExpressionContent(element)
@@ -620,7 +670,10 @@ const parseEach = (element: Element) => {
   }
 }
 
-const parseGroupedResponse = (element: Element) => {
+const parseGroupedResponse = (
+  element: Element,
+  parsePossibleExpressionContent: PossibleExpressionContentParser,
+) => {
   const title = element.getElementsByTagName('title')[0]
   const items = Array.from(element.getElementsByTagName('item'))
   const each = element.getElementsByTagName('each')[0]
@@ -633,7 +686,7 @@ const parseGroupedResponse = (element: Element) => {
       ...parsePossibleExpressionContent(title),
     },
     items: items.map(parsePossibleExpressionContent),
-    each: (each && parseEach(each)) || [],
+    each: (each && parseEach(each, parsePossibleExpressionContent)) || [],
   }
 }
 
@@ -650,7 +703,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
 
   if (personalInformationApi) {
     if (
-      allowNestedChildren == false &&
+      !allowNestedChildren &&
       !getFirstLevelNodes(element).includes(personalInformationApi)
     ) {
       return null
@@ -681,7 +734,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
 
   if (houseInformationApi) {
     if (
-      allowNestedChildren == false &&
+      !allowNestedChildren &&
       !getFirstLevelNodes(element).includes(houseInformationApi)
     ) {
       return null
@@ -710,7 +763,7 @@ const parseApi = (element: Element, allowNestedChildren: boolean = true) => {
 
   if (createQuoteApi) {
     if (
-      allowNestedChildren == false &&
+      !allowNestedChildren &&
       !getFirstLevelNodes(element).includes(createQuoteApi)
     ) {
       return null
@@ -784,97 +837,108 @@ const parseTracks = (element: Element) => {
     .filter((track) => !!track)
 }
 
-export const parseStoryData = (storyData: any) => ({
-  id: storyData.id,
-  name: storyData.name,
-  startPassage: storyData.startPassage,
-  keywords: storyData.keywords || {},
-  partnerConfigs: storyData.partnerConfigs || [],
-  passages: storyData.passages.map((passage: any) => {
-    var containerElement = document.createElement('div')
-    containerElement.innerHTML = passage.text
+export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
+  const translate: Translator = (text: string) =>
+    resolvePlaceholders(text, textKeyMap)
+  const parsePossibleExpressionContent = createParsePossibleExpressionContent(
+    translate,
+  )
 
-    const api = parseApi(containerElement, false)
-    const tracks = parseTracks(containerElement)
+  return {
+    id: storyData.id,
+    name: storyData.name,
+    startPassage: storyData.startPassage,
+    keywords: storyData.keywords || {},
+    partnerConfigs: storyData.partnerConfigs || [],
+    passages: storyData.passages.map((passage: any) => {
+      const containerElement = document.createElement('div')
+      containerElement.innerHTML = passage.text
 
-    const messages = Array.from(
-      containerElement.getElementsByTagName('message'),
-    ).map((message) => parsePossibleExpressionContent(message))
+      const api = parseApi(containerElement, false)
+      const tracks = parseTracks(containerElement)
 
-    const redirects = Array.from(
-      containerElement.getElementsByTagName('redirect'),
-    )
-      .map((redirect) => {
-        redirect.getAttribute
-        const whenAttribute = redirect.getAttribute('when')
-        const toAttribute = redirect.getAttribute('to')
-        const keyAttribute = redirect.getAttribute('key')
-        const valueAttribute = redirect.getAttribute('value')
-        const links = parseLinks(toAttribute || '')
+      const messages = Array.from(
+        containerElement.getElementsByTagName('message'),
+      ).map((message) => parsePossibleExpressionContent(message))
 
-        const expression = parseExpression(whenAttribute || '')
+      const redirects = Array.from(
+        containerElement.getElementsByTagName('redirect'),
+      )
+        .map((redirect) => {
+          const whenAttribute = redirect.getAttribute('when')
+          const toAttribute = redirect.getAttribute('to')
+          const keyAttribute = redirect.getAttribute('key')
+          const valueAttribute = redirect.getAttribute('value')
+          const links = parseLinks(toAttribute || '')
 
-        if (!expression || !links) {
-          return null
-        }
+          const expression = parseExpression(whenAttribute || '')
 
-        if (expression.__typename === 'EmbarkExpressionUnary') {
+          if (!expression || !links) {
+            return null
+          }
+
+          if (expression.__typename === 'EmbarkExpressionUnary') {
+            return {
+              ...expression,
+              __typename: 'EmbarkRedirectUnaryExpression',
+              to: links[0].name,
+              passedExpressionKey: keyAttribute,
+              passedExpressionValue: valueAttribute,
+            }
+          }
+
+          if (expression.__typename === 'EmbarkExpressionBinary') {
+            return {
+              ...expression,
+              __typename: 'EmbarkRedirectBinaryExpression',
+              to: links[0].name,
+              passedExpressionKey: keyAttribute,
+              passedExpressionValue: valueAttribute,
+            }
+          }
+
           return {
             ...expression,
-            __typename: 'EmbarkRedirectUnaryExpression',
+            __typename: 'EmbarkRedirectMultipleExpressions',
             to: links[0].name,
             passedExpressionKey: keyAttribute,
             passedExpressionValue: valueAttribute,
           }
-        }
+        })
+        .filter((item) => item)
 
-        if (expression.__typename === 'EmbarkExpressionBinary') {
-          return {
-            ...expression,
-            __typename: 'EmbarkRedirectBinaryExpression',
-            to: links[0].name,
-            passedExpressionKey: keyAttribute,
-            passedExpressionValue: valueAttribute,
-          }
-        }
+      const externalRedirect = parseExternalRedirect(containerElement)
 
-        return {
-          ...expression,
-          __typename: 'EmbarkRedirectMultipleExpressions',
-          to: links[0].name,
-          passedExpressionKey: keyAttribute,
-          passedExpressionValue: valueAttribute,
-        }
-      })
-      .filter((item) => item)
-
-    const externalRedirect = parseExternalRedirect(containerElement)
-
-    return {
-      id: passage.id,
-      text: passage.text,
-      name: passage.name,
-      url: passage.url,
-      allLinks: parseLinks(passage.text) || [],
-      api: api || null,
-      tracks: [
-        ...tracks,
-        {
-          __typename: 'EmbarkTrack',
-          eventName: `Passage Shown - ${passage.name}`,
-          eventKeys: [],
-          includeAllKeys: true,
-          customData: null,
-        },
-      ],
-      messages,
-      redirects,
-      externalRedirect,
-      action: getAction(containerElement),
-      response: getResponse(passage.name, containerElement),
-      tooltips: Array.from(
-        containerElement.getElementsByTagName('Tooltip'),
-      ).map(parseTooltip),
-    }
-  }),
-})
+      return {
+        id: passage.id,
+        text: passage.text,
+        name: passage.name,
+        url: passage.url,
+        allLinks: parseLinks(translate(passage.text)) || [],
+        api: api || null,
+        tracks: [
+          ...tracks,
+          {
+            __typename: 'EmbarkTrack',
+            eventName: `Passage Shown - ${passage.name}`,
+            eventKeys: [],
+            includeAllKeys: true,
+            customData: null,
+          },
+        ],
+        messages,
+        redirects,
+        externalRedirect,
+        action: getAction(containerElement, translate),
+        response: getResponse(
+          passage.name,
+          containerElement,
+          parsePossibleExpressionContent,
+        ),
+        tooltips: Array.from(
+          containerElement.getElementsByTagName('Tooltip'),
+        ).map(parseTooltip(translate)),
+      }
+    }),
+  }
+}

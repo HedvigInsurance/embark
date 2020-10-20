@@ -57,7 +57,7 @@ const parseGeneratedVariables = (element: Element): GeneratedVariable => {
 }
 
 const parseMultiActionVariables = (element: Element): MultiActionVariable => {
-  const key = element.getAttribute('key')
+  const key = element.getAttribute('key')!
   const variables = Array.from(element.getElementsByTagName('variable')).map(
     parseVariables,
   )
@@ -130,7 +130,7 @@ export const parseGraphQLApi = (
 
   if (graphQLApi) {
     if (
-      allowNestedChildren == false &&
+      !allowNestedChildren &&
       !getFirstLevelNodes(element).includes(graphQLApi)
     ) {
       return null

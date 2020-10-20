@@ -1,11 +1,15 @@
 <html>
-	<head>
-		<title>{{STORY_NAME}}</title>
-    </head>
-	<body scriptHost="{{SCRIPT_HOST}}" isProofing="{{IS_PROOFING}}">
-		<div id="root"></div>
-		<div id="storyData" style="display: none;" data="{{STORY_DATA}}"></div>
-        <script type="text/javascript" src="{{SCRIPT_HOST}}/client.js">
-        </script>
-	</body>
+  <head>
+    <title>{{STORY_NAME}}</title>
+  </head>
+  <body scriptHost="{{SCRIPT_HOST}}" isProofing="{{IS_PROOFING}}">
+    <div id="root"></div>
+    <script id="story-data">
+      window.STORY_DATA = {{STORY_DATA}}
+    </script>
+    <script id="language-data">
+      window.TEXT_KEY_MAP = {{TEXT_KEY_MAP}}
+    </script>
+    <script type="text/javascript" src="{{SCRIPT_HOST}}/client.js"></script>
+  </body>
 </html>
