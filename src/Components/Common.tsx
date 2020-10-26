@@ -17,7 +17,7 @@ export interface Replacements {
   [key: string]: React.ReactNode
 }
 
-export const TranslationNode: React.SFC = ({ children }) => <>{children}</>
+export const TranslationNode: React.FC = ({ children }) => <>{children}</>
 
 export const replacePlaceholders = (
   replacements: Replacements,

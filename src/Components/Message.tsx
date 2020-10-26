@@ -23,7 +23,7 @@ const MessageContainer = styled.div`
   padding-bottom: 5px;
 `
 
-export const TranslationNode: React.SFC = ({ children }) => <>{children}</>
+export const TranslationNode: React.FC = ({ children }) => <>{children}</>
 
 export const Message = (props: MessageProps) => {
   const { store } = React.useContext(StoreContext)
