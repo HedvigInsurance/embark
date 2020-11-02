@@ -1,17 +1,18 @@
-import { storyKeywords } from "./src/storyKeywords";
-import { makeExecutableSchema } from "graphql-tools";
-import { promises } from "fs";
-import { parseStoryData } from "./src/Parsing/parseStoryData";
+import axios from 'axios'
+import { storyKeywords } from './src/storyKeywords'
+import { makeExecutableSchema } from 'graphql-tools'
+import { promises } from 'fs'
+import { parseStoryData } from './src/Parsing/parseStoryData'
 
 const typeDefs = `
     type Query {
-        embarkStory(name: String!): EmbarkStory
+        embarkStory(name: String!, locale: String!): EmbarkStory
         # returns names of all available embark stories
         embarkStoryNames: [String!]!
     }
 
     type EmbarkKeywords {
-        ${Object.keys(storyKeywords).map(key => `${key}: String`)}
+        ${Object.keys(storyKeywords).map((key) => `${key}: String`)}
     }
 
     enum EmbarkPartnerConfigAlignment {
@@ -420,32 +421,40 @@ const typeDefs = `
     }
 
     scalar JSONString
-`;
+`
 
 export const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
-      embarkStory: async (_, { name }: { name: string }) => {
-        const dir = await promises.readdir("angel-data");
+      embarkStory: async (
+        _,
+        { name, locale }: { name: string; locale: string },
+      ) => {
+        const dir = await promises.readdir('angel-data')
 
         if (!dir.includes(`${name}.json`)) {
-          throw new Error(`Can't find story with name: ${name}`);
+          throw new Error(`Can't find story with name: ${name}`)
         }
 
         const file = await promises.readFile(`angel-data/${name}.json`, {
-          encoding: "utf-8"
-        });
+          encoding: 'utf-8',
+        })
 
-        const json = JSON.parse(file);
-        const storyData = parseStoryData(json);
+        const json = JSON.parse(file)
+        const textKeyMapResponse = await axios.get(
+          `https://translations.hedvig.com/embark/${encodeURIComponent(
+            locale,
+          )}.json`,
+        )
+        const storyData = parseStoryData(json, textKeyMapResponse.data)
 
-        return storyData;
+        return storyData
       },
       embarkStoryNames: async () => {
-        const dirs = await promises.readdir("angel-data");
-        return dirs.map(name => name.replace(".json", ""));
-      }
-    }
-  }
-});
+        const dirs = await promises.readdir('angel-data')
+        return dirs.map((name) => name.replace('.json', ''))
+      },
+    },
+  },
+})
