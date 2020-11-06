@@ -1,0 +1,233 @@
+{
+  "id": "892533f3-934e-40ac-bccf-238e15f634e2",
+  "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
+  "lastUpdate": "2020-11-06T12:51:24.949Z",
+  "name": "Web Onboarding DK - Contents ",
+  "passages": [
+    {
+      "height": 100,
+      "id": "1aa8ea14-dbf0-4b39-81ed-aaabd9252e20",
+      "left": 700,
+      "name": "name",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorCoInsured]]\"\n          when=\"coInsured > 6\"\n>\n</Redirect>\n\n<Message>\n  What’s your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 750,
+      "url": "/name",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "313748fb-391e-490a-b186-0adc7ad19730",
+      "left": 700,
+      "name": "size",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  Okay. How many square meters is it?\n</Message>\n\n<Response>\n  {livingSpace} square meters\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Continue->address]]\"\n              unit=\"square meters\"\n>\n  <Tooltip>\n    <Title>\n      Size\n    </Title>\n    <Description>\n      The size of your home and the area we’ll insure. The exact square meters can often be found in your lease or in your contract of sale.\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 300,
+      "url": "/size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "3da0c122-abbf-4a6b-872b-0cb062e86032",
+      "left": 1100,
+      "name": "NewsletterSuccess",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 300,
+      "url": "/newsletter-sign-up",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "4064e78f-9a00-4af3-9a0b-062086ec9fe7",
+      "left": 900,
+      "name": "studentEligibilityCheck",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 50 || coInsured > 0\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "top": 1050,
+      "url": "/student-eligibility-check",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "48b7dc20-a9e1-4393-ac9d-5d924129e4c8",
+      "left": 900,
+      "name": "errorSize",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  We’re sorry, currently our insurance only cover homes up to 250 square meters\n</Message>\n\n<Message>\n  Please subscribe to our newsletter and be the first to know when we are able to insure larger homes\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Sign up for our newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/error-size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "5ce333da-4c7b-44b6-9763-60a79e37a99f",
+      "left": 700,
+      "name": "email",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  Lastly, your email address?\n</Message>\n\n<TextAction placeholder=\"email@address.com\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Continue->studentEligibilityCheck]]\"\n>\n  <Tooltip>\n    <Title>\n      Email\n    </Title>\n    <Description>\n      Your email address will only be used to provide you with a price offer.\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "top": 1050,
+      "url": "/email",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "79371918-0564-46be-bf5c-eb9670bc170b",
+      "left": 1050,
+      "name": "offerSuccess",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 1300,
+      "url": "/offer-success",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "92877f50-5d03-4265-b77c-7772197352cc",
+      "left": 700,
+      "name": "coInsured",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  Great. How many people will the insurance cover?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    We're 2\n  </when>\n  <when expression=\"coInsured > 1\">\n    We're {coInsured+1}\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"coInsured\"\n              minvalue=\"1\"\n              next=\"[[Continue->name]]\"\n              unit=\"people (incl.myself)\"\n>\n  <Tooltip>\n    <Title>\n      Insured People\n    </Title>\n    <Description>\n      You and the people you live with. It could be your partner, kids, roommates. All whom can be covered by the insurance.\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 600,
+      "url": "/co-insured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "a285c307-b9fe-45f5-ba06-13934162129a",
+      "left": 1250,
+      "name": "offerError",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Sorry, something went wrong. We’re unable to give you a price quote right now. Try again, if it doesn’t work please write us in the chat on the website. Thank you!\n</Message>",
+      "top": 1300,
+      "url": "/offer-error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "bf11a450-afa4-45f4-accb-3cc84c10ec43",
+      "left": 1375,
+      "name": "offerUwLimit",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately, we’re unable to give you an offer via our website. Please email us att prisforslag@hedvig.com and one of our insurance experts will look over your application. Thank you!\n</Message>",
+      "top": 1300,
+      "url": "/uw-limit",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "d5ab7ef1-c0b7-4d38-83cd-bd1b24f8ebd2",
+      "left": 900,
+      "name": "student",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  Are you perhaps a student? If so, our student offer is something for you.\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[Yes I’m a student->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, not a student->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1200,
+      "url": "/student",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "db410ae7-535d-40ed-ab93-deef3b440d24",
+      "left": 700,
+      "name": "birthDate",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  And your date of birth?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"yyyy-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Continue->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Date of birth\n    </Title>\n    <Description>\n      To give you an exact price we need to know your age. We’ll not use your birthdate for anything else.\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "top": 900,
+      "url": "/birth-date",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "e585ecb3-615b-4434-be2b-561c036a0e4b",
+      "left": 700,
+      "name": "address",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"size > 250\"\n>\n</Redirect>\n\n<Message>\n  What’s your address?\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[Continue->coInsured]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"0123\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 450,
+      "url": "/address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "ea0f88f3-e2b2-438e-aec1-6d80c8d917fb",
+      "left": 900,
+      "name": "errorCoInsured",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  We’re sorry, currently our insurance only cover homes with a maximum of 6 people\n</Message>\n\n<Message>\n  Please subscribe to our newsletter and be the first to know when we are able to insure homes your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Sign up for our newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 600,
+      "url": "/error-co-insured",
+      "width": 100
+    },
+    {
+      "height": 200,
+      "id": "8320e871-5ef4-4b77-ba7c-392bc0882bdb",
+      "left": 400,
+      "name": "ownershipType",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option key=\"type\"\n          value=\"RENT\"\n  >\n    [[{DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_OPTION_RENT}->size]]\n  </Option>\n  <Option key=\"type\"\n          value=\"OWN\"\n  >\n    [[{DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_OPTION_OWN}->size]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/ownership",
+      "width": 200
+    },
+    {
+      "height": 200,
+      "id": "ca271968-558e-43a1-91ef-4e9493a9bff7",
+      "left": 1100,
+      "name": "Offer",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  Your price quote is ready!\n</Message>",
+      "top": 1050,
+      "width": 200
+    }
+  ],
+  "script": "",
+  "snapToGrid": true,
+  "startPassage": "8320e871-5ef4-4b77-ba7c-392bc0882bdb",
+  "storyFormat": "Hedvig",
+  "storyFormatVersion": "1.0.0",
+  "stylesheet": "",
+  "tagColors": {
+    "Error": "red"
+  },
+  "zoom": 1
+}
