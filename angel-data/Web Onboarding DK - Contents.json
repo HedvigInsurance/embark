@@ -2,7 +2,7 @@
   "id": "892533f3-934e-40ac-bccf-238e15f634e2",
   "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
   "lastUpdate": "2020-11-11T15:32:51.140Z",
-  "name": "Web Onboarding DK - Contents ",
+  "name": "Web Onboarding DK - Contents",
   "passages": [
     {
       "height": 100,
@@ -63,9 +63,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  We’re sorry, currently our insurance only cover homes up to 250 square meters\n</Message>\n\n<Message>\n  Please subscribe to our newsletter and be the first to know when we are able to insure larger homes\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Sign up for our newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
@@ -104,9 +102,7 @@
       "name": "offerError",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Sorry, something went wrong. We’re unable to give you a price quote right now. Try again, if it doesn’t work please write us in the chat on the website. Thank you!\n</Message>",
       "top": 1300,
       "url": "/offer-error",
@@ -132,9 +128,7 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately, we’re unable to give you an offer via our website. Please email us att prisforslag@hedvig.com and one of our insurance experts will look over your application. Thank you!\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
@@ -186,9 +180,7 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  We’re sorry, currently our insurance only cover homes with a maximum of 6 people\n</Message>\n\n<Message>\n  Please subscribe to our newsletter and be the first to know when we are able to insure homes your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Sign up for our newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
