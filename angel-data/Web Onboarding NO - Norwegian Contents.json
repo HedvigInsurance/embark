@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-10-08T07:34:13.541Z",
+  "lastUpdate": "2020-11-13T12:15:24.202Z",
   "name": "Web Onboarding NO - Norwegian Contents",
   "passages": [
     {
@@ -30,7 +30,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette så bekrefter jeg at jeg forstår at mine personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette bekrefter jeg at min personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
       "top": 950,
       "url": "/birth-date",
       "width": 100
@@ -38,7 +38,7 @@
     {
       "height": 100,
       "id": "-2140998452",
-      "left": 850,
+      "left": 950,
       "name": "OfferSuccess",
       "selected": false,
       "story": "1150685733",
