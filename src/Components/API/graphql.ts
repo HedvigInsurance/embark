@@ -12,6 +12,7 @@ import {
   GeneratedVariable,
 } from './../../Parsing/parseGraphQLApi'
 import uuid from 'uuid'
+import { evaluateTemplateExpression } from '../../Parsing/templateExpression'
 
 export const isGraphqlApi = (t?: ApiComponent): t is GraphQLApiComponent =>
   t?.component === 'GraphQLApi'
@@ -45,7 +46,7 @@ const isSingleVariable = (variable: Variable): variable is SingleVariable => {
 }
 
 export const parseSingleVariable = (variable: SingleVariable, store: Store) => {
-  const value = store[variable.from]
+  const value = evaluateTemplateExpression(variable.from, store)
   if (value === undefined || value === null) {
     return null
   }

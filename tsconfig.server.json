@@ -10,7 +10,8 @@
     "outDir": "dist/",
     "types": ["node"],
     "typeRoots": ["./types"],
-    "noEmit": true
+    "noEmit": true,
+    "esModuleInterop": true
   },
   "ts-node": {
     "transpileOnly": true

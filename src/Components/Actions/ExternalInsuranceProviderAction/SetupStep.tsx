@@ -4,7 +4,7 @@ import { fonts } from '@hedviginsurance/brand'
 import { Loading } from '../../API/Loading'
 import { Provider } from './providers'
 import { KeywordsContext } from '../../KeywordsContext'
-import { replacePlaceholders } from '../../Common'
+import { evalTemplateString } from '../../Common'
 
 const Container = styled.div`
   display: flex;
@@ -32,12 +32,9 @@ export const SetupStep: React.FC<SetupStepProps> = ({ provider }) => {
   return (
     <Container>
       <Title>
-        {replacePlaceholders(
-          {
-            provider: provider.name,
-          },
-          externalInsuranceProviderSetupTitle,
-        )}
+        {evalTemplateString(externalInsuranceProviderSetupTitle, {
+          provider: provider.name,
+        })}
       </Title>
       <Loading addBorder />
     </Container>

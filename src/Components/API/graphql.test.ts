@@ -1,4 +1,5 @@
 import { parseSingleVariable } from './graphql'
+import { SingleVariable } from '../../Parsing/parseGraphQLApi'
 
 describe('parseSingleVariable()', () => {
   it('should return correct parsed value', () => {
@@ -53,5 +54,17 @@ describe('parseSingleVariable()', () => {
     expect(parseSingleVariable(isSubletedVariable, isSubleted)).toBe(false)
     expect(parseSingleVariable(areaVariable, extraBuilding)).toBe(23)
     expect(parseSingleVariable(hasWaterVariable, extraBuilding)).toBe(true)
+  })
+
+  it('should return correctly parsed variable plus expression', () => {
+    const expressionVariable: SingleVariable = {
+      __typename: 'EmbarkAPIGraphQLSingleVariable',
+      key: 'baz',
+      from: 'foo + bar',
+      as: 'int',
+    }
+    const store = { foo: '1336', bar: '1' }
+
+    expect(parseSingleVariable(expressionVariable, store)).toEqual(1337)
   })
 })

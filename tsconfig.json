@@ -15,7 +15,8 @@
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "noEmit": true
+    "noEmit": true,
+    "esModuleInterop": true
   },
   "exclude": ["server.ts", "dist", "schema.ts", "node_modules"]
 }

@@ -4,7 +4,7 @@ import { fonts } from '@hedviginsurance/brand'
 import { Provider } from './providers'
 import { ContinueButton } from '../../ContinueButton'
 import { KeywordsContext } from '../../KeywordsContext'
-import { replacePlaceholders } from '../../Common'
+import { evalTemplateString } from '../../Common'
 
 const Container = styled.div`
   display: flex;
@@ -45,12 +45,9 @@ export const BackgroundFetchStep: React.FC<SetupStepProps> = ({
     <Container>
       <Title>{externalInsuranceProviderBackgroundFetchTitle}</Title>
       <Body>
-        {replacePlaceholders(
-          {
-            provider: provider.name,
-          },
-          externalInsuranceProviderBackgroundFetchBody,
-        )}
+        {evalTemplateString(externalInsuranceProviderBackgroundFetchBody, {
+          provider: provider.name,
+        })}
       </Body>
       <ContinueButton
         disabled={false}

@@ -4,7 +4,7 @@ import { fonts, colorsV3 } from '@hedviginsurance/brand'
 import { ContinueButton } from '../../ContinueButton'
 import { KeywordsContext } from '../../KeywordsContext'
 import { BackButton } from './Components/BackButton'
-import { replacePlaceholders } from '../../Common'
+import { evalTemplateString, replacePlaceholders } from '../../Common'
 import { Provider } from './providers'
 
 const Container = styled.div`
@@ -83,16 +83,14 @@ export const ConfirmCollectionStep: React.FC<ConfirmCollectionStepProps> = ({
       <BackButton onClick={onCancel} />
       <TextContainer>
         <Title>
-          {replacePlaceholders(
-            { provider: provider.name },
-            externalInsuranceProviderConfirmTitle,
-          )}
+          {evalTemplateString(externalInsuranceProviderConfirmTitle, {
+            provider: provider.name,
+          })}
         </Title>
         <Body>
-          {replacePlaceholders(
-            { provider: provider.name },
-            externalInsuranceProviderConfirmMessage,
-          )}
+          {evalTemplateString(externalInsuranceProviderConfirmMessage, {
+            provider: provider.name,
+          })}
         </Body>
       </TextContainer>
       <ButtonsContainer>

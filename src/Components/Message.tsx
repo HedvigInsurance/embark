@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 import {
+  evalTemplateString,
   getTextContent,
-  replacePlaceholders,
-  MessageBody,
   MessageAnimation,
+  MessageBody,
 } from './Common'
 import { StoreContext } from './KeyValueStore'
 import { Expression } from '../Utils/ExpressionsUtil'
@@ -23,8 +23,6 @@ const MessageContainer = styled.div`
   padding-bottom: 5px;
 `
 
-export const TranslationNode: React.FC = ({ children }) => <>{children}</>
-
 export const Message = (props: MessageProps) => {
   const { store } = React.useContext(StoreContext)
   const text = getTextContent(store, props.message)
@@ -35,7 +33,7 @@ export const Message = (props: MessageProps) => {
     <MessageContainer>
       <MessageAnimation>
         <MessageBody isResponse={props.isResponse}>
-          {replacePlaceholders(store, text)}
+          {evalTemplateString(text, store)}
         </MessageBody>
       </MessageAnimation>
     </MessageContainer>

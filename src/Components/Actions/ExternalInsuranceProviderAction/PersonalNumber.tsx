@@ -2,8 +2,8 @@ import * as React from 'react'
 import { colorsV2, fonts } from '@hedviginsurance/brand'
 import styled from '@emotion/styled'
 import { Input } from '../Common'
-import { replacePlaceholders } from '../../Common'
-import { wrapWithMask, isValid } from '../masking'
+import { evalTemplateString } from '../../Common'
+import { isValid, wrapWithMask } from '../masking'
 import { Provider } from './providers'
 import { KeywordsContext } from '../../KeywordsContext'
 import { ContinueButton } from '../../ContinueButton'
@@ -86,10 +86,9 @@ export const PersonalNumber: React.FC<PersonalNumberProps> = ({
       <BackButton onClick={onCancel} />
       <Title>
         {provider.icon && provider.icon({ forceWidth: false })}
-        {replacePlaceholders(
-          { provider: provider.name },
-          externalInsuranceProviderPersonalNumberTitle,
-        )}
+        {evalTemplateString(externalInsuranceProviderPersonalNumberTitle, {
+          provider: provider.name,
+        })}
       </Title>
       <BetaInfo>{externalInsuranceProviderBETATag}</BetaInfo>
       <Subtitle>{externalInsuranceProviderPersonalNumberSubtitle}</Subtitle>

@@ -7,6 +7,12 @@ import {
   getPlaceholderKeyRegex,
   getPlaceholderRegex,
 } from '@hedviginsurance/textkeyfy'
+import { Store } from './KeyValueStore'
+import {
+  getExpressionRegex,
+  getTemplateExpressionRegex,
+  evaluateTemplateExpression,
+} from '../Parsing/templateExpression'
 
 export interface ExpressionTextNode {
   text: string
@@ -18,6 +24,27 @@ export interface Replacements {
 }
 
 export const TranslationNode: React.FC = ({ children }) => <>{children}</>
+
+export const evalTemplateString = (template: string, store: Store): string => {
+  const matches = template
+    .split(getTemplateExpressionRegex())
+    .filter((value) => value)
+  if (!matches) {
+    return template
+  }
+
+  return matches
+    .map((templatePart) => {
+      if (!getTemplateExpressionRegex().test(templatePart)) {
+        return templatePart
+      }
+
+      const expression = templatePart.match(getExpressionRegex())![0]
+
+      return evaluateTemplateExpression(expression, store)
+    })
+    .join('')
+}
 
 export const replacePlaceholders = (
   replacements: Replacements,
