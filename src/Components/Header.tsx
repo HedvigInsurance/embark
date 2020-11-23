@@ -51,21 +51,17 @@ export const HedvigLogo: React.FunctionComponent = () => (
 const Background = styled.div`
   display: flex;
   align-items: center;
-  height: 80px;
+  justify-content: space-between;
+  height: 4.5rem;
   width: 100%;
   backdrop-filter: blur(2px);
   position: relative;
-  padding: 0 10vw;
+  padding: 0 1rem;
   box-sizing: border-box;
 
-  justify-content: space-between;
-
-  @media (max-width: 768px) {
-    padding: 0 25px;
-  }
-
-  @media (max-width: 375px) {
-    height: 64px;
+  @media (min-width: 480px) {
+    height: 5rem;
+    padding: 0 2rem;
   }
 `
 
