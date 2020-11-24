@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {
-  evalTemplateString,
   ExpressionTextNode,
   getTextContent,
-  MessageAnimation,
+  replacePlaceholders,
   MessageBody,
+  MessageAnimation,
 } from '../Common'
-import { Store, StoreContext } from '../KeyValueStore'
+import { StoreContext, Store } from '../KeyValueStore'
 import styled from '@emotion/styled'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
 import { getMultiActionItems } from '../Actions/MultiAction/util'
@@ -53,7 +53,7 @@ const Each: React.FunctionComponent<EachProps> = (props) => {
     <>
       {items.map((item, index) => (
         <Item key={props.eachKey + index}>
-          {evalTemplateString(getTextContent(item, props.content), item)}
+          {replacePlaceholders(item, getTextContent(item, props.content))}
         </Item>
       ))}
     </>
@@ -67,12 +67,12 @@ export const GroupedResponse: React.FunctionComponent<Props> = (props) => {
     <MessageAnimation>
       <MessageBody isResponse={true}>
         <Title>
-          {evalTemplateString(getTextContent(store, props.title), store)}
+          {replacePlaceholders(store, getTextContent(store, props.title))}
         </Title>
         <ItemContainer>
           {props.items.map((item) => (
             <Item key={item.text}>
-              {evalTemplateString(getTextContent(store, item), store)}
+              {replacePlaceholders(store, getTextContent(store, item))}
             </Item>
           ))}
           {props.each ? (

@@ -1,8 +1,10 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 import { fonts } from '@hedviginsurance/brand'
+import { Provider } from './providers'
 import { ContinueButton } from '../../ContinueButton'
 import { KeywordsContext } from '../../KeywordsContext'
+import { replacePlaceholders } from '../../Common'
 
 const Container = styled.div`
   display: flex;
