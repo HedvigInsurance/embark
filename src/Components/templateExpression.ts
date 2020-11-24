@@ -1,4 +1,4 @@
-import { Store } from '../Components/KeyValueStore'
+import { Store } from './KeyValueStore'
 
 type TokenType =
   | 'void'

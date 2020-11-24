@@ -1,5 +1,10 @@
 import * as React from 'react'
-import { KeyValueStore, Store, StoreContext } from './KeyValueStore'
+import {
+  ComputedValues,
+  KeyValueStore,
+  Store,
+  StoreContext,
+} from './KeyValueStore'
 import { KeywordsContext } from './KeywordsContext'
 import { TApiContext, ApiContext } from './API/ApiContext'
 import {
@@ -14,6 +19,7 @@ interface EmbarkProviderProps {
   externalRedirects: TExternalRedirectContext
   onStoreChange?: (store: Store) => void
   initialStore?: Store
+  computedValues?: ComputedValues
 }
 
 const StoreListener: React.FunctionComponent<EmbarkProviderProps> = (props) => {
@@ -33,7 +39,10 @@ export const EmbarkProvider: React.FunctionComponent<EmbarkProviderProps> = (
     <ApiContext.Provider value={props.resolvers}>
       <DataFetchContextProvider>
         <KeywordsContext.Provider value={props.data.keywords}>
-          <KeyValueStore initial={props.initialStore}>
+          <KeyValueStore
+            initial={props.initialStore}
+            computedValues={props.computedValues}
+          >
             <StoreListener {...props}>{props.children}</StoreListener>
           </KeyValueStore>
         </KeywordsContext.Provider>

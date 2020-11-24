@@ -12,7 +12,7 @@ it('says two numbers are invalid', () => {
   )
 })
 
-it('calculates two numbers', () => {
+it('calculates two integers', () => {
   const expression = '41+1'
   expect(evaluateTemplateExpression(expression, {})).toBe('42')
 
@@ -20,9 +20,24 @@ it('calculates two numbers', () => {
   expect(evaluateTemplateExpression(expressionWithSpaces, {})).toBe('42')
 })
 
-it('calculates many numbers with plus and minus', () => {
+it('calculates many integers with plus and minus', () => {
   const expression = '1 +2 + 3 -1 '
   expect(evaluateTemplateExpression(expression, {})).toBe('5')
+})
+
+it('calculates two floats', () => {
+  const expression = '13.17 + 0.2'
+  expect(evaluateTemplateExpression(expression, {})).toBe('13.37')
+})
+
+it('calculates a float and an int', () => {
+  const expression = '13 + 0.37'
+  expect(evaluateTemplateExpression(expression, {})).toBe('13.37')
+})
+
+it('calculates an even float and int to be an int', () => {
+  const expression = '1337 + 1.0'
+  expect(evaluateTemplateExpression(expression, {})).toBe('1338')
 })
 
 it('concats two "number" strings', () => {
