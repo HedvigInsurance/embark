@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Teckna ny hemförsäkring",
+    "description": "Se pris och skaffa Hedvig",
+    "name": "Web Onboarding - Swedish Needer",
+    "type": "WEB_ONBOARDING",
+    "metadata": []
+  },
+  {
+    "title": "Jämför din hemförsäkring",
+    "description": "Se prisjämförelse och byt",
+    "name": "Web Onboarding - Swedish Switcher",
+    "type": "WEB_ONBOARDING",
+    "metadata": []
+  },
+  {
+    "title": "Teckna ny hemförsäkring",
+    "description": "Se pris och skaffa Hedvig",
+    "name": "Web Onboarding - Swedish Needer",
+    "type": "APP_ONBOARDING",
+    "metadata": []
+  },
+  {
+    "title": "Jämför din hemförsäkring",
+    "description": "Se prisjämförelse och byt",
+    "name": "Web Onboarding - Swedish Switcher",
+    "type": "APP_ONBOARDING",
+    "metadata": []
+  }
+]

@@ -3,12 +3,14 @@ import { storyKeywords } from './src/storyKeywords'
 import { makeExecutableSchema } from 'graphql-tools'
 import { promises } from 'fs'
 import { parseStoryData } from './src/Parsing/parseStoryData'
+import { resolveMetadataOnLocale } from './src/Resolvers/resolveStoriesMetadata'
 
 const typeDefs = `
     type Query {
         embarkStory(name: String!, locale: String!): EmbarkStory
         # returns names of all available embark stories
         embarkStoryNames: [String!]!
+        embarkStories(locale: String!): [EmbarkStoryMetadata!]!
     }
 
     type EmbarkKeywords {
@@ -82,7 +84,7 @@ const typeDefs = `
         errors: [EmbarkAPIGraphQLError!]!
         results: [EmbarkAPIGraphQLResult!]!
     }
-    
+
     type EmbarkApiGraphQLQuery {
         component: String!
         data: EmbarkApiGraphQLQueryData!
@@ -420,6 +422,25 @@ const typeDefs = `
         passages: [EmbarkPassage!]!
     }
 
+    type EmbarkStoryMetadata {
+      name: String!
+      type: EmbarkStoryType!
+      title: String!
+      description: String!
+      metadata: [EmbarkStoryMetadataEntry!]!
+    }
+
+    union EmbarkStoryMetadataEntry = EmbarkStoryMetadataEntryDiscount
+
+    type EmbarkStoryMetadataEntryDiscount {
+      discount: String!
+    }
+
+    enum EmbarkStoryType {
+      WEB_ONBOARDING
+      APP_ONBOARDING
+    }
+
     scalar JSONString
 `
 
@@ -450,6 +471,10 @@ export const schema = makeExecutableSchema({
         const storyData = parseStoryData(json, textKeyMapResponse.data)
 
         return storyData
+      },
+      embarkStories: async (_, { locale }: { locale: string }) => {
+        const metadata = resolveMetadataOnLocale(locale)
+        return metadata
       },
       embarkStoryNames: async () => {
         const dirs = await promises.readdir('angel-data')
