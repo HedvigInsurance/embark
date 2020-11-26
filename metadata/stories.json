@@ -33,28 +33,28 @@
     {
       "title": "Buy our home insurance",
       "description": "See price and sign up",
-      "name": "Web Onboarding - Swedish Needer",
+      "name": "Web Onboarding - English Needer",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
       "title": "Compare your home insurance",
       "description": "See price comparison and switch",
-      "name": "Web Onboarding - Swedish Switcher",
+      "name": "Web Onboarding - English Switcher",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
       "title": "Buy our home insurance",
       "description": "See price and sign up",
-      "name": "Web Onboarding - Swedish Needer",
+      "name": "Web Onboarding - English Needer",
       "type": "APP_ONBOARDING",
       "metadata": []
     },
     {
       "title": "Compare your home insurance",
       "description": "See price comparison and switch",
-      "name": "Web Onboarding - Swedish Switcher",
+      "name": "Web Onboarding - English Switcher",
       "type": "APP_ONBOARDING",
       "metadata": []
     }
@@ -117,7 +117,7 @@
     {
       "title": "Contents- and travel insurance",
       "description": "Get your price",
-      "name": "Web Onboarding NO - Norwegian Combo",
+      "name": "Web Onboarding NO - English Combo",
       "type": "WEB_ONBOARDING",
       "metadata": [
         {
@@ -129,21 +129,21 @@
     {
       "title": "Contents insurance",
       "description": "Get your price",
-      "name": "Web Onboarding NO - Norwegian Contents",
+      "name": "Web Onboarding NO - English Contents",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
       "title": "Travel insurance",
       "description": "Get your price",
-      "name": "Web Onboarding NO - Norwegian Travel",
+      "name": "Web Onboarding NO - English Travel",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
       "title": "Contents- and travel insurance",
       "description": "Get your price",
-      "name": "Web Onboarding NO - Norwegian Combo",
+      "name": "Web Onboarding NO - English Combo",
       "type": "APP_ONBOARDING",
       "metadata": [
         {
@@ -155,14 +155,14 @@
     {
       "title": "Contents insurance",
       "description": "Get your price",
-      "name": "Web Onboarding NO - Norwegian Contents",
+      "name": "Web Onboarding NO - English Contents",
       "type": "APP_ONBOARDING",
       "metadata": []
     },
     {
       "title": "Travel insurance",
       "description": "Get your price",
-      "name": "Web Onboarding NO - Norwegian Travel",
+      "name": "Web Onboarding NO - English Travel",
       "type": "APP_ONBOARDING",
       "metadata": []
     }
