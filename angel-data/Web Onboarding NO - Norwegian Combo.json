@@ -81,9 +81,7 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "-1676947869",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
@@ -159,9 +157,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "-1676947869",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre boliger i den størrelsen du har.\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/error",
@@ -280,5 +276,32 @@
   "tagColors": {
     "Error": "red"
   },
-  "zoom": 1
+  "zoom": 1,
+  "locale": "nb_NO",
+  "metadata": [
+    {
+      "title": "Innbo- og reiseforsikring",
+      "description": "Sjekk din pris",
+      "name": "Web Onboarding NO - Norwegian Combo",
+      "type": "WEB_ONBOARDING",
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetadataEntryDiscount",
+          "discount": "25% KOMBO-RABATT"
+        }
+      ]
+    },
+    {
+      "title": "Innbo- og reiseforsikring",
+      "description": "Sjekk din pris",
+      "name": "Web Onboarding NO - Norwegian Combo",
+      "type": "APP_ONBOARDING",
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetadataEntryDiscount",
+          "discount": "25% KOMBO-RABATT"
+        }
+      ]
+    }
+  ]
 }

@@ -3,12 +3,35 @@ import { promises } from 'fs'
 const path = require('path')
 
 export const resolveMetadataOnLocale = async (locale: string) => {
-  const file = await promises.readFile(
-    path.resolve(__dirname, '../../metadata/stories.json'),
+  var output = []
+
+  const dirs = await promises.readdir(
+    path.resolve(__dirname, '../../angel-data'),
     {
       encoding: 'utf-8',
     },
   )
-  const json = JSON.parse(file)
-  return json[locale] || []
+
+  await Promise.all(
+    dirs.map(async (name) => {
+      const file = await promises.readFile(
+        path.resolve(__dirname, `../../angel-data/${name}`),
+        {
+          encoding: 'utf-8',
+        },
+      )
+
+      const json = JSON.parse(file)
+
+      if (json['locale'] == locale) {
+        json['metadata'].map((metadata) => {
+          output.push({
+            name: json['name'],
+            ...metadata,
+          })
+        })
+      }
+    }),
+  )
+  return output
 }
