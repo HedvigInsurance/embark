@@ -252,7 +252,7 @@
     "Error": "red"
   },
   "zoom": 1,
-  "locale": "nb_EN",
+  "locales": ["en_NO"],
   "metadata": [
     {
       "title": "Contents insurance",

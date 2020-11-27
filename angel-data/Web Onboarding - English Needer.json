@@ -546,7 +546,7 @@
     "Review": "purple"
   },
   "zoom": 1,
-  "locale": "sv_EN",
+  "locales": ["en_SE"],
   "metadata": [
     {
       "title": "Buy our home insurance",

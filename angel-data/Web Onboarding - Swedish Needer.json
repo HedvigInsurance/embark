@@ -584,7 +584,7 @@
     "Review": "purple"
   },
   "zoom": 1,
-  "locale": "sv_SE",
+  "locales": ["sv_SE"],
   "metadata": [
     {
       "title": "Teckna ny hemförsäkring",

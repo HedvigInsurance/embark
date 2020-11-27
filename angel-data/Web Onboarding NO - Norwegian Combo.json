@@ -277,7 +277,7 @@
     "Error": "red"
   },
   "zoom": 1,
-  "locale": "nb_NO",
+  "locales": ["nb_NO"],
   "metadata": [
     {
       "title": "Innbo- og reiseforsikring",
