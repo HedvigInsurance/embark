@@ -24,7 +24,7 @@ export const resolveMetadataOnLocale = async (locale: string) => {
       const json = JSON.parse(file)
 
       if (json['locale'] == locale) {
-        json['metadata'].map((metadata) => {
+        json['metadata'].map((metadata: any) => {
           output.push({
             name: json['name'],
             ...metadata,
