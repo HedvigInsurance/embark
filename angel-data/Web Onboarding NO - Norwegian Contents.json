@@ -255,15 +255,15 @@
   "locales": ["nb_NO"],
   "metadata": [
     {
-      "title": "Innboforsikring",
-      "description": "Sjekk din pris",
+      "title": "NORWAY_CONTENTS_WEB_METADATA_TITLE",
+      "description": "NORWAY_CONTENTS_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Contents",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Innboforsikring",
-      "description": "Sjekk din pris",
+      "title": "NORWAY_CONTENTS_APP_METADATA_TITLE",
+      "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Contents",
       "type": "APP_ONBOARDING",
       "metadata": []

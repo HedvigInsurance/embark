@@ -580,15 +580,15 @@
   "locales": ["en_SE"],
   "metadata": [
     {
-      "title": "Compare your home insurance",
-      "description": "See price comparison and switch",
+      "title": "SWEDEN_SWITCHER_WEB_METADATA_TITLE",
+      "description": "SWEDEN_SWITCHER_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding - English Switcher",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Compare your home insurance",
-      "description": "See price comparison and switch",
+      "title": "SWEDEN_SWITCHER_APP_METADATA_TITLE",
+      "description": "SWEDEN_SWITCHER_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding - English Switcher",
       "type": "APP_ONBOARDING",
       "metadata": []

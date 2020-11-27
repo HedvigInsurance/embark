@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8285161f-d264-4a5a-89bc-704a3f61baba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - English Needer.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - English Needer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - English Switcher.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - English Switcher.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - Swedish Needer.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - Swedish Needer.json" afterDir="false" />
@@ -12,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Combo.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Combo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Contents.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Travel.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Travel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schema.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Resolvers/resolveStoriesMetadata.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resolvers/resolveStoriesMetadata.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606471445607</updated>
       <workItem from="1606471448992" duration="792000" />
-      <workItem from="1606472257599" duration="2102000" />
+      <workItem from="1606472257599" duration="11791000" />
     </task>
     <servers />
   </component>
@@ -79,6 +82,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="447" y="145" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1606472587860" />
+    <state x="653" y="272" width="614" height="512" key="find.popup" timestamp="1606476345590">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="653" y="272" width="614" height="512" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606476345590" />
     <state x="623" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1606472532048">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

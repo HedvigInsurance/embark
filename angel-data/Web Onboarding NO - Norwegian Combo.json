@@ -280,26 +280,26 @@
   "locales": ["nb_NO"],
   "metadata": [
     {
-      "title": "Innbo- og reiseforsikring",
-      "description": "Sjekk din pris",
+      "title": "NORWAY_COMBO_WEB_METADATA_TITLE",
+      "description": "NORWAY_COMBO_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Combo",
       "type": "WEB_ONBOARDING",
       "metadata": [
         {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
-          "discount": "25% KOMBO-RABATT"
+          "discount": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
         }
       ]
     },
     {
-      "title": "Innbo- og reiseforsikring",
-      "description": "Sjekk din pris",
+      "title": "NORWAY_COMBO_APP_METADATA_TITLE",
+      "description": "NORWAY_COMBO_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Combo",
       "type": "APP_ONBOARDING",
       "metadata": [
         {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
-          "discount": "25% KOMBO-RABATT"
+          "discount": "NORWAY_COMBO_APP_METADATA_DISCOUNT"
         }
       ]
     }

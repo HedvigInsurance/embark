@@ -2,7 +2,12 @@ import { promises } from 'fs'
 
 const path = require('path')
 
-export const resolveMetadataOnLocale = async (locale: string) => {
+type TextKeyObject = Record<string, string>
+
+export const resolveMetadataOnLocale = async (
+  locale: string,
+  textKeyMap: TextKeyObject,
+) => {
   const dirs = await promises.readdir(
     path.resolve(__dirname, '../../angel-data'),
     {
@@ -23,9 +28,28 @@ export const resolveMetadataOnLocale = async (locale: string) => {
 
       if (json['locales'] && json['locales'].includes(locale)) {
         return json['metadata'].map((metadata: any) => {
+          //const mappedInnerMetadata = metadata['metadata'] || metadata['metadata'] === []
+          //   ? []
+          //   : metadata['metadata'].map((innerMetadata: any) => {
+          //     innerMetadata['__typename'] ===
+          //     'EmbarkStoryMetadataEntryDiscount'
+          //       ? {
+          //         __typename: innerMetadata['__typename'],
+          //         discount: textKeyMap[innerMetadata['discount']],
+          //       }
+          //       : []
+          //   })
+
           return {
             name: json['name'],
-            ...metadata,
+            title: textKeyMap[metadata['title']]
+              ? textKeyMap[metadata['title']]
+              : metadata['title'],
+            description: textKeyMap[metadata['description']]
+              ? textKeyMap[metadata['description']]
+              : metadata['description'],
+            type: metadata['type'],
+            metadata: [],
           }
         })
       } else {

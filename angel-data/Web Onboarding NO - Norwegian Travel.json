@@ -189,15 +189,15 @@
   "locales": ["nb_NO"],
   "metadata": [
     {
-      "title": "Reiseforsikring",
-      "description": "Sjekk din pris",
+      "title": "NORWAY_TRAVEL_WEB_METADATA_TITLE",
+      "description": "NORWAY_TRAVEL_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Travel",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Reiseforsikring",
-      "description": "Sjekk din pris",
+      "title": "NORWAY_TRAVEL_APP_METADATA_TITLE",
+      "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Travel",
       "type": "APP_ONBOARDING",
       "metadata": []

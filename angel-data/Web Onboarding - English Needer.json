@@ -549,14 +549,14 @@
   "locales": ["en_SE"],
   "metadata": [
     {
-      "title": "Buy our home insurance",
-      "description": "See price and sign up",
+      "title": "SWEDEN_NEEDER_WEB_METADATA_TITLE",
+      "description": "SWEDEN_NEEDER_WEB_METADATA_DESCRIPTION",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Buy our home insurance",
-      "description": "See price and sign up",
+      "title": "SWEDEN_NEEDER_APP_METADATA_TITLE",
+      "description": "SWEDEN_NEEDER_APP_METADATA_DESCRIPTION",
       "type": "APP_ONBOARDING",
       "metadata": []
     }

@@ -255,15 +255,15 @@
   "locales": ["en_NO"],
   "metadata": [
     {
-      "title": "Contents insurance",
-      "description": "Get your price",
+      "title": "NORWAY_CONTENTS_WEB_METADATA_TITLE",
+      "description": "NORWAY_CONTENTS_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Contents",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Contents insurance",
-      "description": "Get your price",
+      "title": "NORWAY_CONTENTS_APP_METADATA_TITLE",
+      "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Contents",
       "type": "APP_ONBOARDING",
       "metadata": []

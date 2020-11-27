@@ -473,7 +473,15 @@ export const schema = makeExecutableSchema({
         return storyData
       },
       embarkStories: async (_, { locale }: { locale: string }) => {
-        const metadata = resolveMetadataOnLocale(locale)
+        const textKeyMapResponse = await axios.get(
+          `https://translations.hedvig.com/embark/${encodeURIComponent(
+            locale,
+          )}.json`,
+        )
+        const metadata = resolveMetadataOnLocale(
+          locale,
+          textKeyMapResponse.data,
+        )
         return metadata
       },
       embarkStoryNames: async () => {

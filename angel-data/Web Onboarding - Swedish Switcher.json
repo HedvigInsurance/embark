@@ -610,15 +610,15 @@
   "locales": ["sv_SE"],
   "metadata": [
     {
-      "title": "Jämför din hemförsäkring",
-      "description": "Se prisjämförelse och byt",
+      "title": "SWEDEN_SWITCHER_WEB_METADATA_TITLE",
+      "description": "SWEDEN_SWITCHER_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding - Swedish Switcher",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Jämför din hemförsäkring",
-      "description": "Se prisjämförelse och byt",
+      "title": "SWEDEN_SWITCHER_APP_METADATA_TITLE",
+      "description": "SWEDEN_SWITCHER_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding - Swedish Switcher",
       "type": "APP_ONBOARDING",
       "metadata": []

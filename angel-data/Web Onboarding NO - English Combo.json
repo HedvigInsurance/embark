@@ -280,26 +280,26 @@
   "locales": ["en_NO"],
   "metadata": [
     {
-      "title": "Contents- and travel insurance",
-      "description": "Get your price",
+      "title": "NORWAY_COMBO_WEB_METADATA_TITLE",
+      "description": "NORWAY_COMBO_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Combo",
       "type": "WEB_ONBOARDING",
       "metadata": [
         {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
-          "discount": "25% DISCOUNT"
+          "discount": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
         }
       ]
     },
     {
-      "title": "Contents- and travel insurance",
-      "description": "Get your price",
+      "title": "NORWAY_COMBO_APP_METADATA_TITLE",
+      "description": "NORWAY_COMBO_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Combo",
       "type": "APP_ONBOARDING",
       "metadata": [
         {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
-          "discount": "25% DISCOUNT"
+          "discount": "NORWAY_COMBO_APP_METADATA_DISCOUNT"
         }
       ]
     }

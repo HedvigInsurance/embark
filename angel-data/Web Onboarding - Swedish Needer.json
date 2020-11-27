@@ -587,15 +587,15 @@
   "locales": ["sv_SE"],
   "metadata": [
     {
-      "title": "Teckna ny hemförsäkring",
-      "description": "Se pris och skaffa Hedvig",
+      "title": "SWEDEN_NEEDER_WEB_METADATA_TITLE",
+      "description": "SWEDEN_NEEDER_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding - Swedish Needer",
       "type": "WEB_ONBOARDING",
       "metadata": []
     },
     {
-      "title": "Teckna ny hemförsäkring",
-      "description": "Se pris och skaffa Hedvig",
+      "title": "SWEDEN_NEEDER_APP_METADATA_TITLE",
+      "description": "SWEDEN_NEEDER_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding - Swedish Needer",
       "type": "APP_ONBOARDING",
       "metadata": []
