@@ -3,7 +3,7 @@ import { promises } from 'fs'
 const path = require('path')
 
 export const resolveMetadataOnLocale = async (locale: string) => {
-  var output = []
+  var output = JSON.parse('[]')
 
   const dirs = await promises.readdir(
     path.resolve(__dirname, '../../angel-data'),
