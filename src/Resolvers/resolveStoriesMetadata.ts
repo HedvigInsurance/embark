@@ -34,19 +34,18 @@ export const resolveMetadataOnLocale = async (
 
       const json = JSON.parse(file)
 
-      if (json['locales'] && json['locales'].includes(locale)) {
-        return json['metadata'].map((metadata: Metadata) => {
+      if (json.locales?.includes(locale)) {
+        return json.metadata.map((metadata: Metadata) => {
           const innerMappedMetadata = metadata.metadata.map(
             (innerMetadata: any) => {
               if (
-                innerMetadata['__typename'] ==
-                'EmbarkStoryMetadataEntryDiscount'
+                innerMetadata.__typename == 'EmbarkStoryMetadataEntryDiscount'
               ) {
                 return {
-                  discount: textKeyMap[innerMetadata['discount']]
-                    ? textKeyMap[innerMetadata['discount']]
-                    : innerMetadata['discount'],
-                  __typename: innerMetadata['__typename'],
+                  discount: textKeyMap[innerMetadata.discount]
+                    ? textKeyMap[innerMetadata.discount]
+                    : innerMetadata.discount,
+                  __typename: innerMetadata.__typename,
                 }
               } else {
                 return {
@@ -57,7 +56,7 @@ export const resolveMetadataOnLocale = async (
           )
 
           return {
-            name: json['name'],
+            name: json.name,
             title: textKeyMap[metadata.title]
               ? textKeyMap[metadata.title]
               : metadata.title,
