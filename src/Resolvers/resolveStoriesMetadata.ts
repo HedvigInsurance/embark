@@ -28,17 +28,25 @@ export const resolveMetadataOnLocale = async (
 
       if (json['locales'] && json['locales'].includes(locale)) {
         return json['metadata'].map((metadata: any) => {
-          //const mappedInnerMetadata = metadata['metadata'] || metadata['metadata'] === []
-          //   ? []
-          //   : metadata['metadata'].map((innerMetadata: any) => {
-          //     innerMetadata['__typename'] ===
-          //     'EmbarkStoryMetadataEntryDiscount'
-          //       ? {
-          //         __typename: innerMetadata['__typename'],
-          //         discount: textKeyMap[innerMetadata['discount']],
-          //       }
-          //       : []
-          //   })
+          const innerMappedMetadata = metadata['metadata'].map(
+            (innerMetadata: any) => {
+              if (
+                innerMetadata['__typename'] ==
+                'EmbarkStoryMetadataEntryDiscount'
+              ) {
+                return {
+                  discount: textKeyMap[innerMetadata['discount']]
+                    ? textKeyMap[innerMetadata['discount']]
+                    : innerMetadata['discount'],
+                  __typename: innerMetadata['__typename'],
+                }
+              } else {
+                return {
+                  ...innerMetadata,
+                }
+              }
+            },
+          )
 
           return {
             name: json['name'],
@@ -49,7 +57,7 @@ export const resolveMetadataOnLocale = async (
               ? textKeyMap[metadata['description']]
               : metadata['description'],
             type: metadata['type'],
-            metadata: [],
+            metadata: innerMappedMetadata,
           }
         })
       } else {

@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8285161f-d264-4a5a-89bc-704a3f61baba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - English Needer.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - English Needer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - English Switcher.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - English Switcher.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - Swedish Needer.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - Swedish Needer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding - Swedish Switcher.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding - Swedish Switcher.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - English Combo.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - English Combo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - English Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - English Contents.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - English Travel.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - English Travel.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Combo.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Combo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Contents.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Travel.json" beforeDir="false" afterPath="$PROJECT_DIR$/angel-data/Web Onboarding NO - Norwegian Travel.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schema.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Resolvers/resolveStoriesMetadata.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resolvers/resolveStoriesMetadata.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +55,8 @@
       <option name="presentableId" value="Default" />
       <updated>1606471445607</updated>
       <workItem from="1606471448992" duration="792000" />
-      <workItem from="1606472257599" duration="11791000" />
+      <workItem from="1606472257599" duration="15070000" />
+      <workItem from="1606720209409" duration="783000" />
     </task>
     <servers />
   </component>

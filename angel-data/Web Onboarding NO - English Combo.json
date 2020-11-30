@@ -299,7 +299,7 @@
       "metadata": [
         {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
-          "discount": "NORWAY_COMBO_APP_METADATA_DISCOUNT"
+          "discount": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
         }
       ]
     }
