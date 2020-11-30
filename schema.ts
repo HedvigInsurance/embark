@@ -478,7 +478,7 @@ export const schema = makeExecutableSchema({
             locale,
           )}.json`,
         )
-        const metadata = resolveMetadataOnLocale(
+        const metadata = await resolveMetadataOnLocale(
           locale,
           textKeyMapResponse.data,
         )

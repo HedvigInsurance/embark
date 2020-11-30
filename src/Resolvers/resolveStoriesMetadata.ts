@@ -4,10 +4,18 @@ const path = require('path')
 
 type TextKeyObject = Record<string, string>
 
+interface Metadata {
+  name: string
+  title: string
+  description: string
+  type: string
+  metadata: []
+}
+
 export const resolveMetadataOnLocale = async (
   locale: string,
   textKeyMap: TextKeyObject,
-) => {
+): Promise<Metadata> => {
   const dirs = await promises.readdir(
     path.resolve(__dirname, '../../angel-data'),
     {
@@ -27,8 +35,8 @@ export const resolveMetadataOnLocale = async (
       const json = JSON.parse(file)
 
       if (json['locales'] && json['locales'].includes(locale)) {
-        return json['metadata'].map((metadata: any) => {
-          const innerMappedMetadata = metadata['metadata'].map(
+        return json['metadata'].map((metadata: Metadata) => {
+          const innerMappedMetadata = metadata.metadata.map(
             (innerMetadata: any) => {
               if (
                 innerMetadata['__typename'] ==
@@ -50,13 +58,13 @@ export const resolveMetadataOnLocale = async (
 
           return {
             name: json['name'],
-            title: textKeyMap[metadata['title']]
-              ? textKeyMap[metadata['title']]
-              : metadata['title'],
-            description: textKeyMap[metadata['description']]
-              ? textKeyMap[metadata['description']]
-              : metadata['description'],
-            type: metadata['type'],
+            title: textKeyMap[metadata.title]
+              ? textKeyMap[metadata.title]
+              : metadata.title,
+            description: textKeyMap[metadata.description]
+              ? textKeyMap[metadata.description]
+              : metadata.description,
+            type: metadata.type,
             metadata: innerMappedMetadata,
           }
         })
