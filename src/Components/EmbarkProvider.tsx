@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {
-  ComputedValues,
+  ComputedStoreValues,
   KeyValueStore,
   Store,
   StoreContext,
@@ -19,7 +19,7 @@ interface EmbarkProviderProps {
   externalRedirects: TExternalRedirectContext
   onStoreChange?: (store: Store) => void
   initialStore?: Store
-  computedValues?: ComputedValues
+  computedStoreValues?: ComputedStoreValues
 }
 
 const StoreListener: React.FunctionComponent<EmbarkProviderProps> = (props) => {
@@ -41,7 +41,7 @@ export const EmbarkProvider: React.FunctionComponent<EmbarkProviderProps> = (
         <KeywordsContext.Provider value={props.data.keywords}>
           <KeyValueStore
             initial={props.initialStore}
-            computedValues={props.computedValues}
+            computedStoreValues={props.computedStoreValues}
           >
             <StoreListener {...props}>{props.children}</StoreListener>
           </KeyValueStore>

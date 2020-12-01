@@ -3,11 +3,11 @@ import { evaluateTemplateExpression } from './templateExpression'
 import { useMemo } from 'react'
 
 export type Store = Record<string, string>
-export type ComputedValues = Record<string, string>
+export type ComputedStoreValues = Record<string, string>
 
 type KeyValueStoreProps = {
   initial?: Store
-  computedValues?: ComputedValues
+  computedStoreValues?: ComputedStoreValues
 }
 
 export const StoreContext = React.createContext<{
@@ -46,7 +46,7 @@ const reducer = (
 
 export const createStoreWithComputedValues = (
   store: Store,
-  computedProperties: ComputedValues,
+  computedProperties: ComputedStoreValues,
 ) => {
   const fullStore = { ...store }
   Object.entries(computedProperties).forEach(([prop, expression]) => {
@@ -60,8 +60,8 @@ export const createStoreWithComputedValues = (
 export const KeyValueStore: React.FC<KeyValueStoreProps> = (props) => {
   const [store, dispatch] = React.useReducer(reducer, props.initial || {})
   const fullStore = useMemo(
-    () => createStoreWithComputedValues(store, props.computedValues || {}),
-    [store, props.computedValues],
+    () => createStoreWithComputedValues(store, props.computedStoreValues || {}),
+    [store, props.computedStoreValues],
   )
 
   return (

@@ -15,7 +15,7 @@ const typeDefs = `
         ${Object.keys(storyKeywords).map((key) => `${key}: String`)}
     }
 
-    type EmbarkComputedValue {
+    type EmbarkComputedStoreValue {
       key: String!
       value: String!
     }
@@ -421,7 +421,7 @@ const typeDefs = `
         startPassage: String!
         name: String!
         keywords: EmbarkKeywords!
-        computedValues: [EmbarkComputedValue!]
+        computedStoreValues: [EmbarkComputedStoreValue!]
         partnerConfigs: [EmbarkPartnerConfig!]!
         passages: [EmbarkPassage!]!
     }

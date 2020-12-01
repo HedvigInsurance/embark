@@ -850,7 +850,7 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
     startPassage: storyData.startPassage,
     keywords: storyData.keywords || {},
     partnerConfigs: storyData.partnerConfigs || [],
-    computedValues: storyData.computedValues as
+    computedStoreValues: storyData.computedStoreValues as
       | ReadonlyArray<{ key: string; value: string }>
       | undefined,
     passages: storyData.passages.map((passage: any) => {
