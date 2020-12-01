@@ -177,6 +177,7 @@ const RootContainer = () => (
     onStoreChange={(store) => {
       console.log('store changed', store)
     }}
+    computedValues={data.computedValues}
   >
     <Root />
   </EmbarkProvider>
