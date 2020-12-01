@@ -177,7 +177,12 @@ const RootContainer = () => (
     onStoreChange={(store) => {
       console.log('store changed', store)
     }}
-    computedValues={data.computedValues}
+    computedValues={(data.computedValues as
+      | ReadonlyArray<{ key: string; value: string }>
+      | undefined)?.reduce<Record<string, string>>(
+      (acc, { key, value }) => ({ ...acc, [key]: value }),
+      {},
+    )}
   >
     <Root />
   </EmbarkProvider>

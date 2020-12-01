@@ -850,12 +850,9 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
     startPassage: storyData.startPassage,
     keywords: storyData.keywords || {},
     partnerConfigs: storyData.partnerConfigs || [],
-    computedValues: (storyData.computedValues as
+    computedValues: storyData.computedValues as
       | ReadonlyArray<{ key: string; value: string }>
-      | undefined)?.reduce<Record<string, string>>(
-      (acc, { key, value }) => ({ ...acc, [key]: value }),
-      {},
-    ),
+      | undefined,
     passages: storyData.passages.map((passage: any) => {
       const containerElement = document.createElement('div')
       containerElement.innerHTML = passage.text
