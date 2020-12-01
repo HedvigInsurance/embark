@@ -30,7 +30,7 @@ interface PassageProps {
 
 const ChatContainer = styled.div<{ hasHeader?: boolean }>`
   display: flex;
-  height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 80px)' : '100%')};
+  height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 4.5rem)' : '100%')};
   overflow: scroll;
   flex-direction: column;
   justify-content: space-between;
@@ -41,8 +41,8 @@ const ChatContainer = styled.div<{ hasHeader?: boolean }>`
     box-sizing: content-box;
   }
 
-  @media (max-width: 375px) {
-    height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 64px)' : '100%')};
+  @media (min-width: 480px) {
+    height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 5rem)' : '100%')};
   }
 `
 
