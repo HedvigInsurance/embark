@@ -1,9 +1,13 @@
-import React from 'react'
+import * as React from 'react'
+import { evaluateTemplateExpression } from './templateExpression'
+import { useMemo } from 'react'
 
-export type Store = { [key: string]: string }
+export type Store = Record<string, string>
+export type ComputedStoreValues = Record<string, string>
 
 type KeyValueStoreProps = {
   initial?: Store
+  computedStoreValues?: ComputedStoreValues
 }
 
 export const StoreContext = React.createContext<{
@@ -40,13 +44,30 @@ const reducer = (
   }
 }
 
+export const createStoreWithComputedValues = (
+  store: Store,
+  computedProperties: ComputedStoreValues,
+) => {
+  const fullStore = { ...store }
+  Object.entries(computedProperties).forEach(([prop, expression]) => {
+    Object.defineProperty(fullStore, prop, {
+      get: () => evaluateTemplateExpression(expression, fullStore),
+    })
+  })
+  return fullStore
+}
+
 export const KeyValueStore: React.FC<KeyValueStoreProps> = (props) => {
   const [store, dispatch] = React.useReducer(reducer, props.initial || {})
+  const fullStore = useMemo(
+    () => createStoreWithComputedValues(store, props.computedStoreValues || {}),
+    [store, props.computedStoreValues],
+  )
 
   return (
     <StoreContext.Provider
       value={{
-        store,
+        store: fullStore,
         setValue: (key, value) => {
           dispatch({ type: 'setValue', key, value })
         },
