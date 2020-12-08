@@ -300,6 +300,10 @@
         {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
           "discount": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
+        },
+        {
+          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
+          "path": "/no-en/new-member/combo"
         }
       ]
     }

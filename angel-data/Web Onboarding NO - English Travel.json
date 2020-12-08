@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-09-25T12:42:46.028Z",
+  "lastUpdate": "2020-11-24T15:39:54.118Z",
   "name": "Web Onboarding NO - English Travel",
   "passages": [
     {
@@ -18,7 +18,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Continue->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  OK! Enter you email address below to proceed to your price quote\n</Message>\n\n<TextAction placeholder=\"email@address.com\"\n            title=\"Email\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Continue->youthEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1100,
       "url": "/email",
       "width": 100
@@ -93,7 +93,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Message>\n  By proceeding I confirm that I understand that my personal data is handled according to GDPR https://www.hedvig.com/no-en/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1996\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
+      "text": "<Message>\n  What's your birth date?\n</Message>\n\n<Message>\n  By proceeding I confirm that I understand that my personal data is handled according to GDPR https://www.hedvig.com/no-en/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1996\"\n            title=\"Birth date\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Continue->numberCoInsured]]\"\n            unit=\"Birth date (dd-mm-yyyy)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
@@ -145,7 +145,7 @@
       "selected": false,
       "story": "830193891",
       "tags": [],
-      "text": "<Message>\n  Nice. How many others would you like to be covered by the insurance?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Me + {coInsured} other\n  </when>\n  <when expression=\"coInsured > 1\">\n    Me + {coInsured} others\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Continue->currentlyInsured]]\"\n              unit=\"other people\"\n>\n  <Tooltip>\n    <Title>\n      Number of co-insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. Co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Nice. How many others would you like to be covered by the insurance?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Me + {coInsured} other\n  </when>\n  <when expression=\"coInsured > 1\">\n    Me + {coInsured} others\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              title=\"Co-insured\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Continue->currentlyInsured]]\"\n              unit=\"other people\"\n>\n  <Tooltip>\n    <Title>\n      Number of co-insured\n    </Title>\n    <Description>\n      E.g. partner, children or roomies that should be covered. Co-insured must live together with you to be covered by your insurance\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 950,
       "url": "/numberCoInsured",
       "width": 100
@@ -200,7 +200,12 @@
       "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Travel",
       "type": "APP_ONBOARDING",
-      "metadata": []
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
+          "path": "/no-en/new-member/travel"
+        }
+      ]
     }
   ]
 }

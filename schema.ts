@@ -17,6 +17,11 @@ const typeDefs = `
         ${Object.keys(storyKeywords).map((key) => `${key}: String`)}
     }
 
+    type EmbarkComputedStoreValue {
+      key: String!
+      value: String!
+    }
+
     enum EmbarkPartnerConfigAlignment {
         center
         left
@@ -418,6 +423,7 @@ const typeDefs = `
         startPassage: String!
         name: String!
         keywords: EmbarkKeywords!
+        computedStoreValues: [EmbarkComputedStoreValue!]
         partnerConfigs: [EmbarkPartnerConfig!]!
         passages: [EmbarkPassage!]!
     }
@@ -430,10 +436,14 @@ const typeDefs = `
       metadata: [EmbarkStoryMetadataEntry!]!
     }
 
-    union EmbarkStoryMetadataEntry = EmbarkStoryMetadataEntryDiscount
+    union EmbarkStoryMetadataEntry = EmbarkStoryMetadataEntryDiscount | EmbarkStoryMetaDataEntryWebUrlPath
 
     type EmbarkStoryMetadataEntryDiscount {
       discount: String!
+    }
+
+    type EmbarkStoryMetaDataEntryWebUrlPath {
+        path: String!
     }
 
     enum EmbarkStoryType {

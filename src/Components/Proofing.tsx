@@ -59,7 +59,9 @@ const Action = (props: ActionProps) => {
       <OptionContainer>
         {props.action.data.options.map((option: any) => (
           <Option key={option.link.name}>
-            {option.link.label} -> {option.link.name}
+            {option.link.label}
+            {' -> '}
+            {option.link.name}
             {option.tooltip && (
               <>
                 <p>
