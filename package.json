@@ -14,6 +14,9 @@
     "watch": "concurrently -n \"start, watch-client\" \"npm run start\" \"npm run watch-client\"",
     "prepublishOnly": "rollup -c"
   },
+  "engines": {
+    "node": "^12.19.0"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
