@@ -436,10 +436,14 @@ const typeDefs = `
       metadata: [EmbarkStoryMetadataEntry!]!
     }
 
-    union EmbarkStoryMetadataEntry = EmbarkStoryMetadataEntryDiscount
+    union EmbarkStoryMetadataEntry = EmbarkStoryMetadataEntryDiscount | EmbarkStoryMetaDataEntryWebUrlPath
 
     type EmbarkStoryMetadataEntryDiscount {
       discount: String!
+    }
+
+    type EmbarkStoryMetaDataEntryWebUrlPath {
+        path: String!
     }
 
     enum EmbarkStoryType {

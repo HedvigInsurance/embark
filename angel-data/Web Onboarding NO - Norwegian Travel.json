@@ -200,7 +200,12 @@
       "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - Norwegian Travel",
       "type": "APP_ONBOARDING",
-      "metadata": []
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
+          "path": "/no/new-member/travel"
+        }
+      ]
     }
   ]
 }
