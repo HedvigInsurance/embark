@@ -80,9 +80,7 @@
       "name": "errorInfoVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately we can't insure houses that large right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences in your size!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "width": 100
@@ -94,9 +92,7 @@
       "name": "CreateQuoteError",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Something appears to have gone wrong and we can’t give you a price quote right now. Try again, and if it doesn’t work you can write us in the chat on the website!\n</Message>",
       "top": 1925,
       "url": "/quote-error",
@@ -174,9 +170,7 @@
       "name": "manualNameVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  Sorry, right now we can't find your address. But no worries, we'll just ask some extra questions!\n</Message>\n\n<Message>\n  What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->manualAdressVilla]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigson\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/manual-name",
@@ -189,9 +183,7 @@
       "name": "manualInfoVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  We can't fetch any information about your house. But no worries, just fill in the information here\n</Message>\n\n<GroupedResponse>\n  <Title>\n    House information\n  </Title>\n  <Item>\n    Living space: {livingSpace} sqm\n  </Item>\n  <Item>\n    Ancillary area: {ancillaryArea} sqm\n  </Item>\n  <Item>\n    Year of construction: {yearOfConstruction}\n  </Item>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[Fortsätt->bathsVilla]]\">\n  <NumberAction title=\"Living space\"\n                placeholder=\"120\"\n                key=\"livingSpace\"\n                minvalue=\"1\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Living space\n      </Title>\n      <Description>\n        Living space is the space meant to live in. Storage space, connected garage, attic and similar are not included\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Ancillary area\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"kvadratmeter\"\n  >\n    <Tooltip>\n      <Title>\n        Ancillary area\n      </Title>\n      <Description>\n        Examples of spaces that count as ancillary areas are storage rooms, attics and garage connected to the house\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"Year of construction\"\n                placeholder=\"1986\"\n                minvalue=\"1\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        Year of construction\n      </Title>\n      <Description>\n        The year the house was built\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
       "top": 1100,
       "url": "/manual-info",
@@ -217,9 +209,7 @@
       "name": "manualNameApartment",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  Sorry, right now we can't find your address. But no worries, we'll just ask some extra questions!\n</Message>\n\n<Message>\n  What's your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->manualStreetAdressApartment]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigson\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 1100,
       "url": "/manual-name",
@@ -232,9 +222,7 @@
       "name": "newStreetAddressApartment",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  <When expression=\"isMover == 'true'\">\n    What address are you moving to?\n  </When>\n  <When expression=\"isMover == 'false'\">\n    No worries! What address do you want an offer for?\n  </When>\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->emailAddressApartment]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 1250,
       "url": "/new-address",
@@ -260,9 +248,7 @@
       "name": "errorBathsVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately we can only insure houses with maximum 2 bathrooms right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure houses with more than 2 bathrooms!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
@@ -275,9 +261,7 @@
       "name": "errorAgeVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately we can't insure houses built before 1926 right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences like yours!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "width": 100
@@ -289,9 +273,7 @@
       "name": "errorhouseholdSizeVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Hm. Unfortunately we can only insure houses with maximum 6 people right now\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1550,
       "url": "/error",
@@ -304,9 +286,7 @@
       "name": "newStreetAdressVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  <When expression=\"isMover == 'true'\">\n    What address are you moving to?\n  </When>\n  <When expression=\"isMover == 'false'\">\n    No worries! What address do you want an offer for?\n  </When>\n</Message>\n\n<TextActionSet next=\"[[Continue->correctInfoVilla]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
       "top": 950,
       "url": "/new-address",
@@ -358,9 +338,7 @@
       "name": "errorHouseholdSizeApartment",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
@@ -412,9 +390,7 @@
       "name": "errorLivingSpaceApartment",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "url": "/error",
@@ -440,9 +416,7 @@
       "name": "errorFloorsVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Hm. Unfortunately we can only insure houses with maximum 4 floors at the moment\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure recidences with more than 4 floors!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1400,
       "url": "/error",
@@ -481,9 +455,7 @@
       "name": "ApartmentUwlimitsHit",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Thank you! Unfortunately, one of our insurance experts will need to take a look at your application, so we are unable to give you an offer via our website. To receive an offer please email us at prisforslag@hedvig.com\n</Message>",
       "top": 1800,
       "url": "/uw-limit",
@@ -496,9 +468,7 @@
       "name": "manualStreetAdressApartment",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  What address do you want an offer for?\n</Message>\n\n<Response>\n  {streetAddress}, {postalNumber}\n</Response>\n\n<TextActionSet next=\"[[Continue->emailAddressApartment]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"137 50\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 1100,
       "url": "/manual-address",
@@ -550,9 +520,7 @@
       "name": "manualAdressVilla",
       "selected": false,
       "story": "-1327401859",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  What address do you want an offer for?\n</Message>\n\n<TextActionSet next=\"[[Continue->correctInfoVilla]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"streetAddress\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              placeholder=\"115 37\"\n              mask=\"PostalCode\"\n              key=\"postalNumber\"\n  >\n  </TextAction>\n  <HouseInformationApi match=\"[[correctInfoVilla]]\"\n                       nomatch=\"[[manualInfoVilla]]\"\n                       error=\"[[manualInfoVilla]]\"\n  >\n  </HouseInformationApi>\n</TextActionSet>",
       "top": 800,
       "url": "/manual-address",
@@ -608,5 +576,22 @@
     "Manual": "yellow",
     "Review": "purple"
   },
-  "zoom": 1
+  "zoom": 1,
+  "locales": ["en_SE"],
+  "metadata": [
+    {
+      "title": "SWEDEN_SWITCHER_WEB_METADATA_TITLE",
+      "description": "SWEDEN_SWITCHER_WEB_METADATA_DESCRIPTION",
+      "name": "Web Onboarding - English Switcher",
+      "type": "WEB_ONBOARDING",
+      "metadata": []
+    },
+    {
+      "title": "SWEDEN_SWITCHER_APP_METADATA_TITLE",
+      "description": "SWEDEN_SWITCHER_APP_METADATA_DESCRIPTION",
+      "name": "Web Onboarding - English Switcher",
+      "type": "APP_ONBOARDING",
+      "metadata": []
+    }
+  ]
 }
