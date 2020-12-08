@@ -1,7 +1,7 @@
 {
   "id": "892533f3-934e-40ac-bccf-238e15f634e2",
   "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
-  "lastUpdate": "2020-11-11T15:32:51.140Z",
+  "lastUpdate": "2020-12-01T16:00:13.898Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -12,7 +12,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Redirect to=\"[[errorCoInsured]]\"\n          when=\"coInsured > 6\"\n>\n</Redirect>\n\n<Message>\n  What’s your name?\n</Message>\n\n<TextActionSet next=\"[[Continue->birthDate]]\">\n  <TextAction title=\"First name\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Surname\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Redirect to=\"[[errorCoInsured]]\"\n          when=\"coInsured > 6\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_NAME_MESSAGE_1}\n</Message>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->birthDate]]\">\n  <TextAction title=\"{DK_CONTENT_NAME_TEXT_ACTION_TITLE_FIRST_NAME}\"\n              placeholder=\"{DK_CONTENT_NAME_TEXT_ACTION_PLACEHOLDER_FIRST_NAME}\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_NAME_TEXT_ACTION_TITLE_SURNAME}\"\n              placeholder=\"{DK_CONTENT_NAME_TEXT_ACTION_PLACEHOLDER_SURNAME}\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 750,
       "url": "/name",
       "width": 100
@@ -25,7 +25,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  Okay. How many square meters is it?\n</Message>\n\n<Response>\n  {livingSpace} square meters\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Continue->address]]\"\n              unit=\"square meters\"\n>\n  <Tooltip>\n    <Title>\n      Size\n    </Title>\n    <Description>\n      The size of your home and the area we’ll insure. The exact square meters can often be found in your lease or in your contract of sale.\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 300,
       "url": "/size",
       "width": 100
@@ -63,8 +63,10 @@
       "name": "errorSize",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": ["Error"],
-      "text": "<Message>\n  We’re sorry, currently our insurance only cover homes up to 250 square meters\n</Message>\n\n<Message>\n  Please subscribe to our newsletter and be the first to know when we are able to insure larger homes\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Sign up for our newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
       "width": 100
@@ -77,7 +79,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  Lastly, your email address?\n</Message>\n\n<TextAction placeholder=\"email@address.com\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Continue->studentEligibilityCheck]]\"\n>\n  <Tooltip>\n    <Title>\n      Email\n    </Title>\n    <Description>\n      Your email address will only be used to provide you with a price offer.\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_EMAIL_MESSAGE_1}\n</Message>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_EMAIL_PLACEHOLDER}\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->studentEligibilityCheck]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_EMAIL_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_EMAIL_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 1050,
       "url": "/email",
       "width": 100
@@ -90,7 +92,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  Great. How many people will the insurance cover?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    We're 2\n  </when>\n  <when expression=\"coInsured > 1\">\n    We're {coInsured+1}\n  </when>\n  <when expression=\"coInsured == 0\">\n    Just me\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"coInsured\"\n              minvalue=\"1\"\n              next=\"[[Continue->name]]\"\n              unit=\"people (incl.myself)\"\n>\n  <Tooltip>\n    <Title>\n      Insured People\n    </Title>\n    <Description>\n      You and the people you live with. It could be your partner, kids, roommates. All whom can be covered by the insurance.\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_COINSURED_MESSAGE_1}\n</Message>\n\n<Response>\n  <when expression=\"householdSize == 1\">\n    {DK_CONTENT_CONVERSATION_COINSURED_RESPONSE_1}\n  </when>\n  <when expression=\"householdSize > 1\">\n    {DK_CONTENT_CONVERSATION_COINSURED_RESPONSE_2}\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->name]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_COINSURED_UNIT}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_COINSURED_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_COINSURED_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 600,
       "url": "/co-insured",
       "width": 100
@@ -102,8 +104,10 @@
       "name": "offerError",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": ["Error"],
-      "text": "<Message>\n  Sorry, something went wrong. We’re unable to give you a price quote right now. Try again, if it doesn’t work please write us in the chat on the website. Thank you!\n</Message>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/offer-error",
       "width": 100
@@ -128,8 +132,10 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": ["Error"],
-      "text": "<Message>\n  Unfortunately, we’re unable to give you an offer via our website. Please email us att prisforslag@hedvig.com and one of our insurance experts will look over your application. Thank you!\n</Message>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
       "width": 100
@@ -142,7 +148,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  Are you perhaps a student? If so, our student offer is something for you.\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[Yes I’m a student->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[No, not a student->Offer]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_STUDENT_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[{DK_CONTENT_CONVERSATION_STUDENT_OPTION_STUDENT}->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[{DK_CONTENT_CONVERSATION_STUDENT_OPTION_NON_STUDENT}->Offer]]\n  </Option>\n</SelectAction>",
       "top": 1200,
       "url": "/student",
       "width": 100
@@ -155,7 +161,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  And your date of birth?\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"yyyy-mm-dd\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[Continue->email]]\"\n>\n  <Tooltip>\n    <Title>\n      Date of birth\n    </Title>\n    <Description>\n      To give you an exact price we need to know your age. We’ll not use your birthdate for anything else.\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 900,
       "url": "/birth-date",
       "width": 100
@@ -168,7 +174,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"size > 250\"\n>\n</Redirect>\n\n<Message>\n  What’s your address?\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[Continue->coInsured]]\">\n  <TextAction title=\"Address\"\n              placeholder=\"Examplestreet 21\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"Postal code\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"0123\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"size > 250\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ADDRESS_MESSAGE_1}\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->coInsured]]\">\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ADDRESS}\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ADDRESS_PLACEHOLDER}\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ZIP_CODE}\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ZIP_CODE_PLACEHOLDER}\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 450,
       "url": "/address",
       "width": 100
@@ -180,8 +186,10 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": ["Error"],
-      "text": "<Message>\n  We’re sorry, currently our insurance only cover homes with a maximum of 6 people\n</Message>\n\n<Message>\n  Please subscribe to our newsletter and be the first to know when we are able to insure homes your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Sign up for our newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
       "width": 100
@@ -207,7 +215,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  Your price quote is ready!\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateDanishQuote(\n    $id: ID!,\n\t$firstName: String!,\n\t$lastName: String!,\n\t$birthDate: LocalDate!,\n\t$email: String!,\n\t$coInsured: Int!,\n\t$livingSpace: Int!,\n\t$street: String!,\n\t$zipCode: String!\n\t$type: DanishHomeContentsType!,\n\t$isStudent: Boolean!\n  ) {\n    createQuote(input: {\n      id: $id,\n\t  firstName: $firstName,\n\t  lastName: $lastName,\n\t  birthDate: $birthDate,\n\t  email: $email,\n\t  danishHomeContents: {\n\t    coInsured: $coInsured,\n\t\tlivingSpace: $livingSpace,\n\t\tstreet: $street,\n\t\tzipCode: $zipCode,\n\t\ttype: $type,\n\t\tisStudent: $isStudent\n\t  }\n    }) {\n      ... on CompleteQuote {\n        id\n\t\tinsuranceCost {\n\t\t  monthlyGross {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyDiscount {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyNet {\n\t\t    amount\n\t\t    currency\n\t\t  }\n        }\n\t  }\n\t}\n  }\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"street\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"zipCode\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"type\"\n            from=\"type\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isStudent\"\n            from=\"isStudent\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Error next=\"[[offerError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_MESSAGE_1}\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateDanishQuote(\n    $id: ID!,\n\t$firstName: String!,\n\t$lastName: String!,\n\t$birthDate: LocalDate!,\n\t$email: String!,\n\t$coInsured: Int!,\n\t$livingSpace: Int!,\n\t$street: String!,\n\t$zipCode: String!\n\t$type: DanishHomeContentsType!,\n\t$isStudent: Boolean!\n  ) {\n    createQuote(input: {\n      id: $id,\n\t  firstName: $firstName,\n\t  lastName: $lastName,\n\t  birthDate: $birthDate,\n\t  email: $email,\n\t  danishHomeContents: {\n\t    coInsured: $coInsured,\n\t\tlivingSpace: $livingSpace,\n\t\tstreet: $street,\n\t\tzipCode: $zipCode,\n\t\ttype: $type,\n\t\tisStudent: $isStudent\n\t  }\n    }) {\n      ... on CompleteQuote {\n        id\n\t\tinsuranceCost {\n\t\t  monthlyGross {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyDiscount {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyNet {\n\t\t    amount\n\t\t    currency\n\t\t  }\n        }\n\t  }\n\t}\n  }\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"street\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"zipCode\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"type\"\n            from=\"type\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isStudent\"\n            from=\"isStudent\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Error next=\"[[offerError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
       "top": 1050,
       "width": 200
     }
