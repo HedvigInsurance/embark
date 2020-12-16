@@ -303,7 +303,7 @@
         },
         {
           "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
-          "path": "/no-en/new-member/combo"
+          "path": "no-en/new-member/combo"
         }
       ]
     }

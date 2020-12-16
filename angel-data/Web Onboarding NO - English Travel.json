@@ -203,7 +203,7 @@
       "metadata": [
         {
           "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
-          "path": "/no-en/new-member/travel"
+          "path": "no-en/new-member/travel"
         }
       ]
     }

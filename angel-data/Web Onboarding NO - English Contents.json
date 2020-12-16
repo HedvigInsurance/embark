@@ -269,7 +269,7 @@
       "metadata": [
         {
           "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
-          "path": "/no-en/new-member/contents"
+          "path": "no-en/new-member/contents"
         }
       ]
     }
