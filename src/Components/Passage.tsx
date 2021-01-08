@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { Action } from './Actions/Action'
-import { Message } from './Message'
+import { Message } from './Message/Message'
 import { Response } from './Response/Response'
 import { MessageAnimation } from './Common'
 
