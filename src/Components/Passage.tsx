@@ -7,7 +7,7 @@ import { Message } from './Message'
 import { Response } from './Response/Response'
 import { MessageAnimation } from './Common'
 
-import { BackButton } from './BackButton'
+import { BackButton } from './BackButton/BackButton'
 import { Questionmark } from './Icons/Questionmark'
 import { colorsV2, fonts } from '@hedviginsurance/brand'
 import hexToRgba from 'hex-to-rgba'
