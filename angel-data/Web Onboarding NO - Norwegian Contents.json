@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-01-05T14:05:16.777Z",
+  "lastUpdate": "2021-01-08T12:26:32.284Z",
   "locales": [
     "nb_NO"
   ],
@@ -199,7 +199,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Hvor mange kvadratmeter er den?\n</Message>\n\n<Message>\n  Dersom du bor i kollektiv trenger du bare å oppgi antall kvadratmeter du selv bruker. Det vil si at du ikke trenger å regne inn soverommet til kameraten din.\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Fortsett->numberOfPeople]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Boareal\n    </Title>\n    <Description>\n      Boligens totale boareal. Hvis du er usikker kan du finne informasjonen i leie- eller kjøpekontrakten\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hvor mange kvadratmeter er den?\n</Message>\n\n<Message>\n  Dersom du bor i kollektiv trenger du kun å angi antall kvadratmeter du selv bruker. Det vil si at du slipper å regne med soverommet til de du bor med.\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Fortsett->numberOfPeople]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Boareal\n    </Title>\n    <Description>\n      Boligens totale boareal. Hvis du er usikker kan du finne informasjonen i leie- eller kjøpekontrakten\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
       "url": "/size",
       "width": 100
