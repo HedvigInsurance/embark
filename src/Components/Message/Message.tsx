@@ -5,16 +5,16 @@ import {
   replacePlaceholders,
   MessageBody,
   MessageAnimation,
-} from './Common'
-import { StoreContext } from './KeyValueStore'
-import { Expression } from '../Utils/ExpressionsUtil'
+} from '../Common'
+import { StoreContext } from '../KeyValueStore'
+import { Expression } from '../../Utils/ExpressionsUtil'
 
 interface Message {
   expressions: Expression[]
   text: string
 }
 
-type MessageProps = {
+export type MessageProps = {
   message: Message
   isResponse: boolean
 }

@@ -2,9 +2,9 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { fonts, colorsV3 } from '@hedviginsurance/brand'
 import hexToRgba from 'hex-to-rgba'
-import { KeywordsContext } from './KeywordsContext'
+import { KeywordsContext } from '../KeywordsContext'
 
-import { ArrowUp } from './Icons/ArrowUp'
+import { ArrowUp } from '../Icons/ArrowUp'
 
 const Button = styled.button`
   -webkit-appearance: none;
@@ -45,7 +45,7 @@ const Spacer = styled.span`
   display: inline-block;
 `
 
-type BackButtonProps = {
+export type BackButtonProps = {
   onClick: () => void
 }
 

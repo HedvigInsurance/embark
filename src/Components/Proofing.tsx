@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { fonts, colors } from '@hedviginsurance/brand'
 
-import { Message } from './Message'
+import { Message } from './Message/Message'
 
 type ProofingProps = {
   name: String
