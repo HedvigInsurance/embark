@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { TextAction, TextActionProps } from './TextAction'
 
 export default {
-  title: 'Components/TextAction',
+  title: 'Components/Actions/TextAction',
   component: TextAction,
   argTypes: { onContinue: { action: 'on continue' } },
   parameters: { layout: 'centered' },

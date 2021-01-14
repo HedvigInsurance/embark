@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { NumberAction, NumberActionProps } from './NumberAction'
 
 export default {
-  title: 'Components/NumberAction',
+  title: 'Components/Actions/NumberAction',
   component: NumberAction,
   argTypes: { onContinue: { action: 'on continue' } },
   parameters: { layout: 'centered' },
