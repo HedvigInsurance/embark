@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { BackButton, BackButtonProps } from './BackButton'
 
 export default {
-  title: 'BackButton',
+  title: 'Components/BackButton',
   component: BackButton,
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta

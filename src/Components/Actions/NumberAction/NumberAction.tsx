@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { StoreContext } from '../KeyValueStore'
+import { StoreContext } from '../../KeyValueStore'
 import styled from '@emotion/styled'
 import { colors, fonts } from '@hedviginsurance/brand'
-import { Tooltip } from '../Tooltip'
-import { Card, Input, Container, Spacer, SubmitOnEnter } from './Common'
-import { ContinueButton } from '../ContinueButton'
-import { wrapWithMask, MaskType, unmaskValue } from './masking'
+import { Tooltip } from '../../Tooltip'
+import { Card, Input, Container, Spacer, SubmitOnEnter } from '../Common'
+import { ContinueButton } from '../../ContinueButton'
+import { wrapWithMask, MaskType, unmaskValue } from '../masking'
 import animateScrollTo from 'animated-scroll-to'
-import { useAutoFocus } from '../../Utils/useAutoFocus'
+import { useAutoFocus } from '../../../Utils/useAutoFocus'
 import { colorsV3 } from '@hedviginsurance/brand/dist'
 
 const Unit = styled.p`
@@ -22,7 +22,7 @@ const Unit = styled.p`
   }
 `
 
-type NumberActionProps = {
+export type NumberActionProps = {
   isTransitioning: boolean
   autoResultKey: string
   placeholder: string
