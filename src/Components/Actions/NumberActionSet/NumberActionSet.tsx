@@ -5,7 +5,7 @@ import { StoreContext } from '../../KeyValueStore'
 import { NumberEditCard } from './NumberEditCard'
 import { CARD_COUNT_BASE_BP_SM, mediaCardCount } from '../../Utils/cardCount'
 import { useAutoFocus } from '../../../Utils/useAutoFocus'
-import { isWithinBounds } from '../NumberAction'
+import { isWithinBounds } from '../NumberAction/NumberAction'
 
 type NumberActionSetProps = {
   isTransitioning: boolean

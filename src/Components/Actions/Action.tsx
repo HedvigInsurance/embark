@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SelectAction } from './SelectAction/SelectAction'
-import { NumberAction } from './NumberAction'
+import { NumberAction } from './NumberAction/NumberAction'
 import { MultiAction } from './MultiAction/MultiAction'
 import { TextAction } from './TextAction/TextAction'
 import { NumberActionSet } from './NumberActionSet/NumberActionSet'
