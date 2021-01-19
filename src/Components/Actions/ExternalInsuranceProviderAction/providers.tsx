@@ -129,8 +129,9 @@ export const swedishProviders = [
   },
   {
     id: 'Gjensidige',
+    externalCollectionId: 'GJENSIDIGE',
     name: 'Gjensidige',
-    hasExternalCapabilities: false,
+    hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 387">
         <g fill="none" fillRule="evenodd">
@@ -224,8 +225,9 @@ export const swedishProviders = [
   },
   {
     id: 'ICA',
+    externalCollectionId: 'ICA',
     name: 'ICA Försäkring',
-    hasExternalCapabilities: false,
+    hasExternalCapabilities: true,
     icon: withIcon(50)(() => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 121">
         <g fill="none" fillRule="evenodd">
@@ -244,6 +246,7 @@ export const swedishProviders = [
   },
   {
     id: 'Tre Kronor',
+    externalCollectionId: 'TREKRONOR',
     name: 'Tre Kronor',
     hasExternalCapabilities: true,
     icon: withIcon(50)(() => (
