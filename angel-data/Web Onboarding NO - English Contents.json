@@ -7,7 +7,31 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-09-25T12:41:48.580Z",
+  "lastUpdate": "2021-01-05T13:14:28.255Z",
+  "locales": [
+    "en_NO"
+  ],
+  "metadata": [
+    {
+      "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
+          "path": "/no-en/new-member/contents"
+        }
+      ],
+      "name": "Web Onboarding NO - English Contents",
+      "title": "NORWAY_CONTENTS_APP_METADATA_TITLE",
+      "type": "APP_ONBOARDING"
+    },
+    {
+      "description": "NORWAY_CONTENTS_WEB_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding NO - English Contents",
+      "title": "NORWAY_CONTENTS_WEB_METADATA_TITLE",
+      "type": "WEB_ONBOARDING"
+    }
+  ],
   "name": "Web Onboarding NO - English Contents",
   "passages": [
     {
@@ -137,7 +161,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  How many square meters is it?\n</Message>\n\n<Response>\n  {livingSpace} square meters\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Continue->numberOfPeople]]\"\n              unit=\"square meters\"\n>\n  <Tooltip>\n    <Title>\n      Residence size\n    </Title>\n    <Description>\n      The total living space of the residence. If you're unsure you can find the information in your lease or purchase contract\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  How many square meters is it?\n</Message>\n\n<Message>\n  If you live in a collective you only need to enter the number of square meters you use yourself.\n</Message>\n\n<Response>\n  {livingSpace} square meters\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Continue->numberOfPeople]]\"\n              unit=\"square meters\"\n>\n  <Tooltip>\n    <Title>\n      Residence size\n    </Title>\n    <Description>\n      The total living space of the residence. If you're unsure you can find the information in your lease or purchase contract\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
       "url": "/size",
       "width": 100

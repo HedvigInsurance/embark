@@ -7,7 +7,31 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2020-10-08T07:34:13.541Z",
+  "lastUpdate": "2021-01-08T12:26:32.284Z",
+  "locales": [
+    "nb_NO"
+  ],
+  "metadata": [
+    {
+      "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
+          "path": "/no/new-member/contents"
+        }
+      ],
+      "name": "Web Onboarding NO - Norwegian Contents",
+      "title": "NORWAY_CONTENTS_APP_METADATA_TITLE",
+      "type": "APP_ONBOARDING"
+    },
+    {
+      "description": "NORWAY_CONTENTS_WEB_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding NO - Norwegian Contents",
+      "title": "NORWAY_CONTENTS_WEB_METADATA_TITLE",
+      "type": "WEB_ONBOARDING"
+    }
+  ],
   "name": "Web Onboarding NO - Norwegian Contents",
   "passages": [
     {
@@ -30,7 +54,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette så bekrefter jeg at jeg forstår at mine personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette bekrefter jeg at min personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
       "top": 950,
       "url": "/birth-date",
       "width": 100
@@ -38,7 +62,7 @@
     {
       "height": 100,
       "id": "-2140998452",
-      "left": 850,
+      "left": 950,
       "name": "OfferSuccess",
       "selected": false,
       "story": "1150685733",
@@ -175,7 +199,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Hvor mange kvadratmeter er den?\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Fortsett->numberOfPeople]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Boareal\n    </Title>\n    <Description>\n      Boligens totale boareal. Hvis du er usikker kan du finne informasjonen i leie- eller kjøpekontrakten\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Hvor mange kvadratmeter er den?\n</Message>\n\n<Message>\n  Dersom du bor i kollektiv trenger du kun å angi antall kvadratmeter du selv bruker. Det vil si at du slipper å regne med soverommet til de du bor med.\n</Message>\n\n<Response>\n  {livingSpace} kvadratmeter\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[Fortsett->numberOfPeople]]\"\n              unit=\"kvadratmeter\"\n>\n  <Tooltip>\n    <Title>\n      Boareal\n    </Title>\n    <Description>\n      Boligens totale boareal. Hvis du er usikker kan du finne informasjonen i leie- eller kjøpekontrakten\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 500,
       "url": "/size",
       "width": 100

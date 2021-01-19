@@ -25,18 +25,13 @@ if (!window.requestIdleCallback) {
   window.requestIdleCallback = require('requestidlecallback').request
 }
 
-const scriptHost = document
-  .getElementsByTagName('body')[0]
-  .getAttribute('scriptHost')
 const isProofing = JSON.parse(
   document.getElementsByTagName('body')[0].getAttribute('isProofing') ||
     'false',
 )
-const storyDataElement = document.getElementById('storyData')
 const data = parseStoryData(
-  JSON.parse(
-    storyDataElement ? storyDataElement.getAttribute('data') || 'null' : 'null',
-  ),
+  (window as any).STORY_DATA,
+  (window as any).TEXT_KEY_MAP,
 )
 
 const getStartPassage = () => {
@@ -53,7 +48,7 @@ const getStartPassage = () => {
   return data.startPassage
 }
 
-export const history = createHashHistory({
+const history = createHashHistory({
   basename: `/stories/${data.id}/${
     window.location.href.includes('play') ? 'play' : 'test'
   }`,
@@ -182,6 +177,12 @@ const RootContainer = () => (
     onStoreChange={(store) => {
       console.log('store changed', store)
     }}
+    computedStoreValues={(data.computedStoreValues as
+      | ReadonlyArray<{ key: string; value: string }>
+      | undefined)?.reduce<Record<string, string>>(
+      (acc, { key, value }) => ({ ...acc, [key]: value }),
+      {},
+    )}
   >
     <Root />
   </EmbarkProvider>

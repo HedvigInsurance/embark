@@ -5,16 +5,16 @@ import {
   replacePlaceholders,
   MessageBody,
   MessageAnimation,
-} from './Common'
-import { StoreContext } from './KeyValueStore'
-import { Expression } from '../Utils/ExpressionsUtil'
+} from '../Common'
+import { StoreContext } from '../KeyValueStore'
+import { Expression } from '../../Utils/ExpressionsUtil'
 
 interface Message {
   expressions: Expression[]
   text: string
 }
 
-type MessageProps = {
+export type MessageProps = {
   message: Message
   isResponse: boolean
 }
@@ -23,7 +23,7 @@ const MessageContainer = styled.div`
   padding-bottom: 5px;
 `
 
-export const TranslationNode: React.SFC = ({ children }) => <>{children}</>
+export const TranslationNode: React.FC = ({ children }) => <>{children}</>
 
 export const Message = (props: MessageProps) => {
   const { store } = React.useContext(StoreContext)

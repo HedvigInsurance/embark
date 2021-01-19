@@ -3,11 +3,11 @@ import styled from '@emotion/styled'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { Action } from './Actions/Action'
-import { Message } from './Message'
+import { Message } from './Message/Message'
 import { Response } from './Response/Response'
 import { MessageAnimation } from './Common'
 
-import { BackButton } from './BackButton'
+import { BackButton } from './BackButton/BackButton'
 import { Questionmark } from './Icons/Questionmark'
 import { colorsV2, fonts } from '@hedviginsurance/brand'
 import hexToRgba from 'hex-to-rgba'
@@ -30,7 +30,7 @@ interface PassageProps {
 
 const ChatContainer = styled.div<{ hasHeader?: boolean }>`
   display: flex;
-  height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 80px)' : '100%')};
+  height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 4.5rem)' : '100%')};
   overflow: scroll;
   flex-direction: column;
   justify-content: space-between;
@@ -41,8 +41,8 @@ const ChatContainer = styled.div<{ hasHeader?: boolean }>`
     box-sizing: content-box;
   }
 
-  @media (max-width: 375px) {
-    height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 64px)' : '100%')};
+  @media (min-width: 480px) {
+    height: ${({ hasHeader }) => (hasHeader ? 'calc(100% - 5rem)' : '100%')};
   }
 `
 

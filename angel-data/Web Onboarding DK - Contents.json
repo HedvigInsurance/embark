@@ -1,0 +1,233 @@
+{
+  "id": "892533f3-934e-40ac-bccf-238e15f634e2",
+  "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
+  "lastUpdate": "2020-12-01T16:00:13.898Z",
+  "name": "Web Onboarding DK - Contents",
+  "passages": [
+    {
+      "height": 100,
+      "id": "1aa8ea14-dbf0-4b39-81ed-aaabd9252e20",
+      "left": 700,
+      "name": "name",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorCoInsured]]\"\n          when=\"coInsured > 6\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_NAME_MESSAGE_1}\n</Message>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->birthDate]]\">\n  <TextAction title=\"{DK_CONTENT_NAME_TEXT_ACTION_TITLE_FIRST_NAME}\"\n              placeholder=\"{DK_CONTENT_NAME_TEXT_ACTION_PLACEHOLDER_FIRST_NAME}\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_NAME_TEXT_ACTION_TITLE_SURNAME}\"\n              placeholder=\"{DK_CONTENT_NAME_TEXT_ACTION_PLACEHOLDER_SURNAME}\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 750,
+      "url": "/name",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "313748fb-391e-490a-b186-0adc7ad19730",
+      "left": 700,
+      "name": "size",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 300,
+      "url": "/size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "3da0c122-abbf-4a6b-872b-0cb062e86032",
+      "left": 1100,
+      "name": "NewsletterSuccess",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 300,
+      "url": "/newsletter-sign-up",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "4064e78f-9a00-4af3-9a0b-062086ec9fe7",
+      "left": 900,
+      "name": "studentEligibilityCheck",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 50 || coInsured > 0\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "top": 1050,
+      "url": "/student-eligibility-check",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "48b7dc20-a9e1-4393-ac9d-5d924129e4c8",
+      "left": 900,
+      "name": "errorSize",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/error-size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "5ce333da-4c7b-44b6-9763-60a79e37a99f",
+      "left": 700,
+      "name": "email",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_EMAIL_MESSAGE_1}\n</Message>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_EMAIL_PLACEHOLDER}\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->studentEligibilityCheck]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_EMAIL_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_EMAIL_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "top": 1050,
+      "url": "/email",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "92877f50-5d03-4265-b77c-7772197352cc",
+      "left": 700,
+      "name": "coInsured",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_COINSURED_MESSAGE_1}\n</Message>\n\n<Response>\n  <when expression=\"householdSize == 1\">\n    {DK_CONTENT_CONVERSATION_COINSURED_RESPONSE_1}\n  </when>\n  <when expression=\"householdSize > 1\">\n    {DK_CONTENT_CONVERSATION_COINSURED_RESPONSE_2}\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->name]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_COINSURED_UNIT}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_COINSURED_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_COINSURED_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 600,
+      "url": "/co-insured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "a285c307-b9fe-45f5-ba06-13934162129a",
+      "left": 1250,
+      "name": "offerError",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
+      "top": 1300,
+      "url": "/offer-error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "a5bae0ae-292d-4a09-a1b6-b934b5494eb3",
+      "left": 1125,
+      "name": "OfferSuccess",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "top": 1425,
+      "url": "/offer-success",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "bf11a450-afa4-45f4-accb-3cc84c10ec43",
+      "left": 1375,
+      "name": "offerUwLimit",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
+      "top": 1300,
+      "url": "/uw-limit",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "d5ab7ef1-c0b7-4d38-83cd-bd1b24f8ebd2",
+      "left": 900,
+      "name": "student",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_STUDENT_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[{DK_CONTENT_CONVERSATION_STUDENT_OPTION_STUDENT}->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[{DK_CONTENT_CONVERSATION_STUDENT_OPTION_NON_STUDENT}->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1200,
+      "url": "/student",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "db410ae7-535d-40ed-ab93-deef3b440d24",
+      "left": 700,
+      "name": "birthDate",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "top": 900,
+      "url": "/birth-date",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "e585ecb3-615b-4434-be2b-561c036a0e4b",
+      "left": 700,
+      "name": "address",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"size > 250\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ADDRESS_MESSAGE_1}\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->coInsured]]\">\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ADDRESS}\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ADDRESS_PLACEHOLDER}\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ZIP_CODE}\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ZIP_CODE_PLACEHOLDER}\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 450,
+      "url": "/address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "ea0f88f3-e2b2-438e-aec1-6d80c8d917fb",
+      "left": 900,
+      "name": "errorCoInsured",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 600,
+      "url": "/error-co-insured",
+      "width": 100
+    },
+    {
+      "height": 200,
+      "id": "8320e871-5ef4-4b77-ba7c-392bc0882bdb",
+      "left": 400,
+      "name": "ownershipType",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option key=\"type\"\n          value=\"RENT\"\n  >\n    [[{DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_OPTION_RENT}->size]]\n  </Option>\n  <Option key=\"type\"\n          value=\"OWN\"\n  >\n    [[{DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_OPTION_OWN}->size]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/ownership",
+      "width": 200
+    },
+    {
+      "height": 200,
+      "id": "ca271968-558e-43a1-91ef-4e9493a9bff7",
+      "left": 1100,
+      "name": "Offer",
+      "selected": false,
+      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_MESSAGE_1}\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateDanishQuote(\n    $id: ID!,\n\t$firstName: String!,\n\t$lastName: String!,\n\t$birthDate: LocalDate!,\n\t$email: String!,\n\t$coInsured: Int!,\n\t$livingSpace: Int!,\n\t$street: String!,\n\t$zipCode: String!\n\t$type: DanishHomeContentsType!,\n\t$isStudent: Boolean!\n  ) {\n    createQuote(input: {\n      id: $id,\n\t  firstName: $firstName,\n\t  lastName: $lastName,\n\t  birthDate: $birthDate,\n\t  email: $email,\n\t  danishHomeContents: {\n\t    coInsured: $coInsured,\n\t\tlivingSpace: $livingSpace,\n\t\tstreet: $street,\n\t\tzipCode: $zipCode,\n\t\ttype: $type,\n\t\tisStudent: $isStudent\n\t  }\n    }) {\n      ... on CompleteQuote {\n        id\n\t\tinsuranceCost {\n\t\t  monthlyGross {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyDiscount {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyNet {\n\t\t    amount\n\t\t    currency\n\t\t  }\n        }\n\t  }\n\t}\n  }\n  </Mutation>\n  <GeneratedVariable key=\"id\"\n                     type=\"uuid\"\n                     storeas=\"quoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"street\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"zipCode\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"type\"\n            from=\"type\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isStudent\"\n            from=\"isStudent\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Error next=\"[[offerError]]\">\n  </Error>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.amount\"\n          as=\"monthlyGross\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyGross.currency\"\n          as=\"monthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.amount\"\n          as=\"monthlyNet\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyNet.currency\"\n          as=\"monthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"monthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"monthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "top": 1050,
+      "width": 200
+    }
+  ],
+  "script": "",
+  "snapToGrid": true,
+  "startPassage": "8320e871-5ef4-4b77-ba7c-392bc0882bdb",
+  "storyFormat": "Hedvig",
+  "storyFormatVersion": "1.0.0",
+  "stylesheet": "",
+  "tagColors": {
+    "Error": "red"
+  },
+  "zoom": 1
+}

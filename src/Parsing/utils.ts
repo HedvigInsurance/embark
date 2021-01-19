@@ -1,12 +1,5 @@
-export const getFirstLevelNodes = (node: Element) => {
-  var children = new Array()
-  for (var child in node.childNodes) {
-    if (node.childNodes[child].nodeType == 1) {
-      children.push(node.childNodes[child])
-    }
-  }
-  return children
-}
+export const getFirstLevelNodes = (node: Element) =>
+  Array.from(node.childNodes).filter((child) => child.nodeType === 1)
 
 export const parseLinks = (text: string) => {
   if (!text) {
@@ -15,8 +8,8 @@ export const parseLinks = (text: string) => {
 
   const trimmedText = text.replace(/(\r\n|\n|\r)/gm, '').trim()
   const links = trimmedText.match(/\[\[.+?\]\]/g) || []
-  const transformedLinks = links.map(function(link) {
-    var differentName = link.match(/\[\[(.*?)\->(.*?)\]\]/)
+  return links.map((link) => {
+    const differentName = link.match(/\[\[(.*?)\->(.*?)\]\]/)
 
     if (differentName) {
       return {
@@ -25,14 +18,12 @@ export const parseLinks = (text: string) => {
         name: differentName[2],
       }
     } else {
-      link = link.substring(2, link.length - 2)
+      const actualLink = link.substring(2, link.length - 2)
       return {
         __typename: 'EmbarkLink',
-        name: link,
-        label: link,
+        name: actualLink,
+        label: actualLink,
       }
     }
   })
-
-  return transformedLinks
 }

@@ -3,6 +3,10 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
+import {
+  getPlaceholderKeyRegex,
+  getPlaceholderRegex,
+} from '@hedviginsurance/textkeyfy'
 
 export interface ExpressionTextNode {
   text: string
@@ -13,26 +17,23 @@ export interface Replacements {
   [key: string]: React.ReactNode
 }
 
-export const TranslationNode: React.SFC = ({ children }) => <>{children}</>
-
-export const placeholderRegex = new RegExp('({[a-zA-Z0-9_.]+})', 'g')
-export const placeholderKeyRegex = new RegExp('([a-zA-Z0-9_.]+)', 'g')
+export const TranslationNode: React.FC = ({ children }) => <>{children}</>
 
 export const replacePlaceholders = (
   replacements: Replacements,
   text: string,
 ) => {
-  const matches = text.split(placeholderRegex).filter((value) => value)
+  const matches = text.split(getPlaceholderRegex()).filter((value) => value)
 
   if (!matches) {
     return []
   }
 
   return matches.map((placeholder, index) => {
-    if (!placeholderKeyRegex.test(placeholder)) {
+    if (!getPlaceholderKeyRegex().test(placeholder)) {
       return placeholder
     }
-    const key = placeholder.match(placeholderKeyRegex)![0]
+    const key = placeholder.match(getPlaceholderKeyRegex())![0]
 
     if (replacements[key]) {
       return <TranslationNode key={index}>{replacements[key]}</TranslationNode>
