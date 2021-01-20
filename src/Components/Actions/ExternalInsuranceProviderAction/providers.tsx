@@ -94,7 +94,7 @@ export const swedishProviders = [
   },
   {
     id: 'Länsförsäkringar Stockholm',
-    externalCollectionId: 'LANSFORSAKRINGAR_STOCKHOLM',
+    externalCollectionId: 'LANSFORSAKRINGAR',
     name: 'Länsförsäkringar Stockholm',
     hasExternalCapabilities: true,
     icon: withIcon(30)(() => (
