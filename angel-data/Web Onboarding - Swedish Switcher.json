@@ -9,7 +9,7 @@
     "externalInsuranceProviderBackgroundFetchTitle": "Toppen!",
     "externalInsuranceProviderBETATag": "Denna funktionen är i BETA",
     "externalInsuranceProviderConfirmButton": "Ja, tack!",
-    "externalInsuranceProviderConfirmMessage": "Så kan du jämföra pris och skydd med Hedvig",
+    "externalInsuranceProviderConfirmMessage": "Så kan du jämföra pris med Hedvig",
     "externalInsuranceProviderConfirmPrivacyPolicy": "Genom att klicka på \"Ja, tack!\" godkänner du att Hedvig hämtar data från {provider} i enlighet med vår {privacyUrl}. Detta kan komma att inkludera “känslig data” i enlighet med GDPR.",
     "externalInsuranceProviderConfirmRejectButton": "Skippa det",
     "externalInsuranceProviderConfirmTitle": "Vill du hämta information om din nuvarande hemförsäkring hos {provider}?",
@@ -28,7 +28,26 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-10-08T07:29:17.241Z",
+  "lastUpdate": "2021-01-08T12:29:21.092Z",
+  "locales": [
+    "sv_SE"
+  ],
+  "metadata": [
+    {
+      "description": "SWEDEN_SWITCHER_APP_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding - Swedish Switcher",
+      "title": "SWEDEN_SWITCHER_APP_METADATA_TITLE",
+      "type": "APP_ONBOARDING"
+    },
+    {
+      "description": "SWEDEN_SWITCHER_WEB_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding - Swedish Switcher",
+      "title": "SWEDEN_SWITCHER_WEB_METADATA_TITLE",
+      "type": "WEB_ONBOARDING"
+    }
+  ],
   "name": "Web Onboarding - Swedish Switcher",
   "partnerConfigs": [
     {
@@ -126,7 +145,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy https://www.hedvig.com/se/privacy\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy hedvig.com/se/personuppgifter\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAdressVilla]]\"\n                          nomatch=\"[[manualNameVilla]]\"\n                          error=\"[[manualNameVilla]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 800,
       "url": "/personal-number",
       "width": 100
@@ -539,7 +558,7 @@
       "selected": false,
       "story": "-650548383",
       "tags": [],
-      "text": "<Message>\n  Okej! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta resten av informationen som behövs för att ge dig ett pris\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy https://www.hedvig.com/se/privacy\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAddressApartment]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAddressApartment]]\"\n                          nomatch=\"[[manualNameApartment]]\"\n                          error=\"[[manualNameApartment]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
+      "text": "<Message>\n  Okej! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta resten av informationen som behövs för att ge dig ett pris\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy hedvig.com/se/personuppgifter\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAddressApartment]]\"\n>\n  <PersonalInformationApi match=\"[[correctStreetAddressApartment]]\"\n                          nomatch=\"[[manualNameApartment]]\"\n                          error=\"[[manualNameApartment]]\"\n  >\n  </PersonalInformationApi>\n</TextAction>",
       "top": 1100,
       "url": "/personal-number",
       "width": 100

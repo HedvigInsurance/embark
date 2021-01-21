@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { fonts, colors } from '@hedviginsurance/brand'
 
-import { Message } from './Message'
+import { Message } from './Message/Message'
 
 type ProofingProps = {
   name: String
@@ -59,7 +59,9 @@ const Action = (props: ActionProps) => {
       <OptionContainer>
         {props.action.data.options.map((option: any) => (
           <Option key={option.link.name}>
-            {option.link.label} -> {option.link.name}
+            {option.link.label}
+            {' -> '}
+            {option.link.name}
             {option.tooltip && (
               <>
                 <p>

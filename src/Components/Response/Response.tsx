@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { Message } from '../Message'
+import { Message } from '../Message/Message'
 import { ExpressionTextNode } from '../Common'
 import { GroupedResponse as GroupedResponseComponent } from './GroupedResponse'
 

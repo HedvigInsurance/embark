@@ -29,7 +29,26 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-10-08T08:07:30.001Z",
+  "lastUpdate": "2021-01-08T12:27:57.788Z",
+  "locales": [
+    "sv_SE"
+  ],
+  "metadata": [
+    {
+      "description": "SWEDEN_NEEDER_APP_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding - Swedish Needer",
+      "title": "SWEDEN_NEEDER_APP_METADATA_TITLE",
+      "type": "APP_ONBOARDING"
+    },
+    {
+      "description": "SWEDEN_NEEDER_WEB_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding - Swedish Needer",
+      "title": "SWEDEN_NEEDER_WEB_METADATA_TITLE",
+      "type": "WEB_ONBOARDING"
+    }
+  ],
   "name": "Web Onboarding - Swedish Needer",
   "partnerConfigs": [
     {
@@ -129,7 +148,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy https://www.hedvig.com/se/privacy\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <GraphQLApi next=\"[[correctStreetAdressVilla]]\">\n    <Query>\n      query PersonalInformation($personalNumber: String!) {\n\t\t\tpersonalInformation(input: {\n\t\t\t\tpersonalNumber: $personalNumber\n\t\t\t}) {\n\t\t\t\tfirstName\n\t\t\t\tlastName\n\t\t\t\tstreetAddress\n\t\t\t\tpostalNumber\n\t\t\t\tcity\n\t\t\t}\n\t\t}\n    </Query>\n    <Error next=\"[[manualNameVilla]]\">\n    </Error>\n    <Variable key=\"personalNumber\"\n              from=\"personalNumber\"\n              as=\"string\"\n    >\n    </Variable>\n    <Result key=\"personalInformation.firstName\"\n            as=\"firstName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.lastName\"\n            as=\"lastName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.streetAddress\"\n            as=\"streetAddress\"\n    >\n    </Result>\n    <Result key=\"personalInformation.postalNumber\"\n            as=\"postalNumber\"\n    >\n    </Result>\n    <Result key=\"personalInformation.city\"\n            as=\"city\"\n    >\n    </Result>\n  </GraphQLApi>\n</TextAction>",
+      "text": "<Message>\n  Toppen! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta information om ditt boende\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy hedvig.com/se/personuppgifter\n</Message>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAdressVilla]]\"\n>\n  <GraphQLApi next=\"[[correctStreetAdressVilla]]\">\n    <Query>\n      query PersonalInformation($personalNumber: String!) {\n\t\t\tpersonalInformation(input: {\n\t\t\t\tpersonalNumber: $personalNumber\n\t\t\t}) {\n\t\t\t\tfirstName\n\t\t\t\tlastName\n\t\t\t\tstreetAddress\n\t\t\t\tpostalNumber\n\t\t\t\tcity\n\t\t\t}\n\t\t}\n    </Query>\n    <Error next=\"[[manualNameVilla]]\">\n    </Error>\n    <Variable key=\"personalNumber\"\n              from=\"personalNumber\"\n              as=\"string\"\n    >\n    </Variable>\n    <Result key=\"personalInformation.firstName\"\n            as=\"firstName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.lastName\"\n            as=\"lastName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.streetAddress\"\n            as=\"streetAddress\"\n    >\n    </Result>\n    <Result key=\"personalInformation.postalNumber\"\n            as=\"postalNumber\"\n    >\n    </Result>\n    <Result key=\"personalInformation.city\"\n            as=\"city\"\n    >\n    </Result>\n  </GraphQLApi>\n</TextAction>",
       "top": 500,
       "url": "/personal-number",
       "width": 100
@@ -452,7 +471,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<Message>\n  Okej! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta resten av informationen som behövs för att ge dig ett pris\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy https://www.hedvig.com/se/privacy\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAddressApartment]]\"\n>\n  <GraphQLApi next=\"[[correctStreetAddressApartment]]\">\n    <Query>\n      query PersonalInformation($personalNumber: String!) {\n\t\t\tpersonalInformation(input: {\n\t\t\t\tpersonalNumber: $personalNumber\n\t\t\t}) {\n\t\t\t\tfirstName\n\t\t\t\tlastName\n\t\t\t\tstreetAddress\n\t\t\t\tpostalNumber\n\t\t\t\tcity\n\t\t\t}\n\t\t}\n    </Query>\n    <Error next=\"[[manualNameApartment]]\">\n    </Error>\n    <Variable key=\"personalNumber\"\n              from=\"personalNumber\"\n              as=\"string\"\n    >\n    </Variable>\n    <Result key=\"personalInformation.firstName\"\n            as=\"firstName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.lastName\"\n            as=\"lastName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.streetAddress\"\n            as=\"streetAddress\"\n    >\n    </Result>\n    <Result key=\"personalInformation.postalNumber\"\n            as=\"postalNumber\"\n    >\n    </Result>\n    <Result key=\"personalInformation.city\"\n            as=\"city\"\n    >\n    </Result>\n  </GraphQLApi>\n</TextAction>",
+      "text": "<Message>\n  Okej! Då behöver vi bara ditt personnummer så kan vi automatiskt hämta resten av informationen som behövs för att ge dig ett pris\n</Message>\n\n<Message>\n  Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy hedvig.com/se/personuppgifter\n</Message>\n\n<Redirect when=\"householdSize > 6\"\n          to=\"[[errorHouseholdSizeApartment]]\"\n>\n</Redirect>\n\n<TextAction placeholder=\"ååmmdd-xxxx\"\n            mask=\"PersonalNumber\"\n            key=\"personalNumber\"\n            next=\"[[Fortsätt->correctStreetAddressApartment]]\"\n>\n  <GraphQLApi next=\"[[correctStreetAddressApartment]]\">\n    <Query>\n      query PersonalInformation($personalNumber: String!) {\n\t\t\tpersonalInformation(input: {\n\t\t\t\tpersonalNumber: $personalNumber\n\t\t\t}) {\n\t\t\t\tfirstName\n\t\t\t\tlastName\n\t\t\t\tstreetAddress\n\t\t\t\tpostalNumber\n\t\t\t\tcity\n\t\t\t}\n\t\t}\n    </Query>\n    <Error next=\"[[manualNameApartment]]\">\n    </Error>\n    <Variable key=\"personalNumber\"\n              from=\"personalNumber\"\n              as=\"string\"\n    >\n    </Variable>\n    <Result key=\"personalInformation.firstName\"\n            as=\"firstName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.lastName\"\n            as=\"lastName\"\n    >\n    </Result>\n    <Result key=\"personalInformation.streetAddress\"\n            as=\"streetAddress\"\n    >\n    </Result>\n    <Result key=\"personalInformation.postalNumber\"\n            as=\"postalNumber\"\n    >\n    </Result>\n    <Result key=\"personalInformation.city\"\n            as=\"city\"\n    >\n    </Result>\n  </GraphQLApi>\n</TextAction>",
       "top": 800,
       "url": "/personal-number",
       "width": 100

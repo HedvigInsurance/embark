@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { motion } from 'framer-motion'
-import { StoreContext } from '../KeyValueStore'
-import { Tooltip } from '../Tooltip'
-import { Card, Input, Container, Spacer } from './Common'
+import { StoreContext } from '../../KeyValueStore'
+import { Tooltip } from '../../Tooltip'
+import { Card, Input, Container, Spacer } from '../Common'
 import styled from '@emotion/styled'
-import { ContinueButton } from '../ContinueButton'
+import { ContinueButton } from '../../ContinueButton'
 import {
   MaskType,
   wrapWithMask,
@@ -13,12 +13,12 @@ import {
   derivedValues,
   mapUnmaskedValue,
   mapMaskedValue,
-} from './masking'
-import { callApi } from '../API'
-import { ApiContext } from '../API/ApiContext'
-import { ApiComponent } from '../API/apiComponent'
+} from '../masking'
+import { callApi } from '../../API'
+import { ApiContext } from '../../API/ApiContext'
+import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
-import { useAutoFocus } from '../../Utils/useAutoFocus'
+import { useAutoFocus } from '../../../Utils/useAutoFocus'
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
@@ -28,7 +28,7 @@ const BottomSpacedInput = styled(Input)`
   }
 `
 
-interface Props {
+export interface TextActionProps {
   isTransitioning: boolean
   passageName: string
   storeKey: string
@@ -45,7 +45,7 @@ interface Props {
 
 const Masked = wrapWithMask(BottomSpacedInput)
 
-export const TextAction: React.FunctionComponent<Props> = (props) => {
+export const TextAction: React.FunctionComponent<TextActionProps> = (props) => {
   const [isFocused, setIsFocused] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
