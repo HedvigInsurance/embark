@@ -462,7 +462,11 @@ const typeDefs = `
       pill: String! 
     }
     
-    enum EmbarkStoryMetadataEntryBackground {
+    type EmbarkStoryMetadataEntryBackground {
+      background: EmbarkStoryMetadataEntryBackgroundEnum!
+    }
+    
+    enum EmbarkStoryMetadataEntryBackgroundEnum {
       GRADIENT_ONE
       GRADIENT_TWO
       GRADIENT_THREE
