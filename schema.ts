@@ -431,15 +431,21 @@ const typeDefs = `
     type EmbarkStoryMetadata {
       name: String!
       type: EmbarkStoryType!
+      """Localized"""
       title: String!
+      """Localized"""
       description: String!
       metadata: [EmbarkStoryMetadataEntry!]!
     }
 
-    union EmbarkStoryMetadataEntry = EmbarkStoryMetadataEntryDiscount | EmbarkStoryMetaDataEntryWebUrlPath
+    union EmbarkStoryMetadataEntry = 
+      EmbarkStoryMetadataEntryDiscount | 
+      EmbarkStoryMetaDataEntryWebUrlPath |
+      EmbarkStoryMetadataEntryPillar |
+      EmbarkStoryMetadataEntryBackground
 
     type EmbarkStoryMetadataEntryDiscount {
-      discount: String!
+      discount: String! @deprecated(reason = "No longer supported")
     }
 
     type EmbarkStoryMetaDataEntryWebUrlPath {
@@ -449,6 +455,17 @@ const typeDefs = `
     enum EmbarkStoryType {
       WEB_ONBOARDING
       APP_ONBOARDING
+    }
+    
+    type EmbarkStoryMetadataEntryPill {
+      """Localized"""
+      pill: String! 
+    }
+    
+    enum EmbarkStoryMetadataEntryBackground {
+      GRADIENT_ONE
+      GRADIENT_TWO
+      GRADIENT_THREE
     }
 
     scalar JSONString
