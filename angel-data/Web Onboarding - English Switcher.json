@@ -584,6 +584,7 @@
       "description": "SWEDEN_SWITCHER_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding - English Switcher",
       "type": "WEB_ONBOARDING",
+      "subType": "SWITCHER",
       "metadata": []
     },
     {
@@ -591,6 +592,7 @@
       "description": "SWEDEN_SWITCHER_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding - English Switcher",
       "type": "APP_ONBOARDING",
+      "subType": "SWITCHER",
       "metadata": []
     }
   ]

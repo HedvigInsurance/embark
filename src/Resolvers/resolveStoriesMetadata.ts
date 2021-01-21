@@ -5,6 +5,7 @@ const path = require('path')
 type TextKeyObject = Record<string, string>
 
 interface Metadata {
+  subType: string
   name: string
   title: string
   description: string
@@ -64,6 +65,7 @@ export const resolveMetadataOnLocale = async (
               ? textKeyMap[metadata.description]
               : metadata.description,
             type: metadata.type,
+            subType: metadata.subType,
             metadata: innerMappedMetadata,
           }
         })

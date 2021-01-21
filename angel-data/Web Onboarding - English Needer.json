@@ -552,12 +552,14 @@
       "title": "SWEDEN_NEEDER_WEB_METADATA_TITLE",
       "description": "SWEDEN_NEEDER_WEB_METADATA_DESCRIPTION",
       "type": "WEB_ONBOARDING",
+      "subType": "NEEDER",
       "metadata": []
     },
     {
       "title": "SWEDEN_NEEDER_APP_METADATA_TITLE",
       "description": "SWEDEN_NEEDER_APP_METADATA_DESCRIPTION",
       "type": "APP_ONBOARDING",
+      "subType": "NEEDER",
       "metadata": []
     }
   ]

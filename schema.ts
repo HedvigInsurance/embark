@@ -431,6 +431,7 @@ const typeDefs = `
     type EmbarkStoryMetadata {
       name: String!
       type: EmbarkStoryType!
+      subType: EmbarkStorySubType!
       title: String!
       description: String!
       metadata: [EmbarkStoryMetadataEntry!]!
@@ -449,6 +450,14 @@ const typeDefs = `
     enum EmbarkStoryType {
       WEB_ONBOARDING
       APP_ONBOARDING
+    }
+    
+    enum EmbarkStorySubType {
+      NEEDER
+      SWITCHER
+      HOME_CONTENTS_TRAVEL_COMBO
+      HOME_CONTENTS
+      TRAVEL
     }
 
     scalar JSONString

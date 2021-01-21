@@ -193,6 +193,7 @@
       "description": "NORWAY_TRAVEL_WEB_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Travel",
       "type": "WEB_ONBOARDING",
+      "subType": "TRAVEL",
       "metadata": []
     },
     {
@@ -200,6 +201,7 @@
       "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
       "name": "Web Onboarding NO - English Travel",
       "type": "APP_ONBOARDING",
+      "subType": "TRAVEL",
       "metadata": [
         {
           "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
