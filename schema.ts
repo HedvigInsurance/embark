@@ -441,11 +441,11 @@ const typeDefs = `
     union EmbarkStoryMetadataEntry = 
       EmbarkStoryMetadataEntryDiscount | 
       EmbarkStoryMetaDataEntryWebUrlPath |
-      EmbarkStoryMetadataEntryPillar |
+      EmbarkStoryMetadataEntryPill |
       EmbarkStoryMetadataEntryBackground
 
     type EmbarkStoryMetadataEntryDiscount {
-      discount: String! @deprecated(reason = "No longer supported")
+      discount: String! @deprecated(reason: "Use \`EmbarkStoryMetadataEntryPill\`.")
     }
 
     type EmbarkStoryMetaDataEntryWebUrlPath {
