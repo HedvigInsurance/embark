@@ -1,0 +1,15 @@
+language: node_js
+node_js: '12.20.0'
+sudo: required
+services:
+  - docker
+after_success:
+  - bin/docker_push.sh
+  - bin/kubernetes_deploy.sh
+script: 'echo NO-OP'
+addons:
+  apt:
+    packages:
+      - docker-ce
+notifications:
+  email: false
