@@ -463,10 +463,10 @@ const typeDefs = `
     }
     
     type EmbarkStoryMetadataEntryBackground {
-      background: EmbarkStoryMetadataEntryBackgroundEnum!
+      background: EmbarkStoryMetadataEntryBackgroundOption!
     }
     
-    enum EmbarkStoryMetadataEntryBackgroundEnum {
+    enum EmbarkStoryMetadataEntryBackgroundOption {
       GRADIENT_ONE
       GRADIENT_TWO
       GRADIENT_THREE
