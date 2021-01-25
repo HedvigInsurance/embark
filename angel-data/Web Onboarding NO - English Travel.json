@@ -204,6 +204,10 @@
         {
           "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
           "path": "/no-en/new-member/travel"
+        },
+        {
+          "__typename": "EmbarkStoryMetadataEntryBackground",
+          "background": "GRADIENT_TWO"
         }
       ]
     }

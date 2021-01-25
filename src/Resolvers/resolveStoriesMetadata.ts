@@ -47,6 +47,15 @@ export const resolveMetadataOnLocale = async (
                     : innerMetadata.discount,
                   __typename: innerMetadata.__typename,
                 }
+              } else if (
+                innerMetadata.__typename == 'EmbarkStoryMetadataEntryPill'
+              ) {
+                return {
+                  pill: textKeyMap[innerMetadata.pill]
+                    ? textKeyMap[innerMetadata.pill]
+                    : innerMetadata.pill,
+                  __typename: innerMetadata.__typename,
+                }
               } else {
                 return {
                   ...innerMetadata,
