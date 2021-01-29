@@ -114,6 +114,7 @@ const getNumberAction = (numberActionNode: Element, translate: Translator) => {
   const next = translate(numberActionNode.getAttribute('next') || '')
   const key = numberActionNode.getAttribute('key')
   const unit = translate(numberActionNode.getAttribute('unit') || '')
+  const label = translate(numberActionNode.getAttribute('label') || '')
   const mask = numberActionNode.getAttribute('mask')
   const minValue = numberActionNode.getAttribute('minvalue')
   const maxValue = numberActionNode.getAttribute('maxvalue')
@@ -130,6 +131,7 @@ const getNumberAction = (numberActionNode: Element, translate: Translator) => {
       key,
       unit,
       api,
+      label,
       minValue,
       maxValue,
       ...(links && { link: links[0] }),
