@@ -223,6 +223,7 @@ const typeDefs = `
         key: String!
         placeholder: String!
         unit: String
+        label: String
         maxValue: Int
         minValue: Int
         link: EmbarkLink!
