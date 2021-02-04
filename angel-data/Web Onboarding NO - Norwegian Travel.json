@@ -7,7 +7,35 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-11-24T15:39:04.965Z",
+  "lastUpdate": "2021-02-04T08:29:54.041Z",
+  "locales": [
+    "nb_NO"
+  ],
+  "metadata": [
+    {
+      "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
+      "metadata": [
+        {
+          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
+          "path": "/no/new-member/travel"
+        },
+        {
+          "__typename": "EmbarkStoryMetadataEntryBackground",
+          "background": "GRADIENT_TWO"
+        }
+      ],
+      "name": "Web Onboarding NO - Norwegian Travel",
+      "title": "NORWAY_TRAVEL_APP_METADATA_TITLE",
+      "type": "APP_ONBOARDING"
+    },
+    {
+      "description": "NORWAY_TRAVEL_WEB_METADATA_DESCRIPTION",
+      "metadata": [],
+      "name": "Web Onboarding NO - Norwegian Travel",
+      "title": "NORWAY_TRAVEL_WEB_METADATA_TITLE",
+      "type": "WEB_ONBOARDING"
+    }
+  ],
   "name": "Web Onboarding NO - Norwegian Travel",
   "passages": [
     {
@@ -81,7 +109,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "43351269",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Dessverre kan vi bare forsikre maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",
@@ -133,7 +163,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  I hvilket forsikringsselskap har du din reiseforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende forsikring\n    </Title>\n    <Description>\n      Oppgi ditt nåværende forsikringsselskap, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  I hvilket forsikringsselskap har du din reiseforsikring?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Fortsett->email]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n                                 storekey=\"currentInsurer\"\n>\n  <Tooltip>\n    <Title>\n      Nåværende forsikring\n    </Title>\n    <Description>\n      Oppgi ditt nåværende forsikringsselskap, så hjelper vi deg å bytte til Hedvig!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1250,
       "url": "/currentinsurer",
       "width": 100
@@ -185,31 +215,5 @@
   "tagColors": {
     "Error": "red"
   },
-  "zoom": 1,
-  "locales": ["nb_NO"],
-  "metadata": [
-    {
-      "title": "NORWAY_TRAVEL_WEB_METADATA_TITLE",
-      "description": "NORWAY_TRAVEL_WEB_METADATA_DESCRIPTION",
-      "name": "Web Onboarding NO - Norwegian Travel",
-      "type": "WEB_ONBOARDING",
-      "metadata": []
-    },
-    {
-      "title": "NORWAY_TRAVEL_APP_METADATA_TITLE",
-      "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
-      "name": "Web Onboarding NO - Norwegian Travel",
-      "type": "APP_ONBOARDING",
-      "metadata": [
-        {
-          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
-          "path": "/no/new-member/travel"
-        },
-        {
-          "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_TWO"
-        }
-      ]
-    }
-  ]
+  "zoom": 1
 }
