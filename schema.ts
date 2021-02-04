@@ -143,7 +143,16 @@ const typeDefs = `
 
     union EmbarkApi = EmbarkApiPersonalInformation | EmbarkApiHouseInformation | EmbarkApiCreateQuote | EmbarkApiGraphQLQuery | EmbarkApiGraphQLMutation
 
-    enum EmbarkExternalRedirect {
+    type EmbarkExternalRedirect {
+        component: String!
+        data: EmbarkExternalRedirectData!
+    }
+
+    type EmbarkExternalRedirectData {
+        location: EmbarkExternalRedirectLocation!
+    }
+
+    enum EmbarkExternalRedirectLocation {
         MailingList
         Offer
     }
