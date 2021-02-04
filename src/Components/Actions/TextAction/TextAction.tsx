@@ -43,6 +43,17 @@ export interface TextActionProps {
   onContinue: () => void
 }
 
+const getInputType = (mask?: MaskType) => {
+  switch (mask) {
+    case 'Email':
+      return 'email'
+    case 'SwedishPhoneNumber':
+      return 'tel'
+    default:
+      return 'text'
+  }
+}
+
 const Masked = wrapWithMask(BottomSpacedInput)
 
 export const TextAction: React.FunctionComponent<TextActionProps> = (props) => {
@@ -81,6 +92,10 @@ export const TextAction: React.FunctionComponent<TextActionProps> = (props) => {
     }
   }
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextValue(e.target.value)
+  }
+
   const inputRef = useAutoFocus(!props.isTransitioning)
 
   return (
@@ -103,14 +118,11 @@ export const TextAction: React.FunctionComponent<TextActionProps> = (props) => {
         <Tooltip tooltip={props.tooltip} />
         <Masked
           inputRef={inputRef}
-          mask={props.mask}
-          type={props.mask === 'Email' ? 'email' : 'text'}
+          type={getInputType(props.mask)}
           size={Math.max(props.placeholder.length, textValue.length)}
           placeholder={props.placeholder}
           value={textValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setTextValue(e.target.value)
-          }
+          onChange={onChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
             setIsFocused(false)

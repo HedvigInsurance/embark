@@ -4,6 +4,7 @@ import { parse, format, differenceInYears } from 'date-fns'
 
 export type MaskType =
   | 'PersonalNumber'
+  | 'SwedishPhoneNumber'
   | 'PostalCode'
   | 'Email'
   | 'BirthDate'
@@ -11,6 +12,7 @@ export type MaskType =
   | 'NorwegianPostalCode'
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/
+const SWEDISH_PHONE_NUMBER_REGEX = /^((((0{2}?)|(\+){1})46)|0)[\d]{8,9}$/
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/
 const NORWEGIAN_POSTAL_CODE_REGEX = /^[0-9]{4}$/
 const EMAIL_REGEX = /^.+@.+\..+$/
@@ -21,6 +23,10 @@ export const isValid = (m: MaskType | undefined, value: string): boolean => {
   const unmaskedValue = unmaskValue(value, m)
   if (m === 'PersonalNumber') {
     return PERSONAL_NUMBER_REGEX.test(unmaskedValue)
+  }
+
+  if (m === 'SwedishPhoneNumber') {
+    return SWEDISH_PHONE_NUMBER_REGEX.test(unmaskedValue)
   }
 
   if (m === 'PostalCode') {
@@ -46,7 +52,7 @@ export const isValid = (m: MaskType | undefined, value: string): boolean => {
   return true
 }
 
-const resolveMask = (m?: MaskType): string => {
+const resolveMask = (m?: MaskType): any => {
   if (m === 'PersonalNumber') {
     return '999999-9999'
   }

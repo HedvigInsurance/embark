@@ -32,3 +32,12 @@ PersonalNumber.args = {
   storeKey: 'personalNumber',
   placeholder: 'ååmmdd-xxxx',
 }
+
+export const SwedishPhoneNumber = Template.bind({})
+SwedishPhoneNumber.args = {
+  isTransitioning: false,
+  passageName: 'SwedishPhoneNumberApartment',
+  mask: 'SwedishPhoneNumber',
+  storeKey: 'SwedishPhoneNumber',
+  placeholder: '0701234567',
+}
