@@ -355,7 +355,7 @@ const typeDefs = `
         eventName: String!
         eventKeys: [String]!
         includeAllKeys: Boolean!
-        customData: JSONString!
+        customData: JSONString
     }
 
     enum EmbarkExpressionTypeMultiple {
