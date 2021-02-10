@@ -12,7 +12,7 @@ export type MaskType =
   | 'NorwegianPostalCode'
 
 const PERSONAL_NUMBER_REGEX = /^[0-9]{6}[0-9]{4}$/
-const SWEDISH_PHONE_NUMBER_REGEX = /^((((0{2}?)|(\+){1})46)|0)[\d]{8,9}$/
+const SWEDISH_PHONE_NUMBER_REGEX = /^((((\+){1})46)|0)[\d]{8,9}$/
 const POSTAL_CODE_REGEX = /^[0-9]{3}[0-9]{2}$/
 const NORWEGIAN_POSTAL_CODE_REGEX = /^[0-9]{4}$/
 const EMAIL_REGEX = /^.+@.+\..+$/
@@ -59,6 +59,10 @@ const resolveMask = (m?: MaskType): any => {
 
   if (m === 'PostalCode') {
     return '999 99'
+  }
+
+  if (m === 'SwedishPhoneNumber') {
+    return '9999999999999'
   }
 
   if (m === 'NorwegianPostalCode') {
