@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-01-05T13:14:28.255Z",
-  "locales": ["en_NO"],
+  "lastUpdate": "2021-02-10T08:46:48.944Z",
+  "locales": [
+    "en_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
@@ -119,7 +121,9 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "1392201379",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
@@ -132,7 +136,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "1392201379",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 500,
       "url": "/error",
@@ -185,7 +191,7 @@
       "selected": false,
       "story": "1392201379",
       "tags": [],
-      "text": "<Message>\n  What insurer do you have contents insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->email]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
+      "text": "<Message>\n  What insurer do you have contents insurance with?\n</Message>\n\n<PreviousInsuranceProviderAction next=\"[[Continue->email]]\"\n                                 skip=\"[[Okay->email]]\"\n                                 providers=\"norwegian\"\n                                 storekey=\"currentInsurer\"\n>\n  <Tooltip>\n    <Title>\n      Current insurance\n    </Title>\n    <Description>\n      Enter your current insurer and we can help make the process of switching to Hedvig easier!\n    </Description>\n  </Tooltip>\n</PreviousInsuranceProviderAction>",
       "top": 1250,
       "url": "/current-insurer",
       "width": 100
