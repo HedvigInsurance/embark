@@ -50,6 +50,32 @@ describe('isValid', () => {
     expect(isValid('BirthDateReverse', invalidBirthDate)).toBe(false)
   })
 
+  it('validates SwedishPhoneNumber mask', () => {
+    const validPhoneNumber = '0762549246'
+    expect(isValid('SwedishPhoneNumber', validPhoneNumber)).toBe(true)
+    const validHomePhoneNumber = '031445289'
+    expect(isValid('SwedishPhoneNumber', validHomePhoneNumber)).toBe(true)
+    const validPhoneNumberWithPlusCountryCode = '+46782349246'
+    expect(
+      isValid('SwedishPhoneNumber', validPhoneNumberWithPlusCountryCode),
+    ).toBe(true)
+
+    const invalidPhoneNumber = '7062549246'
+    expect(isValid('SwedishPhoneNumber', invalidPhoneNumber)).toBe(false)
+    const invalidPhoneNumberWithOldCountryCode = '0046762549246'
+    expect(
+      isValid('SwedishPhoneNumber', invalidPhoneNumberWithOldCountryCode),
+    ).toBe(false)
+    const invalidPhoneNumberWrongCountry = '+47762549246'
+    expect(isValid('SwedishPhoneNumber', invalidPhoneNumberWrongCountry)).toBe(
+      false,
+    )
+    const invalidPhoneNumberWTooLong = '00467625492460'
+    expect(isValid('SwedishPhoneNumber', invalidPhoneNumberWTooLong)).toBe(
+      false,
+    )
+  })
+
   it('validates no mask', () => {
     expect(isValid(undefined, 'anything')).toBe(true)
   })
