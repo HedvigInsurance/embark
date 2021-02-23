@@ -1,7 +1,13 @@
 {
+  "computedStoreValues": [
+    {
+      "key": "coInsured",
+      "value": "householdSize - 1"
+    }
+  ],
   "id": "892533f3-934e-40ac-bccf-238e15f634e2",
   "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
-  "lastUpdate": "2020-12-01T16:00:13.898Z",
+  "lastUpdate": "2021-02-23T10:50:44.109Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
