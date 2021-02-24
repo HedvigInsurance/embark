@@ -279,6 +279,14 @@ const typeDefs = `
         component: String!
         data: EmbarkMultiActionData!
     }
+    
+    type EmbarkDatePickerAction implements EmbarkActionCore {
+        component: String!       
+        next: EmbarkLink!
+        storeKey: String!
+        label: String!
+        tooltip: EmbarkTooltip
+    }
 
     type EmbarkDropdownOption {
         value: String!
@@ -307,7 +315,15 @@ const typeDefs = `
         data: EmbarkSwitchActionData!
     }
 
-    union EmbarkAction = EmbarkExternalInsuranceProviderAction | EmbarkPreviousInsuranceProviderAction | EmbarkNumberActionSet | EmbarkTextActionSet | EmbarkTextAction | EmbarkSelectAction | EmbarkNumberAction | EmbarkMultiAction
+    union EmbarkAction = EmbarkExternalInsuranceProviderAction | 
+        EmbarkPreviousInsuranceProviderAction | 
+        EmbarkNumberActionSet | 
+        EmbarkTextActionSet | 
+        EmbarkTextAction | 
+        EmbarkSelectAction | 
+        EmbarkNumberAction | 
+        EmbarkMultiAction |
+        EmbarkDatePickerAction
 
     union EmbarkMultiActionComponent = EmbarkNumberAction | EmbarkDropdownAction | EmbarkSwitchAction
 
