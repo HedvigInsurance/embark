@@ -385,6 +385,24 @@ const getPreviousInsuranceProviderAction = (
   }
 }
 
+const getDatePickerAction = (node: Element, translate: Translator) => {
+  const next = translate(node.getAttribute('next') || '')
+  const nextLinks = next ? parseLinks(next) : []
+
+  const storeKey = translate(node.getAttribute('storeKey') || '')
+  const label = translate(node.getAttribute('label') || '')
+  const tooltip = parseTooltips(node, translate)[0]
+
+  return {
+    __typename: 'EmbarkDatePickerAction',
+    component: 'DatePickerActions',
+    next: nextLinks && nextLinks[0],
+    storeKey,
+    label,
+    ...(tooltip && { tooltip }),
+  }
+}
+
 const getAction = (containerElement: Element, translate: Translator) => {
   const numberActionSetNode = containerElement.getElementsByTagName(
     'numberactionset',
@@ -452,6 +470,14 @@ const getAction = (containerElement: Element, translate: Translator) => {
       previousInsuranceProviderActionNode,
       translate,
     )
+  }
+
+  const datePickerActionNode = containerElement.getElementsByTagName(
+    'datepickeraction',
+  )[0]
+
+  if (datePickerActionNode) {
+    return getDatePickerAction(datePickerActionNode, translate)
   }
 
   return null
