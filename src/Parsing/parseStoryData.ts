@@ -395,7 +395,7 @@ const getDatePickerAction = (node: Element, translate: Translator) => {
 
   return {
     __typename: 'EmbarkDatePickerAction',
-    component: 'DatePickerActions',
+    component: 'DatePickerAction',
     next: nextLinks && nextLinks[0],
     storeKey,
     label,
