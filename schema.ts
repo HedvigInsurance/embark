@@ -127,7 +127,7 @@ const typeDefs = `
 
     type EmbarkApiHouseInformation implements EmbarkApiCore {
         component: String!
-        data: EmbarkApiHouseInformation!
+        data: EmbarkApiHouseInformationData!
     }
 
     type EmbarkApiCreateQuoteData {
