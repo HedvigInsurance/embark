@@ -70,3 +70,7 @@ it('fails when using multiple operators in a row', () => {
     'Invalid use of operator "++", must have expressions on both sides',
   )
 })
+
+it('fails', (done) => {
+  done.fail()
+})
