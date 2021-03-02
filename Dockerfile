@@ -1,3 +1,4 @@
+## Install prod dependencies ##
 FROM node:12.20.0-alpine AS dependencies
 WORKDIR /app
 
@@ -9,10 +10,11 @@ ADD yarn.lock yarn.lock
 
 RUN yarn --production
 
+## Build/compilation stage (no-op but required by the standardised pipeline) ##
 FROM scratch AS build
+# Skip me plz
 
-# no-op
-
+## Run tests ##
 FROM dependencies AS test
 
 RUN yarn
@@ -22,9 +24,11 @@ ADD tsconfig.json tsconfig.json
 
 RUN yarn test
 
+## Assemble stage ##
 FROM node:12.20.0-alpine AS assemble
 WORKDIR /app
 
+# Prod deps already installed
 COPY --from=dependencies /app/node_modules node_modules
 
 ADD package.json package.json
