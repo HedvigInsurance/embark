@@ -21,6 +21,15 @@ interface EmbarkProviderProps {
   initialStore?: Store
 }
 
+const mapComputedStoreValuesList = (
+  computedStoreValues: ReadonlyArray<ComputedStoreValues> | undefined,
+) => {
+  return computedStoreValues?.reduce(
+    (acc, { key, value }) => ({ ...acc, [key]: value }),
+    {},
+  )
+}
+
 const StoreListener: React.FunctionComponent<EmbarkProviderProps> = (props) => {
   const { store } = React.useContext(StoreContext)
 
@@ -34,21 +43,6 @@ const StoreListener: React.FunctionComponent<EmbarkProviderProps> = (props) => {
 export const EmbarkProvider: React.FunctionComponent<EmbarkProviderProps> = (
   props,
 ) => {
-  const [computedStoreValues, setComputedStoreValues] = useState<
-    ComputedStoreValues
-  >({})
-
-  useEffect(() => {
-    if (props.data.computedStoreValues) {
-      const parsedComputedStoreValues = (props.data
-        .computedStoreValues as ReadonlyArray<ComputedStoreValues>).reduce(
-        (acc, { key, value }) => ({ ...acc, [key]: value }),
-        {},
-      )
-      setComputedStoreValues(parsedComputedStoreValues)
-    }
-  }, [props.data.computedStoreValues])
-
   return (
     <ExternalRedirectContext.Provider value={props.externalRedirects}>
       <ApiContext.Provider value={props.resolvers}>
@@ -56,7 +50,9 @@ export const EmbarkProvider: React.FunctionComponent<EmbarkProviderProps> = (
           <KeywordsContext.Provider value={props.data.keywords}>
             <KeyValueStore
               initial={props.initialStore}
-              computedStoreValues={computedStoreValues}
+              computedStoreValues={mapComputedStoreValuesList(
+                props.data.computedStoreValues,
+              )}
             >
               <StoreListener {...props}>{props.children}</StoreListener>
             </KeyValueStore>
