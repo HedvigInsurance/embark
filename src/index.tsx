@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as ReactDOM from 'react-dom'
 import { Passage } from './Components/Passage'
 import { Proofing } from './Components/Proofing'
@@ -102,9 +102,9 @@ const Root = () => {
     )
   }
 
-  const [urlParams, setUrlParams] = React.useState<URLSearchParams | null>(null)
+  const [urlParams, setUrlParams] = useState<URLSearchParams | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setUrlParams(new URLSearchParams(window.location.search))
   }, [])
 
@@ -177,12 +177,6 @@ const RootContainer = () => (
     onStoreChange={(store) => {
       console.log('store changed', store)
     }}
-    computedStoreValues={(data.computedStoreValues as
-      | ReadonlyArray<{ key: string; value: string }>
-      | undefined)?.reduce<Record<string, string>>(
-      (acc, { key, value }) => ({ ...acc, [key]: value }),
-      {},
-    )}
   >
     <Root />
   </EmbarkProvider>
