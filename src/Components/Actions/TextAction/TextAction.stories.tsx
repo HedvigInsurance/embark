@@ -30,5 +30,20 @@ PersonalNumber.args = {
   passageName: 'personalNumberApartment',
   mask: 'PersonalNumber',
   storeKey: 'personalNumber',
-  placeholder: 'ååmmdd-xxxx',
+export const BirthDate = Template.bind({})
+BirthDate.args = {
+  isTransitioning: false,
+  passageName: 'birthDate',
+  mask: 'BirthDate',
+  storeKey: 'birthDate',
+  placeholder: 'yyyy-mm-dd',
+}
+
+export const BirthDateReverse = Template.bind({})
+BirthDateReverse.args = {
+  isTransitioning: false,
+  passageName: 'birthDate',
+  mask: 'BirthDateReverse',
+  storeKey: 'birthDate',
+  placeholder: 'dd-mm-yyyy',
 }
