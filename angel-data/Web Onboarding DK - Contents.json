@@ -7,7 +7,8 @@
   ],
   "id": "892533f3-934e-40ac-bccf-238e15f634e2",
   "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
-  "lastUpdate": "2021-02-23T10:50:44.109Z",
+  "keywords": {},
+  "lastUpdate": "2021-03-09T15:22:53.257Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -167,7 +168,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDate\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            mask=\"BirthDateReverse\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 900,
       "url": "/birth-date",
       "width": 100
