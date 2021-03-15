@@ -7,9 +7,7 @@
   ],
   "id": "e99d8925-583c-4226-999b-e049d00e9146",
   "ifid": "258ED9C4-5F57-475B-9CCE-7CAC4964F094",
-  "keywords": {
-    "isTrusted": true
-  },
+  "keywords": {},
   "lastUpdate": "2021-03-15T16:10:22.189Z",
   "name": "Web Onboarding DK - Contents + Accident",
   "passages": [
@@ -59,9 +57,7 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
@@ -139,9 +135,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
@@ -154,9 +148,7 @@
       "name": "offerError",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/offer-error",
@@ -182,9 +174,7 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
