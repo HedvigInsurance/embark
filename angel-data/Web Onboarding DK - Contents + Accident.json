@@ -1,0 +1,242 @@
+{
+  "computedStoreValues": [
+    {
+      "key": "coInsured",
+      "value": "householdSize - 1"
+    }
+  ],
+  "id": "e99d8925-583c-4226-999b-e049d00e9146",
+  "ifid": "258ED9C4-5F57-475B-9CCE-7CAC4964F094",
+  "keywords": {
+    "isTrusted": true
+  },
+  "lastUpdate": "2021-03-15T16:10:22.189Z",
+  "name": "Web Onboarding DK - Contents + Accident",
+  "passages": [
+    {
+      "height": 100,
+      "id": "04ab0ba7-afd0-435c-9a7b-7e01611dc66a",
+      "left": 700,
+      "name": "size",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 300,
+      "url": "/size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "0ccf03bc-10a2-4dec-9fe9-3bb9e8e75cd7",
+      "left": 900,
+      "name": "studentEligibilityCheck",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 50 || coInsured > 0\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "top": 1050,
+      "url": "/student-eligibility-check",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "11f50ca8-2c10-451f-9a44-24504e8b035e",
+      "left": 1100,
+      "name": "NewsletterSuccess",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 300,
+      "url": "/newsletter-sign-up",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "1dc92130-a3fb-4c28-86f7-7701aa6e0018",
+      "left": 900,
+      "name": "errorCoInsured",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 600,
+      "url": "/error-co-insured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "465fdd49-820d-4d3d-8ccb-8b2d2a9e3d13",
+      "left": 900,
+      "name": "student",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_STUDENT_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[{DK_CONTENT_CONVERSATION_STUDENT_OPTION_STUDENT}->Offer]]\n  </Option>\n  <Option key=\"isYouth\"\n          value=\"false\"\n  >\n    [[{DK_CONTENT_CONVERSATION_STUDENT_OPTION_NON_STUDENT}->Offer]]\n  </Option>\n</SelectAction>",
+      "top": 1200,
+      "url": "/student",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "4f90409b-23ca-4041-acdb-86578f9165c4",
+      "left": 700,
+      "name": "address",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"size > 250\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ADDRESS_MESSAGE_1}\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->coInsured]]\">\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ADDRESS}\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ADDRESS_PLACEHOLDER}\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ZIP_CODE}\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ZIP_CODE_PLACEHOLDER}\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 450,
+      "url": "/address",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "565c939f-47c1-42c5-8ad7-817688b17170",
+      "left": 1125,
+      "name": "OfferSuccess",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "top": 1425,
+      "url": "/offer-success",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "5df7d0f2-13f3-40f7-a4d2-d17ab7fba430",
+      "left": 700,
+      "name": "coInsured",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_COINSURED_MESSAGE_1}\n</Message>\n\n<Response>\n  <when expression=\"householdSize == 1\">\n    {DK_CONTENT_CONVERSATION_COINSURED_RESPONSE_1}\n  </when>\n  <when expression=\"householdSize > 1\">\n    {DK_CONTENT_CONVERSATION_COINSURED_RESPONSE_2}\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              key=\"householdSize\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->name]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_COINSURED_UNIT}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_COINSURED_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_COINSURED_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "top": 600,
+      "url": "/co-insured",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "60c85658-9168-4079-84fb-0fdb30956b9f",
+      "left": 700,
+      "name": "email",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_EMAIL_MESSAGE_1}\n</Message>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_EMAIL_PLACEHOLDER}\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->studentEligibilityCheck]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_EMAIL_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_EMAIL_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "top": 1050,
+      "url": "/email",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "6973cabc-e35d-4308-bf58-153a4eb84a5f",
+      "left": 900,
+      "name": "errorSize",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/error-size",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "821acea7-9652-45b9-ba7f-1cee78539654",
+      "left": 1250,
+      "name": "offerError",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
+      "top": 1300,
+      "url": "/offer-error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "9ee4e07e-182c-4a4e-926e-4a5526c1693c",
+      "left": 700,
+      "name": "birthDate",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            mask=\"BirthDateReverse\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "top": 900,
+      "url": "/birth-date",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "ea75536c-bd20-42aa-be41-63a607c66ad2",
+      "left": 1375,
+      "name": "offerUwLimit",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
+      "top": 1300,
+      "url": "/uw-limit",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "eea4540a-a7eb-4d45-bbd4-eec8a8199bb3",
+      "left": 700,
+      "name": "name",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Redirect to=\"[[errorCoInsured]]\"\n          when=\"coInsured > 6\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_NAME_MESSAGE_1}\n</Message>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->birthDate]]\">\n  <TextAction title=\"{DK_CONTENT_NAME_TEXT_ACTION_TITLE_FIRST_NAME}\"\n              placeholder=\"{DK_CONTENT_NAME_TEXT_ACTION_PLACEHOLDER_FIRST_NAME}\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_NAME_TEXT_ACTION_TITLE_SURNAME}\"\n              placeholder=\"{DK_CONTENT_NAME_TEXT_ACTION_PLACEHOLDER_SURNAME}\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "top": 750,
+      "url": "/name",
+      "width": 100
+    },
+    {
+      "height": 200,
+      "id": "0327be84-019c-4acc-9b24-c6221adb4e61",
+      "left": 1100,
+      "name": "Offer",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_MESSAGE_1}\n</Message>\n\n<GraphQLApi next=\"[[OfferSuccess]]\">\n  <Mutation>\n    mutation CreateDanishQuote(\n    $danishHomeContentsQuoteId: ID!,\n\t$danishAccidentQuoteId: ID!,\n\t$firstName: String!,\n\t$lastName: String!,\n\t$birthDate: LocalDate!,\n\t$email: String!,\n\t$coInsured: Int!,\n\t$livingSpace: Int!,\n\t$street: String!,\n\t$zipCode: String!\n\t$type: DanishHomeContentsType!,\n\t$isStudent: Boolean!\n  ) {\n    createDanishHomeContentsQuote: createQuote(input: {\n      id: $danishHomeContentsQuoteId,\n\t  firstName: $firstName,\n\t  lastName: $lastName,\n\t  birthDate: $birthDate,\n\t  email: $email,\n\t  danishHomeContents: {\n\t    coInsured: $coInsured,\n\t\tlivingSpace: $livingSpace,\n\t\tstreet: $street,\n\t\tzipCode: $zipCode,\n\t\ttype: $type,\n\t\tisStudent: $isStudent,\n\t  }\n    }) {\n      ... on CompleteQuote {\n        id\n\t\tinsuranceCost {\n\t\t  monthlyGross {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyDiscount {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyNet {\n\t\t    amount\n\t\t    currency\n\t\t  }\n        }\n\t  }\n\t}\n\tcreateDanishAccidentQuote: createQuote(input: {\n      id: $danishAccidentQuoteId,\n\t  firstName: $firstName,\n\t  lastName: $lastName,\n\t  birthDate: $birthDate,\n\t  email: $email,\n\t  danishAccident: {\n\t    coInsured: $coInsured\n\t\tstreet: $street\n\t\tzipCode: $zipCode\n\t\tisStudent: $isStudent\n\t  }\n    }) {\n      ... on CompleteQuote {\n        id\n\t\tinsuranceCost {\n\t\t  monthlyGross {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyDiscount {\n\t\t\tamount\n\t\t    currency\n\t\t  }\n\t\t  monthlyNet {\n\t\t    amount\n\t\t    currency\n\t\t  }\n        }\n\t  }\n\t}\n  }\n  </Mutation>\n  <GeneratedVariable key=\"danishHomeContentsQuoteId\"\n                     type=\"uuid\"\n                     storeas=\"danishHomeContentsQuoteId\"\n  >\n  </GeneratedVariable>\n  <GeneratedVariable key=\"danishAccidentQuoteId\"\n                     type=\"uuid\"\n                     storeas=\"danishAccidentQuoteId\"\n  >\n  </GeneratedVariable>\n  <Variable key=\"firstName\"\n            from=\"firstName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"lastName\"\n            from=\"lastName\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"birthDate\"\n            from=\"birthDate\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"email\"\n            from=\"email\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"coInsured\"\n            from=\"coInsured\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"livingSpace\"\n            from=\"livingSpace\"\n            as=\"int\"\n  >\n  </Variable>\n  <Variable key=\"street\"\n            from=\"street\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"zipCode\"\n            from=\"zipCode\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"type\"\n            from=\"type\"\n            as=\"string\"\n  >\n  </Variable>\n  <Variable key=\"isStudent\"\n            from=\"isStudent\"\n            as=\"boolean\"\n  >\n  </Variable>\n  <Error next=\"[[offerError]]\">\n  </Error>\n  <Result key=\"createDanishHomeContentsQuote.insuranceCost.monthlyGross.amount\"\n          as=\"danishContentsMonthlyGross\"\n  >\n  </Result>\n  <Result key=\"createDanishHomeContentsQuote.insuranceCost.monthlyGross.currency\"\n          as=\"danishContentsMonthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createDanishHomeContentsQuote.insuranceCost.monthlyNet.amount\"\n          as=\"danishContentsMonthlyNet\"\n  >\n  </Result>\n  <Result key=\"createDanishHomeContentsQuote.insuranceCost.monthlyNet.currency\"\n          as=\"danishContentsMonthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createDanishHomeContentsQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"danishContentsMonthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createDanishHomeContentsQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"danishContentsMonthlyDiscountCurrency\"\n  >\n  </Result>\n  <Result key=\"createDanishAccidentQuote.insuranceCost.monthlyGross.amount\"\n          as=\"danishAccidentMonthlyGross\"\n  >\n  </Result>\n  <Result key=\"createDanishAccidentQuote.insuranceCost.monthlyGross.currency\"\n          as=\"danishAccidentMonthlyGrossCurrency\"\n  >\n  </Result>\n  <Result key=\"createDanishAccidentQuote.insuranceCost.monthlyNet.amount\"\n          as=\"danishAccidentMonthlyNet\"\n  >\n  </Result>\n  <Result key=\"createDanishAccidentQuote.insuranceCost.monthlyNet.currency\"\n          as=\"danishAccidentMonthlyNetCurrency\"\n  >\n  </Result>\n  <Result key=\"createDanishAccidentQuote.insuranceCost.monthlyDiscount.amount\"\n          as=\"danishAccidentMonthlyDiscount\"\n  >\n  </Result>\n  <Result key=\"createDanishAccidentQuote.insuranceCost.monthlyDiscount.currency\"\n          as=\"danishAccidentMonthlyDiscountCurrency\"\n  >\n  </Result>\n</GraphQLApi>",
+      "top": 1050,
+      "width": 200
+    },
+    {
+      "height": 200,
+      "id": "b2fbab18-5962-4464-b2ba-3b00112d048c",
+      "left": 400,
+      "name": "ownershipType",
+      "selected": false,
+      "story": "e99d8925-583c-4226-999b-e049d00e9146",
+      "tags": [],
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option key=\"type\"\n          value=\"RENT\"\n  >\n    [[{DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_OPTION_RENT}->size]]\n  </Option>\n  <Option key=\"type\"\n          value=\"OWN\"\n  >\n    [[{DK_CONTENT_CONVERSATION_OWNERSHIP_TYPE_OPTION_OWN}->size]]\n  </Option>\n</SelectAction>",
+      "top": 300,
+      "url": "/ownership",
+      "width": 200
+    }
+  ],
+  "script": "",
+  "snapToGrid": true,
+  "startPassage": "b2fbab18-5962-4464-b2ba-3b00112d048c",
+  "storyFormat": "Hedvig",
+  "storyFormatVersion": "1.0.0",
+  "stylesheet": "",
+  "tagColors": {
+    "Error": "red"
+  },
+  "zoom": 1
+}
