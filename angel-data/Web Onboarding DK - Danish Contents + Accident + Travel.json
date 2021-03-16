@@ -7,9 +7,7 @@
   ],
   "id": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
   "ifid": "AE247CEE-BA77-47AA-B49F-E31433F4E8A8",
-  "keywords": {
-    "isTrusted": true
-  },
+  "keywords": {},
   "lastUpdate": "2021-03-16T09:52:54.840Z",
   "name": "Web Onboarding DK - Danish Contents-Accident-Travel",
   "passages": [
@@ -20,9 +18,7 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
@@ -113,9 +109,7 @@
       "name": "offerError",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/offer-error",
@@ -128,9 +122,7 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
@@ -169,9 +161,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
