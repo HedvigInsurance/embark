@@ -7,8 +7,12 @@
   ],
   "id": "892533f3-934e-40ac-bccf-238e15f634e2",
   "ifid": "2F54B9F2-B6C1-4CFC-BF17-4DB41DCB1ED0",
-  "keywords": {},
-  "lastUpdate": "2021-03-09T15:22:53.257Z",
+  "keywords": {
+    "backButton": "{STORY_KEYWORDS_BACK_BUTTON}",
+    "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
+    "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
+  },
+  "lastUpdate": "2021-03-22T13:48:33.075Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -70,9 +74,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
@@ -111,9 +113,7 @@
       "name": "offerError",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/offer-error",
@@ -139,9 +139,7 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
@@ -193,9 +191,7 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
