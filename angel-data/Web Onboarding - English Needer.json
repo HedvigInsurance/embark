@@ -2,9 +2,11 @@
   "id": "1899048031",
   "ifid": "2D124E31-D47C-4045-990D-ECE0DFD51831",
   "keywords": {
-    "isTrusted": true
+    "backButton": "Back",
+    "selectActionSelectLabel": "Select",
+    "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2020-10-07T14:29:26.648Z",
+  "lastUpdate": "2021-03-22T15:42:04.659Z",
   "name": "Web Onboarding - English Needer",
   "partnerConfigs": [
     {
