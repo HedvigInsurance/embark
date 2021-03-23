@@ -2,12 +2,12 @@
   "id": "43351269",
   "ifid": "B74956E2-2A4E-4A0A-A8CA-61C0750DDBE0",
   "keywords": {
-    "backButton": "Back",
+    "backButton": "Tilbake",
     "externalInsuranceProviderConfirmTitle": "",
-    "selectActionSelectLabel": "Select",
-    "tooltipModalInformationLabel": "Information"
+    "selectActionSelectLabel": "Velg",
+    "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-03-09T13:51:17.991Z",
+  "lastUpdate": "2021-03-23T10:52:49.920Z",
   "locales": [
     "nb_NO"
   ],
