@@ -2,12 +2,12 @@
   "id": "43351269",
   "ifid": "B74956E2-2A4E-4A0A-A8CA-61C0750DDBE0",
   "keywords": {
-    "backButton": "Back",
+    "backButton": "Tilbake",
     "externalInsuranceProviderConfirmTitle": "",
-    "selectActionSelectLabel": "Select",
-    "tooltipModalInformationLabel": "Information"
+    "selectActionSelectLabel": "Velg",
+    "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-02-04T08:29:54.041Z",
+  "lastUpdate": "2021-03-23T10:52:49.920Z",
   "locales": [
     "nb_NO"
   ],
@@ -58,7 +58,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Har du allerede reiseforsikring en annen annen plass?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"coInsured > 5\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har reiseforsikring->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ikke reiseforsikring->email]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Er du allerede forsikret hos et annet selskap?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"coInsured > 5\"\n>\n</Redirect>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har reiseforsikring->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ikke reiseforsikring->email]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/currentlyinsured",
       "width": 100
@@ -71,7 +71,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette bekrefter jeg at min personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1987\"\n            title=\"Fødselsdato\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Fortsett->numberCoInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Vi håndterer dine personlige data i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"18-02-1987\"\n            title=\"Fødselsdato\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            mask=\"BirthDateReverse\"\n            next=\"[[Fortsett->numberCoInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
       "top": 800,
       "url": "/birth-date",
       "width": 100
@@ -84,7 +84,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Flott! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              title=\"Medforsikrede\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->currentlyInsured]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Flott! Hvor mange vil du at forsikringen skal gjelde for i tillegg til deg selv?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              title=\"Medforsikrede\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->currentlyInsured]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 950,
       "url": "/numberCoInsured",
       "width": 100
@@ -137,7 +137,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Ok! Fyll inn din epostadresse nedenfor for å komme til ditt prisforslag\n</Message>\n\n<TextAction placeholder=\"email@address.com\"\n            title=\"Epost\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Ok! Fyll inn e-postadressen din under for å få prisforslag\n</Message>\n\n<TextAction placeholder=\"email@address.com\"\n            title=\"Epost\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1100,
       "url": "/email",
       "width": 100
@@ -200,7 +200,7 @@
       "selected": false,
       "story": "43351269",
       "tags": [],
-      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Først, hva heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsett->birthDate]]\">\n  <TextAction title=\"Fornavn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Etternavn\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag, det tar bare et lite minutt :)\n</Message>\n\n<Message>\n  Først, hva heter du?\n</Message>\n\n<TextActionSet next=\"[[Fortsett->birthDate]]\">\n  <TextAction title=\"Fornavn\"\n              placeholder=\"Hedvig\"\n              large=\"true\"\n              key=\"firstName\"\n  >\n  </TextAction>\n  <TextAction title=\"Etternavn\"\n              placeholder=\"Hedvigsen\"\n              large=\"true\"\n              key=\"lastName\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 800,
       "url": "/start",
       "width": 200
