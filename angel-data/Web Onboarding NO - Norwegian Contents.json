@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-02-10T08:48:16.407Z",
+  "lastUpdate": "2021-03-09T13:47:26.769Z",
   "locales": [
     "nb_NO"
   ],
@@ -58,7 +58,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette bekrefter jeg at min personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Vi håndterer dine personlige data i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            minvalue=\"1\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
       "top": 950,
       "url": "/birth-date",
       "width": 100
@@ -111,7 +111,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Har du allerede innboforsikring en annen annen plass?\n</Message>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har innboforsikring->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ingen innboforsikring->email]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Er du allerede forsikret hos et annet selskap?\n</Message>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har innboforsikring->insurerInput]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ingen innboforsikring->email]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/currently-insured",
       "width": 100
@@ -150,7 +150,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Message>\n  Flott! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Message>\n  Flott! Hvor mange vil du at forsikringen skal gjelde for i tillegg til deg selv?\n</Message>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 650,
       "url": "/co-insured",
       "width": 100
@@ -229,7 +229,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Ok! Fyll inn din epostadresse nedenfor for å komme til ditt prisforslag\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Ok! Fyll inn e-postadressen din under for å få prisforslag\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1100,
       "url": "/email",
       "width": 100
@@ -268,7 +268,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag, det tar bare et lite minutt :)\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
       "top": 200,
       "url": "/start",
       "width": 200
