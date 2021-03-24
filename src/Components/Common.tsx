@@ -61,7 +61,7 @@ type MessageBodyProps = {
   isResponse: boolean
 }
 
-export const MessageBody = styled.p<MessageBodyProps>`
+export const MessageBody = styled.div<MessageBodyProps>`
   display: inline-block;
   background-color: ${(props: MessageBodyProps) =>
     props.isResponse ? colorsV3.white : colorsV3.gray800};
@@ -78,6 +78,10 @@ export const MessageBody = styled.p<MessageBodyProps>`
 
   @media (max-width: 320px) {
     font-size: 14px;
+  }
+
+  a {
+    color: ${colorsV3.purple500};
   }
 `
 
