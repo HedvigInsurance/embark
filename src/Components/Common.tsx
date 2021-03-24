@@ -81,7 +81,7 @@ export const MessageBody = styled.div<MessageBodyProps>`
   }
 
   a {
-    color: ${colorsV3.purple500};
+    color: inherit;
   }
 `
 
