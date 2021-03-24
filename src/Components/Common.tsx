@@ -17,30 +17,28 @@ export interface Replacements {
   [key: string]: React.ReactNode
 }
 
-export const TranslationNode: React.FC = ({ children }) => <>{children}</>
-
 export const replacePlaceholders = (
   replacements: Replacements,
   text: string,
-) => {
+): string => {
   const matches = text.split(getPlaceholderRegex()).filter((value) => value)
-
   if (!matches) {
-    return []
+    return ''
   }
 
-  return matches.map((placeholder, index) => {
+  const resolvedPlaceholders = matches.map((placeholder) => {
     if (!getPlaceholderKeyRegex().test(placeholder)) {
       return placeholder
     }
     const key = placeholder.match(getPlaceholderKeyRegex())![0]
-
     if (replacements[key]) {
-      return <TranslationNode key={index}>{replacements[key]}</TranslationNode>
+      return replacements[key]
     }
 
     return placeholder
   })
+
+  return resolvedPlaceholders.join('')
 }
 
 export const getTextContent = (store: any, node: ExpressionTextNode) => {

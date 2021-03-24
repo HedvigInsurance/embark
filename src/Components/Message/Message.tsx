@@ -6,6 +6,7 @@ import {
   MessageBody,
   MessageAnimation,
 } from '../Common'
+import ReactMarkdown from 'react-markdown'
 import { StoreContext } from '../KeyValueStore'
 import { Expression } from '../../Utils/ExpressionsUtil'
 
@@ -35,7 +36,7 @@ export const Message = (props: MessageProps) => {
     <MessageContainer>
       <MessageAnimation>
         <MessageBody isResponse={props.isResponse}>
-          {replacePlaceholders(store, text)}
+          <ReactMarkdown>{replacePlaceholders(store, text)}</ReactMarkdown>
         </MessageBody>
       </MessageAnimation>
     </MessageContainer>
