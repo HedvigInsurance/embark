@@ -22,9 +22,6 @@ export const replacePlaceholders = (
   text: string,
 ): string => {
   const matches = text.split(getPlaceholderRegex()).filter((value) => value)
-  if (!matches) {
-    return ''
-  }
 
   const resolvedPlaceholders = matches.map((placeholder) => {
     if (!getPlaceholderKeyRegex().test(placeholder)) {
