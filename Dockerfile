@@ -11,7 +11,7 @@ ADD yarn.lock yarn.lock
 RUN yarn --production
 
 ## Build/compilation stage (no-op but required by the standardised pipeline) ##
-FROM scratch AS build
+FROM dependencies AS build
 # Skip me plz
 
 ## Run tests ##
