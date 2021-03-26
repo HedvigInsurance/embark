@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-03-22T16:20:39.787Z",
+  "lastUpdate": "2021-03-26T10:04:58.467Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -62,7 +62,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 50 || coInsured > 0\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 100 || coInsured > 1\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1050,
       "url": "/student-eligibility-check",
       "width": 100
