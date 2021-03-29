@@ -835,7 +835,6 @@ const parseTracks = (element: Element) => {
     .map((trackElement) => {
       const eventName = trackElement.getAttribute('name')
       const eventKeys = trackElement.getAttribute('keys') || ''
-      const includeAllKeys = trackElement.getAttribute('includeAllKeys')
       const customData = trackElement.getAttribute('customData')
         ? trackElement.getAttribute('customData')!.replace(/'/g, '"')
         : null
@@ -858,7 +857,7 @@ const parseTracks = (element: Element) => {
           .replace(/\]$/g, '')
           .split(',')
           .filter((key) => key),
-        includeAllKeys: !!includeAllKeys,
+        includeAllKeys: false,
         customData: customData,
       }
     })
