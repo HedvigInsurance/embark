@@ -17,10 +17,10 @@ Email.args = {
   passageName: 'emailAdressApartment',
   mask: 'Email',
   storeKey: 'email',
-  placeholder: 'din.epost@här.nu',
+  placeholder: 'your.email@here.now',
   tooltip: {
     title: 'Tooltip title',
-    description: 'Ange din email',
+    description: 'Submit your email',
   },
 }
 
@@ -30,5 +30,23 @@ PersonalNumber.args = {
   passageName: 'personalNumberApartment',
   mask: 'PersonalNumber',
   storeKey: 'personalNumber',
-  placeholder: 'ååmmdd-xxxx',
+  placeholder: 'yymmdd-xxxx',
+}
+
+export const BirthDate = Template.bind({})
+BirthDate.args = {
+  isTransitioning: false,
+  passageName: 'birthDate',
+  mask: 'BirthDate',
+  storeKey: 'birthDate',
+  placeholder: 'yyyy-mm-dd',
+}
+
+export const BirthDateReverse = Template.bind({})
+BirthDateReverse.args = {
+  isTransitioning: false,
+  passageName: 'birthDate',
+  mask: 'BirthDateReverse',
+  storeKey: 'birthDate',
+  placeholder: 'dd-mm-yyyy',
 }
