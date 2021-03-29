@@ -51,7 +51,6 @@ export const useGoTo = (
 
       if (newPassage.externalRedirect) {
         track('External Redirect', {
-          ...store,
           redirectLocation: newPassage.externalRedirect.data.location,
         })
         setGoTo(null)

@@ -878,6 +878,7 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
     startPassage: storyData.startPassage,
     keywords: storyData.keywords || {},
     partnerConfigs: storyData.partnerConfigs || [],
+    trackableProperties: storyData.trackableProperties || [],
     computedStoreValues: storyData.computedStoreValues as
       | ReadonlyArray<{ key: string; value: string }>
       | undefined,
@@ -952,8 +953,8 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
           {
             __typename: 'EmbarkTrack',
             eventName: `Passage Shown - ${passage.name}`,
-            eventKeys: [],
-            includeAllKeys: true,
+            eventKeys: storyData.trackableProperties || [],
+            includeAllKeys: false,
             customData: null,
           },
         ],
