@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-01-05T14:17:37.257Z",
-  "locales": ["nb_NO"],
+  "lastUpdate": "2021-03-09T13:39:26.412Z",
+  "locales": [
+    "nb_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_COMBO_APP_METADATA_DESCRIPTION",
@@ -70,7 +72,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Flott! Hvor mange flere vil du at forsikringen skal gjelde for?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  Flott! Hvor mange vil du at forsikringen skal gjelde for i tillegg til deg selv?\n</Message>\n\n<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Response>\n  <when expression=\"coInsured == 1\">\n    Meg + {coInsured} annen\n  </when>\n  <when expression=\"coInsured > 1\">\n    Meg + {coInsured} andre\n  </when>\n  <when expression=\"coInsured == 0\">\n    Bare meg\n  </when>\n</Response>\n\n<NumberAction placeholder=\"2\"\n              minvalue=\"0\"\n              key=\"coInsured\"\n              next=\"[[Fortsett->name]]\"\n              unit=\"andre\"\n>\n  <Tooltip>\n    <Title>\n      Antall medforsikrede\n    </Title>\n    <Description>\n      F.eks partner, barn eller andre du bor med som skal dekkes. Medforsikrede må bo sammen med deg for å bli dekket av forsikringen din\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 1250,
       "url": "/co-insured",
       "width": 100
@@ -120,7 +122,9 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "-1676947869",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
@@ -146,7 +150,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Har du allerede forsikring en annen annen plass?\n</Message>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har innboforsikring->contentsInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"travel\"\n  >\n    [[Ja, jeg har reiseforsikring->travelInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"contentsAndTravel\"\n  >\n    [[Ja, jeg har både reise- og innboforsikring->contentsAndTravelInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ingen andre forsikringer->email]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Er du allerede forsikret hos et annet selskap?\n</Message>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har innboforsikring->contentsInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"travel\"\n  >\n    [[Ja, jeg har reiseforsikring->travelInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"contentsAndTravel\"\n  >\n    [[Ja, jeg har både reise- og innboforsikring->contentsAndTravelInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ingen andre forsikringer->email]]\n  </Option>\n</SelectAction>",
       "top": 1700,
       "url": "/currently-insured",
       "width": 100
@@ -184,7 +188,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Ved å fortsette bekrefter jeg at min personlige data blir håndtert i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
+      "text": "<Message>\n  Når er du født?\n</Message>\n\n<Message>\n  Vi håndterer dine personlige data i henhold til GDPR https://www.hedvig.com/no/privacy\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"dd-mm-åååå\"\n            mask=\"BirthDateReverse\"\n            key=\"birthDate\"\n            next=\"[[Fortsett->currentlyInsured]]\"\n            unit=\"Fødselsdato (dd-mm-åååå)\"\n>\n</TextAction>",
       "top": 1550,
       "url": "/birth-date",
       "width": 100
@@ -196,7 +200,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "-1676947869",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre boliger i den størrelsen du har.\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/error",
@@ -210,7 +216,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Ok! Fyll inn din epostadresse nedenfor for å komme til ditt prisforslag\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  Ok! Fyll inn e-postadressen din under for å få prisforslag\n</Message>\n\n<TextAction placeholder=\"your.email@here.now\"\n            mask=\"Email\"\n            key=\"email\"\n            next=\"[[Fortsett->youthEligibilityCheck]]\"\n>\n</TextAction>",
       "top": 1700,
       "url": "/email",
       "width": 100
@@ -300,7 +306,7 @@
       "selected": false,
       "story": "-1676947869",
       "tags": [],
-      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag. Det tar bare et minutt\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  Hei! La oss gi deg et godt prisforslag, det tar bare et lite minutt :)\n</Message>\n\n<Message>\n  Vil du ha et prisforslag for din nåværende leilighet eller er du på flyttefot?\n</Message>\n\n<SelectAction>\n  <Option key=\"isMover\"\n          value=\"false\"\n  >\n    [[Min nåværende leilighet->ownershipType]]\n  </Option>\n  <Option key=\"isMover\"\n          value=\"true\"\n  >\n    [[Jeg er på flyttefot->ownershipType]]\n  </Option>\n</SelectAction>",
       "top": 800,
       "url": "/start",
       "width": 200
