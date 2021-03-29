@@ -655,6 +655,15 @@ const createParsePossibleExpressionContent = (
   }
 }
 
+const createStoryKeywordsTranslator = (translate: Translator) => (
+  keywords: Record<string, string>,
+) => {
+  Object.keys(keywords).map((key) => {
+    keywords[key] = translate(keywords[key])
+  })
+  return keywords || {}
+}
+
 const getResponse = (
   passageName: string,
   containerElement: Element,
@@ -870,12 +879,12 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
   const parsePossibleExpressionContent = createParsePossibleExpressionContent(
     translate,
   )
-
+  const parseStoryKeywords = createStoryKeywordsTranslator(translate)
   return {
     id: storyData.id,
     name: storyData.name,
     startPassage: storyData.startPassage,
-    keywords: storyData.keywords || {},
+    keywords: parseStoryKeywords(storyData.keywords),
     partnerConfigs: storyData.partnerConfigs || [],
     trackableProperties: storyData.trackableProperties || [],
     computedStoreValues: storyData.computedStoreValues as
