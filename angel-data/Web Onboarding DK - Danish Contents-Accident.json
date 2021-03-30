@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_BACK_BUTTON}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-03-23T15:41:57.640Z",
+  "lastUpdate": "2021-03-30T07:45:08.090Z",
   "name": "Web Onboarding DK - Danish Contents-Accident",
   "passages": [
     {
@@ -36,7 +36,7 @@
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
       "tags": [],
-      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 50 || coInsured > 0\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
+      "text": "<Redirect to=\"[[Offer]]\"\n          when=\"birthDate.Age > 30 || livingSpace > 100 || coInsured > 1\"\n          key=\"isStudent\"\n          value=\"false\"\n>\n</Redirect>\n\n<Redirect to=\"[[student]]\"\n          when=\"true\"\n>\n</Redirect>",
       "top": 1050,
       "url": "/student-eligibility-check",
       "width": 100
@@ -61,9 +61,7 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
@@ -141,9 +139,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
@@ -156,9 +152,7 @@
       "name": "offerError",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/offer-error",
@@ -184,9 +178,7 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
