@@ -118,7 +118,7 @@ export const Action = (props: ActionProps) => {
     return (
       <PreviousInsuranceProviderAction
         providers={
-          props.action.data.providers === 'norwegian'
+          props.action.data.providers === 'NORWEGIAN'
             ? norwegianProviders
             : swedishProviders
         }
