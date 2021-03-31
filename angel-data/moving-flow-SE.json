@@ -3,23 +3,8 @@
   "ifid": "29F1BC05-1702-4DA0-B866-9139E5B2C621",
   "keywords": {},
   "lastUpdate": "2021-03-08T16:54:43.668Z",
-  "locales": [
-    "en_SE"
-  ],
-  "metadata": [
-    {
-      "description": "SWEDEN_NEEDER_APP_METADATA_DESCRIPTION",
-      "metadata": [],
-      "title": "SWEDEN_NEEDER_APP_METADATA_TITLE",
-      "type": "APP_ONBOARDING"
-    },
-    {
-      "description": "SWEDEN_NEEDER_WEB_METADATA_DESCRIPTION",
-      "metadata": [],
-      "title": "SWEDEN_NEEDER_WEB_METADATA_TITLE",
-      "type": "WEB_ONBOARDING"
-    }
-  ],
+  "locales": ["en_SE"],
+  "metadata": [],
   "name": "moving-flow-SE",
   "partnerConfigs": [
     {
@@ -49,9 +34,7 @@
       "name": "close",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "External-Action"
-      ],
+      "tags": ["External-Action"],
       "text": "Double-click this passage to edit it.",
       "top": 800,
       "width": 100
@@ -63,9 +46,7 @@
       "name": "chat",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "External-Action"
-      ],
+      "tags": ["External-Action"],
       "text": "Double-click this passage to edit it.",
       "top": 600,
       "width": 100
@@ -103,9 +84,7 @@
       "name": "errorHouseholdSizeApartment",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_ERROR_PEOPLE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_ERROR_PEOPLE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 750,
       "url": "/error",
@@ -118,9 +97,7 @@
       "name": "houseInformationManual",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Manual"
-      ],
+      "tags": ["Manual"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_HOUSE_INFORMATION_MANUAL_MESSAGE_1}\n</Message>\n\n<GroupedResponse>\n  <Title>\n    {EMBARK_MOVING_SE_HOUSE_INFORMATION_RESPONSE_TITLE}\n  </Title>\n  <Item>\n    {EMBARK_MOVING_SE_HOUSE_LIVING_SPACE_LABEL}: {livingSpace} {EMBARK_MOVING_SE_APARTMENT_SQUARE_METERS}\n  </Item>\n  <Item>\n    {EMBARK_MOVING_SE_HOUSE_ANCILLARY_AREA_LABEL}: {ancillaryArea} {EMBARK_MOVING_SE_APARTMENT_SQUARE_METERS}\n  </Item>\n  <Item>\n    {EMBARK_MOVING_SE_HOUSE_CONSTRUCTION_YEAR_LABEL}: {yearOfConstruction}\n  </Item>\n</GroupedResponse>\n\n<NumberActionSet next=\"[[{EMBARK_MOVING_SE_CONTINUE_BUTTON}->houseBathrooms]]\">\n  <NumberAction title=\"{EMBARK_MOVING_SE_HOUSE_LIVING_SPACE_LABEL}\"\n                placeholder=\"120\"\n                minvalue=\"1\"\n                key=\"livingSpace\"\n                unit=\"{EMBARK_MOVING_SE_APARTMENT_SQUARE_METERS}\"\n  >\n    <Tooltip>\n      <Title>\n        {EMBARK_MOVING_SE_HOUSE_LIVING_SPACE_LABEL}\n      </Title>\n      <Description>\n        {EMBARK_MOVING_SE_HOUSE_INFORMATION_LIVING_SPACE_DESCRIPTION}\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"{EMBARK_MOVING_SE_HOUSE_ANCILLARY_AREA_LABEL}\"\n                placeholder=\"60\"\n                key=\"ancillaryArea\"\n                unit=\"{EMBARK_MOVING_SE_APARTMENT_SQUARE_METERS}\"\n  >\n    <Tooltip>\n      <Title>\n        {EMBARK_MOVING_SE_HOUSE_ANCILLARY_AREA_LABEL}\n      </Title>\n      <Description>\n        {EMBARK_MOVING_SE_HOUSE_INFORMATION_ANCILLARY_AREA_DESCRIPTION}\n      </Description>\n    </Tooltip>\n  </NumberAction>\n  <NumberAction title=\"{EMBARK_MOVING_SE_HOUSE_CONSTRUCTION_YEAR_LABEL}\"\n                placeholder=\"1998\"\n                minvalue=\"1\"\n                key=\"yearOfConstruction\"\n  >\n    <Tooltip>\n      <Title>\n        {EMBARK_MOVING_SE_HOUSE_CONSTRUCTION_YEAR_LABEL}\n      </Title>\n      <Description>\n        {EMBARK_MOVING_SE_HOUSE_INFORMATION_CONTRUCTION_YEAR_DESCRIPTION}\n      </Description>\n    </Tooltip>\n  </NumberAction>\n</NumberActionSet>",
       "top": 600,
       "url": "/house-information-manual",
@@ -133,9 +110,7 @@
       "name": "errorLivingSpaceApartment",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_APARTMENT_ERROR_LIVING_SPACE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_APARTMENT_ERROR_LIVING_SPACE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error",
@@ -161,9 +136,7 @@
       "name": "OfferSuccess",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "External-Action"
-      ],
+      "tags": ["External-Action"],
       "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
       "top": 1750,
       "url": "/success",
@@ -176,9 +149,7 @@
       "name": "CreateQuoteError",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Something appears to have gone wrong and we can’t give you a price quote right now. Try again, and if it doesn’t work you can write us in the chat on the website!\n</Message>",
       "top": 1625,
       "url": "/error",
@@ -204,9 +175,7 @@
       "name": "errorInfoVilla",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 750,
       "url": "/error",
@@ -219,9 +188,7 @@
       "name": "errorFloorsVilla",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_FLOORS_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_FLOORS_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 1050,
       "url": "/error",
@@ -299,9 +266,7 @@
       "name": "errorAgeVilla",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_AGE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_AGE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error",
@@ -340,9 +305,7 @@
       "name": "errorBathsVilla",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_BATHS_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_HOUSE_ERROR_BATHS_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 900,
       "url": "/error",
@@ -368,9 +331,7 @@
       "name": "ApartmentUwlimitsHit",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Thank you! Unfortunately, one of our insurance experts will need to take a look at your application, so we are unable to give you an offer via our website. To receive an offer please email us at prisforslag@hedvig.com\n</Message>",
       "top": 1475,
       "url": "/oh-no",
@@ -421,9 +382,7 @@
       "name": "errorhouseholdSizeVilla",
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_SE_ERROR_PEOPLE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_SE_ERROR_PEOPLE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CLOSE}->close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_ERROR_OPTION_CHAT}->chat]]\n  </Option>\n</SelectAction>",
       "top": 1200,
       "url": "/error",
