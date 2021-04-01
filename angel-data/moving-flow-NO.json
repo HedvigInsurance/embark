@@ -8,34 +8,8 @@
     "tooltipModalInformationLabel": "Information"
   },
   "lastUpdate": "2021-03-09T11:03:15.269Z",
-  "locales": [
-    "en_NO"
-  ],
-  "metadata": [
-    {
-      "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
-      "metadata": [
-        {
-          "__typename": "EmbarkStoryMetaDataEntryWebUrlPath",
-          "path": "/no-en/new-member/contents"
-        },
-        {
-          "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_ONE"
-        }
-      ],
-      "name": "Web Onboarding NO - English Contents",
-      "title": "NORWAY_CONTENTS_APP_METADATA_TITLE",
-      "type": "APP_ONBOARDING"
-    },
-    {
-      "description": "NORWAY_CONTENTS_WEB_METADATA_DESCRIPTION",
-      "metadata": [],
-      "name": "Web Onboarding NO - English Contents",
-      "title": "NORWAY_CONTENTS_WEB_METADATA_TITLE",
-      "type": "WEB_ONBOARDING"
-    }
-  ],
+  "locales": ["en_NO"],
+  "metadata": [],
   "name": "moving-flow-NO",
   "passages": [
     {
@@ -45,9 +19,7 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_NO_ERROR_PEOPLE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_NO_ERROR_PEOPLE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CLOSE}->Close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CHAT}->Chat]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
@@ -86,9 +58,7 @@
       "name": "Close",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": [
-        "External-Action"
-      ],
+      "tags": ["External-Action"],
       "text": "Double-click this passage to edit it.",
       "top": 650,
       "width": 100
@@ -100,9 +70,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  {EMBARK_MOVING_NO_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_NO_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CLOSE}->Close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CHAT}->Chat]]\n  </Option>\n</SelectAction>",
       "top": 500,
       "url": "/error",
@@ -153,9 +121,7 @@
       "name": "Chat",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": [
-        "External-Action"
-      ],
+      "tags": ["External-Action"],
       "text": "Double-click this passage to edit it.",
       "top": 500,
       "width": 100
