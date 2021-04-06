@@ -17,7 +17,7 @@ const shouldBeAddedToHistory = (passage: any) => {
     return false
   }
 
-  if (passage.externalRedirect) {
+  if (passage.externalRedirect || passage.offerRedirect) {
     return false
   }
 
