@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-01-05T13:29:23.240Z",
-  "locales": ["en_NO"],
+  "lastUpdate": "2021-04-06T09:29:10.055Z",
+  "locales": [
+    "en_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_COMBO_APP_METADATA_DESCRIPTION",
@@ -146,7 +148,9 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "-1503132176",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1250,
       "url": "/error",
@@ -261,7 +265,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "-1503132176",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 1100,
       "url": "/error",
@@ -315,5 +321,44 @@
   "tagColors": {
     "Error": "red"
   },
+  "trackableProperties": [
+    "CreateQuoteErrorResult",
+    "NewsletterSuccessResult",
+    "OfferResult",
+    "OfferSuccessResult",
+    "StartResult",
+    "birthDate.Age",
+    "coInsured",
+    "contentsAndTravelInsurerResult",
+    "contentsInsurerResult",
+    "currentlyInsuredResult",
+    "errorCoInsuredResult",
+    "errorSizeResult",
+    "isMover",
+    "isYouth",
+    "livingSpace",
+    "nameResult",
+    "norwegianContentsMonthlyDiscount",
+    "norwegianContentsMonthlyDiscountCurrency",
+    "norwegianContentsMonthlyGross",
+    "norwegianContentsMonthlyGrossCurrency",
+    "norwegianContentsMonthlyNet",
+    "norwegianContentsMonthlyNetCurrency",
+    "norwegianTravelMonthlyDiscount",
+    "norwegianTravelMonthlyDiscountCurrency",
+    "norwegianTravelMonthlyGross",
+    "norwegianTravelMonthlyGrossCurrency",
+    "norwegianTravelMonthlyNet",
+    "norwegianTravelMonthlyNetCurrency",
+    "numberCoInsuredResult",
+    "ownershipTypeResult",
+    "prevInsurance",
+    "sizeInputResult",
+    "travelInsurerResult",
+    "type",
+    "youthEligibilityCheckResult",
+    "youthResult",
+    "zipCode"
+  ],
   "zoom": 1
 }

@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-03-26T10:04:58.467Z",
+  "lastUpdate": "2021-04-06T09:52:52.274Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -240,5 +240,32 @@
   "tagColors": {
     "Error": "red"
   },
+  "trackableProperties": [
+    "NewsletterSuccessResult",
+    "OfferResult",
+    "OfferSuccessResult",
+    "birthDate.Age",
+    "coInsured",
+    "coInsuredResult",
+    "errorCoInsuredResult",
+    "errorSizeResult",
+    "householdSize",
+    "isStudent",
+    "livingSpace",
+    "monthlyDiscount",
+    "monthlyDiscountCurrency",
+    "monthlyGross",
+    "monthlyGrossCurrency",
+    "monthlyNet",
+    "monthlyNetCurrency",
+    "offerErrorResult",
+    "offerUwLimitResult",
+    "ownershipTypeResult",
+    "sizeResult",
+    "studentEligibilityCheckResult",
+    "studentResult",
+    "type",
+    "zipCode"
+  ],
   "zoom": 1
 }
