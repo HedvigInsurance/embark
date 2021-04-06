@@ -46,6 +46,27 @@ const parseExternalRedirect = (containerElement: Element) => {
   }
 }
 
+/*
+<OfferRedirect keys="key1, key2"></OfferRedirect>
+*/
+
+const parseOfferRedirect = (containerElement: Element) => {
+  const node = containerElement.getElementsByTagName('OfferRedirect')[0]
+
+  if (!node) {
+    return null
+  }
+
+  const keys = node.getAttribute('keys')?.split(',') || []
+
+  return {
+    component: 'OfferRedirect',
+    data: {
+      keys,
+    },
+  }
+}
+
 const getPotentiallyMultipleItemsFromKeyOrValue = (
   keyOrValue: string | null,
   translate: Translator = (str) => str,
@@ -362,9 +383,9 @@ const getPreviousInsuranceProviderAction = (
   )
   const skipLinks = skip ? parseLinks(skip) : []
   const nextLinks = next ? parseLinks(next) : []
-  const providers = previousInsuranceProviderActionNode.getAttribute(
-    'providers',
-  )
+  const providers = previousInsuranceProviderActionNode
+    .getAttribute('providers')
+    ?.toUpperCase()
   const storeKey = previousInsuranceProviderActionNode.getAttribute('storeKey')
 
   const tooltip = parseTooltips(
@@ -948,6 +969,7 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
         .filter((item) => item)
 
       const externalRedirect = parseExternalRedirect(containerElement)
+      const offerRedirect = parseOfferRedirect(containerElement)
 
       return {
         id: passage.id,
@@ -969,6 +991,7 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
         messages,
         redirects,
         externalRedirect,
+        offerRedirect,
         action: getAction(containerElement, translate),
         response: getResponse(
           passage.name,

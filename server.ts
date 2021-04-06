@@ -8,6 +8,7 @@ import * as cors from '@koa/cors'
 import { JSDOM } from 'jsdom'
 import { parseStoryData } from './src/Parsing/parseStoryData'
 import { storyKeywords } from './src/storyKeywords'
+import { storyMaskDerivatives } from './src/storyMaskDerivatives'
 import * as graphqlHTTP from 'koa-graphql'
 
 import { schema } from './schema'
@@ -89,6 +90,7 @@ router.get('/format.js', async (ctx) => {
     proofing: isProofing,
     source: html,
     storyKeywords,
+    storyMaskDerivatives,
   }
 
   const outputString =

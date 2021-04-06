@@ -152,6 +152,15 @@ const typeDefs = `
         location: EmbarkExternalRedirectLocation!
     }
 
+    type EmbarkOfferRedirect {
+        component: String!
+        data: EmbarkOfferRedirectData!
+    }
+
+    type EmbarkOfferRedirectData {
+        keys: [String]!
+    }
+
     enum EmbarkExternalRedirectLocation {
         MailingList
         Offer
@@ -360,6 +369,7 @@ const typeDefs = `
         api: EmbarkApi
         messages: [EmbarkMessage!]!
         externalRedirect: EmbarkExternalRedirect
+        offerRedirect: EmbarkOfferRedirect
         action: EmbarkAction
         response: EmbarkResponse!
         tooltips: [EmbarkTooltip!]!
