@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-03-30T07:47:33.487Z",
+  "lastUpdate": "2021-04-06T09:54:54.663Z",
   "name": "Web Onboarding DK - Danish Contents-Accident-Travel",
   "passages": [
     {
@@ -22,7 +22,9 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 600,
       "url": "/error-co-insured",
@@ -113,7 +115,9 @@
       "name": "offerError",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_ERROR_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/offer-error",
@@ -126,7 +130,9 @@
       "name": "offerUwLimit",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_OFFER_UW_LIMIT_MESSAGE_1}\n</Message>",
       "top": 1300,
       "url": "/uw-limit",
@@ -165,7 +171,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 300,
       "url": "/error-size",
@@ -232,5 +240,44 @@
   "tagColors": {
     "Error": "red"
   },
+  "trackableProperties": [
+    "NewsletterSuccessResult",
+    "OfferResult",
+    "OfferSuccessResult",
+    "birthDate.Age",
+    "coInsured",
+    "coInsuredResult",
+    "danishAccidentMonthlyDiscount",
+    "danishAccidentMonthlyDiscountCurrency",
+    "danishAccidentMonthlyGross",
+    "danishAccidentMonthlyGrossCurrency",
+    "danishAccidentMonthlyNet",
+    "danishAccidentMonthlyNetCurrency",
+    "danishContentsMonthlyDiscount",
+    "danishContentsMonthlyDiscountCurrency",
+    "danishContentsMonthlyGross",
+    "danishContentsMonthlyGrossCurrency",
+    "danishContentsMonthlyNet",
+    "danishContentsMonthlyNetCurrency",
+    "danishTravelMonthlyDiscount",
+    "danishTravelMonthlyDiscountCurrency",
+    "danishTravelMonthlyGross",
+    "danishTravelMonthlyGrossCurrency",
+    "danishTravelMonthlyNet",
+    "danishTravelMonthlyNetCurrency",
+    "errorCoInsuredResult",
+    "errorSizeResult",
+    "householdSize",
+    "isStudent",
+    "livingSpace",
+    "offerErrorResult",
+    "offerUwLimitResult",
+    "ownershipTypeResult",
+    "sizeResult",
+    "studentEligibilityCheckResult",
+    "studentResult",
+    "type",
+    "zipCode"
+  ],
   "zoom": 1
 }
