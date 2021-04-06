@@ -865,7 +865,6 @@ const parseTracks = (element: Element) => {
     .map((trackElement) => {
       const eventName = trackElement.getAttribute('name')
       const eventKeys = trackElement.getAttribute('keys') || ''
-      const includeAllKeys = trackElement.getAttribute('includeAllKeys')
       const customData = trackElement.getAttribute('customData')
         ? trackElement.getAttribute('customData')!.replace(/'/g, '"')
         : null
@@ -888,7 +887,7 @@ const parseTracks = (element: Element) => {
           .replace(/\]$/g, '')
           .split(',')
           .filter((key) => key),
-        includeAllKeys: !!includeAllKeys,
+        includeAllKeys: false,
         customData: customData,
       }
     })
@@ -908,6 +907,7 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
     startPassage: storyData.startPassage,
     keywords: parseStoryKeywords(storyData.keywords),
     partnerConfigs: storyData.partnerConfigs || [],
+    trackableProperties: storyData.trackableProperties || [],
     computedStoreValues: storyData.computedStoreValues as
       | ReadonlyArray<{ key: string; value: string }>
       | undefined,
@@ -983,8 +983,8 @@ export const parseStoryData = (storyData: any, textKeyMap: TextKeyObject) => {
           {
             __typename: 'EmbarkTrack',
             eventName: `Passage Shown - ${passage.name}`,
-            eventKeys: [],
-            includeAllKeys: true,
+            eventKeys: storyData.trackableProperties || [],
+            includeAllKeys: false,
             customData: null,
           },
         ],

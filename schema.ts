@@ -462,6 +462,7 @@ const typeDefs = `
         computedStoreValues: [EmbarkComputedStoreValue!]
         partnerConfigs: [EmbarkPartnerConfig!]!
         passages: [EmbarkPassage!]!
+        trackableProperties: [String!]!
     }
 
     type EmbarkStoryMetadata {

@@ -225,13 +225,7 @@ export const Passage = (props: PassageProps) => {
           : {}
 
         if (passageTracking.includeAllKeys) {
-          track(passageTracking.eventName, {
-            ...store,
-            passage: props.passage.name,
-            ...customData,
-          })
-
-          return
+          throw new Error('[TRACKING] includeAllKeys is not supported anymore')
         }
 
         track(
