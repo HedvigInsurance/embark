@@ -383,9 +383,9 @@ const getPreviousInsuranceProviderAction = (
   )
   const skipLinks = skip ? parseLinks(skip) : []
   const nextLinks = next ? parseLinks(next) : []
-  const providers = previousInsuranceProviderActionNode.getAttribute(
-    'providers',
-  )
+  const providers = previousInsuranceProviderActionNode
+    .getAttribute('providers')
+    ?.toUpperCase()
   const storeKey = previousInsuranceProviderActionNode.getAttribute('storeKey')
 
   const tooltip = parseTooltips(

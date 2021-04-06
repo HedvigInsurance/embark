@@ -110,6 +110,7 @@ export const mapMaskedValue = (value: string, m?: MaskType): string => {
   return value
 }
 
+// Make sure to add/change entry in storyMaskDerivates when modifying these
 export const derivedValues = (
   mask: MaskType | undefined,
   key: string,
