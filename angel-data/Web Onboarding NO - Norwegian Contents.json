@@ -8,9 +8,7 @@
     "tooltipModalInformationLabel": "Informasjon"
   },
   "lastUpdate": "2021-03-09T13:47:26.769Z",
-  "locales": [
-    "nb_NO"
-  ],
+  "locales": ["nb_NO"],
   "metadata": [
     {
       "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
@@ -71,7 +69,7 @@
       "selected": false,
       "story": "1150685733",
       "tags": [],
-      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "text": "<OfferRedirect keys=\"quoteId\">\n</OfferRedirect>",
       "top": 1375,
       "width": 100
     },
@@ -82,9 +80,7 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "1150685733",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
@@ -187,9 +183,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "1150685733",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre boliger i den størrelsen du har\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 500,
       "url": "/error",

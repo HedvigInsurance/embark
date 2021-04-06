@@ -62,6 +62,16 @@ export const useGoTo = (
         return
       }
 
+      if (newPassage.offerRedirect) {
+        track('Offer Redirect', {})
+        setGoTo(null)
+        const quoteIds = newPassage.offerRedirect.keys.map(
+          (key: string) => store[key],
+        )
+        externalRedirectContext.Offer(quoteIds)
+        return
+      }
+
       onGoTo(targetPassage)
     }
 

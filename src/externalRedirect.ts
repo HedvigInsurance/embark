@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 export interface TExternalRedirectContext {
-  Offer: () => void
+  Offer: (ids: string[]) => void
   MailingList: () => void
 }
 
@@ -31,7 +31,7 @@ export const performExternalRedirect = (
   externalRedirect: ExternalRedirect,
 ) => {
   if (externalRedirect.data.location === 'Offer') {
-    context.Offer()
+    context.Offer([])
   }
 
   if (externalRedirect.data.location === 'MailingList') {

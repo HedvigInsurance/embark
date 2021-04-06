@@ -70,7 +70,7 @@
       "selected": false,
       "story": "-1503132176",
       "tags": [],
-      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "text": "<OfferRedirect keys=\"norwegianHomeContentsQuoteId,norwegianTravelQuoteId\">\n</OfferRedirect>",
       "top": 1750,
       "width": 100
     },
