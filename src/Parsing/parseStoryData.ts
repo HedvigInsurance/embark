@@ -268,6 +268,7 @@ const getNumberActionSet = (
       data: {
         title: translate(numberActionNode.getAttribute('title') || ''),
         ...numberAction.data,
+        __typename: 'EmbarkNumberActionSetNumberAction',
       },
     }
   })
@@ -276,6 +277,7 @@ const getNumberActionSet = (
     __typename: 'EmbarkNumberActionSet',
     component: 'NumberActionSet',
     data: {
+      __typename: 'EmbarkNumberActionSetData',
       link: links && links[0],
       numberActions,
     },
