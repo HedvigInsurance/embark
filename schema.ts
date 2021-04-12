@@ -158,7 +158,7 @@ const typeDefs = `
     }
 
     type EmbarkOfferRedirectData {
-        keys: [String]!
+        keys: [String!]!
     }
 
     enum EmbarkExternalRedirectLocation {
