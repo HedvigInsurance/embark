@@ -8,9 +8,7 @@
     "tooltipModalInformationLabel": "Information"
   },
   "lastUpdate": "2021-04-06T09:38:37.774Z",
-  "locales": [
-    "en_NO"
-  ],
+  "locales": ["en_NO"],
   "metadata": [
     {
       "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
@@ -21,7 +19,7 @@
         },
         {
           "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_TWO"
+          "background": "GRADIENT_THREE"
         }
       ],
       "name": "Web Onboarding NO - English Travel",
@@ -70,9 +68,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "830193891",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",

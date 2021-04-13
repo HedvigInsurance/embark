@@ -8,9 +8,7 @@
     "tooltipModalInformationLabel": "Informasjon"
   },
   "lastUpdate": "2021-04-06T09:44:20.641Z",
-  "locales": [
-    "nb_NO"
-  ],
+  "locales": ["nb_NO"],
   "metadata": [
     {
       "description": "NORWAY_TRAVEL_APP_METADATA_DESCRIPTION",
@@ -21,7 +19,7 @@
         },
         {
           "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_TWO"
+          "background": "GRADIENT_THREE"
         }
       ],
       "name": "Web Onboarding NO - Norwegian Travel",
@@ -109,9 +107,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "43351269",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Dessverre kan vi bare forsikre maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 950,
       "url": "/error",

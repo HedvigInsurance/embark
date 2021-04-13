@@ -8,9 +8,7 @@
     "tooltipModalInformationLabel": "Information"
   },
   "lastUpdate": "2021-04-06T09:32:35.115Z",
-  "locales": [
-    "en_NO"
-  ],
+  "locales": ["en_NO"],
   "metadata": [
     {
       "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
@@ -21,7 +19,7 @@
         },
         {
           "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_ONE"
+          "background": "GRADIENT_TWO"
         }
       ],
       "name": "Web Onboarding NO - English Contents",
@@ -121,9 +119,7 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "1392201379",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
@@ -136,9 +132,7 @@
       "name": "errorSize",
       "selected": false,
       "story": "1392201379",
-      "tags": [
-        "Error"
-      ],
+      "tags": ["Error"],
       "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
       "top": 500,
       "url": "/error",
