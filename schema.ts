@@ -158,7 +158,7 @@ const typeDefs = `
     }
 
     type EmbarkOfferRedirectData {
-        keys: [String]!
+        keys: [String!]!
     }
 
     enum EmbarkExternalRedirectLocation {
@@ -172,6 +172,21 @@ const typeDefs = `
 
     type EmbarkNumberActionSetData {
         link: EmbarkLink!
+        numberActions: [EmbarkNumberActionSetNumberAction!]!
+    }
+
+    type EmbarkNumberActionSetNumberAction {
+        data: EmbarkNumberActionSetNumberActionData
+    }
+
+    type EmbarkNumberActionSetNumberActionData {
+        key: String!
+        placeholder: String!
+        unit: String
+        label: String
+        maxValue: Int
+        minValue: Int
+        title: String!
     }
 
     type EmbarkNumberActionSet implements EmbarkActionCore {
