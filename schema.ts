@@ -368,6 +368,7 @@ const typeDefs = `
         expressions: [EmbarkExpression!]!
     }
 
+    # Returning EmbarkMessage from EmbarkResponse is deprecated and will be removed in a future version.
     union EmbarkResponse = EmbarkGroupedResponse | EmbarkResponseExpression | EmbarkMessage
 
     type EmbarkTooltip {
