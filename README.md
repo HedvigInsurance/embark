@@ -4,9 +4,9 @@ Embark is Hedvigs framework for creating forms and user stories. For the content
 
 The Embark repository serves three use cases;
 
-- Serve [angel-data](./angel-data) files to embark clients via the [server.ts](./server.ts) server
+- Serves [angel-data](./angel-data) files to embark clients (web onboarding, ios and android apps) via the [server.ts](./server.ts) server
 - Holds the web UI implementation that web-onboarding and the preview in Angel uses via an NPM package
-- Serves the live package (format.js), via the same server as angel-data is served via, that Angel uses to preview the flows
+- Serves the code (format.js), via the same server as angel-data is served, that Angel uses to preview the flows
 
 ## angel-data and format.js
 
