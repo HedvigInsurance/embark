@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-04-06T09:54:54.663Z",
+  "lastUpdate": "2021-04-22T14:09:01.904Z",
   "name": "Web Onboarding DK - Danish Contents-Accident-Travel",
   "passages": [
     {
@@ -51,7 +51,7 @@
       "selected": false,
       "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
       "tags": [],
-      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"size > 250\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ADDRESS_MESSAGE_1}\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->coInsured]]\">\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ADDRESS}\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ADDRESS_PLACEHOLDER}\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ZIP_CODE}\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ZIP_CODE_PLACEHOLDER}\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
+      "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ADDRESS_MESSAGE_1}\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->coInsured]]\">\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ADDRESS}\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ADDRESS_PLACEHOLDER}\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ZIP_CODE}\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ZIP_CODE_PLACEHOLDER}\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 450,
       "url": "/address",
       "width": 100
