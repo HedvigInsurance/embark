@@ -1,5 +1,7 @@
 # Embark
 
+Embark is Hedvigs framework for creating forms and user stories. For the content editor's docs - see [embark-docs.herokuapp.com](https://embark-docs.herokuapp.com).
+
 The Embark repository serves three use cases;
 
 - Serve [angel-data](./angel-data) files to embark clients via the [server.ts](./server.ts) server
