@@ -39,11 +39,14 @@ interface Props {
 
 const Masked = wrapWithMask(Input)
 
-const getInputSize = (exampleValue: string, value: string, large?: 'true') =>
-  Math.max(
+const getInputSize = (exampleValue: string, value: string, large?: 'true') => {
+  const maximumInputSize = 34
+  const calculatedInputSize = Math.max(
     large === 'true' ? exampleValue.length * 2 : exampleValue.length,
     value.length,
   )
+  return Math.min(calculatedInputSize, maximumInputSize)
+}
 
 export const InlineTextAction: React.FunctionComponent<Props> = (props) => {
   const size = getInputSize(
