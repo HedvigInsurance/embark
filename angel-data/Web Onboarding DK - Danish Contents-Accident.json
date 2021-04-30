@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-04-22T13:35:03.227Z",
+  "lastUpdate": "2021-04-30T11:57:48.912Z",
   "name": "Web Onboarding DK - Danish Contents-Accident",
   "passages": [
     {
@@ -23,7 +23,7 @@
       "selected": false,
       "story": "e99d8925-583c-4226-999b-e049d00e9146",
       "tags": [],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_2}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 300,
       "url": "/size",
       "width": 100
