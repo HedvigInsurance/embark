@@ -296,6 +296,10 @@ const typeDefs = `
     }
 
     type EmbarkMultiActionData {
+        key: String
+        addLabel: String
+        maxAmount: String!
+        link: EmbarkLink!
         components: [EmbarkMultiActionComponent!]!
     }
 
