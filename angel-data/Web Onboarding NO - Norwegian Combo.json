@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-04-06T09:40:57.668Z",
-  "locales": ["nb_NO"],
+  "lastUpdate": "2021-05-06T13:02:13.875Z",
+  "locales": [
+    "nb_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_COMBO_APP_METADATA_DESCRIPTION",
@@ -18,16 +20,16 @@
           "path": "/no/new-member/combo"
         },
         {
+          "__typename": "EmbarkStoryMetadataEntryBackground",
+          "background": "GRADIENT_ONE"
+        },
+        {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
           "discount": "NORWAY_COMBO_APP_METADATA_DISCOUNT"
         },
         {
           "__typename": "EmbarkStoryMetadataEntryPill",
           "pill": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
-        },
-        {
-          "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_ONE"
         }
       ],
       "name": "Web Onboarding NO - Norwegian Combo",
@@ -124,8 +126,10 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "-1676947869",
-      "tags": ["Error"],
-      "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>",
       "top": 1250,
       "url": "/error",
       "width": 100
@@ -153,18 +157,6 @@
       "text": "<Message>\n  Er du allerede forsikret hos et annet selskap?\n</Message>\n\n<SelectAction>\n  <Option key=\"prevInsurance\"\n          value=\"contents\"\n  >\n    [[Ja, jeg har innboforsikring->contentsInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"travel\"\n  >\n    [[Ja, jeg har reiseforsikring->travelInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"contentsAndTravel\"\n  >\n    [[Ja, jeg har både reise- og innboforsikring->contentsAndTravelInsurer]]\n  </Option>\n  <Option key=\"prevInsurance\"\n          value=\"false\"\n  >\n    [[Nei, jeg har ingen andre forsikringer->email]]\n  </Option>\n</SelectAction>",
       "top": 1700,
       "url": "/currently-insured",
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "1478190311",
-      "left": 800,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "-1676947869",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 1100,
       "width": 100
     },
     {
@@ -200,8 +192,10 @@
       "name": "errorSize",
       "selected": false,
       "story": "-1676947869",
-      "tags": ["Error"],
-      "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre boliger i den størrelsen du har.\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>",
       "top": 1100,
       "url": "/error",
       "width": 100
