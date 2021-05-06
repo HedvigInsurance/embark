@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-05-03T13:34:49.391Z",
+  "lastUpdate": "2021-05-06T12:40:32.133Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -43,19 +43,6 @@
     },
     {
       "height": 100,
-      "id": "3da0c122-abbf-4a6b-872b-0cb062e86032",
-      "left": 1100,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 300,
-      "url": "/newsletter-sign-up",
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "4064e78f-9a00-4af3-9a0b-062086ec9fe7",
       "left": 900,
       "name": "studentEligibilityCheck",
@@ -77,7 +64,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>",
       "top": 300,
       "url": "/error-size",
       "width": 100
@@ -200,7 +187,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>",
       "top": 600,
       "url": "/error-co-insured",
       "width": 100
