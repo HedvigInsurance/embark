@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-05-03T13:45:28.958Z",
+  "lastUpdate": "2021-05-06T12:46:24.575Z",
   "name": "Web Onboarding DK - Danish Contents-Accident-Travel",
   "passages": [
     {
@@ -25,7 +25,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>",
       "top": 600,
       "url": "/error-co-insured",
       "width": 100
@@ -54,19 +54,6 @@
       "text": "<Redirect to=\"[[errorSize]]\"\n          when=\"livingSpace > 250\"\n>\n</Redirect>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ADDRESS_MESSAGE_1}\n</Message>\n\n<Response>\n  {street}, {zipCode}\n</Response>\n\n<TextActionSet next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->coInsured]]\">\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ADDRESS}\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ADDRESS_PLACEHOLDER}\"\n              large=\"true\"\n              key=\"street\"\n  >\n  </TextAction>\n  <TextAction title=\"{DK_CONTENT_CONVERSATION_ADDRESS_TEXT_ACTION_TITLE_ZIP_CODE}\"\n              mask=\"NorwegianPostalCode\"\n              placeholder=\"{DK_CONTENT_CONVERSATION_ZIP_CODE_PLACEHOLDER}\"\n              key=\"zipCode\"\n  >\n  </TextAction>\n</TextActionSet>",
       "top": 450,
       "url": "/address",
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "59a34170-2c88-4036-acbc-d195d09abdd9",
-      "left": 1100,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "ba8da2df-8189-46f6-b5cc-a463c4a227c3",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 300,
-      "url": "/newsletter-sign-up",
       "width": 100
     },
     {
@@ -174,7 +161,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>",
       "top": 300,
       "url": "/error-size",
       "width": 100
