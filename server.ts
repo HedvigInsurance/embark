@@ -12,6 +12,7 @@ import { storyMaskDerivatives } from './src/storyMaskDerivatives'
 import * as graphqlHTTP from 'koa-graphql'
 
 import { schema } from './schema'
+import { loadStory } from './load-story'
 
 declare global {
   namespace NodeJS {
@@ -45,28 +46,11 @@ router.get('/client.js', async (ctx) => {
 })
 
 router.get('/angel-data', async (ctx) => {
-  const filename = ctx.request.query.name
-
-  if (!filename) {
-    throw new Error('No filename provided')
-  }
-
-  if (filename.includes('../')) {
-    throw new Error("Can't traverse downwards")
-  }
-
-  const json = JSON.parse(
-    await fs.promises.readFile(`angel-data/${filename}.json`, 'utf-8'),
-  )
+  const name = ctx.request.query.name
   const locale = ctx.query.locale || 'en'
-
-  const textKeys = await axios.get(
-    `https://translations.hedvig.com/embark/${encodeURIComponent(locale)}.json`,
-  )
-  const storyData = parseStoryData(json, textKeys.data)
-
   ctx.type = 'application/json'
-  ctx.body = JSON.stringify(storyData)
+  const data = await loadStory(decodeURIComponent(name), locale)
+  ctx.body = JSON.stringify(data)
 })
 
 const scriptHost = process.env.SCRIPT_HOST
