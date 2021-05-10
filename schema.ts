@@ -2,7 +2,7 @@ import axios from 'axios'
 import { storyKeywords } from './src/storyKeywords'
 import { makeExecutableSchema } from 'graphql-tools'
 import { promises } from 'fs'
-import { parseStoryData } from './src/Parsing/parseStoryData'
+import { loadStory } from './load-story'
 import { resolveMetadataOnLocale } from './src/Resolvers/resolveStoriesMetadata'
 
 const typeDefs = `
@@ -536,29 +536,8 @@ export const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
-      embarkStory: async (
-        _,
-        { name, locale }: { name: string; locale: string },
-      ) => {
-        const dir = await promises.readdir('angel-data')
-
-        if (!dir.includes(`${name}.json`)) {
-          throw new Error(`Can't find story with name: ${name}`)
-        }
-
-        const file = await promises.readFile(`angel-data/${name}.json`, {
-          encoding: 'utf-8',
-        })
-
-        const json = JSON.parse(file)
-        const textKeyMapResponse = await axios.get(
-          `https://translations.hedvig.com/embark/${encodeURIComponent(
-            locale,
-          )}.json`,
-        )
-        const storyData = parseStoryData(json, textKeyMapResponse.data)
-
-        return storyData
+      embarkStory: (_, { name, locale }: { name: string; locale: string }) => {
+        return loadStory(name, locale)
       },
       embarkStories: async (_, { locale }: { locale: string }) => {
         const textKeyMapResponse = await axios.get(
