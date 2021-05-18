@@ -37,6 +37,7 @@ ADD yarn.lock yarn.lock
 ADD src src
 ADD server.ts server.ts
 ADD schema.ts schema.ts
+ADD load-story.ts load-story.ts
 ADD tsconfig.server.json tsconfig.server.json
 ADD angel-data angel-data
 
