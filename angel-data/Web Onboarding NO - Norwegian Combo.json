@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-05-06T13:02:13.875Z",
+  "lastUpdate": "2021-05-18T14:19:40.658Z",
   "locales": [
     "nb_NO"
   ],
@@ -129,7 +129,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>",
+      "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Vi ønsker alltid å forbedre oss og våre produkter, så om du har noen tilbakemeldinger kan du gjerne ta kontakt på hei@hedvig.com\n</Message>",
       "top": 1250,
       "url": "/error",
       "width": 100
@@ -195,7 +195,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>",
+      "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Vi ønsker alltid å forbedre oss og våre produkter, så om du har noen tilbakemeldinger kan du gjerne ta kontakt på hei@hedvig.com\n</Message>",
       "top": 1100,
       "url": "/error",
       "width": 100
