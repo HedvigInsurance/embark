@@ -709,7 +709,7 @@ const getResponse = (
   }
 
   return {
-    __typename: 'EmbarkMessage',
+    __typename: 'EmbarkResponseExpression',
     expressions: [],
     text: `{${passageName}Result}`,
   }

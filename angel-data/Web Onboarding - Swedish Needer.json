@@ -29,7 +29,7 @@
     "selectActionSelectLabel": "Välj",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-04-23T12:37:30.293Z",
+  "lastUpdate": "2021-04-23T13:32:37.946Z",
   "locales": [
     "sv_SE"
   ],
@@ -374,7 +374,7 @@
       "selected": false,
       "story": "1180341409",
       "tags": [],
-      "text": "<OfferRedirect keys=\"quoteId\">\n</OfferRedirect>",
+      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
       "top": 1750,
       "url": "/success",
       "width": 100

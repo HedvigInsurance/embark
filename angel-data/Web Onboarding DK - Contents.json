@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-04-22T13:30:29.871Z",
+  "lastUpdate": "2021-05-07T08:04:05.051Z",
   "name": "Web Onboarding DK - Contents",
   "passages": [
     {
@@ -36,22 +36,9 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_SIZE_MESSAGE_2}\n</Message>\n\n<Response>\n  {DK_CONTENT_CONVERSATION_SIZE_RESPONSE}\n</Response>\n\n<NumberAction placeholder=\"52\"\n              key=\"livingSpace\"\n              minvalue=\"1\"\n              next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->address]]\"\n              unit=\"{DK_CONTENT_CONVERSATION_SIZE_SQUARE_METERS}\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_SIZE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</NumberAction>",
       "top": 300,
       "url": "/size",
-      "width": 100
-    },
-    {
-      "height": 100,
-      "id": "3da0c122-abbf-4a6b-872b-0cb062e86032",
-      "left": 1100,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "892533f3-934e-40ac-bccf-238e15f634e2",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 300,
-      "url": "/newsletter-sign-up",
       "width": 100
     },
     {
@@ -77,7 +64,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>",
       "top": 300,
       "url": "/error-size",
       "width": 100
@@ -172,7 +159,7 @@
       "selected": false,
       "story": "892533f3-934e-40ac-bccf-238e15f634e2",
       "tags": [],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            mask=\"BirthDateReverse\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_BIRTH_DATE_MESSAGE_2}\n</Message>\n\n<Response>\n  {birthDate}\n</Response>\n\n<TextAction placeholder=\"{DK_CONTENT_CONVERSATION_BIRTH_DATE_TEXT_ACTION_PLACEHOLDER}\"\n            key=\"birthDate\"\n            mask=\"BirthDateReverse\"\n            next=\"[[{DK_CONTENT_CONVERSATION_CONTINUE}->email]]\"\n>\n  <Tooltip>\n    <Title>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {DK_CONTENT_CONVERSATION_BIRTH_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</TextAction>",
       "top": 900,
       "url": "/birth-date",
       "width": 100
@@ -200,7 +187,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{DK_CONTENT_CONVERSATION_ERROR_SIZE_OPTION_NEWSLETTER}->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>",
       "top": 600,
       "url": "/error-co-insured",
       "width": 100
