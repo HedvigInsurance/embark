@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-05-06T13:01:17.477Z",
+  "lastUpdate": "2021-05-18T14:18:00.840Z",
   "locales": [
     "en_NO"
   ],
@@ -73,7 +73,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>",
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  We always strive to meet your needs and improve our products. If you have any questions don´t hesitate to contact us at hei@hedvig.com\n</Message>",
       "top": 950,
       "url": "/error",
       "width": 100
