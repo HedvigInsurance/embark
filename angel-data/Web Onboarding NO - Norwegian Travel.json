@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-05-06T13:03:55.492Z",
+  "lastUpdate": "2021-05-18T14:21:32.236Z",
   "locales": [
     "nb_NO"
   ],
@@ -100,7 +100,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  Dessverre kan vi bare forsikre maks 6 personer\n</Message>",
+      "text": "<Message>\n  Dessverre kan vi bare forsikre maks 6 personer\n</Message>\n\n<Message>\n  Vi ønsker alltid å forbedre oss og våre produkter, så om du har noen tilbakemeldinger kan du gjerne ta kontakt på hei@hedvig.com\n</Message>",
       "top": 950,
       "url": "/error",
       "width": 100
