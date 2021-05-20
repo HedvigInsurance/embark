@@ -266,7 +266,7 @@ const typeDefs = `
         key: String!
         placeholder: String!
         unit: String
-        label: String!
+        label: String
     }
 
     type EmbarkExternalInsuranceProviderActionData {
