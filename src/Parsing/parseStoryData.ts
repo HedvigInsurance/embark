@@ -225,7 +225,10 @@ const getMultiAction = (multiActionNode: Element, translate: Translator) => {
 
   Array.from(addNode.getElementsByTagName('numberaction')).forEach(
     (numberActionNode) => {
-      components.push(getNumberAction(numberActionNode, translate))
+      components.push({
+        ...getNumberAction(numberActionNode, translate),
+        __typename: 'EmbarkMultiActionNumberAction',
+      })
     },
   )
 
