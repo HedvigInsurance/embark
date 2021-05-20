@@ -364,7 +364,7 @@ const typeDefs = `
         component: String!
         title: EmbarkResponseExpression!
         items: [EmbarkMessage!]!
-        each: [EmbarkGroupedResponseEach!]!
+        each: EmbarkGroupedResponseEach
     }
 
     type EmbarkResponseExpression {

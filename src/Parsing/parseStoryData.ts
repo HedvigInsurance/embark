@@ -746,7 +746,7 @@ const parseGroupedResponse = (
       ...parsePossibleExpressionContent(title),
     },
     items: items.map(parsePossibleExpressionContent),
-    each: (each && parseEach(each, parsePossibleExpressionContent)) || [],
+    each: each && parseEach(each, parsePossibleExpressionContent),
   }
 }
 
