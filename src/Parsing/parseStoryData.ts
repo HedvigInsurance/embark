@@ -128,28 +128,11 @@ const getSelectAction = (
   }
 }
 
-const getMultiActionNumberAction = (
+const getNumberAction = (
   numberActionNode: Element,
   translate: Translator,
+  typeName: string,
 ) => {
-  const placeholder = translate(
-    numberActionNode.getAttribute('placeholder') || '',
-  )
-  const key = numberActionNode.getAttribute('key')
-  const unit = translate(numberActionNode.getAttribute('unit') || '')
-
-  return {
-    __typename: 'EmbarkMultiActionNumberAction',
-    component: 'MultiActionNumberAction',
-    data: {
-      placeholder,
-      key,
-      unit,
-    },
-  }
-}
-
-const getNumberAction = (numberActionNode: Element, translate: Translator) => {
   const placeholder = translate(
     numberActionNode.getAttribute('placeholder') || '',
   )
@@ -166,7 +149,7 @@ const getNumberAction = (numberActionNode: Element, translate: Translator) => {
   const api = parseApi(numberActionNode)
 
   return {
-    __typename: 'EmbarkNumberAction',
+    __typename: typeName,
     component: 'NumberAction',
     data: {
       placeholder,
@@ -246,7 +229,13 @@ const getMultiAction = (multiActionNode: Element, translate: Translator) => {
 
   Array.from(addNode.getElementsByTagName('numberaction')).forEach(
     (numberActionNode) => {
-      components.push(getMultiActionNumberAction(numberActionNode, translate))
+      components.push(
+        getNumberAction(
+          numberActionNode,
+          translate,
+          'EmbarkMultiActionNumberAction',
+        ),
+      )
     },
   )
 
@@ -282,7 +271,11 @@ const getNumberActionSet = (
   const numberActions = Array.from(
     numberActionSetNode.getElementsByTagName('numberaction'),
   ).map((numberActionNode) => {
-    const numberAction = getNumberAction(numberActionNode, translate)
+    const numberAction = getNumberAction(
+      numberActionNode,
+      translate,
+      'EmbarkNumberAction',
+    )
 
     return {
       ...numberAction,
@@ -485,7 +478,7 @@ const getAction = (containerElement: Element, translate: Translator) => {
   )[0]
 
   if (numberActionNode) {
-    return getNumberAction(numberActionNode, translate)
+    return getNumberAction(numberActionNode, translate, 'EmbarkNumberAction')
   }
 
   const textActionNode = containerElement.getElementsByTagName('textaction')[0]
