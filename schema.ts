@@ -262,6 +262,12 @@ const typeDefs = `
         link: EmbarkLink!
     }
 
+    type EmbarkMultiActionNumberActionData {
+        key: String!
+        placeholder: String!
+        unit: String
+    }
+
     type EmbarkExternalInsuranceProviderActionData {
         next: EmbarkLink!
         skip: EmbarkLink!
@@ -293,6 +299,11 @@ const typeDefs = `
     type EmbarkNumberAction implements EmbarkActionCore {
         component: String!
         data: EmbarkNumberActionData!
+    }
+
+    type EmbarkMultiActionNumberAction implements EmbarkActionCore {
+        component: String!
+        data: EmbarkMultiActionNumberActionData!
     }
 
     type EmbarkMultiActionData {
@@ -353,7 +364,7 @@ const typeDefs = `
         EmbarkMultiAction |
         EmbarkDatePickerAction
 
-    union EmbarkMultiActionComponent = EmbarkNumberAction | EmbarkDropdownAction | EmbarkSwitchAction
+    union EmbarkMultiActionComponent = EmbarkMultiActionNumberAction | EmbarkDropdownAction | EmbarkSwitchAction
 
     type EmbarkGroupedResponseEach {
         key: String!

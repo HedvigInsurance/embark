@@ -128,6 +128,27 @@ const getSelectAction = (
   }
 }
 
+const getMultiActionNumberAction = (
+  numberActionNode: Element,
+  translate: Translator,
+) => {
+  const placeholder = translate(
+    numberActionNode.getAttribute('placeholder') || '',
+  )
+  const key = numberActionNode.getAttribute('key')
+  const unit = translate(numberActionNode.getAttribute('unit') || '')
+
+  return {
+    __typename: 'EmbarkMultiActionNumberAction',
+    component: 'MultiActionNumberAction',
+    data: {
+      placeholder,
+      key,
+      unit,
+    },
+  }
+}
+
 const getNumberAction = (numberActionNode: Element, translate: Translator) => {
   const placeholder = translate(
     numberActionNode.getAttribute('placeholder') || '',
@@ -225,7 +246,7 @@ const getMultiAction = (multiActionNode: Element, translate: Translator) => {
 
   Array.from(addNode.getElementsByTagName('numberaction')).forEach(
     (numberActionNode) => {
-      components.push(getNumberAction(numberActionNode, translate))
+      components.push(getMultiActionNumberAction(numberActionNode, translate))
     },
   )
 
