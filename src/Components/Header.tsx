@@ -34,6 +34,7 @@ const LogoImage = styled.img`
 
 const Svg = styled.svg`
   fill: currentColor;
+  vertical-align: bottom;
 `
 
 export const HedvigLogo: React.FunctionComponent = () => (
