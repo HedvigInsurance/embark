@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-03-09T11:03:15.269Z",
-  "locales": ["en_NO"],
+  "lastUpdate": "2021-05-20T07:37:28.107Z",
+  "locales": [
+    "en_NO"
+  ],
   "metadata": [],
   "name": "moving-flow-NO",
   "passages": [
@@ -19,10 +21,24 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  {EMBARK_MOVING_NO_ERROR_PEOPLE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_NO_ERROR_PEOPLE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CLOSE}->Close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CHAT}->Chat]]\n  </Option>\n</SelectAction>",
       "top": 650,
       "url": "/error",
+      "width": 100
+    },
+    {
+      "height": 100,
+      "id": "45ca202b-0382-4e24-aa8b-ae0ea0fe3891",
+      "left": 500,
+      "name": "nextPassage",
+      "selected": false,
+      "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
+      "tags": [],
+      "text": "Double-click this passage to edit it.",
+      "top": 1100,
       "width": 100
     },
     {
@@ -58,7 +74,9 @@
       "name": "Close",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": ["External-Action"],
+      "tags": [
+        "External-Action"
+      ],
       "text": "Double-click this passage to edit it.",
       "top": 650,
       "width": 100
@@ -70,7 +88,9 @@
       "name": "errorSize",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": ["Error"],
+      "tags": [
+        "Error"
+      ],
       "text": "<Message>\n  {EMBARK_MOVING_NO_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {EMBARK_MOVING_NO_ERROR_SIZE_MESSAGE_2}\n</Message>\n\n<SelectAction>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CLOSE}->Close]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_NO_ERROR_OPTION_CHAT}->Chat]]\n  </Option>\n</SelectAction>",
       "top": 500,
       "url": "/error",
@@ -97,7 +117,7 @@
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
       "tags": [],
-      "text": "<Message>\n  {EMBARK_MOVING_NO_DATE_MESSAGE_1}\n</Message>\n\n<NumberAction placeholder=\"{EMBARK_MOVING_NO_DATE_PLACEHOLDER}\"\n              key=\"movingDate\"\n              next=\"[[{EMBARK_MOVING_NO_CONTINUE_TO_OFFER_BUTTON}->Offer]]\"\n>\n</NumberAction>",
+      "text": "<Message>\n  {EMBARK_MOVING_NO_DATE_MESSAGE_1}\n</Message>\n\n<DatePickerAction next=\"[[{EMBARK_MOVING_NO_CONTINUE_TO_OFFER_BUTTON}->nextPassage]]\"\n                  storekey=\"movingDate\"\n                  label=\"{EMBARK_MOVING_NO_DATE_LABEL}\"\n>\n  <Tooltip>\n    <Title>\n      {EMBARK_MOVING_NO_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {EMBARK_MOVING_NO_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</DatePickerAction>",
       "top": 950,
       "width": 100
     },
@@ -121,7 +141,9 @@
       "name": "Chat",
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
-      "tags": ["External-Action"],
+      "tags": [
+        "External-Action"
+      ],
       "text": "Double-click this passage to edit it.",
       "top": 500,
       "width": 100
