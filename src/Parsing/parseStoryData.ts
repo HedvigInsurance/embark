@@ -128,11 +128,7 @@ const getSelectAction = (
   }
 }
 
-const getNumberAction = (
-  numberActionNode: Element,
-  translate: Translator,
-  typeName: string,
-) => {
+const getNumberAction = (numberActionNode: Element, translate: Translator) => {
   const placeholder = translate(
     numberActionNode.getAttribute('placeholder') || '',
   )
@@ -149,7 +145,7 @@ const getNumberAction = (
   const api = parseApi(numberActionNode)
 
   return {
-    __typename: typeName,
+    __typename: 'EmbarkNumberAction',
     component: 'NumberAction',
     data: {
       placeholder,
@@ -229,13 +225,10 @@ const getMultiAction = (multiActionNode: Element, translate: Translator) => {
 
   Array.from(addNode.getElementsByTagName('numberaction')).forEach(
     (numberActionNode) => {
-      components.push(
-        getNumberAction(
-          numberActionNode,
-          translate,
-          'EmbarkMultiActionNumberAction',
-        ),
-      )
+      components.push({
+        ...getNumberAction(numberActionNode, translate),
+        __typename: 'EmbarkMultiActionNumberAction',
+      })
     },
   )
 
@@ -271,11 +264,7 @@ const getNumberActionSet = (
   const numberActions = Array.from(
     numberActionSetNode.getElementsByTagName('numberaction'),
   ).map((numberActionNode) => {
-    const numberAction = getNumberAction(
-      numberActionNode,
-      translate,
-      'EmbarkNumberAction',
-    )
+    const numberAction = getNumberAction(numberActionNode, translate)
 
     return {
       ...numberAction,
@@ -478,7 +467,7 @@ const getAction = (containerElement: Element, translate: Translator) => {
   )[0]
 
   if (numberActionNode) {
-    return getNumberAction(numberActionNode, translate, 'EmbarkNumberAction')
+    return getNumberAction(numberActionNode, translate)
   }
 
   const textActionNode = containerElement.getElementsByTagName('textaction')[0]
