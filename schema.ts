@@ -5,7 +5,7 @@ import { promises } from 'fs'
 import { loadStory } from './load-story'
 import { resolveMetadataOnLocale } from './src/Resolvers/resolveStoriesMetadata'
 
-const typeDefs = `
+const typeDefs = /* GraphQL */ `
     type Query {
         embarkStory(name: String!, locale: String!): EmbarkStory
         # returns names of all available embark stories
@@ -232,6 +232,20 @@ const typeDefs = `
     type EmbarkTextAction implements EmbarkActionCore {
         component: String!
         data: EmbarkTextActionData!
+    }
+
+    type EmbarkAutocompleteActionData {
+        placeholder: String!
+        key: String!
+        api: EmbarkApi
+        link: EmbarkLink!
+        large: Boolean
+        tooltip: EmbarkTooltip
+    }
+
+    type EmbarkAutocompleteAction implements EmbarkActionCore {
+        component: String!
+        data: EmbarkAutocompleteActionData!
     }
 
     type EmbarkSelectActionOption {
