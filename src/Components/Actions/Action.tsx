@@ -5,6 +5,7 @@ import { MultiAction } from './MultiAction/MultiAction'
 import { TextAction } from './TextAction/TextAction'
 import { NumberActionSet } from './NumberActionSet/NumberActionSet'
 import { TextActionSet } from './TextActionSet/TextActionSet'
+import { AutocompleteAction } from './AutocompleteAction/AutocompleteAction'
 import { ExternalInsuranceProviderAction } from './ExternalInsuranceProviderAction'
 import { PreviousInsuranceProviderAction } from './PreviousInsuranceProviderAction'
 import {
@@ -91,6 +92,23 @@ export const Action = (props: ActionProps) => {
         isTransitioning={props.isTransitioning}
         passageName={props.passageName}
         mask={props.action.data.mask}
+        tooltip={props.action.data.tooltip}
+        storeKey={props.action.data.key}
+        link={props.action.data.link}
+        placeholder={props.action.data.placeholder}
+        api={props.action.data.api}
+        onContinue={(next?: string) =>
+          props.changePassage(next || props.action.data.link.name)
+        }
+      />
+    )
+  }
+
+  if (props.action.component === 'AutocompleteAction') {
+    return (
+      <AutocompleteAction
+        isTransitioning={props.isTransitioning}
+        passageName={props.passageName}
         tooltip={props.action.data.tooltip}
         storeKey={props.action.data.key}
         link={props.action.data.link}

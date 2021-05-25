@@ -353,6 +353,37 @@ const getTextAction = (textActionNode: Element, translate: Translator) => {
   }
 }
 
+const getAutocompleteAction = (
+  textActionNode: Element,
+  translate: Translator,
+) => {
+  const placeholder = translate(
+    textActionNode.getAttribute('placeholder') || '',
+  )
+  const next = translate(textActionNode.getAttribute('next') || '')
+  const key = textActionNode.getAttribute('key')
+
+  const large = textActionNode.getAttribute('large')
+
+  const links = next ? parseLinks(next) : []
+  const tooltip = parseTooltips(textActionNode, translate)[0]
+
+  const api = parseApi(textActionNode)
+
+  return {
+    __typename: 'EmbarkAutocompleteAction',
+    component: 'AutocompleteAction',
+    data: {
+      placeholder,
+      key,
+      api,
+      link: links && links[0],
+      large,
+      ...(tooltip && { tooltip }),
+    },
+  }
+}
+
 const getExternalInsuranceProviderAction = (
   externalInsuranceProviderActionNode: Element,
   translate: Translator,
@@ -474,6 +505,14 @@ const getAction = (containerElement: Element, translate: Translator) => {
 
   if (textActionNode) {
     return getTextAction(textActionNode, translate)
+  }
+
+  const autocompleteActionNode = containerElement.getElementsByTagName(
+    'autocompleteaction',
+  )[0]
+
+  if (autocompleteActionNode) {
+    return getAutocompleteAction(autocompleteActionNode, translate)
   }
 
   const externalInsuranceProviderActionNode = containerElement.getElementsByTagName(
