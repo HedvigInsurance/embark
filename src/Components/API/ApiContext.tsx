@@ -5,6 +5,9 @@ import {
   personalInformationQueryMocks,
   createQuoteMocks,
   houseInformationMocks,
+  addressAutocompleteMocksStep1,
+  addressAutocompleteMocksStep2,
+  addressAutocompleteMocksStep3,
 } from '../../api-mocks'
 import { Data as HData, Variables as HVariables } from './houseInformation'
 import {
@@ -14,6 +17,7 @@ import {
 import EventEmitter from 'eventemitter3'
 import { introspectSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import { graphql, ExecutionResult } from 'graphql'
+import { AddressAutocompleteData } from './addressAutocomplete'
 
 const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
@@ -21,6 +25,9 @@ const timeout = (ms: number) =>
 export interface TApiContext {
   personalInformationApi: (personalNumber: string) => Promise<PData | Error>
   houseInformation: (variables: HVariables) => Promise<HData | Error>
+  addressAutocompleteQuery: (
+    searchTerm: string,
+  ) => Promise<AddressAutocompleteData[]>
   createQuote: (variables: CQVariables) => Promise<CQData | Error>
   graphqlQuery: (
     query: string,
@@ -47,6 +54,9 @@ export const ApiContext = React.createContext<TApiContext>({
   },
   houseInformation: () => {
     throw Error('Must provide an implementation for `houseInformation`')
+  },
+  addressAutocompleteQuery: () => {
+    throw Error('Must provide an implementation for `addressAutocompleteQuery`')
   },
   createQuote: (_) => {
     throw Error('Must provide an implementation for `createQuote`')
@@ -80,6 +90,32 @@ export const mockApiResolvers: TApiContext = {
   houseInformation: async (_) => {
     await timeout(300)
     return houseInformationMocks[0]
+  },
+  addressAutocompleteQuery: async (term) => {
+    await timeout(300)
+
+    const step1 = addressAutocompleteMocksStep1.find(
+      (item) => item.address === term,
+    )
+    if (step1) {
+      return addressAutocompleteMocksStep2
+    }
+
+    const step2 = addressAutocompleteMocksStep2.find(
+      (item) => item.address === term,
+    )
+    if (step2) {
+      return addressAutocompleteMocksStep3
+    }
+
+    const step3 = addressAutocompleteMocksStep3.find(
+      (item) => item.address === term,
+    )
+    if (step3) {
+      return [step3]
+    }
+
+    return addressAutocompleteMocksStep1
   },
   createQuote: async (_) => {
     await timeout(300)
