@@ -9,6 +9,7 @@ import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
 import { useAutoFocus } from '../../../Utils/useAutoFocus'
+import debounce from 'lodash.debounce'
 
 import {
   Combobox,
@@ -25,10 +26,10 @@ import { colorsV3, fonts } from '@hedviginsurance/brand'
 import { ArrowRight } from '../../Icons/ArrowRight'
 
 const BottomSpacedInput = styled(Input)`
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 
   @media (max-width: 600px) {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
   }
 `.withComponent(ComboboxInput)
 
@@ -38,6 +39,9 @@ const StyledCard = styled(Card)`
 
 const StyledComboboxPopover = styled(ComboboxPopover)`
   border: 0;
+
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 `
 
 const StyledComboboxOption = styled(ComboboxOption)`
@@ -51,6 +55,11 @@ const StyledComboboxOption = styled(ComboboxOption)`
   font-size: 1rem;
   color: ${colorsV3.gray900};
   border-top: 1px solid ${colorsV3.gray300};
+
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
 
   &[data-highlighted] {
     background-color: ${colorsV3.purple500};
@@ -108,6 +117,8 @@ const useAddressSearch = (searchTerm: string) => {
       return () => {
         isFresh = false
       }
+    } else {
+      setOptions([])
     }
   }, [searchTerm])
 
@@ -117,21 +128,45 @@ const useAddressSearch = (searchTerm: string) => {
 export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps> = (
   props,
 ) => {
+  const api = React.useContext(ApiContext)
   const [isFocused, setIsFocused] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const { store, setValue } = React.useContext(StoreContext)
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || '')
 
-  const options = useAddressSearch(textValue)
-  const selectedOption = options.find((item) => item.address === textValue)
+  const debounceTextValue = React.useCallback(
+    debounce((value: string) => {
+      setTextValue(value)
+    }, 300),
+    [],
+  )
 
-  const canContinue = selectedOption?.id !== undefined
-  const onContinue = () => {
-    setValue(props.storeKey, textValue)
-    setValue(`${props.passageName}Result`, textValue)
-    props.onContinue()
-  }
+  const options = useAddressSearch(textValue)
+
+  const handleSelect = React.useCallback(
+    async (address: string) => {
+      const selectedOption = options.find((item) => item.address === address)
+      if (selectedOption && selectedOption.id) {
+        const newOptions = await api.addressAutocompleteQuery(address)
+        const oneResultLeft = newOptions.length === 1
+        const sameResultsAsBefore = newOptions.every(
+          (newOption, index) => newOption.id === options[index]?.id,
+        )
+        if (oneResultLeft || sameResultsAsBefore) {
+          setValue(props.storeKey, selectedOption.address)
+          setValue(`${props.passageName}Result`, selectedOption.address)
+          return props.onContinue()
+        }
+      }
+
+      setTextValue(address)
+      setTimeout(() => {
+        buttonRef.current?.click()
+      }, 1)
+    },
+    [options],
+  )
 
   const inputRef = useAutoFocus(!props.isTransitioning)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
@@ -141,24 +176,13 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       <StyledCard
         loading={loading}
         isFocused={isFocused || isHovered}
-        onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
-          e.preventDefault()
-          if (!canContinue) return
-          onContinue()
-        }}
+        onSubmit={(event) => event.preventDefault()}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-        <Combobox
-          onSelect={(value) => {
-            setTextValue(value)
-            setTimeout(() => {
-              buttonRef.current?.click()
-            }, 1)
-          }}
-        >
+        <Combobox onSelect={handleSelect}>
           <ComboboxButton
             as="span"
             style={{ display: 'none' }}
@@ -166,11 +190,14 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           />
           <BottomSpacedInput
             ref={inputRef}
-            size={Math.max(props.placeholder.length, textValue.length)}
+            size={Math.max(
+              props.placeholder.length,
+              Math.min(textValue.length, 23),
+            )}
             placeholder={props.placeholder}
             onFocus={() => setIsFocused(true)}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTextValue(e.target.value)
+              debounceTextValue(e.target.value)
             }
             onBlur={() => {
               setIsFocused(false)
@@ -180,46 +207,22 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           />
           <StyledComboboxPopover portal={false}>
             <ComboboxList>
-              {!canContinue
-                ? options.map((item) => (
-                    <StyledComboboxOption
-                      key={item.id || item.address}
-                      value={item.address}
-                    >
-                      <div>
-                        <ComboboxOptionText />
-                      </div>
-                      <ArrowRight />
-                    </StyledComboboxOption>
-                  ))
-                : null}
+              {options.map((item) => (
+                <StyledComboboxOption
+                  key={item.id || item.address}
+                  value={item.address}
+                >
+                  <div>
+                    <ComboboxOptionText />
+                  </div>
+                  <ArrowRight />
+                </StyledComboboxOption>
+              ))}
             </ComboboxList>
           </StyledComboboxPopover>
         </Combobox>
         <input type="submit" style={{ display: 'none' }} />
       </StyledCard>
-      <Spacer />
-      <motion.div
-        animate={{
-          opacity: loading ? 0 : 1,
-        }}
-        transition={{ ease: 'easeOut', duration: 0.25 }}
-      >
-        <motion.div
-          animate={{
-            height: loading ? 0 : 'auto',
-            overflow: loading ? 'hidden' : 'inherit',
-            opacity: loading ? 0 : 1,
-          }}
-          transition={{ delay: 0.25 }}
-        >
-          <ContinueButton
-            onClick={onContinue}
-            disabled={!canContinue}
-            text={(props.link || {}).label || 'Nästa'}
-          />
-        </motion.div>
-      </motion.div>
     </Container>
   )
 }
