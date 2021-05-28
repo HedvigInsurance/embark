@@ -17,9 +17,12 @@ import {
   ComboboxList,
   ComboboxOption,
   ComboboxButton,
+  ComboboxOptionText,
 } from '@reach/combobox'
 import '@reach/combobox/styles.css'
 import { AddressAutocompleteData } from '../../API/addressAutocomplete'
+import { colorsV3, fonts } from '@hedviginsurance/brand'
+import { ArrowRight } from '../../Icons/ArrowRight'
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
@@ -29,8 +32,52 @@ const BottomSpacedInput = styled(Input)`
   }
 `.withComponent(ComboboxInput)
 
+const StyledCard = styled(Card)`
+  align-items: stretch;
+`
+
 const StyledComboboxPopover = styled(ComboboxPopover)`
-  border-top: 0;
+  border: 0;
+`
+
+const StyledComboboxOption = styled(ComboboxOption)`
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+
+  font-family: ${fonts.FAVORIT}, sans-serif;
+  font-size: 1rem;
+  color: ${colorsV3.gray900};
+  border-top: 1px solid ${colorsV3.gray300};
+
+  &[data-highlighted] {
+    background-color: ${colorsV3.purple500};
+    border-top-color: ${colorsV3.purple500};
+
+    &:hover {
+      background-color: ${colorsV3.purple300};
+      border-top-color: ${colorsV3.purple300};
+    }
+  }
+
+  &[data-highlighted] + & {
+    border-top-color: ${colorsV3.purple500};
+  }
+
+  &:hover {
+    background-color: ${colorsV3.purple300};
+    border-top-color: ${colorsV3.purple300};
+  }
+
+  &:hover + & {
+    border-top-color: ${colorsV3.purple300};
+  }
+
+  @media (min-width: 600px) {
+    padding: 0 2rem;
+  }
 `
 
 export interface AutocompleteActionProps {
@@ -51,6 +98,7 @@ const useAddressSearch = (searchTerm: string) => {
   const api = React.useContext(ApiContext)
   const [options, setOptions] = React.useState<AddressAutocompleteData[]>([])
 
+  // @ts-ignore: clean-up function only needed conditionally
   React.useEffect(() => {
     if (searchTerm.trim() !== '') {
       let isFresh = true
@@ -90,7 +138,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
   return (
     <Container>
-      <Card
+      <StyledCard
         loading={loading}
         isFocused={isFocused || isHovered}
         onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
@@ -134,17 +182,22 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
             <ComboboxList>
               {!canContinue
                 ? options.map((item) => (
-                    <ComboboxOption
+                    <StyledComboboxOption
                       key={item.id || item.address}
                       value={item.address}
-                    />
+                    >
+                      <div>
+                        <ComboboxOptionText />
+                      </div>
+                      <ArrowRight />
+                    </StyledComboboxOption>
                   ))
                 : null}
             </ComboboxList>
           </StyledComboboxPopover>
         </Combobox>
         <input type="submit" style={{ display: 'none' }} />
-      </Card>
+      </StyledCard>
       <Spacer />
       <motion.div
         animate={{
