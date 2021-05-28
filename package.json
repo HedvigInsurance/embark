@@ -28,6 +28,7 @@
     "@hedviginsurance/brand": "^3.0.5",
     "@hedviginsurance/textkeyfy": "^2.0.0",
     "@koa/cors": "^2.2.3",
+    "@reach/combobox": "^0.15.1",
     "@types/jsdom": "^16.2.4",
     "@types/koa": "^2.0.51",
     "@types/koa-graphql": "^0.8.4",

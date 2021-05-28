@@ -5,12 +5,21 @@ import { Tooltip } from '../../Tooltip'
 import { Card, Input, Container, Spacer } from '../Common'
 import styled from '@emotion/styled'
 import { ContinueButton } from '../../ContinueButton'
-import { wrapWithMask } from '../masking'
-import { callApi } from '../../API'
 import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
 import { useAutoFocus } from '../../../Utils/useAutoFocus'
+
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+  ComboboxButton,
+} from '@reach/combobox'
+import '@reach/combobox/styles.css'
+import { AddressAutocompleteData } from '../../API/addressAutocomplete'
 
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
@@ -18,6 +27,10 @@ const BottomSpacedInput = styled(Input)`
   @media (max-width: 600px) {
     margin-bottom: 16px;
   }
+`.withComponent(ComboboxInput)
+
+const StyledComboboxPopover = styled(ComboboxPopover)`
+  border-top: 0;
 `
 
 export interface AutocompleteActionProps {
@@ -34,7 +47,24 @@ export interface AutocompleteActionProps {
   onContinue: () => void
 }
 
-const Masked = wrapWithMask(BottomSpacedInput)
+const useAddressSearch = (searchTerm: string) => {
+  const api = React.useContext(ApiContext)
+  const [options, setOptions] = React.useState<AddressAutocompleteData[]>([])
+
+  React.useEffect(() => {
+    if (searchTerm.trim() !== '') {
+      let isFresh = true
+      api.addressAutocompleteQuery(searchTerm).then((newOptions) => {
+        if (isFresh) setOptions(newOptions)
+      })
+      return () => {
+        isFresh = false
+      }
+    }
+  }, [searchTerm])
+
+  return options
+}
 
 export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps> = (
   props,
@@ -44,30 +74,19 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const [loading, setLoading] = React.useState(false)
   const { store, setValue } = React.useContext(StoreContext)
   const [textValue, setTextValue] = React.useState(store[props.storeKey] || '')
-  const api = React.useContext(ApiContext)
 
-  const canContinue = textValue.length > 0
+  const options = useAddressSearch(textValue)
+  const selectedOption = options.find((item) => item.address === textValue)
+
+  const canContinue = selectedOption?.id !== undefined
   const onContinue = () => {
-    const newValues: { [key: string]: any } = {
-      [props.storeKey]: textValue,
-    }
-    Object.entries(newValues).forEach(([key, value]) => setValue(key, value))
+    setValue(props.storeKey, textValue)
     setValue(`${props.passageName}Result`, textValue)
-    if (props.api) {
-      setLoading(true)
-      callApi(
-        props.api,
-        api,
-        { ...store, ...newValues },
-        setValue,
-        props.onContinue,
-      )
-    } else {
-      props.onContinue()
-    }
+    props.onContinue()
   }
 
   const inputRef = useAutoFocus(!props.isTransitioning)
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   return (
     <Container>
@@ -76,32 +95,54 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         isFocused={isFocused || isHovered}
         onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
           e.preventDefault()
-
-          if (!canContinue) {
-            return
-          }
-
+          if (!canContinue) return
           onContinue()
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Tooltip tooltip={props.tooltip} />
-        <BottomSpacedInput
-          ref={inputRef}
-          type="text"
-          size={Math.max(props.placeholder.length, textValue.length)}
-          placeholder={props.placeholder}
-          value={textValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setTextValue(e.target.value)
-          }
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => {
-            setIsFocused(false)
-            animateScrollTo(0)
+        {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
+
+        <Combobox
+          onSelect={(value) => {
+            setTextValue(value)
+            setTimeout(() => {
+              buttonRef.current?.click()
+            }, 1)
           }}
-        />
+        >
+          <ComboboxButton
+            as="span"
+            style={{ display: 'none' }}
+            ref={buttonRef}
+          />
+          <BottomSpacedInput
+            ref={inputRef}
+            size={Math.max(props.placeholder.length, textValue.length)}
+            placeholder={props.placeholder}
+            onFocus={() => setIsFocused(true)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTextValue(e.target.value)
+            }
+            onBlur={() => {
+              setIsFocused(false)
+              animateScrollTo(0)
+            }}
+            autocomplete={false}
+          />
+          <StyledComboboxPopover portal={false}>
+            <ComboboxList>
+              {!canContinue
+                ? options.map((item) => (
+                    <ComboboxOption
+                      key={item.id || item.address}
+                      value={item.address}
+                    />
+                  ))
+                : null}
+            </ComboboxList>
+          </StyledComboboxPopover>
+        </Combobox>
         <input type="submit" style={{ display: 'none' }} />
       </Card>
       <Spacer />

@@ -1,6 +1,7 @@
 import { Global } from '@emotion/core'
 import { colorsV3 } from '@hedviginsurance/brand'
 import { globalStylesStorybook } from './globalStyles'
+import { MockApiContext } from '../src/Components/API/ApiContext'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -21,9 +22,9 @@ export const parameters = {
 
 export const decorators = [
   (story) => (
-    <>
+    <MockApiContext>
       <Global styles={globalStylesStorybook} />
       {story()}
-    </>
+    </MockApiContext>
   ),
 ]

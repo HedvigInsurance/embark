@@ -22,8 +22,4 @@ Autocomplete.args = {
   passageName: 'autocomplete',
   storeKey: 'address',
   placeholder: 'Teststreet 12',
-  tooltip: {
-    title: 'Tooltip title',
-    description: 'Submit your email',
-  },
 }
