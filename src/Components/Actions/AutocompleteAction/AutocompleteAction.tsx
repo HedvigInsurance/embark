@@ -1,7 +1,8 @@
 import * as React from 'react'
+import { motion } from 'framer-motion'
 import { StoreContext } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
-import { Card, Input, Container } from '../Common'
+import { Card, Input, Container, Spacer } from '../Common'
 import styled from '@emotion/styled'
 import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
@@ -21,6 +22,7 @@ import { AddressAutocompleteData } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
 import { ArrowRight } from '../../Icons/ArrowRight'
 import useDebounce from './useDebounce'
+import { ContinueButton } from '../../ContinueButton'
 
 const PostalAddress = styled.p`
   font-family: ${fonts.FAVORIT}, sans-serif;
@@ -290,6 +292,29 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         </Combobox>
         <input type="submit" style={{ display: 'none' }} />
       </StyledCard>
+
+      <Spacer />
+      <motion.div
+        animate={{
+          opacity: loading ? 0 : 1,
+        }}
+        transition={{ ease: 'easeOut', duration: 0.25 }}
+      >
+        <motion.div
+          animate={{
+            height: loading ? 0 : 'auto',
+            overflow: loading ? 'hidden' : 'inherit',
+            opacity: loading ? 0 : 1,
+          }}
+          transition={{ delay: 0.25 }}
+        >
+          <ContinueButton
+            onClick={() => handleContinue(confirmedOption!)}
+            disabled={!confirmedOption}
+            text={(props.link || {}).label || 'Nästa'}
+          />
+        </motion.div>
+      </motion.div>
     </Container>
   )
 }
