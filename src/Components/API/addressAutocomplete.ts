@@ -1,6 +1,10 @@
 export interface AddressAutocompleteData {
-  address: string
   id?: string
+  address: string
+  streetName?: string
   streetNumber?: string
   floor?: string
+  apartment?: string
+  postalCode?: string
+  city?: string
 }
