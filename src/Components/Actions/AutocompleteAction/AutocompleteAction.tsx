@@ -7,7 +7,6 @@ import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
 import { useAutoFocus } from '../../../Utils/useAutoFocus'
-import debounce from 'lodash.debounce'
 
 import {
   Combobox,
@@ -15,13 +14,30 @@ import {
   ComboboxPopover,
   ComboboxList,
   ComboboxOption,
-  ComboboxButton,
   ComboboxOptionText,
 } from '@reach/combobox'
 import '@reach/combobox/styles.css'
 import { AddressAutocompleteData } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
 import { ArrowRight } from '../../Icons/ArrowRight'
+import useDebounce from './useDebounce'
+
+const PostalAddress = styled.p`
+  font-family: ${fonts.FAVORIT}, sans-serif;
+  font-size: 1rem;
+  color: ${colorsV3.gray500};
+  text-align: left;
+  text-transform: uppercase;
+  margin: 0;
+  margin-top: -1rem;
+  padding: 1rem;
+  padding-bottom: 0;
+
+  @media (min-width: 600px) {
+    font-size: 1.25rem;
+    padding: 0 2rem 1.5rem;
+  }
+`
 
 const BottomSpacedInput = styled(Input)`
   text-align: left;
@@ -107,15 +123,29 @@ export interface AutocompleteActionProps {
 const formatAddressLine = (address: AddressAutocompleteData): string => {
   if (address.streetName && address.streetNumber) {
     let displayAddress = `${address.streetName} ${address.streetNumber}`
-    if (address.floor) displayAddress += `, ${address.floor}.`
-    if (address.apartment) displayAddress += ` ${address.apartment}`
+    if (address.floor) {
+      displayAddress += `, ${address.floor}.`
+    }
+    if (address.apartment) {
+      displayAddress += ` ${address.apartment}`
+    }
     return displayAddress
   }
 
   return address.address
 }
 
-const useAddressSearch = (searchTerm: string) => {
+const formatPostalLine = (
+  address: AddressAutocompleteData,
+): string | undefined => {
+  if (address.city && address.postalCode) {
+    return `${address.postalCode} ${address.city}`
+  }
+
+  return undefined
+}
+
+const useAddressSearch = (searchTerm: string = '') => {
   const api = React.useContext(ApiContext)
   const [options, setOptions] = React.useState<AddressAutocompleteData[]>([])
 
@@ -124,7 +154,9 @@ const useAddressSearch = (searchTerm: string) => {
     if (searchTerm.trim() !== '') {
       let isFresh = true
       api.addressAutocompleteQuery(searchTerm).then((newOptions) => {
-        if (isFresh) setOptions(newOptions)
+        if (isFresh) {
+          setOptions(newOptions)
+        }
       })
       return () => {
         isFresh = false
@@ -145,43 +177,65 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const [isHovered, setIsHovered] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const { store, setValue } = React.useContext(StoreContext)
-  const [textValue, setTextValue] = React.useState(store[props.storeKey] || '')
 
-  const debounceTextValue = React.useCallback(
-    debounce((value: string) => {
-      setTextValue(value)
-    }, 300),
-    [],
-  )
+  const [pickedOption, setPickedOption] = React.useState<
+    AddressAutocompleteData
+  >({ address: store[props.storeKey] || '' })
 
-  const options = useAddressSearch(textValue)
+  const debouncedOption = useDebounce(pickedOption, 300)
+  const options = useAddressSearch(debouncedOption.address)
 
-  const handleSelect = React.useCallback(
-    async (address: string) => {
+  const changeAddress = React.useCallback(
+    (address: string) => {
       const selectedOption = options.find((item) => item.address === address)
-      if (selectedOption && selectedOption.id) {
-        const newOptions = await api.addressAutocompleteQuery(address)
-        const oneResultLeft = newOptions.length === 1
-        const sameResultsAsBefore = newOptions.every(
-          (newOption, index) => newOption.id === options[index]?.id,
-        )
-        if (oneResultLeft || sameResultsAsBefore) {
-          setValue(props.storeKey, selectedOption.address)
-          setValue(`${props.passageName}Result`, selectedOption.address)
-          return props.onContinue()
-        }
-      }
-
-      setTextValue(address)
-      setTimeout(() => {
-        buttonRef.current?.click()
-      }, 1)
+      setPickedOption(selectedOption || { address })
     },
     [options],
   )
 
+  const formattedAddress = React.useMemo(
+    () => formatAddressLine(pickedOption),
+    [pickedOption],
+  )
+  const formattedPostalLine = React.useMemo(
+    () => formatPostalLine(pickedOption),
+    [pickedOption],
+  )
+
+  const [confirmedOption, setConfirmedOption] = React.useState<
+    AddressAutocompleteData | undefined
+  >()
+  React.useEffect(() => {
+    const checkPickedOption = async (option: AddressAutocompleteData) => {
+      const newOptions = await api.addressAutocompleteQuery(option.address)
+      const oneResultLeft = newOptions.length === 1
+      const sameResultsAsBefore = newOptions.every(
+        (newOption, index) => newOption.id === options[index]?.id,
+      )
+      if (oneResultLeft || sameResultsAsBefore) {
+        setConfirmedOption(option)
+      }
+    }
+
+    if (pickedOption.id) {
+      checkPickedOption(pickedOption)
+    } else {
+      setConfirmedOption(undefined)
+    }
+
+    return () => setConfirmedOption(undefined)
+  }, [pickedOption])
+
+  const handleContinue = React.useCallback(
+    (option: AddressAutocompleteData) => {
+      setValue(props.storeKey, option.address)
+      setValue(`${props.passageName}Result`, option.address)
+      return props.onContinue()
+    },
+    [],
+  )
+
   const inputRef = useAutoFocus(!props.isTransitioning)
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   return (
     <Container>
@@ -194,22 +248,18 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       >
         {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-        <Combobox onSelect={handleSelect}>
-          <ComboboxButton
-            as="span"
-            style={{ display: 'none' }}
-            ref={buttonRef}
-          />
+        <Combobox onSelect={changeAddress}>
           <BottomSpacedInput
             ref={inputRef}
             size={Math.max(
               props.placeholder.length,
-              Math.min(textValue.length, 23),
+              Math.min(pickedOption.address.length, 23),
             )}
             placeholder={props.placeholder}
             onFocus={() => setIsFocused(true)}
+            value={formattedAddress}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              debounceTextValue(e.target.value)
+              changeAddress(e.target.value)
             }
             onBlur={() => {
               setIsFocused(false)
@@ -217,20 +267,25 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
             }}
             autocomplete={false}
           />
+          {formattedPostalLine ? (
+            <PostalAddress>{formattedPostalLine}</PostalAddress>
+          ) : null}
           <StyledComboboxPopover portal={false}>
-            <ComboboxList>
-              {options.map((item) => (
-                <StyledComboboxOption
-                  key={item.id || item.address}
-                  value={item.address}
-                >
-                  <div>
-                    <ComboboxOptionText />
-                  </div>
-                  <ArrowRight />
-                </StyledComboboxOption>
-              ))}
-            </ComboboxList>
+            {!confirmedOption ? (
+              <ComboboxList>
+                {options.map((item) => (
+                  <StyledComboboxOption
+                    key={item.id || item.address}
+                    value={item.address}
+                  >
+                    <div>
+                      <ComboboxOptionText />
+                    </div>
+                    <ArrowRight />
+                  </StyledComboboxOption>
+                ))}
+              </ComboboxList>
+            ) : null}
           </StyledComboboxPopover>
         </Combobox>
         <input type="submit" style={{ display: 'none' }} />
