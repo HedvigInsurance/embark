@@ -1,10 +1,8 @@
 import * as React from 'react'
-import { motion } from 'framer-motion'
 import { StoreContext } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
-import { Card, Input, Container, Spacer } from '../Common'
+import { Card, Input, Container } from '../Common'
 import styled from '@emotion/styled'
-import { ContinueButton } from '../../ContinueButton'
 import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
@@ -26,10 +24,13 @@ import { colorsV3, fonts } from '@hedviginsurance/brand'
 import { ArrowRight } from '../../Icons/ArrowRight'
 
 const BottomSpacedInput = styled(Input)`
-  margin-bottom: 1.5rem;
+  text-align: left;
+  margin-bottom: 1rem;
 
-  @media (max-width: 600px) {
-    margin-bottom: 1rem;
+  @media (min-width: 600px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1.5rem;
   }
 `.withComponent(ComboboxInput)
 
@@ -101,6 +102,17 @@ export interface AutocompleteActionProps {
   }
   api?: ApiComponent
   onContinue: () => void
+}
+
+const formatAddressLine = (address: AddressAutocompleteData): string => {
+  if (address.streetName && address.streetNumber) {
+    let displayAddress = `${address.streetName} ${address.streetNumber}`
+    if (address.floor) displayAddress += `, ${address.floor}.`
+    if (address.apartment) displayAddress += ` ${address.apartment}`
+    return displayAddress
+  }
+
+  return address.address
 }
 
 const useAddressSearch = (searchTerm: string) => {
