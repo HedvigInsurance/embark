@@ -12,8 +12,8 @@ export const loadStory = async (name: string, locale: string) => {
       const splittedParam = param.split('=')
 
       return {
-        key: splittedParam[0].replace(/\W/g, ''),
-        value: `'${splittedParam[1].replace(/\W/g, '')}'`,
+        key: splittedParam[0].replace(/\'+/g, ''),
+        value: `'${splittedParam[1].replace(/\'+/g, '')}'`,
       }
     }) || []
 
