@@ -33,15 +33,17 @@ const PostalAddress = styled.p`
   margin: 0;
   margin-top: -1rem;
   padding: 1rem;
-  padding-bottom: 0;
+  padding-top: 0;
 
   @media (min-width: 600px) {
     font-size: 1.25rem;
+    margin-top: -2rem;
     padding: 0 2rem 1.5rem;
   }
 `
 
 const BottomSpacedInput = styled(Input)`
+  width: 100%;
   text-align: left;
   margin-bottom: 1rem;
 
@@ -220,7 +222,11 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     }
 
     if (pickedOption.id) {
-      checkPickedOption(pickedOption)
+      if (pickedOption.floor && pickedOption.apartment) {
+        setConfirmedOption(pickedOption)
+      } else {
+        checkPickedOption(pickedOption)
+      }
     } else {
       setConfirmedOption(undefined)
     }
@@ -267,6 +273,11 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
               setIsFocused(false)
               animateScrollTo(0)
             }}
+            onKeyPress={(event) =>
+              event.key === 'Enter' &&
+              confirmedOption &&
+              handleContinue(confirmedOption)
+            }
             autocomplete={false}
           />
           {formattedPostalLine ? (
