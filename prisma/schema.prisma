@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  FlowRevision FlowRevision[]
+}
+
+model Keyword {
+  id             Int           @id @default(autoincrement())
+  name           String
+  value          String
+  FlowRevision   FlowRevision? @relation(fields: [flowRevisionId], references: [id])
+  flowRevisionId String?
+}
+
+model Locale {
+  id        String         @id
+  revisions FlowRevision[]
+}
+
+model Metadata {
+  id             Int           @id @default(autoincrement())
+  description    String
+  title          String
+  type           String
+  FlowRevision   FlowRevision? @relation(fields: [flowRevisionId], references: [id])
+  flowRevisionId String?
+}
+
+model StepPosition {
+  id     String @id @default(uuid())
+  x      Int
+  y      Int
+  height Int
+  width  Int
+  Step   Step[]
+}
+
+model TagColor {
+  hexValue String @id
+  Tag      Tag[]
+}
+
+model Tag {
+  name             String   @id
+  color            TagColor @relation(fields: [tagColorHexValue], references: [hexValue])
+  Step             Step?    @relation(fields: [stepId], references: [id])
+  stepId           String?
+  tagColorHexValue String
+}
+
+model Step {
+  id             String        @id @default(uuid())
+  text           String
+  name           String
+  slug           String
+  tags           Tag[]
+  position       StepPosition  @relation(fields: [stepPositionId], references: [id])
+  stepPositionId String
+  FlowRevision   FlowRevision? @relation(fields: [flowRevisionId], references: [id])
+  flowRevisionId String?
+}
+
+model TrackableProperty {
+  name           String        @id
+  FlowRevision   FlowRevision? @relation(fields: [flowRevisionId], references: [id])
+  flowRevisionId String?
+}
+
+model Flow {
+  id        String         @id @default(uuid())
+  name      String         @unique
+  revisions FlowRevision[]
+}
+
+model FlowRevision {
+  id                  String              @id @default(uuid())
+  createdAt           DateTime            @default(now())
+  createdBy           User                @relation(fields: [userId], references: [id])
+  steps               Step[]
+  trackableProperties TrackableProperty[]
+  keywords            Keyword[]
+  metadata            Metadata[]
+  locales             Locale[]
+  published           Boolean
+  Flow                Flow?               @relation(fields: [flowId], references: [id])
+  flowId              String?
+  userId              Int
+}

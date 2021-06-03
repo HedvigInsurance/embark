@@ -14,5 +14,6 @@
   },
   "ts-node": {
     "transpileOnly": true
-  }
+  },
+  "exclude": ["src", "dist", "node_modules"]
 }

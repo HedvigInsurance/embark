@@ -1,6 +1,5 @@
 import { promises } from 'fs'
-
-const path = require('path')
+import * as path from 'path'
 
 type TextKeyObject = Record<string, string>
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { promises } from 'fs'
-import { parseStoryData } from './src/Parsing/parseStoryData'
+import { parseStoryData } from '../src/Parsing/parseStoryData'
 
 export const loadStory = async (name: string, locale: string) => {
   const dir = await promises.readdir('angel-data')

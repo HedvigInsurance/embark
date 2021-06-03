@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { storyKeywords } from './src/storyKeywords'
+import { storyKeywords } from '../../src/storyKeywords'
 import { makeExecutableSchema } from 'graphql-tools'
 import { promises } from 'fs'
-import { loadStory } from './load-story'
-import { resolveMetadataOnLocale } from './src/Resolvers/resolveStoriesMetadata'
+import { loadStory } from '../load-story'
+import { resolveMetadataOnLocale } from './Resolvers/resolveStoriesMetadata'
 
 const typeDefs = `
     type Query {

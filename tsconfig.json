@@ -17,5 +17,5 @@
     "declaration": true,
     "noEmit": true
   },
-  "exclude": ["server.ts", "load-story.ts", "dist", "schema.ts", "node_modules"]
+  "exclude": ["server", "dist", "node_modules"]
 }
