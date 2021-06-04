@@ -8,24 +8,19 @@ import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
 import { useAutoFocus } from '../../../Utils/useAutoFocus'
-
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-  ComboboxOptionText,
-} from '@reach/combobox'
-import '@reach/combobox/styles.css'
+import { useCombobox } from 'downshift'
 import { AddressAutocompleteData } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
-import { ArrowRight } from '../../Icons/ArrowRight'
 import useDebounce from './useDebounce'
 import { ContinueButton } from '../../ContinueButton'
 
-const StyledCombobox = styled(Combobox)`
+const StyledCombobox = styled.div`
   text-align: left;
+`
+
+const StyledComboboxList = styled.ul`
+  padding: 0;
+  margin: 0;
 `
 
 const BottomSpacedInput = styled(Input)`
@@ -37,9 +32,9 @@ const BottomSpacedInput = styled(Input)`
     margin-right: 2rem;
     margin-bottom: 1.5rem;
   }
-`.withComponent(ComboboxInput)
+`
 
-const StyledComboboxOption = styled(ComboboxOption)`
+const StyledComboboxOption = styled.li`
   height: 3rem;
   display: flex;
   justify-content: space-between;
@@ -115,13 +110,6 @@ const PostalAddress = styled.p`
 const StyledCard = styled(Card)`
   align-items: stretch;
   overflow: visible;
-`
-
-const StyledComboboxPopover = styled(ComboboxPopover)`
-  border: 0;
-
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
 `
 
 export interface AutocompleteActionProps {
@@ -203,45 +191,40 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const [loading, setLoading] = React.useState(false)
   const { store, setValue } = React.useContext(StoreContext)
 
-  const [pickedOption, setPickedOption] = React.useState<
-    AddressAutocompleteData
-  >({ address: store[props.storeKey] || '' })
+  const [textValue, setTextValue] = React.useState(store[props.storeKey] || '')
+  const [
+    pickedOption,
+    setPickedOption,
+  ] = React.useState<AddressAutocompleteData | null>(null)
 
-  const debouncedOption = useDebounce(pickedOption, 300)
-  const [options, setOptions] = useAddressSearch(debouncedOption.address)
+  const debouncedTextValue = useDebounce(textValue, 300)
+  const [options, setOptions] = useAddressSearch(debouncedTextValue)
 
-  const changeAddress = React.useCallback(
-    (address: string) => {
-      let selectedOption = options?.find(
-        (item) => formatAddressLine(item) === address,
-      )
-
-      if (selectedOption && !selectedOption.city) {
-        // make sure to query for street by adding a space at the end of the query
-        selectedOption = {
-          ...selectedOption,
-          address: `${selectedOption.address} `,
-        }
-      }
-
-      if (selectedOption) {
-        // reset list of options
-        setOptions(null)
-      }
-
-      setPickedOption(selectedOption || { address })
+  const {
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    highlightedIndex,
+    getItemProps,
+  } = useCombobox<AddressAutocompleteData>({
+    selectedItem: pickedOption,
+    inputValue: textValue,
+    items: options || [],
+    itemToString: (item) => (item ? formatAddressLine(item) : ''),
+    onInputValueChange: ({ inputValue }) => {
+      setTextValue(inputValue || '')
     },
-    [options, setOptions],
-  )
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem && !selectedItem.city) {
+        // make sure to query for street by adding a space at the end of the query
+        setTextValue(`${selectedItem.address} `)
+      }
 
-  const formattedAddress = React.useMemo(
-    () => formatAddressLine(pickedOption),
-    [pickedOption],
-  )
-  const formattedPostalLine = React.useMemo(
-    () => formatPostalLine(pickedOption),
-    [pickedOption],
-  )
+      // reset list of options
+      setOptions(null)
+      setPickedOption(selectedItem ?? null)
+    },
+  })
 
   const [confirmedOption, setConfirmedOption] = React.useState<
     AddressAutocompleteData | undefined
@@ -258,7 +241,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       }
     }
 
-    if (pickedOption.id) {
+    if (pickedOption && pickedOption.id) {
       if (pickedOption.floor && pickedOption.apartment) {
         setConfirmedOption(pickedOption)
       } else {
@@ -293,55 +276,42 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       >
         {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-        <StyledCombobox onSelect={changeAddress}>
+        <StyledCombobox {...getComboboxProps()}>
           <BottomSpacedInput
             ref={inputRef}
             size={Math.max(
               props.placeholder.length,
-              Math.min(pickedOption.address.length, 23),
+              Math.min(pickedOption?.address.length ?? 0, 23),
             )}
             placeholder={props.placeholder}
             onFocus={() => setIsFocused(true)}
-            value={formattedAddress}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              changeAddress(e.target.value)
-            }
             onBlur={() => {
               setIsFocused(false)
               animateScrollTo(0)
             }}
-            onKeyPress={(event) =>
-              event.key === 'Enter' &&
-              confirmedOption &&
-              handleContinue(confirmedOption)
-            }
-            autocomplete={false}
+            {...getInputProps()}
           />
-          {formattedPostalLine ? (
-            <PostalAddress>{formattedPostalLine}</PostalAddress>
-          ) : null}
-          <StyledComboboxPopover portal={false}>
-            {!confirmedOption ? (
-              <ComboboxList>
-                {options?.map((item) => (
-                  <StyledComboboxOption
-                    key={item.address}
-                    value={formatAddressLine(item)}
-                  >
-                    <div>
-                      <ComboboxOptionText />
-                      {formatPostalLine(item) ? (
-                        <PostalAddress>{formatPostalLine(item)}</PostalAddress>
-                      ) : null}
-                    </div>
-                    <ArrowRight />
-                  </StyledComboboxOption>
-                ))}
-              </ComboboxList>
-            ) : null}
-          </StyledComboboxPopover>
         </StyledCombobox>
-        <input type="submit" style={{ display: 'none' }} />
+        <StyledComboboxList {...getMenuProps()}>
+          {!confirmedOption
+            ? options?.map((item, index) => (
+                <StyledComboboxOption
+                  style={
+                    highlightedIndex === index
+                      ? { backgroundColor: colorsV3.purple500 }
+                      : {}
+                  }
+                  key={`${item.address}${index}`}
+                  {...getItemProps({ item, index })}
+                >
+                  {formatAddressLine(item)}
+                  {formatPostalLine(item) ? (
+                    <PostalAddress>{formatPostalLine(item)}</PostalAddress>
+                  ) : null}
+                </StyledComboboxOption>
+              ))
+            : null}
+        </StyledComboboxList>
       </StyledCard>
 
       <Spacer />
