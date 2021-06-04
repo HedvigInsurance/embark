@@ -197,6 +197,10 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     pickedOption,
     setPickedOption,
   ] = React.useState<AddressAutocompleteData | null>(null)
+  const [
+    confirmedOption,
+    setConfirmedOption,
+  ] = React.useState<AddressAutocompleteData | null>(null)
 
   const debouncedTextValue = useDebounce(textValue, 300)
   const [options, setOptions] = useAddressSearch(debouncedTextValue)
@@ -214,6 +218,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     itemToString: (item) => (item ? formatAddressLine(item) : ''),
     onInputValueChange: ({ inputValue }) => {
       setTextValue(inputValue || '')
+      setConfirmedOption(null)
       if (!inputValue) {
         setPickedOption(null)
       }
@@ -230,9 +235,6 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     },
   })
 
-  const [confirmedOption, setConfirmedOption] = React.useState<
-    AddressAutocompleteData | undefined
-  >()
   React.useEffect(() => {
     const checkPickedOption = async (option: AddressAutocompleteData) => {
       const newOptions = await api.addressAutocompleteQuery(option.address)
@@ -252,10 +254,10 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         checkPickedOption(pickedOption)
       }
     } else {
-      setConfirmedOption(undefined)
+      setConfirmedOption(null)
     }
 
-    return () => setConfirmedOption(undefined)
+    return () => setConfirmedOption(null)
   }, [pickedOption])
 
   const handleContinue = React.useCallback(
