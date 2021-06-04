@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Velg",
     "tooltipModalInformationLabel": "Informasjon"
   },
-  "lastUpdate": "2021-04-06T09:42:17.175Z",
-  "locales": ["nb_NO"],
+  "lastUpdate": "2021-05-18T14:20:51.098Z",
+  "locales": [
+    "nb_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
@@ -36,18 +38,6 @@
   ],
   "name": "Web Onboarding NO - Norwegian Contents",
   "passages": [
-    {
-      "height": 100,
-      "id": "-1181950619",
-      "left": 800,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "1150685733",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 500,
-      "width": 100
-    },
     {
       "height": 100,
       "id": "-1264850808",
@@ -80,8 +70,10 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "1150685733",
-      "tags": ["Error"],
-      "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre hjem med flere enn 6 personer!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Dessverre kan vi bare forsikre hjem med maks 6 personer\n</Message>\n\n<Message>\n  Vi ønsker alltid å forbedre oss og våre produkter, så om du har noen tilbakemeldinger kan du gjerne ta kontakt på hei@hedvig.com\n</Message>",
       "top": 650,
       "url": "/error",
       "width": 100
@@ -183,8 +175,10 @@
       "name": "errorSize",
       "selected": false,
       "story": "1150685733",
-      "tags": ["Error"],
-      "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Meld deg gjerne på vårt nyhetsbrev, så blir du blant de første som får vite det når vi kan forsikre boliger i den størrelsen du har\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Ja, jeg vil gjerne motta nyhetsbrev->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Dessverre kan vi foreløpig bare forsikre boliger opp til 250 kvadratmeter\n</Message>\n\n<Message>\n  Vi ønsker alltid å forbedre oss og våre produkter, så om du har noen tilbakemeldinger kan du gjerne ta kontakt på hei@hedvig.com\n</Message>",
       "top": 500,
       "url": "/error",
       "width": 100

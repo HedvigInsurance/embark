@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-04-06T09:29:10.055Z",
-  "locales": ["en_NO"],
+  "lastUpdate": "2021-05-18T14:15:00.828Z",
+  "locales": [
+    "en_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_COMBO_APP_METADATA_DESCRIPTION",
@@ -18,16 +20,16 @@
           "path": "/no-en/new-member/combo"
         },
         {
+          "__typename": "EmbarkStoryMetadataEntryBackground",
+          "background": "GRADIENT_ONE"
+        },
+        {
           "__typename": "EmbarkStoryMetadataEntryDiscount",
           "discount": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
         },
         {
           "__typename": "EmbarkStoryMetadataEntryPill",
           "pill": "NORWAY_COMBO_WEB_METADATA_DISCOUNT"
-        },
-        {
-          "__typename": "EmbarkStoryMetadataEntryBackground",
-          "background": "GRADIENT_ONE"
         }
       ],
       "name": "Web Onboarding NO - English Combo",
@@ -150,8 +152,10 @@
       "name": "errorCoInsured",
       "selected": false,
       "story": "-1503132176",
-      "tags": ["Error"],
-      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  We always strive to meet your needs and improve our products. If you have any questions don´t hesitate to contact us at hei@hedvig.com\n</Message>",
       "top": 1250,
       "url": "/error",
       "width": 100
@@ -235,18 +239,6 @@
     },
     {
       "height": 100,
-      "id": "1551638526",
-      "left": 800,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "-1503132176",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 1100,
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "1584779815",
       "left": 500,
       "name": "address",
@@ -265,8 +257,10 @@
       "name": "errorSize",
       "selected": false,
       "story": "-1503132176",
-      "tags": ["Error"],
-      "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  We always strive to meet your needs and improve our products. If you have any questions don´t hesitate to contact us at hei@hedvig.com\n</Message>",
       "top": 1100,
       "url": "/error",
       "width": 100

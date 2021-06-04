@@ -7,8 +7,10 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-04-06T09:32:35.115Z",
-  "locales": ["en_NO"],
+  "lastUpdate": "2021-05-18T14:17:02.937Z",
+  "locales": [
+    "en_NO"
+  ],
   "metadata": [
     {
       "description": "NORWAY_CONTENTS_APP_METADATA_DESCRIPTION",
@@ -89,18 +91,6 @@
     },
     {
       "height": 100,
-      "id": "-1745947524",
-      "left": 800,
-      "name": "NewsletterSuccess",
-      "selected": false,
-      "story": "1392201379",
-      "tags": [],
-      "text": "Double-click this passage to edit it.",
-      "top": 500,
-      "width": 100
-    },
-    {
-      "height": 100,
       "id": "-2007533159",
       "left": 650,
       "name": "email",
@@ -119,8 +109,10 @@
       "name": "errorNumberCoInsured",
       "selected": false,
       "story": "1392201379",
-      "tags": ["Error"],
-      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we can insure homes with more than 6 people!\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately, we can only insure homes with a maximum of 6 people\n</Message>\n\n<Message>\n  We always strive to meet your needs and improve our products. If you have any questions don´t hesitate to contact us at hei@hedvig.com\n</Message>",
       "top": 650,
       "url": "/error",
       "width": 100
@@ -132,8 +124,10 @@
       "name": "errorSize",
       "selected": false,
       "story": "1392201379",
-      "tags": ["Error"],
-      "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  If you want to, you can subscribe to our newsletter to be the first to know when we are able to insure residences in your size\n</Message>\n\n<SelectAction>\n  <Option>\n    [[Yes, subscribe to the newsletter->NewsletterSuccess]]\n  </Option>\n</SelectAction>",
+      "tags": [
+        "Error"
+      ],
+      "text": "<Message>\n  Unfortunately we can currently only insure residences up to 250 square meters\n</Message>\n\n<Message>\n  We always strive to meet your needs and improve our products. If you have any questions don´t hesitate to contact us at hei@hedvig.com\n</Message>",
       "top": 500,
       "url": "/error",
       "width": 100
