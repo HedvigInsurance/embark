@@ -384,8 +384,9 @@
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
       "tags": [],
-      "text": "<Message>\n  {EMBARK_MOVING_SE_ACCESS_DATE_MESSAGE_1}\n</Message>\n\n<TextAction placeholder\n            mask\n            key=\"movingDate\"\n            next=\"[[{EMBARK_MOVING_SE_CONTINUE_BUTTON}->oldHomeInsuredUntil]]\"\n>\n</TextAction>",
+      "text": "<Message>\n  {EMBARK_MOVING_SE_ACCESS_DATE_MESSAGE_1}\n</Message>\n\n<DatePickerAction next=\"[[{EMBARK_MOVING_SE_CONTINUE_BUTTON}->oldHomeInsuredUntil]]\"\n                  storekey=\"movingDate\"\n                  label=\"{EMBARK_MOVING_SE_ACCESS_DATE_LABEL}\"\n>\n  <Tooltip>\n    <Title>\n      {EMBARK_MOVING_SE_ACCESS_DATE_TOOLTIP_TITLE}\n    </Title>\n    <Description>\n      {EMBARK_MOVING_SE_ACCESS_DATE_TOOLTIP_DESCRIPTION}\n    </Description>\n  </Tooltip>\n</DatePickerAction>",
       "top": 1100,
+      "url": "/access-date",
       "width": 100
     },
     {
