@@ -163,9 +163,16 @@ const formatPostalLine = (
   return undefined
 }
 
-const useAddressSearch = (searchTerm: string = '') => {
+const useAddressSearch = (
+  searchTerm: string = '',
+): [
+  AddressAutocompleteData[] | null,
+  React.Dispatch<React.SetStateAction<AddressAutocompleteData[] | null>>,
+] => {
   const api = React.useContext(ApiContext)
-  const [options, setOptions] = React.useState<AddressAutocompleteData[]>([])
+  const [options, setOptions] = React.useState<
+    AddressAutocompleteData[] | null
+  >(null)
 
   // @ts-ignore: clean-up function only needed conditionally
   React.useEffect(() => {
@@ -180,11 +187,11 @@ const useAddressSearch = (searchTerm: string = '') => {
         isFresh = false
       }
     } else {
-      setOptions([])
+      setOptions(null)
     }
   }, [searchTerm])
 
-  return options
+  return [options, setOptions]
 }
 
 export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps> = (
@@ -201,11 +208,11 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   >({ address: store[props.storeKey] || '' })
 
   const debouncedOption = useDebounce(pickedOption, 300)
-  const options = useAddressSearch(debouncedOption.address)
+  const [options, setOptions] = useAddressSearch(debouncedOption.address)
 
   const changeAddress = React.useCallback(
     (address: string) => {
-      let selectedOption = options.find(
+      let selectedOption = options?.find(
         (item) => formatAddressLine(item) === address,
       )
 
@@ -217,9 +224,14 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         }
       }
 
+      if (selectedOption) {
+        // reset list of options
+        setOptions(null)
+      }
+
       setPickedOption(selectedOption || { address })
     },
-    [options],
+    [options, setOptions],
   )
 
   const formattedAddress = React.useMemo(
@@ -239,7 +251,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       const newOptions = await api.addressAutocompleteQuery(option.address)
       const oneResultLeft = newOptions.length === 1
       const sameResultsAsBefore = newOptions.every(
-        (newOption, index) => newOption.id === options[index]?.id,
+        (newOption, index) => newOption.id === options?.[index]?.id,
       )
       if (oneResultLeft || sameResultsAsBefore) {
         setConfirmedOption(option)
@@ -311,7 +323,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           <StyledComboboxPopover portal={false}>
             {!confirmedOption ? (
               <ComboboxList>
-                {options.map((item) => (
+                {options?.map((item) => (
                   <StyledComboboxOption
                     key={item.address}
                     value={formatAddressLine(item)}
