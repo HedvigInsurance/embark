@@ -175,7 +175,7 @@ const getDropdownAction = (
       value: translate(
         option.getAttribute('value') || option.textContent || '',
       ),
-      text: translate(option.textContent || ''),
+      text: translate(option.textContent || '').trim(),
     }
   })
 
