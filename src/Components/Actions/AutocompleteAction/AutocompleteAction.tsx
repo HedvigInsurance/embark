@@ -45,6 +45,7 @@ const StyledComboboxOption = styled.li`
   font-size: 1rem;
   color: ${colorsV3.gray900};
   border-top: 1px solid ${colorsV3.gray300};
+  cursor: pointer;
 
   &:last-child {
     border-bottom-left-radius: 8px;
@@ -213,6 +214,9 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     itemToString: (item) => (item ? formatAddressLine(item) : ''),
     onInputValueChange: ({ inputValue }) => {
       setTextValue(inputValue || '')
+      if (!inputValue) {
+        setPickedOption(null)
+      }
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem && !selectedItem.city) {
@@ -281,7 +285,10 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
             ref={inputRef}
             size={Math.max(
               props.placeholder.length,
-              Math.min(pickedOption?.address.length ?? 0, 23),
+              Math.min(
+                pickedOption ? formatAddressLine(pickedOption).length : 0,
+                23,
+              ),
             )}
             placeholder={props.placeholder}
             onFocus={() => setIsFocused(true)}
@@ -291,23 +298,26 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
             }}
             {...getInputProps()}
           />
+          {pickedOption && formatPostalLine(pickedOption) ? (
+            <PostalAddress>{formatPostalLine(pickedOption)}</PostalAddress>
+          ) : null}
         </StyledCombobox>
         <StyledComboboxList {...getMenuProps()}>
           {!confirmedOption
             ? options?.map((item, index) => (
                 <StyledComboboxOption
-                  style={
-                    highlightedIndex === index
-                      ? { backgroundColor: colorsV3.purple500 }
-                      : {}
-                  }
                   key={`${item.address}${index}`}
+                  {...(highlightedIndex === index && {
+                    'data-highlighted': true,
+                  })}
                   {...getItemProps({ item, index })}
                 >
-                  {formatAddressLine(item)}
-                  {formatPostalLine(item) ? (
-                    <PostalAddress>{formatPostalLine(item)}</PostalAddress>
-                  ) : null}
+                  <div>
+                    {formatAddressLine(item)}
+                    {formatPostalLine(item) ? (
+                      <PostalAddress>{formatPostalLine(item)}</PostalAddress>
+                    ) : null}
+                  </div>
                 </StyledComboboxOption>
               ))
             : null}
