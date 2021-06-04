@@ -41,6 +41,7 @@ const StyledComboboxOption = styled.li`
   align-items: center;
   padding: 0 1rem;
 
+  text-align: left;
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 1rem;
   color: ${colorsV3.gray900};
@@ -53,26 +54,21 @@ const StyledComboboxOption = styled.li`
   }
 
   &[data-highlighted] {
-    background-color: ${colorsV3.purple500};
-    border-top-color: ${colorsV3.purple500};
-
-    &:hover {
-      background-color: ${colorsV3.purple300};
-      border-top-color: ${colorsV3.purple300};
-    }
-  }
-
-  &[data-highlighted] + & {
-    border-top-color: ${colorsV3.purple500};
-  }
-
-  &:hover {
     background-color: ${colorsV3.purple300};
     border-top-color: ${colorsV3.purple300};
   }
 
-  &:hover + & {
+  &[data-highlighted] + & {
     border-top-color: ${colorsV3.purple300};
+  }
+
+  &:active {
+    background-color: ${colorsV3.purple500};
+    border-top-color: ${colorsV3.purple500};
+  }
+
+  &:active + & {
+    border-top-color: ${colorsV3.purple500};
   }
 
   @media (min-width: 600px) {
@@ -83,12 +79,12 @@ const StyledComboboxOption = styled.li`
 const PostalAddress = styled.p`
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 1rem;
-  color: ${colorsV3.gray500};
   text-align: left;
   text-transform: uppercase;
   margin: 0;
 
   ${StyledComboboxOption} & {
+    color: ${colorsV3.gray700};
     font-size: 0.75rem;
   }
 
@@ -100,6 +96,8 @@ const PostalAddress = styled.p`
     margin-top: -1rem;
     padding: 1rem;
     padding-top: 0;
+
+    color: ${colorsV3.gray500};
 
     @media (min-width: 600px) {
       margin-top: -2rem;
@@ -219,7 +217,9 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     onInputValueChange: ({ inputValue }) => {
       setTextValue(inputValue || '')
       setConfirmedOption(null)
+
       if (!inputValue) {
+        // reset picked option for empty input field
         setPickedOption(null)
       }
     },
@@ -287,10 +287,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
             ref={inputRef}
             size={Math.max(
               props.placeholder.length,
-              Math.min(
-                pickedOption ? formatAddressLine(pickedOption).length : 0,
-                23,
-              ),
+              Math.min(textValue.length, 23),
             )}
             placeholder={props.placeholder}
             onFocus={() => setIsFocused(true)}
