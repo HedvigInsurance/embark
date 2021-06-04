@@ -24,26 +24,11 @@ import { ArrowRight } from '../../Icons/ArrowRight'
 import useDebounce from './useDebounce'
 import { ContinueButton } from '../../ContinueButton'
 
-const PostalAddress = styled.p`
-  font-family: ${fonts.FAVORIT}, sans-serif;
-  font-size: 1rem;
-  color: ${colorsV3.gray500};
+const StyledCombobox = styled(Combobox)`
   text-align: left;
-  text-transform: uppercase;
-  margin: 0;
-  margin-top: -1rem;
-  padding: 1rem;
-  padding-top: 0;
-
-  @media (min-width: 600px) {
-    font-size: 1.25rem;
-    margin-top: -2rem;
-    padding: 0 2rem 1.5rem;
-  }
 `
 
 const BottomSpacedInput = styled(Input)`
-  width: 100%;
   text-align: left;
   margin-bottom: 1rem;
 
@@ -53,17 +38,6 @@ const BottomSpacedInput = styled(Input)`
     margin-bottom: 1.5rem;
   }
 `.withComponent(ComboboxInput)
-
-const StyledCard = styled(Card)`
-  align-items: stretch;
-`
-
-const StyledComboboxPopover = styled(ComboboxPopover)`
-  border: 0;
-
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-`
 
 const StyledComboboxOption = styled(ComboboxOption)`
   height: 3rem;
@@ -108,6 +82,46 @@ const StyledComboboxOption = styled(ComboboxOption)`
   @media (min-width: 600px) {
     padding: 0 2rem;
   }
+`
+
+const PostalAddress = styled.p`
+  font-family: ${fonts.FAVORIT}, sans-serif;
+  font-size: 1rem;
+  color: ${colorsV3.gray500};
+  text-align: left;
+  text-transform: uppercase;
+  margin: 0;
+
+  ${StyledComboboxOption} & {
+    font-size: 0.75rem;
+  }
+
+  @media (min-width: 600px) {
+    font-size: 1.25rem;
+  }
+
+  ${BottomSpacedInput} + & {
+    margin-top: -1rem;
+    padding: 1rem;
+    padding-top: 0;
+
+    @media (min-width: 600px) {
+      margin-top: -2rem;
+      padding: 0 2rem 1.5rem;
+    }
+  }
+`
+
+const StyledCard = styled(Card)`
+  align-items: stretch;
+  overflow: visible;
+`
+
+const StyledComboboxPopover = styled(ComboboxPopover)`
+  border: 0;
+
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 `
 
 export interface AutocompleteActionProps {
@@ -191,7 +205,18 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
   const changeAddress = React.useCallback(
     (address: string) => {
-      const selectedOption = options.find((item) => item.address === address)
+      let selectedOption = options.find(
+        (item) => formatAddressLine(item) === address,
+      )
+
+      if (selectedOption && !selectedOption.city) {
+        // make sure to query for street by adding a space at the end of the query
+        selectedOption = {
+          ...selectedOption,
+          address: `${selectedOption.address} `,
+        }
+      }
+
       setPickedOption(selectedOption || { address })
     },
     [options],
@@ -256,7 +281,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       >
         {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-        <Combobox onSelect={changeAddress}>
+        <StyledCombobox onSelect={changeAddress}>
           <BottomSpacedInput
             ref={inputRef}
             size={Math.max(
@@ -288,11 +313,14 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
               <ComboboxList>
                 {options.map((item) => (
                   <StyledComboboxOption
-                    key={item.id || item.address}
-                    value={item.address}
+                    key={item.address}
+                    value={formatAddressLine(item)}
                   >
                     <div>
                       <ComboboxOptionText />
+                      {formatPostalLine(item) ? (
+                        <PostalAddress>{formatPostalLine(item)}</PostalAddress>
+                      ) : null}
                     </div>
                     <ArrowRight />
                   </StyledComboboxOption>
@@ -300,7 +328,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
               </ComboboxList>
             ) : null}
           </StyledComboboxPopover>
-        </Combobox>
+        </StyledCombobox>
         <input type="submit" style={{ display: 'none' }} />
       </StyledCard>
 
