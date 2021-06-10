@@ -17,30 +17,25 @@ export interface Replacements {
   [key: string]: React.ReactNode
 }
 
-export const TranslationNode: React.FC = ({ children }) => <>{children}</>
-
 export const replacePlaceholders = (
   replacements: Replacements,
   text: string,
-) => {
+): string => {
   const matches = text.split(getPlaceholderRegex()).filter((value) => value)
 
-  if (!matches) {
-    return []
-  }
-
-  return matches.map((placeholder, index) => {
+  const resolvedPlaceholders = matches.map((placeholder) => {
     if (!getPlaceholderKeyRegex().test(placeholder)) {
       return placeholder
     }
     const key = placeholder.match(getPlaceholderKeyRegex())![0]
-
     if (replacements[key]) {
-      return <TranslationNode key={index}>{replacements[key]}</TranslationNode>
+      return replacements[key]
     }
 
     return placeholder
   })
+
+  return resolvedPlaceholders.join('')
 }
 
 export const getTextContent = (store: any, node: ExpressionTextNode) => {
@@ -63,7 +58,7 @@ type MessageBodyProps = {
   isResponse: boolean
 }
 
-export const MessageBody = styled.p<MessageBodyProps>`
+export const MessageBody = styled.div<MessageBodyProps>`
   display: inline-block;
   background-color: ${(props: MessageBodyProps) =>
     props.isResponse ? colorsV3.white : colorsV3.gray800};
@@ -80,6 +75,10 @@ export const MessageBody = styled.p<MessageBodyProps>`
 
   @media (max-width: 320px) {
     font-size: 14px;
+  }
+
+  a {
+    color: inherit;
   }
 `
 
