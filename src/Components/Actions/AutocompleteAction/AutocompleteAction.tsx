@@ -14,6 +14,28 @@ import { colorsV3, fonts } from '@hedviginsurance/brand'
 import useDebounce from './useDebounce'
 import { ContinueButton } from '../../ContinueButton'
 
+const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
+
+const StyledContainer = styled(motion.div)`
+  width: 100vw;
+  max-width: 800px;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+`
+
+const StyledCard = styled(Card)`
+  width: 100%;
+  align-items: stretch;
+  overflow: visible;
+`
+
 const StyledCombobox = styled.div`
   text-align: left;
 `
@@ -21,15 +43,25 @@ const StyledCombobox = styled.div`
 const StyledComboboxList = styled.ul`
   padding: 0;
   margin: 0;
+  width: 100%;
+
+  margin-top: 0.5rem;
+  background-color: ${colorsV3.white};
+  border-radius: 8px;
 `
 
 const BottomSpacedInput = styled(Input)`
+  width: 100%;
   text-align: left;
+  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
   @media (min-width: 600px) {
-    margin-left: 2rem;
-    margin-right: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     margin-bottom: 1.5rem;
   }
 `
@@ -45,8 +77,16 @@ const StyledComboboxOption = styled.li`
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 1rem;
   color: ${colorsV3.gray900};
-  border-top: 1px solid ${colorsV3.gray300};
   cursor: pointer;
+
+  &:not(:first-child) {
+    border-top: 1px solid ${colorsV3.gray300};
+  }
+
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
 
   &:last-child {
     border-bottom-left-radius: 8px;
@@ -76,11 +116,14 @@ const StyledComboboxOption = styled.li`
   }
 `
 
+const NotFoundComboboxOption = styled(StyledComboboxOption)`
+  color: ${colorsV3.red500};
+`
+
 const PostalAddress = styled.p`
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 1rem;
   text-align: left;
-  text-transform: uppercase;
   margin: 0;
 
   ${StyledComboboxOption} & {
@@ -104,11 +147,6 @@ const PostalAddress = styled.p`
       padding: 0 2rem 1.5rem;
     }
   }
-`
-
-const StyledCard = styled(Card)`
-  align-items: stretch;
-  overflow: visible;
 `
 
 export interface AutocompleteActionProps {
@@ -203,6 +241,22 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const debouncedTextValue = useDebounce(textValue, 300)
   const [options, setOptions] = useAddressSearch(debouncedTextValue)
 
+  const [hasUpdatedOptions, setHasUpdatedOptions] = React.useState(false)
+  const showAddressNotFound = useDebounce(hasUpdatedOptions, 3000)
+
+  React.useEffect(() => {
+    setHasUpdatedOptions(options !== null ? true : false)
+    return () => setHasUpdatedOptions(false)
+  }, [options])
+
+  const comboboxItems = React.useMemo<AddressAutocompleteData[]>(() => {
+    if (options && showAddressNotFound) {
+      return [...options, { address: 'ADDRESS_NOT_FOUND' }]
+    }
+
+    return options || []
+  }, [options, showAddressNotFound])
+
   const {
     getMenuProps,
     getInputProps,
@@ -212,7 +266,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   } = useCombobox<AddressAutocompleteData>({
     selectedItem: pickedOption,
     inputValue: textValue,
-    items: options || [],
+    items: comboboxItems,
     itemToString: (item) => (item ? formatAddressLine(item) : ''),
     onInputValueChange: ({ inputValue }) => {
       setTextValue(inputValue || '')
@@ -272,7 +326,12 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const inputRef = useAutoFocus(!props.isTransitioning)
 
   return (
-    <Container>
+    <StyledContainer
+      animate={{
+        height: isFocused && !confirmedOption ? '100vh' : 'auto',
+      }}
+      transition={{ duration: 0.3 }}
+    >
       <StyledCard
         loading={loading}
         isFocused={isFocused || isHovered}
@@ -284,44 +343,58 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
         <StyledCombobox {...getComboboxProps()}>
           <BottomSpacedInput
-            ref={inputRef}
-            size={Math.max(
-              props.placeholder.length,
-              Math.min(textValue.length, 23),
-            )}
-            placeholder={props.placeholder}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => {
-              setIsFocused(false)
-              animateScrollTo(0)
-            }}
-            {...getInputProps()}
+            {...getInputProps({
+              ref: inputRef,
+              placeholder: props.placeholder,
+              onFocus: () => setIsFocused(true),
+              onBlur: () => {
+                setIsFocused(false)
+                animateScrollTo(0)
+              },
+              size: Math.max(
+                props.placeholder.length,
+                Math.min(textValue.length, 23),
+              ),
+            })}
           />
           {pickedOption && formatPostalLine(pickedOption) ? (
             <PostalAddress>{formatPostalLine(pickedOption)}</PostalAddress>
           ) : null}
         </StyledCombobox>
-        <StyledComboboxList {...getMenuProps()}>
-          {!confirmedOption
-            ? options?.map((item, index) => (
-                <StyledComboboxOption
-                  key={`${item.address}${index}`}
-                  {...(highlightedIndex === index && {
-                    'data-highlighted': true,
-                  })}
-                  {...getItemProps({ item, index })}
-                >
-                  <div>
-                    {formatAddressLine(item)}
-                    {formatPostalLine(item) ? (
-                      <PostalAddress>{formatPostalLine(item)}</PostalAddress>
-                    ) : null}
-                  </div>
-                </StyledComboboxOption>
-              ))
-            : null}
-        </StyledComboboxList>
       </StyledCard>
+
+      {!confirmedOption && isFocused ? (
+        <StyledComboboxList {...getMenuProps()}>
+          {comboboxItems.map((item, index) => {
+            const props = {
+              key: `${item.address}${index}`,
+              ...(highlightedIndex === index && {
+                'data-highlighted': true,
+              }),
+              ...getItemProps({ item, index }),
+            }
+
+            if (item.address === ADDRESS_NOT_FOUND) {
+              return (
+                <NotFoundComboboxOption {...props}>
+                  Can't find my address
+                </NotFoundComboboxOption>
+              )
+            }
+
+            return (
+              <StyledComboboxOption {...props}>
+                <div>
+                  {formatAddressLine(item)}
+                  {formatPostalLine(item) ? (
+                    <PostalAddress>{formatPostalLine(item)}</PostalAddress>
+                  ) : null}
+                </div>
+              </StyledComboboxOption>
+            )
+          })}
+        </StyledComboboxList>
+      ) : null}
 
       <Spacer />
       <motion.div
@@ -345,6 +418,6 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           />
         </motion.div>
       </motion.div>
-    </Container>
+    </StyledContainer>
   )
 }
