@@ -190,6 +190,7 @@ const formatPostalLine = (
 
 const useAddressSearch = (
   searchTerm: string = '',
+  option?: AddressAutocompleteData,
 ): [
   AddressAutocompleteData[] | null,
   React.Dispatch<React.SetStateAction<AddressAutocompleteData[] | null>>,
@@ -199,11 +200,25 @@ const useAddressSearch = (
     AddressAutocompleteData[] | null
   >(null)
 
+  const apiSearchTerm = React.useMemo(() => {
+    if (option && !option.city) {
+      // make sure to query for street by adding a space at the end of the query
+      return searchTerm + ' '
+    }
+
+    if (option?.postalCode && option?.city) {
+      // Make sure to search for specific address (floor, apartment)
+      return `${searchTerm} ${option.postalCode} ${option.city}`
+    }
+
+    return searchTerm
+  }, [searchTerm, option])
+
   // @ts-ignore: clean-up function only needed conditionally
   React.useEffect(() => {
-    if (searchTerm.trim() !== '') {
+    if (apiSearchTerm.trim() !== '') {
       let isFresh = true
-      api.addressAutocompleteQuery(searchTerm).then((newOptions) => {
+      api.addressAutocompleteQuery(apiSearchTerm).then((newOptions) => {
         if (isFresh) {
           setOptions(newOptions)
         }
@@ -214,7 +229,7 @@ const useAddressSearch = (
     } else {
       setOptions(null)
     }
-  }, [searchTerm])
+  }, [apiSearchTerm])
 
   return [options, setOptions]
 }
@@ -238,15 +253,11 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     setConfirmedOption,
   ] = React.useState<AddressAutocompleteData | null>(null)
 
-  const apiTextValue = React.useMemo(() => {
-    if (pickedOption?.postalCode && pickedOption?.city) {
-      return `${textValue} ${pickedOption.postalCode} ${pickedOption.city}`
-    }
-
-    return textValue
-  }, [textValue, pickedOption])
-  const debouncedTextValue = useDebounce(apiTextValue, 300)
-  const [options, setOptions] = useAddressSearch(debouncedTextValue)
+  const debouncedTextValue = useDebounce(textValue, 300)
+  const [options, setOptions] = useAddressSearch(
+    debouncedTextValue,
+    pickedOption ?? undefined,
+  )
 
   const [hasUpdatedOptions, setHasUpdatedOptions] = React.useState(false)
   const showAddressNotFound = useDebounce(hasUpdatedOptions, 3000)
@@ -285,11 +296,6 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       }
     },
     onSelectedItemChange: ({ selectedItem }) => {
-      if (selectedItem && !selectedItem.city) {
-        // make sure to query for street by adding a space at the end of the query
-        setTextValue(`${selectedItem.address} `)
-      }
-
       // reset list of options
       setOptions(null)
       setPickedOption(selectedItem ?? null)
