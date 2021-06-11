@@ -2,7 +2,7 @@ import * as React from 'react'
 import { motion } from 'framer-motion'
 import { StoreContext } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
-import { Card, Input, Container, Spacer } from '../Common'
+import { Card, Input, Spacer } from '../Common'
 import styled from '@emotion/styled'
 import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
@@ -238,7 +238,14 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     setConfirmedOption,
   ] = React.useState<AddressAutocompleteData | null>(null)
 
-  const debouncedTextValue = useDebounce(textValue, 300)
+  const apiTextValue = React.useMemo(() => {
+    if (pickedOption?.postalCode && pickedOption?.city) {
+      return `${textValue} ${pickedOption.postalCode} ${pickedOption.city}`
+    }
+
+    return textValue
+  }, [textValue, pickedOption])
+  const debouncedTextValue = useDebounce(apiTextValue, 300)
   const [options, setOptions] = useAddressSearch(debouncedTextValue)
 
   const [hasUpdatedOptions, setHasUpdatedOptions] = React.useState(false)
