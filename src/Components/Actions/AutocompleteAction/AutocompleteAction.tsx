@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { motion, TargetAndTransition } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { StoreContext } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
 import { Card, Input, Spacer } from '../Common'
@@ -16,7 +16,7 @@ import { ContinueButton } from '../../ContinueButton'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
 
-const StyledContainer = styled(motion.div)`
+const StyledContainer = styled.div`
   width: 100vw;
   max-width: 800px;
   padding: 0 1rem;
@@ -346,13 +346,6 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
   const inputRef = useAutoFocus(!props.isTransitioning)
 
-  const containerAnimation = React.useMemo<TargetAndTransition>(
-    () => ({
-      height: isFocused && !confirmedOption ? '100vh' : 'auto',
-    }),
-    [isFocused, confirmedOption],
-  )
-
   const postalLine = React.useMemo(() => {
     if (pickedOption && isMatchingStreetName(textValue, pickedOption)) {
       return formatPostalLine(pickedOption)
@@ -360,10 +353,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   }, [pickedOption, textValue])
 
   return (
-    <StyledContainer
-      animate={containerAnimation}
-      transition={{ duration: 0.3 }}
-    >
+    <StyledContainer>
       <StyledCard
         loading={loading}
         isFocused={isFocused || isHovered}
