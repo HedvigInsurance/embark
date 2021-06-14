@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { motion } from 'framer-motion'
+import { motion, TargetAndTransition } from 'framer-motion'
 import { StoreContext } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
 import { Card, Input, Spacer } from '../Common'
@@ -53,16 +53,13 @@ const StyledComboboxList = styled.ul`
 const BottomSpacedInput = styled(Input)`
   width: 100%;
   text-align: left;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin: 0;
+  line-height: 1;
+
+  padding: 0.9rem 1rem 1rem;
 
   @media (min-width: 600px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-bottom: 1.5rem;
+    padding: 1.25rem 2rem 1.5rem;
   }
 `
 
@@ -338,11 +335,16 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
   const inputRef = useAutoFocus(!props.isTransitioning)
 
+  const containerAnimation = React.useMemo<TargetAndTransition>(
+    () => ({
+      height: isFocused && !confirmedOption ? '100vh' : 'auto',
+    }),
+    [isFocused, confirmedOption],
+  )
+
   return (
     <StyledContainer
-      animate={{
-        height: isFocused && !confirmedOption ? '100vh' : 'auto',
-      }}
+      animate={containerAnimation}
       transition={{ duration: 0.3 }}
     >
       <StyledCard
