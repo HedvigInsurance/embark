@@ -64,11 +64,11 @@ const BottomSpacedInput = styled(Input)`
 `
 
 const StyledComboboxOption = styled.li`
-  height: 3rem;
+  padding: 0.5rem 1rem;
+  min-height: 3rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  justify-content: space-between;
 
   text-align: left;
   font-family: ${fonts.FAVORIT}, sans-serif;
@@ -109,7 +109,8 @@ const StyledComboboxOption = styled.li`
   }
 
   @media (min-width: 600px) {
-    padding: 0 2rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
   }
 `
 
@@ -123,21 +124,20 @@ const PostalAddress = styled.p`
   text-align: left;
   margin: 0;
 
-  ${StyledComboboxOption} & {
-    color: ${colorsV3.gray700};
-    font-size: 0.75rem;
-  }
+  color: ${colorsV3.gray700};
 
   @media (min-width: 600px) {
     font-size: 1.25rem;
+  }
+
+  ${StyledComboboxOption} & {
+    margin-top: 0.25rem;
   }
 
   ${BottomSpacedInput} + & {
     margin-top: -1rem;
     padding: 1rem;
     padding-top: 0;
-
-    color: ${colorsV3.gray500};
 
     @media (min-width: 600px) {
       margin-top: -2rem;
@@ -277,7 +277,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
   const comboboxItems = React.useMemo<AddressAutocompleteData[]>(() => {
     if (options && showAddressNotFound) {
-      return [...options, { address: 'ADDRESS_NOT_FOUND' }]
+      return [...options, { address: ADDRESS_NOT_FOUND }]
     }
 
     return options || []
@@ -383,39 +383,39 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         </StyledCombobox>
       </StyledCard>
 
-      {!confirmedOption && isFocused ? (
-        <StyledComboboxList {...getMenuProps()}>
-          {comboboxItems.map((item, index) => {
-            const props = {
-              key: `${item.address}${index}`,
-              ...(highlightedIndex === index && {
-                'data-highlighted': true,
-              }),
-              ...getItemProps({ item, index }),
-            }
+      <StyledComboboxList {...getMenuProps()}>
+        {!confirmedOption && isFocused
+          ? comboboxItems.map((item, index) => {
+              const props = {
+                key: `${item.address}${index}`,
+                ...(highlightedIndex === index && {
+                  'data-highlighted': true,
+                }),
+                ...getItemProps({ item, index }),
+              }
 
-            if (item.address === ADDRESS_NOT_FOUND) {
+              if (item.address === ADDRESS_NOT_FOUND) {
+                return (
+                  <NotFoundComboboxOption {...props}>
+                    Can't find my address
+                  </NotFoundComboboxOption>
+                )
+              }
+
+              const postalLine = formatPostalLine(item)
               return (
-                <NotFoundComboboxOption {...props}>
-                  Can't find my address
-                </NotFoundComboboxOption>
+                <StyledComboboxOption {...props}>
+                  <div>
+                    {formatAddressLine(item)}
+                    {postalLine ? (
+                      <PostalAddress>{postalLine}</PostalAddress>
+                    ) : null}
+                  </div>
+                </StyledComboboxOption>
               )
-            }
-
-            const postalLine = formatPostalLine(item)
-            return (
-              <StyledComboboxOption {...props}>
-                <div>
-                  {formatAddressLine(item)}
-                  {postalLine ? (
-                    <PostalAddress>{postalLine}</PostalAddress>
-                  ) : null}
-                </div>
-              </StyledComboboxOption>
-            )
-          })}
-        </StyledComboboxList>
-      ) : null}
+            })
+          : null}
+      </StyledComboboxList>
 
       <Spacer />
       <motion.div
