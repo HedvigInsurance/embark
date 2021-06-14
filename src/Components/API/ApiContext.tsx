@@ -18,6 +18,29 @@ import EventEmitter from 'eventemitter3'
 import { introspectSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import { graphql, ExecutionResult } from 'graphql'
 import { AddressAutocompleteData } from './addressAutocomplete'
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+
+const client = new ApolloClient({
+  uri: 'https://graphql.dev.hedvigit.com/graphql',
+  cache: new InMemoryCache({
+    typePolicies: { AutoCompleteResponse: { keyFields: ['address'] } },
+  }),
+})
+
+const query = gql`
+  query AutoComplete($term: String!) {
+    autoCompleteAddress(input: $term) {
+      id
+      address
+      streetName
+      streetNumber
+      floor
+      apartment
+      postalCode
+      city
+    }
+  }
+`
 
 const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
@@ -92,30 +115,8 @@ export const mockApiResolvers: TApiContext = {
     return houseInformationMocks[0]
   },
   addressAutocompleteQuery: async (term) => {
-    await timeout(300)
-
-    const step1 = addressAutocompleteMocksStep1.find(
-      (item) => item.address === term,
-    )
-    if (step1) {
-      return addressAutocompleteMocksStep2
-    }
-
-    const step2 = addressAutocompleteMocksStep2.find(
-      (item) => item.address === term,
-    )
-    if (step2) {
-      return addressAutocompleteMocksStep3
-    }
-
-    const step3 = addressAutocompleteMocksStep3.find(
-      (item) => item.address === term,
-    )
-    if (step3) {
-      return [step3]
-    }
-
-    return addressAutocompleteMocksStep1
+    const result = await client.query({ query, variables: { term } })
+    return result.data?.autoCompleteAddress || []
   },
   createQuote: async (_) => {
     await timeout(300)

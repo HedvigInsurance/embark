@@ -22,6 +22,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@apollo/client": "^3.3.19",
     "@emotion/babel-plugin": "^11.0.0-next.12",
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
