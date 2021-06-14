@@ -185,6 +185,13 @@ const formatPostalLine = (
   return undefined
 }
 
+const isMatchingStreetName = (
+  searchTerm: string,
+  option?: AddressAutocompleteData,
+) => {
+  return option?.streetName && searchTerm.startsWith(option.streetName)
+}
+
 const useAddressSearch = (
   searchTerm: string = '',
   option?: AddressAutocompleteData,
@@ -203,7 +210,11 @@ const useAddressSearch = (
       return searchTerm + ' '
     }
 
-    if (option?.postalCode && option?.city) {
+    if (
+      option?.postalCode &&
+      option?.city &&
+      isMatchingStreetName(searchTerm, option)
+    ) {
       // Make sure to search for specific address (floor, apartment)
       return `${searchTerm} ${option.postalCode} ${option.city}`
     }
@@ -342,6 +353,12 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     [isFocused, confirmedOption],
   )
 
+  const postalLine = React.useMemo(() => {
+    if (pickedOption && isMatchingStreetName(textValue, pickedOption)) {
+      return formatPostalLine(pickedOption)
+    } else return undefined
+  }, [pickedOption, textValue])
+
   return (
     <StyledContainer
       animate={containerAnimation}
@@ -372,9 +389,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
               ),
             })}
           />
-          {pickedOption && formatPostalLine(pickedOption) ? (
-            <PostalAddress>{formatPostalLine(pickedOption)}</PostalAddress>
-          ) : null}
+          {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
         </StyledCombobox>
       </StyledCard>
 
@@ -397,12 +412,13 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
               )
             }
 
+            const postalLine = formatPostalLine(item)
             return (
               <StyledComboboxOption {...props}>
                 <div>
                   {formatAddressLine(item)}
-                  {formatPostalLine(item) ? (
-                    <PostalAddress>{formatPostalLine(item)}</PostalAddress>
+                  {postalLine ? (
+                    <PostalAddress>{postalLine}</PostalAddress>
                   ) : null}
                 </div>
               </StyledComboboxOption>
