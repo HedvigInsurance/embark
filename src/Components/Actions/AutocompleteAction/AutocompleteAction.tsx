@@ -6,8 +6,6 @@ import { Card, Input, Spacer } from '../Common'
 import styled from '@emotion/styled'
 import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
-import animateScrollTo from 'animated-scroll-to'
-import { useAutoFocus } from '../../../Utils/useAutoFocus'
 import { useCombobox } from 'downshift'
 import { AddressAutocompleteData } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
@@ -16,28 +14,99 @@ import { ContinueButton } from '../../ContinueButton'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
 
-const StyledContainer = styled.div`
-  width: 100vw;
-  max-width: 800px;
-  padding: 0 1rem;
+const StyledChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  @media (min-width: 768px) {
-    width: auto;
-  }
 `
 
 const StyledCard = styled(Card)`
   width: 100%;
-  align-items: stretch;
-  overflow: visible;
+
+  padding-bottom: 24px;
+
+  @media (max-width: 600px) {
+    padding-bottom: 16px;
+  }
+`
+
+const StyledFakeInput = styled(Input)`
+  width: 100%;
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 16px;
+`
+
+const StyledContainer = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: ${colorsV3.white};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`
+
+const StyledHeader = styled.header`
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  flex-shrink: 0;
+`
+
+const StyledHeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+
+  margin-bottom: 8px;
+`
+
+const StyledHeaderLabel = styled.label`
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  color: ${colorsV3.black};
+  font-family: ${fonts.FAVORIT};
+  text-align: center;
+  font-size: 16px;
+`
+
+const StyledHeaderButton = styled.button`
+  border: 0;
+  background: transparent;
+  appearance: none;
+  position: relative;
+  z-index: 2;
+
+  color: ${colorsV3.black};
+  font-family: ${fonts.FAVORIT};
+  font-size: 16px;
 `
 
 const StyledCombobox = styled.div`
+  box-sizing: border-box;
   text-align: left;
+  width: 100%;
+
+  border: 1px solid ${colorsV3.gray500};
+  border-radius: 8px;
+
+  padding: 8px 16px;
+
+  @media (min-width: 600px) {
+    padding: 1.25rem 2rem 1.5rem;
+  }
 `
 
 const StyledComboboxList = styled.ul`
@@ -45,9 +114,8 @@ const StyledComboboxList = styled.ul`
   margin: 0;
   width: 100%;
 
-  margin-top: 0.5rem;
-  background-color: ${colorsV3.white};
-  border-radius: 8px;
+  flex: 1;
+  overflow: auto;
 `
 
 const BottomSpacedInput = styled(Input)`
@@ -56,16 +124,18 @@ const BottomSpacedInput = styled(Input)`
   margin: 0;
   line-height: 1;
 
-  padding: 0.9rem 1rem 1rem;
-
   @media (min-width: 600px) {
-    padding: 1.25rem 2rem 1.5rem;
+    font-size: 32px;
+
+    ::placeholder {
+      font-size: 32px;
+    }
   }
 `
 
 const StyledComboboxOption = styled.li`
   padding: 0.5rem 1rem;
-  min-height: 3rem;
+  min-height: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,19 +146,7 @@ const StyledComboboxOption = styled.li`
   color: ${colorsV3.gray900};
   cursor: pointer;
 
-  &:not(:first-child) {
-    border-top: 1px solid ${colorsV3.gray300};
-  }
-
-  &:first-child {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
+  border-top: 1px solid ${colorsV3.gray300};
 
   &[data-highlighted] {
     background-color: ${colorsV3.purple300};
@@ -130,19 +188,8 @@ const PostalAddress = styled.p`
     font-size: 1.25rem;
   }
 
-  ${StyledComboboxOption} & {
-    margin-top: 0.25rem;
-  }
-
-  ${BottomSpacedInput} + & {
-    margin-top: -1rem;
-    padding: 1rem;
-    padding-top: 0;
-
-    @media (min-width: 600px) {
-      margin-top: -2rem;
-      padding: 0 2rem 1.5rem;
-    }
+  ${StyledFakeInput} + & {
+    padding-left: 16px;
   }
 `
 
@@ -150,6 +197,7 @@ export interface AutocompleteActionProps {
   isTransitioning: boolean
   passageName: string
   storeKey: string
+  storeIdKey: string
   link: any
   placeholder: string
   tooltip?: {
@@ -246,7 +294,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   props,
 ) => {
   const api = React.useContext(ApiContext)
-  const [isFocused, setIsFocused] = React.useState(false)
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const { store, setValue } = React.useContext(StoreContext)
@@ -262,26 +310,27 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   ] = React.useState<AddressAutocompleteData | null>(null)
 
   const debouncedTextValue = useDebounce(textValue, 300)
-  const [options, setOptions] = useAddressSearch(
+  const [options] = useAddressSearch(
     debouncedTextValue,
     pickedOption ?? undefined,
   )
 
-  const [hasUpdatedOptions, setHasUpdatedOptions] = React.useState(false)
-  const showAddressNotFound = useDebounce(hasUpdatedOptions, 3000)
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
   React.useEffect(() => {
-    setHasUpdatedOptions(options !== null ? true : false)
-    return () => setHasUpdatedOptions(false)
-  }, [options])
+    if (confirmedOption) {
+      setIsModalOpen(false)
+      inputRef.current?.blur()
+    }
+  }, [confirmedOption])
 
   const comboboxItems = React.useMemo<AddressAutocompleteData[]>(() => {
-    if (options && showAddressNotFound) {
+    if (options) {
       return [...options, { address: ADDRESS_NOT_FOUND }]
     }
 
     return options || []
-  }, [options, showAddressNotFound])
+  }, [options])
 
   const {
     getMenuProps,
@@ -305,7 +354,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     },
     onSelectedItemChange: ({ selectedItem }) => {
       // reset list of options
-      setOptions(null)
+      inputRef.current?.focus()
       setPickedOption(selectedItem ?? null)
     },
   })
@@ -335,16 +384,12 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     return () => setConfirmedOption(null)
   }, [pickedOption])
 
-  const handleContinue = React.useCallback(
-    (option: AddressAutocompleteData) => {
-      setValue(props.storeKey, option.address)
-      setValue(`${props.passageName}Result`, option.address)
-      return props.onContinue()
-    },
-    [],
-  )
-
-  const inputRef = useAutoFocus(!props.isTransitioning)
+  const handleContinue = React.useCallback((id: string, address: string) => {
+    setValue(props.storeIdKey, id)
+    setValue(props.storeKey, address)
+    setValue(`${props.passageName}Result`, address)
+    return props.onContinue()
+  }, [])
 
   const postalLine = React.useMemo(() => {
     if (pickedOption && isMatchingStreetName(textValue, pickedOption)) {
@@ -352,72 +397,39 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     } else return undefined
   }, [pickedOption, textValue])
 
+  const addressLine = React.useMemo(
+    () => (pickedOption ? formatAddressLine(pickedOption) : null),
+    [pickedOption],
+  )
+
+  React.useEffect(() => {
+    if (isModalOpen) {
+      // Move focus to input on next render
+      setTimeout(() => inputRef.current?.focus(), 1)
+    }
+  }, [isModalOpen])
+
   return (
-    <StyledContainer>
+    <StyledChatContainer>
       <StyledCard
         loading={loading}
-        isFocused={isFocused || isHovered}
+        isFocused={isHovered}
         onSubmit={(event) => event.preventDefault()}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-        <StyledCombobox {...getComboboxProps()}>
-          <BottomSpacedInput
-            {...getInputProps({
-              ref: inputRef,
-              placeholder: props.placeholder,
-              onFocus: () => setIsFocused(true),
-              onBlur: () => {
-                setIsFocused(false)
-                animateScrollTo(0)
-              },
-              size: Math.max(
-                props.placeholder.length,
-                Math.min(textValue.length, 23),
-              ),
-            })}
-          />
-          {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
-        </StyledCombobox>
+        <StyledFakeInput
+          placeholder={props.placeholder}
+          value={addressLine || ''}
+          onClick={() => setIsModalOpen(true)}
+        />
+        {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
       </StyledCard>
 
-      <StyledComboboxList {...getMenuProps()}>
-        {!confirmedOption && isFocused
-          ? comboboxItems.map((item, index) => {
-              const props = {
-                key: `${item.address}${index}`,
-                ...(highlightedIndex === index && {
-                  'data-highlighted': true,
-                }),
-                ...getItemProps({ item, index }),
-              }
-
-              if (item.address === ADDRESS_NOT_FOUND) {
-                return (
-                  <NotFoundComboboxOption {...props}>
-                    Can't find my address
-                  </NotFoundComboboxOption>
-                )
-              }
-
-              const postalLine = formatPostalLine(item)
-              return (
-                <StyledComboboxOption {...props}>
-                  <div>
-                    {formatAddressLine(item)}
-                    {postalLine ? (
-                      <PostalAddress>{postalLine}</PostalAddress>
-                    ) : null}
-                  </div>
-                </StyledComboboxOption>
-              )
-            })
-          : null}
-      </StyledComboboxList>
-
       <Spacer />
+
       <motion.div
         animate={{
           opacity: loading ? 0 : 1,
@@ -433,12 +445,74 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           transition={{ delay: 0.25 }}
         >
           <ContinueButton
-            onClick={() => handleContinue(confirmedOption!)}
+            onClick={() =>
+              handleContinue(confirmedOption!.id!, confirmedOption!.address)
+            }
             disabled={!confirmedOption}
             text={(props.link || {}).label || 'Nästa'}
           />
         </motion.div>
       </motion.div>
-    </StyledContainer>
+
+      <StyledContainer
+        animate={{
+          opacity: isModalOpen ? 1 : 0,
+          pointerEvents: isModalOpen ? 'initial' : 'none',
+        }}
+      >
+        <StyledHeader>
+          <StyledHeaderRow>
+            <StyledHeaderLabel>Address</StyledHeaderLabel>
+            <StyledHeaderButton onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </StyledHeaderButton>
+          </StyledHeaderRow>
+
+          <StyledCombobox {...getComboboxProps()}>
+            <BottomSpacedInput
+              {...getInputProps({
+                ref: inputRef,
+                placeholder: props.placeholder,
+              })}
+            />
+            {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+          </StyledCombobox>
+        </StyledHeader>
+
+        <StyledComboboxList {...getMenuProps()}>
+          {!confirmedOption
+            ? comboboxItems.map((item, index) => {
+                const props = {
+                  key: `${item.address}${index}`,
+                  ...(highlightedIndex === index && {
+                    'data-highlighted': true,
+                  }),
+                  ...getItemProps({ item, index }),
+                }
+
+                if (item.address === ADDRESS_NOT_FOUND) {
+                  return (
+                    <NotFoundComboboxOption {...props}>
+                      Can't find my address
+                    </NotFoundComboboxOption>
+                  )
+                }
+
+                const postalLine = formatPostalLine(item)
+                return (
+                  <StyledComboboxOption {...props}>
+                    <div>
+                      {formatAddressLine(item)}
+                      {postalLine ? (
+                        <PostalAddress>{postalLine}</PostalAddress>
+                      ) : null}
+                    </div>
+                  </StyledComboboxOption>
+                )
+              })
+            : null}
+        </StyledComboboxList>
+      </StyledContainer>
+    </StyledChatContainer>
   )
 }

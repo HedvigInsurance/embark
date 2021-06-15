@@ -111,6 +111,7 @@ export const Action = (props: ActionProps) => {
         passageName={props.passageName}
         tooltip={props.action.data.tooltip}
         storeKey={props.action.data.key}
+        storeIdKey={props.action.data.idKey}
         link={props.action.data.link}
         placeholder={props.action.data.placeholder}
         api={props.action.data.api}
