@@ -14,7 +14,7 @@ import {
 import EventEmitter from 'eventemitter3'
 import { introspectSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import { graphql, ExecutionResult } from 'graphql'
-import { AddressAutocompleteData } from './addressAutocomplete'
+import { AddressSuggestion } from './addressAutocomplete'
 
 const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
@@ -22,9 +22,7 @@ const timeout = (ms: number) =>
 export interface TApiContext {
   personalInformationApi: (personalNumber: string) => Promise<PData | Error>
   houseInformation: (variables: HVariables) => Promise<HData | Error>
-  addressAutocompleteQuery: (
-    searchTerm: string,
-  ) => Promise<AddressAutocompleteData[]>
+  addressAutocompleteQuery: (searchTerm: string) => Promise<AddressSuggestion[]>
   createQuote: (variables: CQVariables) => Promise<CQData | Error>
   graphqlQuery: (
     query: string,
