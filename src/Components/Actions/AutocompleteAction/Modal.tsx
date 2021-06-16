@@ -29,6 +29,7 @@ const StyledModal = styled(motion.div)`
 
   @media (min-width: 600px) {
     border-radius: 8px;
+    overflow: hidden;
     max-height: 600px;
   }
 `
@@ -55,7 +56,7 @@ const Modal: React.FC<Props> = ({ children, isOpen, onDismiss }) => {
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener(`touchstart`, handleClickOutside)
     }
-  }, [ref])
+  }, [ref, onDismiss])
 
   React.useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -68,7 +69,18 @@ const Modal: React.FC<Props> = ({ children, isOpen, onDismiss }) => {
     return () => {
       window.removeEventListener('keydown', handleEscape)
     }
-  }, [])
+  }, [onDismiss])
+
+  React.useEffect(() => {
+    // Prevent background from scrolling behind modal
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.body.style.overflow = 'initial'
+    }
+  }, [isOpen])
 
   return (
     <StyledOverlay

@@ -16,6 +16,8 @@ import { colorsV3, fonts } from '@hedviginsurance/brand'
 import useDebounce from './useDebounce'
 import { ContinueButton } from '../../ContinueButton'
 import Modal from './Modal'
+import useAddressSearch from './useAddressSearch'
+import { isMatchingStreetName } from './utils'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
 
@@ -64,52 +66,20 @@ const StyledFakeInput = styled(Input)`
   }
 `
 
-const StyledOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  background: rgba(0, 0, 0, 0.6);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const StyledContainer = styled(motion.div)`
-  background: ${colorsV3.white};
-
-  flex: 1;
-  height: 100%;
-  max-width: 600px;
-
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 600px) {
-    border-radius: 8px;
-    max-height: 600px;
-  }
-`
-
 const StyledHeader = styled.header`
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
 
-  padding-bottom: 8px;
+  padding: 0 16px 16px;
   border-bottom: 1px solid ${colorsV3.gray300};
 `
 
 const StyledHeaderRow = styled.div<{ align: 'center' | 'flex-start' }>`
-  min-height: 56px;
-  padding: 0 16px;
+  height: 56px;
   display: flex;
   align-items: ${(props) => props.align};
   justify-content: flex-end;
-  position: relative;
 `
 
 const StyledHeaderLabel = styled.label`
@@ -156,7 +126,7 @@ const StyledComboboxList = styled.ul`
   overflow: auto;
 `
 
-const BottomSpacedInput = styled.input`
+const ModalInput = styled.input`
   width: 100%;
 
   background: none;
@@ -177,7 +147,7 @@ const BottomSpacedInput = styled.input`
 `
 
 const StyledComboboxOption = styled.li`
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
   min-height: 32px;
   display: flex;
   align-items: center;
@@ -185,7 +155,7 @@ const StyledComboboxOption = styled.li`
 
   text-align: left;
   font-family: ${fonts.FAVORIT}, sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
   color: ${colorsV3.gray900};
   cursor: pointer;
 
@@ -210,11 +180,6 @@ const StyledComboboxOption = styled.li`
   &:active + & {
     border-top-color: ${colorsV3.purple500};
   }
-
-  @media (min-width: 600px) {
-    font-size: 1.5rem;
-    padding: 0.5rem 2rem;
-  }
 `
 
 const NotFoundComboboxOption = styled(StyledComboboxOption)`
@@ -229,20 +194,17 @@ const NotFoundComboboxOption = styled(StyledComboboxOption)`
 
 const PostalAddress = styled.p`
   font-family: ${fonts.FAVORIT}, sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
   text-align: left;
   margin: 0;
 
   color: ${colorsV3.gray700};
 
-  @media (min-width: 600px) {
-    font-size: 1.25rem;
-  }
-
   ${StyledFakeInput} + & {
     padding-left: 16px;
 
     @media (min-width: 600px) {
+      font-size: 24px;
       padding-left: 32px;
     }
   }
@@ -287,63 +249,6 @@ const formatPostalLine = (
   return undefined
 }
 
-const isMatchingStreetName = (
-  searchTerm: string,
-  option?: AddressAutocompleteData,
-) => {
-  return option?.streetName && searchTerm.startsWith(option.streetName)
-}
-
-const useAddressSearch = (
-  searchTerm: string = '',
-  option?: AddressAutocompleteData,
-): [
-  AddressAutocompleteData[] | null,
-  React.Dispatch<React.SetStateAction<AddressAutocompleteData[] | null>>,
-] => {
-  const api = React.useContext(ApiContext)
-  const [options, setOptions] = React.useState<
-    AddressAutocompleteData[] | null
-  >(null)
-
-  const apiSearchTerm = React.useMemo(() => {
-    if (option && !option.city) {
-      // make sure to query for street by adding a space at the end of the query
-      return searchTerm + ' '
-    }
-
-    if (
-      option?.postalCode &&
-      option?.city &&
-      isMatchingStreetName(searchTerm, option)
-    ) {
-      // Make sure to search for specific address (floor, apartment)
-      return `${searchTerm} ${option.postalCode} ${option.city}`
-    }
-
-    return searchTerm
-  }, [searchTerm, option])
-
-  // @ts-ignore: clean-up function only needed conditionally
-  React.useEffect(() => {
-    if (apiSearchTerm.trim() !== '') {
-      let isFresh = true
-      api.addressAutocompleteQuery(apiSearchTerm).then((newOptions) => {
-        if (isFresh) {
-          setOptions(newOptions)
-        }
-      })
-      return () => {
-        isFresh = false
-      }
-    } else {
-      setOptions(null)
-    }
-  }, [apiSearchTerm])
-
-  return [options, setOptions]
-}
-
 const getAddressFromStore = (store: Store): CompleteAddressData | null => {
   const data: AddressAutocompleteData = {
     id: store[STORE_KEY.ID],
@@ -365,15 +270,18 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const api = React.useContext(ApiContext)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
-  const { store, setValue, removeValues } = React.useContext(StoreContext)
+  const [textValue, setTextValue] = React.useState('')
 
-  const [textValue, setTextValue] = React.useState(store[props.storeKey] || '')
+  const { store, setValue, removeValues } = React.useContext(StoreContext)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
   const [
     pickedOption,
     setPickedOption,
   ] = React.useState<AddressAutocompleteData | null>(() =>
     getAddressFromStore(store),
   )
+
   const [
     confirmedOption,
     setConfirmedOption,
@@ -384,8 +292,6 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     debouncedTextValue,
     pickedOption ?? undefined,
   )
-
-  const inputRef = React.useRef<HTMLInputElement>(null)
 
   React.useEffect(() => {
     if (confirmedOption) {
@@ -399,7 +305,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       return [...options, { address: ADDRESS_NOT_FOUND }]
     }
 
-    return options || []
+    return []
   }, [options])
 
   const handleNoAddressFound = React.useCallback(() => {
@@ -520,6 +426,8 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     }
   }, [isModalOpen])
 
+  const handleDismissModal = React.useCallback(() => setIsModalOpen(false), [])
+
   return (
     <StyledChatContainer>
       <motion.div
@@ -555,26 +463,24 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         text={(props.link || {}).label || 'Nästa'}
       />
 
-      <Modal isOpen={isModalOpen} onDismiss={() => setIsModalOpen(false)}>
+      <Modal isOpen={isModalOpen} onDismiss={handleDismissModal}>
         <StyledHeader>
           <StyledHeaderRow align="center">
             <StyledHeaderLabel>Address</StyledHeaderLabel>
-            <StyledHeaderButton onClick={() => setIsModalOpen(false)}>
+            <StyledHeaderButton onClick={handleDismissModal}>
               Cancel
             </StyledHeaderButton>
           </StyledHeaderRow>
 
-          <StyledHeaderRow align="flex-start">
-            <StyledCombobox {...getComboboxProps()}>
-              <BottomSpacedInput
-                {...getInputProps({
-                  ref: inputRef,
-                  placeholder: props.placeholder,
-                })}
-              />
-              {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
-            </StyledCombobox>
-          </StyledHeaderRow>
+          <StyledCombobox {...getComboboxProps()}>
+            <ModalInput
+              {...getInputProps({
+                ref: inputRef,
+                placeholder: props.placeholder,
+              })}
+            />
+            {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+          </StyledCombobox>
         </StyledHeader>
 
         <StyledComboboxList {...getMenuProps()}>
