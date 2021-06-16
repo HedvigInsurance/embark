@@ -58,7 +58,6 @@ const StyledHeader = styled.header`
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
-  padding-bottom: 16px;
 `
 
 const StyledHeaderRow = styled.div<{ align: 'center' | 'flex-start' }>`
