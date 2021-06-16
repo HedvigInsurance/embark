@@ -10,7 +10,7 @@ import { useCombobox } from 'downshift'
 import {
   AddressSuggestion,
   CompleteAddress,
-  isCompleteAddressData,
+  isCompleteAddress,
 } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
 import useDebounce from './useDebounce'
@@ -258,7 +258,7 @@ const getAddressFromStore = (store: Store): CompleteAddress | null => {
     city: store[STORE_KEY.CITY],
   }
 
-  return isCompleteAddressData(data) ? data : null
+  return isCompleteAddress(data) ? data : null
 }
 
 export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
@@ -359,7 +359,7 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
       )
       if (
         (oneResultLeft || sameResultsAsBefore) &&
-        isCompleteAddressData(suggestion)
+        isCompleteAddress(suggestion)
       ) {
         setConfirmedAddress(suggestion)
       }
@@ -367,7 +367,7 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
 
     if (pickedSuggestion && pickedSuggestion.id) {
       if (
-        isCompleteAddressData(pickedSuggestion) &&
+        isCompleteAddress(pickedSuggestion) &&
         pickedSuggestion.floor &&
         pickedSuggestion.apartment
       ) {

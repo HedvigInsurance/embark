@@ -27,8 +27,8 @@ const MANDATORY_ADDRESS_FIELDS: Array<keyof AddressSuggestion> = [
   'city',
 ]
 
-export const isCompleteAddressData = (
-  data: Record<string, any>,
-): data is CompleteAddress => {
-  return MANDATORY_ADDRESS_FIELDS.every((key) => data[key] !== undefined)
+export const isCompleteAddress = (
+  suggestion: AddressSuggestion,
+): suggestion is CompleteAddress => {
+  return MANDATORY_ADDRESS_FIELDS.every((key) => suggestion[key] !== undefined)
 }
