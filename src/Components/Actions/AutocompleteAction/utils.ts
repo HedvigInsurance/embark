@@ -1,8 +1,8 @@
-import { AddressAutocompleteData } from '../../API/addressAutocomplete'
+import { AddressSuggestion } from '../../API/addressAutocomplete'
 
 export const isMatchingStreetName = (
   searchTerm: string,
-  option?: AddressAutocompleteData,
+  suggestion?: AddressSuggestion,
 ) => {
-  return option?.streetName && searchTerm.startsWith(option.streetName)
+  return suggestion?.streetName && searchTerm.startsWith(suggestion.streetName)
 }

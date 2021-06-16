@@ -1,12 +1,9 @@
-import { AddressAutocompleteData } from './../../API/addressAutocomplete'
+import { AddressSuggestion } from './../../API/addressAutocomplete'
 import * as React from 'react'
 import { ApiContext } from '../../API/ApiContext'
 import { isMatchingStreetName } from './utils'
 
-const getApiQuery = (
-  searchTerm: string,
-  suggestion?: AddressAutocompleteData,
-) => {
+const getApiQuery = (searchTerm: string, suggestion?: AddressSuggestion) => {
   if (suggestion) {
     if (suggestion.city === undefined) {
       // Refine search after selecting a suggested street name
@@ -24,14 +21,14 @@ const getApiQuery = (
 
 const useAddressSearch = (
   searchTerm: string = '',
-  suggestion?: AddressAutocompleteData,
+  suggestion?: AddressSuggestion,
 ): [
-  AddressAutocompleteData[] | null,
-  React.Dispatch<React.SetStateAction<AddressAutocompleteData[] | null>>,
+  AddressSuggestion[] | null,
+  React.Dispatch<React.SetStateAction<AddressSuggestion[] | null>>,
 ] => {
   const api = React.useContext(ApiContext)
   const [suggestions, setSuggestions] = React.useState<
-    AddressAutocompleteData[] | null
+    AddressSuggestion[] | null
   >(null)
 
   const apiQuery = React.useMemo(() => getApiQuery(searchTerm, suggestion), [

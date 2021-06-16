@@ -1,4 +1,4 @@
-export interface AddressAutocompleteData {
+export interface AddressSuggestion {
   id?: string
   address: string
   streetName?: string
@@ -9,7 +9,7 @@ export interface AddressAutocompleteData {
   city?: string
 }
 
-export type CompleteAddressData = AddressAutocompleteData & {
+export type CompleteAddress = AddressSuggestion & {
   id: string
   address: string
   streetName: string
@@ -18,7 +18,7 @@ export type CompleteAddressData = AddressAutocompleteData & {
   city: string
 }
 
-const MANDATORY_ADDRESS_FIELDS: Array<keyof AddressAutocompleteData> = [
+const MANDATORY_ADDRESS_FIELDS: Array<keyof AddressSuggestion> = [
   'id',
   'address',
   'streetName',
@@ -29,6 +29,6 @@ const MANDATORY_ADDRESS_FIELDS: Array<keyof AddressAutocompleteData> = [
 
 export const isCompleteAddressData = (
   data: Record<string, any>,
-): data is CompleteAddressData => {
+): data is CompleteAddress => {
   return MANDATORY_ADDRESS_FIELDS.every((key) => data[key] !== undefined)
 }

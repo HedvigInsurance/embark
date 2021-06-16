@@ -8,8 +8,8 @@ import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
 import { useCombobox } from 'downshift'
 import {
-  AddressAutocompleteData,
-  CompleteAddressData,
+  AddressSuggestion,
+  CompleteAddress,
   isCompleteAddressData,
 } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
@@ -31,7 +31,6 @@ const STORE_KEY = {
   CITY: 'city',
   FLOOR: 'floor',
   APARTMENT: 'apartment',
-  OPTION: 'addressOption',
 }
 
 const StyledChatContainer = styled.div`
@@ -224,7 +223,7 @@ export interface AutocompleteActionProps {
   onContinue: () => void
 }
 
-const formatAddressLine = (address: AddressAutocompleteData): string => {
+const formatAddressLine = (address: AddressSuggestion): string => {
   if (address.streetName && address.streetNumber) {
     let displayAddress = `${address.streetName} ${address.streetNumber}`
     if (address.floor) {
@@ -239,9 +238,7 @@ const formatAddressLine = (address: AddressAutocompleteData): string => {
   return address.address
 }
 
-const formatPostalLine = (
-  address: AddressAutocompleteData,
-): string | undefined => {
+const formatPostalLine = (address: AddressSuggestion): string | undefined => {
   if (address.city && address.postalCode) {
     return `${address.postalCode} ${address.city}`
   }
@@ -249,8 +246,8 @@ const formatPostalLine = (
   return undefined
 }
 
-const getAddressFromStore = (store: Store): CompleteAddressData | null => {
-  const data: AddressAutocompleteData = {
+const getAddressFromStore = (store: Store): CompleteAddress | null => {
+  const data: AddressSuggestion = {
     id: store[STORE_KEY.ID],
     address: store[STORE_KEY.ADDRESS],
     streetName: store[STORE_KEY.STREET_NAME],
@@ -264,49 +261,47 @@ const getAddressFromStore = (store: Store): CompleteAddressData | null => {
   return isCompleteAddressData(data) ? data : null
 }
 
-export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps> = (
+export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
   props,
 ) => {
   const api = React.useContext(ApiContext)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
-  const [textValue, setTextValue] = React.useState('')
 
   const { store, setValue, removeValues } = React.useContext(StoreContext)
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   const [
-    pickedOption,
-    setPickedOption,
-  ] = React.useState<AddressAutocompleteData | null>(() =>
-    getAddressFromStore(store),
-  )
+    pickedSuggestion,
+    setPickedSuggestion,
+  ] = React.useState<AddressSuggestion | null>(() => getAddressFromStore(store))
 
   const [
-    confirmedOption,
-    setConfirmedOption,
-  ] = React.useState<CompleteAddressData | null>(null)
+    confirmedAddress,
+    setConfirmedAddress,
+  ] = React.useState<CompleteAddress | null>(null)
 
+  const [textValue, setTextValue] = React.useState('')
   const debouncedTextValue = useDebounce(textValue, 300)
-  const [options, setOptions] = useAddressSearch(
+  const [suggestions, setSuggestions] = useAddressSearch(
     debouncedTextValue,
-    pickedOption ?? undefined,
+    pickedSuggestion ?? undefined,
   )
 
   React.useEffect(() => {
-    if (confirmedOption) {
+    if (confirmedAddress) {
       setIsModalOpen(false)
       inputRef.current?.blur()
     }
-  }, [confirmedOption])
+  }, [confirmedAddress])
 
-  const comboboxItems = React.useMemo<AddressAutocompleteData[]>(() => {
-    if (options) {
-      return [...options, { address: ADDRESS_NOT_FOUND }]
+  const comboboxItems = React.useMemo<AddressSuggestion[]>(() => {
+    if (suggestions) {
+      return [...suggestions, { address: ADDRESS_NOT_FOUND }]
     }
 
     return []
-  }, [options])
+  }, [suggestions])
 
   const handleNoAddressFound = React.useCallback(() => {
     setIsModalOpen(false)
@@ -325,8 +320,8 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     getComboboxProps,
     highlightedIndex,
     getItemProps,
-  } = useCombobox<AddressAutocompleteData>({
-    selectedItem: pickedOption,
+  } = useCombobox<AddressSuggestion>({
+    selectedItem: pickedSuggestion,
     inputValue: textValue,
     items: comboboxItems,
     itemToString: (item) => (item ? formatAddressLine(item) : ''),
@@ -334,11 +329,11 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       if (type === '__input_keydown_escape__') return
 
       setTextValue(inputValue || '')
-      setConfirmedOption(null)
+      setConfirmedAddress(null)
 
       if (!inputValue) {
-        // Reset picked option for empty input field
-        setPickedOption(null)
+        // Reset picked suggestion for empty input field
+        setPickedSuggestion(null)
       }
     },
     onSelectedItemChange: ({ selectedItem }) => {
@@ -346,46 +341,48 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         handleNoAddressFound()
       }
 
-      // Reset list of options
-      setOptions(null)
+      // Reset list of suggestions
+      setSuggestions(null)
       inputRef.current?.focus()
-      setPickedOption(selectedItem ?? null)
+      setPickedSuggestion(selectedItem ?? null)
     },
   })
 
   React.useEffect(() => {
-    const checkPickedOption = async (option: AddressAutocompleteData) => {
-      const newOptions = await api.addressAutocompleteQuery(option.address)
-      const oneResultLeft = newOptions.length === 1
-      const sameResultsAsBefore = newOptions.every(
-        (newOption, index) => newOption.id === options?.[index]?.id,
+    const checkPickedSuggestion = async (suggestion: AddressSuggestion) => {
+      const newSuggestions = await api.addressAutocompleteQuery(
+        suggestion.address,
+      )
+      const oneResultLeft = newSuggestions.length === 1
+      const sameResultsAsBefore = newSuggestions.every(
+        (newSuggestion, index) => newSuggestion.id === suggestions?.[index]?.id,
       )
       if (
         (oneResultLeft || sameResultsAsBefore) &&
-        isCompleteAddressData(option)
+        isCompleteAddressData(suggestion)
       ) {
-        setConfirmedOption(option)
+        setConfirmedAddress(suggestion)
       }
     }
 
-    if (pickedOption && pickedOption.id) {
+    if (pickedSuggestion && pickedSuggestion.id) {
       if (
-        isCompleteAddressData(pickedOption) &&
-        pickedOption.floor &&
-        pickedOption.apartment
+        isCompleteAddressData(pickedSuggestion) &&
+        pickedSuggestion.floor &&
+        pickedSuggestion.apartment
       ) {
-        setConfirmedOption(pickedOption)
+        setConfirmedAddress(pickedSuggestion)
       } else {
-        checkPickedOption(pickedOption)
+        checkPickedSuggestion(pickedSuggestion)
       }
     } else {
-      setConfirmedOption(null)
+      setConfirmedAddress(null)
     }
 
-    return () => setConfirmedOption(null)
-  }, [pickedOption])
+    return () => setConfirmedAddress(null)
+  }, [pickedSuggestion])
 
-  const handleContinue = React.useCallback((address: CompleteAddressData) => {
+  const handleContinue = React.useCallback((address: CompleteAddress) => {
     // Reset optional store values
     removeValues(STORE_KEY.APARTMENT)
     removeValues(STORE_KEY.FLOOR)
@@ -409,14 +406,14 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   }, [])
 
   const postalLine = React.useMemo(() => {
-    if (pickedOption && isMatchingStreetName(textValue, pickedOption)) {
-      return formatPostalLine(pickedOption)
+    if (pickedSuggestion && isMatchingStreetName(textValue, pickedSuggestion)) {
+      return formatPostalLine(pickedSuggestion)
     } else return undefined
-  }, [pickedOption, textValue])
+  }, [pickedSuggestion, textValue])
 
   const addressLine = React.useMemo(
-    () => (pickedOption ? formatAddressLine(pickedOption) : null),
-    [pickedOption],
+    () => (pickedSuggestion ? formatAddressLine(pickedSuggestion) : null),
+    [pickedSuggestion],
   )
 
   React.useEffect(() => {
@@ -458,8 +455,8 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       <Spacer />
 
       <ContinueButton
-        onClick={() => handleContinue(confirmedOption!)}
-        disabled={!confirmedOption}
+        onClick={() => handleContinue(confirmedAddress!)}
+        disabled={!confirmedAddress}
         text={(props.link || {}).label || 'Nästa'}
       />
 
@@ -484,7 +481,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         </StyledHeader>
 
         <StyledComboboxList {...getMenuProps()}>
-          {!confirmedOption
+          {!confirmedAddress
             ? comboboxItems.map((item, index) => {
                 const itemProps = {
                   key: `${item.address}${index}`,
