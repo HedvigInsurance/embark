@@ -57,17 +57,17 @@ const StyledContainer = styled(motion.div)`
 const StyledHeader = styled.header`
   box-sizing: border-box;
   width: 100%;
-  padding: 16px;
   flex-shrink: 0;
+  padding-bottom: 16px;
 `
 
-const StyledHeaderRow = styled.div`
+const StyledHeaderRow = styled.div<{ align: 'center' | 'flex-start' }>`
+  height: 56px;
+  padding: 0 16px;
   display: flex;
-  align-items: center;
+  align-items: ${(props) => props.align};
   justify-content: flex-end;
   position: relative;
-
-  margin-bottom: 8px;
 `
 
 const StyledHeaderLabel = styled.label`
@@ -411,22 +411,30 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
   return (
     <StyledChatContainer>
-      <StyledCard
-        loading={loading}
-        isFocused={isHovered}
-        onSubmit={(event) => event.preventDefault()}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+      <motion.div
+        animate={{
+          translateY: isModalOpen ? '-100%' : 0,
+          opacity: isModalOpen ? 0 : 1,
+        }}
+        transition={{ ease: 'easeOut', duration: 0.25 }}
       >
-        {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
+        <StyledCard
+          loading={loading}
+          isFocused={isHovered}
+          onSubmit={(event) => event.preventDefault()}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-        <StyledFakeInput
-          placeholder={props.placeholder}
-          value={addressLine || ''}
-          onClick={() => setIsModalOpen(true)}
-        />
-        {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
-      </StyledCard>
+          <StyledFakeInput
+            placeholder={props.placeholder}
+            value={addressLine || ''}
+            onClick={() => setIsModalOpen(true)}
+          />
+          {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+        </StyledCard>
+      </motion.div>
 
       <Spacer />
 
@@ -459,24 +467,27 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           opacity: isModalOpen ? 1 : 0,
           pointerEvents: isModalOpen ? 'initial' : 'none',
         }}
+        transition={{ delay: 0.15, duration: 0.2 }}
       >
         <StyledHeader>
-          <StyledHeaderRow>
+          <StyledHeaderRow align="center">
             <StyledHeaderLabel>Address</StyledHeaderLabel>
             <StyledHeaderButton onClick={() => setIsModalOpen(false)}>
               Cancel
             </StyledHeaderButton>
           </StyledHeaderRow>
 
-          <StyledCombobox {...getComboboxProps()}>
-            <BottomSpacedInput
-              {...getInputProps({
-                ref: inputRef,
-                placeholder: props.placeholder,
-              })}
-            />
-            {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
-          </StyledCombobox>
+          <StyledHeaderRow align="flex-start">
+            <StyledCombobox {...getComboboxProps()}>
+              <BottomSpacedInput
+                {...getInputProps({
+                  ref: inputRef,
+                  placeholder: props.placeholder,
+                })}
+              />
+              {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+            </StyledCombobox>
+          </StyledHeaderRow>
         </StyledHeader>
 
         <StyledComboboxList {...getMenuProps()}>
