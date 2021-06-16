@@ -362,7 +362,6 @@ const getAutocompleteAction = (
   )
   const next = translate(textActionNode.getAttribute('next') || '')
   const key = textActionNode.getAttribute('key')
-  const idKey = textActionNode.getAttribute('idKey')
 
   const large = textActionNode.getAttribute('large')
 
@@ -377,7 +376,6 @@ const getAutocompleteAction = (
     data: {
       placeholder,
       key,
-      idKey,
       api,
       link: links && links[0],
       large,

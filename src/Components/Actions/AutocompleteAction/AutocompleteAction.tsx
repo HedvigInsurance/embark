@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { motion } from 'framer-motion'
-import { StoreContext } from '../../KeyValueStore'
+import { StoreContext, Store } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
 import { Card, Input, Spacer } from '../Common'
 import styled from '@emotion/styled'
@@ -12,7 +12,30 @@ import { colorsV3, fonts } from '@hedviginsurance/brand'
 import useDebounce from './useDebounce'
 import { ContinueButton } from '../../ContinueButton'
 
+type CompleteAddressAutocompleteData = {
+  [P in keyof AddressAutocompleteData]-?: AddressAutocompleteData[P]
+}
+
+const isCompleteAutocomplete = (
+  data: AddressAutocompleteData,
+): data is CompleteAddressAutocompleteData => {
+  return Object.values(data).every((value) => value !== undefined)
+}
+
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
+
+const STORE_KEY = {
+  ID: 'bbrId',
+  ADDRESS: 'fullAddress',
+  STREET: 'street',
+  STREET_NAME: 'streetName',
+  STREET_NUMBER: 'streetNumber',
+  ZIP_CODE: 'zipCode',
+  CITY: 'city',
+  FLOOR: 'floor',
+  APARTMENT: 'apartment',
+  OPTION: 'addressOption',
+}
 
 const StyledChatContainer = styled.div`
   display: flex;
@@ -196,7 +219,6 @@ export interface AutocompleteActionProps {
   isTransitioning: boolean
   passageName: string
   storeKey: string
-  storeIdKey: string
   link: any
   placeholder: string
   tooltip?: {
@@ -289,6 +311,23 @@ const useAddressSearch = (
   return [options, setOptions]
 }
 
+const getAddressFromStore = (
+  store: Store,
+): CompleteAddressAutocompleteData | null => {
+  const data: AddressAutocompleteData = {
+    id: store[STORE_KEY.ID],
+    address: store[STORE_KEY.ADDRESS],
+    streetName: store[STORE_KEY.STREET_NAME],
+    streetNumber: store[STORE_KEY.STREET_NUMBER],
+    floor: store[STORE_KEY.FLOOR],
+    apartment: store[STORE_KEY.APARTMENT],
+    postalCode: store[STORE_KEY.ZIP_CODE],
+    city: store[STORE_KEY.CITY],
+  }
+
+  return isCompleteAutocomplete(data) ? data : null
+}
+
 export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps> = (
   props,
 ) => {
@@ -302,11 +341,13 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
   const [
     pickedOption,
     setPickedOption,
-  ] = React.useState<AddressAutocompleteData | null>(null)
+  ] = React.useState<AddressAutocompleteData | null>(() =>
+    getAddressFromStore(store),
+  )
   const [
     confirmedOption,
     setConfirmedOption,
-  ] = React.useState<AddressAutocompleteData | null>(null)
+  ] = React.useState<CompleteAddressAutocompleteData | null>(null)
 
   const debouncedTextValue = useDebounce(textValue, 300)
   const [options] = useAddressSearch(
@@ -365,13 +406,16 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
       const sameResultsAsBefore = newOptions.every(
         (newOption, index) => newOption.id === options?.[index]?.id,
       )
-      if (oneResultLeft || sameResultsAsBefore) {
+      if (
+        (oneResultLeft || sameResultsAsBefore) &&
+        isCompleteAutocomplete(option)
+      ) {
         setConfirmedOption(option)
       }
     }
 
     if (pickedOption && pickedOption.id) {
-      if (pickedOption.floor && pickedOption.apartment) {
+      if (isCompleteAutocomplete(pickedOption)) {
         setConfirmedOption(pickedOption)
       } else {
         checkPickedOption(pickedOption)
@@ -383,12 +427,30 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
     return () => setConfirmedOption(null)
   }, [pickedOption])
 
-  const handleContinue = React.useCallback((id: string, address: string) => {
-    setValue(props.storeIdKey, id)
-    setValue(props.storeKey, address)
-    setValue(`${props.passageName}Result`, address)
-    return props.onContinue()
-  }, [])
+  const handleContinue = React.useCallback(
+    (address: CompleteAddressAutocompleteData) => {
+      setValue(STORE_KEY.ID, address.id)
+      setValue(
+        STORE_KEY.STREET,
+        `${address.streetName} ${address.streetNumber}`,
+      )
+      setValue(STORE_KEY.FLOOR, address.floor)
+      setValue(STORE_KEY.APARTMENT, address.apartment)
+      setValue(STORE_KEY.ZIP_CODE, address.postalCode)
+      setValue(STORE_KEY.CITY, address.city)
+
+      setValue(STORE_KEY.ADDRESS, address.address)
+      setValue(STORE_KEY.STREET_NAME, address.streetName)
+      setValue(STORE_KEY.STREET_NUMBER, address.streetNumber)
+
+      const addressLine = formatAddressLine(address)
+      setValue(props.storeKey, addressLine)
+      setValue(`${props.passageName}Result`, addressLine)
+
+      return props.onContinue()
+    },
+    [],
+  )
 
   const postalLine = React.useMemo(() => {
     if (pickedOption && isMatchingStreetName(textValue, pickedOption)) {
@@ -452,9 +514,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
           transition={{ delay: 0.25 }}
         >
           <ContinueButton
-            onClick={() =>
-              handleContinue(confirmedOption!.id!, confirmedOption!.address)
-            }
+            onClick={() => handleContinue(confirmedOption!)}
             disabled={!confirmedOption}
             text={(props.link || {}).label || 'Nästa'}
           />
