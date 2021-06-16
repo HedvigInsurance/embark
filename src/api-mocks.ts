@@ -1,7 +1,7 @@
 import { Data as PData } from './Components/API/personalInformation'
 import { ApartmentType, Data as CQData } from './Components/API/createQuote'
 import { Data as HData } from './Components/API/houseInformation'
-import { AddressAutocompleteData } from './Components/API/addressAutocomplete'
+import { AddressSuggestion } from './Components/API/addressAutocomplete'
 
 const AN_UUID = '6955dd62-4994-4677-a174-7eab9a9a7b92'
 
@@ -98,7 +98,7 @@ export const createQuoteMocks = [
   },
 ]
 
-export const addressAutocompleteMocksStep1: AddressAutocompleteData[] = [
+export const addressAutocompleteMocksStep1: AddressSuggestion[] = [
   {
     address: 'Fredrik Bajers Gade',
   },
@@ -110,7 +110,7 @@ export const addressAutocompleteMocksStep1: AddressAutocompleteData[] = [
   },
 ]
 
-export const addressAutocompleteMocksStep2: AddressAutocompleteData[] = [
+export const addressAutocompleteMocksStep2: AddressSuggestion[] = [
   {
     id: '0a3f508f-9efe-32b8-e044-0003ba298018',
     address: 'Fredrik Bajers Gade 1, 8700 Horsens',
@@ -153,7 +153,7 @@ export const addressAutocompleteMocksStep2: AddressAutocompleteData[] = [
   },
 ]
 
-export const addressAutocompleteMocksStep3: AddressAutocompleteData[] = [
+export const addressAutocompleteMocksStep3: AddressSuggestion[] = [
   {
     id: '6c720a4f-0862-4086-a160-9cac3f2b4a6c',
     address: 'Fredrik Bajers Gade 1, 8700 Horsens',

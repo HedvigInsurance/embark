@@ -18,6 +18,7 @@ import { ContinueButton } from '../../ContinueButton'
 import Modal from './Modal'
 import useAddressSearch from './useAddressSearch'
 import { isMatchingStreetName } from './utils'
+import { Cross } from '../../Icons/Cross'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
 
@@ -109,11 +110,33 @@ const StyledCombobox = styled.div`
   box-sizing: border-box;
   text-align: left;
   width: 100%;
+  position: relative;
 
   border: 1px solid ${colorsV3.gray500};
   border-radius: 8px;
 
   padding: 8px 16px;
+`
+
+const ClearButton = styled.button`
+  position: absolute;
+  right: 16px;
+  top: calc(50% - 9px);
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  border: 0;
+  border-radius: 9px;
+  background-color: ${colorsV3.gray500};
+
+  &:hover {
+    background-color: ${colorsV3.gray700};
+  }
+
+  svg {
+    width: 60%;
+    height: 60%;
+  }
 `
 
 const StyledComboboxList = styled.ul`
@@ -424,6 +447,11 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
   }, [isModalOpen])
 
   const handleDismissModal = React.useCallback(() => setIsModalOpen(false), [])
+  const handleClearInput = React.useCallback(() => {
+    setTextValue('')
+    setPickedSuggestion(null)
+    inputRef.current?.focus()
+  }, [])
 
   return (
     <StyledChatContainer>
@@ -477,6 +505,12 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
               })}
             />
             {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+
+            {textValue ? (
+              <ClearButton onClick={handleClearInput}>
+                <Cross />
+              </ClearButton>
+            ) : null}
           </StyledCombobox>
         </StyledHeader>
 
