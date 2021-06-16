@@ -552,7 +552,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
         <StyledComboboxList {...getMenuProps()}>
           {!confirmedOption
             ? comboboxItems.map((item, index) => {
-                const props = {
+                const itemProps = {
                   key: `${item.address}${index}`,
                   ...(highlightedIndex === index && {
                     'data-highlighted': true,
@@ -562,7 +562,14 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
                 if (item.address === ADDRESS_NOT_FOUND) {
                   return (
-                    <NotFoundComboboxOption {...props}>
+                    <NotFoundComboboxOption
+                      {...itemProps}
+                      onClick={() => {
+                        setIsModalOpen(false)
+                        setValue(props.storeKey, 'Unknown')
+                        props.onContinue()
+                      }}
+                    >
                       Can't find my address
                     </NotFoundComboboxOption>
                   )
@@ -570,7 +577,7 @@ export const AutocompleteAction: React.FunctionComponent<AutocompleteActionProps
 
                 const postalLine = formatPostalLine(item)
                 return (
-                  <StyledComboboxOption {...props}>
+                  <StyledComboboxOption {...itemProps}>
                     <div>
                       {formatAddressLine(item)}
                       {postalLine ? (
