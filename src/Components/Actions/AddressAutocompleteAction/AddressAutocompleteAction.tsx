@@ -116,7 +116,7 @@ const ModalHeaderButton = styled.button`
   }
 `
 
-const ComboboxField = styled.div<{ focus: boolean }>`
+const ComboboxField = styled.div`
   box-sizing: border-box;
   text-align: left;
   width: 100%;
@@ -124,9 +124,12 @@ const ComboboxField = styled.div<{ focus: boolean }>`
 
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid
-    ${(props) => (props.focus ? colorsV3.purple300 : colorsV3.gray500)};
-  ${(props) => props.focus && `box-shadow: 0 0 0 2px ${colorsV3.purple300}`}
+  border: 1px solid colorsV3.gray500;
+
+   &:focus-within {
+    border-color: ${colorsV3.purple500};
+    box-shadow: 0 0 0 2px ${colorsV3.purple300}
+   }  
 `
 
 const ClearButton = styled.button`
