@@ -2,6 +2,7 @@ import { AddressSuggestion } from '../../API/addressAutocomplete'
 import * as React from 'react'
 import { ApiContext } from '../../API/ApiContext'
 import { isMatchingStreetName } from './utils'
+import useDebounce from './useDebounce'
 
 const getApiQuery = (searchTerm: string, suggestion?: AddressSuggestion) => {
   if (suggestion) {
@@ -31,10 +32,11 @@ const useAddressSearch = (
     AddressSuggestion[] | null
   >(null)
 
-  const apiQuery = React.useMemo(() => getApiQuery(searchTerm, suggestion), [
-    searchTerm,
-    suggestion,
-  ])
+  const debouncedSearchTerm = useDebounce(searchTerm, 300)
+  const apiQuery = React.useMemo(
+    () => getApiQuery(debouncedSearchTerm, suggestion),
+    [debouncedSearchTerm, suggestion],
+  )
 
   // @ts-ignore: clean-up function only needed conditionally
   React.useEffect(() => {

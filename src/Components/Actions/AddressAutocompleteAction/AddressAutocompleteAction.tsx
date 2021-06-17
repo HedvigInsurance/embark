@@ -13,11 +13,14 @@ import {
   isCompleteAddress,
 } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
-import useDebounce from './useDebounce'
 import { ContinueButton } from '../../ContinueButton'
 import Modal from './Modal'
 import useAddressSearch from './useAddressSearch'
-import { isMatchingStreetName } from './utils'
+import {
+  isMatchingStreetName,
+  formatAddressLine,
+  formatAddressLines,
+} from './utils'
 import { Cross } from '../../Icons/Cross'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
@@ -185,9 +188,6 @@ const ComboboxInput = styled.input`
 const ComboboxOption = styled.li`
   padding: 8px 16px;
   min-height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   text-align: left;
   font-family: ${fonts.FAVORIT}, sans-serif;
@@ -246,6 +246,18 @@ const PostalAddress = styled.p`
   }
 `
 
+const AddressOption: React.FC<{ address: AddressSuggestion }> = ({
+  address,
+}) => {
+  const [addressLine, postalLine] = formatAddressLines(address)
+  return (
+    <>
+      {addressLine}
+      {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+    </>
+  )
+}
+
 export interface AddressAutocompleteActionProps {
   isTransitioning: boolean
   passageName: string
@@ -258,29 +270,6 @@ export interface AddressAutocompleteActionProps {
   }
   api?: ApiComponent
   onContinue: () => void
-}
-
-const formatAddressLine = (address: AddressSuggestion): string => {
-  if (address.streetName && address.streetNumber) {
-    let displayAddress = `${address.streetName} ${address.streetNumber}`
-    if (address.floor) {
-      displayAddress += `, ${address.floor}.`
-    }
-    if (address.apartment) {
-      displayAddress += ` ${address.apartment}`
-    }
-    return displayAddress
-  }
-
-  return address.address
-}
-
-const formatPostalLine = (address: AddressSuggestion): string | undefined => {
-  if (address.city && address.postalCode) {
-    return `${address.postalCode} ${address.city}`
-  }
-
-  return undefined
 }
 
 const getAddressFromStore = (store: Store): CompleteAddress | null => {
@@ -303,9 +292,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
 ) => {
   const api = React.useContext(ApiContext)
   const [isInputFocus, setIsInputFocus] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
   const [isHovered, setIsHovered] = React.useState(false)
   const { store, setValue, removeValues } = React.useContext(StoreContext)
-  const inputRef = React.useRef<HTMLInputElement>(null)
 
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const handleDismissModal = React.useCallback(() => setIsModalOpen(false), [])
@@ -327,9 +317,9 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
   ] = React.useState<CompleteAddress | null>(null)
 
   const [textValue, setTextValue] = React.useState('')
-  const debouncedTextValue = useDebounce(textValue, 300)
+
   const [suggestions, setSuggestions] = useAddressSearch(
-    debouncedTextValue,
+    textValue,
     pickedSuggestion ?? undefined,
   )
 
@@ -337,6 +327,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     if (confirmedAddress) {
       inputRef.current?.blur()
       setIsModalOpen(false)
+      setSuggestions(null)
     }
   }, [confirmedAddress])
 
@@ -467,18 +458,17 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     }
 
     return () => setConfirmedAddress(null)
-  }, [api, suggestions, pickedSuggestion])
+  }, [pickedSuggestion])
 
-  const postalLine = React.useMemo(() => {
-    if (pickedSuggestion && isMatchingStreetName(textValue, pickedSuggestion)) {
-      return formatPostalLine(pickedSuggestion)
-    } else return undefined
+  const [pickedAddressLine, pickedPostalLine] = React.useMemo(() => {
+    if (pickedSuggestion) {
+      const [addressLine, postalLine] = formatAddressLines(pickedSuggestion)
+      const isMatching = isMatchingStreetName(textValue, pickedSuggestion)
+      return [addressLine, isMatching ? postalLine : undefined]
+    }
+
+    return []
   }, [pickedSuggestion, textValue])
-
-  const addressLine = React.useMemo(
-    () => (pickedSuggestion ? formatAddressLine(pickedSuggestion) : null),
-    [pickedSuggestion],
-  )
 
   return (
     <Container>
@@ -498,12 +488,14 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
 
           <FakeInput
             placeholder={props.placeholder}
-            value={addressLine || textValue}
+            value={pickedAddressLine || textValue}
             onClick={() => setIsModalOpen(true)}
             onFocus={() => setIsModalOpen(true)}
-            size={(addressLine || textValue).length}
+            size={(pickedAddressLine || textValue).length}
           />
-          {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+          {pickedPostalLine ? (
+            <PostalAddress>{pickedPostalLine}</PostalAddress>
+          ) : null}
         </Card>
       </motion.div>
 
@@ -533,7 +525,9 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
                 onBlur: () => setIsInputFocus(false),
               })}
             />
-            {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
+            {pickedPostalLine ? (
+              <PostalAddress>{pickedPostalLine}</PostalAddress>
+            ) : null}
 
             {textValue ? (
               <ClearButton onClick={handleClearInput}>
@@ -561,15 +555,9 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
               )
             }
 
-            const postalLine = formatPostalLine(item)
             return (
               <ComboboxOption {...itemProps}>
-                <div>
-                  {formatAddressLine(item)}
-                  {postalLine ? (
-                    <PostalAddress>{postalLine}</PostalAddress>
-                  ) : null}
-                </div>
+                <AddressOption address={item} />
               </ComboboxOption>
             )
           })}
