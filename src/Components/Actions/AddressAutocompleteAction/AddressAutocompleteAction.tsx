@@ -191,6 +191,8 @@ const ComboboxInput = styled.input`
 const ComboboxOption = styled.li`
   padding: 8px 16px;
   min-height: 32px;
+  display: flex;
+  align-items: center;
 
   text-align: left;
   font-family: ${fonts.FAVORIT}, sans-serif;
@@ -254,10 +256,10 @@ const AddressOption: React.FC<{ address: AddressSuggestion }> = ({
 }) => {
   const [addressLine, postalLine] = formatAddressLines(address)
   return (
-    <>
+    <div>
       {addressLine}
       {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
-    </>
+    </div>
   )
 }
 
@@ -290,11 +292,33 @@ const getAddressFromStore = (store: Store): CompleteAddress | null => {
   return isCompleteAddress(data) ? data : null
 }
 
+const collectAddressSubmission = (address: CompleteAddress) => {
+  const data = {
+    [STORE_KEY.ID]: address.id,
+    [STORE_KEY.STREET]: `${address.streetName} ${address.streetNumber}`,
+    [STORE_KEY.ZIP_CODE]: address.postalCode,
+    [STORE_KEY.CITY]: address.city,
+    [STORE_KEY.STREET_NAME]: address.streetName,
+    [STORE_KEY.STREET_NUMBER]: address.streetNumber,
+
+    [STORE_KEY.ADDRESS]: address.address,
+  }
+
+  if (address.floor) {
+    data[STORE_KEY.FLOOR] = address.floor
+  }
+
+  if (address.apartment) {
+    data[STORE_KEY.APARTMENT] = address.apartment
+  }
+
+  return data
+}
+
 export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps> = (
   props,
 ) => {
   const api = React.useContext(ApiContext)
-  const [isInputFocus, setIsInputFocus] = React.useState(false)
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   const [isHovered, setIsHovered] = React.useState(false)
@@ -326,14 +350,6 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     pickedSuggestion ?? undefined,
   )
 
-  React.useEffect(() => {
-    if (confirmedAddress) {
-      inputRef.current?.blur()
-      setIsModalOpen(false)
-      setSuggestions(null)
-    }
-  }, [confirmedAddress])
-
   const handleClearInput = React.useCallback(() => {
     setTextValue('')
     setPickedSuggestion(null)
@@ -352,19 +368,11 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     (address: CompleteAddress) => {
       clearStoreValues()
 
-      setValue(STORE_KEY.ID, address.id)
-      setValue(
-        STORE_KEY.STREET,
-        `${address.streetName} ${address.streetNumber}`,
+      Object.entries(collectAddressSubmission(address)).forEach(
+        ([key, value]) => {
+          setValue(key, value)
+        },
       )
-      address.floor && setValue(STORE_KEY.FLOOR, address.floor)
-      address.apartment && setValue(STORE_KEY.APARTMENT, address.apartment)
-      setValue(STORE_KEY.ZIP_CODE, address.postalCode)
-      setValue(STORE_KEY.CITY, address.city)
-
-      setValue(STORE_KEY.ADDRESS, address.address)
-      setValue(STORE_KEY.STREET_NAME, address.streetName)
-      setValue(STORE_KEY.STREET_NUMBER, address.streetNumber)
 
       const addressLine = formatAddressLine(address)
       setValue(props.storeKey, addressLine)
@@ -380,6 +388,14 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
       props.onContinue,
     ],
   )
+
+  React.useEffect(() => {
+    if (confirmedAddress) {
+      inputRef.current?.blur()
+      setIsModalOpen(false)
+      setSuggestions(null)
+    }
+  }, [confirmedAddress])
 
   const handleNoAddressFound = React.useCallback(() => {
     setIsModalOpen(false)
