@@ -1,4 +1,4 @@
-import { AddressSuggestion } from './../../API/addressAutocomplete'
+import { AddressSuggestion } from '../../API/addressAutocomplete'
 import * as React from 'react'
 import { ApiContext } from '../../API/ApiContext'
 import { isMatchingStreetName } from './utils'

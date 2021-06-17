@@ -136,6 +136,7 @@ const ClearButton = styled.button`
   border-radius: 9px;
   background-color: ${colorsV3.gray500};
   outline: 0;
+  padding: 0;
 
   &:hover {
     background-color: ${colorsV3.gray700};
@@ -244,7 +245,7 @@ const PostalAddress = styled.p`
   }
 `
 
-export interface AutocompleteActionProps {
+export interface AddressAutocompleteActionProps {
   isTransitioning: boolean
   passageName: string
   storeKey: string
@@ -296,7 +297,7 @@ const getAddressFromStore = (store: Store): CompleteAddress | null => {
   return isCompleteAddress(data) ? data : null
 }
 
-export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
+export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps> = (
   props,
 ) => {
   const api = React.useContext(ApiContext)

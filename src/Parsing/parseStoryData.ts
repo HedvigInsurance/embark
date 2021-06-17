@@ -353,7 +353,7 @@ const getTextAction = (textActionNode: Element, translate: Translator) => {
   }
 }
 
-const getAutocompleteAction = (
+const getAddressAutocompleteAction = (
   textActionNode: Element,
   translate: Translator,
 ) => {
@@ -371,8 +371,8 @@ const getAutocompleteAction = (
   const api = parseApi(textActionNode)
 
   return {
-    __typename: 'EmbarkAutocompleteAction',
-    component: 'AutocompleteAction',
+    __typename: 'EmbarkAddressAutocompleteAction',
+    component: 'AddressAutocompleteAction',
     data: {
       placeholder,
       key,
@@ -507,12 +507,15 @@ const getAction = (containerElement: Element, translate: Translator) => {
     return getTextAction(textActionNode, translate)
   }
 
-  const autocompleteActionNode = containerElement.getElementsByTagName(
-    'autocompleteaction',
+  const addressAutocompleteActionNode = containerElement.getElementsByTagName(
+    'addressautocompleteaction',
   )[0]
 
-  if (autocompleteActionNode) {
-    return getAutocompleteAction(autocompleteActionNode, translate)
+  if (addressAutocompleteActionNode) {
+    return getAddressAutocompleteAction(
+      addressAutocompleteActionNode,
+      translate,
+    )
   }
 
   const externalInsuranceProviderActionNode = containerElement.getElementsByTagName(

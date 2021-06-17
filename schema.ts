@@ -234,7 +234,7 @@ const typeDefs = /* GraphQL */ `
         data: EmbarkTextActionData!
     }
 
-    type EmbarkAutocompleteActionData {
+    type EmbarkAddressAutocompleteActionData {
         placeholder: String!
         key: String!
         api: EmbarkApi
@@ -243,9 +243,9 @@ const typeDefs = /* GraphQL */ `
         tooltip: EmbarkTooltip
     }
 
-    type EmbarkAutocompleteAction implements EmbarkActionCore {
+    type EmbarkAddressAutocompleteAction implements EmbarkActionCore {
         component: String!
-        data: EmbarkAutocompleteActionData!
+        data: EmbarkAddressAutocompleteActionData!
     }
 
     type EmbarkSelectActionOption {

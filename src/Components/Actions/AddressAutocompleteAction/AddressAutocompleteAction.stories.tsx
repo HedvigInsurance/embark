@@ -1,19 +1,19 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import {
-  AutocompleteAction,
-  AutocompleteActionProps,
-} from './AutocompleteAction'
+  AddressAutocompleteAction,
+  AddressAutocompleteActionProps,
+} from './AddressAutocompleteAction'
 
 export default {
-  title: 'Components/Actions/AutocompleteAction',
-  component: AutocompleteAction,
+  title: 'Components/Actions/AddressAutocompleteAction',
+  component: AddressAutocompleteAction,
   argTypes: { onContinue: { action: 'on continue' } },
   parameters: { layout: 'centered' },
 } as Meta
 
-const Template: Story<AutocompleteActionProps> = (args) => (
-  <AutocompleteAction {...args} />
+const Template: Story<AddressAutocompleteActionProps> = (args) => (
+  <AddressAutocompleteAction {...args} />
 )
 
 export const Autocomplete = Template.bind({})
