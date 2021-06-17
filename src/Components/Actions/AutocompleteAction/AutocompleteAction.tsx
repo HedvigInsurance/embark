@@ -98,24 +98,31 @@ const StyledHeaderButton = styled.button`
   border: 0;
   background: transparent;
   appearance: none;
+  outline: 0;
   position: relative;
   z-index: 2;
 
   color: ${colorsV3.black};
   font-family: ${fonts.FAVORIT};
   font-size: 16px;
+
+  &:focus {
+    border-radius: 4px;
+    box-shadow: 0 0 0 3px ${colorsV3.purple300};
+  }
 `
 
-const StyledCombobox = styled.div`
+const StyledCombobox = styled.div<{ focus: boolean }>`
   box-sizing: border-box;
   text-align: left;
   width: 100%;
   position: relative;
 
-  border: 1px solid ${colorsV3.gray500};
-  border-radius: 8px;
-
   padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid
+    ${(props) => (props.focus ? colorsV3.purple300 : colorsV3.gray500)};
+  ${(props) => props.focus && `box-shadow: 0 0 0 2px ${colorsV3.purple300}`}
 `
 
 const ClearButton = styled.button`
@@ -128,9 +135,14 @@ const ClearButton = styled.button`
   border: 0;
   border-radius: 9px;
   background-color: ${colorsV3.gray500};
+  outline: 0;
 
   &:hover {
     background-color: ${colorsV3.gray700};
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px ${colorsV3.purple300};
   }
 
   svg {
@@ -289,6 +301,7 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
 ) => {
   const api = React.useContext(ApiContext)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [isInputFocus, setIsInputFocus] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
 
   const { store, setValue, removeValues } = React.useContext(StoreContext)
@@ -497,11 +510,13 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
             </StyledHeaderButton>
           </StyledHeaderRow>
 
-          <StyledCombobox {...getComboboxProps()}>
+          <StyledCombobox {...getComboboxProps()} focus={isInputFocus}>
             <ModalInput
               {...getInputProps({
                 ref: inputRef,
                 placeholder: props.placeholder,
+                onFocus: () => setIsInputFocus(true),
+                onBlur: () => setIsInputFocus(false),
               })}
             />
             {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
