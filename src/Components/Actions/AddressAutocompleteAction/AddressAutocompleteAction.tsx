@@ -341,17 +341,22 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     return []
   }, [suggestions])
 
+  const clearStoreValues = React.useCallback(
+    () =>
+      Object.values(STORE_KEY).forEach((storeKey) => {
+        removeValues(storeKey)
+      }),
+    [removeValues],
+  )
+
   const handleNoAddressFound = React.useCallback(() => {
     setIsModalOpen(false)
-
-    Object.values(STORE_KEY).forEach((storeKey) => {
-      removeValues(storeKey)
-    })
+    clearStoreValues()
 
     setValue(STORE_KEY.ADDRESS_SEARCH_TERM, textValue)
     setValue(props.storeKey, ADDRESS_NOT_FOUND)
     props.onContinue()
-  }, [removeValues, setValue, props.storeKey, textValue])
+  }, [clearStoreValues, setValue, props.storeKey, textValue])
 
   const {
     getMenuProps,
@@ -421,29 +426,32 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     return () => setConfirmedAddress(null)
   }, [pickedSuggestion])
 
-  const handleContinue = React.useCallback((address: CompleteAddress) => {
-    // Reset optional store values
-    removeValues(STORE_KEY.APARTMENT)
-    removeValues(STORE_KEY.FLOOR)
-    removeValues(STORE_KEY.ADDRESS_SEARCH_TERM)
+  const handleContinue = React.useCallback(
+    (address: CompleteAddress) => {
+      clearStoreValues()
 
-    setValue(STORE_KEY.ID, address.id)
-    setValue(STORE_KEY.STREET, `${address.streetName} ${address.streetNumber}`)
-    address.floor && setValue(STORE_KEY.FLOOR, address.floor)
-    address.apartment && setValue(STORE_KEY.APARTMENT, address.apartment)
-    setValue(STORE_KEY.ZIP_CODE, address.postalCode)
-    setValue(STORE_KEY.CITY, address.city)
+      setValue(STORE_KEY.ID, address.id)
+      setValue(
+        STORE_KEY.STREET,
+        `${address.streetName} ${address.streetNumber}`,
+      )
+      address.floor && setValue(STORE_KEY.FLOOR, address.floor)
+      address.apartment && setValue(STORE_KEY.APARTMENT, address.apartment)
+      setValue(STORE_KEY.ZIP_CODE, address.postalCode)
+      setValue(STORE_KEY.CITY, address.city)
 
-    setValue(STORE_KEY.ADDRESS, address.address)
-    setValue(STORE_KEY.STREET_NAME, address.streetName)
-    setValue(STORE_KEY.STREET_NUMBER, address.streetNumber)
+      setValue(STORE_KEY.ADDRESS, address.address)
+      setValue(STORE_KEY.STREET_NAME, address.streetName)
+      setValue(STORE_KEY.STREET_NUMBER, address.streetNumber)
 
-    const addressLine = formatAddressLine(address)
-    setValue(props.storeKey, addressLine)
-    setValue(`${props.passageName}Result`, addressLine)
+      const addressLine = formatAddressLine(address)
+      setValue(props.storeKey, addressLine)
+      setValue(`${props.passageName}Result`, addressLine)
 
-    return props.onContinue()
-  }, [])
+      return props.onContinue()
+    },
+    [clearStoreValues, setValue],
+  )
 
   const postalLine = React.useMemo(() => {
     if (pickedSuggestion && isMatchingStreetName(textValue, pickedSuggestion)) {
