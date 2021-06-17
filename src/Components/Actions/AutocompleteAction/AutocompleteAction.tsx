@@ -112,7 +112,7 @@ const StyledHeaderButton = styled.button`
   }
 `
 
-const StyledCombobox = styled.div<{ focus: boolean }>`
+const ComboboxField = styled.div<{ focus: boolean }>`
   box-sizing: border-box;
   text-align: left;
   width: 100%;
@@ -160,7 +160,7 @@ const StyledComboboxList = styled.ul`
   overflow: auto;
 `
 
-const ModalInput = styled.input`
+const ComboboxInput = styled.input`
   width: 100%;
 
   background: none;
@@ -510,8 +510,8 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
             </StyledHeaderButton>
           </StyledHeaderRow>
 
-          <StyledCombobox {...getComboboxProps()} focus={isInputFocus}>
-            <ModalInput
+          <ComboboxField {...getComboboxProps()} focus={isInputFocus}>
+            <ComboboxInput
               {...getInputProps({
                 ref: inputRef,
                 placeholder: props.placeholder,
@@ -526,7 +526,7 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
                 <Cross />
               </ClearButton>
             ) : null}
-          </StyledCombobox>
+          </ComboboxField>
         </StyledHeader>
 
         <StyledComboboxList {...getMenuProps()}>
