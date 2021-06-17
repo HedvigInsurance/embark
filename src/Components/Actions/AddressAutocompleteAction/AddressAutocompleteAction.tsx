@@ -32,6 +32,7 @@ const STORE_KEY = {
   CITY: 'city',
   FLOOR: 'floor',
   APARTMENT: 'apartment',
+  ADDRESS_SEARCH_TERM: 'addressSearchTerm',
 }
 
 const StyledChatContainer = styled.div`
@@ -347,9 +348,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
       removeValues(storeKey)
     })
 
+    setValue(STORE_KEY.ADDRESS_SEARCH_TERM, textValue)
     setValue(props.storeKey, ADDRESS_NOT_FOUND)
     props.onContinue()
-  }, [removeValues, setValue, props.storeKey])
+  }, [removeValues, setValue, props.storeKey, textValue])
 
   const {
     getMenuProps,
@@ -423,6 +425,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     // Reset optional store values
     removeValues(STORE_KEY.APARTMENT)
     removeValues(STORE_KEY.FLOOR)
+    removeValues(STORE_KEY.ADDRESS_SEARCH_TERM)
 
     setValue(STORE_KEY.ID, address.id)
     setValue(STORE_KEY.STREET, `${address.streetName} ${address.streetNumber}`)
