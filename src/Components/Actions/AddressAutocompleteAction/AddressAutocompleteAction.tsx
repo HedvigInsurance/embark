@@ -124,12 +124,12 @@ const ComboboxField = styled.div`
 
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid colorsV3.gray500;
+  border: 1px solid ${colorsV3.gray500};
 
-   &:focus-within {
+  &:focus-within {
     border-color: ${colorsV3.purple500};
-    box-shadow: 0 0 0 2px ${colorsV3.purple300}
-   }  
+    box-shadow: 0 0 0 2px ${colorsV3.purple300};
+  }
 `
 
 const ClearButton = styled.button`
@@ -519,13 +519,11 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
             </ModalHeaderButton>
           </ModalHeaderRow>
 
-          <ComboboxField {...getComboboxProps()} focus={isInputFocus}>
+          <ComboboxField {...getComboboxProps()}>
             <ComboboxInput
               {...getInputProps({
                 ref: inputRef,
                 placeholder: props.placeholder,
-                onFocus: () => setIsInputFocus(true),
-                onBlur: () => setIsInputFocus(false),
               })}
             />
             {pickedPostalLine ? (
