@@ -346,7 +346,7 @@ export const AutocompleteAction: React.FC<AutocompleteActionProps> = (
       removeValues(storeKey)
     })
 
-    setValue(props.storeKey, 'Unknown')
+    setValue(props.storeKey, ADDRESS_NOT_FOUND)
     props.onContinue()
   }, [removeValues, setValue, props.storeKey])
 
