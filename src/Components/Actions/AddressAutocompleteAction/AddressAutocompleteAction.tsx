@@ -2,7 +2,7 @@ import * as React from 'react'
 import { motion } from 'framer-motion'
 import { StoreContext, Store } from '../../KeyValueStore'
 import { Tooltip } from '../../Tooltip'
-import { Card, Input, Spacer } from '../Common'
+import { Card as BaseCard, Input, Spacer } from '../Common'
 import styled from '@emotion/styled'
 import { ApiContext } from '../../API/ApiContext'
 import { ApiComponent } from '../../API/apiComponent'
@@ -35,14 +35,14 @@ const STORE_KEY = {
   ADDRESS_SEARCH_TERM: 'addressSearchTerm',
 }
 
-const StyledChatContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 `
 
-const StyledCard = styled(Card)`
+const Card = styled(BaseCard)`
   width: 100%;
 
   padding-bottom: 24px;
@@ -52,7 +52,7 @@ const StyledCard = styled(Card)`
   }
 `
 
-const StyledFakeInput = styled(Input)`
+const FakeInput = styled(Input)`
   width: 100%;
   text-align: left;
   margin-left: 0;
@@ -67,7 +67,7 @@ const StyledFakeInput = styled(Input)`
   }
 `
 
-const StyledHeader = styled.header`
+const ModalHeader = styled.header`
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
@@ -76,14 +76,14 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid ${colorsV3.gray300};
 `
 
-const StyledHeaderRow = styled.div<{ align: 'center' | 'flex-start' }>`
+const ModalHeaderRow = styled.div<{ align: 'center' | 'flex-start' }>`
   height: 56px;
   display: flex;
   align-items: ${(props) => props.align};
   justify-content: flex-end;
 `
 
-const StyledHeaderLabel = styled.label`
+const ModalHeaderLabel = styled.label`
   position: absolute;
   left: 0;
   right: 0;
@@ -95,7 +95,7 @@ const StyledHeaderLabel = styled.label`
   font-size: 16px;
 `
 
-const StyledHeaderButton = styled.button`
+const ModalHeaderButton = styled.button`
   border: 0;
   background: transparent;
   appearance: none;
@@ -153,7 +153,7 @@ const ClearButton = styled.button`
   }
 `
 
-const StyledComboboxList = styled.ul`
+const ComboboxList = styled.ul`
   padding: 0;
   margin: 0;
   width: 100%;
@@ -182,7 +182,7 @@ const ComboboxInput = styled.input`
   }
 `
 
-const StyledComboboxOption = styled.li`
+const ComboboxOption = styled.li`
   padding: 8px 16px;
   min-height: 32px;
   display: flex;
@@ -218,7 +218,7 @@ const StyledComboboxOption = styled.li`
   }
 `
 
-const NotFoundComboboxOption = styled(StyledComboboxOption)`
+const ComboboxOptionNotFound = styled(ComboboxOption)`
   color: ${colorsV3.red500};
 
   &[data-highlighted] {
@@ -236,7 +236,7 @@ const PostalAddress = styled.p`
 
   color: ${colorsV3.gray700};
 
-  ${StyledFakeInput} + & {
+  ${FakeInput} + & {
     padding-left: 16px;
 
     @media (min-width: 600px) {
@@ -302,12 +302,19 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
   props,
 ) => {
   const api = React.useContext(ApiContext)
-  const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [isInputFocus, setIsInputFocus] = React.useState(false)
   const [isHovered, setIsHovered] = React.useState(false)
-
   const { store, setValue, removeValues } = React.useContext(StoreContext)
   const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const handleDismissModal = React.useCallback(() => setIsModalOpen(false), [])
+  React.useEffect(() => {
+    if (isModalOpen) {
+      // Move focus to input on next render
+      setTimeout(() => inputRef.current?.focus(), 1)
+    }
+  }, [isModalOpen])
 
   const [
     pickedSuggestion,
@@ -328,18 +335,16 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
 
   React.useEffect(() => {
     if (confirmedAddress) {
-      setIsModalOpen(false)
       inputRef.current?.blur()
+      setIsModalOpen(false)
     }
   }, [confirmedAddress])
 
-  const comboboxItems = React.useMemo<AddressSuggestion[]>(() => {
-    if (suggestions) {
-      return [...suggestions, { address: ADDRESS_NOT_FOUND }]
-    }
-
-    return []
-  }, [suggestions])
+  const handleClearInput = React.useCallback(() => {
+    setTextValue('')
+    setPickedSuggestion(null)
+    inputRef.current?.focus()
+  }, [])
 
   const clearStoreValues = React.useCallback(
     () =>
@@ -347,6 +352,39 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
         removeValues(storeKey)
       }),
     [removeValues],
+  )
+
+  const handleContinue = React.useCallback(
+    (address: CompleteAddress) => {
+      clearStoreValues()
+
+      setValue(STORE_KEY.ID, address.id)
+      setValue(
+        STORE_KEY.STREET,
+        `${address.streetName} ${address.streetNumber}`,
+      )
+      address.floor && setValue(STORE_KEY.FLOOR, address.floor)
+      address.apartment && setValue(STORE_KEY.APARTMENT, address.apartment)
+      setValue(STORE_KEY.ZIP_CODE, address.postalCode)
+      setValue(STORE_KEY.CITY, address.city)
+
+      setValue(STORE_KEY.ADDRESS, address.address)
+      setValue(STORE_KEY.STREET_NAME, address.streetName)
+      setValue(STORE_KEY.STREET_NUMBER, address.streetNumber)
+
+      const addressLine = formatAddressLine(address)
+      setValue(props.storeKey, addressLine)
+      setValue(`${props.passageName}Result`, addressLine)
+
+      return props.onContinue()
+    },
+    [
+      clearStoreValues,
+      setValue,
+      props.storeKey,
+      props.passageName,
+      props.onContinue,
+    ],
   )
 
   const handleNoAddressFound = React.useCallback(() => {
@@ -357,6 +395,11 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     setValue(props.storeKey, ADDRESS_NOT_FOUND)
     props.onContinue()
   }, [clearStoreValues, setValue, props.storeKey, textValue])
+
+  const comboboxItems = React.useMemo<AddressSuggestion[]>(
+    () => (suggestions ? [...suggestions, { address: ADDRESS_NOT_FOUND }] : []),
+    [suggestions],
+  )
 
   const {
     getMenuProps,
@@ -424,34 +467,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     }
 
     return () => setConfirmedAddress(null)
-  }, [pickedSuggestion])
-
-  const handleContinue = React.useCallback(
-    (address: CompleteAddress) => {
-      clearStoreValues()
-
-      setValue(STORE_KEY.ID, address.id)
-      setValue(
-        STORE_KEY.STREET,
-        `${address.streetName} ${address.streetNumber}`,
-      )
-      address.floor && setValue(STORE_KEY.FLOOR, address.floor)
-      address.apartment && setValue(STORE_KEY.APARTMENT, address.apartment)
-      setValue(STORE_KEY.ZIP_CODE, address.postalCode)
-      setValue(STORE_KEY.CITY, address.city)
-
-      setValue(STORE_KEY.ADDRESS, address.address)
-      setValue(STORE_KEY.STREET_NAME, address.streetName)
-      setValue(STORE_KEY.STREET_NUMBER, address.streetNumber)
-
-      const addressLine = formatAddressLine(address)
-      setValue(props.storeKey, addressLine)
-      setValue(`${props.passageName}Result`, addressLine)
-
-      return props.onContinue()
-    },
-    [clearStoreValues, setValue],
-  )
+  }, [api, suggestions, pickedSuggestion])
 
   const postalLine = React.useMemo(() => {
     if (pickedSuggestion && isMatchingStreetName(textValue, pickedSuggestion)) {
@@ -464,29 +480,15 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     [pickedSuggestion],
   )
 
-  React.useEffect(() => {
-    if (isModalOpen) {
-      // Move focus to input on next render
-      setTimeout(() => inputRef.current?.focus(), 1)
-    }
-  }, [isModalOpen])
-
-  const handleDismissModal = React.useCallback(() => setIsModalOpen(false), [])
-  const handleClearInput = React.useCallback(() => {
-    setTextValue('')
-    setPickedSuggestion(null)
-    inputRef.current?.focus()
-  }, [])
-
   return (
-    <StyledChatContainer>
+    <Container>
       <motion.div
         animate={{
           opacity: isModalOpen ? 0 : 1,
         }}
         transition={{ ease: 'easeOut', duration: 0.25 }}
       >
-        <StyledCard
+        <Card
           isFocused={isHovered}
           onSubmit={(event) => event.preventDefault()}
           onMouseEnter={() => setIsHovered(true)}
@@ -494,7 +496,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
         >
           {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
 
-          <StyledFakeInput
+          <FakeInput
             placeholder={props.placeholder}
             value={addressLine || textValue}
             onClick={() => setIsModalOpen(true)}
@@ -502,7 +504,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
             size={(addressLine || textValue).length}
           />
           {postalLine ? <PostalAddress>{postalLine}</PostalAddress> : null}
-        </StyledCard>
+        </Card>
       </motion.div>
 
       <Spacer />
@@ -514,13 +516,13 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
       />
 
       <Modal isOpen={isModalOpen} onDismiss={handleDismissModal}>
-        <StyledHeader>
-          <StyledHeaderRow align="center">
-            <StyledHeaderLabel>Address</StyledHeaderLabel>
-            <StyledHeaderButton onClick={handleDismissModal}>
+        <ModalHeader>
+          <ModalHeaderRow align="center">
+            <ModalHeaderLabel>Address</ModalHeaderLabel>
+            <ModalHeaderButton onClick={handleDismissModal}>
               Cancel
-            </StyledHeaderButton>
-          </StyledHeaderRow>
+            </ModalHeaderButton>
+          </ModalHeaderRow>
 
           <ComboboxField {...getComboboxProps()} focus={isInputFocus}>
             <ComboboxInput
@@ -539,42 +541,40 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
               </ClearButton>
             ) : null}
           </ComboboxField>
-        </StyledHeader>
+        </ModalHeader>
 
-        <StyledComboboxList {...getMenuProps()}>
-          {!confirmedAddress
-            ? comboboxItems.map((item, index) => {
-                const itemProps = {
-                  key: `${item.address}${index}`,
-                  ...(highlightedIndex === index && {
-                    'data-highlighted': true,
-                  }),
-                  ...getItemProps({ item, index }),
-                }
+        <ComboboxList {...getMenuProps()}>
+          {comboboxItems.map((item, index) => {
+            const itemProps = {
+              key: `${item.address}${index}`,
+              ...(highlightedIndex === index && {
+                'data-highlighted': true,
+              }),
+              ...getItemProps({ item, index }),
+            }
 
-                if (item.address === ADDRESS_NOT_FOUND) {
-                  return (
-                    <NotFoundComboboxOption {...itemProps}>
-                      Can't find my address
-                    </NotFoundComboboxOption>
-                  )
-                }
+            if (item.address === ADDRESS_NOT_FOUND) {
+              return (
+                <ComboboxOptionNotFound {...itemProps}>
+                  Can't find my address
+                </ComboboxOptionNotFound>
+              )
+            }
 
-                const postalLine = formatPostalLine(item)
-                return (
-                  <StyledComboboxOption {...itemProps}>
-                    <div>
-                      {formatAddressLine(item)}
-                      {postalLine ? (
-                        <PostalAddress>{postalLine}</PostalAddress>
-                      ) : null}
-                    </div>
-                  </StyledComboboxOption>
-                )
-              })
-            : null}
-        </StyledComboboxList>
+            const postalLine = formatPostalLine(item)
+            return (
+              <ComboboxOption {...itemProps}>
+                <div>
+                  {formatAddressLine(item)}
+                  {postalLine ? (
+                    <PostalAddress>{postalLine}</PostalAddress>
+                  ) : null}
+                </div>
+              </ComboboxOption>
+            )
+          })}
+        </ComboboxList>
       </Modal>
-    </StyledChatContainer>
+    </Container>
   )
 }
