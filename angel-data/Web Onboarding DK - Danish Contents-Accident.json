@@ -12,7 +12,7 @@
     "selectActionSelectLabel": "{STORY_KEYWORDS_SELECT_ACTION_LABEL}",
     "tooltipModalInformationLabel": "{STORY_KEYWORDS_TOOLTIP_MODAL_INFORMATION_LABEL}"
   },
-  "lastUpdate": "2021-05-06T12:44:11.951Z",
+  "lastUpdate": "2021-05-07T08:07:24.184Z",
   "name": "Web Onboarding DK - Danish Contents-Accident",
   "passages": [
     {
@@ -51,7 +51,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_COINSURED_MESSAGE_2}\n</Message>",
       "top": 600,
       "url": "/error-co-insured",
       "width": 100
@@ -131,7 +131,7 @@
       "tags": [
         "Error"
       ],
-      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>",
+      "text": "<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_1}\n</Message>\n\n<Message>\n  {DK_CONTENT_CONVERSATION_ERROR_SIZE_MESSAGE_2}\n</Message>",
       "top": 300,
       "url": "/error-size",
       "width": 100

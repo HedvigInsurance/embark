@@ -175,7 +175,7 @@ const getDropdownAction = (
       value: translate(
         option.getAttribute('value') || option.textContent || '',
       ),
-      text: translate(option.textContent || ''),
+      text: translate(option.textContent || '').trim(),
     }
   })
 
@@ -225,7 +225,10 @@ const getMultiAction = (multiActionNode: Element, translate: Translator) => {
 
   Array.from(addNode.getElementsByTagName('numberaction')).forEach(
     (numberActionNode) => {
-      components.push(getNumberAction(numberActionNode, translate))
+      components.push({
+        ...getNumberAction(numberActionNode, translate),
+        __typename: 'EmbarkMultiActionNumberAction',
+      })
     },
   )
 
@@ -746,7 +749,7 @@ const parseGroupedResponse = (
       ...parsePossibleExpressionContent(title),
     },
     items: items.map(parsePossibleExpressionContent),
-    each: (each && parseEach(each, parsePossibleExpressionContent)) || [],
+    each: each && parseEach(each, parsePossibleExpressionContent),
   }
 }
 
