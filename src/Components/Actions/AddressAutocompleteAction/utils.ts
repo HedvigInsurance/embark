@@ -1,11 +1,7 @@
-import { AddressSuggestion } from '../../API/addressAutocomplete'
-
-export const isMatchingStreetName = (
-  searchTerm: string,
-  suggestion?: AddressSuggestion,
-) => {
-  return suggestion?.streetName && searchTerm.startsWith(suggestion.streetName)
-}
+import {
+  AddressSuggestion,
+  CompleteAddress,
+} from '../../API/addressAutocomplete'
 
 export const formatAddressLine = (address: AddressSuggestion): string => {
   if (address.streetName && address.streetNumber) {
@@ -36,4 +32,35 @@ export const formatAddressLines = (
   address: AddressSuggestion,
 ): [string, string | undefined] => {
   return [formatAddressLine(address), formatPostalLine(address)]
+}
+
+export const isMatchingStreetName = (
+  searchTerm: string,
+  suggestion?: AddressSuggestion,
+) => {
+  return suggestion?.streetName && searchTerm.startsWith(suggestion.streetName)
+}
+
+const MANDATORY_ADDRESS_FIELDS: Array<keyof AddressSuggestion> = [
+  'id',
+  'address',
+  'streetName',
+  'streetNumber',
+  'postalCode',
+  'city',
+]
+
+export const isCompleteAddress = (
+  suggestion: AddressSuggestion,
+): suggestion is CompleteAddress => {
+  return MANDATORY_ADDRESS_FIELDS.every((key) => suggestion[key] !== undefined)
+}
+
+export const isSameAddress = (
+  first: AddressSuggestion,
+  second: AddressSuggestion,
+) => {
+  const { id: _, ...firstFields } = first
+  const { id: __, ...secondFields } = second
+  return JSON.stringify(firstFields) === JSON.stringify(secondFields)
 }
