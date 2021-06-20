@@ -53,7 +53,7 @@ const MANDATORY_ADDRESS_FIELDS: Array<keyof AddressSuggestion> = [
 export const isCompleteAddress = (
   suggestion: AddressSuggestion,
 ): suggestion is CompleteAddress => {
-  return MANDATORY_ADDRESS_FIELDS.every((key) => suggestion[key] !== undefined)
+  return MANDATORY_ADDRESS_FIELDS.every((key) => suggestion[key])
 }
 
 export const isSameAddress = (

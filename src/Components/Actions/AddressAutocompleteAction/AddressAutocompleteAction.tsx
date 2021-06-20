@@ -187,6 +187,17 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     [confirmSuggestion, pickedSuggestion],
   )
 
+  const handleChangeInput = React.useCallback((newValue: string) => {
+    setSearchTerm(newValue)
+    setConfirmedAddress(null)
+  }, [])
+
+  const handleClearInput = React.useCallback(() => {
+    setSearchTerm('')
+    setPickedSuggestion(null)
+    setConfirmedAddress(null)
+  }, [])
+
   const clearStoreValues = React.useCallback(
     () =>
       Object.values(STORE_KEY).forEach((storeKey) => {
@@ -257,10 +268,12 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
 
           <FakeInput
             placeholder={props.placeholder}
-            value={confirmedAddressLine}
+            value={confirmedAddressLine || searchTerm}
             onClick={() => setIsAutocompleteActive(true)}
             onFocus={() => setIsAutocompleteActive(true)}
-            size={(confirmedAddressLine || props.placeholder).length}
+            size={
+              (confirmedAddressLine || searchTerm || props.placeholder).length
+            }
           />
           {confirmedPostalLine ? (
             <PostalAddress>{confirmedPostalLine}</PostalAddress>
@@ -283,7 +296,8 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
         onSelect={handleSelectSuggestion}
         onNotFound={handleNoAddressFound}
         value={searchTerm}
-        onChange={setSearchTerm}
+        onChange={handleChangeInput}
+        onClear={handleClearInput}
         placeholder={props.placeholder}
       />
     </Container>

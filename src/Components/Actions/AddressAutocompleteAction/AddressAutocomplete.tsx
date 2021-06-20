@@ -43,6 +43,7 @@ const ModalHeaderLabel = styled.label`
   font-family: ${fonts.FAVORIT};
   text-align: center;
   font-size: 16px;
+  font-weight: bold;
 `
 
 const ModalHeaderButton = styled.button`
@@ -92,6 +93,7 @@ interface Props {
   placeholder: string
   value: string
   onChange: (newValue: string) => void
+  onClear: () => void
 }
 
 const AddressAutocomplete: React.FC<Props> = (props) => {
@@ -104,6 +106,7 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
     onNotFound,
     value,
     onChange,
+    onClear,
   } = props
 
   const keywords = React.useContext(KeywordsContext)
@@ -162,9 +165,8 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
   })
 
   const handleClearInput = React.useCallback(() => {
-    onChange('')
-    onSelect(null)
     inputRef.current?.focus()
+    onClear()
   }, [])
 
   const pickedPostalLine = selected ? formatPostalLine(selected) : undefined
