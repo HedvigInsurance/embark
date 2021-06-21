@@ -152,7 +152,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
   const [
     confirmedAddress,
     setConfirmedAddress,
-  ] = React.useState<CompleteAddress | null>(null)
+  ] = React.useState<CompleteAddress | null>(() => getAddressFromStore(store))
 
   const confirmSuggestion = React.useCallback(
     async (
@@ -187,10 +187,20 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     [confirmSuggestion, pickedSuggestion],
   )
 
-  const handleChangeInput = React.useCallback((newValue: string) => {
-    setSearchTerm(newValue)
-    setConfirmedAddress(null)
-  }, [])
+  const handleChangeInput = React.useCallback(
+    (newValue: string) => {
+      setSearchTerm(newValue)
+      setConfirmedAddress((prevValue) => {
+        // Reset confirmed address unless it matches the updated search term
+        if (prevValue && newValue !== formatAddressLine(prevValue)) {
+          return null
+        }
+
+        return prevValue
+      })
+    },
+    [store],
+  )
 
   const handleClearInput = React.useCallback(() => {
     setSearchTerm('')
