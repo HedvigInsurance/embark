@@ -25,7 +25,7 @@
     "@emotion/babel-plugin": "^11.0.0-next.12",
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
-    "@hedviginsurance/brand": "^3.0.5",
+    "@hedviginsurance/brand": "^4.0.4",
     "@hedviginsurance/textkeyfy": "^2.0.0",
     "@koa/cors": "^2.2.3",
     "@types/jsdom": "^16.2.4",

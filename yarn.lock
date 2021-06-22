@@ -1318,10 +1318,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
-"@hedviginsurance/brand@^3.0.5":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/brand/-/brand-3.0.8.tgz#69a66080274d3e0bc85ab3a7d6e3bc9bfd0f7469"
-  integrity sha512-vSyJTWwAGtZFFo9e0iLdx4lqXrJ7Dc54PSAQR/AZIiRaKhIvGob05bI4ftWzN60w4Q74aVfir4dakga3XN7Zog==
+"@hedviginsurance/brand@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/brand/-/brand-4.0.4.tgz#4147928d89d4a23e2d8b4443465624fa1cdbd115"
+  integrity sha512-jvvS6lJAdIjjZj27lAPLMFnW0nuOAJzgra6yZFnHaF0L8u35WSmHCZUMZTmWMsTOJ69KNbVdpccb0yMEPIc6ww==
 
 "@hedviginsurance/textkeyfy@^2.0.0":
   version "2.0.0"
