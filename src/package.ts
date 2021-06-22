@@ -25,3 +25,5 @@ export {
   Data as CreateQuoteData,
   Variables as CreateQuoteVariables,
 } from './Components/API/createQuote'
+
+export { AddressSuggestion } from './Components/API/addressAutocomplete'

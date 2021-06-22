@@ -14,6 +14,7 @@ import {
 import EventEmitter from 'eventemitter3'
 import { introspectSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import { graphql, ExecutionResult } from 'graphql'
+import { AddressSuggestion } from './addressAutocomplete'
 
 const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
@@ -21,6 +22,7 @@ const timeout = (ms: number) =>
 export interface TApiContext {
   personalInformationApi: (personalNumber: string) => Promise<PData | Error>
   houseInformation: (variables: HVariables) => Promise<HData | Error>
+  addressAutocompleteQuery: (searchTerm: string) => Promise<AddressSuggestion[]>
   createQuote: (variables: CQVariables) => Promise<CQData | Error>
   graphqlQuery: (
     query: string,
@@ -47,6 +49,9 @@ export const ApiContext = React.createContext<TApiContext>({
   },
   houseInformation: () => {
     throw Error('Must provide an implementation for `houseInformation`')
+  },
+  addressAutocompleteQuery: () => {
+    throw Error('Must provide an implementation for `addressAutocompleteQuery`')
   },
   createQuote: (_) => {
     throw Error('Must provide an implementation for `createQuote`')
@@ -80,6 +85,33 @@ export const mockApiResolvers: TApiContext = {
   houseInformation: async (_) => {
     await timeout(300)
     return houseInformationMocks[0]
+  },
+  addressAutocompleteQuery: async (term) => {
+    const { ApolloClient, InMemoryCache, gql } = require('@apollo/client')
+
+    const client = new ApolloClient({
+      uri: 'https://graphql.dev.hedvigit.com/graphql',
+      cache: new InMemoryCache({
+        typePolicies: { AutoCompleteResponse: { keyFields: ['address'] } },
+      }),
+    })
+
+    const query = gql`
+      query AutoComplete($term: String!) {
+        autoCompleteAddress(input: $term) {
+          id
+          address
+          streetName
+          streetNumber
+          floor
+          apartment
+          postalCode
+          city
+        }
+      }
+    `
+    const result = await client.query({ query, variables: { term } })
+    return result.data?.autoCompleteAddress || []
   },
   createQuote: async (_) => {
     await timeout(300)
