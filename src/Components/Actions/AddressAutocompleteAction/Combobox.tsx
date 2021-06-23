@@ -39,6 +39,8 @@ const ClearButton = styled.button`
   }
 
   svg {
+    display: block;
+    margin: auto;
     width: 60%;
     height: 60%;
   }
