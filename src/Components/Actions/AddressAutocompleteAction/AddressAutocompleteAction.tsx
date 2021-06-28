@@ -53,8 +53,6 @@ const Card = styled(BaseCard)`
 `
 
 const FakeInput = styled(Input)`
-  width: 100%;
-  text-align: left;
   margin-left: 0;
   margin-right: 0;
   padding: 0 16px;
@@ -70,14 +68,12 @@ const FakeInput = styled(Input)`
 const PostalAddress = styled.p`
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 16px;
-  text-align: left;
+  text-align: center;
   color: ${colorsV3.gray700};
   margin: 0;
-  padding-left: 16px;
 
   @media (min-width: 600px) {
     font-size: 24px;
-    padding-left: 32px;
   }
 `
 
