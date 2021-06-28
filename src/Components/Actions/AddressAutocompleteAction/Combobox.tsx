@@ -39,6 +39,8 @@ const ClearButton = styled.button`
   }
 
   svg {
+    display: block;
+    margin: auto;
     width: 60%;
     height: 60%;
   }
@@ -75,9 +77,10 @@ const ComboboxInput = styled.input`
 
 const ComboboxOption = styled.li`
   padding: 8px 16px;
-  min-height: 32px;
+  min-height: 48px;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 
   text-align: left;
   font-family: ${fonts.FAVORIT}, sans-serif;
