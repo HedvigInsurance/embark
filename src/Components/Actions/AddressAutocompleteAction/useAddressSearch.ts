@@ -11,9 +11,13 @@ const getApiQuery = (searchTerm: string, suggestion?: AddressSuggestion) => {
       return searchTerm + ' '
     }
 
-    if (suggestion.postalCode && isMatchingStreetName(searchTerm, suggestion)) {
+    if (
+      suggestion.city &&
+      suggestion.postalCode &&
+      isMatchingStreetName(searchTerm, suggestion)
+    ) {
       // Refine search after selecting a specific building (floor & apartment)
-      return `${searchTerm} ${suggestion.postalCode} ${suggestion.city}`
+      return `${searchTerm}, , ${suggestion.postalCode} ${suggestion.city}`
     }
   }
 
