@@ -7,12 +7,7 @@ import { Cross } from '../../Icons/Cross'
 import Modal from './Modal'
 import Combobox from './Combobox'
 import useAddressSearch from './useAddressSearch'
-import {
-  formatAddressLine,
-  formatAddressLines,
-  formatPostalLine,
-  isMatchingStreetName,
-} from './utils'
+import { formatAddressLine, formatAddressLines } from './utils'
 import { KeywordsContext } from '../../KeywordsContext'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
@@ -169,12 +164,6 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
     onClear()
   }, [])
 
-  const pickedPostalLine = selected ? formatPostalLine(selected) : undefined
-  const isMatchingPickedSuggestion = isMatchingStreetName(
-    value,
-    selected ?? undefined,
-  )
-
   return (
     <Modal isOpen={isActive} onDismiss={onDismiss}>
       <ModalHeader>
@@ -194,9 +183,6 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
               placeholder,
             })}
           />
-          {pickedPostalLine && isMatchingPickedSuggestion ? (
-            <PostalAddress>{pickedPostalLine}</PostalAddress>
-          ) : null}
 
           {value.length > 0 ? (
             <Combobox.ClearButton onClick={handleClearInput}>
