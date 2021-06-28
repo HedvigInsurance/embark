@@ -71,11 +71,9 @@ const PostalAddress = styled.p`
   text-align: center;
   color: ${colorsV3.gray700};
   margin: 0;
-  padding-left: 16px;
 
   @media (min-width: 600px) {
     font-size: 24px;
-    padding-left: 32px;
   }
 `
 
