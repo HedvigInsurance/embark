@@ -246,9 +246,19 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     props.onContinue()
   }, [clearStoreValues, setValue, props.storeKey, searchTerm])
 
+  // @ts-ignore: clean-up function only needed conditionally
   React.useEffect(() => {
     if (confirmedAddress) {
       setIsAutocompleteActive(false)
+
+      const handleEnter = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+          handleContinue(confirmedAddress)
+        }
+      }
+
+      window.addEventListener('keydown', handleEnter)
+      return () => window.removeEventListener('keydown', handleEnter)
     }
   }, [confirmedAddress])
 
