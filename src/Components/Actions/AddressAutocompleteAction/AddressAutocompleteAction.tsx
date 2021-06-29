@@ -59,20 +59,27 @@ const Button = styled.button`
   @media (min-width: 600px) {
     padding-bottom: 24px;
   }
+
+  & > input[disabled]::placeholder {
+    -webkit-text-fill-color: ${colorsV3.gray500};
+  }
 `
 
 const FakeInput = styled(Input)`
+  max-width: 100%;
   margin-left: 0;
   margin-right: 0;
   padding: 0 16px;
   line-height: 1;
   font-size: 48px;
   color: ${colorsV3.gray900};
-
-  max-width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  &:disabled {
+    -webkit-text-fill-color: ${colorsV3.gray900};
+    opacity: 1;
+  }
 
   @media (min-width: 600px) {
     margin-top: 20px;
