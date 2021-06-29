@@ -175,6 +175,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
       setPickedSuggestion(suggestion)
 
       if (suggestion) {
+        setSearchTerm(formatAddressLine(suggestion))
         setConfirmedAddress(
           await confirmSuggestion(suggestion, pickedSuggestion),
         )
@@ -186,6 +187,12 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
   const handleChangeInput = React.useCallback(
     (newValue: string) => {
       setSearchTerm(newValue)
+
+      // Reset picked suggestion for empty input field
+      if (!newValue) {
+        setPickedSuggestion(null)
+      }
+
       setConfirmedAddress((prevValue) => {
         // Reset confirmed address unless it matches the updated search term
         if (prevValue && newValue !== formatAddressLine(prevValue)) {
