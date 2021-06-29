@@ -17,3 +17,10 @@ export type CompleteAddress = AddressSuggestion & {
   postalCode: string
   city: string
 }
+
+export type AddressAutocompleteType = 'STREET' | 'BUILDING' | 'APARTMENT'
+
+export type AddressAutocompleteQuery = (
+  searchTerm: string,
+  options?: { type: AddressAutocompleteType },
+) => Promise<AddressSuggestion[]>

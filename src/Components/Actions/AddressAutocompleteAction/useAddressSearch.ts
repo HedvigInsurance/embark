@@ -1,23 +1,36 @@
-import { AddressSuggestion } from '../../API/addressAutocomplete'
+import {
+  AddressSuggestion,
+  AddressAutocompleteType,
+} from '../../API/addressAutocomplete'
 import * as React from 'react'
 import { ApiContext } from '../../API/ApiContext'
 import { isMatchingStreetName } from './utils'
 import useDebounce from './useDebounce'
 
-const getApiQuery = (searchTerm: string, suggestion?: AddressSuggestion) => {
+const getApiQuery = (
+  searchTerm: string,
+  suggestion?: AddressSuggestion,
+): [string, AddressAutocompleteType] => {
   if (suggestion) {
-    if (suggestion.city === undefined) {
+    if (!suggestion.city) {
       // Refine search after selecting a suggested street name
-      return searchTerm + ' '
+      return [searchTerm, 'BUILDING']
     }
 
-    if (suggestion.postalCode && isMatchingStreetName(searchTerm, suggestion)) {
+    if (
+      suggestion.city &&
+      suggestion.postalCode &&
+      isMatchingStreetName(searchTerm, suggestion)
+    ) {
       // Refine search after selecting a specific building (floor & apartment)
-      return `${searchTerm} ${suggestion.postalCode} ${suggestion.city}`
+      return [
+        `${searchTerm}, , ${suggestion.postalCode} ${suggestion.city}`,
+        'APARTMENT',
+      ]
     }
   }
 
-  return searchTerm
+  return [searchTerm, 'STREET']
 }
 
 const useAddressSearch = (
@@ -33,7 +46,7 @@ const useAddressSearch = (
   >(null)
 
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
-  const apiQuery = React.useMemo(
+  const [apiQuery, suggestionType] = React.useMemo(
     () => getApiQuery(debouncedSearchTerm, suggestion),
     [debouncedSearchTerm, suggestion],
   )
@@ -42,11 +55,13 @@ const useAddressSearch = (
   React.useEffect(() => {
     if (apiQuery.trim() !== '') {
       let isFresh = true
-      api.addressAutocompleteQuery(apiQuery).then((newOptions) => {
-        if (isFresh) {
-          setSuggestions(newOptions)
-        }
-      })
+      api
+        .addressAutocompleteQuery(apiQuery, { type: suggestionType })
+        .then((newOptions) => {
+          if (isFresh) {
+            setSuggestions(newOptions)
+          }
+        })
 
       return () => {
         isFresh = false
@@ -54,7 +69,7 @@ const useAddressSearch = (
     } else {
       setSuggestions(null)
     }
-  }, [apiQuery])
+  }, [apiQuery, suggestionType])
 
   return [suggestions, setSuggestions]
 }
