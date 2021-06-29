@@ -7,7 +7,7 @@ import { Cross } from '../../Icons/Cross'
 import Modal from './Modal'
 import Combobox from './Combobox'
 import useAddressSearch from './useAddressSearch'
-import { formatAddressLine, formatAddressLines } from './utils'
+import { formatAddressLines } from './utils'
 import { KeywordsContext } from '../../KeywordsContext'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
