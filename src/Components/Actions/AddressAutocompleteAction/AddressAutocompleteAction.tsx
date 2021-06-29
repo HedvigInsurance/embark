@@ -41,15 +41,23 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  width: 100%;
 `
 
 const Card = styled(BaseCard)`
   width: 100%;
+`
 
-  padding-bottom: 24px;
+const Button = styled.button`
+  width: 100%;
+  padding: 0 0 16px 0;
+  border: none;
+  outline: none;
+  background: none;
+  appearance: none;
 
-  @media (max-width: 600px) {
-    padding-bottom: 16px;
+  @media (min-width: 600px) {
+    padding-bottom: 24px;
   }
 `
 
@@ -59,6 +67,7 @@ const FakeInput = styled(Input)`
   padding: 0 16px;
   line-height: 1;
   font-size: 48px;
+  color: ${colorsV3.gray900};
 
   max-width: 100%;
   text-overflow: ellipsis;
@@ -214,6 +223,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     [store],
   )
 
+  const handleButtonClick = () => {
+    setIsAutocompleteActive(true)
+  }
+
   const handleClearInput = React.useCallback(() => {
     setSearchTerm('')
     setPickedSuggestion(null)
@@ -298,19 +311,19 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
           onMouseLeave={() => setIsHovered(false)}
         >
           {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
-
-          <FakeInput
-            placeholder={props.placeholder}
-            value={confirmedAddressLine || searchTerm}
-            onClick={() => setIsAutocompleteActive(true)}
-            onFocus={() => setIsAutocompleteActive(true)}
-            size={
-              (confirmedAddressLine || searchTerm || props.placeholder).length
-            }
-          />
-          {confirmedPostalLine ? (
-            <PostalAddress>{confirmedPostalLine}</PostalAddress>
-          ) : null}
+          <Button onClick={handleButtonClick}>
+            <FakeInput
+              placeholder={props.placeholder}
+              value={confirmedAddressLine || searchTerm}
+              disabled={true}
+              size={
+                (confirmedAddressLine || searchTerm || props.placeholder).length
+              }
+            />
+            {confirmedPostalLine ? (
+              <PostalAddress>{confirmedPostalLine}</PostalAddress>
+            ) : null}
+          </Button>
         </Card>
       </motion.div>
 
