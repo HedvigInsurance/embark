@@ -10,7 +10,6 @@ import Modal from './Modal'
 
 describe('address autocomplete modal', () => {
   test('modal toggles display of children', async () => {
-    // Arrange
     const ModalWithButton = () => {
       const [isOpen, setIsOpen] = React.useState(false)
       return (
@@ -23,46 +22,35 @@ describe('address autocomplete modal', () => {
       )
     }
 
-    // Act
     const { getByText } = render(<ModalWithButton />)
 
-    // Assert
     expect(getByText('close')).not.toBeVisible()
 
-    // Act
     userEvent.click(getByText('open'))
 
-    // Assert
     await waitFor(() => {
       expect(getByText('close')).toBeVisible()
     })
 
-    // Act
     userEvent.click(getByText('close'))
 
-    // Assert
     await waitFor(() => {
       expect(getByText('close')).not.toBeVisible()
     })
   })
 
   test('modal responds to pressing escape', () => {
-    // Arrange
     const handleDismiss = jest.fn()
 
-    // Act
     render(<Modal isOpen={true} onDismiss={handleDismiss} />)
     userEvent.keyboard('{Escape}')
 
-    // Assert
     expect(handleDismiss).toHaveBeenCalledTimes(1)
   })
 
   test('modal responds to click outside', () => {
-    // Arrange
     const handleDismiss = jest.fn()
 
-    // Act
     const { getByText } = render(
       <div>
         <div>outside</div>
@@ -73,16 +61,12 @@ describe('address autocomplete modal', () => {
       </div>,
     )
 
-    // Act
     userEvent.click(getByText('inside'))
 
-    // Assert
     expect(handleDismiss).toHaveBeenCalledTimes(0)
 
-    // Act
     userEvent.click(getByText('outside'))
 
-    // Assert
     expect(handleDismiss).toHaveBeenCalledTimes(1)
   })
 })
