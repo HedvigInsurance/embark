@@ -19,6 +19,8 @@ import {
   isSameAddress,
 } from './utils'
 import AddressAutocomplete from './AddressAutocomplete'
+import useAddressSearch from './useAddressSearch'
+import Modal from './Modal'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
 
@@ -192,9 +194,15 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     [api],
   )
 
+  const [suggestions, setSuggestions] = useAddressSearch(
+    searchTerm,
+    pickedSuggestion ?? undefined,
+  )
+
   const handleSelectSuggestion = React.useCallback(
     async (suggestion: AddressSuggestion | null) => {
       setPickedSuggestion(suggestion)
+      setSuggestions(null)
 
       if (suggestion) {
         setSearchTerm(formatAddressLine(suggestion))
@@ -203,7 +211,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
         )
       }
     },
-    [confirmSuggestion, pickedSuggestion],
+    [confirmSuggestion, pickedSuggestion, setSuggestions],
   )
 
   const handleChangeInput = React.useCallback(
@@ -279,6 +287,11 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     props.onContinue()
   }, [clearStoreValues, setValue, props.storeKey, searchTerm])
 
+  const handleDismissModal = React.useCallback(
+    () => setIsAutocompleteActive(false),
+    [],
+  )
+
   // @ts-ignore: clean-up function only needed conditionally
   React.useEffect(() => {
     if (confirmedAddress) {
@@ -331,23 +344,33 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
 
       <Spacer />
 
-      <ContinueButton
-        onClick={() => handleContinue(confirmedAddress!)}
-        disabled={!confirmedAddress}
-        text={(props.link || {}).label || 'Continue'}
-      />
+      {confirmedAddress ? (
+        <ContinueButton
+          onClick={() => handleContinue(confirmedAddress)}
+          disabled={false}
+          text={(props.link || {}).label || 'Continue'}
+        />
+      ) : (
+        <ContinueButton
+          onClick={() => {}}
+          disabled={true}
+          text={(props.link || {}).label || 'Continue'}
+        />
+      )}
 
-      <AddressAutocomplete
-        isActive={isAutocompleteActive}
-        onDismiss={() => setIsAutocompleteActive(false)}
-        selected={pickedSuggestion}
-        onSelect={handleSelectSuggestion}
-        onNotFound={handleNoAddressFound}
-        value={searchTerm}
-        onChange={handleChangeInput}
-        onClear={handleClearInput}
-        placeholder={props.placeholder}
-      />
+      <Modal isOpen={isAutocompleteActive} onDismiss={handleDismissModal}>
+        <AddressAutocomplete
+          isActive={isAutocompleteActive}
+          onDismiss={handleDismissModal}
+          onSelect={handleSelectSuggestion}
+          onNotFound={handleNoAddressFound}
+          value={searchTerm}
+          onChange={handleChangeInput}
+          onClear={handleClearInput}
+          placeholder={props.placeholder}
+          suggestions={suggestions}
+        />
+      </Modal>
     </Container>
   )
 }
