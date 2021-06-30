@@ -168,7 +168,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
       if (prevSuggestion && isSameAddress(prevSuggestion, newSuggestion))
         return newSuggestion
 
-      const results = await api.addressAutocompleteQuery(newSuggestion.address)
+      const results = await api.addressAutocompleteQuery(
+        newSuggestion.address,
+        { type: 'APARTMENT' },
+      )
       if (results.length === 1) return newSuggestion
 
       return null
