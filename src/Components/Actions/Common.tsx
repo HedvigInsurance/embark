@@ -10,6 +10,7 @@ interface Focusable {
 
 export const CardPrimitive = styled(motion.form)<Focusable>`
   position: relative;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +42,7 @@ const LoadingContainer = styled(motion.div)`
 
 const FormContents = styled(motion.div)`
   text-align: center;
+  max-width: 100%;
 `
 
 export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
@@ -72,6 +74,7 @@ export const Card: React.FC<CardProps> = ({ loading, children, ...rest }) => (
         overflow: 'hidden',
       }}
       transition={{ delay: 0.25, type: 'spring', stiffness: 400, damping: 100 }}
+      style={{ maxWidth: '100%' }}
     >
       <FormContents
         animate={{
