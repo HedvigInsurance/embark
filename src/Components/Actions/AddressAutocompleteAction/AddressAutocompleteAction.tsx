@@ -55,13 +55,10 @@ const Button = styled.button`
   outline: none;
   background: none;
   appearance: none;
+  cursor: text;
 
   @media (min-width: 600px) {
     padding-bottom: 24px;
-  }
-
-  & > input[disabled]::placeholder {
-    -webkit-text-fill-color: ${colorsV3.gray500};
   }
 `
 
@@ -76,9 +73,15 @@ const FakeInput = styled(Input)`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  cursor: text;
+
   &:disabled {
     -webkit-text-fill-color: ${colorsV3.gray900};
     opacity: 1;
+
+    ::placeholder {
+      -webkit-text-fill-color: ${colorsV3.gray500};
+    }
   }
 
   @media (min-width: 600px) {
