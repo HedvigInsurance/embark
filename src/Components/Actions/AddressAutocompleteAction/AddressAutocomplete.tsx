@@ -7,7 +7,7 @@ import { Cross } from '../../Icons/Cross'
 import Modal from './Modal'
 import Combobox from './Combobox'
 import useAddressSearch from './useAddressSearch'
-import { formatAddressLine, formatAddressLines } from './utils'
+import { formatAddressLines } from './utils'
 import { KeywordsContext } from '../../KeywordsContext'
 
 const ADDRESS_NOT_FOUND = 'ADDRESS_NOT_FOUND'
@@ -132,35 +132,26 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    reset,
   } = useCombobox<AddressSuggestion>({
-    selectedItem: selected,
     inputValue: value,
     items: comboboxItems,
-    itemToString: (item) => (item ? formatAddressLine(item) : ''),
-    onInputValueChange: ({ inputValue, type }) => {
-      if (type === '__input_keydown_escape__') return
-
-      onChange(inputValue || '')
-
-      if (!inputValue) {
-        // Reset picked suggestion for empty input field
-        onSelect(null)
-      }
-    },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem?.address === ADDRESS_NOT_FOUND) {
         onNotFound()
+      } else {
+        onSelect(selectedItem ?? null)
       }
 
       // Reset list of suggestions
       setSuggestions(null)
       inputRef.current?.focus()
-      onSelect(selectedItem ?? null)
     },
   })
 
   const handleClearInput = React.useCallback(() => {
     inputRef.current?.focus()
+    reset()
     onClear()
   }, [])
 
@@ -181,6 +172,8 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
             {...getInputProps({
               ref: inputRef,
               placeholder,
+              onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+                onChange(event.target.value),
             })}
           />
 
