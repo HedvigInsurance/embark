@@ -3,26 +3,33 @@ import {
   CompleteAddress,
 } from '../../API/addressAutocomplete'
 
-export const formatAddressLine = (suggestion: AddressSuggestion): string => {
-  if (suggestion.streetName && suggestion.streetNumber) {
-    let displayAddress = `${suggestion.streetName} ${suggestion.streetNumber}`
-    if (suggestion.floor) {
-      displayAddress += `, ${suggestion.floor}.`
+export const formatAddressLine = ({
+  streetName,
+  streetNumber,
+  floor,
+  apartment,
+  address,
+}: AddressSuggestion): string => {
+  if (streetName && streetNumber) {
+    let displayAddress = `${streetName} ${streetNumber}`
+    if (floor) {
+      displayAddress += `, ${floor}.`
     }
-    if (suggestion.apartment) {
-      displayAddress += ` ${suggestion.apartment}`
+    if (apartment) {
+      displayAddress += ` ${apartment}`
     }
     return displayAddress
   }
 
-  return suggestion.address
+  return address
 }
 
-export const formatPostalLine = (
-  address: AddressSuggestion,
-): string | undefined => {
-  if (address.city && address.postalCode) {
-    return `${address.postalCode} ${address.city}`
+export const formatPostalLine = ({
+  city,
+  postalCode,
+}: AddressSuggestion): string | undefined => {
+  if (city && postalCode) {
+    return `${postalCode} ${city}`
   }
 
   return undefined

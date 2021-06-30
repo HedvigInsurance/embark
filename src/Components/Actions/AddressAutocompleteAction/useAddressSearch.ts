@@ -46,9 +46,9 @@ const useAddressSearch = (
   >(null)
 
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
-  const [apiQuery, suggestionType] = React.useMemo(
-    () => getApiQuery(debouncedSearchTerm, suggestion),
-    [debouncedSearchTerm, suggestion],
+  const [apiQuery, suggestionType] = getApiQuery(
+    debouncedSearchTerm,
+    suggestion,
   )
 
   // @ts-ignore: clean-up function only needed conditionally
