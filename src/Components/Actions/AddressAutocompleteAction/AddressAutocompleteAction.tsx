@@ -36,6 +36,7 @@ const STORE_KEY = {
 }
 
 const Container = styled.div`
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,6 +59,11 @@ const FakeInput = styled(Input)`
   padding: 0 16px;
   line-height: 1;
   font-size: 48px;
+
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
   @media (min-width: 600px) {
     margin-top: 20px;
@@ -280,6 +286,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
           opacity: isAutocompleteActive ? 0 : 1,
         }}
         transition={{ ease: 'easeOut', duration: 0.25 }}
+        style={{ maxWidth: '100%' }}
       >
         <Card
           isFocused={isHovered}
