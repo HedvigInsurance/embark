@@ -74,10 +74,6 @@ const FakeInput = styled.span<{ fakePlaceholder: boolean }>`
   overflow: hidden;
   cursor: text;
 
-  ::placeholder {
-    -webkit-text-fill-color: ${colorsV3.gray500};
-  }
-
   @media (min-width: 600px) {
     padding: 0 32px;
     font-size: 48px;
