@@ -41,7 +41,7 @@ const ModalHeaderLabel = styled.label`
   font-weight: bold;
 `
 
-const ModalHeaderButton = styled.button`
+const DismissButton = styled.button`
   border: 0;
   background: ${colorsV3.gray300};
   border-radius: 4px;
@@ -164,9 +164,9 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
           <ModalHeaderLabel>
             {keywords.addressAutoCompleteModalTitle}
           </ModalHeaderLabel>
-          <ModalHeaderButton onClick={onDismiss}>
+          <DismissButton onClick={onDismiss}>
             {keywords.addressAutoCompleteModalDismiss}
-          </ModalHeaderButton>
+          </DismissButton>
         </ModalHeaderRow>
 
         <Combobox.Field {...getComboboxProps()}>
