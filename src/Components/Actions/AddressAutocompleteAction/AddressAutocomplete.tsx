@@ -80,7 +80,6 @@ const AddressOption: React.FC<{ address: AddressSuggestion }> = ({
 }
 
 interface Props {
-  isActive: boolean
   onDismiss: () => void
   onSelect: (suggestion: AddressSuggestion | null) => void
   onNotFound: () => void
@@ -93,7 +92,6 @@ interface Props {
 
 const AddressAutocomplete: React.FC<Props> = (props) => {
   const {
-    isActive,
     onDismiss,
     placeholder,
     onSelect,
@@ -106,15 +104,6 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
 
   const keywords = React.useContext(KeywordsContext)
   const inputRef = React.useRef<HTMLInputElement>(null)
-
-  React.useEffect(() => {
-    if (isActive) {
-      // Move focus to input on next render
-      setTimeout(() => inputRef.current?.focus(), 1)
-    } else {
-      inputRef.current?.blur()
-    }
-  }, [isActive])
 
   const comboboxItems = React.useMemo<AddressSuggestion[]>(
     () => (suggestions ? [...suggestions, { address: ADDRESS_NOT_FOUND }] : []),
@@ -167,6 +156,7 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
               placeholder,
               onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
                 onChange(event.target.value),
+              autoFocus: true,
             })}
           />
 

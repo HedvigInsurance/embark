@@ -360,7 +360,6 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
 
       <Modal isOpen={isAutocompleteActive} onDismiss={handleDismissModal}>
         <AddressAutocomplete
-          isActive={isAutocompleteActive}
           onDismiss={handleDismissModal}
           onSelect={handleSelectSuggestion}
           onNotFound={handleNoAddressFound}
