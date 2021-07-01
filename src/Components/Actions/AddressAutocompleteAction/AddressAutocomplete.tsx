@@ -43,11 +43,13 @@ const ModalHeaderLabel = styled.label`
 
 const ModalHeaderButton = styled.button`
   border: 0;
-  background: transparent;
+  background: ${colorsV3.gray300};
+  border-radius: 4px;
   appearance: none;
   outline: 0;
   position: relative;
   z-index: 2;
+  cursor: pointer;
 
   color: ${colorsV3.black};
   font-family: ${fonts.FAVORIT};
@@ -55,7 +57,7 @@ const ModalHeaderButton = styled.button`
 
   &:focus {
     border-radius: 4px;
-    box-shadow: 0 0 0 3px ${colorsV3.purple300};
+    box-shadow: 0 0 0 2px ${colorsV3.purple300};
   }
 `
 
