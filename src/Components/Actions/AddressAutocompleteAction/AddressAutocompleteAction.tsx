@@ -62,6 +62,7 @@ const Button = styled.button`
 `
 
 const FakeInput = styled.span<{ fakePlaceholder: boolean }>`
+  display: block;
   max-width: 100%;
   padding: 0 16px;
   font-size: 20px;
