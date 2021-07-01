@@ -57,7 +57,6 @@ const DismissButton = styled.button`
   font-size: 16px;
 
   &:focus {
-    border-radius: 4px;
     box-shadow: 0 0 0 2px ${colorsV3.purple300};
   }
 `
