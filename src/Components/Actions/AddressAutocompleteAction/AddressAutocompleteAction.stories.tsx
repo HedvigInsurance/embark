@@ -21,5 +21,5 @@ Autocomplete.args = {
   isTransitioning: false,
   passageName: 'autocomplete',
   storeKey: 'address',
-  placeholder: 'Teststreet 12',
+  placeholder: 'Enter your home address',
 }
