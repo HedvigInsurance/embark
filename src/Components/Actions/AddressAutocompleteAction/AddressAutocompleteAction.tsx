@@ -61,14 +61,13 @@ const Button = styled.button`
   }
 `
 
-const FakeInput = styled.span<{ fakePlaceholder: boolean }>`
+const FakeInput = styled.span<{ isMuted: boolean }>`
   display: block;
   max-width: 100%;
   padding: 0 16px;
   font-size: 20px;
   line-height: 1.5;
-  color: ${(props) =>
-    props.fakePlaceholder ? colorsV3.gray500 : colorsV3.gray900};
+  color: ${(props) => (props.isMuted ? colorsV3.gray500 : colorsV3.gray900)};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -316,7 +315,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
           {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
           <Button onClick={handleButtonClick}>
             <FakeInput
-              fakePlaceholder={confirmedAddressLine === '' || searchTerm === ''}
+              isMuted={confirmedAddressLine === undefined && searchTerm === ''}
             >
               {fakeInputText}
             </FakeInput>
