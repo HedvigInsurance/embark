@@ -45,33 +45,43 @@ const Container = styled.div`
 
 const Card = styled(BaseCard)`
   width: 100%;
+`
 
-  padding-bottom: 24px;
+const Button = styled.button`
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  outline: none;
+  background: none;
+  appearance: none;
+  cursor: text;
 
-  @media (max-width: 600px) {
-    padding-bottom: 16px;
+  @media (min-width: 600px) {
+    padding: 24px 0;
   }
 `
 
-const FakeInput = styled(Input)`
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0 16px;
-  line-height: 1;
-  font-size: 48px;
-
+const FakeInput = styled.span<{ isMuted: boolean }>`
+  display: block;
   max-width: 100%;
+  padding: 0 16px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: ${(props) => (props.isMuted ? colorsV3.gray500 : colorsV3.gray900)};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  cursor: text;
 
   @media (min-width: 600px) {
-    margin-top: 20px;
     padding: 0 32px;
+    font-size: 48px;
+    line-height: 1.25;
   }
 `
 
-const PostalAddress = styled.p`
+const PostalAddress = styled.span`
+  display: block;
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 16px;
   text-align: center;
@@ -214,6 +224,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     [store],
   )
 
+  const handleButtonClick = () => {
+    setIsAutocompleteActive(true)
+  }
+
   const handleClearInput = React.useCallback(() => {
     setSearchTerm('')
     setPickedSuggestion(null)
@@ -282,6 +296,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     ? formatAddressLines(confirmedAddress)
     : []
 
+  const fakeInputText = confirmedAddressLine || searchTerm || props.placeholder
   return (
     <Container>
       <motion.div
@@ -298,19 +313,16 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
           onMouseLeave={() => setIsHovered(false)}
         >
           {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
-
-          <FakeInput
-            placeholder={props.placeholder}
-            value={confirmedAddressLine || searchTerm}
-            onClick={() => setIsAutocompleteActive(true)}
-            onFocus={() => setIsAutocompleteActive(true)}
-            size={
-              (confirmedAddressLine || searchTerm || props.placeholder).length
-            }
-          />
-          {confirmedPostalLine ? (
-            <PostalAddress>{confirmedPostalLine}</PostalAddress>
-          ) : null}
+          <Button onClick={handleButtonClick}>
+            <FakeInput
+              isMuted={confirmedAddressLine === undefined && searchTerm === ''}
+            >
+              {fakeInputText}
+            </FakeInput>
+            {confirmedPostalLine ? (
+              <PostalAddress>{confirmedPostalLine}</PostalAddress>
+            ) : null}
+          </Button>
         </Card>
       </motion.div>
 
