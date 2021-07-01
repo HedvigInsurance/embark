@@ -22,9 +22,9 @@ describe('address autocomplete modal', () => {
       )
     }
 
-    const { getByText } = render(<ModalWithButton />)
+    const { getByText, queryByText } = render(<ModalWithButton />)
 
-    expect(getByText('close')).not.toBeVisible()
+    expect(queryByText('close')).not.toBeInTheDocument()
 
     userEvent.click(getByText('open'))
 
