@@ -43,7 +43,8 @@ const ModalHeaderLabel = styled.label`
 
 const DismissButton = styled.button`
   border: 0;
-  background: ${colorsV3.gray300};
+  background: transparent;
+  padding: 4px 2px;
   border-radius: 4px;
   appearance: none;
   outline: 0;
