@@ -41,7 +41,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
 `
 
 const Card = styled(BaseCard)`
@@ -50,7 +49,7 @@ const Card = styled(BaseCard)`
 
 const Button = styled.button`
   width: 100%;
-  padding: 0 0 16px 0;
+  padding: 16px 0;
   border: none;
   outline: none;
   background: none;
@@ -58,39 +57,35 @@ const Button = styled.button`
   cursor: text;
 
   @media (min-width: 600px) {
-    padding-bottom: 24px;
+    padding: 24px 0;
   }
 `
 
-const FakeInput = styled(Input)`
+const FakeInput = styled.span<{ fakePlaceholder: boolean }>`
   max-width: 100%;
-  margin-left: 0;
-  margin-right: 0;
   padding: 0 16px;
-  line-height: 1;
-  font-size: 48px;
-  color: ${colorsV3.gray900};
+  font-size: 20px;
+  line-height: 1.5;
+  color: ${(props) =>
+    props.fakePlaceholder ? colorsV3.gray500 : colorsV3.gray900};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   cursor: text;
 
-  &:disabled {
-    -webkit-text-fill-color: ${colorsV3.gray900};
-    opacity: 1;
-
-    ::placeholder {
-      -webkit-text-fill-color: ${colorsV3.gray500};
-    }
+  ::placeholder {
+    -webkit-text-fill-color: ${colorsV3.gray500};
   }
 
   @media (min-width: 600px) {
-    margin-top: 20px;
     padding: 0 32px;
+    font-size: 48px;
+    line-height: 1.25;
   }
 `
 
-const PostalAddress = styled.p`
+const PostalAddress = styled.span`
+  display: block;
   font-family: ${fonts.FAVORIT}, sans-serif;
   font-size: 16px;
   text-align: center;
@@ -305,6 +300,7 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
     ? formatAddressLines(confirmedAddress)
     : []
 
+  const fakeInputText = confirmedAddressLine || searchTerm || props.placeholder
   return (
     <Container>
       <motion.div
@@ -323,13 +319,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
           {props.tooltip ? <Tooltip tooltip={props.tooltip} /> : null}
           <Button onClick={handleButtonClick}>
             <FakeInput
-              placeholder={props.placeholder}
-              value={confirmedAddressLine || searchTerm}
-              disabled={true}
-              size={
-                (confirmedAddressLine || searchTerm || props.placeholder).length
-              }
-            />
+              fakePlaceholder={confirmedAddressLine === '' || searchTerm === ''}
+            >
+              {fakeInputText}
+            </FakeInput>
             {confirmedPostalLine ? (
               <PostalAddress>{confirmedPostalLine}</PostalAddress>
             ) : null}
