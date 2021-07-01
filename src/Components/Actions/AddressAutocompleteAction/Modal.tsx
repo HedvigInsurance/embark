@@ -4,6 +4,8 @@ import { colorsV3 } from '@hedviginsurance/brand'
 import styled from '@emotion/styled'
 
 const StyledOverlay = styled(motion.div)`
+  display: none;
+
   position: fixed;
   top: 0;
   bottom: 0;
@@ -12,7 +14,6 @@ const StyledOverlay = styled(motion.div)`
 
   background: rgba(0, 0, 0, 0.6);
 
-  display: flex;
   align-items: center;
   justify-content: center;
 `
@@ -85,9 +86,19 @@ const Modal: React.FC<Props> = ({ children, isOpen, onDismiss }) => {
   return (
     <StyledOverlay
       style={{ pointerEvents: isOpen ? 'initial' : 'none' }}
-      animate={{
-        opacity: isOpen ? 1 : 0,
+      variants={{
+        open: {
+          display: 'flex',
+          opacity: 1,
+        },
+        closed: {
+          opacity: 0,
+          transitionEnd: {
+            display: 'none',
+          },
+        },
       }}
+      animate={isOpen ? 'open' : 'closed'}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
       <StyledModal
@@ -96,6 +107,8 @@ const Modal: React.FC<Props> = ({ children, isOpen, onDismiss }) => {
           translateY: isOpen ? 0 : 56,
         }}
         transition={{ duration: 0.25, ease: 'easeInOut' }}
+        role="dialog"
+        aria-modal={isOpen}
       >
         {children}
       </StyledModal>
