@@ -20,12 +20,12 @@ const ComboboxField = styled.div`
 const ClearButton = styled.button`
   position: absolute;
   right: 16px;
-  top: calc(50% - 9px);
+  top: calc(50% - (20px / 2));
   cursor: pointer;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   border: 0;
-  border-radius: 9px;
+  border-radius: 50%;
   background-color: ${colorsV3.gray500};
   outline: 0;
   padding: 0;
@@ -41,8 +41,8 @@ const ClearButton = styled.button`
   svg {
     display: block;
     margin: auto;
-    width: 60%;
-    height: 60%;
+    width: 12px;
+    height: 12px;
   }
 `
 
