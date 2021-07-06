@@ -154,17 +154,20 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
   const { store, setValue, removeValues } = React.useContext(StoreContext)
 
   const [isAutocompleteActive, setIsAutocompleteActive] = React.useState(false)
-  const [searchTerm, setSearchTerm] = React.useState('')
-
-  const [
-    pickedSuggestion,
-    setPickedSuggestion,
-  ] = React.useState<AddressSuggestion | null>(() => getAddressFromStore(store))
 
   const [
     confirmedAddress,
     setConfirmedAddress,
   ] = React.useState<CompleteAddress | null>(() => getAddressFromStore(store))
+
+  const [
+    pickedSuggestion,
+    setPickedSuggestion,
+  ] = React.useState<AddressSuggestion | null>(() => confirmedAddress)
+
+  const [searchTerm, setSearchTerm] = React.useState(() =>
+    confirmedAddress ? formatAddressLine(confirmedAddress) : '',
+  )
 
   const confirmSuggestion = React.useCallback(
     async (
