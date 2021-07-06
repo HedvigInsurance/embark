@@ -2,7 +2,7 @@
   "id": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
   "ifid": "29F1BC05-1702-4DA0-B866-9139E5B2C621",
   "keywords": {},
-  "lastUpdate": "2021-06-04T08:00:03.228Z",
+  "lastUpdate": "2021-07-06T12:19:22.218Z",
   "locales": [
     "en_SE"
   ],
@@ -151,7 +151,7 @@
       "tags": [
         "External-Action"
       ],
-      "text": "<Redirect when=\"breachedUnderwriterGuidelines != null\"\n          to=\"[[ApartmentUwlimitsHit]]\"\n>\n</Redirect>\n\n<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "text": "<Redirect when=\"breachedUnderwriterGuidelines != null\"\n          to=\"[[ApartmentUwlimitsHit]]\"\n>\n</Redirect>\n\n<OfferRedirect keys=\"quoteIds\">\n</OfferRedirect>",
       "top": 1750,
       "url": "/success",
       "width": 100
