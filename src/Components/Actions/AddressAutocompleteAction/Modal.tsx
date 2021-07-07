@@ -89,16 +89,16 @@ const Modal: React.FC<Props> = ({ children, isOpen, onDismiss }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
+          transition={{ ease: 'anticipate' }}
         >
           <StyledModal
             ref={ref}
             role="dialog"
             aria-modal={true}
-            initial={{ translateY: 56 }}
-            animate={{ translateY: 0 }}
-            exit={{ translateY: 56 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            initial={{ translateY: '50%', scale: 0.9 }}
+            animate={{ translateY: 0, scale: 1 }}
+            exit={{ translateY: '50%', scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 100 }}
           >
             {children}
           </StyledModal>
