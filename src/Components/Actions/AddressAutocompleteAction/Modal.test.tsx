@@ -35,7 +35,7 @@ describe('address autocomplete modal', () => {
     userEvent.click(getByText('close'))
 
     await waitFor(() => {
-      expect(getByText('close')).not.toBeVisible()
+      expect(queryByText('close')).not.toBeInTheDocument()
     })
   })
 
