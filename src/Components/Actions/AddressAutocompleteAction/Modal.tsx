@@ -29,9 +29,11 @@ const StyledModal = styled(motion.div)`
   flex-direction: column;
 
   @media (min-width: 600px) {
+    max-height: 600px;
     border-radius: 8px;
     overflow: hidden;
-    max-height: 600px;
+    /* Prevent visual content from bleeding in Safari */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 `
 
