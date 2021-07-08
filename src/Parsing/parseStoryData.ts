@@ -258,7 +258,7 @@ const getNumberActionSet = (
   numberActionSetNode: Element,
   translate: Translator,
 ) => {
-  const next = numberActionSetNode.getAttribute('next')
+  const next = translate(numberActionSetNode.getAttribute('next') || '')
   const links = parseLinks(next || '')
 
   const numberActions = Array.from(
