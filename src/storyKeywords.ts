@@ -2,6 +2,11 @@ export const storyKeywords = {
   selectActionSelectLabel: 'Select action - select label',
   tooltipModalInformationLabel: 'Tooltip modal - information label',
   backButton: 'Back button',
+  addressAutoCompleteModalTitle: 'Address Autocomplete - Modal Title Label',
+  addressAutoCompleteModalDismiss:
+    'Address Autocomplete - Modal Dismiss Button',
+  addressAutoCompleteModalNotFound:
+    'Address Autocomplete - Address Not Found Label',
   externalInsuranceProviderConfirmTitle:
     'External insurance provider - Confirm Title',
   externalInsuranceProviderConfirmPrivacyPolicy:

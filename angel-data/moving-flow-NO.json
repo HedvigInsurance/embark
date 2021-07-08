@@ -7,7 +7,7 @@
     "selectActionSelectLabel": "Select",
     "tooltipModalInformationLabel": "Information"
   },
-  "lastUpdate": "2021-05-20T07:37:28.107Z",
+  "lastUpdate": "2021-07-06T12:21:03.875Z",
   "locales": [
     "en_NO"
   ],
@@ -181,7 +181,7 @@
       "selected": false,
       "story": "3defbe0e-a1fc-45f2-819d-5e64bd782405",
       "tags": [],
-      "text": "<ExternalRedirect to=\"Offer\">\n</ExternalRedirect>",
+      "text": "<OfferRedirect keys=\"quoteIds\">\n</OfferRedirect>",
       "top": 925,
       "width": 100
     },
