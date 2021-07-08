@@ -65,16 +65,16 @@ const SelectLabel = styled.span<SelectLabelProps>`
   display: inline-block;
   margin-top: 8px;
   font-family: ${fonts.FAVORIT};
-  font-size: 12px;
-  color: ${colorsV3.purple500};
+  font-size: 14px;
+  color: ${colorsV3.purple900};
   transition: all 350ms;
 
   @media all and (max-width: 800px) {
-    font-size: 10px;
+    font-size: 12px;
   }
 `
 
-type SelectOptionProps = {
+export type SelectOptionProps = {
   label: String
   tooltip: {
     title: string
