@@ -377,7 +377,8 @@ const typeDefs = /* GraphQL */ `
         EmbarkSelectAction | 
         EmbarkNumberAction | 
         EmbarkMultiAction |
-        EmbarkDatePickerAction
+        EmbarkDatePickerAction |
+        EmbarkAddressAutocompleteAction
 
     union EmbarkMultiActionComponent = EmbarkMultiActionNumberAction | EmbarkDropdownAction | EmbarkSwitchAction
 
