@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { colorsV3 } from '@hedviginsurance/brand'
 import styled from '@emotion/styled'
 
 const StyledOverlay = styled(motion.div)`
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   position: fixed;
   top: 0;
@@ -13,9 +15,6 @@ const StyledOverlay = styled(motion.div)`
   right: 0;
 
   background: rgba(0, 0, 0, 0.6);
-
-  align-items: center;
-  justify-content: center;
 `
 
 const StyledModal = styled(motion.div)`
@@ -86,35 +85,28 @@ const Modal: React.FC<Props> = ({ children, isOpen, onDismiss }) => {
   }, [isOpen])
 
   return (
-    <StyledOverlay
-      style={{ pointerEvents: isOpen ? 'initial' : 'none' }}
-      variants={{
-        open: {
-          display: 'flex',
-          opacity: 1,
-        },
-        closed: {
-          opacity: 0,
-          transitionEnd: {
-            display: 'none',
-          },
-        },
-      }}
-      animate={isOpen ? 'open' : 'closed'}
-      transition={{ duration: 0.25, ease: 'easeOut' }}
-    >
-      <StyledModal
-        ref={ref}
-        animate={{
-          translateY: isOpen ? 0 : 56,
-        }}
-        transition={{ duration: 0.25, ease: 'easeInOut' }}
-        role="dialog"
-        aria-modal={isOpen}
-      >
-        {children}
-      </StyledModal>
-    </StyledOverlay>
+    <AnimatePresence>
+      {isOpen ? (
+        <StyledOverlay
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ ease: 'anticipate' }}
+        >
+          <StyledModal
+            ref={ref}
+            role="dialog"
+            aria-modal={true}
+            initial={{ translateY: '50%', scale: 0.9 }}
+            animate={{ translateY: 0, scale: 1 }}
+            exit={{ translateY: '50%', scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 100 }}
+          >
+            {children}
+          </StyledModal>
+        </StyledOverlay>
+      ) : null}
+    </AnimatePresence>
   )
 }
 

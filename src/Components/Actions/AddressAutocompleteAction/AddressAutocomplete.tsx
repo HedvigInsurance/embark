@@ -4,9 +4,7 @@ import { useCombobox } from 'downshift'
 import { AddressSuggestion } from '../../API/addressAutocomplete'
 import { colorsV3, fonts } from '@hedviginsurance/brand'
 import { Cross } from '../../Icons/Cross'
-import Modal from './Modal'
 import Combobox from './Combobox'
-import useAddressSearch from './useAddressSearch'
 import { formatAddressLines } from './utils'
 import { KeywordsContext } from '../../KeywordsContext'
 
@@ -82,46 +80,30 @@ const AddressOption: React.FC<{ address: AddressSuggestion }> = ({
 }
 
 interface Props {
-  isActive: boolean
   onDismiss: () => void
-  selected: AddressSuggestion | null
   onSelect: (suggestion: AddressSuggestion | null) => void
   onNotFound: () => void
   placeholder: string
   value: string
   onChange: (newValue: string) => void
   onClear: () => void
+  suggestions: Array<AddressSuggestion> | null
 }
 
 const AddressAutocomplete: React.FC<Props> = (props) => {
   const {
-    isActive,
     onDismiss,
     placeholder,
-    selected,
     onSelect,
     onNotFound,
     value,
     onChange,
     onClear,
+    suggestions,
   } = props
 
   const keywords = React.useContext(KeywordsContext)
   const inputRef = React.useRef<HTMLInputElement>(null)
-
-  const [suggestions, setSuggestions] = useAddressSearch(
-    value,
-    selected ?? undefined,
-  )
-
-  React.useEffect(() => {
-    if (isActive) {
-      // Move focus to input on next render
-      setTimeout(() => inputRef.current?.focus(), 1)
-    } else {
-      inputRef.current?.blur()
-    }
-  }, [isActive])
 
   const comboboxItems = React.useMemo<AddressSuggestion[]>(
     () => (suggestions ? [...suggestions, { address: ADDRESS_NOT_FOUND }] : []),
@@ -145,8 +127,6 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
         onSelect(selectedItem ?? null)
       }
 
-      // Reset list of suggestions
-      setSuggestions(null)
       inputRef.current?.focus()
     },
   })
@@ -158,7 +138,7 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
   }, [])
 
   return (
-    <Modal isOpen={isActive} onDismiss={onDismiss}>
+    <>
       <ModalHeader>
         <ModalHeaderRow>
           <ModalHeaderLabel>
@@ -176,6 +156,7 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
               placeholder,
               onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
                 onChange(event.target.value),
+              autoFocus: true,
             })}
           />
 
@@ -212,7 +193,7 @@ const AddressAutocomplete: React.FC<Props> = (props) => {
           )
         })}
       </Combobox.List>
-    </Modal>
+    </>
   )
 }
 
