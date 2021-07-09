@@ -20,6 +20,23 @@ import { ApiComponent } from '../../API/apiComponent'
 import animateScrollTo from 'animated-scroll-to'
 import { useAutoFocus } from '../../../Utils/useAutoFocus'
 
+const convertMaskToInputMode = (
+  type: MaskType,
+): React.HTMLAttributes<HTMLInputElement>['inputMode'] => {
+  switch (type) {
+    case 'BirthDate':
+    case 'BirthDateReverse':
+    case 'NorwegianPostalCode':
+    case 'PersonalNumber':
+    case 'PostalCode':
+      return 'numeric'
+    case 'Email':
+      return 'email'
+    default:
+      return 'text'
+  }
+}
+
 const BottomSpacedInput = styled(Input)`
   margin-bottom: 24px;
 
@@ -104,6 +121,7 @@ export const TextAction: React.FunctionComponent<TextActionProps> = (props) => {
         <Masked
           inputRef={inputRef}
           mask={props.mask}
+          inputMode={props.mask ? convertMaskToInputMode(props.mask) : 'text'}
           type={props.mask === 'Email' ? 'email' : 'text'}
           size={Math.max(props.placeholder.length, textValue.length)}
           placeholder={props.placeholder}
