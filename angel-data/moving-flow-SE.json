@@ -2,7 +2,7 @@
   "id": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
   "ifid": "29F1BC05-1702-4DA0-B866-9139E5B2C621",
   "keywords": {},
-  "lastUpdate": "2021-07-08T14:02:41.652Z",
+  "lastUpdate": "2021-07-09T10:30:04.249Z",
   "locales": [
     "en_SE"
   ],
@@ -78,7 +78,7 @@
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
       "tags": [],
-      "text": "<Message>\n  {EMBARK_MOVING_SE_STUDENT_OWN_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"ownershipType\"\n          value=\"STUDENT_BRF\"\n  >\n    [[{EMBARK_MOVING_SE_STUDENT_OWN_OPTION_YES}->accessDate]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_STUDENT_OWN_OPTION_NO}->accessDate]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {EMBARK_MOVING_SE_STUDENT_OWN_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[{EMBARK_MOVING_SE_STUDENT_OWN_OPTION_YES}->accessDate]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_STUDENT_OWN_OPTION_NO}->accessDate]]\n  </Option>\n</SelectAction>",
       "top": 1050,
       "url": "/student",
       "width": 100
@@ -315,7 +315,7 @@
       "selected": false,
       "story": "0e9214ae-d578-43b1-8e67-cdbb5aeddfd3",
       "tags": [],
-      "text": "<Message>\n  {EMBARK_MOVING_SE_STUDENT_RENT_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"ownershipType\"\n          value=\"STUDENT_RENT\"\n  >\n    [[{EMBARK_MOVING_SE_STUDENT_RENT_OPTION_YES}->accessDate]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_STUDENT_RENT_OPTION_NO}->accessDate]]\n  </Option>\n</SelectAction>",
+      "text": "<Message>\n  {EMBARK_MOVING_SE_STUDENT_RENT_MESSAGE_1}\n</Message>\n\n<SelectAction>\n  <Option key=\"isStudent\"\n          value=\"true\"\n  >\n    [[{EMBARK_MOVING_SE_STUDENT_RENT_OPTION_YES}->accessDate]]\n  </Option>\n  <Option>\n    [[{EMBARK_MOVING_SE_STUDENT_RENT_OPTION_NO}->accessDate]]\n  </Option>\n</SelectAction>",
       "top": 1050,
       "url": "/student",
       "width": 100
