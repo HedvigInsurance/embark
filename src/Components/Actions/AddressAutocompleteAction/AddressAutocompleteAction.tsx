@@ -185,7 +185,10 @@ export const AddressAutocompleteAction: React.FC<AddressAutocompleteActionProps>
         newSuggestion.address,
         { type: 'APARTMENT' },
       )
-      if (results.length === 1) return newSuggestion
+      if (results.length === 1 && isSameAddress(results[0], newSuggestion)) {
+        const apiSuggestion = results[0]
+        return isCompleteAddress(apiSuggestion) ? apiSuggestion : null
+      }
 
       return null
     },
