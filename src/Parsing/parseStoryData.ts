@@ -215,7 +215,7 @@ const getMultiAction = (multiActionNode: Element, translate: Translator) => {
   const links = parseLinks(next || '')
 
   const addNode = multiActionNode.getElementsByTagName('add')[0]
-  const addLabel = addNode.getAttribute('label')
+  const addLabel = translate(addNode.getAttribute('label') || '')
 
   Array.from(addNode.getElementsByTagName('dropdownaction')).forEach(
     (dropdownNode) => {
