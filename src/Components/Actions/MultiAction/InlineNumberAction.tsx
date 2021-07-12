@@ -11,30 +11,30 @@ const Container = styled.div`
 `
 
 const Input = styled.input`
-    margin-left: 16px;
-    margin-right: 16px;
-    font-size: 56px;
-    line-height: 1;
-    font-family: ${fonts.FAVORIT}
-    background: none;
-    border: none;
-    box-sizing: border-box;
-    text-align: center;
-    max-width: 100%;
-    margin-top: 16px;
-    color: ${colorsV3.gray900};
-    outline: 0;
-    ::placeholder {
-        color: ${colorsV3.gray500};
-    }
+  margin-left: 16px;
+  margin-right: 16px;
+  font-size: 56px;
+  line-height: 1;
+  font-family: ${fonts.FAVORIT};
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  text-align: center;
+  max-width: 100%;
+  margin-top: 16px;
+  color: ${colorsV3.gray900};
+  outline: 0;
+  ::placeholder {
+    color: ${colorsV3.gray500};
+  }
 
-    ::-webkit-outer-spin-button,
-    ::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    appearance: none;
-    -moz-appearance: textfield;
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  appearance: none;
+  -moz-appearance: textfield;
 `
 
 const Unit = styled.p`
