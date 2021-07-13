@@ -27,7 +27,7 @@ The web UI is distributed (to the web onboarding) via an NPM package. It is publ
 Steps to deploy:
 
 - Run `yarn version` and bump the version while on the master/main git branch
-- Push the Git tag created to GitHub with `git push origin master && git push --tags`
+- Push the Git tag created to GitHub with `git push --follow-tags`
 - Once the tag is built in CodeFresh approve the NPM package deployment by pressing `approve` in the CI pipeline
 
 To develop: Use Storybook (start with `yarn storybook`) to develop individual components - if they aren't yet Storybooked make sure to first storybookify them. If you want to test Embark in a context use `yarn link` to link the package. For each change you make you'll need to use `yarn build-package` for it to propagate to the changes you made into the "production" (linked) build.
