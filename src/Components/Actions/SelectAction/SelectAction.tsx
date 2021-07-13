@@ -6,7 +6,7 @@ import { callApi } from '../../API'
 import { ApiContext } from '../../API/ApiContext'
 import { Loading } from '../../API/Loading'
 
-export type SelectActionProps = {
+type SelectActionProps = {
   passageName: string
   action: any
   changePassage: (name: string) => void
